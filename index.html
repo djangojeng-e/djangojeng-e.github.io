@@ -163,6 +163,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/03/15/Hexo-NeXT-%ED%85%8C%EB%A7%88-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-Read-More-%EB%B2%84%ED%8A%BC-%EC%B6%94%EA%B0%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/15/Hexo-NeXT-%ED%85%8C%EB%A7%88-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-Read-More-%EB%B2%84%ED%8A%BC-%EC%B6%94%EA%B0%80/" class="post-title-link" itemprop="url">Hexo NeXT 테마 - 포스트에 Read More 버튼 추가</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-03-15 11:07:33 / Updated at: 11:11:34" itemprop="dateCreated datePublished" datetime="2020-03-15T11:07:33+09:00">2020-03-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo-Blog/" itemprop="url" rel="index"><span itemprop="name">Hexo Blog</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Read-More-버튼-추가하기"><a href="#Read-More-버튼-추가하기" class="headerlink" title="Read More 버튼 추가하기"></a>Read More 버튼 추가하기</h1><p>포스트가 너무 길어지면, 블로그에 접속했을때. </p>
+<p>너무 많은 양이 보여지는것 같아서 불편 했었는데. </p>
+<br>
+
+
+
+<p>특정 영역까지만 포스트를 보여주고, <code>Read More</code> 혹은  <code>더 읽어보기</code>버튼을 눌르면 전체 포스트 내용이 나오게 하여서. </p>
+<br> 
+
+<p>조금 더, 깔끔하게 포스트들이 나오게 하겠습니다. </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/15/Hexo-NeXT-%ED%85%8C%EB%A7%88-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-Read-More-%EB%B2%84%ED%8A%BC-%EC%B6%94%EA%B0%80/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/03/15/Hexo-NeXT-%ED%85%8C%EB%A7%88-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-%ED%85%8C%EA%B7%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -188,7 +272,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-03-15 10:04:46 / Updated at: 10:10:53" itemprop="dateCreated datePublished" datetime="2020-03-15T10:04:46+09:00">2020-03-15</time>
+              <time title="Post created: 2020-03-15 10:04:46 / Updated at: 10:58:29" itemprop="dateCreated datePublished" datetime="2020-03-15T10:04:46+09:00">2020-03-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -216,102 +300,14 @@
 <br>
 
 <p>이번엔 잘 되었으면 좋겠습니다 ^^; </p>
-<br>
-
-<h2 id="메뉴-수정하기"><a href="#메뉴-수정하기" class="headerlink" title="메뉴 수정하기"></a>메뉴 수정하기</h2><br>
-
-<blockquote>
-<p>우선 테마의 _config 파일을 엽니다. </p>
-<p>필자의 경우, blog/themes/hexo-theme-next</p>
-<p>by 장고쟁이</p>
-</blockquote>
-<p>아래 <br>menu 부분에, <strong>tags 와 categories 부분을 uncomment 처리 해줍니다.</strong> </p>
-<p>앞 부분에 # 만 없애면 되겟죠? ㅎㅎ</p>
-<br>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">menu:  </span><br><span class="line">home: / || home  </span><br><span class="line"><span class="comment"># about: /about/ || user  </span></span><br><span class="line">tags: /tags/ || tags  </span><br><span class="line">categories: /categories/ || th  </span><br><span class="line">archives: /archives/ || archive  </span><br><span class="line"><span class="comment"># schedule: /schedule/ || calendar  </span></span><br><span class="line"><span class="comment"># sitemap: /sitemap.xml || sitemap  </span></span><br><span class="line"><span class="comment"># commonweal: /404/ || heartbeat</span></span><br></pre></td></tr></table></figure>
-
-
-
-<br>
-
-<p><strong>메뉴에 categories 와 tag 를 보이게 했습니다.</strong> </p>
-<p><strong>이제, categories 와 tag 페이지 설정을 해주러 갑니다.</strong> </p>
-<br>
-
-<hr>
-<hr>
-<h2 id="Categories-페이지-추가"><a href="#Categories-페이지-추가" class="headerlink" title="Categories 페이지 추가"></a><strong>Categories 페이지 추가</strong></h2><hr>
-<p>다음 명령어를 입력하여, 카테고리 페이지를 추가 해 줍니다. </p>
-<br>
-
-
-
-<p>hexo new page categories <br></p>
-<hr>
-<p><strong>추가된 파일은 /source/categories/index.md 에 생성 됩니다.</strong> </p>
-<p><strong>해당 index.md 파일을 아래와 같이 수정해 줍니다.</strong> </p>
-<hr>
-<p><strong>※ 맨 위 — 와 맨 아래 — 를 꼭 맞게 작성해야 합니다. 이게 포맷입니다.</strong> </p>
-<p>****<br></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line">title:Categories</span><br><span class="line">date:2020-03-15 09:28:47</span><br><span class="line"><span class="built_in">type</span>:<span class="string">"categories"</span></span><br><span class="line">comments:<span class="literal">false</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="Tags-페이지-추가"><a href="#Tags-페이지-추가" class="headerlink" title="Tags 페이지 추가"></a><strong>Tags 페이지 추가</strong></h2><br>
-
-
-
-<p>카테고리 생성할때와 비슷하게, tags 페이지를 생성합니다 </p>
-<br>
-
-<p>hexo new page tags</p>
-<br> 
-
-<hr>
-<p><strong>추가된 파일은 /source/categories/index.md 에 생성 됩니다.</strong> </p>
-<p><strong>해당 index.md 파일을 아래와 같이 수정해 줍니다.</strong> </p>
-<hr>
-<br>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line">title:Tags</span><br><span class="line">date:2020-03-15 09:28:47</span><br><span class="line"><span class="built_in">type</span>:<span class="string">"tags"</span></span><br><span class="line">comments:<span class="literal">false</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-
-
-<br>
-
-
-
-<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a><strong>마치며</strong></h2><br>
-
-<p>카테고리와 태그 세팅이 된것 같습니다. </p>
-<p>앞으로 포스트 작성시, 상단 내용에 <strong>categories</strong> 와 <strong>tags</strong> 항목을 추가하고 작성 해보면 됩니다.</p>
-<br>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line">title: NeXT Theme - Categories and Tags</span><br><span class="line">date: &#123;&#123;date&#125;&#125;</span><br><span class="line">categories: [Hexo Blog]</span><br><span class="line">tags: [hexo]</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-
-
-<br>
-
-
-
-<p>계속 에러가 났었는데. 이번에는 잘 되네요;; </p>
-<br>
-
-
-
-
-
-<p>​                                <a href="https://blog.naver.com/PostView.nhn?blogId=headfat1218&Redirect=View&logNo=221854430054&categoryNo=9&isAfterWrite=true&isMrblogPost=false&isHappyBeanLeverage=true&contentLength=28744#" target="_blank" rel="noopener">                                     <img src="https://postfiles.pstatic.net/MjAyMDAzMTVfMTM2/MDAxNTg0MjM0MTYzNzg5.f2wNFiebhXxB7HTWFdjIwZdgKZYb_ZPuFhL3z0SSsfkg.KQn8qlK4ekf1Keo3EACPy8i5I97kHXSXcJs4MYvkrOEg.PNG.headfat1218/Screenshot_from_2020-03-15_10-02-16.png?type=w773" alt="img">                                 </a>                        </p>
-<br>
-
-<p>앞으로 hexo 블로그를 카테고리와 테그를 구분해서 다양하게 작성할수 있을것 같습니다. 화이팅~ </p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/15/Hexo-NeXT-%ED%85%8C%EB%A7%88-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-%ED%85%8C%EA%B7%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -666,7 +662,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -675,7 +671,7 @@
         <span class="site-state-item-name">카테고리</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">태그</span>
       </div>
   </nav>
