@@ -194,6 +194,26 @@
     </header>
   </article>
 
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-03-15T10:04:46+09:00"
+              content="2020-03-15">
+          03-15
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2020/03/15/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-Disqus-%EC%84%B8%ED%8C%85/" itemprop="url">
+            <span itemprop="name">Hexo NeXT 테마 - 카테고리와 테그</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
     </div>
   </div>
   
@@ -265,7 +285,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -421,6 +441,17 @@ window.addEventListener('pjax:success', () => {
   
 
   
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://djangojeng-e.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
 
     </div>
 </body>
