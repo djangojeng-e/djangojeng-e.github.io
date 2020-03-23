@@ -3,7 +3,7 @@
   <title>장고쟁이</title>
   
   <subtitle>당신은 멋쟁이, 우리는 장고쟁이~</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="/feed.xml" rel="self"/>
   
   <link href="http://djangojeng-e.github.io/"/>
   <updated>2020-03-22T11:12:20.647Z</updated>
