@@ -3,22 +3,29 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EA%25B2%2580%25EC%2583%2589%25EA%25B8%25B0%25EB%258A%25A5-hexo-generator-searchdb/</loc>
+        <lastmod>2020-03-26T13:49:53.390Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/Advertisement/</loc>
-        <lastmod>2020-03-24T02:41:53.928Z</lastmod>
+        <lastmod>2020-03-24T03:02:55.453Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/Adsense/</loc>
-        <lastmod>2020-03-24T02:41:53.928Z</lastmod>
+        <lastmod>2020-03-24T03:02:55.453Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/Google/</loc>
-        <lastmod>2020-03-24T02:41:53.928Z</lastmod>
+        <lastmod>2020-03-24T03:02:55.453Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

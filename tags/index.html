@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"djangojeng-e.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"djangojeng-e.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -116,6 +116,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -144,9 +145,39 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
 </div>
     </header>
 
@@ -192,10 +223,10 @@
       <div class="post-body">
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-              총 24개의 태그
+              총 25개의 태그
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/Adsense/" style="font-size: 30px; color: #111">Adsense</a> <a href="/tags/Advertisement/" style="font-size: 30px; color: #111">Advertisement</a> <a href="/tags/Demo/" style="font-size: 12px; color: #ccc">Demo</a> <a href="/tags/Gnome-screenshots/" style="font-size: 12px; color: #ccc">Gnome-screenshots</a> <a href="/tags/Google/" style="font-size: 30px; color: #111">Google</a> <a href="/tags/Hexo/" style="font-size: 12px; color: #ccc">Hexo</a> <a href="/tags/Image/" style="font-size: 12px; color: #ccc">Image</a> <a href="/tags/Images/" style="font-size: 12px; color: #ccc">Images</a> <a href="/tags/Linux/" style="font-size: 12px; color: #ccc">Linux</a> <a href="/tags/Operating-System/" style="font-size: 12px; color: #ccc">Operating System</a> <a href="/tags/Posts/" style="font-size: 30px; color: #111">Posts</a> <a href="/tags/Read-More/" style="font-size: 12px; color: #ccc">Read More</a> <a href="/tags/SEO/" style="font-size: 12px; color: #ccc">SEO</a> <a href="/tags/Scaffolds/" style="font-size: 12px; color: #ccc">Scaffolds</a> <a href="/tags/Screen-Capture/" style="font-size: 12px; color: #ccc">Screen Capture</a> <a href="/tags/Ubuntu18-04/" style="font-size: 12px; color: #ccc">Ubuntu18.04</a> <a href="/tags/categories/" style="font-size: 12px; color: #ccc">categories</a> <a href="/tags/comments/" style="font-size: 12px; color: #ccc">comments</a> <a href="/tags/disqus/" style="font-size: 12px; color: #ccc">disqus</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/statistics/" style="font-size: 12px; color: #ccc">statistics</a> <a href="/tags/tags/" style="font-size: 12px; color: #ccc">tags</a> <a href="/tags/%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%B9%B4%EC%9A%B4%ED%8A%B8/" style="font-size: 12px; color: #ccc">블로그 카운트</a> <a href="/tags/%EC%A1%B0%ED%9A%8C%EC%9E%90%EC%88%98/" style="font-size: 12px; color: #ccc">조회자수</a>
+              <a href="/tags/Adsense/" style="font-size: 30px; color: #111">Adsense</a> <a href="/tags/Advertisement/" style="font-size: 30px; color: #111">Advertisement</a> <a href="/tags/Demo/" style="font-size: 12px; color: #ccc">Demo</a> <a href="/tags/Gnome-screenshots/" style="font-size: 12px; color: #ccc">Gnome-screenshots</a> <a href="/tags/Google/" style="font-size: 30px; color: #111">Google</a> <a href="/tags/Hexo/" style="font-size: 12px; color: #ccc">Hexo</a> <a href="/tags/Image/" style="font-size: 12px; color: #ccc">Image</a> <a href="/tags/Images/" style="font-size: 12px; color: #ccc">Images</a> <a href="/tags/Linux/" style="font-size: 12px; color: #ccc">Linux</a> <a href="/tags/Operating-System/" style="font-size: 12px; color: #ccc">Operating System</a> <a href="/tags/Posts/" style="font-size: 30px; color: #111">Posts</a> <a href="/tags/Read-More/" style="font-size: 12px; color: #ccc">Read More</a> <a href="/tags/SEO/" style="font-size: 12px; color: #ccc">SEO</a> <a href="/tags/Scaffolds/" style="font-size: 12px; color: #ccc">Scaffolds</a> <a href="/tags/Screen-Capture/" style="font-size: 12px; color: #ccc">Screen Capture</a> <a href="/tags/Ubuntu18-04/" style="font-size: 12px; color: #ccc">Ubuntu18.04</a> <a href="/tags/categories/" style="font-size: 12px; color: #ccc">categories</a> <a href="/tags/comments/" style="font-size: 12px; color: #ccc">comments</a> <a href="/tags/disqus/" style="font-size: 12px; color: #ccc">disqus</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/statistics/" style="font-size: 12px; color: #ccc">statistics</a> <a href="/tags/tags/" style="font-size: 12px; color: #ccc">tags</a> <a href="/tags/%EA%B2%80%EC%83%89%EA%B8%B0%EB%8A%A5-hexo-generator-searchdb/" style="font-size: 12px; color: #ccc">검색기능,hexo-generator-searchdb</a> <a href="/tags/%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%B9%B4%EC%9A%B4%ED%8A%B8/" style="font-size: 12px; color: #ccc">블로그 카운트</a> <a href="/tags/%EC%A1%B0%ED%9A%8C%EC%9E%90%EC%88%98/" style="font-size: 12px; color: #ccc">조회자수</a>
             </div>
           </div>
         
@@ -273,7 +304,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -286,7 +317,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
@@ -445,6 +476,10 @@ window.addEventListener('pjax:success', () => {
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
