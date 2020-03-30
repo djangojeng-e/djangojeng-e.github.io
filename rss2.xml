@@ -250,42 +250,6 @@
     </item>
     
     <item>
-      <title>Ubuntu18.04 - 스크린캡쳐 툴</title>
-      <link>http://djangojeng-e.github.io/2020/03/19/Ubuntu18-04-%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%BA%A1%EC%B3%90-%ED%88%B4/</link>
-      <guid>http://djangojeng-e.github.io/2020/03/19/Ubuntu18-04-%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%BA%A1%EC%B3%90-%ED%88%B4/</guid>
-      <pubDate>Thu, 19 Mar 2020 12:43:02 GMT</pubDate>
-      <description>
-      
-        &lt;h1 id=&quot;우분투에-스크린캡쳐-툴-설치하기&quot;&gt;&lt;a href=&quot;#우분투에-스크린캡쳐-툴-설치하기&quot; class=&quot;headerlink&quot; title=&quot;우분투에 스크린캡쳐 툴 설치하기&quot;&gt;&lt;/a&gt;우분투에 스크린캡쳐 툴 설치하기&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;개발 공부를 시작하면서부터, &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;운영체제를 윈도우에서 우분투로 바꾸었습니다. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;MacOS 가 좋다고 해서, 맥북을 쓰고 싶은 마음이 굴뚝 같았지만.. 아직까지 꿈으로 남겨두고 있습니다 ㅠㅠ&lt;/strong&gt; &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;평생 윈도우만 쓰다가, 우분투를 쓰려 하니.. 처음 세팅할때부터 아주 어려웠지만. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;지금 현재 약 5개월 정도 쓰다보니. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;이제는 뭐 적응되서 그런가 은근 편하기 까지 하네요 ㅎㅎ &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;우분투를 사용하면서 개발 공부 하고, 블로그 포스팅을 할때마다. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;매번 스크린 캡쳐를 하는 툴을 몰라서… 전체 화면을 캡쳐해서 포스팅 했었는데.. 많이 불편하더군요. &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;특정 영역만, 캡쳐해서 보여줘야할때가 더 많아서. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;특정 영역만 캡쳐할수 있는 툴을 알아봐야지 알아봐야지 한게.. 벌써 5개월 입니다&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;오늘에야 날잡고, 스크린 캡쳐 툴을 설치하고 &lt;/p&gt;
-&lt;p&gt;사용해 보려 합니다;;; &lt;/p&gt;
-&lt;/blockquote&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="우분투에-스크린캡쳐-툴-설치하기"><a href="#우분투에-스크린캡쳐-툴-설치하기" class="headerlink" title="우분투에 스크린캡쳐 툴 설치하기"></a>우분투에 스크린캡쳐 툴 설치하기</h1><p><br><br></p><p>개발 공부를 시작하면서부터, <br></p><p>운영체제를 윈도우에서 우분투로 바꾸었습니다. <br></p><p><br><br><br></p><p><strong>MacOS 가 좋다고 해서, 맥북을 쓰고 싶은 마음이 굴뚝 같았지만.. 아직까지 꿈으로 남겨두고 있습니다 ㅠㅠ</strong> </p><p><br><br></p><p>평생 윈도우만 쓰다가, 우분투를 쓰려 하니.. 처음 세팅할때부터 아주 어려웠지만. <br></p><p>지금 현재 약 5개월 정도 쓰다보니. <br></p><p><br><br></p><p>이제는 뭐 적응되서 그런가 은근 편하기 까지 하네요 ㅎㅎ </p><p><br><br></p><p>우분투를 사용하면서 개발 공부 하고, 블로그 포스팅을 할때마다. <br></p><p>매번 스크린 캡쳐를 하는 툴을 몰라서… 전체 화면을 캡쳐해서 포스팅 했었는데.. 많이 불편하더군요. <br><br><br></p><p>특정 영역만, 캡쳐해서 보여줘야할때가 더 많아서. </p><p><br><br><br></p><p>특정 영역만 캡쳐할수 있는 툴을 알아봐야지 알아봐야지 한게.. 벌써 5개월 입니다<br><br></p><blockquote><p>오늘에야 날잡고, 스크린 캡쳐 툴을 설치하고 </p><p>사용해 보려 합니다;;; </p></blockquote><a id="more"></a><br><h2 id="Gnome-screenshot-설치하기"><a href="#Gnome-screenshot-설치하기" class="headerlink" title="Gnome-screenshot 설치하기"></a>Gnome-screenshot 설치하기</h2><p><br><br></p><p>인터넷에서 좀 괜찮은 소프트웨어 없나 찾아보다가, <br></p><p><strong>Gnome Screenshot</strong> 이라는 소프트웨어를 보고. 이걸 설치해서 써볼라 합니다.  <br></p><p><br><br></p><p>아래 순서대로 설치를 진행해봅니다. <br></p><p><br><br></p><p><strong>1. 우선 터미널을 열어줍니다 (단축키는 : Ctrl + Alt + T)</strong> <br></p><p><br><br></p><p><strong>2. 터미널에서 업데이트. 아래 커멘드를 입력 (관리자 비밀번호를 물어보면, 커맨드에 입력후 진행)</strong>  </p><p><br><br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure><br><p><strong>3. 터미널에서 아래 명령어를 입력하여 gnome screencapture 설치</strong> <br><br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gnome-screenshot</span><br></pre></td></tr></table></figure><br><p><strong>4. Y 를 입력하고 Enter 키를 눌러줍니다.</strong> </p><br><blockquote><p>설치가 완료 되었으면, </p><p>이제 gnome-screenshot 을 사용하면 됩니다. </p><p>참고로 저는 </p><p><code>shift</code> + <code>PrtSc</code> 단축키만 사용해서, 특정 영역만 캡쳐하는데 사용하려 합니다. </p></blockquote><br><p>추가 기능들은, 아래 홈페이지에서 찾아서 사용 합니다. </p><br> <p> <a href="https://help.gnome.org/users/gnome-help/stable/screen-shot-record.html.en" target="_blank" rel="noopener">https://help.gnome.org/users/gnome-help/stable/screen-shot-record.html.en</a></p><span id = "busuanzi_container_page_pv">   Total reading of this article <span id = "busuanzi_value_page_pv"> </ span> times </ span>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/03/19/Ubuntu18-04-%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%BA%A1%EC%B3%90-%ED%88%B4/#disqus_thread</comments>
-    </item>
-    
-    <item>
       <title>Hexo 블로그 Scaffolds 수정</title>
       <link>http://djangojeng-e.github.io/2020/03/18/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-Scaffolds-%EC%88%98%EC%A0%95/</link>
       <guid>http://djangojeng-e.github.io/2020/03/18/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-Scaffolds-%EC%88%98%EC%A0%95/</guid>
