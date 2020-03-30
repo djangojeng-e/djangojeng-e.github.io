@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/about-custom-page/</loc>
+        <lastmod>2020-03-30T11:58:40.028Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/%25EA%25B2%2580%25EC%2583%2589%25EA%25B8%25B0%25EB%258A%25A5-hexo-generator-searchdb/</loc>
         <lastmod>2020-03-27T13:15:56.905Z</lastmod>
         <changefreq>weekly</changefreq>

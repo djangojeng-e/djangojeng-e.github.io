@@ -1,6 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo 블로그 - About 페이지 만들기</title>
+    <url>/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="About-페이지-만들기"><a href="#About-페이지-만들기" class="headerlink" title="About 페이지 만들기"></a>About 페이지 만들기</h2><br>
+
+<p>개인 블로그라면, <br> 적어도 간단하게 본인이나 블로그를 소개하는 About 페이지 하나는 있어야 할것 같아서. <br></p>
+<br>
+
+<p><code>About</code> 페이지를 하나 만들어서 적용해 보려 합니다. </p>
+<br>
+
+<p>페이지에 생성후, 디테일을 한번 수정해 보겠습니다. </p>
+<br>
+
+<h2 id="About-페이지-생성하기"><a href="#About-페이지-생성하기" class="headerlink" title="About 페이지 생성하기"></a>About 페이지 생성하기</h2><br>
+
+<p><code>blog</code> 폴더에서, 아래 명령어를 실행하여, <code>about</code>페이지를 생성합니다. </p>
+<br>
+
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<p>생성후에는, <code>blog/source/about/</code>폴더에 <code>index.md</code>가 생성 되어 있습니다. </p>
+<p><br><br></p>
+<h2 id="blog-source-about-index-md파일-수정"><a href="#blog-source-about-index-md파일-수정" class="headerlink" title="blog/source/about/index.md파일 수정"></a><code>blog/source/about/index.md</code>파일 수정</h2><br>
+
+<p><code>categories</code>나 <code>tags</code> 페이지를 만들었을때와 비슷하게 진행 해봅니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: about</span><br><span class="line">date: 2020-03-30 20:33:44</span><br><span class="line"><span class="built_in">type</span>: about</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+
+
+<h2 id="Themes-config-yml-파일에서-메뉴-활성화-하기"><a href="#Themes-config-yml-파일에서-메뉴-활성화-하기" class="headerlink" title="Themes _config.yml 파일에서 메뉴 활성화 하기"></a>Themes _config.yml 파일에서 메뉴 활성화 하기</h2><br>
+
+<br>
+
+<p><code>blog/themes/hexo-theme-next/_config.yml</code>파일을 열어서, <br></p>
+<p><code>menu</code>부분에, <code>about</code>부분을 활성화 시켜줍니다. <br></p>
+<p>uncomment 처리만 해주면 되겟죠? ㅎㅎ  </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>그런데.. 여기까지 하고 <code>hexo runserver</code> 로 로컬에 들어가서, about 페이지를 확인해 보니, </p>
+<br>
+
+<p><strong>사이드 메뉴에는 about 메뉴가 뜨는데, 클릭하면, 빈 페이지가 표시됩니다.</strong></p>
+<br>
+
+
+
+<img src="/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/image1.png" class="">
+
+<br>
+
+<blockquote>
+<p>어디에 내용을 채워줘야 빈페이지가 표시 되지 않을까요? </p>
+</blockquote>
+<p><br><br></p>
+<h2 id="index-md-파일에-내용-추가하기"><a href="#index-md-파일에-내용-추가하기" class="headerlink" title="index.md 파일에 내용 추가하기"></a>index.md 파일에 내용 추가하기</h2><br>
+
+<p><code>blog/source/about/index.md</code> 파일에, about 페이지에 들어갈 내용을 추가합니다.</p>
+<br>
+
+
+
+<img src="/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/image2.png" class="">
+
+<br>
+
+<br>
+
+
+
+<blockquote>
+<p> <code>index.md</code> 파일에 내용을 추가하면, </p>
+<p>about 페이지에 내용이 추가 되어 표시됩니다! </p>
+</blockquote>
+<p><br><br></p>
+<img src="/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/image3.png" class="">
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p><code>about</code>페이지를 생성 하였고, 내용도 추가 하였습니다. <br></p>
+<p>추가된 내용은 잘 표시가 되는것 같으니, 내용을 더 채워 줘야 겠습니다~ </p>
+]]></content>
+      <categories>
+        <category>Hexo Blog</category>
+      </categories>
+      <tags>
+        <tag>about,custom_page</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 블로그 - 블로그내에 검색 기능 추가</title>
     <url>/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/</url>
     <content><![CDATA[<h1 id="블로그내-검색기능-추가"><a href="#블로그내-검색기능-추가" class="headerlink" title="블로그내 검색기능 추가"></a>블로그내 검색기능 추가</h1><br>

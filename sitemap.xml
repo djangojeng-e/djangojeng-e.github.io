@@ -4,22 +4,22 @@
 
     <sitemap>
         <loc>http://djangojeng-e.github.io/post-sitemap.xml</loc>
-        <lastmod>2020-03-27T13:15:56.905Z</lastmod>
+        <lastmod>2020-03-30T11:58:40.028Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://djangojeng-e.github.io/page-sitemap.xml</loc>
-        <lastmod>2020-03-21T08:32:33.202Z</lastmod>
+        <lastmod>2020-03-30T11:46:21.730Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://djangojeng-e.github.io/category-sitemap.xml</loc>
-        <lastmod>2020-03-27T13:15:56.905Z</lastmod>
+        <lastmod>2020-03-30T11:58:40.028Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://djangojeng-e.github.io/tag-sitemap.xml</loc>
-        <lastmod>2020-03-27T13:15:56.905Z</lastmod>
+        <lastmod>2020-03-30T11:58:40.028Z</lastmod>
     </sitemap>
 
 </sitemapindex>
