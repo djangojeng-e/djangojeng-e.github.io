@@ -314,27 +314,6 @@
     </item>
     
     <item>
-      <title>NeXT Theme - Categories and Tags</title>
-      <link>http://djangojeng-e.github.io/2020/03/17/NeXT-Theme-Categories-and-Tags/</link>
-      <guid>http://djangojeng-e.github.io/2020/03/17/NeXT-Theme-Categories-and-Tags/</guid>
-      <pubDate>Tue, 17 Mar 2020 04:58:40 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;p&gt;카테고리와 태그 설정 테스트 페이지.&lt;/p&gt;
-
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<p>카테고리와 태그 설정 테스트 페이지.</p>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/03/17/NeXT-Theme-Categories-and-Tags/#disqus_thread</comments>
-    </item>
-    
-    <item>
       <title>Hexo NeXT 테마 - 포스트에 Read More 버튼 추가</title>
       <link>http://djangojeng-e.github.io/2020/03/17/Hexo-NeXT-%ED%85%8C%EB%A7%88-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-Read-More-%EB%B2%84%ED%8A%BC-%EC%B6%94%EA%B0%80/</link>
       <guid>http://djangojeng-e.github.io/2020/03/17/Hexo-NeXT-%ED%85%8C%EB%A7%88-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-Read-More-%EB%B2%84%ED%8A%BC-%EC%B6%94%EA%B0%80/</guid>
@@ -385,6 +364,27 @@
       <content:encoded><![CDATA[<h1 id="Disqus-세팅하기"><a href="#Disqus-세팅하기" class="headerlink" title="Disqus 세팅하기"></a>Disqus 세팅하기</h1><br><br><p><strong>Disqus란?</strong> </p><br><p>Disqus는 네트워크 커뮤니티 플랫폼으로. 댓글 시스템을 지원합니다. (추가로 여러 기능들을 제공하기도 합니다. 예를들면, social network 연동, 뛰어난 admin 등). </p><br><p><strong>Hexo 블로그에 Disqus를 연동하면, 블로그 내에서 댓글 시스템을 사용할수 있겟죠? ㅎㅎ</strong> </p><a id="more"></a><br><p>아주 기본적인 기능만 사용하는 Basic 플랜을 사용한다면, 공짜로 사용할수 있습니다. </p><br><h2 id="Disqus-가입"><a href="#Disqus-가입" class="headerlink" title="Disqus 가입"></a>Disqus 가입</h2><p><a href="https://disqus.com/" target="_blank" rel="noopener">https://disqus.com/</a> 에 접속합니다. </p><p>![](/home/dhkang/Pictures/Screenshot from 2020-03-16 21-09-11.png)</p><p><br><br></p><p><code>GET STARTED</code>버튼을 눌러서, 가입 진행을 합니다. </p><br><br><p>![Screenshot from 2020-03-16 21-11-59](/home/dhkang/Pictures/Screenshot from 2020-03-16 21-11-59.png)</p><br><p><code>I want to install Disqus on my Site</code> 옵션을 클릭하고. </p><p>가입 진행을 합니다. 프로필에 적당한 정보를 입력해주고. 회원 가입을 완료 합니다. </p><br><p>저는 이전에 만들었던 사이트가 있었어서, 새로운 사이트를 추가 해주었습니다. </p><br><p>![Screenshot from 2020-03-16 21-32-21](/home/dhkang/Pictures/Screenshot from 2020-03-16 21-32-21.png)</p><br><p>사이트를 추가 하고나면, 플랜을 설정하는 페이지가 나오는데. <br></p><p>상단에 노출되는 메뉴들을 다 유료이니, 밑으로 내려가서 Basic Plan <code>Subscribe Now</code> 버튼을 눌러줍니다. </p><br><p>![Screenshot from 2020-03-16 21-33-19](/home/dhkang/Pictures/Screenshot from 2020-03-16 21-33-19.png)</p><p><br> <br> </p><p><code>subscribe now</code> 버튼을 누르면, 다음 페이지에 어떤 플랫폼을 사용할지 선택하는 메뉴가 있습니다. <br><br></p><p> <code>hexo</code>는 옵션에 없기 때문에, 맨 밑에 있는<br> <code>I don&#39;t see my platform listed, install manually with Universal Code</code> 옵션을 선택합니다. </p><br><br><p>![Screenshot from 2020-03-16 21-55-36](/home/dhkang/Pictures/Screenshot from 2020-03-16 21-55-36.png)</p><p><br><br></p><p>Installation 가이드가 나오는데,, 다 넘어가고, 맨밑에 <code>Configure</code> 버튼을 누르고 진행합니다. </p><br><p>![Screenshot from 2020-03-16 22-16-14](/home/dhkang/Pictures/Screenshot from 2020-03-16 22-16-14.png)</p><br><p>새로운 창으로 넘어가고, 몇가지 필드들을 추가해 줘야 하는 부분이 나옵니다. <br></p><p><code>Website URL</code>에 블로그 주소를 풀로 적어줍니다. <code>http://djnagojeng-e.github.io</code>로 적어줬습니다. <br><br></p><p>![Screenshot from 2020-03-16 22-19-26](/home/dhkang/Pictures/Screenshot from 2020-03-16 22-19-26.png)</p><br><br><blockquote><p>다 적어 놨으면, <code>Complete Setup</code>버튼을 눌러서 설정 완료를 해줍니다. </p></blockquote><br><p>셋업이 완료되었다는 페이지가 뜹니다. <br></p><p>![Screenshot from 2020-03-16 22-29-12](/home/dhkang/Pictures/Screenshot from 2020-03-16 22-29-12.png)</p><br><h2 id="설정된-Disqus를-블로그에-적용하기"><a href="#설정된-Disqus를-블로그에-적용하기" class="headerlink" title="설정된 Disqus를 블로그에 적용하기"></a>설정된 Disqus를 블로그에 적용하기</h2><br> <p><code>테마 next/ _config.yml</code> 파일을 열어서, <code>Disqus</code> 항목을 설정해 줍니다. </p><br><p><code>shortname</code>은, 웹사이트 생성시 입력했던<code>website name 을 입력합니다.</code></p><p>저는 <code>djangojeng-e</code>로 입력합니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Disqus</span></span><br><span class="line">disqus:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  shortname: djangojeng<span class="_">-e</span></span><br><span class="line">  count: <span class="literal">true</span></span><br><span class="line">  lazylaod: <span class="literal">false</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure><p>윗 부분 수정을 완료했으면, 저장하고 나옵니다. </p><h2 id="적용-후-deploy-하기"><a href="#적용-후-deploy-하기" class="headerlink" title="적용 후 deploy 하기"></a>적용 후 deploy 하기</h2><br><p>블로그의 루트 디렉토리로 가서 , 아래 명령어들을 차례대로 입력해 줍니다. </p><br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo generate </span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p>각 포스트의 하단에, 댓글을 달고 지울수 있는, <code>Disqus</code>영역이 나오고. </p><p>댓글을 달고 지울수 있습니다. 한번 확인 하러 갑니다 ㅎㅎ </p>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/03/17/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-Disqus-%EC%84%B8%ED%8C%85/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>NeXT Theme - Categories and Tags</title>
+      <link>http://djangojeng-e.github.io/2020/03/15/NeXT-Theme-Categories-and-Tags/</link>
+      <guid>http://djangojeng-e.github.io/2020/03/15/NeXT-Theme-Categories-and-Tags/</guid>
+      <pubDate>Sun, 15 Mar 2020 01:06:46 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;p&gt;카테고리와 태그 설정 테스트 페이지.&lt;/p&gt;
+&lt;h3 id=&quot;Custom-Page-Support&quot;&gt;&lt;a href=&quot;#Custom-Page-Support&quot; class=&quot;headerlink&quot; title=&quot;Custom Page Support&quot;&gt;&lt;/a&gt;C
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<p>카테고리와 태그 설정 테스트 페이지.</p><h3 id="Custom-Page-Support"><a href="#Custom-Page-Support" class="headerlink" title="Custom Page Support"></a>Custom Page Support</h3><p>Next allows users to add custom pages in menu.</p><div class="tabs" id="adding-custom-page"><ul class="nav-tabs"><li class="tab active"><a href="#adding-custom-page-1">Adding New Page →</a></li><li class="tab"><a href="#adding-custom-page-2">Setting Front-matter Values →</a></li></ul><div class="tab-content"><div class="tab-pane active" id="adding-custom-page-1"><p>In your terminal emulator, change to Hexo site dir. Use <code>hexo new page custom_name</code> to create a new <code>custom_name</code> page:</p><pre><code>$ cd your-hexo-site$ hexo new page custom_name</code></pre></div><div class="tab-pane" id="adding-custom-page-2"><p>Front-matter is a block of YAML or JSON at the beginning of the file that is used to configure settings for your writings. Settings Front-matter values and more detailed can be found in <a href="https://hexo.io/docs/front-matter" target="_blank" rel="noopener">Front-matter</a>. You can also add contents in <code>custom_name/index.md</code> if you like.</p></div></div></div>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/03/15/NeXT-Theme-Categories-and-Tags/#disqus_thread</comments>
     </item>
     
     <item>
