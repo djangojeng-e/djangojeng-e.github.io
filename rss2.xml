@@ -167,29 +167,27 @@
       <pubDate>Fri, 20 Mar 2020 02:40:31 GMT</pubDate>
       <description>
       
-        &lt;h1 id=&quot;Google-에드센스-활성화&quot;&gt;&lt;a href=&quot;#Google-에드센스-활성화&quot; class=&quot;headerlink&quot; title=&quot;Google 에드센스 활성화&quot;&gt;&lt;/a&gt;Google 에드센스 활성화&lt;/h1&gt;&lt;br&gt;
+        &lt;h1 id=&quot;Google-에드센스-승인전-수정사항&quot;&gt;&lt;a href=&quot;#Google-에드센스-승인전-수정사항&quot; class=&quot;headerlink&quot; title=&quot;Google 에드센스 승인전 수정사항&quot;&gt;&lt;/a&gt;Google 에드센스 승인전 수정사항&lt;/h1&gt;&lt;br&gt;
 
 &lt;p&gt;지난 포스팅을 마치면서, 구글 리뷰가 한 2주 정도 걸릴것 같았는데. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;예상외로, 빨리 리뷰를 마쳤나 봅니다. &lt;/p&gt;
+&lt;p&gt;아직 사이트 검토중인데, &lt;/p&gt;
 &lt;br&gt;
 
-&lt;p&gt;이메일이 하나 날라왔습니다. &lt;code&gt;Time to get activated&lt;/code&gt; 라는 타이틀로 말이죠. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;이메일을 열면, 어떻게 활성화 할수 있는건지 나와 있을것 같아서.&lt;/strong&gt; &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;활성화를 진행 해보려 합니다.  &lt;/p&gt;
+&lt;p&gt;이메일이 하나 날라왔습니다. &lt;code&gt;계정 승인에 앞서 수정이 필요한 사항이 있음&lt;/code&gt; 이라는 타이틀로 말이죠  &lt;br&gt;&lt;/p&gt;
 &lt;br&gt;
 
-
-
-&lt;h2 id=&quot;Google-에드센스-계정-Activation&quot;&gt;&lt;a href=&quot;#Google-에드센스-계정-Activation&quot; class=&quot;headerlink&quot; title=&quot;Google 에드센스 계정 Activation&quot;&gt;&lt;/a&gt;Google 에드센스 계정 Activation&lt;/h2&gt;&lt;br&gt;
+&lt;p&gt;&lt;img src=&quot;/home/dhkang/.config/Typora/typora-user-images/image-20200403072425033.png&quot; alt=&quot;image-20200403072425033&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Google-에드센스-계정-승인-실패&quot;&gt;&lt;a href=&quot;#Google-에드센스-계정-승인-실패&quot; class=&quot;headerlink&quot; title=&quot;Google 에드센스 계정 승인 실패&quot;&gt;&lt;/a&gt;Google 에드센스 계정 승인 실패&lt;/h2&gt;&lt;br&gt;
 
 &lt;br&gt;
 
-&lt;p&gt;이메일을 열어보니, 아래와 같이. 계정을 활성화 하라고 뜹니다. &lt;/p&gt;
+&lt;p&gt;이메일을 열어보니, 에드센스 정책을 위반했다고.. 승인이 되지 않았다네요;; &lt;/p&gt;
       
       </description>
       
       
-      <content:encoded><![CDATA[<h1 id="Google-에드센스-활성화"><a href="#Google-에드센스-활성화" class="headerlink" title="Google 에드센스 활성화"></a>Google 에드센스 활성화</h1><br><p>지난 포스팅을 마치면서, 구글 리뷰가 한 2주 정도 걸릴것 같았는데. <br></p><p>예상외로, 빨리 리뷰를 마쳤나 봅니다. </p><br><p>이메일이 하나 날라왔습니다. <code>Time to get activated</code> 라는 타이틀로 말이죠. <br></p><p><strong>이메일을 열면, 어떻게 활성화 할수 있는건지 나와 있을것 같아서.</strong> </p><p><br><br>활성화를 진행 해보려 합니다.  </p><br><h2 id="Google-에드센스-계정-Activation"><a href="#Google-에드센스-계정-Activation" class="headerlink" title="Google 에드센스 계정 Activation"></a>Google 에드센스 계정 Activation</h2><br><br><p>이메일을 열어보니, 아래와 같이. 계정을 활성화 하라고 뜹니다. </p><a id="more"></a><p><br><br></p><p><strong>image1</strong></p><p>![Screenshot from 2020-03-24 11-49-32](/home/dhkang/Pictures/Screenshot from 2020-03-24 11-49-32.png)</p><p><br><br></p><p>첫번째는, 사이트에 Adsense를 연결하는것인데. 이부분은 지난 포스팅에서 진행 완료 했습니다. </p><p><strong>Image2</strong></p><p>![Screenshot from 2020-03-24 11-51-17](/home/dhkang/Pictures/Screenshot from 2020-03-24 11-51-17.png)</p><p><br><br></p><p><code>blog/themes/hexo-theme-next/layout/_layout.swig</code> 파일안에 해당 <code>script</code>를 넣어주고 진행 했었습니다. </p><p><strong>image3</strong></p><p>![Screenshot from 2020-03-24 11-54-31](/home/dhkang/Pictures/Screenshot from 2020-03-24 11-54-31.png)</p><p><br><br></p><p>사이트가 연결 되었다면, 활성화를 완료 해주어야 합니다. </p><p>결제 주소와, 전화번호를 등록하면 되는것 같습니다. <br></p><p><br>저는, 아래와 같이 이메일에 포함되어 있는 <code>Get activated</code> 링크를 눌러서 진행 해보겠습니다. <br></p><p><strong>Image4</strong></p><br><p>![Screenshot from 2020-03-24 11-52-04](/home/dhkang/Pictures/Screenshot from 2020-03-24 11-52-04.png)</p>]]></content:encoded>
+      <content:encoded><![CDATA[<h1 id="Google-에드센스-승인전-수정사항"><a href="#Google-에드센스-승인전-수정사항" class="headerlink" title="Google 에드센스 승인전 수정사항"></a>Google 에드센스 승인전 수정사항</h1><br><p>지난 포스팅을 마치면서, 구글 리뷰가 한 2주 정도 걸릴것 같았는데. <br></p><p>아직 사이트 검토중인데, </p><br><p>이메일이 하나 날라왔습니다. <code>계정 승인에 앞서 수정이 필요한 사항이 있음</code> 이라는 타이틀로 말이죠  <br></p><br><p><img src="/home/dhkang/.config/Typora/typora-user-images/image-20200403072425033.png" alt="image-20200403072425033"></p><p><br><br><br></p><h2 id="Google-에드센스-계정-승인-실패"><a href="#Google-에드센스-계정-승인-실패" class="headerlink" title="Google 에드센스 계정 승인 실패"></a>Google 에드센스 계정 승인 실패</h2><br><br><p>이메일을 열어보니, 에드센스 정책을 위반했다고.. 승인이 되지 않았다네요;; </p><a id="more"></a><p><br><br></p><blockquote><p> 가치 있는 인벤토리: 콘텐츠 없음 </p></blockquote><p>위 사유로 인해 승인이 되지 않았다고 합니다. </p><img src="/2020/03/20/Google-%EC%97%90%EB%93%9C%EC%84%BC%EC%8A%A4-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-2/image1.png" class=""><br><br><p>아무래도, 포스팅이 너무 없어서 에드센스 승인이 나지 않은것 같은데.. <br></p><p>여기저기 찾아보니까. 포스팅은 한 20개 이상 정도는 있어줘야 승인이 난다 하네요. </p><p><br><br></p><blockquote><p><strong>포스트를 더 해보고, 에드센스 신청을 해야될것 같습니다.</strong> </p></blockquote><br><h2 id="수정사항-가이드라인"><a href="#수정사항-가이드라인" class="headerlink" title="수정사항 가이드라인"></a>수정사항 가이드라인</h2><br><p>자세한 내용은 메일에 써져 있듯이, 아래 링크들을 따라 확인해보면 된답니다;;; </p><br><ul><li><p>고품질 사이트를 만들기 위한 정책 도움말 1부</p><p><a href="https://adsense.googleblog.com/2012/09/tips-for-creating-high-quality-sites.html" target="_blank" rel="noopener">https://adsense.googleblog.com/2012/09/tips-for-creating-high-quality-sites.html</a></p></li><li><p>고품질 사이트를 만들기 위한 정책 도움말 2부 </p><p><a href="https://adsense.googleblog.com/2012/04/tips-for-creating-high-quality-sites.html" target="_blank" rel="noopener">https://adsense.googleblog.com/2012/04/tips-for-creating-high-quality-sites.html</a></p></li><li><p>웹마스터 품질 가이드라인 </p><p><a href="https://support.google.com/adsense/answer/1348737" target="_blank" rel="noopener">https://support.google.com/adsense/answer/1348737</a></p></li><li><p>애드센스 프로그램 정책 </p><p><a href="https://support.google.com/adsense/answer/48182?utm_source=crs&amp;utm_medium=email&amp;utm_campaign=notification" target="_blank" rel="noopener">https://support.google.com/adsense/answer/48182?utm_source=crs&amp;utm_medium=email&amp;utm_campaign=notification</a></p></li></ul><p><br><br></p><p><strong>추가로, 콘텐츠 정책 이나 고객센터를 방문해서 알아봅니다.</strong></p><br><p>저같은 경우는, 콘텐츠 불충분 일거 같습니다;; </p><br><img src="/2020/03/20/Google-%EC%97%90%EB%93%9C%EC%84%BC%EC%8A%A4-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-2/image3.png" class=""><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br> <p>구글에 이것저것 가이드라인이 많이 나와 있는데. <br></p><p>차근차근 읽어보면서 진행 해볼까 합니다. </p><blockquote><br><p>*<em>일단, 컨텐츠를 많이 늘려야 하는것 같으니까 ㅎㅎ *</em></p><p><br><strong>조금 더 포스팅을 많이 해보고, 다시 승인 요청 해볼까 합니다.</strong> </p></blockquote><img src="/2020/03/20/Google-%EC%97%90%EB%93%9C%EC%84%BC%EC%8A%A4-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-2/image2.png" class="">]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/03/20/Google-%EC%97%90%EB%93%9C%EC%84%BC%EC%8A%A4-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-2/#disqus_thread</comments>
     </item>
