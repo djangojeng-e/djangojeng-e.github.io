@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 - Introduction</title>
+    <url>/2020/04/04/PEP8-Introduction/</url>
+    <content><![CDATA[<h1 id="PEP8-Introduction"><a href="#PEP8-Introduction" class="headerlink" title="PEP8 - Introduction"></a>PEP8 - Introduction</h1><br>
+
+<br>
+
+
+
+<h2 id="PEP8-소개"><a href="#PEP8-소개" class="headerlink" title="PEP8 소개"></a>PEP8 소개</h2><br>
+
+<br>
+
+<p><strong>파이썬 코딩 스타일 가이드라인 PEP 에 대해서 포스팅 하고자 합니다. <br></strong></p>
+<br>
+
+<blockquote>
+<p>PEP는</p>
+<p>Python Enhancement Proposal 의 약자로 </p>
+<p>파이썬 코딩 스타일 가이드라인을 담고 있습니다. </p>
+</blockquote>
+<p><br><br></p>
+<p><a href="https://www.python.org/dev/peps/pep-0008/#introduction" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0008/#introduction</a></p>
+<a id="more"></a> 
+
+
+
+<p>위 웹사이트에 자세한 가이드라인이 나와 있으며, 파이썬 코딩에서 관례를 다루고 있습니다. <br></p>
+<br>
+
+<p>해당 문서는, 파이썬의 창시자인 귀도 반 로섬의 오리지널 파이썬 스타일 가이드 에세이를 <br>기본적으로 받아들이고 있고<br> 베리의 스타일 가이드의 내용을 추가해서 제작되었습니다.</p>
+<br>
+
+<p>파이썬 코딩 스타일 가이드는 시간이 지나면서 점차 진화합니다. </p>
+<p><br><strong>언어가 변화함에 따라서 추가적인 관례와<br> 너무 노후한 스타일들이 확인 되고. 그에 맞춰서 가이드라인도 진화 하겟죠?</strong> </p>
+<p><br><br></p>
+<p>각각의 프로젝트들은 그들만의 고유한 코딩 스타일 가이드라인이 존재합니다. </p>
+<p><br><br></p>
+<blockquote>
+<p>PEP8의 가이드라인과, 프로젝트의 코딩 스타일 가이드라인이 충돌할 경우, </p>
+<p>프로젝트에 특화된 코딩 스타일을 우선 따르는것을 원칙으로 합니다. </p>
+</blockquote>
+<p>​    <br></p>
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>PEP8 이 굉장히 중요하다 합니다. 모두가 기본이 되는 파이썬 코딩 스타일을 가지고 있으면, <br></p>
+<p>남이 쓴 코드도 이해하기 더 쉬워질겁니다. <br></p>
+<p>PEP8 관련 포스팅을 이제부터 시작합니다~ </p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python,파이썬,PEP8</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 블로그 - About 페이지 만들기</title>
     <url>/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="About-페이지-만들기"><a href="#About-페이지-만들기" class="headerlink" title="About 페이지 만들기"></a>About 페이지 만들기</h2><br>

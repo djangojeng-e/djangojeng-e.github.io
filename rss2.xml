@@ -9,8 +9,44 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Mon, 30 Mar 2020 11:58:40 GMT</pubDate>
+    <pubDate>Fri, 03 Apr 2020 16:53:48 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PEP8 - Introduction</title>
+      <link>http://djangojeng-e.github.io/2020/04/04/PEP8-Introduction/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/04/PEP8-Introduction/</guid>
+      <pubDate>Fri, 03 Apr 2020 16:39:32 GMT</pubDate>
+      <description>
+      
+        &lt;h1 id=&quot;PEP8-Introduction&quot;&gt;&lt;a href=&quot;#PEP8-Introduction&quot; class=&quot;headerlink&quot; title=&quot;PEP8 - Introduction&quot;&gt;&lt;/a&gt;PEP8 - Introduction&lt;/h1&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+
+
+&lt;h2 id=&quot;PEP8-소개&quot;&gt;&lt;a href=&quot;#PEP8-소개&quot; class=&quot;headerlink&quot; title=&quot;PEP8 소개&quot;&gt;&lt;/a&gt;PEP8 소개&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;&lt;strong&gt;파이썬 코딩 스타일 가이드라인 PEP 에 대해서 포스팅 하고자 합니다. &lt;br&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;PEP는&lt;/p&gt;
+&lt;p&gt;Python Enhancement Proposal 의 약자로 &lt;/p&gt;
+&lt;p&gt;파이썬 코딩 스타일 가이드라인을 담고 있습니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0008/#introduction&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.python.org/dev/peps/pep-0008/#introduction&lt;/a&gt;&lt;/p&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h1 id="PEP8-Introduction"><a href="#PEP8-Introduction" class="headerlink" title="PEP8 - Introduction"></a>PEP8 - Introduction</h1><br><br><h2 id="PEP8-소개"><a href="#PEP8-소개" class="headerlink" title="PEP8 소개"></a>PEP8 소개</h2><br><br><p><strong>파이썬 코딩 스타일 가이드라인 PEP 에 대해서 포스팅 하고자 합니다. <br></strong></p><br><blockquote><p>PEP는</p><p>Python Enhancement Proposal 의 약자로 </p><p>파이썬 코딩 스타일 가이드라인을 담고 있습니다. </p></blockquote><p><br><br></p><p><a href="https://www.python.org/dev/peps/pep-0008/#introduction" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0008/#introduction</a></p><a id="more"></a> <p>위 웹사이트에 자세한 가이드라인이 나와 있으며, 파이썬 코딩에서 관례를 다루고 있습니다. <br></p><br><p>해당 문서는, 파이썬의 창시자인 귀도 반 로섬의 오리지널 파이썬 스타일 가이드 에세이를 <br>기본적으로 받아들이고 있고<br> 베리의 스타일 가이드의 내용을 추가해서 제작되었습니다.</p><br><p>파이썬 코딩 스타일 가이드는 시간이 지나면서 점차 진화합니다. </p><p><br><strong>언어가 변화함에 따라서 추가적인 관례와<br> 너무 노후한 스타일들이 확인 되고. 그에 맞춰서 가이드라인도 진화 하겟죠?</strong> </p><p><br><br></p><p>각각의 프로젝트들은 그들만의 고유한 코딩 스타일 가이드라인이 존재합니다. </p><p><br><br></p><blockquote><p>PEP8의 가이드라인과, 프로젝트의 코딩 스타일 가이드라인이 충돌할 경우, </p><p>프로젝트에 특화된 코딩 스타일을 우선 따르는것을 원칙으로 합니다. </p></blockquote><p>​    <br></p><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>PEP8 이 굉장히 중요하다 합니다. 모두가 기본이 되는 파이썬 코딩 스타일을 가지고 있으면, <br></p><p>남이 쓴 코드도 이해하기 더 쉬워질겁니다. <br></p><p>PEP8 관련 포스팅을 이제부터 시작합니다~ </p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/04/PEP8-Introduction/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Hexo 블로그 - About 페이지 만들기</title>

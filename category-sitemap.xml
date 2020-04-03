@@ -8,6 +8,20 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/categories/Python/PEP8/</loc>
+        <lastmod>2020-04-03T16:53:48.629Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/categories/Python/</loc>
+        <lastmod>2020-04-03T16:53:48.629Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/categories/Hexo-Blog/</loc>
         <lastmod>2020-04-02T22:49:51.873Z</lastmod>
         <changefreq>weekly</changefreq>
