@@ -9,8 +9,47 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Fri, 03 Apr 2020 16:57:50 GMT</pubDate>
+    <pubDate>Fri, 03 Apr 2020 17:33:41 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PEP8 - A Foolish Consistency is the Hobgoblin of Little Minds</title>
+      <link>http://djangojeng-e.github.io/2020/04/04/PEP8-A-Foolish-Consistency-is-the-Hobgoblin-of-Little-Minds/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/04/PEP8-A-Foolish-Consistency-is-the-Hobgoblin-of-Little-Minds/</guid>
+      <pubDate>Fri, 03 Apr 2020 17:08:19 GMT</pubDate>
+      <description>
+      
+        &lt;h1 id=&quot;PEP8-A-foolish-consistency-is-the-Hobgoblin-of-Little-Minds&quot;&gt;&lt;a href=&quot;#PEP8-A-foolish-consistency-is-the-Hobgoblin-of-Little-Minds&quot; class=&quot;headerlink&quot; title=&quot;PEP8 - A foolish consistency is the Hobgoblin of Little Minds&quot;&gt;&lt;/a&gt;PEP8 - A foolish consistency is the Hobgoblin of Little Minds&lt;/h1&gt;&lt;br&gt;
+
+&lt;p&gt;PEP8 스타일 가이드라인의 두번째 토픽입니다. &lt;/p&gt;
+&lt;p&gt;&lt;br&gt; 타이틀을 직역해보면, &lt;br&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;어리석은 일관성은 &lt;/p&gt;
+&lt;p&gt;소심한 홉고블린이다? &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;p&gt;서양에서는, 홉고블린이 사악하고, 아둔한 그런데 또 피지컬은 또 없는 그런 요괴로 취급됩니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;p&gt;&lt;strong&gt;다시 말해서, 잘못된 코딩 스타일 일관성은 고블린 취급받기 쉽단 얘기겠죠?&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;코드는 쓰이는것보다 읽히는 일이 많다.&lt;/p&gt;
+&lt;p&gt;by 파이썬 창시자 귀도 반 로썸&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;p&gt;코드는 쓰이는것보다 읽힐때가 훨씬 많습니다. &lt;br&gt;&lt;/p&gt;
+&lt;p&gt;PEP8에 제시되는 가이드라인은 코드의 가독성 향상과,  파이썬 코드 전반에 걸쳐서 일관성을 만들어 가는것입니다.&lt;/p&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h1 id="PEP8-A-foolish-consistency-is-the-Hobgoblin-of-Little-Minds"><a href="#PEP8-A-foolish-consistency-is-the-Hobgoblin-of-Little-Minds" class="headerlink" title="PEP8 - A foolish consistency is the Hobgoblin of Little Minds"></a>PEP8 - A foolish consistency is the Hobgoblin of Little Minds</h1><br><p>PEP8 스타일 가이드라인의 두번째 토픽입니다. </p><p><br> 타이틀을 직역해보면, <br></p><blockquote><p>어리석은 일관성은 </p><p>소심한 홉고블린이다? </p></blockquote><br><p>서양에서는, 홉고블린이 사악하고, 아둔한 그런데 또 피지컬은 또 없는 그런 요괴로 취급됩니다. </p><br><p><strong>다시 말해서, 잘못된 코딩 스타일 일관성은 고블린 취급받기 쉽단 얘기겠죠?</strong> </p><p><br><br></p><blockquote><p>코드는 쓰이는것보다 읽히는 일이 많다.</p><p>by 파이썬 창시자 귀도 반 로썸</p></blockquote><br><p>코드는 쓰이는것보다 읽힐때가 훨씬 많습니다. <br></p><p>PEP8에 제시되는 가이드라인은 코드의 가독성 향상과,  파이썬 코드 전반에 걸쳐서 일관성을 만들어 가는것입니다.</p><a id="more"></a><br><br><h2 id="Consistency-일관성"><a href="#Consistency-일관성" class="headerlink" title="Consistency (일관성)"></a>Consistency (일관성)</h2><br><p>PEP8 스타일 가이드는 일관성에 대한 것입니다. <br></p><p>PEP8에 나와있는 스타일 가이드와 일관되게 따르는것은 중요합니다. </p><br><blockquote><p>하지만! </p><p>프로젝트내에 스타일 가이드와 일관되게 코드를 짜는것이 더욱 중요합니다.  </p></blockquote><br><p>각각의 프로젝트 마다, 코딩 스타일이 다르고. PEP8 은 프로젝트 마다의 코딩 스타일을 존중합니다. <br></p><p>PEP8은 가이드라인을 제시할뿐이지. 그 가이드라인을 의무화 하지는 않습니다. </p><br><p>따라서, 프로젝트내에 일관된 코드가 있다면, 더 좋은 코딩 스타일이 존재한다면,<br></p><p><br>그 프로젝트 내의 코딩 스타일과 일관되게 코드를 작성하는것이 좋습니다. </p><br><h2 id="일관되지-않을때를-알아야-합니다"><a href="#일관되지-않을때를-알아야-합니다" class="headerlink" title="일관되지 않을때를 알아야 합니다"></a>일관되지 않을때를 알아야 합니다</h2><br><p>위에서 언급하였듯이, PEP8 의 스타일 가이드가 프로젝트에 잘 적용 될수 없을때는.<br> 본인의 판단하에, 다른 예시들을 보고 어떤게 제일 좋게 보이는 스타일을 선택하면 됩니다.</p><br><blockquote><p>PEP를 따르기 위해서, 뒤로 퇴보하지는 않아야 합니다. </p></blockquote><br><br><p><strong>가이드라인을 무시할수 있는 사유들</strong></p><br><br><p>1) PEP를 적용했을때에 가독성이 더 떨어지는 경우 </p><p>2) 이미 PEP가 적용되지 않은 코드가 주변에 너무 많이 존재할때 (예, 너무 과거에 쓰여진 코드들)</p><p>3) 해당 코드가 이미 PEP8이 소개되기 이전인데, 해당 코드를 바꿀 이유가 별로 없을때 </p><p>4) 해당 코드가 파이썬의 이전버전과 호환하기 위해 필요한데, 가이드라인에 제시되어 있는 기능을 지원하지 않을때 </p><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>정리하자면, PEP8 은 가이드라인일 뿐이고. <br> 본인이나 팀의 판단에 따라서. 프로젝트에 적용할지 안할지를 정하면 될것 같습니다. </p><br><p>개인적으로 저는 따르는게 좋다고 생각합니다. <br></p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/04/PEP8-A-Foolish-Consistency-is-the-Hobgoblin-of-Little-Minds/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>PEP8 - Introduction</title>
