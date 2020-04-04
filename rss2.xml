@@ -9,8 +9,28 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Sat, 04 Apr 2020 10:06:50 GMT</pubDate>
+    <pubDate>Sat, 04 Apr 2020 10:26:49 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PEP8 Code Layout - Tabs or Spaces?</title>
+      <link>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Tabs-or-Spaces/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Tabs-or-Spaces/</guid>
+      <pubDate>Sat, 04 Apr 2020 10:14:27 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h1 id=&quot;PEP8-Code-Layout-Tab-혹은-Spaces&quot;&gt;&lt;a href=&quot;#PEP8-Code-Layout-Tab-혹은-Spaces&quot; class=&quot;headerlink&quot; title=&quot;PEP8 Code Layout - Tab 혹은 Spaces
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h1 id="PEP8-Code-Layout-Tab-혹은-Spaces"><a href="#PEP8-Code-Layout-Tab-혹은-Spaces" class="headerlink" title="PEP8 Code Layout - Tab 혹은 Spaces?"></a>PEP8 Code Layout - Tab 혹은 Spaces?</h1><br><blockquote><p>파이썬에서는 Tab 대신 Spaces(빈공간)을 사용하는것을 선호합니다. </p></blockquote><br><p>탭을 사용하는 경우는, 이미 코드가 <code>tab</code>으로 들여쓰기가 되어 있는 경우, </p><p><br>코드와 일관되게 <code>tab</code>을 사용합니다. </p><br><blockquote><p>Python3 에는 <code>tab</code>과 <code>spaces</code> 혼용 사용을 허락하지 않습니다. </p></blockquote><br><p><code>tab</code>과  <code>spaces</code>의 혼용으로 들여쓰기가 되어진 Python2 버전의 코드는 특별히 spaces를 사용해서 전환되어야 합니다. </p><br><p><br>Python2 커맨드 라인 인터프리터로 <code>-t</code>옵션을 사용하면, </p><p><code>tabs</code>와 <code>spaces</code>의 혼용된 코드에 대해서 경고를 줍니다. </p><br><p><code>--t</code>옵션을 사용하면, 이 경고들이 에러가 됩니다. </p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Tabs-or-Spaces/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>PEP8 Code Layout - Indentation</title>

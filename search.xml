@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Code Layout - Tabs or Spaces?</title>
+    <url>/2020/04/04/PEP8-Code-Layout-Tabs-or-Spaces/</url>
+    <content><![CDATA[<h1 id="PEP8-Code-Layout-Tab-혹은-Spaces"><a href="#PEP8-Code-Layout-Tab-혹은-Spaces" class="headerlink" title="PEP8 Code Layout - Tab 혹은 Spaces?"></a>PEP8 Code Layout - Tab 혹은 Spaces?</h1><br>
+
+<blockquote>
+<p>파이썬에서는 Tab 대신 Spaces(빈공간)을 사용하는것을 선호합니다. </p>
+</blockquote>
+<br>
+
+
+
+<p>탭을 사용하는 경우는, 이미 코드가 <code>tab</code>으로 들여쓰기가 되어 있는 경우, </p>
+<p><br>코드와 일관되게 <code>tab</code>을 사용합니다. </p>
+<br>
+
+<blockquote>
+<p>Python3 에는 <code>tab</code>과 <code>spaces</code> 혼용 사용을 허락하지 않습니다. </p>
+</blockquote>
+<br>
+
+<p><code>tab</code>과  <code>spaces</code>의 혼용으로 들여쓰기가 되어진 Python2 버전의 코드는 특별히 spaces를 사용해서 전환되어야 합니다. </p>
+<br>
+
+<p><br>Python2 커맨드 라인 인터프리터로 <code>-t</code>옵션을 사용하면, </p>
+<p><code>tabs</code>와 <code>spaces</code>의 혼용된 코드에 대해서 경고를 줍니다. </p>
+<br>
+
+<p><code>--t</code>옵션을 사용하면, 이 경고들이 에러가 됩니다. </p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>파이썬</tag>
+        <tag>PEP8</tag>
+        <tag>Hanging indent</tag>
+        <tag>들여쓰기</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Code Layout - Indentation</title>
     <url>/2020/04/04/PEP8-Code-Layout-Indentation/</url>
     <content><![CDATA[<h1 id="PEP8-Code-Layout-Indentation-들여쓰기"><a href="#PEP8-Code-Layout-Indentation-들여쓰기" class="headerlink" title="PEP8 Code Layout - Indentation (들여쓰기)"></a>PEP8 Code Layout - Indentation (들여쓰기)</h1><br>

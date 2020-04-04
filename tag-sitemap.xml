@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EB%2593%25A4%25EC%2597%25AC%25EC%2593%25B0%25EA%25B8%25B0/</loc>
+        <lastmod>2020-04-04T10:26:49.964Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Hanging-indent/</loc>
+        <lastmod>2020-04-04T10:26:49.964Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/PEP8/</loc>
+        <lastmod>2020-04-04T10:26:49.964Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC/</loc>
+        <lastmod>2020-04-04T10:26:49.964Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Python/</loc>
+        <lastmod>2020-04-04T10:26:49.964Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/indentation/</loc>
         <lastmod>2020-04-04T10:06:50.588Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -12,27 +47,6 @@
     <url>
         <loc>http://djangojeng-e.github.io/tags/code-layout/</loc>
         <lastmod>2020-04-04T10:06:50.588Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/Python/</loc>
-        <lastmod>2020-04-04T10:06:50.588Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/PEP8/</loc>
-        <lastmod>2020-04-03T17:33:41.618Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC/</loc>
-        <lastmod>2020-04-03T17:33:41.618Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
