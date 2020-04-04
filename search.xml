@@ -1,6 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Code Layout - Indentation</title>
+    <url>/2020/04/04/PEP8-Code-Layout-Indentation/</url>
+    <content><![CDATA[<h1 id="PEP8-Code-Layout-Indentation-들여쓰기"><a href="#PEP8-Code-Layout-Indentation-들여쓰기" class="headerlink" title="PEP8 Code Layout - Indentation (들여쓰기)"></a>PEP8 Code Layout - Indentation (들여쓰기)</h1><br>
+
+<h2 id="Indentation"><a href="#Indentation" class="headerlink" title="Indentation"></a>Indentation</h2><br>
+
+<p>파이썬에서, 들여쓰기는 문법으로 의무화 되어 있습니다. <br></p>
+<p>PEP8에서는 들여쓰기에 대한 코딩 스타일을 다루고 있습니다. </p>
+<br>
+
+<br>
+
+<blockquote>
+<p>들여쓰기는 4칸을 사용합니다.</p>
+</blockquote>
+<br>
+
+<p>Continuation lines, 즉 이어지는 줄들은 세로로 정렬이 되어야 하는데. <br></p>
+<p>1) 파이썬에서 암시적으로 이어지는 줄들을 소괄호, 중괄호, 대괄호 안에 묶거나, </p>
+<p>2) hanging indent 를 사용하여 정렬합니다. </p>
+<br>
+
+<blockquote>
+<p>hanging indent 를 직역하면, 매달려 있는 들여쓰기로. </p>
+<p>문단의 첫번째 줄을 제외한 모든 라인이 들여쓰기가 되어 있는 스타일 입니다. </p>
+</blockquote>
+<br>
+
+<p><strong>hanging indent 의 예를 들어봅니다</strong></p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">djangojenge = djangojenge(django, python,</span><br><span class="line">	pep8, programming)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 첫번째줄은 들여쓰기가 되어 있지 않은데 </span></span><br><span class="line"><span class="comment"># 두번째줄은 들여쓰기가 되어 있습니다. 이것을 매달려있는 들여쓰기. 즉 hanging indent 라고 합니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p><code>hanging indent</code>를 사용할때는, 아래 두가지 사항을 골려하면서 사용합니다. </p>
+<br>
+
+<ol>
+<li>첫번째 줄에는 arguments (전달인자) 가 없어야 합니다. </li>
+<li>이어지는 줄이라는것을 표시하기 위해 추가적인 들여쓰기가 사용되어야합니다</li>
+</ol>
+<br>
+
+<br>
+
+<h2 id="좋은예"><a href="#좋은예" class="headerlink" title="좋은예"></a>좋은예</h2><p><br><br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예: </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 열리는 구분자와 정렬</span></span><br><span class="line"></span><br><span class="line">foo = long_function_name(var_one, var_two, </span><br><span class="line">                         var_three, var_four)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4칸을 추가로 주어 전달인자들을 다른 로직과 구분 </span></span><br><span class="line"><span class="comment"># 추가 들여쓰기로 arguments 부분과, print 부분이 구분됩니다. </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">long_function_name</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">		var_one, var_two, var_three,</span></span></span><br><span class="line"><span class="function"><span class="params">		var_four)</span>:</span></span><br><span class="line">    print(var_one)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment"># Hanging indents 한칸을 더 추가 합니다 </span></span><br><span class="line"><span class="comment"># 첫번째 예랑 같은데, hanging indent 로 한칸씩 추가 되어. 좀더 깔끔해 보입니다. </span></span><br><span class="line"></span><br><span class="line">foo = long_function_name(</span><br><span class="line">	var_one, var_two,</span><br><span class="line">	var_three, var_four)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="나쁜예"><a href="#나쁜예" class="headerlink" title="나쁜예"></a>나쁜예</h2><br>
+
+<br>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 나쁜예: </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 첫번째 전달인자들이 세로로 정렬이 되지 않은 경우</span></span><br><span class="line"></span><br><span class="line">foo = long_function_name(var_one, var_two,</span><br><span class="line">      var_three, var_four)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 추가적인 들여쓰기가 필요한 경우</span></span><br><span class="line"><span class="comment"># 추가적인 들여쓰기가 없을경우, 전달인자들과 print() 와 구분이 안갑니다. </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">long_function_name</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	var_one, var_two, var_three,</span></span></span><br><span class="line"><span class="function"><span class="params">	var_four)</span>:</span></span><br><span class="line">    print(var_one)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<br>
+
+<h2 id="선택-사항"><a href="#선택-사항" class="headerlink" title="선택 사항"></a>선택 사항</h2><br>
+
+<br>
+
+<p>이어지는 줄에서의 4-칸 스페이스 룰은 선택 사항입니다. 4칸 보다 더 쓸수도, 덜 쓸수도 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># hanging indents 는 4칸 외에 공간으로 들여쓰기가 가능합니다 </span></span><br><span class="line"></span><br><span class="line">foo = long_function_name(</span><br><span class="line">  var_one, var_two, </span><br><span class="line">  var_three, var_four)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="조건문이-너무-길어질때"><a href="#조건문이-너무-길어질때" class="headerlink" title="조건문이 너무 길어질때"></a>조건문이 너무 길어질때</h2><br>
+
+<p><strong><code>if</code>구문의 조건 부분이 너무 길어져서 다수의 줄이 된다면,</strong> </p>
+<br>
+
+<blockquote>
+<p><code>if</code> 다음에 한칸을 띄고 괄호를 열어줍니다.</p>
+<p>if ():</p>
+<p>이렇게 쓰면, 자연스럽게 다음줄부터 4칸 들여쓰기가 됩니다</p>
+</blockquote>
+<p><br><br></p>
+<p>조건부분이 너무 길고, 밑에 실행 가능한 함수등과 구분짓고 싶을때 아래와 같이 써줍니다. </p>
+<p><br><br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 추가 들여쓰기가 없음</span></span><br><span class="line"><span class="comment"># do_something() 부분이 자연스럽게 들여쓰기가 됩니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (this_is_one_thing <span class="keyword">and</span> </span><br><span class="line">   that_is_another_thing):</span><br><span class="line">   do_something()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 주석을 달아줘서 조건 부분과 함수 부분을 구분합니다 </span></span><br><span class="line"><span class="comment"># 주석과 코드의 색깔을 표시해주는 에디터가 많기 때문에 구분이 가능합니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (this_is_one_thing <span class="keyword">and</span> </span><br><span class="line">   that_is_another_thing):</span><br><span class="line">   <span class="comment"># Since both conditions are true, we can frobncate.</span></span><br><span class="line">   do_something()</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 조건문이 이어지는 줄에 추가로 들여쓰기를 넣어줍니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (this_is_one_thing</span><br><span class="line">   		<span class="keyword">and</span> that_is_another_thing): </span><br><span class="line">    do_something()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="여러-줄에서-닫히는-소괄호-중괄호-대괄호"><a href="#여러-줄에서-닫히는-소괄호-중괄호-대괄호" class="headerlink" title="여러 줄에서 닫히는 소괄호/중괄호/대괄호"></a>여러 줄에서 닫히는 소괄호/중괄호/대괄호</h2><br>
+
+<p>맨마지막 줄 다음줄에 닫는 괄호를 넣어줍니다. 괄호를 따로 들여쓰기를 해주어야 되겠죠? ㅎㅎ<br></p>
+<br>
+
+<p><strong>코드를 보면서 이해합니다.</strong> </p>
+<p><br><br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 마지막 줄의 ] 는 추가로 들여쓰기가 되었습니다.</span></span><br><span class="line"></span><br><span class="line">my_list = [</span><br><span class="line">    <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>,</span><br><span class="line">    <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>,</span><br><span class="line">	]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 마지막 줄의 ) 는 추가로 들여쓰기가 되었습니다. </span></span><br><span class="line"></span><br><span class="line">result = some_function_that_takes_arguments(</span><br><span class="line">	<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>,</span><br><span class="line">	<span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>,</span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><strong>혹은, 닫히는 소괄호/중괄호/대괄호 들은 첫번째 줄의 시작점에 두어도 괜찮습니다. (밑에 코드 참조)</strong></p>
+<br>
+
+<br>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 마지막 줄의 ] 는 추가로 들여쓰기가 되었습니다.</span></span><br><span class="line"></span><br><span class="line">my_list = [</span><br><span class="line">    <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>,</span><br><span class="line">    <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 마지막 줄의 ) 는 추가로 들여쓰기가 되었습니다. </span></span><br><span class="line"></span><br><span class="line">result = some_function_that_takes_arguments(</span><br><span class="line">	<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>,</span><br><span class="line">	<span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>PEP에서 들여쓰기 부분이 가장 초입인데. 뭔가 가장 헷갈렸습니다. <br></p>
+<p>표현들이 좀 이상해서 더 애먹은것 같습니다.  세번째 쯤 보니까 이제 좀 이해가 가는듯 합니다. </p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>code layout</tag>
+        <tag>indentation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 - A Foolish Consistency is the Hobgoblin of Little Minds</title>
     <url>/2020/04/04/PEP8-A-Foolish-Consistency-is-the-Hobgoblin-of-Little-Minds/</url>
     <content><![CDATA[<h1 id="PEP8-A-foolish-consistency-is-the-Hobgoblin-of-Little-Minds"><a href="#PEP8-A-foolish-consistency-is-the-Hobgoblin-of-Little-Minds" class="headerlink" title="PEP8 - A foolish consistency is the Hobgoblin of Little Minds"></a>PEP8 - A foolish consistency is the Hobgoblin of Little Minds</h1><br>
