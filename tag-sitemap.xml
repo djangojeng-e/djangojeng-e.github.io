@@ -3,21 +3,42 @@
 
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/Blank-Lines/</loc>
-        <lastmod>2020-04-04T16:40:19.609Z</lastmod>
+        <loc>http://djangojeng-e.github.io/tags/ASCII/</loc>
+        <lastmod>2020-04-04T16:57:09.369Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/UTF-8/</loc>
+        <lastmod>2020-04-04T16:57:09.369Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Source-File-Encoding/</loc>
+        <lastmod>2020-04-04T16:57:09.369Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/PEP8/</loc>
-        <lastmod>2020-04-04T16:40:19.609Z</lastmod>
+        <lastmod>2020-04-04T16:57:09.369Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/Python/</loc>
+        <lastmod>2020-04-04T16:57:09.369Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Blank-Lines/</loc>
         <lastmod>2020-04-04T16:40:19.609Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
