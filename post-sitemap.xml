@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/</loc>
+        <lastmod>2020-04-04T10:45:43.076Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Tabs-or-Spaces/</loc>
         <lastmod>2020-04-04T10:26:49.964Z</lastmod>
         <changefreq>weekly</changefreq>

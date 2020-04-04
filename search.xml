@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Code Layout - Maximum Line Length</title>
+    <url>/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/</url>
+    <content><![CDATA[<h1 id="Maximum-Line-Length"><a href="#Maximum-Line-Length" class="headerlink" title="Maximum Line Length"></a>Maximum Line Length</h1><br>
+
+<blockquote>
+<p><code>Maximum Line Length</code> 는 한줄의 최대 길이를 의미 합니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="모든-줄은-79자로-제한-합니다"><a href="#모든-줄은-79자로-제한-합니다" class="headerlink" title="모든 줄은 79자로 제한 합니다"></a>모든 줄은 79자로 제한 합니다</h2><br>
+
+<p>네. PEP8 에서는, 파이썬 코드를 작성할때. 한줄의 최대 길이를 79자로 제한합니다. </p>
+<br>
+
+<br>
+
+<p><strong>다만! <code>docstring</code>혹은 <code>comments</code> 즉 주석들은, 72자로 제한합니다.</strong> </p>
+<br>
+
+<br>
+
+<blockquote>
+<p>모든 팀원들이 동의한다는 전제하에, </p>
+<p>특별히 코드의 긴 줄이 유지 되어야 하는 상황이거나 하면 </p>
+<p>최대 길이는 99자까지 늘릴수 있습니다. </p>
+</blockquote>
+<br>
+
+<h2 id="한줄이-너무-긴-코드-줄-바꾸기"><a href="#한줄이-너무-긴-코드-줄-바꾸기" class="headerlink" title="한줄이 너무 긴 코드 줄 바꾸기"></a>한줄이 너무 긴 코드 줄 바꾸기</h2><br>
+
+<blockquote>
+<p>PEP8 에서 선호하는 긴줄 처리는, </p>
+<p>계속되는 줄의 경계를 소괄호, 중괄호, 대괄호 안에 넣고 사용하는것입니다. </p>
+<p>이 방법이 \ 를 사용하는 방법보다 선호됩니다. </p>
+</blockquote>
+<br>
+
+<p>제가 생각하는 예시들은 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 한줄이 너무 긴 코드 </span></span><br><span class="line"><span class="keyword">if</span>(this_is_one_thing <span class="keyword">or</span> that_is_another_thing <span class="keyword">or</span> everything_is_good_thing <span class="keyword">or</span> you_are_the best):</span><br><span class="line">    </span><br><span class="line"><span class="comment"># \ 백슬레쉬를 사용하지 않고, 괄호안에서 줄을 바꿔서, 한줄을 다음줄로 나눕니다. </span></span><br><span class="line"><span class="comment"># 물론 들여쓰기는 잘해주어야 하겠죠? </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(this_is_one_thing <span class="keyword">or</span></span><br><span class="line">   that-is_another_thing <span class="keyword">or</span></span><br><span class="line">   everything_is_good_thing <span class="keyword">or</span></span><br><span class="line">   you_are_the_best):</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위 방법이 선호되는것 같으나, 여전히 <code>\</code>백슬레쉬의 사용하는 방법도 괜찮습니다! </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># \ 를 사용하여 줄을 나눈 경우, \를 사용하지 않았으면, 한줄이 너무 길어 졌을것 같습니다. </span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'/path/to/some/file/you/want/to/read'</span>) <span class="keyword">as</span> file_1, \</span><br><span class="line">     open(<span class="string">'/path/to/some/file/being/written'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> file_2:)</span><br><span class="line">     file_2.write(file_1.read())</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>1) PEP8 에서는 한줄의 최대길이를 79자로 제한합니다. </p>
+<p>2) docstring 이나 comments 같은 주석들은 72자로 제한합니다.</p>
+<p>3) 한줄이 너무 길어질것 같으면, <code>\</code>나 괄호안의 문장을 다음줄로 이어갑니다 (들여쓰기는 적절히 해야하는게 필수) </p>
+<br>
+
+<p>한줄 한줄이 너무 길어서 스크린이 꽉꽉 차있으면, 일하러 가서 매일 아래와 같은 스크린을 보게 될것입니다. </p>
+<p><img src="https://postfiles.pstatic.net/MjAyMDAzMjZfMTM2/MDAxNTg1MjI4ODAwMTAw.OiOLmmVh0wWP3imbhVHKVkguVpMI_owjkp9V-YB1Sdwg.zcEnJZKj1vniMAkXkcuL0iMNoSqGXtASgJF63ZAevR0g.JPEG.headfat1218/1_hrFhKc1lS4vj63nGdxgezg.jpeg?type=w773" alt="img"></p>
+<p><br><br></p>
+<p>그리고, 누가 그러시던데, 한줄의 길이가 79자가 된 이유중에 하나가. <br></p>
+<p>옛날 컴퓨터의 모니터 크기 때문이라고 합니다. 지금 나오는 모니터 크기와는 다르게.<br></p>
+<p><br> 옛날 모니터들은 가로폭이 굉장히 좁아서. 화면에 꽉차는 양이 79자 정도 였다 합니다.  <br></p>
+<p>아래 사진을 보면,,, 충분히 그럴수도 있었겟네요? ㅎㅎ <br></p>
+<br>
+
+<p><img src="https://postfiles.pstatic.net/MjAyMDAzMjZfMTI4/MDAxNTg1MjI4OTIyNDk1.b6pORbaQ5TMVkcoueUrZmekZeT3-K92pUrVoIPgqWZYg.9uMAi6G-fpk1z9akY5PtZisghsTTQRCXH66KUBA3Os0g.JPEG.headfat1218/IBM_PC_5150.jpg?type=w773" alt="img"></p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python,PEP8,Maximum Line Length,최대줄길이</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Code Layout - Tabs or Spaces?</title>
     <url>/2020/04/04/PEP8-Code-Layout-Tabs-or-Spaces/</url>
     <content><![CDATA[<h1 id="PEP8-Code-Layout-Tab-혹은-Spaces"><a href="#PEP8-Code-Layout-Tab-혹은-Spaces" class="headerlink" title="PEP8 Code Layout - Tab 혹은 Spaces?"></a>PEP8 Code Layout - Tab 혹은 Spaces?</h1><br>
