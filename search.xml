@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Code Layout - Blank Lines</title>
+    <url>/2020/04/05/PEP8-Code-Layout-Blank-Lines/</url>
+    <content><![CDATA[<h1 id="PEP8-Code-Layout-Blank-Lines-빈줄"><a href="#PEP8-Code-Layout-Blank-Lines-빈줄" class="headerlink" title="PEP8 Code Layout - Blank Lines (빈줄)"></a>PEP8 Code Layout - Blank Lines (빈줄)</h1><br>
+
+<br>
+
+<p>이번 토픽은, PEP8 에서 권장하는 코드내에 빈줄 공간들에 대해서 다룹니다. </p>
+<br>
+
+<br>
+
+<blockquote>
+<p> <strong>가장 상위의 함수와 클래스 정의는 2줄의 빈줄로 공간을 둡니다</strong> <br></p>
+</blockquote>
+<p><br><br></p>
+<p>이것이 의미하는 바는 아래의 예제를 보면 알수 있습니다. </p>
+<p><br><br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 가장 상위의 함수와 클래스들 사이의 2줄 공간 </span></span><br><span class="line"><span class="comment"># 가장 상위의 클래스 두개끼리는 2줄의 빈공간이 있습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJenge</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJenge2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 가장 상위의 함수 두개끼리는 2줄의 빈공간을 둡니다. </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Djangojeng</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Djangojeng</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>클래스 내의 메써드 정의는 1줄로 공간을 둡니다.<br></p>
+</blockquote>
+<a id="more"></a>
+
+<p><br><br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 클래스 내의 메써드 정의는 1줄 공간을 둡니다. </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJenge1</span><span class="params">()</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_python</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span> </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_python2</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span> </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJeng2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_django</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span> </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_django2</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<p>위 예시를 보면, 가장 상위에 위치하는 클래스들 끼리는 2줄 빈공간이 존재하고. <br></p>
+<p>클래스 안에 있는 메서드 들 끼리는 1줄 빈공간들이 존재합니다.</p>
+<p><br><br></p>
+<blockquote>
+<p>함수내에 빈줄은 드물게 사용해야 합니다.</p>
+<p>함수내에 빈줄은 논리적 부분을 표시하기 위해서 사용 가능합니다. </p>
+</blockquote>
+<p><br><br></p>
+<p>예를들면, </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 함수내에 논리적인 부분을 표시하기 위해서 빈줄을 함수내에서 사용합니다. </span></span><br><span class="line"><span class="comment"># 아주 드물게 사용해야 합니다.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop</span><span class="params">(j)</span>:</span></span><br><span class="line">    c = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, j):</span><br><span class="line">        c = c + <span class="number">1</span> </span><br><span class="line">    </span><br><span class="line">    print(c)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># for 문과 print 문 사이에 하나의 빈줄이 존재합니다.</span></span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+
+
+<p>PEP8 안에 빈줄 (Blank Lines)에 관한 내용은 유용한 내용인데도 불구하고 <br></p>
+<p>예시가 빈약해서 이해하기 힘들었습니다. <br></p>
+<p><br><br></p>
+<p>최대한 맞는 예시를 들으려 했지만 부족할수 있습니다. </p>
+<br>
+
+<p>하지만, 걱정 안하셔도 됩니다. </p>
+<br>
+
+<blockquote>
+<p>Pycharm을 사용하면 자동으로 PEP8에 맞는 스타일을 가이드 해줍니다 </p>
+<p>코드를 작성할때 이따금씩 노란색 밑줄이 쳐질때가 있는데, PEP8에 어긋날때 표시가 됩니다. </p>
+<p>잘 유의해서 확인하고, PEP8 가이드라인에 맞게 코드를 작성하면 됩니다! </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>PEP8</tag>
+        <tag>Blank Lines</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Code Layout - Should a Line Break Before or After a Binary Operator?</title>
     <url>/2020/04/04/PEP8-Code-Layout-Should-a-Line-Break-Before-or-After-a-Binary-Operator/</url>
     <content><![CDATA[<h1 id="이항연산자-전후-줄바꿈"><a href="#이항연산자-전후-줄바꿈" class="headerlink" title="이항연산자 전후 줄바꿈"></a>이항연산자 전후 줄바꿈</h1><br>
