@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EC%25A4%2584%25EB%25B0%2594%25EA%25BF%2588/</loc>
+        <lastmod>2020-04-04T11:05:34.008Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EC%259D%25B4%25ED%2595%25AD%25EC%2597%25B0%25EC%2582%25B0%25EC%259E%2590/</loc>
+        <lastmod>2020-04-04T11:05:34.008Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Binary-Operator/</loc>
+        <lastmod>2020-04-04T11:05:34.008Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/PEP8/</loc>
+        <lastmod>2020-04-04T11:05:34.008Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Python/</loc>
+        <lastmod>2020-04-04T11:05:34.008Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/Python-PEP8-Maximum-Line-Length-%25EC%25B5%259C%25EB%258C%2580%25EC%25A4%2584%25EA%25B8%25B8%25EC%259D%25B4/</loc>
         <lastmod>2020-04-04T10:45:43.076Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -24,21 +59,7 @@
     </url>
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/PEP8/</loc>
-        <lastmod>2020-04-04T10:26:49.964Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://djangojeng-e.github.io/tags/%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC/</loc>
-        <lastmod>2020-04-04T10:26:49.964Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/Python/</loc>
         <lastmod>2020-04-04T10:26:49.964Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
