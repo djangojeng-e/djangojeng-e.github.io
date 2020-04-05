@@ -1,6 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Whitespace in Expressions and Statements - 2편</title>
+    <url>/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-2%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="수식과-구문안에서-빈공간-기타-권장-사항들"><a href="#수식과-구문안에서-빈공간-기타-권장-사항들" class="headerlink" title="수식과 구문안에서 빈공간 - 기타 권장 사항들"></a>수식과 구문안에서 빈공간 - 기타 권장 사항들</h2><br>
+
+<br>
+
+<p>수식과 구문 안에 공백들에 대한 기타 권장 사항들입니다. <br></p>
+<br>
+
+<br>
+
+<h2 id="뒤에오는-빈공간은-언제나-피해야-합니다"><a href="#뒤에오는-빈공간은-언제나-피해야-합니다" class="headerlink" title="뒤에오는 빈공간은 언제나 피해야 합니다"></a>뒤에오는 빈공간은 언제나 피해야 합니다</h2><br>
+
+<br>
+
+<p>공백들은 보이지 않기 때문에 혼란 스러울수 있습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 빈공간 후에 \ 를 사용 </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"I'm the best"</span>  \)</span><br><span class="line">print(<span class="string">"I'm the best</span></span><br><span class="line"><span class="string">      \")</span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string"># 빈공간이 계속되는 줄로 세어지지 않을때, </span></span><br><span class="line"><span class="string"># 아래 print 문에서 두번째줄은 계속되는 줄로 세어지지 않습니다. </span></span><br><span class="line"><span class="string"># 이어지는 줄이 아닌데도 괜히 사용하면, 시각적으로나 논리적으로 혼란만 초래합니다. </span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string">print("</span>I<span class="string">'m the best"</span></span><br><span class="line"><span class="string">     </span></span><br><span class="line"><span class="string">     </span></span><br><span class="line"><span class="string">)</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Binary-Operator-양쪽-사이드"><a href="#Binary-Operator-양쪽-사이드" class="headerlink" title="Binary Operator 양쪽 사이드"></a>Binary Operator 양쪽 사이드</h2><br>
+
+<br>
+
+<p>이항 연산자 양쪽 사이드에는 항상 하나의 공백을 넣어줍니다. </p>
+<p><br><a id="more"></a></p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 연산자 앞뒤로 빈공간이 있는걸 확인 할수 있습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> a = b: </span><br><span class="line"><span class="keyword">if</span> a == b: </span><br><span class="line"><span class="keyword">if</span> a &gt; b: </span><br><span class="line"><span class="keyword">if</span> a &lt; b: </span><br><span class="line"><span class="keyword">if</span> a != b: </span><br><span class="line"><span class="keyword">if</span> a &lt;= b: </span><br><span class="line"><span class="keyword">if</span> a &gt;= b:</span><br><span class="line"><span class="keyword">if</span> a <span class="keyword">in</span> b: </span><br><span class="line"><span class="keyword">if</span> a <span class="keyword">not</span> b: </span><br><span class="line"><span class="keyword">if</span> a <span class="keyword">is</span> b:</span><br><span class="line"><span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">not</span> b: </span><br><span class="line"><span class="keyword">if</span> a <span class="keyword">and</span> b: </span><br><span class="line"><span class="keyword">if</span> a <span class="keyword">or</span> b:</span><br><span class="line">a += b </span><br><span class="line">a -= b</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="우선순위가-다른-연산이-사용되는-경우"><a href="#우선순위가-다른-연산이-사용되는-경우" class="headerlink" title="우선순위가 다른 연산이 사용되는 경우"></a>우선순위가 다른 연산이 사용되는 경우</h2><br>
+
+<br>
+
+<p>우선순위가 낮은 연산에 공백을 추가해 줍니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line">i = i + <span class="number">1</span> </span><br><span class="line">submitted += <span class="number">1</span> </span><br><span class="line">x = x*<span class="number">2</span> - <span class="number">1</span>  	</span><br><span class="line"></span><br><span class="line"><span class="comment"># x*2 가 우선순위가 더 높은 연산이므로 공백을 추가해주지 않습니다. </span></span><br><span class="line"><span class="comment"># 하지만 - 연산에는 앞뒤로 공백을 추가해 줍니다. </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hypot2 = x*x + y*y </span><br><span class="line">c = (a+b) * (a-b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 곱하기와 더하기가 같이 존재할때 곱셈이 덧셈보다 우선순위가 높습니다. 따라서, *에는 공백을 안줍니다. </span></span><br><span class="line"><span class="comment"># () 안에 있는 연산이 우선순위가 더 높습니다. 따라서 괄호안에 있는 + - 에는 공백을 안줍니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 연산자 뒤에 공백이 하나도 없습니다. </span></span><br><span class="line">i=i+<span class="number">1</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 연산자 주변에 공백이 양쪽에 적용되지 않았습니다. </span></span><br><span class="line">submitted +=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 우선순위가 높은 연산에 공백을 잘못 적용했습니다. </span></span><br><span class="line"></span><br><span class="line">x = x * <span class="number">2</span> - <span class="number">1</span> </span><br><span class="line"></span><br><span class="line">hypot2 = x * x + y * y </span><br><span class="line">c = ( a + b ) * ( a - b )</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="함수의-annotation"><a href="#함수의-annotation" class="headerlink" title="함수의 annotation"></a>함수의 annotation</h2><br>
+
+<br>
+
+<p>함수의 annotation 에서는 콜론에 대한 보통 방식을 따르고</p>
+<p><code>-&gt;</code> 주위에 빈공간을 넣어줍니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">munge</span><span class="params">(input: AnyStr)</span>:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">munge</span><span class="params">()</span> -&gt; PosInt:</span> </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">munge</span><span class="params">(input:AnyStr)</span>:</span> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">munge</span><span class="params">()</span>-&gt;PosInt:</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="키워드-인자-주위의-공백"><a href="#키워드-인자-주위의-공백" class="headerlink" title="키워드 인자 주위의 공백"></a>키워드 인자 주위의 공백</h2><br>
+
+<br>
+
+<p>키워드 인자를 표시할때 사용되는 <code>=</code> 주위에 공백을 넣지 않습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">complex</span><span class="params">(real, imag=<span class="number">0.0</span>)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> magic(r=real, i=imag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">complex</span><span class="params">(real, imag = <span class="number">0.0</span>)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> magic(r = real, i = imag)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>그렇지만, 기본값을 가지는 인자 annotation 을 합칠때에는 </p>
+<p><code>=</code>주위에 공백을 넣어줍니다.</p>
+</blockquote>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 좋은예 </span><br><span class="line">def munge(sep: AnyStr &#x3D; None): ...  </span><br><span class="line">def munge(input: AnyStr, sep: AnyStr &#x3D; None, limit&#x3D;1000): ... </span><br><span class="line"></span><br><span class="line"># 나쁜예 </span><br><span class="line">def munge(input: AnyStr&#x3D;None): ... </span><br><span class="line">def munge(input: AnyStr, limit &#x3D; 1000): ...</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="같은줄에-여러개의-statement"><a href="#같은줄에-여러개의-statement" class="headerlink" title="같은줄에 여러개의 statement"></a>같은줄에 여러개의 statement</h2><br>
+
+<br>
+
+<p>같은줄에 여러개의 statement 를 가지는것은 권장 되지 않습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> foo == <span class="string">'blah'</span>:</span><br><span class="line">    do_blah_thing()</span><br><span class="line">do_one()</span><br><span class="line">do_two()</span><br><span class="line">do_three()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> foo == <span class="string">'blah'</span>:do_blah_thing()</span><br><span class="line">do_one(); do_two(); do_three()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="조건이-많은-구문에서-if-for-while"><a href="#조건이-많은-구문에서-if-for-while" class="headerlink" title="조건이 많은 구문에서 if/for/while"></a>조건이 많은 구문에서 if/for/while</h2><br>
+
+<br>
+
+<p>이따금씩,  if/for/while 을 같은줄에 넣는것은 괜찮습니다. 하지만, 절대로 조항이 많은 구문에서는 그렇게 쓰면 안됩니다. </p>
+<br>
+
+<p>또한, 긴줄을 지나치게 접는것도 피해야합니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> foo == <span class="string">'blah'</span>: do_blah_thing()</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="number">1</span>st: total += x </span><br><span class="line"><span class="keyword">while</span> t&lt; <span class="number">10</span>: t = delay() </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 위 나쁜예를 고치면, 아래와 같이 고쳐집니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> foo == <span class="string">'blah'</span>:</span><br><span class="line">    do_blah_thing()</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="number">1</span>st:</span><br><span class="line">    total += x </span><br><span class="line"><span class="keyword">while</span> t &lt; <span class="number">10</span>:</span><br><span class="line">    t = delay()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="PEP에서-권장하지-않는-코드"><a href="#PEP에서-권장하지-않는-코드" class="headerlink" title="PEP에서 권장하지 않는 코드"></a>PEP에서 권장하지 않는 코드</h2><br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 틀린예 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> foo == <span class="string">'blah'</span>: do_blah_thing() </span><br><span class="line"><span class="keyword">else</span>: do_non_blah_thing() </span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>: something() </span><br><span class="line"><span class="keyword">finally</span>: cleanup() </span><br><span class="line"></span><br><span class="line">do_one(); do_two(); do_three(long, argument, list, like, this) </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> foo == <span class="string">'blah'</span>: one(); two(); three()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>공백에 대한 기타 권장사항들을 알아보았습니다. </p>
+<p>공백을 권장사항에 따라 적절하게 적용해서, 더 깔끔하게 코드를 써봅시다~ </p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>PEP8</tag>
+        <tag>공백</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Whitespace in Expressions and Statements - PET PEEVES</title>
     <url>/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-PET-PEEVES/</url>
     <content><![CDATA[<p><br><br></p>
