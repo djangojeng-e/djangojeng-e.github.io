@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Code Layout - String Quotes</title>
+    <url>/2020/04/05/PEP8-Code-Layout-String-Quotes/</url>
+    <content><![CDATA[<h1 id="String-Quotes-문자열-따옴표"><a href="#String-Quotes-문자열-따옴표" class="headerlink" title="String Quotes (문자열 따옴표)"></a>String Quotes (문자열 따옴표)</h1><br>
+
+<br>
+
+<blockquote>
+<p>파이썬에서는, </p>
+<p>문자열을 사용할때 작은따옴표와 큰따옴표는 똑같습니다. </p>
+</blockquote>
+<br>
+
+<p>PEP8 에서는, 따옴표의 사용에 대한 어떠한 권장 사항이 없습니다. </p>
+<p><br>단지 하나의 룰을 정하고, 그것을 일관되게 사용하길 바랍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">string = <span class="string">"This is string"</span> 	<span class="comment"># 큰 따옴표를 사용한 경우 </span></span><br><span class="line">string = <span class="string">'This is string'</span>	<span class="comment"># 작은 따옴표를 사용한 경우 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 두가지 방식은 같음</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..<br></h2><br>
+
+<p>저는 보통 작은 따옴표 <code>&#39;</code>를 사용합니다.. <code>shift</code>키를 안눌러도 되서 그런가 봅니다. </p>
+<br>
+
+<p>여러분들은 어떠신가요? <br></p>
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>PEP8</tag>
+        <tag>문자열</tag>
+        <tag>따옴표</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Code Layout - Module Level Dunder Names</title>
     <url>/2020/04/05/PEP8-Code-Layout-Module-Level-Dunder-Names/</url>
     <content><![CDATA[<h1 id="Module-내에-Dunder-Names"><a href="#Module-내에-Dunder-Names" class="headerlink" title="Module 내에 Dunder Names"></a>Module 내에 Dunder Names</h1><br>
