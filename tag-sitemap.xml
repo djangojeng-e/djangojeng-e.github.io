@@ -3,29 +3,36 @@
 
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/%25EB%2594%25B0%25EC%2598%25B4%25ED%2591%259C/</loc>
-        <lastmod>2020-04-05T05:22:31.853Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/%25EB%25AC%25B8%25EC%259E%2590%25EC%2597%25B4/</loc>
-        <lastmod>2020-04-05T05:22:31.853Z</lastmod>
+        <loc>http://djangojeng-e.github.io/tags/PET-PEEVES/</loc>
+        <lastmod>2020-04-05T07:24:34.832Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/PEP8/</loc>
-        <lastmod>2020-04-05T05:22:31.853Z</lastmod>
+        <lastmod>2020-04-05T07:24:34.832Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/Python/</loc>
-        <lastmod>2020-04-05T05:22:31.853Z</lastmod>
+        <lastmod>2020-04-05T07:24:34.832Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EB%2594%25B0%25EC%2598%25B4%25ED%2591%259C/</loc>
+        <lastmod>2020-04-05T05:25:24.399Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EB%25AC%25B8%25EC%259E%2590%25EC%2597%25B4/</loc>
+        <lastmod>2020-04-05T05:25:24.399Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
