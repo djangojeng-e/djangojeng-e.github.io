@@ -9,8 +9,51 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Sun, 05 Apr 2020 07:50:02 GMT</pubDate>
+    <pubDate>Sun, 05 Apr 2020 10:36:42 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PEP8 When to Use Trailing Commas</title>
+      <link>http://djangojeng-e.github.io/2020/04/05/PEP8-When-to-Use-Trailing-Commas/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/05/PEP8-When-to-Use-Trailing-Commas/</guid>
+      <pubDate>Sun, 05 Apr 2020 10:28:40 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;언제-콤마를-뒤에-붙여야-하는가&quot;&gt;&lt;a href=&quot;#언제-콤마를-뒤에-붙여야-하는가&quot; class=&quot;headerlink&quot; title=&quot;언제 콤마를 뒤에 붙여야 하는가&quot;&gt;&lt;/a&gt;언제 콤마를 뒤에 붙여야 하는가&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;이번 포스팅은 언제 코드끝에 콤마를 붙여야 하는가에 대한 내용입니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;튜플처럼 의무화 되어 있는 콤마를 제외하고는 &lt;/p&gt;
+&lt;p&gt;보통은 끝에 콤마를 붙이는것은 선택 사항입니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 좋은예 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;FILES = (&lt;span class=&quot;string&quot;&gt;&#39;setup.cfg&#39;&lt;/span&gt;,)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 나쁜예 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 괄호가 없는데 뒤에 콤마를 붙이는 경우 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;FILES = &lt;span class=&quot;string&quot;&gt;&#39;setup.cfg&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;콤마는 버전관리 시스템이 사용될때도 도움이 됩니다. &lt;/p&gt;
+&lt;p&gt;&lt;br&gt;그리고, 값들이 리스트 안에 들어가 있는데, 그 안에 인자나 가져올 아이템이 나중에 확장될지 모를때 도움이 됩니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;p&gt;&lt;strong&gt;코드를 보면서 이해하자면&lt;/strong&gt;&lt;/p&gt;
+&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="언제-콤마를-뒤에-붙여야-하는가"><a href="#언제-콤마를-뒤에-붙여야-하는가" class="headerlink" title="언제 콤마를 뒤에 붙여야 하는가"></a>언제 콤마를 뒤에 붙여야 하는가</h2><br><br><p>이번 포스팅은 언제 코드끝에 콤마를 붙여야 하는가에 대한 내용입니다. </p><br><br><blockquote><p>튜플처럼 의무화 되어 있는 콤마를 제외하고는 </p><p>보통은 끝에 콤마를 붙이는것은 선택 사항입니다. </p></blockquote><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line">FILES = (<span class="string">'setup.cfg'</span>,)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="comment"># 괄호가 없는데 뒤에 콤마를 붙이는 경우 </span></span><br><span class="line">FILES = <span class="string">'setup.cfg'</span>,</span><br></pre></td></tr></table></figure><br><p>콤마는 버전관리 시스템이 사용될때도 도움이 됩니다. </p><p><br>그리고, 값들이 리스트 안에 들어가 있는데, 그 안에 인자나 가져올 아이템이 나중에 확장될지 모를때 도움이 됩니다. </p><br><p><strong>코드를 보면서 이해하자면</strong></p><br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="comment"># 각각의 값이나 파일들 뒤에 콤마를 붙이고 다음줄로 넘어갑니다 </span></span><br><span class="line"><span class="comment"># 더이상 값이 없을때는, 바로 괄호를 닫지 않고. 다음줄에서 닫습니다. </span></span><br><span class="line"></span><br><span class="line">FILES = [</span><br><span class="line">    <span class="string">'setup.cfg'</span>,</span><br><span class="line">    <span class="string">'tox.ini'</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나중에 값이나 파일이 추가될때는</span></span><br><span class="line"><span class="comment"># 다음줄에 값을 넣고 뒤에 콤마를 붙여줍니다. </span></span><br><span class="line"><span class="comment"># 그리고 다음줄에 괄호를 닫아줍니다. </span></span><br><span class="line"></span><br><span class="line">initialize(FILES,</span><br><span class="line">          error=<span class="literal">True</span>,</span><br><span class="line">          )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="comment"># 줄바꿈을 한뒤에 콤마를 넣지 않고. 끝에 나오는 콤마까지 합쳐서 한줄에 넣은 경우 </span></span><br><span class="line"></span><br><span class="line">FILES = [<span class="string">'setup.cfg'</span>, <span class="string">'tox.ini'</span>,]</span><br><span class="line">initalize(FILES, error=<span class="literal">True</span>,)</span><br></pre></td></tr></table></figure><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>콤마를 잘 붙이면, </p><p><br>인자나, 가져오는 파일들을 구분할때 시각적으로 많은 도움이 될것 같습니다. </p><br><br><p>들어가는 값이 너무 많아질때는 각각의 줄로 나누고 콤마를 붙여줍니다. </p><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/05/PEP8-When-to-Use-Trailing-Commas/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>PEP8 Whitespace in Expressions and Statements - 2편</title>
@@ -700,36 +743,6 @@
       <content:encoded><![CDATA[<br> <p>이미지 사용1 </p><br><img src="/2020/03/19/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%AC%EC%9A%A9-%EB%8D%B0%EB%AA%A8/terminal_capture.png" class=""><p><br><br></p><p>이미지 사용2 </p><br><br><img src="/2020/03/19/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%AC%EC%9A%A9-%EB%8D%B0%EB%AA%A8/terminal_capture2.png" class="">]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/03/19/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%AC%EC%9A%A9-%EB%8D%B0%EB%AA%A8/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Hexo 블로그 - 포스트에 이미지 사용</title>
-      <link>http://djangojeng-e.github.io/2020/03/19/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%AC%EC%9A%A9/</link>
-      <guid>http://djangojeng-e.github.io/2020/03/19/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%AC%EC%9A%A9/</guid>
-      <pubDate>Thu, 19 Mar 2020 13:09:56 GMT</pubDate>
-      <description>
-      
-        &lt;h1 id=&quot;포스트에-이미지-삽입하기&quot;&gt;&lt;a href=&quot;#포스트에-이미지-삽입하기&quot; class=&quot;headerlink&quot; title=&quot;포스트에 이미지 삽입하기&quot;&gt;&lt;/a&gt;포스트에 이미지 삽입하기&lt;/h1&gt;&lt;br&gt; 
-
-&lt;p&gt;그동안 포스팅을 하면서, 큰 실수를 하고 있었는데. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;여태껏 포스트에 올린 스크린 캡쳐라던지, 이미지들은 모두 반영이 되질 않았습니다. &lt;br&gt; &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;현재 저는  &lt;code&gt;typora&lt;/code&gt;라는 마크다운 프로그램을 사용하고 있는데. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;이미지를 그냥 &lt;code&gt;drag and drop&lt;/code&gt;하면 포스트에 바로 반영되는것 같아 보여서, 그냥 넘어갔었는데. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;블로그 올라간거 보니까. 이미지가 모두 안올라 갔었습니다.&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;이점을 해결 하기 위해서, 오늘 포스팅을 합니다. &lt;/p&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="포스트에-이미지-삽입하기"><a href="#포스트에-이미지-삽입하기" class="headerlink" title="포스트에 이미지 삽입하기"></a>포스트에 이미지 삽입하기</h1><br> <p>그동안 포스팅을 하면서, 큰 실수를 하고 있었는데. <br></p><p>여태껏 포스트에 올린 스크린 캡쳐라던지, 이미지들은 모두 반영이 되질 않았습니다. <br> <br></p><p>현재 저는  <code>typora</code>라는 마크다운 프로그램을 사용하고 있는데. </p><br><br><p>이미지를 그냥 <code>drag and drop</code>하면 포스트에 바로 반영되는것 같아 보여서, 그냥 넘어갔었는데. <br></p><p><strong>블로그 올라간거 보니까. 이미지가 모두 안올라 갔었습니다.</strong> <br></p><br><p>이점을 해결 하기 위해서, 오늘 포스팅을 합니다. </p><a id="more"></a><br><h2 id="config-yml-파일-수정하기"><a href="#config-yml-파일-수정하기" class="headerlink" title="_config.yml 파일 수정하기"></a>_config.yml 파일 수정하기</h2><br><p>블로그 폴더의 <code>_config.yml</code> 파일을 수정합니다. </p><p><br> 아래, post_asset_folder 값을  <code>true</code>로 바꾸어 줍니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">post_asset_folder: <span class="literal">true</span></span><br></pre></td></tr></table></figure><br><p>이 값이 <code>true</code>로 설정되면, 포스트 마다 포스트 제목과 같은 asset 디렉토리가 생깁니다. </p><br><h2 id="포스트에-이미지-삽입하기-1"><a href="#포스트에-이미지-삽입하기-1" class="headerlink" title="포스트에 이미지 삽입하기"></a>포스트에 이미지 삽입하기</h2><br> <p><code>Hexo-블로그-포스트에-이미지-사용-데모</code> 라는 타이틀을 가진 포스트를 생성해봅니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"Hexo-블로그-포스트에-이미지-사용-데모"</span></span><br></pre></td></tr></table></figure><p><br> <br></p><p><code>blog/source/_post</code>폴더에 들어가면, <br>새로 생성된 포스트의 제목과 같은 이름의 폴더가 생성된걸 확인할수 있습니다. <br></p><br><br><p><code>blog/source/_post/Hexo-블로그-포스트에-이미지-사용-데모</code> 폴더에, <br></p><p><code>terminal_capture.png</code> 와 <code>terminal_capture2.png</code>파일을 넣어주었습니다. </p><br><p><strong>해당 파일들을 해당 포스트에서 사용하려면</strong>,</p><p><br><br></p><blockquote><p> 이미지 참조를 올바르게 해야 합니다. </p><p> hexo 블로그-포스트에-이미지-사용-데모 페이지에서, </p><p>아래 참조문을 사용해줍니다. </p></blockquote><br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img terminal_capture.png %&#125;</span><br><span class="line">&#123;% asset_img terminal_capture2.png %&#125;</span><br></pre></td></tr></table></figure><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p><br> 위와 같은 방법으로, 포스트에 이미지를 넣어보고 확인해봅니다. </p><p>다음 데모 페이지를 확인 해봅니다. </p>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/03/19/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%AC%EC%9A%A9/#disqus_thread</comments>
     </item>
     
   </channel>

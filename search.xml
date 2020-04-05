@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 When to Use Trailing Commas</title>
+    <url>/2020/04/05/PEP8-When-to-Use-Trailing-Commas/</url>
+    <content><![CDATA[<h2 id="언제-콤마를-뒤에-붙여야-하는가"><a href="#언제-콤마를-뒤에-붙여야-하는가" class="headerlink" title="언제 콤마를 뒤에 붙여야 하는가"></a>언제 콤마를 뒤에 붙여야 하는가</h2><br>
+
+<br>
+
+<p>이번 포스팅은 언제 코드끝에 콤마를 붙여야 하는가에 대한 내용입니다. </p>
+<br>
+
+<br>
+
+<blockquote>
+<p>튜플처럼 의무화 되어 있는 콤마를 제외하고는 </p>
+<p>보통은 끝에 콤마를 붙이는것은 선택 사항입니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line">FILES = (<span class="string">'setup.cfg'</span>,)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="comment"># 괄호가 없는데 뒤에 콤마를 붙이는 경우 </span></span><br><span class="line">FILES = <span class="string">'setup.cfg'</span>,</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>콤마는 버전관리 시스템이 사용될때도 도움이 됩니다. </p>
+<p><br>그리고, 값들이 리스트 안에 들어가 있는데, 그 안에 인자나 가져올 아이템이 나중에 확장될지 모를때 도움이 됩니다. </p>
+<br>
+
+<p><strong>코드를 보면서 이해하자면</strong></p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="comment"># 각각의 값이나 파일들 뒤에 콤마를 붙이고 다음줄로 넘어갑니다 </span></span><br><span class="line"><span class="comment"># 더이상 값이 없을때는, 바로 괄호를 닫지 않고. 다음줄에서 닫습니다. </span></span><br><span class="line"></span><br><span class="line">FILES = [</span><br><span class="line">    <span class="string">'setup.cfg'</span>,</span><br><span class="line">    <span class="string">'tox.ini'</span>,</span><br><span class="line">	]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나중에 값이나 파일이 추가될때는</span></span><br><span class="line"><span class="comment"># 다음줄에 값을 넣고 뒤에 콤마를 붙여줍니다. </span></span><br><span class="line"><span class="comment"># 그리고 다음줄에 괄호를 닫아줍니다. </span></span><br><span class="line"></span><br><span class="line">initialize(FILES,</span><br><span class="line">          error=<span class="literal">True</span>,</span><br><span class="line">          )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="comment"># 줄바꿈을 한뒤에 콤마를 넣지 않고. 끝에 나오는 콤마까지 합쳐서 한줄에 넣은 경우 </span></span><br><span class="line"></span><br><span class="line">FILES = [<span class="string">'setup.cfg'</span>, <span class="string">'tox.ini'</span>,]</span><br><span class="line">initalize(FILES, error=<span class="literal">True</span>,)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>콤마를 잘 붙이면, </p>
+<p><br>인자나, 가져오는 파일들을 구분할때 시각적으로 많은 도움이 될것 같습니다. </p>
+<br>
+
+<br>
+
+<p>들어가는 값이 너무 많아질때는 각각의 줄로 나누고 콤마를 붙여줍니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>PEP8</tag>
+        <tag>Commas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Whitespace in Expressions and Statements - 2편</title>
     <url>/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-2%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="수식과-구문안에서-빈공간-기타-권장-사항들"><a href="#수식과-구문안에서-빈공간-기타-권장-사항들" class="headerlink" title="수식과 구문안에서 빈공간 - 기타 권장 사항들"></a>수식과 구문안에서 빈공간 - 기타 권장 사항들</h2><br>
