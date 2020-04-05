@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Code Layout - Module Level Dunder Names</title>
+    <url>/2020/04/05/PEP8-Code-Layout-Module-Level-Dunder-Names/</url>
+    <content><![CDATA[<h1 id="Module-내에-Dunder-Names"><a href="#Module-내에-Dunder-Names" class="headerlink" title="Module 내에 Dunder Names"></a>Module 내에 Dunder Names</h1><br>
+
+<br>
+
+<p><strong>모듈 레벨에서 Dunder Names</strong><br></p>
+<br>
+
+<br>
+
+<p>모듈 레벨에서 <code>__all__</code>, <code>__author__</code>, <code>__version__</code> 같은 “dunders” 는 모듈 docstring 뒤에 그리고 <code>__future__</code>를 제외한 모든 import 구문 앞에 붙입니다. <br></p>
+<br>
+
+<br>
+
+<blockquote>
+<p>dunders </p>
+<p><br>언더스코어 _ 두개가 붙는 메소드로 </p>
+<p><strong>Double UNDERscore</strong> Method 를 줄여서 </p>
+<p>Dunder 메소드라고 부릅니다. </p>
+</blockquote>
+<br>
+
+<p><br><a id="more"></a></p>
+<p>파이썬에서는, 아래 사항들을 의무화 합니다<br></p>
+<br>
+
+<blockquote>
+<p><code>__future__</code> imports 는 docstring 을 제외한 어떤 코드보다 앞에 나와야 합니다.<br></p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""This is the example module. </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">This module does stuff </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> barry_as_FLUFL<span class="comment"># __future__ imports 가 docstring 다음에 위치합니다.</span></span><br><span class="line"></span><br><span class="line">__all__ = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line">__version__ = <span class="string">'0.1'</span></span><br><span class="line">__author__ = <span class="string">'Cardinal Biggles'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># __future__를 제외한 Dunders 는 다른 일반 imports 구문 앞에 나옵니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>__ 가 붙는 imports 구문에 대한 순서를 알아보았습니다.<br></p>
+<br>
+
+<p>Docstring 이 우선으로 오고, </p>
+<p><code>__future__</code>가 두번째로 오고<br></p>
+<p><code>__future__</code>를 제외한 기타 다른 Dunders (e.g.<code>__all__, __version__, __author__ 등등</code>) 는 세번째로 옵니다. </p>
+<p>그리고, 나머지 보통 라이브러리 imports (e.g. import os, import sys) 가 그 뒤에 온다고 정리하면 될것 같습니다. </p>
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>PEP8</tag>
+        <tag>Dunder</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Code Layout - Imports</title>
     <url>/2020/04/05/PEP8-Code-Layout-Imports/</url>
     <content><![CDATA[<h1 id="PEP8-Code-Layout-Imports-가져오기"><a href="#PEP8-Code-Layout-Imports-가져오기" class="headerlink" title="PEP8 Code Layout - Imports (가져오기)"></a>PEP8 Code Layout - Imports (가져오기)</h1><br>

@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/Dunder/</loc>
+        <lastmod>2020-04-05T05:14:55.636Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/PEP8/</loc>
+        <lastmod>2020-04-05T05:14:55.636Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Python/</loc>
+        <lastmod>2020-04-05T05:14:55.636Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/Python-PEP8-Imports/</loc>
         <lastmod>2020-04-05T05:03:51.236Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -25,20 +46,6 @@
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/Source-File-Encoding/</loc>
-        <lastmod>2020-04-04T16:57:09.369Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/PEP8/</loc>
-        <lastmod>2020-04-04T16:57:09.369Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/Python/</loc>
         <lastmod>2020-04-04T16:57:09.369Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
