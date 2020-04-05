@@ -1,6 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Code Layout - Imports</title>
+    <url>/2020/04/05/PEP8-Code-Layout-Imports/</url>
+    <content><![CDATA[<h1 id="PEP8-Code-Layout-Imports-가져오기"><a href="#PEP8-Code-Layout-Imports-가져오기" class="headerlink" title="PEP8 Code Layout - Imports (가져오기)"></a>PEP8 Code Layout - Imports (가져오기)</h1><br>
+
+<br>
+
+<p>PEP8 코드 레이아웃, <code>imports</code>편 입니다. </p>
+<br>
+
+<p><code>imports</code> 는 해당 파일에 다른 함수나 모듈을 불러올때 사용하는 명령어 입니다. </p>
+<p><br>표준 라이브러리 기능이나, 다른 모듈에 있는 함수, 클래스 혹은 메써드들을 가져올때 사용합니다. </p>
+<br>
+
+<blockquote>
+<p>PEP8에 따르면, Imports 는 보통 별도의 줄로 되어 있어야 합니다. <br></p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">import</span> os </span><br><span class="line"><span class="keyword">import</span> sys </span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>하지만, 아래의 경우도 괜찮습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예</span></span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> Popen, PIPE</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<a id="more"></a>
+
+<blockquote>
+<br>
+
+<p>가져오기는 언제나 파일의 맨 위에 위치해야 하고, <br></p>
+<p>모듈 주석이나 docstring 바로 뒤에 와야 합니다. <br></p>
+<p>그리고 모듈 글로벌값들과 상수들 전에 와야 합니다. <br></p>
+<br>
+</blockquote>
+<br>
+
+<p><strong>가져오기는 아래 순서의 그룹으로 나뉩니다</strong><br></p>
+<br>
+
+<ol>
+<li>스탠다드 라이브러리 imports</li>
+<li>연관된 3자 모듈 / 라이브러리 imports</li>
+<li>로컬 어플리케이션 / 라이브러리 imports<br></li>
+</ol>
+<p><br><br></p>
+<p>이 그룹들 사이에는 빈줄을 넣어줘서 가져옵니다<br></p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 파이썬 스탠다드 라이브러리 </span></span><br><span class="line"><span class="keyword">import</span> os </span><br><span class="line"></span><br><span class="line"><span class="comment"># 파이썬 3자 모듈/라이브러리 </span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask </span><br><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Api </span><br><span class="line"></span><br><span class="line"><span class="comment"># 로컬 어플리케이션 </span></span><br><span class="line"><span class="keyword">from</span> local_module <span class="keyword">import</span> local_class </span><br><span class="line"><span class="keyword">from</span> local_package <span class="keyword">import</span> local_function</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>추천되는 import 방식은, 절대값의 imports  입니다.<br></p>
+<br>
+
+<p>절대 경로로 가져오면, </p>
+<p>a) 코드에서 가독성이 높아집니다, b) 만약 import system 이 잘못 설정이 되어 있더라도 적어도 에러 메시지가 더 좋게 표시됩니다. </p>
+<br>
+
+<br>
+
+<p><strong>명시적인 상대경로로 import 를 하는것도 허용됩니다.</strong><br></p>
+<p>특히, 절대 경로로 import 하는것이 불필요한 복잡한 패키지 레이아웃에서는 </p>
+<p>명시적인 상대경로로 import 를 해도 됩니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 절대값 import </span></span><br><span class="line"><span class="keyword">import</span> mypkg.sibling </span><br><span class="line"><span class="keyword">from</span> mypkg <span class="keyword">import</span> sibling </span><br><span class="line"><span class="keyword">from</span> mypkg.sibling <span class="keyword">import</span> example </span><br><span class="line"></span><br><span class="line"><span class="comment"># 명시적인 상대 import </span></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> sibling </span><br><span class="line"><span class="keyword">from</span> .sibling <span class="keyword">import</span> example</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>스탠다드 라이브러리 코드는 복잡한 패키지 레이아웃을 피해야 합니다. </p>
+<p><br>언제나 절대 경로의 import 를 하는것이 좋고, 명시적이지 않는 상대 import 는 절대 사용되면 안됩니다. </p>
+<br>
+
+<p><br><strong>클래스를 포함하고 있는 모듈에서 클래스를 가져올땐, 보통 클래스명을 써줍니다</strong><br></p>
+<p><br><br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> myclass <span class="keyword">import</span> MyClass </span><br><span class="line"><span class="keyword">from</span> foo.bar.yourclass <span class="keyword">import</span> YourClass </span><br><span class="line"></span><br><span class="line"><span class="comment"># 만약 클래스명이 로컬 이름과 충돌한다면, 명시적으로 스펠링을 해줍니다. </span></span><br><span class="line"><span class="keyword">import</span> myclass </span><br><span class="line"><span class="keyword">import</span> foo.bar.yourclass </span><br><span class="line"></span><br><span class="line"><span class="comment"># 그리고, 아래를 사용합니다 </span></span><br><span class="line">myclass.MyClass </span><br><span class="line">foo.bar.yourclass.Yourclass</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<blockquote>
+<p>Whildcard 와일드카드 가져오기를 사용하는것은 피해야 합니다. </p>
+<p><code>from &lt;module&gt; import *</code><br></p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Wildcard Imports 예시, * 은 모듈에 포함된 모든것을 의미 </span></span><br><span class="line"><span class="keyword">from</span> Flask <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<br>
+
+<p><code>*</code>를 사용하므로써, 모듈에 포함된 모든 클래스와 함수 그리고 메써드들을 불러옵니다. </p>
+<p>이럴경우, 어떤 이름들이 네임공간에 있는지 헷갈리게 되고, 자동화툴이나 에디터가 헷갈릴수 있습니다. <br></p>
+<br>
+
+
+
+<p>와일드카드 가져오기는 보통 내부 인터페이스를 퍼블릭 API  로 재발행 할때 사용합니다. <br></p>
+<br>
+
+<p>이 때를 제외하고는, 기본적으로 사용을 피해야 합니다. </p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p><br><br></p>
+<p>클래스를 포함하고 있는 클래스 모듈을 가져올때 쓰는 스펠링이 이해가 잘 가지 않습니다. <br></p>
+<p>이 부분은 조금 더 시간을 들여서 더 많은 코드를 접해본다음 이해가 갈것 같습니다. <br></p>
+<br>
+
+<p>이해를 마친뒤에 업데이트 할 예정입니다. </p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python,PEP8,Imports</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Code Layout - Source File Encoding</title>
     <url>/2020/04/05/PEP8-Code-Layout-Source-File-Encoding/</url>
     <content><![CDATA[<h1 id="Source-File-Encoding-소스파일-인코딩"><a href="#Source-File-Encoding-소스파일-인코딩" class="headerlink" title="Source File Encoding (소스파일 인코딩)"></a>Source File Encoding (소스파일 인코딩)</h1><br>
