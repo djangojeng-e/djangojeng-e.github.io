@@ -22,13 +22,15 @@
 
   <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <meta name="google-site-verification" content="WlX9ix7sXmMXMWSZS-fiLnWpgx6T0Dz2ON3R7RcK4bA" />
-  <meta name="description" content="장고쟁이의 Python, Django 공부 노트">
-<meta property="og:type" content="website">
-<meta property="og:title" content="장고쟁이">
-<meta property="og:url" content="http://djangojeng-e.github.io/archives/2020/page/4/index.html">
+  <meta name="description" content="파이썬 Naming Convention - 4편    Public and Internal Interface     이전 버전과 호환성을 보장하는것은  오직 퍼블릭 인터페이스에만 적용됩니다.       따라서, 사용자들은 퍼블릭 인터페이스와 내부 인터페이스를 잘 구분하는것이 중요합니다.      public interface (공용 인터페이스)는 독립적인 소">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PEP8 Naming Conventions - 4편">
+<meta property="og:url" content="http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/index.html">
 <meta property="og:site_name" content="장고쟁이">
-<meta property="og:description" content="장고쟁이의 Python, Django 공부 노트">
+<meta property="og:description" content="파이썬 Naming Convention - 4편    Public and Internal Interface     이전 버전과 호환성을 보장하는것은  오직 퍼블릭 인터페이스에만 적용됩니다.       따라서, 사용자들은 퍼블릭 인터페이스와 내부 인터페이스를 잘 구분하는것이 중요합니다.      public interface (공용 인터페이스)는 독립적인 소">
 <meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-04-07T09:38:46.000Z">
+<meta property="article:modified_time" content="2020-04-07T10:03:47.228Z">
 <meta property="article:author" content="장고쟁이">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content=" django">
@@ -36,7 +38,7 @@
 <meta property="article:tag" content=" hexo">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://djangojeng-e.github.io/archives/2020/page/4/">
+<link rel="canonical" href="http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/">
 
 
 <script id="page-configurations">
@@ -44,11 +46,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false
+    isPost : true
   };
 </script>
 
-  <title>아카이브 | 장고쟁이</title>
+  <title>PEP8 Naming Conventions - 4편 | 장고쟁이</title>
   
 
 
@@ -198,117 +200,198 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          PEP8 Naming Conventions - 4편
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-07 18:38:46 / Updated at: 19:03:47" itemprop="dateCreated datePublished" datetime="2020-04-07T18:38:46+09:00">2020-04-07</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">OK! 총 34개의 포스트 포스트를 마저 작성하세요</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/07/PEP8-Naming-Conventions-4편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h2 class="collection-header">2020</h2>
+        <h2 id="파이썬-Naming-Convention-4편"><a href="#파이썬-Naming-Convention-4편" class="headerlink" title="파이썬 Naming Convention - 4편"></a>파이썬 Naming Convention - 4편</h2><br>
+
+<br>
+
+<h2 id="Public-and-Internal-Interface"><a href="#Public-and-Internal-Interface" class="headerlink" title="Public and Internal Interface"></a>Public and Internal Interface</h2><br>
+
+<br>
+
+<blockquote>
+<p>이전 버전과 호환성을 보장하는것은 </p>
+<p>오직 퍼블릭 인터페이스에만 적용됩니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<p>따라서, 사용자들은 퍼블릭 인터페이스와 내부 인터페이스를 잘 구분하는것이 중요합니다. </p>
+<br>
+
+<br>
+
+<p><strong>public interface (공용 인터페이스)</strong>는 독립적인 소프트웨어 엔티티가 상호 작용하는 논리적 지점입니다. 엔티니는 단일 컴퓨터, 네트워크 또는 다양한 토폴로지에서 서로 상호 작용할수 있습니다. 상호 작용을 계속 하려면, 퍼블릭 이너페이스가 안정적이여야 하고, 향후 변경 및 개선 및 사용중단을 지원하도록 잘 설계되어야 합니다. </p>
+<br>
+
+<br>
+
+<a id="more"></a>
+
+<h2 id="문서화가-되어-있는-인터페이스"><a href="#문서화가-되어-있는-인터페이스" class="headerlink" title="문서화가 되어 있는 인터페이스"></a>문서화가 되어 있는 인터페이스</h2><br>
+
+<br>
+
+<p>보통 문서화가 되어 있는 인터페이스는 퍼블릭 인터페이스라고 봅니다. </p>
+<br>
+
+<p>만약, 문서에 명시적으로 인터페이스가 이전 버전과 호환성을 고려하지 않아도 되는 잠정적 혹은 내부 인터페이스라고 선언이 되어 있는 경우에는 퍼블릭 인터페이스라고 보지 않습니다. </p>
+<br>
+
+<br>
+
+<p>모든 문서화 되지 않은 인터페이스들은 내부 인터페이스인것으로 추정합니다. </p>
+<br>
+
+<br>
+
+<h2 id="all-속성"><a href="#all-속성" class="headerlink" title="__all__ 속성"></a><code>__all__</code> 속성</h2><br>
+
+<br>
+
+<p>모듈은 <code>__all__</code>을 사용하여, 명시적으로 퍼블릭 API 안에 이름을 선언합니다. </p>
+<p><br><code>__all__</code>을 비어있는 리스트에 설정함으로써, 모듈이 퍼블릭 API 를 가지고 있지 않다고 표시합니다. </p>
+<p><br>만약 어떤 네임공간의 사용이 내부적으로 사용으로 보일때는, 인터페이스도 internal interface로 간주합니다. </p>
+<br>
+
+<br>
+
+<h2 id="Imported-Names"><a href="#Imported-Names" class="headerlink" title="Imported Names"></a>Imported Names</h2><br>
+
+<br>
+
+<p>가져온 이름들은 구현할때 세부 사항으로 간주되어야 합니다<br></p>
+<p>다른 모듈들은 포함된 모듈의 API 에서 명시적으로 문서화 되어 있는 부분이 아닌 이상, </p>
+<p>가져온 이름에 대한 간접 엑세스에 의존해서는 안됩니다. </p>
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>아직 public interface 와 internal interface  를 고려할만큼, 공부 수준이 높지 않아서. </p>
+<p>Interface 관련 내용은 봐도 잘 모르겠군요. </p>
+<br>
+
+<p>나중에 수준이 좀 더 올르면, 그때 다시 볼 예정입니다.<br></p>
+<br>
+
+<br>
+
+<br>
+
+<p><br><br></p>
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-15T10:06:46+09:00"
-              content="2020-03-15">
-          03-15
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/03/15/NeXT-Theme-Categories-and-Tags/" itemprop="url">
-            <span itemprop="name">NeXT Theme - Categories and Tags</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-15T10:04:46+09:00"
-              content="2020-03-15">
-          03-15
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/03/15/Hexo-NeXT-%ED%85%8C%EB%A7%88-%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC%EC%99%80-%ED%85%8C%EA%B7%B8/" itemprop="url">
-            <span itemprop="name">Hexo NeXT 테마 - 카테고리와 테그</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-14T21:34:51+09:00"
-              content="2020-03-14">
-          03-14
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/03/14/My-First-Post/" itemprop="url">
-            <span itemprop="name">My First Post</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-14T19:38:57+09:00"
-              content="2020-03-14">
-          03-14
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/03/14/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
+        
 
 
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/07/PEP8-Naming-Conventions-3%ED%8E%B8/" rel="prev" title="PEP8 Naming Conventions -3편">
+      <i class="fa fa-chevron-left"></i> PEP8 Naming Conventions -3편
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2020/page/3/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/3/">3</a><span class="page-number current">4</span>
-  </nav>
-
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -355,6 +438,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#파이썬-Naming-Convention-4편"><span class="nav-number">1.</span> <span class="nav-text">파이썬 Naming Convention - 4편</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Public-and-Internal-Interface"><span class="nav-number">2.</span> <span class="nav-text">Public and Internal Interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#문서화가-되어-있는-인터페이스"><span class="nav-number">3.</span> <span class="nav-text">문서화가 되어 있는 인터페이스</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#all-속성"><span class="nav-number">4.</span> <span class="nav-text">__all__ 속성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Imported-Names"><span class="nav-number">5.</span> <span class="nav-text">Imported Names</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#마치며"><span class="nav-number">6.</span> <span class="nav-text">마치며..</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -581,6 +665,26 @@ window.addEventListener('pjax:success', () => {
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/";
+    this.page.identifier = "2020/04/07/PEP8-Naming-Conventions-4편/";
+    this.page.title = "PEP8 Naming Conventions - 4편";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://djangojeng-e.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
 </script>
 
     </div>

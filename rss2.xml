@@ -9,8 +9,49 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Tue, 07 Apr 2020 06:52:22 GMT</pubDate>
+    <pubDate>Tue, 07 Apr 2020 10:03:47 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PEP8 Naming Conventions - 4편</title>
+      <link>http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/</guid>
+      <pubDate>Tue, 07 Apr 2020 09:38:46 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;파이썬-Naming-Convention-4편&quot;&gt;&lt;a href=&quot;#파이썬-Naming-Convention-4편&quot; class=&quot;headerlink&quot; title=&quot;파이썬 Naming Convention - 4편&quot;&gt;&lt;/a&gt;파이썬 Naming Convention - 4편&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;h2 id=&quot;Public-and-Internal-Interface&quot;&gt;&lt;a href=&quot;#Public-and-Internal-Interface&quot; class=&quot;headerlink&quot; title=&quot;Public and Internal Interface&quot;&gt;&lt;/a&gt;Public and Internal Interface&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;이전 버전과 호환성을 보장하는것은 &lt;/p&gt;
+&lt;p&gt;오직 퍼블릭 인터페이스에만 적용됩니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;따라서, 사용자들은 퍼블릭 인터페이스와 내부 인터페이스를 잘 구분하는것이 중요합니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;&lt;strong&gt;public interface (공용 인터페이스)&lt;/strong&gt;는 독립적인 소프트웨어 엔티티가 상호 작용하는 논리적 지점입니다. 엔티니는 단일 컴퓨터, 네트워크 또는 다양한 토폴로지에서 서로 상호 작용할수 있습니다. 상호 작용을 계속 하려면, 퍼블릭 이너페이스가 안정적이여야 하고, 향후 변경 및 개선 및 사용중단을 지원하도록 잘 설계되어야 합니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="파이썬-Naming-Convention-4편"><a href="#파이썬-Naming-Convention-4편" class="headerlink" title="파이썬 Naming Convention - 4편"></a>파이썬 Naming Convention - 4편</h2><br><br><h2 id="Public-and-Internal-Interface"><a href="#Public-and-Internal-Interface" class="headerlink" title="Public and Internal Interface"></a>Public and Internal Interface</h2><br><br><blockquote><p>이전 버전과 호환성을 보장하는것은 </p><p>오직 퍼블릭 인터페이스에만 적용됩니다. </p></blockquote><br><br><p>따라서, 사용자들은 퍼블릭 인터페이스와 내부 인터페이스를 잘 구분하는것이 중요합니다. </p><br><br><p><strong>public interface (공용 인터페이스)</strong>는 독립적인 소프트웨어 엔티티가 상호 작용하는 논리적 지점입니다. 엔티니는 단일 컴퓨터, 네트워크 또는 다양한 토폴로지에서 서로 상호 작용할수 있습니다. 상호 작용을 계속 하려면, 퍼블릭 이너페이스가 안정적이여야 하고, 향후 변경 및 개선 및 사용중단을 지원하도록 잘 설계되어야 합니다. </p><br><br><a id="more"></a><h2 id="문서화가-되어-있는-인터페이스"><a href="#문서화가-되어-있는-인터페이스" class="headerlink" title="문서화가 되어 있는 인터페이스"></a>문서화가 되어 있는 인터페이스</h2><br><br><p>보통 문서화가 되어 있는 인터페이스는 퍼블릭 인터페이스라고 봅니다. </p><br><p>만약, 문서에 명시적으로 인터페이스가 이전 버전과 호환성을 고려하지 않아도 되는 잠정적 혹은 내부 인터페이스라고 선언이 되어 있는 경우에는 퍼블릭 인터페이스라고 보지 않습니다. </p><br><br><p>모든 문서화 되지 않은 인터페이스들은 내부 인터페이스인것으로 추정합니다. </p><br><br><h2 id="all-속성"><a href="#all-속성" class="headerlink" title="__all__ 속성"></a><code>__all__</code> 속성</h2><br><br><p>모듈은 <code>__all__</code>을 사용하여, 명시적으로 퍼블릭 API 안에 이름을 선언합니다. </p><p><br><code>__all__</code>을 비어있는 리스트에 설정함으로써, 모듈이 퍼블릭 API 를 가지고 있지 않다고 표시합니다. </p><p><br>만약 어떤 네임공간의 사용이 내부적으로 사용으로 보일때는, 인터페이스도 internal interface로 간주합니다. </p><br><br><h2 id="Imported-Names"><a href="#Imported-Names" class="headerlink" title="Imported Names"></a>Imported Names</h2><br><br><p>가져온 이름들은 구현할때 세부 사항으로 간주되어야 합니다<br></p><p>다른 모듈들은 포함된 모듈의 API 에서 명시적으로 문서화 되어 있는 부분이 아닌 이상, </p><p>가져온 이름에 대한 간접 엑세스에 의존해서는 안됩니다. </p><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><br><p>아직 public interface 와 internal interface  를 고려할만큼, 공부 수준이 높지 않아서. </p><p>Interface 관련 내용은 봐도 잘 모르겠군요. </p><br><p>나중에 수준이 좀 더 올르면, 그때 다시 볼 예정입니다.<br></p><br><br><br><p><br><br></p><br><br><br><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>PEP8 Naming Conventions -3편</title>
@@ -760,38 +801,6 @@
       <content:encoded><![CDATA[<h2 id="About-페이지-만들기"><a href="#About-페이지-만들기" class="headerlink" title="About 페이지 만들기"></a>About 페이지 만들기</h2><br><p>개인 블로그라면, <br> 적어도 간단하게 본인이나 블로그를 소개하는 About 페이지 하나는 있어야 할것 같아서. <br></p><br><p><code>About</code> 페이지를 하나 만들어서 적용해 보려 합니다. </p><br><p>페이지에 생성후, 디테일을 한번 수정해 보겠습니다. </p><br><h2 id="About-페이지-생성하기"><a href="#About-페이지-생성하기" class="headerlink" title="About 페이지 생성하기"></a>About 페이지 생성하기</h2><br><p><code>blog</code> 폴더에서, 아래 명령어를 실행하여, <code>about</code>페이지를 생성합니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure><br><a id="more"></a><br><p>생성후에는, <code>blog/source/about/</code>폴더에 <code>index.md</code>가 생성 되어 있습니다. </p><p><br><br></p><h2 id="blog-source-about-index-md파일-수정"><a href="#blog-source-about-index-md파일-수정" class="headerlink" title="blog/source/about/index.md파일 수정"></a><code>blog/source/about/index.md</code>파일 수정</h2><br><p><code>categories</code>나 <code>tags</code> 페이지를 만들었을때와 비슷하게 진행 해봅니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: about</span><br><span class="line">date: 2020-03-30 20:33:44</span><br><span class="line"><span class="built_in">type</span>: about</span><br><span class="line">---</span><br></pre></td></tr></table></figure><br><br><h2 id="Themes-config-yml-파일에서-메뉴-활성화-하기"><a href="#Themes-config-yml-파일에서-메뉴-활성화-하기" class="headerlink" title="Themes _config.yml 파일에서 메뉴 활성화 하기"></a>Themes _config.yml 파일에서 메뉴 활성화 하기</h2><br><br><p><code>blog/themes/hexo-theme-next/_config.yml</code>파일을 열어서, <br></p><p><code>menu</code>부분에, <code>about</code>부분을 활성화 시켜줍니다. <br></p><p>uncomment 처리만 해주면 되겟죠? ㅎㅎ  </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br></pre></td></tr></table></figure><br><br><p>그런데.. 여기까지 하고 <code>hexo runserver</code> 로 로컬에 들어가서, about 페이지를 확인해 보니, </p><br><p><strong>사이드 메뉴에는 about 메뉴가 뜨는데, 클릭하면, 빈 페이지가 표시됩니다.</strong></p><br><img src="/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/image1.png" class=""><br><blockquote><p>어디에 내용을 채워줘야 빈페이지가 표시 되지 않을까요? </p></blockquote><p><br><br></p><h2 id="index-md-파일에-내용-추가하기"><a href="#index-md-파일에-내용-추가하기" class="headerlink" title="index.md 파일에 내용 추가하기"></a>index.md 파일에 내용 추가하기</h2><br><p><code>blog/source/about/index.md</code> 파일에, about 페이지에 들어갈 내용을 추가합니다.</p><br><img src="/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/image2.png" class=""><br><br><blockquote><p> <code>index.md</code> 파일에 내용을 추가하면, </p><p>about 페이지에 내용이 추가 되어 표시됩니다! </p></blockquote><p><br><br></p><img src="/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/image3.png" class=""><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p><code>about</code>페이지를 생성 하였고, 내용도 추가 하였습니다. <br></p><p>추가된 내용은 잘 표시가 되는것 같으니, 내용을 더 채워 줘야 겠습니다~ </p>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Hexo 블로그 - 블로그내에 검색 기능 추가</title>
-      <link>http://djangojeng-e.github.io/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/</link>
-      <guid>http://djangojeng-e.github.io/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/</guid>
-      <pubDate>Thu, 26 Mar 2020 13:29:45 GMT</pubDate>
-      <description>
-      
-        &lt;h1 id=&quot;블로그내-검색기능-추가&quot;&gt;&lt;a href=&quot;#블로그내-검색기능-추가&quot; class=&quot;headerlink&quot; title=&quot;블로그내 검색기능 추가&quot;&gt;&lt;/a&gt;블로그내 검색기능 추가&lt;/h1&gt;&lt;br&gt;
-
-&lt;p&gt;블로그내에 검색기능을 추가하려 합니다. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;카테고리나, 태그로 검색해도 괜찮지만, 포스트들을 검색할수 있는 기능이 있으면 좋을것 같습니다 &lt;/p&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;h2 id=&quot;hexo-generator-searchdb-설치하기&quot;&gt;&lt;a href=&quot;#hexo-generator-searchdb-설치하기&quot; class=&quot;headerlink&quot; title=&quot;hexo-generator-searchdb 설치하기&quot;&gt;&lt;/a&gt;hexo-generator-searchdb 설치하기&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;&lt;code&gt;search data generator&lt;/code&gt;플러그인을 설치 해줍니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;해당 플러그인은 여러분의 포스트의 필요한 데이터를 포함하고 있는 &lt;code&gt;검색 인덱스 파일&lt;/code&gt;을 생성하는데 사용하고. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;이 파일들을을 이용해서, 블로그내에 로컬 서치 엔진 으로 사용합니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="블로그내-검색기능-추가"><a href="#블로그내-검색기능-추가" class="headerlink" title="블로그내 검색기능 추가"></a>블로그내 검색기능 추가</h1><br><p>블로그내에 검색기능을 추가하려 합니다. <br></p><p>카테고리나, 태그로 검색해도 괜찮지만, 포스트들을 검색할수 있는 기능이 있으면 좋을것 같습니다 </p><br><br><h2 id="hexo-generator-searchdb-설치하기"><a href="#hexo-generator-searchdb-설치하기" class="headerlink" title="hexo-generator-searchdb 설치하기"></a>hexo-generator-searchdb 설치하기</h2><br><p><code>search data generator</code>플러그인을 설치 해줍니다. </p><p><br>해당 플러그인은 여러분의 포스트의 필요한 데이터를 포함하고 있는 <code>검색 인덱스 파일</code>을 생성하는데 사용하고. <br></p><p>이 파일들을을 이용해서, 블로그내에 로컬 서치 엔진 으로 사용합니다. </p><br><p><br><a id="more"></a></p><p>우선, 아래 명령어를 실앻해서 플러그인을 설치해줍니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb</span><br></pre></td></tr></table></figure><br><h2 id="config-yml-수정하기"><a href="#config-yml-수정하기" class="headerlink" title="_config.yml 수정하기"></a>_config.yml 수정하기</h2><br><p>위 과정에서 플러그인을 정상적으로 설치했으면, <code>blog/_config.yml</code>파일을 열어줍니다. </p><br><p>파일을 연뒤에, 밑에 코드를 맨 아래에 추가해줍니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Local Search </span></span><br><span class="line"><span class="comment"># search </span></span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: <span class="literal">true</span></span><br><span class="line">  format: html</span><br></pre></td></tr></table></figure><br><br><h2 id="테마폴더내에-config-yml-수정하기"><a href="#테마폴더내에-config-yml-수정하기" class="headerlink" title="테마폴더내에 _config.yml 수정하기"></a>테마폴더내에 _config.yml 수정하기</h2><br><br><p><code>blog/themes/hexo-next-theme/_config.yml</code>파일을 열어줍니다. </p><br><br><p><code>local_search</code>부분을 아래와 같이 수정해 줍니다. </p><p><code>enable</code>값을 <code>true</code>로 변경해줍니다. </p><br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/theme-next/hexo-generator-searchdb</span></span><br><span class="line">local_search:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  trigger: manual</span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  unescape: <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  preload: <span class="literal">false</span></span><br></pre></td></tr></table></figure><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><br><p>블로그에 검색기능이 잘 반영된것 같습니다. hexo 라고 검색하니까. </p><p>잘 작동합니다. </p><br><img src="/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/image1.png" class="">]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/#disqus_thread</comments>
     </item>
     
   </channel>

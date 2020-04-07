@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Naming Conventions - 4편</title>
+    <url>/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="파이썬-Naming-Convention-4편"><a href="#파이썬-Naming-Convention-4편" class="headerlink" title="파이썬 Naming Convention - 4편"></a>파이썬 Naming Convention - 4편</h2><br>
+
+<br>
+
+<h2 id="Public-and-Internal-Interface"><a href="#Public-and-Internal-Interface" class="headerlink" title="Public and Internal Interface"></a>Public and Internal Interface</h2><br>
+
+<br>
+
+<blockquote>
+<p>이전 버전과 호환성을 보장하는것은 </p>
+<p>오직 퍼블릭 인터페이스에만 적용됩니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<p>따라서, 사용자들은 퍼블릭 인터페이스와 내부 인터페이스를 잘 구분하는것이 중요합니다. </p>
+<br>
+
+<br>
+
+<p><strong>public interface (공용 인터페이스)</strong>는 독립적인 소프트웨어 엔티티가 상호 작용하는 논리적 지점입니다. 엔티니는 단일 컴퓨터, 네트워크 또는 다양한 토폴로지에서 서로 상호 작용할수 있습니다. 상호 작용을 계속 하려면, 퍼블릭 이너페이스가 안정적이여야 하고, 향후 변경 및 개선 및 사용중단을 지원하도록 잘 설계되어야 합니다. </p>
+<br>
+
+<br>
+
+<a id="more"></a>
+
+<h2 id="문서화가-되어-있는-인터페이스"><a href="#문서화가-되어-있는-인터페이스" class="headerlink" title="문서화가 되어 있는 인터페이스"></a>문서화가 되어 있는 인터페이스</h2><br>
+
+<br>
+
+<p>보통 문서화가 되어 있는 인터페이스는 퍼블릭 인터페이스라고 봅니다. </p>
+<br>
+
+<p>만약, 문서에 명시적으로 인터페이스가 이전 버전과 호환성을 고려하지 않아도 되는 잠정적 혹은 내부 인터페이스라고 선언이 되어 있는 경우에는 퍼블릭 인터페이스라고 보지 않습니다. </p>
+<br>
+
+<br>
+
+<p>모든 문서화 되지 않은 인터페이스들은 내부 인터페이스인것으로 추정합니다. </p>
+<br>
+
+<br>
+
+<h2 id="all-속성"><a href="#all-속성" class="headerlink" title="__all__ 속성"></a><code>__all__</code> 속성</h2><br>
+
+<br>
+
+<p>모듈은 <code>__all__</code>을 사용하여, 명시적으로 퍼블릭 API 안에 이름을 선언합니다. </p>
+<p><br><code>__all__</code>을 비어있는 리스트에 설정함으로써, 모듈이 퍼블릭 API 를 가지고 있지 않다고 표시합니다. </p>
+<p><br>만약 어떤 네임공간의 사용이 내부적으로 사용으로 보일때는, 인터페이스도 internal interface로 간주합니다. </p>
+<br>
+
+<br>
+
+<h2 id="Imported-Names"><a href="#Imported-Names" class="headerlink" title="Imported Names"></a>Imported Names</h2><br>
+
+<br>
+
+<p>가져온 이름들은 구현할때 세부 사항으로 간주되어야 합니다<br></p>
+<p>다른 모듈들은 포함된 모듈의 API 에서 명시적으로 문서화 되어 있는 부분이 아닌 이상, </p>
+<p>가져온 이름에 대한 간접 엑세스에 의존해서는 안됩니다. </p>
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>아직 public interface 와 internal interface  를 고려할만큼, 공부 수준이 높지 않아서. </p>
+<p>Interface 관련 내용은 봐도 잘 모르겠군요. </p>
+<br>
+
+<p>나중에 수준이 좀 더 올르면, 그때 다시 볼 예정입니다.<br></p>
+<br>
+
+<br>
+
+<br>
+
+<p><br><br></p>
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+]]></content>
+  </entry>
+  <entry>
     <title>PEP8 Naming Conventions -3편</title>
     <url>/2020/04/07/PEP8-Naming-Conventions-3%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="파이썬-Naming-Convention-3-편"><a href="#파이썬-Naming-Convention-3-편" class="headerlink" title="파이썬 Naming Convention - 3 편"></a>파이썬 Naming Convention - 3 편</h2><br>
