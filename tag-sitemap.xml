@@ -3,21 +3,28 @@
 
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/Naming-Conventions/</loc>
-        <lastmod>2020-04-06T06:03:23.756Z</lastmod>
+        <loc>http://djangojeng-e.github.io/tags/Naming-Convention/</loc>
+        <lastmod>2020-04-07T04:46:49.228Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/PEP8/</loc>
-        <lastmod>2020-04-06T06:03:23.756Z</lastmod>
+        <lastmod>2020-04-07T04:46:49.228Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/Python/</loc>
+        <lastmod>2020-04-07T04:46:49.228Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Naming-Conventions/</loc>
         <lastmod>2020-04-06T06:03:23.756Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
