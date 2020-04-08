@@ -9,8 +9,45 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Wed, 08 Apr 2020 16:10:29 GMT</pubDate>
+    <pubDate>Wed, 08 Apr 2020 16:47:18 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Hexo 블로그 - 네이버 웹마스터 도구 등록</title>
+      <link>http://djangojeng-e.github.io/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/</guid>
+      <pubDate>Wed, 08 Apr 2020 16:32:03 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;네이버-웹마스터-회원가입-서치어드바이저&quot;&gt;&lt;a href=&quot;#네이버-웹마스터-회원가입-서치어드바이저&quot; class=&quot;headerlink&quot; title=&quot;네이버 웹마스터 회원가입 (서치어드바이저)&quot;&gt;&lt;/a&gt;네이버 웹마스터 회원가입 (서치어드바이저)&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;네이버 웹마스터툴 사이트에 접속해서. &lt;/p&gt;
+&lt;p&gt;회원가입 후 로그인을 진행 합니다. (기존 네이버 아이디가 있으면, 회원가입 할 필요는 없습니다~) &lt;/p&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;h2 id=&quot;사이트-등록&quot;&gt;&lt;a href=&quot;#사이트-등록&quot; class=&quot;headerlink&quot; title=&quot;사이트 등록&quot;&gt;&lt;/a&gt;사이트 등록&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;웹마스터 도구에 &lt;code&gt;Search Advisor&lt;/code&gt; 로 들어갑니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;p&gt;들어가면, 사이트를 등록하라고 나오는데. 아래 캡쳐 화면을 참조해주세요. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;img src=&quot;/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image1.png&quot; class=&quot;&quot;&gt;
+
+&lt;p&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="네이버-웹마스터-회원가입-서치어드바이저"><a href="#네이버-웹마스터-회원가입-서치어드바이저" class="headerlink" title="네이버 웹마스터 회원가입 (서치어드바이저)"></a>네이버 웹마스터 회원가입 (서치어드바이저)</h2><br><p>네이버 웹마스터툴 사이트에 접속해서. </p><p>회원가입 후 로그인을 진행 합니다. (기존 네이버 아이디가 있으면, 회원가입 할 필요는 없습니다~) </p><br><br><h2 id="사이트-등록"><a href="#사이트-등록" class="headerlink" title="사이트 등록"></a>사이트 등록</h2><br><br><p>웹마스터 도구에 <code>Search Advisor</code> 로 들어갑니다. </p><br><p>들어가면, 사이트를 등록하라고 나오는데. 아래 캡쳐 화면을 참조해주세요. </p><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image1.png" class=""><p><br><a id="more"></a></p><br><h2 id="사이트-소유확인-진행"><a href="#사이트-소유확인-진행" class="headerlink" title="사이트 소유확인 진행"></a>사이트 소유확인 진행</h2><br><br><p>사이트의 소유 확인을 진행합니다. </p><p><br>구글 서치 콘솔때 진행 했던 방식이랑 비슷비슷하네요 ㅎㅎ </p><br><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image2.png" class=""><p><br><br></p><blockquote><p>저는 HTML 태그를 블로그의 <code>&lt;head&gt;</code> 부분에 붙여서. 소유 확인을 진행 할것입니다. <br></p></blockquote><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image3.png" class=""><br><br><h2 id="HTML-태그를-lt-head-gt-섹션에-붙이기"><a href="#HTML-태그를-lt-head-gt-섹션에-붙이기" class="headerlink" title="HTML 태그를 &lt;head&gt;섹션에 붙이기"></a>HTML 태그를 <code>&lt;head&gt;</code>섹션에 붙이기</h2><br><br><p>처음에는 이게 정말 어려웠는데. 이제는 쉽습니다. </p><br><p>우선, 필자 기준으로 <code>blog/themes/hexo-theme-next/layout</code>블로그 폴더로 이동 합니다. </p><br><p>이 폴더에 있는 <code>_layout.swig</code>파일을 열어서, 네이버 사이트 소유확인 html 테그를 붙여 넣습니다. </p><br><p><code>blog/themes/hexo-theme-next/layout/_layout.swig</code> 파일 캡쳐 </p><br><blockquote><p><code>&lt;/head&gt;</code>태그가 있는곳 바로 위에 붙여 줍니다. </p></blockquote><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image4.png" class=""><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>PEP8 Programming Recommendations - 4편</title>
@@ -755,26 +792,6 @@
       <content:encoded><![CDATA[<h1 id="Maximum-Line-Length"><a href="#Maximum-Line-Length" class="headerlink" title="Maximum Line Length"></a>Maximum Line Length</h1><br><blockquote><p><code>Maximum Line Length</code> 는 한줄의 최대 길이를 의미 합니다. </p></blockquote><br><br><h2 id="모든-줄은-79자로-제한-합니다"><a href="#모든-줄은-79자로-제한-합니다" class="headerlink" title="모든 줄은 79자로 제한 합니다"></a>모든 줄은 79자로 제한 합니다</h2><br><p>네. PEP8 에서는, 파이썬 코드를 작성할때. 한줄의 최대 길이를 79자로 제한합니다. </p><br><br><p><strong>다만! <code>docstring</code>혹은 <code>comments</code> 즉 주석들은, 72자로 제한합니다.</strong> </p><br><br><blockquote><p>모든 팀원들이 동의한다는 전제하에, </p><p>특별히 코드의 긴 줄이 유지 되어야 하는 상황이거나 하면 </p><p>최대 길이는 99자까지 늘릴수 있습니다. </p></blockquote><br><h2 id="한줄이-너무-긴-코드-줄-바꾸기"><a href="#한줄이-너무-긴-코드-줄-바꾸기" class="headerlink" title="한줄이 너무 긴 코드 줄 바꾸기"></a>한줄이 너무 긴 코드 줄 바꾸기</h2><br><blockquote><p>PEP8 에서 선호하는 긴줄 처리는, </p><p>계속되는 줄의 경계를 소괄호, 중괄호, 대괄호 안에 넣고 사용하는것입니다. </p><p>이 방법이 \ 를 사용하는 방법보다 선호됩니다. </p></blockquote><br><p>제가 생각하는 예시들은 아래와 같습니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 한줄이 너무 긴 코드 </span></span><br><span class="line"><span class="keyword">if</span>(this_is_one_thing <span class="keyword">or</span> that_is_another_thing <span class="keyword">or</span> everything_is_good_thing <span class="keyword">or</span> you_are_the best):</span><br><span class="line">    </span><br><span class="line"><span class="comment"># \ 백슬레쉬를 사용하지 않고, 괄호안에서 줄을 바꿔서, 한줄을 다음줄로 나눕니다. </span></span><br><span class="line"><span class="comment"># 물론 들여쓰기는 잘해주어야 하겠죠? </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(this_is_one_thing <span class="keyword">or</span></span><br><span class="line">   that-is_another_thing <span class="keyword">or</span></span><br><span class="line">   everything_is_good_thing <span class="keyword">or</span></span><br><span class="line">   you_are_the_best):</span><br></pre></td></tr></table></figure><br><p>위 방법이 선호되는것 같으나, 여전히 <code>\</code>백슬레쉬의 사용하는 방법도 괜찮습니다! </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># \ 를 사용하여 줄을 나눈 경우, \를 사용하지 않았으면, 한줄이 너무 길어 졌을것 같습니다. </span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'/path/to/some/file/you/want/to/read'</span>) <span class="keyword">as</span> file_1, \</span><br><span class="line">     open(<span class="string">'/path/to/some/file/being/written'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> file_2:)</span><br><span class="line">     file_2.write(file_1.read())</span><br></pre></td></tr></table></figure><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>1) PEP8 에서는 한줄의 최대길이를 79자로 제한합니다. </p><p>2) docstring 이나 comments 같은 주석들은 72자로 제한합니다.</p><p>3) 한줄이 너무 길어질것 같으면, <code>\</code>나 괄호안의 문장을 다음줄로 이어갑니다 (들여쓰기는 적절히 해야하는게 필수) </p><br><p>한줄 한줄이 너무 길어서 스크린이 꽉꽉 차있으면, 일하러 가서 매일 아래와 같은 스크린을 보게 될것입니다. <br></p><img src="/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/image1.jpeg" class=""><p><br><br></p><p>그리고, 누가 그러시던데, 한줄의 길이가 79자가 된 이유중에 하나가. <br></p><p>옛날 컴퓨터의 모니터 크기 때문이라고 합니다. 지금 나오는 모니터 크기와는 다르게.<br></p><p><br> 옛날 모니터들은 가로폭이 굉장히 좁아서. 화면에 꽉차는 양이 79자 정도 였다 합니다.  <br></p><p>아래 사진을 보면,,, 충분히 그럴수도 있었겟네요? ㅎㅎ <br></p><br><img src="/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/image2.jpg" class="">]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>PEP8 Code Layout - Tabs or Spaces?</title>
-      <link>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Tabs-or-Spaces/</link>
-      <guid>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Tabs-or-Spaces/</guid>
-      <pubDate>Sat, 04 Apr 2020 10:14:27 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;h1 id=&quot;PEP8-Code-Layout-Tab-혹은-Spaces&quot;&gt;&lt;a href=&quot;#PEP8-Code-Layout-Tab-혹은-Spaces&quot; class=&quot;headerlink&quot; title=&quot;PEP8 Code Layout - Tab 혹은 Spaces
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="PEP8-Code-Layout-Tab-혹은-Spaces"><a href="#PEP8-Code-Layout-Tab-혹은-Spaces" class="headerlink" title="PEP8 Code Layout - Tab 혹은 Spaces?"></a>PEP8 Code Layout - Tab 혹은 Spaces?</h1><br><blockquote><p>파이썬에서는 Tab 대신 Spaces(빈공간)을 사용하는것을 선호합니다. </p></blockquote><br><p>탭을 사용하는 경우는, 이미 코드가 <code>tab</code>으로 들여쓰기가 되어 있는 경우, </p><p><br>코드와 일관되게 <code>tab</code>을 사용합니다. </p><br><blockquote><p>Python3 에는 <code>tab</code>과 <code>spaces</code> 혼용 사용을 허락하지 않습니다. </p></blockquote><br><p><code>tab</code>과  <code>spaces</code>의 혼용으로 들여쓰기가 되어진 Python2 버전의 코드는 특별히 spaces를 사용해서 전환되어야 합니다. </p><br><p><br>Python2 커맨드 라인 인터프리터로 <code>-t</code>옵션을 사용하면, </p><p><code>tabs</code>와 <code>spaces</code>의 혼용된 코드에 대해서 경고를 줍니다. </p><br><p><code>--t</code>옵션을 사용하면, 이 경고들이 에러가 됩니다. </p>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Tabs-or-Spaces/#disqus_thread</comments>
     </item>
     
   </channel>
