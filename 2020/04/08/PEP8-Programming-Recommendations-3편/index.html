@@ -22,22 +22,22 @@
 
   <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <meta name="google-site-verification" content="WlX9ix7sXmMXMWSZS-fiLnWpgx6T0Dz2ON3R7RcK4bA" />
-  <meta name="description" content="PEP8 - Introduction      PEP8 소개    파이썬 코딩 스타일 가이드라인 PEP 에 대해서 포스팅 하고자 합니다.     PEP는 Python Enhancement Proposal 의 약자로  파이썬 코딩 스타일 가이드라인을 담고 있습니다.    https:&#x2F;&#x2F;www.python.org&#x2F;dev&#x2F;peps&#x2F;pep-0008&#x2F;#introduc">
+  <meta name="description" content="프로그래밍 권장사항들 - 3편   운영체체 에러를 잡아낼때에는,  파이썬 3.3 이후에서 소개된 명시적인 예외 상화관계를 사용합니다       모든 try&#x2F;except구문  모든 try&#x2F;except절에 대해 try 절을 필요한 최소의 코드 양으로 사용 제한을 합니다. 버그가 가려지는걸 피할수 있습니다.    12345678910111213141516# 좋은">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PEP8 - Introduction">
-<meta property="og:url" content="http://djangojeng-e.github.io/2020/04/04/PEP8-Introduction/index.html">
+<meta property="og:title" content="PEP8 Programming Recommendations - 3편">
+<meta property="og:url" content="http://djangojeng-e.github.io/2020/04/08/PEP8-Programming-Recommendations-3%ED%8E%B8/index.html">
 <meta property="og:site_name" content="장고쟁이">
-<meta property="og:description" content="PEP8 - Introduction      PEP8 소개    파이썬 코딩 스타일 가이드라인 PEP 에 대해서 포스팅 하고자 합니다.     PEP는 Python Enhancement Proposal 의 약자로  파이썬 코딩 스타일 가이드라인을 담고 있습니다.    https:&#x2F;&#x2F;www.python.org&#x2F;dev&#x2F;peps&#x2F;pep-0008&#x2F;#introduc">
+<meta property="og:description" content="프로그래밍 권장사항들 - 3편   운영체체 에러를 잡아낼때에는,  파이썬 3.3 이후에서 소개된 명시적인 예외 상화관계를 사용합니다       모든 try&#x2F;except구문  모든 try&#x2F;except절에 대해 try 절을 필요한 최소의 코드 양으로 사용 제한을 합니다. 버그가 가려지는걸 피할수 있습니다.    12345678910111213141516# 좋은">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2020-04-03T16:39:32.000Z">
-<meta property="article:modified_time" content="2020-04-03T16:57:50.804Z">
+<meta property="article:published_time" content="2020-04-08T12:53:13.000Z">
+<meta property="article:modified_time" content="2020-04-08T13:19:49.112Z">
 <meta property="article:author" content="장고쟁이">
 <meta property="article:tag" content="Python">
-<meta property="article:tag" content="파이썬">
 <meta property="article:tag" content="PEP8">
+<meta property="article:tag" content="프로그래밍 권장사항들">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://djangojeng-e.github.io/2020/04/04/PEP8-Introduction/">
+<link rel="canonical" href="http://djangojeng-e.github.io/2020/04/08/PEP8-Programming-Recommendations-3%ED%8E%B8/">
 
 
 <script id="page-configurations">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>PEP8 - Introduction | 장고쟁이</title>
+  <title>PEP8 Programming Recommendations - 3편 | 장고쟁이</title>
   
 
 
@@ -204,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/04/PEP8-Introduction/">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/08/PEP8-Programming-Recommendations-3%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -217,7 +217,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          PEP8 - Introduction
+          PEP8 Programming Recommendations - 3편
         </h2>
 
         <div class="post-meta">
@@ -228,7 +228,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-04-04 01:39:32 / Updated at: 01:57:50" itemprop="dateCreated datePublished" datetime="2020-04-04T01:39:32+09:00">2020-04-04</time>
+              <time title="Post created: 2020-04-08 21:53:13 / Updated at: 22:19:49" itemprop="dateCreated datePublished" datetime="2020-04-08T21:53:13+09:00">2020-04-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,8 +260,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2020/04/04/PEP8-Introduction/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/04/PEP8-Introduction/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/04/08/PEP8-Programming-Recommendations-3%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/08/PEP8-Programming-Recommendations-3편/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -276,53 +276,133 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="PEP8-Introduction"><a href="#PEP8-Introduction" class="headerlink" title="PEP8 - Introduction"></a>PEP8 - Introduction</h1><br>
-
-<br>
-
-
-
-<h2 id="PEP8-소개"><a href="#PEP8-소개" class="headerlink" title="PEP8 소개"></a>PEP8 소개</h2><br>
-
-<br>
-
-<p><strong>파이썬 코딩 스타일 가이드라인 PEP 에 대해서 포스팅 하고자 합니다. <br></strong></p>
-<br>
+        <h2 id="프로그래밍-권장사항들-3편"><a href="#프로그래밍-권장사항들-3편" class="headerlink" title="프로그래밍 권장사항들 - 3편"></a>프로그래밍 권장사항들 - 3편</h2><br>
 
 <blockquote>
-<p>PEP는</p>
-<p>Python Enhancement Proposal 의 약자로 </p>
-<p>파이썬 코딩 스타일 가이드라인을 담고 있습니다. </p>
+<p>운영체체 에러를 잡아낼때에는, </p>
+<p>파이썬 3.3 이후에서 소개된 명시적인 예외 상화관계를 사용합니다 <br></p>
 </blockquote>
-<p><br><br></p>
-<p><a href="https://www.python.org/dev/peps/pep-0008/#introduction" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0008/#introduction</a></p>
-<a id="more"></a> 
-
-
-
-<p>위 웹사이트에 자세한 가이드라인이 나와 있으며, 파이썬 코딩에서 관례를 다루고 있습니다. <br></p>
 <br>
 
-<p>해당 문서는, 파이썬의 창시자인 귀도 반 로섬의 오리지널 파이썬 스타일 가이드 에세이를 <br>기본적으로 받아들이고 있고<br> 베리의 스타일 가이드의 내용을 추가해서 제작되었습니다.</p>
 <br>
 
-<p>파이썬 코딩 스타일 가이드는 시간이 지나면서 점차 진화합니다. </p>
-<p><br><strong>언어가 변화함에 따라서 추가적인 관례와<br> 너무 노후한 스타일들이 확인 되고. 그에 맞춰서 가이드라인도 진화 하겟죠?</strong> </p>
+<h2 id="모든-try-except구문"><a href="#모든-try-except구문" class="headerlink" title="모든 try/except구문"></a>모든 <code>try/except</code>구문</h2><br>
+
+<p>모든 <code>try/except</code>절에 대해 <code>try</code> 절을 필요한 최소의 코드 양으로 사용 제한을 합니다. 버그가 가려지는걸 피할수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    value = collection[key]</span><br><span class="line"><span class="keyword">except</span> KeyError:</span><br><span class="line">    <span class="keyword">return</span> key_not_found(key)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> handle_value(value)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 너무 광범위함 </span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">handle_value(collection[key])</span><br><span class="line"><span class="keyword">except</span> KeyError:</span><br><span class="line">    <span class="comment"># Will also catch KeyError raised by handle_value()</span></span><br><span class="line">    <span class="keyword">return</span> key_not_found(key)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="특정-코드-섹션에-로컬-자원"><a href="#특정-코드-섹션에-로컬-자원" class="headerlink" title="특정 코드 섹션에 로컬 자원"></a>특정 코드 섹션에 로컬 자원</h2><br>
+
+<p>자원이 특정 코드 섹션에 대해 로컬로 있을때에는 <code>with</code>문을 사용하여, 사용후 빠르고 안정적으로 정리되도록 합니다. <code>try/finally</code> 구문도 허용됩니다. </p>
+<br>
+
+
+
+<h2 id="Context-Manager"><a href="#Context-Manager" class="headerlink" title="Context Manager"></a>Context Manager</h2><br>
+
+<p>자원을 확보하거나 해제 하는것이 아닌 경우의 컨텍스트 메니져는 분리된 함수 혹은 메써드를 통해서 호출 되어야 합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">with</span> conn.begin_transaction():</span><br><span class="line">    do_stuff_in_transaction(conn)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">with</span> conn:</span><br><span class="line">    do_stuff_in_trnasaction(conn)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>후의 예시는, <code>__enter__</code> 및 <code>__exit__</code> 메서드가 트랜셕션 후 연결을 닫는 것 이외의 작업을 수행하고 있음을 나타내는 정보를 제공하지 않습니다. </p>
 <p><br><br></p>
-<p>각각의 프로젝트들은 그들만의 고유한 코딩 스타일 가이드라인이 존재합니다. </p>
-<p><br><br></p>
-<blockquote>
-<p>PEP8의 가이드라인과, 프로젝트의 코딩 스타일 가이드라인이 충돌할 경우, </p>
-<p>프로젝트에 특화된 코딩 스타일을 우선 따르는것을 원칙으로 합니다. </p>
-</blockquote>
-<p>​    <br></p>
+<p>이 경우에는 명시적인게 중요합니다. <br></p>
+<br>
+
+
+
+<h2 id="리턴-구문안에서는-일관성이-있어야-합니다"><a href="#리턴-구문안에서는-일관성이-있어야-합니다" class="headerlink" title="리턴 구문안에서는 일관성이 있어야 합니다"></a>리턴 구문안에서는 일관성이 있어야 합니다</h2><br>
+
+<br>
+
+<p>함수안에 모든 리턴 구문은 수식을 반환해야 합니다. 만약 어떤 리턴 구문이 수식을 반환할때. 어떠한 값이 없는 리턴 구문은 명시적으로, <code>return None</code> 이라고 해주어야 합니다. </p>
+<br>
+
+<p>그리고, 명시적인 리턴 구문은 함수의 마지막에 존재해야 합니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> math.sqrt(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span> </span><br><span class="line">    <span class="keyword">return</span> math.sqrt(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> math.sqrt(x)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    <span class="keyword">return</span> math.sqrt(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="문자열-모듈보다는-문자열-메써드-사용"><a href="#문자열-모듈보다는-문자열-메써드-사용" class="headerlink" title="문자열 모듈보다는 문자열 메써드 사용"></a>문자열 모듈보다는 문자열 메써드 사용</h2><br>
+
+<p>문자열 메써드는 언제나 빠르고, 유니코드 문자와 함께 같은 API 를 공유합니다.</p>
+<br>
+
+<br>
+
+<h2 id="startswith-와-endwith"><a href="#startswith-와-endwith" class="headerlink" title="startswith() 와  endwith()"></a><code>startswith()</code> 와  <code>endwith()</code></h2><br>
+
+<br>
+
+<p>접두사와 접미사를 확인하기 위해서는, 문자열 슬라이싱 보다 <code>startswith()</code>와 <code>endwith()</code> 를 사용합니다. </p>
+<p><br><code>startswith()</code>와 <code>endswith()</code>가 더 깔끔하고 에러가 적습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 좋은예 </span><br><span class="line">if foo.startswith(&#39;bar&#39;):</span><br><span class="line"></span><br><span class="line"># 나쁜예 </span><br><span class="line">if foo[:3] &#x3D;&#x3D; &#39;bar&#39;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="객체-타입-비교는-isinstance-사용"><a href="#객체-타입-비교는-isinstance-사용" class="headerlink" title="객체 타입 비교는 isinstance() 사용"></a>객체 타입 비교는 <code>isinstance()</code> 사용</h2><br>
+
+<br>
+
+<p>객체 타입 비교를 할때는, 직접 타입 비교를 하기 보다는 <code>isinstance()</code>를 사용합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">if</span> isinstance(obj, int);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">if</span> type(obj) <span class="keyword">is</span> type(<span class="number">1</span>):</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>객체가 문자열인지 아닌지 확인할때에는, 그것이 유니코드 문자열일수도 있다는것을 염두해 두세요. <br></p>
+<p>파이썬2 에서는, <code>str</code>과 <code>unicode</code>는 같은 베이스 클래스, <code>basestring</code>을 가지고 있습니다. <br><br></p>
+<p>따라서, 아래와 같이 쓸수 있습니다. <br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python2 </span></span><br><span class="line"><span class="keyword">if</span> isinstance(obj, basestring)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>파이썬3 에서는, <code>unicode</code>와 <code>basestring</code>은 존재하지 않습니다. <code>str</code>만 존재하고</p>
+<p><code>bytes</code>객체는 더이상 문자열 종류가 아닙니다.  <br></p>
+<br>
+
+<h2 id="시퀀스들-문자열-리스트-튜플-빈-시퀀스는-False-를-반환합니다"><a href="#시퀀스들-문자열-리스트-튜플-빈-시퀀스는-False-를-반환합니다" class="headerlink" title="시퀀스들(문자열, 리스트, 튜플) 빈 시퀀스는 False 를 반환합니다"></a>시퀀스들(문자열, 리스트, 튜플) 빈 시퀀스는 False 를 반환합니다</h2><br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> seq:</span><br><span class="line"><span class="keyword">if</span> seq:</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">if</span> len(seq):</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> len(seq):</span><br></pre></td></tr></table></figure>
+
+<br>
+
 <br>
 
 <h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
 
-<p>PEP8 이 굉장히 중요하다 합니다. 모두가 기본이 되는 파이썬 코딩 스타일을 가지고 있으면, <br></p>
-<p>남이 쓴 코드도 이해하기 더 쉬워질겁니다. <br></p>
-<p>PEP8 관련 포스팅을 이제부터 시작합니다~ </p>
+<br>
+
+<p>프로그래밍 권장 사항들이 꽤 많네요. </p>
+<p><br>나머지 권장 사항들은 다음 포스팅에 이어서 쓰겠습니다. </p>
 
     </div>
 
@@ -333,8 +413,8 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Python/" rel="tag"># Python</a>
-              <a href="/tags/%ED%8C%8C%EC%9D%B4%EC%8D%AC/" rel="tag"># 파이썬</a>
               <a href="/tags/PEP8/" rel="tag"># PEP8</a>
+              <a href="/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EA%B6%8C%EC%9E%A5%EC%82%AC%ED%95%AD%EB%93%A4/" rel="tag"># 프로그래밍 권장사항들</a>
           </div>
 
         
@@ -343,13 +423,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/30/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-About-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="prev" title="Hexo 블로그 - About 페이지 만들기">
-      <i class="fa fa-chevron-left"></i> Hexo 블로그 - About 페이지 만들기
+    <a href="/2020/04/08/PEP8-Programming-Recommendations-2%ED%8E%B8/" rel="prev" title="PEP8 Programming Recommendations - 2편">
+      <i class="fa fa-chevron-left"></i> PEP8 Programming Recommendations - 2편
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/04/04/PEP8-A-Foolish-Consistency-is-the-Hobgoblin-of-Little-Minds/" rel="next" title="PEP8 - A Foolish Consistency is the Hobgoblin of Little Minds">
-      PEP8 - A Foolish Consistency is the Hobgoblin of Little Minds <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -416,7 +493,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PEP8-Introduction"><span class="nav-number">1.</span> <span class="nav-text">PEP8 - Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PEP8-소개"><span class="nav-number">1.1.</span> <span class="nav-text">PEP8 소개</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#마치며"><span class="nav-number">1.2.</span> <span class="nav-text">마치며..</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#프로그래밍-권장사항들-3편"><span class="nav-number">1.</span> <span class="nav-text">프로그래밍 권장사항들 - 3편</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#모든-try-except구문"><span class="nav-number">2.</span> <span class="nav-text">모든 try&#x2F;except구문</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#특정-코드-섹션에-로컬-자원"><span class="nav-number">3.</span> <span class="nav-text">특정 코드 섹션에 로컬 자원</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-Manager"><span class="nav-number">4.</span> <span class="nav-text">Context Manager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#리턴-구문안에서는-일관성이-있어야-합니다"><span class="nav-number">5.</span> <span class="nav-text">리턴 구문안에서는 일관성이 있어야 합니다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#문자열-모듈보다는-문자열-메써드-사용"><span class="nav-number">6.</span> <span class="nav-text">문자열 모듈보다는 문자열 메써드 사용</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#startswith-와-endwith"><span class="nav-number">7.</span> <span class="nav-text">startswith() 와  endwith()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체-타입-비교는-isinstance-사용"><span class="nav-number">8.</span> <span class="nav-text">객체 타입 비교는 isinstance() 사용</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#시퀀스들-문자열-리스트-튜플-빈-시퀀스는-False-를-반환합니다"><span class="nav-number">9.</span> <span class="nav-text">시퀀스들(문자열, 리스트, 튜플) 빈 시퀀스는 False 를 반환합니다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#마치며"><span class="nav-number">10.</span> <span class="nav-text">마치며..</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -646,9 +723,9 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "http://djangojeng-e.github.io/2020/04/04/PEP8-Introduction/";
-    this.page.identifier = "2020/04/04/PEP8-Introduction/";
-    this.page.title = "PEP8 - Introduction";
+    this.page.url = "http://djangojeng-e.github.io/2020/04/08/PEP8-Programming-Recommendations-3%ED%8E%B8/";
+    this.page.identifier = "2020/04/08/PEP8-Programming-Recommendations-3편/";
+    this.page.title = "PEP8 Programming Recommendations - 3편";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
