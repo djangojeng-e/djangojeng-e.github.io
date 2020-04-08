@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Programming Recommendations - 4편</title>
+    <url>/2020/04/09/PEP8-Programming-Recommendations-4%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="프로그래밍-권장사항들"><a href="#프로그래밍-권장사항들" class="headerlink" title="프로그래밍 권장사항들"></a>프로그래밍 권장사항들</h2><br>
+
+<br>
+
+<h2 id="불리언값의-비교는-연산자를-사용하지-않습니다"><a href="#불리언값의-비교는-연산자를-사용하지-않습니다" class="headerlink" title="불리언값의 비교는 == 연산자를 사용하지 않습니다"></a>불리언값의 비교는 <code>==</code> 연산자를 사용하지 않습니다</h2><br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">if</span> greetings:</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">if</span> greetings == <span class="literal">True</span>:</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 틀린예 </span></span><br><span class="line"><span class="keyword">if</span> greeting <span class="keyword">is</span> <span class="literal">True</span>:</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><br><a id="more"></a></p>
+<h2 id="try-finally-안에-흐름제어-구문"><a href="#try-finally-안에-흐름제어-구문" class="headerlink" title="try..finally 안에 흐름제어 구문"></a><code>try..finally</code> 안에 흐름제어 구문</h2><br>
+
+<br>
+
+<p><code>try..finally</code> 에서 <code>finally</code>부분안에는 <code>return/break/continue</code> 같은 흐름제어 구문의 사용은 권장되지 않습니다. </p>
+<br>
+
+<p><code>finally</code> 안에 <code>return/break/continue</code> 같은 구문을 사용하면, 암시적으로 활성화 된 예외를 취소시키기 때문에. finally 안에 흐름제어 구문의 사용은 권장 되지 않습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 틀린예</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="number">1</span> / <span class="number">0</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">42</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>PEP8에서 얘기하는 프로그래밍 권장 사항들에 대해서 알아보았습니다. </p>
+<br>
+
+<p>프로그래밍 전반에 걸친 다양한 권장사항이고. 깊은 컨셉입니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>PEP8</tag>
+        <tag>프로그램 권장사항들</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Programming Recommendations - 3편</title>
     <url>/2020/04/08/PEP8-Programming-Recommendations-3%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="프로그래밍-권장사항들-3편"><a href="#프로그래밍-권장사항들-3편" class="headerlink" title="프로그래밍 권장사항들 - 3편"></a>프로그래밍 권장사항들 - 3편</h2><br>
