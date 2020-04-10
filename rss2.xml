@@ -9,8 +9,84 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Wed, 08 Apr 2020 16:56:01 GMT</pubDate>
+    <pubDate>Fri, 10 Apr 2020 06:42:51 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PEP8 Variable Annotations</title>
+      <link>http://djangojeng-e.github.io/2020/04/10/PEP8-Variable-Annotations/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/10/PEP8-Variable-Annotations/</guid>
+      <pubDate>Fri, 10 Apr 2020 06:34:15 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;변수-Annotations&quot;&gt;&lt;a href=&quot;#변수-Annotations&quot; class=&quot;headerlink&quot; title=&quot;변수 Annotations&quot;&gt;&lt;/a&gt;변수 Annotations&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;PEP526 에서는, 변수 주석에 대해서 소개하고 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;변수 주석에 대한 스타일 권장사항은 함수 주석 스타일과 비슷합니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;ul&gt;
+&lt;li&gt;모듈레벨에서 변수들, 클래스 그리고 인스턴스 변수들과 지역 변수들은 &lt;code&gt;:&lt;/code&gt; 뒤에 1칸 띄워줍니다&lt;/li&gt;
+&lt;li&gt;콜론뒤에는 빈공간이 없어야 합니다 &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;=&lt;/code&gt; 양쪽에 정확히 한칸씩 띄워줍니다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="변수-Annotations"><a href="#변수-Annotations" class="headerlink" title="변수 Annotations"></a>변수 Annotations</h2><br><br><p>PEP526 에서는, 변수 주석에 대해서 소개하고 있습니다.</p><p><br>변수 주석에 대한 스타일 권장사항은 함수 주석 스타일과 비슷합니다. </p><br><br><ul><li>모듈레벨에서 변수들, 클래스 그리고 인스턴스 변수들과 지역 변수들은 <code>:</code> 뒤에 1칸 띄워줍니다</li><li>콜론뒤에는 빈공간이 없어야 합니다 </li><li><code>=</code> 양쪽에 정확히 한칸씩 띄워줍니다</li></ul><p><br><a id="more"></a></p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"></span><br><span class="line">code : int </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>:</span></span><br><span class="line">    coords: Tuple[int, int]</span><br><span class="line">    label: str = <span class="string">'&lt;unknown&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"></span><br><span class="line">code:int<span class="comment"># 콜론 뒤에 띄어스기를 안해줬습니다 </span></span><br><span class="line">code : int<span class="comment"># 콜론 앞에 띄어쓰기가 있습니다 </span></span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">    result: int=<span class="number">0</span><span class="comment"># = 주변에 빈공간이 없습니다</span></span><br></pre></td></tr></table></figure><br><br><p>PEP526이 python3.6 에서 적용되었다 하더라도, 변수 주석 syntax 는 모든 버전 파이썬에 <code>stub files</code> 에 적용 되기를 권장합니다.<br></p><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><br><p>이것으로 PEP8에 소개된 스타일 가이드를 전부 훑어 보았습니다. </p><p><br>아직 남아있는 <code>function annotation</code> 과 <code>variable annotation</code>은 각각 PEP484 와 PEP526 을 참조하면 됩니다. </p><br><p>484와 526의 양이 좀 방대하기 때문에, 나중에 따로 포스팅을 할 예정입니다. </p><br><p>PEP8 관련 포스팅을 하면서, 이해가 안가는 부분이 아직 많습니다. </p><br><p>아직까지는, PEP8 에 나와있는 모든것을 고민하면서 코드를 쓸 단계가 아니라서 그런것 같습니다… 코딩 공부를 좀더 진행을 해보면서, PEP8 을 끊임없이 리뷰할것이고, 수정이 필요한 포스팅은 다시 수정 될것입니다.</p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/10/PEP8-Variable-Annotations/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>PEP8 Function Annotations</title>
+      <link>http://djangojeng-e.github.io/2020/04/10/PEP8-Function-Annotations/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/10/PEP8-Function-Annotations/</guid>
+      <pubDate>Fri, 10 Apr 2020 06:22:45 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;함수-Annotations&quot;&gt;&lt;a href=&quot;#함수-Annotations&quot; class=&quot;headerlink&quot; title=&quot;함수 Annotations&quot;&gt;&lt;/a&gt;함수 Annotations&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Annotation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;어노테이션은 원래 주석이나 노트 라는 뜻인데, &lt;/p&gt;
+&lt;p&gt;파이썬에서 우리가 흔히 사용하는 일반 주석과는 역할이 좀 다릅니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;p&gt;어노테이션은 함수나 변수에 코드를 달아서, 일반 주석과는 다른 의미나 기능을 부여합니다. &lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
+&lt;p&gt;함수나 변수에 일반 주석으로는 설명이 너무 길어지거나, 정확한 설명이 불가능할때, &lt;/p&gt;
+&lt;p&gt;그리고 특별한 의미를 부여하고 싶을때 Annotation 을 사용합니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;h2 id=&quot;Function-Annotations&quot;&gt;&lt;a href=&quot;#Function-Annotations&quot; class=&quot;headerlink&quot; title=&quot;Function Annotations&quot;&gt;&lt;/a&gt;Function Annotations&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;이 번 포스팅은 function annotations 에 대한 포스팅 입니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;p&gt;Annotation 은 함수에 추가로 들어가는 주석입니다. &lt;/p&gt;
+&lt;p&gt;PEP484의 허용과 함께, 함수에 들어가는 주석 스타일이 바뀌고 있는 추세입니다 &lt;/p&gt;
+&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="함수-Annotations"><a href="#함수-Annotations" class="headerlink" title="함수 Annotations"></a>함수 Annotations</h2><br><br><blockquote><p><strong>Annotation</strong></p><p>어노테이션은 원래 주석이나 노트 라는 뜻인데, </p><p>파이썬에서 우리가 흔히 사용하는 일반 주석과는 역할이 좀 다릅니다. </p><br><p>어노테이션은 함수나 변수에 코드를 달아서, 일반 주석과는 다른 의미나 기능을 부여합니다. <br></p><br><p>함수나 변수에 일반 주석으로는 설명이 너무 길어지거나, 정확한 설명이 불가능할때, </p><p>그리고 특별한 의미를 부여하고 싶을때 Annotation 을 사용합니다. </p></blockquote><br><br><h2 id="Function-Annotations"><a href="#Function-Annotations" class="headerlink" title="Function Annotations"></a>Function Annotations</h2><br><p>이 번 포스팅은 function annotations 에 대한 포스팅 입니다. </p><br><p>Annotation 은 함수에 추가로 들어가는 주석입니다. </p><p>PEP484의 허용과 함께, 함수에 들어가는 주석 스타일이 바뀌고 있는 추세입니다 </p><br><a id="more"></a><br><blockquote><p>파이썬3 코드에서는, </p><p>향후 버전 호환성을 위해서 PEP484 의 syntax 를 사용하는걸 권장 합니다. </p></blockquote><br><br><h2 id="PEP484"><a href="#PEP484" class="headerlink" title="PEP484"></a>PEP484</h2><br><p>함수내에 주석 스타일 가이드는 PEP484에 나와있는 스타일 가이드가 권장 됩니다.</p><p><br>예를들면, 덩치가 큰 제3자 라이브러리를 마킹 하거나, PEP484 스타일의 <code>type</code>주석 등이 있습니다. PEP484에는 주석달기가 얼마나 쉬운지에 대한 리뷰 그리고 해당 스타일이 얼마나 코드의 이해성을 높이는지에 대한 관찰 사항들이 나와 있습니다. </p><br><p>파이썬 스탠다드 라이브러리는 주석을 받아들이는데에 보수적이어야 하지만, 주석의 사용은 새로운 코드와 큰 리펙토링에는 허용됩니다. </p><br><br><h2 id="Function-Annotation-과-다른-사용"><a href="#Function-Annotation-과-다른-사용" class="headerlink" title="Function Annotation 과 다른 사용"></a>Function Annotation 과 다른 사용</h2><br><br><blockquote><p>함수 주석과 다른 사용을 원하는 코드는, </p><p>일반 커멘트 형식을 갖습니다. </p></blockquote><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># type: ignore</span></span><br></pre></td></tr></table></figure><br><br><p>린터와 타입 확인자는 선택 사항이고. 별도의 도구 입니다. 파이썬 인터프러터는 기본적으로 타입 확인에 의한 메시지를 발생 시키지 않고. 함수 주석이기 때문에 코드의 동작을 바꾸지 않습니다. </p><br><p>타입 확인을 원하지 않는 사용자는, 그것을 무시해도 괜찮습니다. 하지만, 3자 라이브러리 패키지는 타입 확인자를 실행하려 할수도 있습니다. 이점을 위해 <code>PEP484</code> 는 <code>stub</code> 파일들을 사용하는것을 권장 합니다.</p><br><br><p>이전 버전 호환성이 필요한 코드들은, 타입 주석을 일반 주석 형태로 추가 할수 있습니다. (PEP484 참조) </p><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>이번 토픽은 PEP484의 소개밖에 없습니다. </p><p>PEP484 를 좀 자세히 보려 했는데. 내용이 너무 방대해서, 나중에 따로 나누어서 포스팅 해야 할것 같습니다. </p><br><br><br><br><br><br><br><br><br><br><br><br><br><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/10/PEP8-Function-Annotations/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Hexo 블로그 - 네이버 웹마스터 도구 등록</title>
@@ -36,15 +112,11 @@
 
 &lt;p&gt;들어가면, 사이트를 등록하라고 나오는데. 아래 캡쳐 화면을 참조해주세요. &lt;/p&gt;
 &lt;br&gt;
-
-&lt;img src=&quot;/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image1.png&quot; class=&quot;&quot;&gt;
-
-&lt;p&gt;&lt;br&gt;
       
       </description>
       
       
-      <content:encoded><![CDATA[<h2 id="네이버-웹마스터-회원가입-서치어드바이저"><a href="#네이버-웹마스터-회원가입-서치어드바이저" class="headerlink" title="네이버 웹마스터 회원가입 (서치어드바이저)"></a>네이버 웹마스터 회원가입 (서치어드바이저)</h2><br><p>네이버 웹마스터툴 사이트에 접속해서. </p><p>회원가입 후 로그인을 진행 합니다. (기존 네이버 아이디가 있으면, 회원가입 할 필요는 없습니다~) </p><br><br><h2 id="사이트-등록"><a href="#사이트-등록" class="headerlink" title="사이트 등록"></a>사이트 등록</h2><br><br><p>웹마스터 도구에 <code>Search Advisor</code> 로 들어갑니다. </p><br><p>들어가면, 사이트를 등록하라고 나오는데. 아래 캡쳐 화면을 참조해주세요. </p><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image1.png" class=""><p><br><a id="more"></a></p><br><h2 id="사이트-소유확인-진행"><a href="#사이트-소유확인-진행" class="headerlink" title="사이트 소유확인 진행"></a>사이트 소유확인 진행</h2><br><br><p>사이트의 소유 확인을 진행합니다. </p><p><br>구글 서치 콘솔때 진행 했던 방식이랑 비슷비슷하네요 ㅎㅎ </p><br><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image2.png" class=""><p><br><br></p><blockquote><p>저는 HTML 태그를 블로그의 <code>&lt;head&gt;</code> 부분에 붙여서. 소유 확인을 진행 할것입니다. <br></p></blockquote><br><br><h2 id="HTML-태그를-lt-head-gt-섹션에-붙이기"><a href="#HTML-태그를-lt-head-gt-섹션에-붙이기" class="headerlink" title="HTML 태그를 &lt;head&gt;섹션에 붙이기"></a>HTML 태그를 <code>&lt;head&gt;</code>섹션에 붙이기</h2><br><br><p>처음에는 이게 정말 어려웠는데. 이제는 쉽습니다. </p><br><p>우선, 필자 기준으로 <code>blog/themes/hexo-theme-next/layout</code>블로그 폴더로 이동 합니다. </p><br><p>이 폴더에 있는 <code>_layout.swig</code>파일을 열어서, 네이버 사이트 소유확인 html 테그를 붙여 넣습니다. </p><br><p><code>blog/themes/hexo-theme-next/layout/_layout.swig</code> 파일 캡쳐 </p><br><blockquote><p><code>&lt;/head&gt;</code>태그가 있는곳 바로 위에 붙여 줍니다. </p></blockquote><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image4.png" class=""><br><br><p>파일 수정이 끝났으면, 잊지않고 <code>hexo generate</code> 그리고 <code>hexo deploy</code> 를 실행해서. <br></p><p>깃헙 페이지에 배포합니다. </p><blockquote><p>소유 확인 버튼을 눌러서 진행 해줍니다 </p></blockquote><br><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image3.png" class=""><br><br><p>금방 소유확인이 되는군요 ㅎㅎ </p><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image5.png" class=""><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>다른거 보다가 문득 생각나서 한번 등록 해보았습니다. </p><p><br>네이버 웹마스터도 뭔가 더 기능이 있을거 같긴 한데.. 우선 등록만 이렇게 마쳐놓고.</p><p><br>나중에 더 알아보도록 하겠습니다. </p>]]></content:encoded>
+      <content:encoded><![CDATA[<h2 id="네이버-웹마스터-회원가입-서치어드바이저"><a href="#네이버-웹마스터-회원가입-서치어드바이저" class="headerlink" title="네이버 웹마스터 회원가입 (서치어드바이저)"></a>네이버 웹마스터 회원가입 (서치어드바이저)</h2><br><p>네이버 웹마스터툴 사이트에 접속해서. </p><p>회원가입 후 로그인을 진행 합니다. (기존 네이버 아이디가 있으면, 회원가입 할 필요는 없습니다~) </p><br><br><h2 id="사이트-등록"><a href="#사이트-등록" class="headerlink" title="사이트 등록"></a>사이트 등록</h2><br><br><p>웹마스터 도구에 <code>Search Advisor</code> 로 들어갑니다. </p><br><p>들어가면, 사이트를 등록하라고 나오는데. 아래 캡쳐 화면을 참조해주세요. </p><br><a id="more"></a><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image1.png" class=""><br><br><h2 id="사이트-소유확인-진행"><a href="#사이트-소유확인-진행" class="headerlink" title="사이트 소유확인 진행"></a>사이트 소유확인 진행</h2><br><br><p>사이트의 소유 확인을 진행합니다. </p><p><br>구글 서치 콘솔때 진행 했던 방식이랑 비슷비슷하네요 ㅎㅎ </p><br><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image2.png" class=""><p><br><br></p><blockquote><p>저는 HTML 태그를 블로그의 <code>&lt;head&gt;</code> 부분에 붙여서. 소유 확인을 진행 할것입니다. <br></p></blockquote><br><br><h2 id="HTML-태그를-lt-head-gt-섹션에-붙이기"><a href="#HTML-태그를-lt-head-gt-섹션에-붙이기" class="headerlink" title="HTML 태그를 &lt;head&gt;섹션에 붙이기"></a>HTML 태그를 <code>&lt;head&gt;</code>섹션에 붙이기</h2><br><br><p>처음에는 이게 정말 어려웠는데. 이제는 쉽습니다. </p><br><p>우선, 필자 기준으로 <code>blog/themes/hexo-theme-next/layout</code>블로그 폴더로 이동 합니다. </p><br><p>이 폴더에 있는 <code>_layout.swig</code>파일을 열어서, 네이버 사이트 소유확인 html 테그를 붙여 넣습니다. </p><br><p><code>blog/themes/hexo-theme-next/layout/_layout.swig</code> 파일 캡쳐 </p><br><blockquote><p><code>&lt;/head&gt;</code>태그가 있는곳 바로 위에 붙여 줍니다. </p></blockquote><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image4.png" class=""><br><br><p>파일 수정이 끝났으면, 잊지않고 <code>hexo generate</code> 그리고 <code>hexo deploy</code> 를 실행해서. <br></p><p>깃헙 페이지에 배포합니다. </p><blockquote><p>소유 확인 버튼을 눌러서 진행 해줍니다 </p></blockquote><br><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image3.png" class=""><br><br><p>금방 소유확인이 되는군요 ㅎㅎ </p><br><img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image5.png" class=""><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>다른거 보다가 문득 생각나서 한번 등록 해보았습니다. </p><p><br>네이버 웹마스터도 뭔가 더 기능이 있을거 같긴 한데.. 우선 등록만 이렇게 마쳐놓고.</p><p><br>나중에 더 알아보도록 하겠습니다. </p>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/#disqus_thread</comments>
     </item>
@@ -747,51 +819,6 @@
       <content:encoded><![CDATA[<h1 id="PEP8-Code-Layout-Blank-Lines-빈줄"><a href="#PEP8-Code-Layout-Blank-Lines-빈줄" class="headerlink" title="PEP8 Code Layout - Blank Lines (빈줄)"></a>PEP8 Code Layout - Blank Lines (빈줄)</h1><br><br><p>이번 토픽은, PEP8 에서 권장하는 코드내에 빈줄 공간들에 대해서 다룹니다. </p><br><br><blockquote><p> <strong>가장 상위의 함수와 클래스 정의는 2줄의 빈줄로 공간을 둡니다</strong> <br></p></blockquote><p><br><br></p><p>이것이 의미하는 바는 아래의 예제를 보면 알수 있습니다. </p><p><br><br></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 가장 상위의 함수와 클래스들 사이의 2줄 공간 </span></span><br><span class="line"><span class="comment"># 가장 상위의 클래스 두개끼리는 2줄의 빈공간이 있습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJenge</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJenge2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 가장 상위의 함수 두개끼리는 2줄의 빈공간을 둡니다. </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Djangojeng</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Djangojeng</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><br><blockquote><p>클래스 내의 메써드 정의는 1줄로 공간을 둡니다.<br></p></blockquote><a id="more"></a><p><br><br></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스 내의 메써드 정의는 1줄 공간을 둡니다. </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJenge1</span><span class="params">()</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_python</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span> </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_python2</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span> </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJeng2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_django</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span> </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_django2</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><p><br><br></p><p>위 예시를 보면, 가장 상위에 위치하는 클래스들 끼리는 2줄 빈공간이 존재하고. <br></p><p>클래스 안에 있는 메서드 들 끼리는 1줄 빈공간들이 존재합니다.</p><p><br><br></p><blockquote><p>함수내에 빈줄은 드물게 사용해야 합니다.</p><p>함수내에 빈줄은 논리적 부분을 표시하기 위해서 사용 가능합니다. </p></blockquote><p><br><br></p><p>예를들면, </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 함수내에 논리적인 부분을 표시하기 위해서 빈줄을 함수내에서 사용합니다. </span></span><br><span class="line"><span class="comment"># 아주 드물게 사용해야 합니다.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop</span><span class="params">(j)</span>:</span></span><br><span class="line">    c = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, j):</span><br><span class="line">        c = c + <span class="number">1</span> </span><br><span class="line">    </span><br><span class="line">    print(c)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># for 문과 print 문 사이에 하나의 빈줄이 존재합니다.</span></span><br></pre></td></tr></table></figure><p><br><br></p><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>PEP8 안에 빈줄 (Blank Lines)에 관한 내용은 유용한 내용인데도 불구하고 <br></p><p>예시가 빈약해서 이해하기 힘들었습니다. <br></p><p><br><br></p><p>최대한 맞는 예시를 들으려 했지만 부족할수 있습니다. </p><br><p>하지만, 걱정 안하셔도 됩니다. </p><br><blockquote><p>Pycharm을 사용하면 자동으로 PEP8에 맞는 스타일을 가이드 해줍니다 </p><p>코드를 작성할때 이따금씩 노란색 밑줄이 쳐질때가 있는데, PEP8에 어긋날때 표시가 됩니다. </p><p>잘 유의해서 확인하고, PEP8 가이드라인에 맞게 코드를 작성하면 됩니다! </p></blockquote>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Blank-Lines/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>PEP8 Code Layout - Should a Line Break Before or After a Binary Operator?</title>
-      <link>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Should-a-Line-Break-Before-or-After-a-Binary-Operator/</link>
-      <guid>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Should-a-Line-Break-Before-or-After-a-Binary-Operator/</guid>
-      <pubDate>Sat, 04 Apr 2020 10:53:38 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;h1 id=&quot;이항연산자-전후-줄바꿈&quot;&gt;&lt;a href=&quot;#이항연산자-전후-줄바꿈&quot; class=&quot;headerlink&quot; title=&quot;이항연산자 전후 줄바꿈&quot;&gt;&lt;/a&gt;이항연산자 전후 줄바꿈&lt;/h1&gt;&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;이항 연산자 전에 줄바꿈을 해야할
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="이항연산자-전후-줄바꿈"><a href="#이항연산자-전후-줄바꿈" class="headerlink" title="이항연산자 전후 줄바꿈"></a>이항연산자 전후 줄바꿈</h1><br><br><p>이항 연산자 전에 줄바꿈을 해야할까요 아니면 후에 줄바꿈을 해줘야 할까요? </p><br><blockquote><p>줄바꿈은 연산기호 전에 되어야 하는가? </p><p>아니면</p><p>줄바꿈은 연산기호 후에 되어야 하는가? </p></blockquote><br><br><p><strong>몇십년동안, 줄바꿈은 연산기호 후에 해주는것이 권장 되어 왔습니다.</strong></p><br><p>하지만, 줄바꿈을 연산기호 후에 해주면, 두가지 이유로 가독성을 떨어트립니다. </p><p><br><br> </p><p>1) 연산기호들이 스크린에 세로줄로 흐트러지고, 이전줄에 있는 피연산자들(opernand) 과 떨어지게 됩니다. </p><p>2) 시각적으로 어떤것들이 더해지고, 빼줘야 하는것인지 파악하는데에 시간을 들여야 합니다. </p><br><br><p><strong>연산기호들이 피연산자들과 멀리 떨어져 있는 경우의 예를 들어봅니다</strong></p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 연산기호들이 이전줄의 피연산자들과 떨어져 있는 경우의 코드 </span></span><br><span class="line"></span><br><span class="line">income = (gross_wages +</span><br><span class="line">         taxable_interest +</span><br><span class="line">         (dividends - qualified_dividends) -</span><br><span class="line">         ira_deduction - </span><br><span class="line">         student_loan_interest)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 줄바꿈이 연산기호인 + 혹은 - 이후에 이루어진것을 확인 할수 있습니다. </span></span><br><span class="line"><span class="comment"># 코드를 읽어가면서 어떤것을 더해주고 빼주어야 하는지 눈으로 더 확인 해봐야 하는 상황이 옵니다.</span></span><br></pre></td></tr></table></figure><br><p>위 상황에서 가독성이 떨어지기 때문에, 수학자들과 퍼블리셔들은 반대의 관례를 따르기 시작합니다.</p><br><br><blockquote><p>문단안에 있는 공식들은 </p><p>언제나 연산기호 뒤에 줄바꿈을 하지만 </p><p>잘 진열된 공식들은 언제나 연산기호 전에 줄바꿈을 합니다 </p><p>Donald Knuth in “Computers and Typesetting series”</p></blockquote><br><br><p>수학적 전통을 따르면, 결과적으로 더 읽기 편한 코드가 나옵니다. 아래 예시 코드를 참조합니다. </p><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 코드에서 줄바꿈을 연산기호 전에 하면</span></span><br><span class="line"><span class="comment"># 연산기호들과 피연산자들을 매칭 시키기 쉬운 코드가 됩니다. </span></span><br><span class="line"><span class="comment"># PEP8 에서 나온 좋은 예시는 아래와 같습니다. </span></span><br><span class="line"></span><br><span class="line">income = (gross_wages</span><br><span class="line">         + taxable_interest</span><br><span class="line">         + (dividends - qualified_dividens)</span><br><span class="line">         - ira_deduction</span><br><span class="line">         - student_loan_interest)</span><br></pre></td></tr></table></figure><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>파이썬 코드에서는, 줄바꿈을 연산기호 전이나 연산기호 후에 하는 두가지 방법이 모두 허용됩니다. <br></p><p>어떤 방법이던, 해당 지역의 관례와 맞는다면, 두가지 방식은 다 괜찮습니다.<br></p><br><p><strong>저는 개인적으로, 연산기호 전에 줄바꿈을 해주는것이 가독성에 좋다고 생각합니다.</strong></p>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Should-a-Line-Break-Before-or-After-a-Binary-Operator/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>PEP8 Code Layout - Maximum Line Length</title>
-      <link>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/</link>
-      <guid>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/</guid>
-      <pubDate>Sat, 04 Apr 2020 10:29:03 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;h1 id=&quot;Maximum-Line-Length&quot;&gt;&lt;a href=&quot;#Maximum-Line-Length&quot; class=&quot;headerlink&quot; title=&quot;Maximum Line Length&quot;&gt;&lt;/a&gt;Maximum Line Length&lt;/h1&gt;&lt;br&gt;
-
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="Maximum-Line-Length"><a href="#Maximum-Line-Length" class="headerlink" title="Maximum Line Length"></a>Maximum Line Length</h1><br><blockquote><p><code>Maximum Line Length</code> 는 한줄의 최대 길이를 의미 합니다. </p></blockquote><br><br><h2 id="모든-줄은-79자로-제한-합니다"><a href="#모든-줄은-79자로-제한-합니다" class="headerlink" title="모든 줄은 79자로 제한 합니다"></a>모든 줄은 79자로 제한 합니다</h2><br><p>네. PEP8 에서는, 파이썬 코드를 작성할때. 한줄의 최대 길이를 79자로 제한합니다. </p><br><br><p><strong>다만! <code>docstring</code>혹은 <code>comments</code> 즉 주석들은, 72자로 제한합니다.</strong> </p><br><br><blockquote><p>모든 팀원들이 동의한다는 전제하에, </p><p>특별히 코드의 긴 줄이 유지 되어야 하는 상황이거나 하면 </p><p>최대 길이는 99자까지 늘릴수 있습니다. </p></blockquote><br><h2 id="한줄이-너무-긴-코드-줄-바꾸기"><a href="#한줄이-너무-긴-코드-줄-바꾸기" class="headerlink" title="한줄이 너무 긴 코드 줄 바꾸기"></a>한줄이 너무 긴 코드 줄 바꾸기</h2><br><blockquote><p>PEP8 에서 선호하는 긴줄 처리는, </p><p>계속되는 줄의 경계를 소괄호, 중괄호, 대괄호 안에 넣고 사용하는것입니다. </p><p>이 방법이 \ 를 사용하는 방법보다 선호됩니다. </p></blockquote><br><p>제가 생각하는 예시들은 아래와 같습니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 한줄이 너무 긴 코드 </span></span><br><span class="line"><span class="keyword">if</span>(this_is_one_thing <span class="keyword">or</span> that_is_another_thing <span class="keyword">or</span> everything_is_good_thing <span class="keyword">or</span> you_are_the best):</span><br><span class="line">    </span><br><span class="line"><span class="comment"># \ 백슬레쉬를 사용하지 않고, 괄호안에서 줄을 바꿔서, 한줄을 다음줄로 나눕니다. </span></span><br><span class="line"><span class="comment"># 물론 들여쓰기는 잘해주어야 하겠죠? </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(this_is_one_thing <span class="keyword">or</span></span><br><span class="line">   that-is_another_thing <span class="keyword">or</span></span><br><span class="line">   everything_is_good_thing <span class="keyword">or</span></span><br><span class="line">   you_are_the_best):</span><br></pre></td></tr></table></figure><br><p>위 방법이 선호되는것 같으나, 여전히 <code>\</code>백슬레쉬의 사용하는 방법도 괜찮습니다! </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># \ 를 사용하여 줄을 나눈 경우, \를 사용하지 않았으면, 한줄이 너무 길어 졌을것 같습니다. </span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'/path/to/some/file/you/want/to/read'</span>) <span class="keyword">as</span> file_1, \</span><br><span class="line">     open(<span class="string">'/path/to/some/file/being/written'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> file_2:)</span><br><span class="line">     file_2.write(file_1.read())</span><br></pre></td></tr></table></figure><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>1) PEP8 에서는 한줄의 최대길이를 79자로 제한합니다. </p><p>2) docstring 이나 comments 같은 주석들은 72자로 제한합니다.</p><p>3) 한줄이 너무 길어질것 같으면, <code>\</code>나 괄호안의 문장을 다음줄로 이어갑니다 (들여쓰기는 적절히 해야하는게 필수) </p><br><p>한줄 한줄이 너무 길어서 스크린이 꽉꽉 차있으면, 일하러 가서 매일 아래와 같은 스크린을 보게 될것입니다. <br></p><img src="/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/image1.jpeg" class=""><p><br><br></p><p>그리고, 누가 그러시던데, 한줄의 길이가 79자가 된 이유중에 하나가. <br></p><p>옛날 컴퓨터의 모니터 크기 때문이라고 합니다. 지금 나오는 모니터 크기와는 다르게.<br></p><p><br> 옛날 모니터들은 가로폭이 굉장히 좁아서. 화면에 꽉차는 양이 79자 정도 였다 합니다.  <br></p><p>아래 사진을 보면,,, 충분히 그럴수도 있었겟네요? ㅎㅎ <br></p><br><img src="/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/image2.jpg" class="">]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Maximum-Line-Length/#disqus_thread</comments>
     </item>
     
   </channel>

@@ -8,8 +8,24 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/04/10/PEP8-Variable-Annotations/</loc>
+        <lastmod>2020-04-10T06:42:51.083Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/2020/04/10/PEP8-Function-Annotations/</loc>
+        <lastmod>2020-04-10T06:33:45.587Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/</loc>
-        <lastmod>2020-04-08T16:56:01.678Z</lastmod>
+        <lastmod>2020-04-08T16:57:42.491Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

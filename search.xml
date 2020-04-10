@@ -1,6 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PEP8 Variable Annotations</title>
+    <url>/2020/04/10/PEP8-Variable-Annotations/</url>
+    <content><![CDATA[<h2 id="변수-Annotations"><a href="#변수-Annotations" class="headerlink" title="변수 Annotations"></a>변수 Annotations</h2><br>
+
+<br>
+
+<p>PEP526 에서는, 변수 주석에 대해서 소개하고 있습니다.</p>
+<p><br>변수 주석에 대한 스타일 권장사항은 함수 주석 스타일과 비슷합니다. </p>
+<br>
+
+<br>
+
+<ul>
+<li>모듈레벨에서 변수들, 클래스 그리고 인스턴스 변수들과 지역 변수들은 <code>:</code> 뒤에 1칸 띄워줍니다</li>
+<li>콜론뒤에는 빈공간이 없어야 합니다 </li>
+<li><code>=</code> 양쪽에 정확히 한칸씩 띄워줍니다</li>
+</ul>
+<p><br><a id="more"></a></p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"></span><br><span class="line">code : int </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>:</span></span><br><span class="line">    coords: Tuple[int, int]</span><br><span class="line">    label: str = <span class="string">'&lt;unknown&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"></span><br><span class="line">code:int	<span class="comment"># 콜론 뒤에 띄어스기를 안해줬습니다 </span></span><br><span class="line">code : int	<span class="comment"># 콜론 앞에 띄어쓰기가 있습니다 </span></span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">    result: int=<span class="number">0</span>	<span class="comment"># = 주변에 빈공간이 없습니다</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>PEP526이 python3.6 에서 적용되었다 하더라도, 변수 주석 syntax 는 모든 버전 파이썬에 <code>stub files</code> 에 적용 되기를 권장합니다.<br></p>
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>이것으로 PEP8에 소개된 스타일 가이드를 전부 훑어 보았습니다. </p>
+<p><br>아직 남아있는 <code>function annotation</code> 과 <code>variable annotation</code>은 각각 PEP484 와 PEP526 을 참조하면 됩니다. </p>
+<br>
+
+<p>484와 526의 양이 좀 방대하기 때문에, 나중에 따로 포스팅을 할 예정입니다. </p>
+<br>
+
+<p>PEP8 관련 포스팅을 하면서, 이해가 안가는 부분이 아직 많습니다. </p>
+<br>
+
+<p>아직까지는, PEP8 에 나와있는 모든것을 고민하면서 코드를 쓸 단계가 아니라서 그런것 같습니다… 코딩 공부를 좀더 진행을 해보면서, PEP8 을 끊임없이 리뷰할것이고, 수정이 필요한 포스팅은 다시 수정 될것입니다.</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>PEP8</tag>
+        <tag>Annotations</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PEP8 Function Annotations</title>
+    <url>/2020/04/10/PEP8-Function-Annotations/</url>
+    <content><![CDATA[<h2 id="함수-Annotations"><a href="#함수-Annotations" class="headerlink" title="함수 Annotations"></a>함수 Annotations</h2><br>
+
+<br>
+
+<blockquote>
+<p><strong>Annotation</strong></p>
+<p>어노테이션은 원래 주석이나 노트 라는 뜻인데, </p>
+<p>파이썬에서 우리가 흔히 사용하는 일반 주석과는 역할이 좀 다릅니다. </p>
+<br>
+
+<p>어노테이션은 함수나 변수에 코드를 달아서, 일반 주석과는 다른 의미나 기능을 부여합니다. <br></p>
+<br>
+
+<p>함수나 변수에 일반 주석으로는 설명이 너무 길어지거나, 정확한 설명이 불가능할때, </p>
+<p>그리고 특별한 의미를 부여하고 싶을때 Annotation 을 사용합니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="Function-Annotations"><a href="#Function-Annotations" class="headerlink" title="Function Annotations"></a>Function Annotations</h2><br>
+
+<p>이 번 포스팅은 function annotations 에 대한 포스팅 입니다. </p>
+<br>
+
+<p>Annotation 은 함수에 추가로 들어가는 주석입니다. </p>
+<p>PEP484의 허용과 함께, 함수에 들어가는 주석 스타일이 바뀌고 있는 추세입니다 </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>파이썬3 코드에서는, </p>
+<p>향후 버전 호환성을 위해서 PEP484 의 syntax 를 사용하는걸 권장 합니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="PEP484"><a href="#PEP484" class="headerlink" title="PEP484"></a>PEP484</h2><br>
+
+<p>함수내에 주석 스타일 가이드는 PEP484에 나와있는 스타일 가이드가 권장 됩니다.</p>
+<p><br>예를들면, 덩치가 큰 제3자 라이브러리를 마킹 하거나, PEP484 스타일의 <code>type</code>주석 등이 있습니다. PEP484에는 주석달기가 얼마나 쉬운지에 대한 리뷰 그리고 해당 스타일이 얼마나 코드의 이해성을 높이는지에 대한 관찰 사항들이 나와 있습니다. </p>
+<br>
+
+<p>파이썬 스탠다드 라이브러리는 주석을 받아들이는데에 보수적이어야 하지만, 주석의 사용은 새로운 코드와 큰 리펙토링에는 허용됩니다. </p>
+<br>
+
+<br>
+
+<h2 id="Function-Annotation-과-다른-사용"><a href="#Function-Annotation-과-다른-사용" class="headerlink" title="Function Annotation 과 다른 사용"></a>Function Annotation 과 다른 사용</h2><br>
+
+<br>
+
+<blockquote>
+<p>함수 주석과 다른 사용을 원하는 코드는, </p>
+<p>일반 커멘트 형식을 갖습니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># type: ignore</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>린터와 타입 확인자는 선택 사항이고. 별도의 도구 입니다. 파이썬 인터프러터는 기본적으로 타입 확인에 의한 메시지를 발생 시키지 않고. 함수 주석이기 때문에 코드의 동작을 바꾸지 않습니다. </p>
+<br>
+
+<p>타입 확인을 원하지 않는 사용자는, 그것을 무시해도 괜찮습니다. 하지만, 3자 라이브러리 패키지는 타입 확인자를 실행하려 할수도 있습니다. 이점을 위해 <code>PEP484</code> 는 <code>stub</code> 파일들을 사용하는것을 권장 합니다.</p>
+<br>
+
+<br>
+
+<p>이전 버전 호환성이 필요한 코드들은, 타입 주석을 일반 주석 형태로 추가 할수 있습니다. (PEP484 참조) </p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>이번 토픽은 PEP484의 소개밖에 없습니다. </p>
+<p>PEP484 를 좀 자세히 보려 했는데. 내용이 너무 방대해서, 나중에 따로 나누어서 포스팅 해야 할것 같습니다. </p>
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>PEP8</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>PEP8</tag>
+        <tag>Annotations</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 블로그 - 네이버 웹마스터 도구 등록</title>
     <url>/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/</url>
     <content><![CDATA[<h2 id="네이버-웹마스터-회원가입-서치어드바이저"><a href="#네이버-웹마스터-회원가입-서치어드바이저" class="headerlink" title="네이버 웹마스터 회원가입 (서치어드바이저)"></a>네이버 웹마스터 회원가입 (서치어드바이저)</h2><br>
@@ -21,9 +204,12 @@
 <p>들어가면, 사이트를 등록하라고 나오는데. 아래 캡쳐 화면을 참조해주세요. </p>
 <br>
 
+<a id="more"></a>
+
 <img src="/2020/04/09/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%84%A4%EC%9D%B4%EB%B2%84-%EC%9B%B9%EB%A7%88%EC%8A%A4%ED%84%B0-%EB%8F%84%EA%B5%AC-%EB%93%B1%EB%A1%9D/image1.png" class="">
 
-<p><br><a id="more"></a></p>
+<br>
+
 <br>
 
 <h2 id="사이트-소유확인-진행"><a href="#사이트-소유확인-진행" class="headerlink" title="사이트 소유확인 진행"></a>사이트 소유확인 진행</h2><br>
