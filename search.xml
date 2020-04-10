@@ -1,6 +1,546 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>가상환경 pyenv, virtualenv - 4편</title>
+    <url>/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="가상환경-설정-pyenv-virtualenv-4편"><a href="#가상환경-설정-pyenv-virtualenv-4편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv - 4편"></a>가상환경 설정 - pyenv, virtualenv - 4편</h2><h2 id="pyenv-virtualenv를-사용해서-가상환경-사용"><a href="#pyenv-virtualenv를-사용해서-가상환경-사용" class="headerlink" title="pyenv-virtualenv를 사용해서 가상환경 사용"></a><code>pyenv-virtualenv</code>를 사용해서 가상환경 사용</h2><br>
+
+<br>
+
+<p>지난 포스팅에서 파이썬 3.8.0 을 설치하였습니다. </p>
+<p>가상환경 생성 준비는 다 된것 같으니. 직접 가상환경을 생성하고 사용해 봅니다. </p>
+<br>
+
+<h2 id="파이썬-버전-확인"><a href="#파이썬-버전-확인" class="headerlink" title="파이썬 버전 확인"></a>파이썬 버전 확인</h2><br>
+
+<p><code>pyenv versions</code>를 실행하여, 버전을 확인합니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ pyenv versions</span><br><span class="line">* system (<span class="built_in">set</span> by /home/ubuntu/.pyenv/version)</span><br><span class="line">  3.8.0</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>현재 시스템에서 사용하고 있는 파이썬 버전이 표시됩니다. <code>3.8.0</code>을 설치하였는데. 아직 사용중이지 않습니다. </p>
+<br>
+
+<blockquote>
+<p><code>*</code> 가 붙어 있는게 현재 사용하고 있는 버전의 파이썬입니다 </p>
+</blockquote>
+<br>
+
+<a id="more"></a> 
+
+<br>
+
+<h2 id="시스템-전역에서-사용할-파이썬"><a href="#시스템-전역에서-사용할-파이썬" class="headerlink" title="시스템 전역에서 사용할 파이썬"></a>시스템 전역에서 사용할 파이썬</h2><br>
+
+<br>
+
+<p>3.8.0 을 사용하기 위해, 아래 명령어를 입력합니다 </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pyenv global 3.8.0</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>실행하고, 버전을 확인해 보면,<br> <code>*</code>가 3.8.0 앞에 붙었습니다. 이제 전역에서 3.8.0 을 사용합니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ pyenv versions</span><br><span class="line">  system</span><br><span class="line">* 3.8.0 (<span class="built_in">set</span> by /home/ubuntu/.pyenv/version)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="가상환경-생성"><a href="#가상환경-생성" class="headerlink" title="가상환경 생성"></a>가상환경 생성</h2><br>
+
+<p>파이썬 3.8.0 으로 가상환경 하나를 생성해 보겠습니다. <br></p>
+<p>가상 환경 이름은 <code>django-env</code>로 짓겠습니다. </p>
+<br>
+
+<p>해당 명령어 포맷은 <code>pyenv virtualenv 3.8.0 &lt;가상환경 이름&gt;</code> 입니다. 아래 커멘드를 참조. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pyenv virtualenv 3.8.0 django-env</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>커맨드 실행후에는 아래와 같은 메시지가 나옵니다. <br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Looking <span class="keyword">in</span> links: /tmp/tmpt74f1znk</span><br><span class="line">Requirement already satisfied: setuptools <span class="keyword">in</span> /home/ubuntu/.pyenv/versions/3.8.0/envs/django-env/lib/python3.8/site-packages (41.2.0)</span><br><span class="line">Requirement already satisfied: pip <span class="keyword">in</span> /home/ubuntu/.pyenv/versions/3.8.0/envs/django-env/lib/python3.8/site-packages (19.2.3)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>가상환경 <code>django-env</code>가 생성 완료 되었습니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="특정-폴더에-가상환경-적용"><a href="#특정-폴더에-가상환경-적용" class="headerlink" title="특정 폴더에 가상환경 적용"></a>특정 폴더에 가상환경 적용</h2><br>
+
+<br>
+
+<p><code>django_tutorial</code> 이라는 폴더를 하나 생성해줍니다. </p>
+<br>
+
+<p>해당 폴더로 가서, 그 폴더에 가상환경을 적용해 봅니다. <br></p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ mkdir django_tutorial</span><br><span class="line"></span><br><span class="line">ubuntu@ip-172-31-47-234:~$ ls</span><br><span class="line">django_tutorial  main_projects</span><br><span class="line"></span><br><span class="line">ubuntu@ip-172-31-47-234:~$ <span class="built_in">cd</span> django_tutorial/</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>해당 폴더 안에서, 아래 명령어를 실행해줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~/django_tutorial$ pyenv <span class="built_in">local</span> django-env</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p><code>django-env</code> 환경이 폴더에 잘 적용되었는지 아닌지 확인 하려면, <br></p>
+<p>아래와 같이 커맨드라인 맨 왼쪽에 <code>(django-env)</code> 가 표시되는지 확인 해 봅니다. <code>()</code>안에 가상환경 이름이 표시되어 있지 않으면, 제대로 적용이 되지 않은것 입니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(django-env) ubuntu@ip-172-31-47-234:~/django_tutorial</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>pyenv versions</code> 명령어를 실행해서, 현재 폴더에서 사용하고 있는 환경을 확인 해 봅니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(django-env) ubuntu@ip-172-31-47-234:~/django_tutorial$ pyenv versions</span><br><span class="line">  system</span><br><span class="line">  3.8.0</span><br><span class="line">  3.8.0/envs/django-env</span><br><span class="line">* django-env (<span class="built_in">set</span> by /home/ubuntu/django_tutorial/.python-version)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p><code>*</code>가 django-env 앞에 붙어 있습니다. <br></p>
+<p>해당폴더에 제대로 적용 된것을 확인 할수 있습니다. <br></p>
+</blockquote>
+<p><br><br></p>
+<h2 id="가상환경에-설치된-패키지-목록-확인"><a href="#가상환경에-설치된-패키지-목록-확인" class="headerlink" title="가상환경에 설치된 패키지 목록 확인"></a>가상환경에 설치된 패키지 목록 확인</h2><p><br><br></p>
+<p><code>pip list</code>를 실행해서 설치된 패키지들을 확인해 봅니다.</p>
+<p><br>2개 밖에 설치가 안되어 있는데. 이제 해당 폴더에서 진행할 프로젝트의 필요에 따라 패키지를 설치해도. <br></p>
+<br>
+
+<blockquote>
+<p>원래 시스템에 존재하던 파이썬에는 패키지가 설치되지 않습니다. <br><br></p>
+<p>해당 폴더안에 있는 파이썬 환경에만 패키지가 설치 됩니다. </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(django-env) ubuntu@ip-172-31-47-234:~/django_tutorial$ pip list</span><br><span class="line">Package    Version</span><br><span class="line">---------- -------</span><br><span class="line">pip        19.2.3 </span><br><span class="line">setuptools 41.2.0 </span><br><span class="line">WARNING: You are using pip version 19.2.3, however version 20.0.2 is available.</span><br><span class="line">You should consider upgrading via the <span class="string">'pip install --upgrade pip'</span> <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>만약, 다른 프로젝트를 생성하고 싶으면, 그 프로젝트를 진행할 폴더를 생성 한다음, 가상환경을 적용후에 그 폴더안에서 프로젝트를 진행하면 됩니다. </p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>환경설정</category>
+        <category>가상환경</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>pyenv</tag>
+        <tag>virtualenv</tag>
+        <tag>가상환경</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>가상환경 pyenv, virtualenv - 3편</title>
+    <url>/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="가상환경-설정-pyenv-virtualenv-3편"><a href="#가상환경-설정-pyenv-virtualenv-3편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 3편"></a>가상환경 설정 - pyenv, virtualenv 3편</h2><br>
+
+<blockquote>
+<p>우분투가 새로 설치되었으면, </p>
+<p>이 3편부터 진행 하면 됩니다. </p>
+</blockquote>
+<br>
+
+<p>본격적으로 가상환경에 필요한 <code>pyenv</code>설치를 진행 합니다 </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<br>
+
+<h2 id="설치-전-필요-패키지"><a href="#설치-전-필요-패키지" class="headerlink" title="설치 전 필요 패키지"></a>설치 전 필요 패키지</h2><br>
+
+<p>설치에 앞서, 필요 패키지들을 설치 해줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install git </span><br><span class="line">sudo apt install curl</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="pyenv-설치-진행"><a href="#pyenv-설치-진행" class="headerlink" title="pyenv 설치 진행"></a><code>pyenv</code> 설치 진행</h2><br>
+
+<p><br>아래 깃허브 페이지 참조해서 진행 합니다. </p>
+<p><a href="https://github.com/pyenv/pyenv-installer" target="_blank" rel="noopener">https://github.com/pyenv/pyenv-installer</a></p>
+<br>
+
+<br>
+
+<blockquote>
+<p>아래 커맨드를 사용해서 인스톨을 진행 합니다</p>
+</blockquote>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>설치 완료후, 아래와 같은 스크린을 보이면 됩니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">remote: Total 10 (delta 1), reused 6 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (10/10), <span class="keyword">done</span>.</span><br><span class="line"></span><br><span class="line">WARNING: seems you still have not added <span class="string">'pyenv'</span> to the load path.</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load pyenv automatically by adding</span></span><br><span class="line"><span class="comment"># the following to ~/.bashrc:</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/home/ubuntu/.pyenv/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>*<em>위 스크린의 마지막 부분 (아래 내용)을  *</em></p>
+<p><strong>클립보드에 복사해 줍니다</strong> </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load pyenv automatically by adding</span></span><br><span class="line"><span class="comment"># the following to ~/.bashrc:</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/home/ubuntu/.pyenv/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>정말 중요한 포인트 입니다.</strong></p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="export-PATH를-bashrc에-등록"><a href="#export-PATH를-bashrc에-등록" class="headerlink" title="export PATH를 ~/.bashrc에 등록"></a><code>export PATH</code>를 <code>~/.bashrc</code>에 등록</h2><br>
+
+<br>
+
+<p>위에 복사해둔 내용을 <code>~/.bashrc</code> 파일의 마지막줄에 추가해 줘야 합니다. </p>
+<br>
+
+<blockquote>
+<p>만약 위에 코드에서, </p>
+<p><code># the follwoing to ~/.bashrc:</code> 부분에 <code>~/.bashrc</code> 부분이 다르게 나타나면 </p>
+<p>그 경로가 바로 수정해줘야 하는 파일이 됩니다.  예) <code>~./zshrc</code> 등등 </p>
+</blockquote>
+<br>
+
+<p>어쨋든 저는 <code>~/.bashrc</code>가 나와있기 때문에, <code>~/.bashrc</code>를 아래 명령어로 열어 줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위에 복사해놓은 내용을, 파일 맨 아래에 붙여 넣습니다. </p>
+<br>
+
+<img src="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/image1.png" class=""><br>
+
+<br>
+
+<br>
+
+<p>추가후에 파일을 세이브 한뒤에. 터미널을 다시 실행 시켜줍니다. </p>
+<br>
+
+<br>
+
+<h2 id="pyenv-설치-확인하기"><a href="#pyenv-설치-확인하기" class="headerlink" title="pyenv 설치 확인하기"></a><code>pyenv</code> 설치 확인하기</h2><p><br><br></p>
+<p><code>pyenv</code> 명령어를 실행해서, 아래와 같은 화면이 보이면, 일단 설치는 완료 된거 맞습니다.<br>명령어 목록들이 화면에 쭈욱 나옵니다. <br><br><br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ pyenv</span><br><span class="line"></span><br><span class="line">pyenv 1.2.18</span><br><span class="line">Usage: pyenv &lt;<span class="built_in">command</span>&gt; [&lt;args&gt;]</span><br><span class="line"></span><br><span class="line">Some useful pyenv commands are:</span><br><span class="line">   --version   Display the version of pyenv</span><br><span class="line">   virtualenv-prefix   Display real_prefix <span class="keyword">for</span> a Python virtualenv version</span><br><span class="line">   virtualenvs   List all Python virtualenvs found <span class="keyword">in</span> `<span class="variable">$PYENV_ROOT</span>/versions/*<span class="string">'.</span></span><br><span class="line"><span class="string">   whence      List all Python versions that contain the given executable</span></span><br><span class="line"><span class="string">   which       Display the full path to an executable</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">See `pyenv help &lt;command&gt;'</span> <span class="keyword">for</span> information on a specific <span class="built_in">command</span>.</span><br><span class="line">For full documentation, see: https://github.com/pyenv/pyenv<span class="comment">#readme</span></span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="pyenv로-파이썬-설치하기"><a href="#pyenv로-파이썬-설치하기" class="headerlink" title="pyenv로 파이썬 설치하기"></a><code>pyenv</code>로 파이썬 설치하기</h2><br>
+
+<br>
+
+<h3 id="pyenv를-사용해서-파이썬-설치준비"><a href="#pyenv를-사용해서-파이썬-설치준비" class="headerlink" title="pyenv를 사용해서 파이썬 설치준비"></a><code>pyenv</code>를 사용해서 파이썬 설치준비</h3><br>
+
+<br>
+
+<p><code>pyenv</code> 를 사용해서 파이썬을 설치할수 있습니다. 우분투18.04 기준으로, <br></p>
+<p>아래 명령어를 실행해서 설치전 필요 패키지들을 설치 합니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \</span><br><span class="line">libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \</span><br><span class="line">xz-utils tk-dev libffi-dev liblzma-dev python-openssl git</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>아래와 같은 화면이 보이면, 필요 패키지 설치가 된겁니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">or (x-terminal-emulator) <span class="keyword">in</span> auto mode</span><br><span class="line">Setting up tk (8.6.0+9) ...</span><br><span class="line">Setting up libgl1:amd64 (1.0.0-2ubuntu2.3) ...</span><br><span class="line">Setting up tk-dev:amd64 (8.6.0+9) ...</span><br><span class="line">Setting up x11-utils (7.7+3build1) ...</span><br><span class="line">Setting up libgl1-mesa-glx:amd64 (19.2.8-0ubuntu0~18.04.3) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> man-db (2.8.3-2ubuntu0.1) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> mime-support (3.60ubuntu1) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> ureadahead (0.100.0-21) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> install-info (6.5.0.dfsg.1-2) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> libc-bin (2.27-3ubuntu1) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> systemd (237-3ubuntu10.39) ...</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="pyenv로-설치-가능한-파이썬-목록-확인"><a href="#pyenv로-설치-가능한-파이썬-목록-확인" class="headerlink" title="pyenv로 설치 가능한 파이썬 목록 확인"></a><code>pyenv</code>로 설치 가능한 파이썬 목록 확인</h3><br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pyenv install --list</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>아래와 같이 설치 가능한 버전 목록 출력 </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">3.6.9</span><br><span class="line">3.6.10</span><br><span class="line">3.7.0</span><br><span class="line">3.7-dev</span><br><span class="line">3.7.1</span><br><span class="line">3.7.2</span><br><span class="line">3.7.3</span><br><span class="line">3.7.4</span><br><span class="line">3.7.5</span><br><span class="line">3.7.6</span><br><span class="line">3.7.7</span><br><span class="line">3.8.0</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>설치 가능한 파이썬 버전이 굉장히 많은데 </p>
+<p>여기서 저는 3.8.0 을 설치해 보려 합니다. </p>
+</blockquote>
+<br>
+
+<p>아래 명령어를 사용해서, 파이썬 3.8.0 을 설치해 줍니다 </p>
+<p><br><br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pyenv install 3.8.0</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Downloading Python-3.8.0.tar.xz...</span><br><span class="line">-&gt; https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tar.xz</span><br><span class="line">Installing Python-3.8.0...</span><br><span class="line">Installed Python-3.8.0 to /home/ubuntu/.pyenv/versions/3.8.0</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>파이썬 3.8.0 의 설치가 완료 되었습니다.  </p>
+<p><br><br></p>
+<h3 id="pyenv로-시스템에-파이썬-목록-확인"><a href="#pyenv로-시스템에-파이썬-목록-확인" class="headerlink" title="pyenv로 시스템에 파이썬 목록 확인"></a><code>pyenv</code>로 시스템에 파이썬 목록 확인</h3><p><br><br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pyenv versions</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>아래와 같이 <code>*</code>가 붙은게 현재 사용중인 파이썬 입니다. 아직 <code>3.8.0</code>으로 설정이 안되어 있는데. <br></p>
+<p>설정 진행을 할겁니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">* system (<span class="built_in">set</span> by /home/ubuntu/.pyenv/version)</span><br><span class="line">  3.8.0</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p><code>pyenv</code>를 설치하고, 파이썬 3.8.0을 설치 하였습니다. </p>
+<p>다음 포스팅에는 파이썬 3.8.0 을 전역 파이썬 환경으로 설정하고, 가상환경 관리를 다루겠습니다 </p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>환경설정</category>
+        <category>가상환경</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>pyenv</tag>
+        <tag>virtualenv</tag>
+        <tag>가상환경</tag>
+        <tag>Ubuntu</tag>
+        <tag>파이썬설치</tag>
+        <tag>우분투</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>가상환경 pyenv, virtualenv - 2편</title>
+    <url>/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="가상환경-설정-pyenv-virtualenv-2편"><a href="#가상환경-설정-pyenv-virtualenv-2편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 2편"></a>가상환경 설정 - pyenv, virtualenv 2편</h2><br>
+
+<p>제 개인 컴퓨터에는 우분투가 설치되어 있고. 이미 파이썬과 가상환경 세팅이 완료가 되어 있기 때문에. </p>
+<p><br>아주 처음부터 진행하기 위해서 AWS EC2를 새로 생성해서, 갓 설치된 우분투로 가상환경 설치를 진행 해보려 합니다.  </p>
+<br>
+
+<blockquote>
+<p><strong>컴퓨터에 우분투를 새로 설치하였으면</strong> </p>
+<p><strong>AWS로 접속 하지 않고 본인의 피씨 터미널에서 진행해야 합니다</strong> </p>
+</blockquote>
+<br>
+
+<p>순전히, 새로운 우분투가 필요해서 AWS 에 접속해서 진행한것이지. 새로 우분투를 설치한 피씨가 있었으면, <br></p>
+<p>제 피씨에서 진행 했을겁니다. </p>
+<p><strong>컴퓨터에 새로 우분투를 설치하신분은 이 과정은 넘어갑니다</strong></p>
+<a id="more"></a>
+
+<br>
+
+<br>
+
+<h2 id="AWS-EC2-접속하기"><a href="#AWS-EC2-접속하기" class="headerlink" title="AWS EC2 접속하기"></a>AWS EC2 접속하기</h2><br>
+
+<br>
+
+<blockquote>
+<p>AWS EC2 생성과, 키 설정에 대한 설명은 스킵하겠습니다. </p>
+</blockquote>
+<p><br>자신의 PC 터미널에 아래 명령어를 사용해서 본인의 인스턴스에 접속합니다.  </p>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -i ~&#x2F;.ssh&#x2F;12th.pem ubuntu@13.109.21.6</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<img src="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/image1.png" class="">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>접속이 잘 된것을 확인할수 있습니다. </p>
+</blockquote>
+<br>
+
+<p><br><img src="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/image2.png" class=""></p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>AWS 에 생성한 우분투 인스턴스에 접속을 해보았습니다. </p>
+<p><br>순전히 갓 설치된 우분투 시스템이 필요해서 생성후 만든 인스턴스이고.. <br></p>
+<p>이 과정은 사실 가상환경 설정과는 무관합니다.</p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>환경설정</category>
+        <category>가상환경</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>pyenv</tag>
+        <tag>virtualenv</tag>
+        <tag>가상환경</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>가상환경 pyenv, virtualenv - 1편</title>
+    <url>/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-1%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="가상환경-설정-pyenv-virtualenv-1편"><a href="#가상환경-설정-pyenv-virtualenv-1편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 1편"></a>가상환경 설정 - pyenv, virtualenv 1편</h2><br>
+
+<br>
+
+<blockquote>
+<p>virtualenv, pyenv-virtualenv </p>
+<p>pyenv 는 다중의 파이썬 버전을 쉽게 바꿔가며 사용할수 있게 해주는 도구 입니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="Virtualenv"><a href="#Virtualenv" class="headerlink" title="Virtualenv"></a>Virtualenv</h2><br>
+
+<br>
+
+<blockquote>
+<p>virtualenv 는 분리된 파이썬 환경을 </p>
+<p>만들어 주는 도구 입니다.</p>
+</blockquote>
+<br>
+
+<p><br><a id="more"></a></p>
+<p>가상환경은 각 프로젝트마다 설치된 패키지들의 충돌을 막아주기 위해서 필요합니다. </p>
+<p>파이썬에서 기본적으로 사용되는 패키지는 virtualenv 이고, pyenv 와 같이 사용해서 <br></p>
+<br>
+
+<p>여러개의 파이썬 버전 환경을 적용한 가상환경을 생성하여 사용할수 있습니다. </p>
+<br>
+
+<br>
+
+<h2 id="가상환경은-왜-필요한가"><a href="#가상환경은-왜-필요한가" class="headerlink" title="가상환경은 왜 필요한가"></a>가상환경은 왜 필요한가</h2><br>
+
+<br>
+
+<p>우리의 시스템에 설치된 파이썬 환경은 1개 입니다. </p>
+<p>그런데, 우리는 여러개의 프로젝트를 진행 해야 하는 상황이 옵니다. </p>
+<br>
+
+<blockquote>
+<p>아래 상황을 생각해 봅니다 </p>
+</blockquote>
+<br>
+
+<ul>
+<li>프로젝트 A 는 페키지 1, 2, 3 이 필요합니다 </li>
+<li>프로젝트 B 는 패키지 1, 2, 4, 5 가 필요합니다 </li>
+<li>프로젝트 C는 패키지 1만 필요합니다. </li>
+</ul>
+<br>
+
+<p>시스템에 존재하나 1개의 파이썬 환경으로 프로젝트 A, B, C 모두 다 진행할수 있지만, <br>각 프로젝트에 딸려있는 패키지들끼리 충돌할수도 있습니다. </p>
+<br>
+
+<p>그리고, 필요하지도 않은 패키지를 모두 시스템에 설치해야하는데.. 필요하지 않은 패키지를 설치할 이유가 있을까요? </p>
+<br>
+
+<br>
+
+<p><strong>프로젝트 A 를 진행할 파이썬 환경 1개</strong></p>
+<p><strong>프로젝트 B 를 진행할 파이썬 환경 1개</strong></p>
+<p><strong>프로젝트 C 를 진행할 파이썬 환경 1개</strong></p>
+<br>
+
+<p>이렇게 3개의 환경을 가지고 있으면 좋겠는데.. 그렇다면 PC 가 3대 있어야 하는건가요? </p>
+<br>
+
+<br>
+
+<h2 id="pyenv-virtualenv-사용해서-가상환경-설정"><a href="#pyenv-virtualenv-사용해서-가상환경-설정" class="headerlink" title="pyenv, virtualenv 사용해서 가상환경 설정"></a>pyenv, virtualenv 사용해서 가상환경 설정</h2><br>
+
+<p><code>pyenv</code>와 <code>virtualenv</code> 같은 라이브러리를 사용하여, 가상환경을 생성후, 별도의 시스템 환경으로 각각의 프로젝트들을 진행할수 있습니다. </p>
+<p><br><br></p>
+<blockquote>
+<p>시스템에 이미 설치되어 있는 파이썬과 </p>
+<p>분리된 가상환경을 만들어서 </p>
+<p>각각의 프로젝트를 진행 할수 있습니다. </p>
+</blockquote>
+<p><br><br></p>
+<ul>
+<li>가상환경 A - 프로젝트A에 필요한 패키지들만 설치후, 프로젝트 A 진행 </li>
+<li>가상환경 B - 프로젝트B에 필요한 패키지들만 설치후, 프로젝트 B 진행 </li>
+<li>가상환경 C - 프로젝트C에 필요한 패키지들만 설치후, 프로젝트 C 진행 </li>
+</ul>
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>가상환경이 필요한 이유에 대해서 아주 짧게 알아보았습니다. </p>
+<p><br>다음 포스팅은 라이브러리 설치 및 가상환경 설정 에 대해서 진행 합니다. </p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>환경설정</category>
+        <category>가상환경</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>pyenv</tag>
+        <tag>virtualenv</tag>
+        <tag>가상환경</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PEP8 Variable Annotations</title>
     <url>/2020/04/10/PEP8-Variable-Annotations/</url>
     <content><![CDATA[<h2 id="변수-Annotations"><a href="#변수-Annotations" class="headerlink" title="변수 Annotations"></a>변수 Annotations</h2><br>

@@ -9,8 +9,144 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Fri, 10 Apr 2020 06:42:51 GMT</pubDate>
+    <pubDate>Fri, 10 Apr 2020 11:05:58 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>가상환경 pyenv, virtualenv - 4편</title>
+      <link>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/</guid>
+      <pubDate>Fri, 10 Apr 2020 10:47:13 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;가상환경-설정-pyenv-virtualenv-4편&quot;&gt;&lt;a href=&quot;#가상환경-설정-pyenv-virtualenv-4편&quot; class=&quot;headerlink&quot; title=&quot;가상환경 설정 - pyenv, virtualenv - 4편&quot;&gt;&lt;/a&gt;가상환경 설정 - pyenv, virtualenv - 4편&lt;/h2&gt;&lt;h2 id=&quot;pyenv-virtualenv를-사용해서-가상환경-사용&quot;&gt;&lt;a href=&quot;#pyenv-virtualenv를-사용해서-가상환경-사용&quot; class=&quot;headerlink&quot; title=&quot;pyenv-virtualenv를 사용해서 가상환경 사용&quot;&gt;&lt;/a&gt;&lt;code&gt;pyenv-virtualenv&lt;/code&gt;를 사용해서 가상환경 사용&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;지난 포스팅에서 파이썬 3.8.0 을 설치하였습니다. &lt;/p&gt;
+&lt;p&gt;가상환경 생성 준비는 다 된것 같으니. 직접 가상환경을 생성하고 사용해 봅니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;h2 id=&quot;파이썬-버전-확인&quot;&gt;&lt;a href=&quot;#파이썬-버전-확인&quot; class=&quot;headerlink&quot; title=&quot;파이썬 버전 확인&quot;&gt;&lt;/a&gt;파이썬 버전 확인&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;&lt;code&gt;pyenv versions&lt;/code&gt;를 실행하여, 버전을 확인합니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ubuntu@ip-172-31-47-234:~$ pyenv versions&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* system (&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; by /home/ubuntu/.pyenv/version)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  3.8.0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;현재 시스템에서 사용하고 있는 파이썬 버전이 표시됩니다. &lt;code&gt;3.8.0&lt;/code&gt;을 설치하였는데. 아직 사용중이지 않습니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;*&lt;/code&gt; 가 붙어 있는게 현재 사용하고 있는 버전의 파이썬입니다 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="가상환경-설정-pyenv-virtualenv-4편"><a href="#가상환경-설정-pyenv-virtualenv-4편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv - 4편"></a>가상환경 설정 - pyenv, virtualenv - 4편</h2><h2 id="pyenv-virtualenv를-사용해서-가상환경-사용"><a href="#pyenv-virtualenv를-사용해서-가상환경-사용" class="headerlink" title="pyenv-virtualenv를 사용해서 가상환경 사용"></a><code>pyenv-virtualenv</code>를 사용해서 가상환경 사용</h2><br><br><p>지난 포스팅에서 파이썬 3.8.0 을 설치하였습니다. </p><p>가상환경 생성 준비는 다 된것 같으니. 직접 가상환경을 생성하고 사용해 봅니다. </p><br><h2 id="파이썬-버전-확인"><a href="#파이썬-버전-확인" class="headerlink" title="파이썬 버전 확인"></a>파이썬 버전 확인</h2><br><p><code>pyenv versions</code>를 실행하여, 버전을 확인합니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ pyenv versions</span><br><span class="line">* system (<span class="built_in">set</span> by /home/ubuntu/.pyenv/version)</span><br><span class="line">  3.8.0</span><br></pre></td></tr></table></figure><br><p>현재 시스템에서 사용하고 있는 파이썬 버전이 표시됩니다. <code>3.8.0</code>을 설치하였는데. 아직 사용중이지 않습니다. </p><br><blockquote><p><code>*</code> 가 붙어 있는게 현재 사용하고 있는 버전의 파이썬입니다 </p></blockquote><br><a id="more"></a> <br><h2 id="시스템-전역에서-사용할-파이썬"><a href="#시스템-전역에서-사용할-파이썬" class="headerlink" title="시스템 전역에서 사용할 파이썬"></a>시스템 전역에서 사용할 파이썬</h2><br><br><p>3.8.0 을 사용하기 위해, 아래 명령어를 입력합니다 </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv global 3.8.0</span><br></pre></td></tr></table></figure><br><p>실행하고, 버전을 확인해 보면,<br> <code>*</code>가 3.8.0 앞에 붙었습니다. 이제 전역에서 3.8.0 을 사용합니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ pyenv versions</span><br><span class="line">  system</span><br><span class="line">* 3.8.0 (<span class="built_in">set</span> by /home/ubuntu/.pyenv/version)</span><br></pre></td></tr></table></figure><br><br><h2 id="가상환경-생성"><a href="#가상환경-생성" class="headerlink" title="가상환경 생성"></a>가상환경 생성</h2><br><p>파이썬 3.8.0 으로 가상환경 하나를 생성해 보겠습니다. <br></p><p>가상 환경 이름은 <code>django-env</code>로 짓겠습니다. </p><br><p>해당 명령어 포맷은 <code>pyenv virtualenv 3.8.0 &lt;가상환경 이름&gt;</code> 입니다. 아래 커멘드를 참조. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv virtualenv 3.8.0 django-env</span><br></pre></td></tr></table></figure><br><p>커맨드 실행후에는 아래와 같은 메시지가 나옵니다. <br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Looking <span class="keyword">in</span> links: /tmp/tmpt74f1znk</span><br><span class="line">Requirement already satisfied: setuptools <span class="keyword">in</span> /home/ubuntu/.pyenv/versions/3.8.0/envs/django-env/lib/python3.8/site-packages (41.2.0)</span><br><span class="line">Requirement already satisfied: pip <span class="keyword">in</span> /home/ubuntu/.pyenv/versions/3.8.0/envs/django-env/lib/python3.8/site-packages (19.2.3)</span><br></pre></td></tr></table></figure><br><br><blockquote><p>가상환경 <code>django-env</code>가 생성 완료 되었습니다. </p></blockquote><br><br><h2 id="특정-폴더에-가상환경-적용"><a href="#특정-폴더에-가상환경-적용" class="headerlink" title="특정 폴더에 가상환경 적용"></a>특정 폴더에 가상환경 적용</h2><br><br><p><code>django_tutorial</code> 이라는 폴더를 하나 생성해줍니다. </p><br><p>해당 폴더로 가서, 그 폴더에 가상환경을 적용해 봅니다. <br></p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ mkdir django_tutorial</span><br><span class="line"></span><br><span class="line">ubuntu@ip-172-31-47-234:~$ ls</span><br><span class="line">django_tutorial  main_projects</span><br><span class="line"></span><br><span class="line">ubuntu@ip-172-31-47-234:~$ <span class="built_in">cd</span> django_tutorial/</span><br></pre></td></tr></table></figure><br><br><p>해당 폴더 안에서, 아래 명령어를 실행해줍니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~/django_tutorial$ pyenv <span class="built_in">local</span> django-env</span><br></pre></td></tr></table></figure><br><br><p><code>django-env</code> 환경이 폴더에 잘 적용되었는지 아닌지 확인 하려면, <br></p><p>아래와 같이 커맨드라인 맨 왼쪽에 <code>(django-env)</code> 가 표시되는지 확인 해 봅니다. <code>()</code>안에 가상환경 이름이 표시되어 있지 않으면, 제대로 적용이 되지 않은것 입니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(django-env) ubuntu@ip-172-31-47-234:~/django_tutorial</span><br></pre></td></tr></table></figure><br><p><code>pyenv versions</code> 명령어를 실행해서, 현재 폴더에서 사용하고 있는 환경을 확인 해 봅니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(django-env) ubuntu@ip-172-31-47-234:~/django_tutorial$ pyenv versions</span><br><span class="line">  system</span><br><span class="line">  3.8.0</span><br><span class="line">  3.8.0/envs/django-env</span><br><span class="line">* django-env (<span class="built_in">set</span> by /home/ubuntu/django_tutorial/.python-version)</span><br></pre></td></tr></table></figure><br><blockquote><p><code>*</code>가 django-env 앞에 붙어 있습니다. <br></p><p>해당폴더에 제대로 적용 된것을 확인 할수 있습니다. <br></p></blockquote><p><br><br></p><h2 id="가상환경에-설치된-패키지-목록-확인"><a href="#가상환경에-설치된-패키지-목록-확인" class="headerlink" title="가상환경에 설치된 패키지 목록 확인"></a>가상환경에 설치된 패키지 목록 확인</h2><p><br><br></p><p><code>pip list</code>를 실행해서 설치된 패키지들을 확인해 봅니다.</p><p><br>2개 밖에 설치가 안되어 있는데. 이제 해당 폴더에서 진행할 프로젝트의 필요에 따라 패키지를 설치해도. <br></p><br><blockquote><p>원래 시스템에 존재하던 파이썬에는 패키지가 설치되지 않습니다. <br><br></p><p>해당 폴더안에 있는 파이썬 환경에만 패키지가 설치 됩니다. </p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(django-env) ubuntu@ip-172-31-47-234:~/django_tutorial$ pip list</span><br><span class="line">Package    Version</span><br><span class="line">---------- -------</span><br><span class="line">pip        19.2.3 </span><br><span class="line">setuptools 41.2.0 </span><br><span class="line">WARNING: You are using pip version 19.2.3, however version 20.0.2 is available.</span><br><span class="line">You should consider upgrading via the <span class="string">'pip install --upgrade pip'</span> <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure><br><p>만약, 다른 프로젝트를 생성하고 싶으면, 그 프로젝트를 진행할 폴더를 생성 한다음, 가상환경을 적용후에 그 폴더안에서 프로젝트를 진행하면 됩니다. </p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>가상환경 pyenv, virtualenv - 3편</title>
+      <link>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/</guid>
+      <pubDate>Fri, 10 Apr 2020 10:17:45 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;가상환경-설정-pyenv-virtualenv-3편&quot;&gt;&lt;a href=&quot;#가상환경-설정-pyenv-virtualenv-3편&quot; class=&quot;headerlink&quot; title=&quot;가상환경 설정 - pyenv, virtualenv 3편&quot;&gt;&lt;/a&gt;가상환경 설정 - pyenv, virtualenv 3편&lt;/h2&gt;&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;우분투가 새로 설치되었으면, &lt;/p&gt;
+&lt;p&gt;이 3편부터 진행 하면 됩니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;p&gt;본격적으로 가상환경에 필요한 &lt;code&gt;pyenv&lt;/code&gt;설치를 진행 합니다 &lt;/p&gt;
+&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="가상환경-설정-pyenv-virtualenv-3편"><a href="#가상환경-설정-pyenv-virtualenv-3편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 3편"></a>가상환경 설정 - pyenv, virtualenv 3편</h2><br><blockquote><p>우분투가 새로 설치되었으면, </p><p>이 3편부터 진행 하면 됩니다. </p></blockquote><br><p>본격적으로 가상환경에 필요한 <code>pyenv</code>설치를 진행 합니다 </p><br><a id="more"></a><br><br><h2 id="설치-전-필요-패키지"><a href="#설치-전-필요-패키지" class="headerlink" title="설치 전 필요 패키지"></a>설치 전 필요 패키지</h2><br><p>설치에 앞서, 필요 패키지들을 설치 해줍니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git </span><br><span class="line">sudo apt install curl</span><br></pre></td></tr></table></figure><br><br><h2 id="pyenv-설치-진행"><a href="#pyenv-설치-진행" class="headerlink" title="pyenv 설치 진행"></a><code>pyenv</code> 설치 진행</h2><br><p><br>아래 깃허브 페이지 참조해서 진행 합니다. </p><p><a href="https://github.com/pyenv/pyenv-installer" target="_blank" rel="noopener">https://github.com/pyenv/pyenv-installer</a></p><br><br><blockquote><p>아래 커맨드를 사용해서 인스톨을 진행 합니다</p></blockquote><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</span><br></pre></td></tr></table></figure><br><p>설치 완료후, 아래와 같은 스크린을 보이면 됩니다. </p><br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">remote: Total 10 (delta 1), reused 6 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (10/10), <span class="keyword">done</span>.</span><br><span class="line"></span><br><span class="line">WARNING: seems you still have not added <span class="string">'pyenv'</span> to the load path.</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load pyenv automatically by adding</span></span><br><span class="line"><span class="comment"># the following to ~/.bashrc:</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/home/ubuntu/.pyenv/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure><br><br><blockquote><p>*<em>위 스크린의 마지막 부분 (아래 내용)을  *</em></p><p><strong>클립보드에 복사해 줍니다</strong> </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Load pyenv automatically by adding</span></span><br><span class="line"><span class="comment"># the following to ~/.bashrc:</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/home/ubuntu/.pyenv/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure><p><strong>정말 중요한 포인트 입니다.</strong></p></blockquote><br><br><h2 id="export-PATH를-bashrc에-등록"><a href="#export-PATH를-bashrc에-등록" class="headerlink" title="export PATH를 ~/.bashrc에 등록"></a><code>export PATH</code>를 <code>~/.bashrc</code>에 등록</h2><br><br><p>위에 복사해둔 내용을 <code>~/.bashrc</code> 파일의 마지막줄에 추가해 줘야 합니다. </p><br><blockquote><p>만약 위에 코드에서, </p><p><code># the follwoing to ~/.bashrc:</code> 부분에 <code>~/.bashrc</code> 부분이 다르게 나타나면 </p><p>그 경로가 바로 수정해줘야 하는 파일이 됩니다.  예) <code>~./zshrc</code> 등등 </p></blockquote><br><p>어쨋든 저는 <code>~/.bashrc</code>가 나와있기 때문에, <code>~/.bashrc</code>를 아래 명령어로 열어 줍니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure><br><p>위에 복사해놓은 내용을, 파일 맨 아래에 붙여 넣습니다. </p><br><img src="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/image1.png" class=""><br><br><br><p>추가후에 파일을 세이브 한뒤에. 터미널을 다시 실행 시켜줍니다. </p><br><br><h2 id="pyenv-설치-확인하기"><a href="#pyenv-설치-확인하기" class="headerlink" title="pyenv 설치 확인하기"></a><code>pyenv</code> 설치 확인하기</h2><p><br><br></p><p><code>pyenv</code> 명령어를 실행해서, 아래와 같은 화면이 보이면, 일단 설치는 완료 된거 맞습니다.<br>명령어 목록들이 화면에 쭈욱 나옵니다. <br><br><br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ pyenv</span><br><span class="line"></span><br><span class="line">pyenv 1.2.18</span><br><span class="line">Usage: pyenv &lt;<span class="built_in">command</span>&gt; [&lt;args&gt;]</span><br><span class="line"></span><br><span class="line">Some useful pyenv commands are:</span><br><span class="line">   --version   Display the version of pyenv</span><br><span class="line">   virtualenv-prefix   Display real_prefix <span class="keyword">for</span> a Python virtualenv version</span><br><span class="line">   virtualenvs   List all Python virtualenvs found <span class="keyword">in</span> `<span class="variable">$PYENV_ROOT</span>/versions/*<span class="string">'.</span></span><br><span class="line"><span class="string">   whence      List all Python versions that contain the given executable</span></span><br><span class="line"><span class="string">   which       Display the full path to an executable</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">See `pyenv help &lt;command&gt;'</span> <span class="keyword">for</span> information on a specific <span class="built_in">command</span>.</span><br><span class="line">For full documentation, see: https://github.com/pyenv/pyenv<span class="comment">#readme</span></span><br></pre></td></tr></table></figure><p><br><br></p><h2 id="pyenv로-파이썬-설치하기"><a href="#pyenv로-파이썬-설치하기" class="headerlink" title="pyenv로 파이썬 설치하기"></a><code>pyenv</code>로 파이썬 설치하기</h2><br><br><h3 id="pyenv를-사용해서-파이썬-설치준비"><a href="#pyenv를-사용해서-파이썬-설치준비" class="headerlink" title="pyenv를 사용해서 파이썬 설치준비"></a><code>pyenv</code>를 사용해서 파이썬 설치준비</h3><br><br><p><code>pyenv</code> 를 사용해서 파이썬을 설치할수 있습니다. 우분투18.04 기준으로, <br></p><p>아래 명령어를 실행해서 설치전 필요 패키지들을 설치 합니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \</span><br><span class="line">libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \</span><br><span class="line">xz-utils tk-dev libffi-dev liblzma-dev python-openssl git</span><br></pre></td></tr></table></figure><br><p>아래와 같은 화면이 보이면, 필요 패키지 설치가 된겁니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">or (x-terminal-emulator) <span class="keyword">in</span> auto mode</span><br><span class="line">Setting up tk (8.6.0+9) ...</span><br><span class="line">Setting up libgl1:amd64 (1.0.0-2ubuntu2.3) ...</span><br><span class="line">Setting up tk-dev:amd64 (8.6.0+9) ...</span><br><span class="line">Setting up x11-utils (7.7+3build1) ...</span><br><span class="line">Setting up libgl1-mesa-glx:amd64 (19.2.8-0ubuntu0~18.04.3) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> man-db (2.8.3-2ubuntu0.1) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> mime-support (3.60ubuntu1) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> ureadahead (0.100.0-21) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> install-info (6.5.0.dfsg.1-2) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> libc-bin (2.27-3ubuntu1) ...</span><br><span class="line">Processing triggers <span class="keyword">for</span> systemd (237-3ubuntu10.39) ...</span><br></pre></td></tr></table></figure><br><br><h3 id="pyenv로-설치-가능한-파이썬-목록-확인"><a href="#pyenv로-설치-가능한-파이썬-목록-확인" class="headerlink" title="pyenv로 설치 가능한 파이썬 목록 확인"></a><code>pyenv</code>로 설치 가능한 파이썬 목록 확인</h3><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install --list</span><br></pre></td></tr></table></figure><br><p>아래와 같이 설치 가능한 버전 목록 출력 </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">3.6.9</span><br><span class="line">3.6.10</span><br><span class="line">3.7.0</span><br><span class="line">3.7-dev</span><br><span class="line">3.7.1</span><br><span class="line">3.7.2</span><br><span class="line">3.7.3</span><br><span class="line">3.7.4</span><br><span class="line">3.7.5</span><br><span class="line">3.7.6</span><br><span class="line">3.7.7</span><br><span class="line">3.8.0</span><br></pre></td></tr></table></figure><br><br><blockquote><p>설치 가능한 파이썬 버전이 굉장히 많은데 </p><p>여기서 저는 3.8.0 을 설치해 보려 합니다. </p></blockquote><br><p>아래 명령어를 사용해서, 파이썬 3.8.0 을 설치해 줍니다 </p><p><br><br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.8.0</span><br></pre></td></tr></table></figure><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Downloading Python-3.8.0.tar.xz...</span><br><span class="line">-&gt; https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tar.xz</span><br><span class="line">Installing Python-3.8.0...</span><br><span class="line">Installed Python-3.8.0 to /home/ubuntu/.pyenv/versions/3.8.0</span><br></pre></td></tr></table></figure><br><p>파이썬 3.8.0 의 설치가 완료 되었습니다.  </p><p><br><br></p><h3 id="pyenv로-시스템에-파이썬-목록-확인"><a href="#pyenv로-시스템에-파이썬-목록-확인" class="headerlink" title="pyenv로 시스템에 파이썬 목록 확인"></a><code>pyenv</code>로 시스템에 파이썬 목록 확인</h3><p><br><br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv versions</span><br></pre></td></tr></table></figure><br><p>아래와 같이 <code>*</code>가 붙은게 현재 사용중인 파이썬 입니다. 아직 <code>3.8.0</code>으로 설정이 안되어 있는데. <br></p><p>설정 진행을 할겁니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* system (<span class="built_in">set</span> by /home/ubuntu/.pyenv/version)</span><br><span class="line">  3.8.0</span><br></pre></td></tr></table></figure><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p><code>pyenv</code>를 설치하고, 파이썬 3.8.0을 설치 하였습니다. </p><p>다음 포스팅에는 파이썬 3.8.0 을 전역 파이썬 환경으로 설정하고, 가상환경 관리를 다루겠습니다 </p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>가상환경 pyenv, virtualenv - 2편</title>
+      <link>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/</guid>
+      <pubDate>Fri, 10 Apr 2020 10:02:17 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;가상환경-설정-pyenv-virtualenv-2편&quot;&gt;&lt;a href=&quot;#가상환경-설정-pyenv-virtualenv-2편&quot; class=&quot;headerlink&quot; title=&quot;가상환경 설정 - pyenv, virtualenv 2편&quot;&gt;&lt;/a&gt;가상환경 설정 - pyenv, virtualenv 2편&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;제 개인 컴퓨터에는 우분투가 설치되어 있고. 이미 파이썬과 가상환경 세팅이 완료가 되어 있기 때문에. &lt;/p&gt;
+&lt;p&gt;&lt;br&gt;아주 처음부터 진행하기 위해서 AWS EC2를 새로 생성해서, 갓 설치된 우분투로 가상환경 설치를 진행 해보려 합니다.  &lt;/p&gt;
+&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;컴퓨터에 우분투를 새로 설치하였으면&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AWS로 접속 하지 않고 본인의 피씨 터미널에서 진행해야 합니다&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;p&gt;순전히, 새로운 우분투가 필요해서 AWS 에 접속해서 진행한것이지. 새로 우분투를 설치한 피씨가 있었으면, &lt;br&gt;&lt;/p&gt;
+&lt;p&gt;제 피씨에서 진행 했을겁니다. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;컴퓨터에 새로 우분투를 설치하신분은 이 과정은 넘어갑니다&lt;/strong&gt;&lt;/p&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="가상환경-설정-pyenv-virtualenv-2편"><a href="#가상환경-설정-pyenv-virtualenv-2편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 2편"></a>가상환경 설정 - pyenv, virtualenv 2편</h2><br><p>제 개인 컴퓨터에는 우분투가 설치되어 있고. 이미 파이썬과 가상환경 세팅이 완료가 되어 있기 때문에. </p><p><br>아주 처음부터 진행하기 위해서 AWS EC2를 새로 생성해서, 갓 설치된 우분투로 가상환경 설치를 진행 해보려 합니다.  </p><br><blockquote><p><strong>컴퓨터에 우분투를 새로 설치하였으면</strong> </p><p><strong>AWS로 접속 하지 않고 본인의 피씨 터미널에서 진행해야 합니다</strong> </p></blockquote><br><p>순전히, 새로운 우분투가 필요해서 AWS 에 접속해서 진행한것이지. 새로 우분투를 설치한 피씨가 있었으면, <br></p><p>제 피씨에서 진행 했을겁니다. </p><p><strong>컴퓨터에 새로 우분투를 설치하신분은 이 과정은 넘어갑니다</strong></p><a id="more"></a><br><br><h2 id="AWS-EC2-접속하기"><a href="#AWS-EC2-접속하기" class="headerlink" title="AWS EC2 접속하기"></a>AWS EC2 접속하기</h2><br><br><blockquote><p>AWS EC2 생성과, 키 설정에 대한 설명은 스킵하겠습니다. </p></blockquote><p><br>자신의 PC 터미널에 아래 명령어를 사용해서 본인의 인스턴스에 접속합니다.  </p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i ~&#x2F;.ssh&#x2F;12th.pem ubuntu@13.109.21.6</span><br></pre></td></tr></table></figure><br><img src="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/image1.png" class=""><br><br><blockquote><p>접속이 잘 된것을 확인할수 있습니다. </p></blockquote><br><p><br><img src="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/image2.png" class=""></p><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><br><p>AWS 에 생성한 우분투 인스턴스에 접속을 해보았습니다. </p><p><br>순전히 갓 설치된 우분투 시스템이 필요해서 생성후 만든 인스턴스이고.. <br></p><p>이 과정은 사실 가상환경 설정과는 무관합니다.</p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>가상환경 pyenv, virtualenv - 1편</title>
+      <link>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-1%ED%8E%B8/</link>
+      <guid>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-1%ED%8E%B8/</guid>
+      <pubDate>Fri, 10 Apr 2020 09:47:02 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;가상환경-설정-pyenv-virtualenv-1편&quot;&gt;&lt;a href=&quot;#가상환경-설정-pyenv-virtualenv-1편&quot; class=&quot;headerlink&quot; title=&quot;가상환경 설정 - pyenv, virtualenv 1편&quot;&gt;&lt;/a&gt;가상환경 설정 - pyenv, virtualenv 1편&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;virtualenv, pyenv-virtualenv &lt;/p&gt;
+&lt;p&gt;pyenv 는 다중의 파이썬 버전을 쉽게 바꿔가며 사용할수 있게 해주는 도구 입니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;h2 id=&quot;Virtualenv&quot;&gt;&lt;a href=&quot;#Virtualenv&quot; class=&quot;headerlink&quot; title=&quot;Virtualenv&quot;&gt;&lt;/a&gt;Virtualenv&lt;/h2&gt;&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;virtualenv 는 분리된 파이썬 환경을 &lt;/p&gt;
+&lt;p&gt;만들어 주는 도구 입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;p&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="가상환경-설정-pyenv-virtualenv-1편"><a href="#가상환경-설정-pyenv-virtualenv-1편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 1편"></a>가상환경 설정 - pyenv, virtualenv 1편</h2><br><br><blockquote><p>virtualenv, pyenv-virtualenv </p><p>pyenv 는 다중의 파이썬 버전을 쉽게 바꿔가며 사용할수 있게 해주는 도구 입니다. </p></blockquote><br><br><h2 id="Virtualenv"><a href="#Virtualenv" class="headerlink" title="Virtualenv"></a>Virtualenv</h2><br><br><blockquote><p>virtualenv 는 분리된 파이썬 환경을 </p><p>만들어 주는 도구 입니다.</p></blockquote><br><p><br><a id="more"></a></p><p>가상환경은 각 프로젝트마다 설치된 패키지들의 충돌을 막아주기 위해서 필요합니다. </p><p>파이썬에서 기본적으로 사용되는 패키지는 virtualenv 이고, pyenv 와 같이 사용해서 <br></p><br><p>여러개의 파이썬 버전 환경을 적용한 가상환경을 생성하여 사용할수 있습니다. </p><br><br><h2 id="가상환경은-왜-필요한가"><a href="#가상환경은-왜-필요한가" class="headerlink" title="가상환경은 왜 필요한가"></a>가상환경은 왜 필요한가</h2><br><br><p>우리의 시스템에 설치된 파이썬 환경은 1개 입니다. </p><p>그런데, 우리는 여러개의 프로젝트를 진행 해야 하는 상황이 옵니다. </p><br><blockquote><p>아래 상황을 생각해 봅니다 </p></blockquote><br><ul><li>프로젝트 A 는 페키지 1, 2, 3 이 필요합니다 </li><li>프로젝트 B 는 패키지 1, 2, 4, 5 가 필요합니다 </li><li>프로젝트 C는 패키지 1만 필요합니다. </li></ul><br><p>시스템에 존재하나 1개의 파이썬 환경으로 프로젝트 A, B, C 모두 다 진행할수 있지만, <br>각 프로젝트에 딸려있는 패키지들끼리 충돌할수도 있습니다. </p><br><p>그리고, 필요하지도 않은 패키지를 모두 시스템에 설치해야하는데.. 필요하지 않은 패키지를 설치할 이유가 있을까요? </p><br><br><p><strong>프로젝트 A 를 진행할 파이썬 환경 1개</strong></p><p><strong>프로젝트 B 를 진행할 파이썬 환경 1개</strong></p><p><strong>프로젝트 C 를 진행할 파이썬 환경 1개</strong></p><br><p>이렇게 3개의 환경을 가지고 있으면 좋겠는데.. 그렇다면 PC 가 3대 있어야 하는건가요? </p><br><br><h2 id="pyenv-virtualenv-사용해서-가상환경-설정"><a href="#pyenv-virtualenv-사용해서-가상환경-설정" class="headerlink" title="pyenv, virtualenv 사용해서 가상환경 설정"></a>pyenv, virtualenv 사용해서 가상환경 설정</h2><br><p><code>pyenv</code>와 <code>virtualenv</code> 같은 라이브러리를 사용하여, 가상환경을 생성후, 별도의 시스템 환경으로 각각의 프로젝트들을 진행할수 있습니다. </p><p><br><br></p><blockquote><p>시스템에 이미 설치되어 있는 파이썬과 </p><p>분리된 가상환경을 만들어서 </p><p>각각의 프로젝트를 진행 할수 있습니다. </p></blockquote><p><br><br></p><ul><li>가상환경 A - 프로젝트A에 필요한 패키지들만 설치후, 프로젝트 A 진행 </li><li>가상환경 B - 프로젝트B에 필요한 패키지들만 설치후, 프로젝트 B 진행 </li><li>가상환경 C - 프로젝트C에 필요한 패키지들만 설치후, 프로젝트 C 진행 </li></ul><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>가상환경이 필요한 이유에 대해서 아주 짧게 알아보았습니다. </p><p><br>다음 포스팅은 라이브러리 설치 및 가상환경 설정 에 대해서 진행 합니다. </p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-1%ED%8E%B8/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>PEP8 Variable Annotations</title>
@@ -641,184 +777,6 @@
       <content:encoded><![CDATA[<h1 id="String-Quotes-문자열-따옴표"><a href="#String-Quotes-문자열-따옴표" class="headerlink" title="String Quotes (문자열 따옴표)"></a>String Quotes (문자열 따옴표)</h1><br><br><blockquote><p>파이썬에서는, </p><p>문자열을 사용할때 작은따옴표와 큰따옴표는 똑같습니다. </p></blockquote><br><p>PEP8 에서는, 따옴표의 사용에 대한 어떠한 권장 사항이 없습니다. </p><p><br>단지 하나의 룰을 정하고, 그것을 일관되게 사용하길 바랍니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string = <span class="string">"This is string"</span> <span class="comment"># 큰 따옴표를 사용한 경우 </span></span><br><span class="line">string = <span class="string">'This is string'</span><span class="comment"># 작은 따옴표를 사용한 경우 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 두가지 방식은 같음</span></span><br></pre></td></tr></table></figure><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..<br></h2><br><p>저는 보통 작은 따옴표 <code>&#39;</code>를 사용합니다.. <code>shift</code>키를 안눌러도 되서 그런가 봅니다. </p><br><p>여러분들은 어떠신가요? <br></p><br>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-String-Quotes/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>PEP8 Code Layout - Module Level Dunder Names</title>
-      <link>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Module-Level-Dunder-Names/</link>
-      <guid>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Module-Level-Dunder-Names/</guid>
-      <pubDate>Sun, 05 Apr 2020 05:05:38 GMT</pubDate>
-      <description>
-      
-        &lt;h1 id=&quot;Module-내에-Dunder-Names&quot;&gt;&lt;a href=&quot;#Module-내에-Dunder-Names&quot; class=&quot;headerlink&quot; title=&quot;Module 내에 Dunder Names&quot;&gt;&lt;/a&gt;Module 내에 Dunder Names&lt;/h1&gt;&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;&lt;strong&gt;모듈 레벨에서 Dunder Names&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;모듈 레벨에서 &lt;code&gt;__all__&lt;/code&gt;, &lt;code&gt;__author__&lt;/code&gt;, &lt;code&gt;__version__&lt;/code&gt; 같은 “dunders” 는 모듈 docstring 뒤에 그리고 &lt;code&gt;__future__&lt;/code&gt;를 제외한 모든 import 구문 앞에 붙입니다. &lt;br&gt;&lt;/p&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;dunders &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;언더스코어 _ 두개가 붙는 메소드로 &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Double UNDERscore&lt;/strong&gt; Method 를 줄여서 &lt;/p&gt;
-&lt;p&gt;Dunder 메소드라고 부릅니다. &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-
-&lt;p&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="Module-내에-Dunder-Names"><a href="#Module-내에-Dunder-Names" class="headerlink" title="Module 내에 Dunder Names"></a>Module 내에 Dunder Names</h1><br><br><p><strong>모듈 레벨에서 Dunder Names</strong><br></p><br><br><p>모듈 레벨에서 <code>__all__</code>, <code>__author__</code>, <code>__version__</code> 같은 “dunders” 는 모듈 docstring 뒤에 그리고 <code>__future__</code>를 제외한 모든 import 구문 앞에 붙입니다. <br></p><br><br><blockquote><p>dunders </p><p><br>언더스코어 _ 두개가 붙는 메소드로 </p><p><strong>Double UNDERscore</strong> Method 를 줄여서 </p><p>Dunder 메소드라고 부릅니다. </p></blockquote><br><p><br><a id="more"></a></p><p>파이썬에서는, 아래 사항들을 의무화 합니다<br></p><br><blockquote><p><code>__future__</code> imports 는 docstring 을 제외한 어떤 코드보다 앞에 나와야 합니다.<br></p></blockquote><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""This is the example module. </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">This module does stuff </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> barry_as_FLUFL<span class="comment"># __future__ imports 가 docstring 다음에 위치합니다.</span></span><br><span class="line"></span><br><span class="line">__all__ = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line">__version__ = <span class="string">'0.1'</span></span><br><span class="line">__author__ = <span class="string">'Cardinal Biggles'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># __future__를 제외한 Dunders 는 다른 일반 imports 구문 앞에 나옵니다.</span></span><br></pre></td></tr></table></figure><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>__ 가 붙는 imports 구문에 대한 순서를 알아보았습니다.<br></p><br><p>Docstring 이 우선으로 오고, </p><p><code>__future__</code>가 두번째로 오고<br></p><p><code>__future__</code>를 제외한 기타 다른 Dunders (e.g.<code>__all__, __version__, __author__ 등등</code>) 는 세번째로 옵니다. </p><p>그리고, 나머지 보통 라이브러리 imports (e.g. import os, import sys) 가 그 뒤에 온다고 정리하면 될것 같습니다. </p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Module-Level-Dunder-Names/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>PEP8 Code Layout - Imports</title>
-      <link>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Imports/</link>
-      <guid>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Imports/</guid>
-      <pubDate>Sun, 05 Apr 2020 04:44:34 GMT</pubDate>
-      <description>
-      
-        &lt;h1 id=&quot;PEP8-Code-Layout-Imports-가져오기&quot;&gt;&lt;a href=&quot;#PEP8-Code-Layout-Imports-가져오기&quot; class=&quot;headerlink&quot; title=&quot;PEP8 Code Layout - Imports (가져오기)&quot;&gt;&lt;/a&gt;PEP8 Code Layout - Imports (가져오기)&lt;/h1&gt;&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;PEP8 코드 레이아웃, &lt;code&gt;imports&lt;/code&gt;편 입니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;&lt;code&gt;imports&lt;/code&gt; 는 해당 파일에 다른 함수나 모듈을 불러올때 사용하는 명령어 입니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;표준 라이브러리 기능이나, 다른 모듈에 있는 함수, 클래스 혹은 메써드들을 가져올때 사용합니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;PEP8에 따르면, Imports 는 보통 별도의 줄로 되어 있어야 합니다. &lt;br&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 좋은예 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; os &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sys &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 나쁜예 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sys, os&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-
-&lt;br&gt;
-
-&lt;p&gt;하지만, 아래의 경우도 괜찮습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 좋은예&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; subprocess &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; Popen, PIPE&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="PEP8-Code-Layout-Imports-가져오기"><a href="#PEP8-Code-Layout-Imports-가져오기" class="headerlink" title="PEP8 Code Layout - Imports (가져오기)"></a>PEP8 Code Layout - Imports (가져오기)</h1><br><br><p>PEP8 코드 레이아웃, <code>imports</code>편 입니다. </p><br><p><code>imports</code> 는 해당 파일에 다른 함수나 모듈을 불러올때 사용하는 명령어 입니다. </p><p><br>표준 라이브러리 기능이나, 다른 모듈에 있는 함수, 클래스 혹은 메써드들을 가져올때 사용합니다. </p><br><blockquote><p>PEP8에 따르면, Imports 는 보통 별도의 줄로 되어 있어야 합니다. <br></p></blockquote><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">import</span> os </span><br><span class="line"><span class="keyword">import</span> sys </span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br></pre></td></tr></table></figure><br><p>하지만, 아래의 경우도 괜찮습니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예</span></span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> Popen, PIPE</span><br></pre></td></tr></table></figure><br><a id="more"></a><blockquote><br><p>가져오기는 언제나 파일의 맨 위에 위치해야 하고, <br></p><p>모듈 주석이나 docstring 바로 뒤에 와야 합니다. <br></p><p>그리고 모듈 글로벌값들과 상수들 전에 와야 합니다. <br></p><br></blockquote><br><p><strong>가져오기는 아래 순서의 그룹으로 나뉩니다</strong><br></p><br><ol><li>스탠다드 라이브러리 imports</li><li>연관된 3자 모듈 / 라이브러리 imports</li><li>로컬 어플리케이션 / 라이브러리 imports<br></li></ol><p><br><br></p><p>이 그룹들 사이에는 빈줄을 넣어줘서 가져옵니다<br></p><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 파이썬 스탠다드 라이브러리 </span></span><br><span class="line"><span class="keyword">import</span> os </span><br><span class="line"></span><br><span class="line"><span class="comment"># 파이썬 3자 모듈/라이브러리 </span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask </span><br><span class="line"><span class="keyword">from</span> flask_restful <span class="keyword">import</span> Api </span><br><span class="line"></span><br><span class="line"><span class="comment"># 로컬 어플리케이션 </span></span><br><span class="line"><span class="keyword">from</span> local_module <span class="keyword">import</span> local_class </span><br><span class="line"><span class="keyword">from</span> local_package <span class="keyword">import</span> local_function</span><br></pre></td></tr></table></figure><br><br><p>추천되는 import 방식은, 절대값의 imports  입니다.<br></p><br><p>절대 경로로 가져오면, </p><p>a) 코드에서 가독성이 높아집니다, b) 만약 import system 이 잘못 설정이 되어 있더라도 적어도 에러 메시지가 더 좋게 표시됩니다. </p><br><br><p><strong>명시적인 상대경로로 import 를 하는것도 허용됩니다.</strong><br></p><p>특히, 절대 경로로 import 하는것이 불필요한 복잡한 패키지 레이아웃에서는 </p><p>명시적인 상대경로로 import 를 해도 됩니다. </p><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 절대값 import </span></span><br><span class="line"><span class="keyword">import</span> mypkg.sibling </span><br><span class="line"><span class="keyword">from</span> mypkg <span class="keyword">import</span> sibling </span><br><span class="line"><span class="keyword">from</span> mypkg.sibling <span class="keyword">import</span> example </span><br><span class="line"></span><br><span class="line"><span class="comment"># 명시적인 상대 import </span></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> sibling </span><br><span class="line"><span class="keyword">from</span> .sibling <span class="keyword">import</span> example</span><br></pre></td></tr></table></figure><br><br><p>스탠다드 라이브러리 코드는 복잡한 패키지 레이아웃을 피해야 합니다. </p><p><br>언제나 절대 경로의 import 를 하는것이 좋고, 명시적이지 않는 상대 import 는 절대 사용되면 안됩니다. </p><br><p><br><strong>클래스를 포함하고 있는 모듈에서 클래스를 가져올땐, 보통 클래스명을 써줍니다</strong><br></p><p><br><br></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> myclass <span class="keyword">import</span> MyClass </span><br><span class="line"><span class="keyword">from</span> foo.bar.yourclass <span class="keyword">import</span> YourClass </span><br><span class="line"></span><br><span class="line"><span class="comment"># 만약 클래스명이 로컬 이름과 충돌한다면, 명시적으로 스펠링을 해줍니다. </span></span><br><span class="line"><span class="keyword">import</span> myclass </span><br><span class="line"><span class="keyword">import</span> foo.bar.yourclass </span><br><span class="line"></span><br><span class="line"><span class="comment"># 그리고, 아래를 사용합니다 </span></span><br><span class="line">myclass.MyClass </span><br><span class="line">foo.bar.yourclass.Yourclass</span><br></pre></td></tr></table></figure><p><br><br></p><blockquote><p>Whildcard 와일드카드 가져오기를 사용하는것은 피해야 합니다. </p><p><code>from &lt;module&gt; import *</code><br></p></blockquote><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Wildcard Imports 예시, * 은 모듈에 포함된 모든것을 의미 </span></span><br><span class="line"><span class="keyword">from</span> Flask <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure><br><br><p><code>*</code>를 사용하므로써, 모듈에 포함된 모든 클래스와 함수 그리고 메써드들을 불러옵니다. </p><p>이럴경우, 어떤 이름들이 네임공간에 있는지 헷갈리게 되고, 자동화툴이나 에디터가 헷갈릴수 있습니다. <br></p><br><p>와일드카드 가져오기는 보통 내부 인터페이스를 퍼블릭 API  로 재발행 할때 사용합니다. <br></p><br><p>이 때를 제외하고는, 기본적으로 사용을 피해야 합니다. </p><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p><br><br></p><p>클래스를 포함하고 있는 클래스 모듈을 가져올때 쓰는 스펠링이 이해가 잘 가지 않습니다. <br></p><p>이 부분은 조금 더 시간을 들여서 더 많은 코드를 접해본다음 이해가 갈것 같습니다. <br></p><br><p>이해를 마친뒤에 업데이트 할 예정입니다. </p>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Imports/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>PEP8 Code Layout - Source File Encoding</title>
-      <link>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Source-File-Encoding/</link>
-      <guid>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Source-File-Encoding/</guid>
-      <pubDate>Sat, 04 Apr 2020 16:43:05 GMT</pubDate>
-      <description>
-      
-        &lt;h1 id=&quot;Source-File-Encoding-소스파일-인코딩&quot;&gt;&lt;a href=&quot;#Source-File-Encoding-소스파일-인코딩&quot; class=&quot;headerlink&quot; title=&quot;Source File Encoding (소스파일 인코딩)&quot;&gt;&lt;/a&gt;Source File Encoding (소스파일 인코딩)&lt;/h1&gt;&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;이번 토픽은 소스파일 인코딩 입니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;파이썬 배포에 사용되는 코드는 항상 UTF-8 을 사용해야 합니다. &lt;/p&gt;
-&lt;p&gt;파이썬2 에서는 ASCII &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://namu.wiki/w/UTF-8&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://namu.wiki/w/UTF-8&lt;/a&gt;&lt;/p&gt;
-&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;UTF-8 은 가장 많이 사용되는 가변길이 유니코드 인코딩이다.&lt;/p&gt;
-&lt;p&gt;GO 언어를 만든 켄 톰슨과 롭 파이크가 만들었다 &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;[&lt;a href=&quot;https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4%20%EC%BD%94%EB%93%9C?from=ASCII]&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4%20%EC%BD%94%EB%93%9C?from=ASCII]&lt;/a&gt;(&lt;a href=&quot;https://namu.wiki/w/아스키&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://namu.wiki/w/아스키&lt;/a&gt; 코드?from=ASCII)&lt;/p&gt;
-&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;ASCII 코드는 미국 ANSI 에서 표준화한 정보 교환용 7비트 부호체계 &lt;/p&gt;
-&lt;p&gt;2 바이트 이상의 코드를 표현할수 없기 때문에. &lt;/p&gt;
-&lt;p&gt;국제 표준에서는 유니코드로 넘어감.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;PEP8에 따르면, 파이썬2에서 ASCII 를 사용하는 파일들이나 혹은 파이썬3에서 UTF-8을 사용하는 파일들 모두 &lt;/p&gt;
-&lt;p&gt;인코딩 선언이 되어 있지 않아야 합니다. &lt;/p&gt;
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="Source-File-Encoding-소스파일-인코딩"><a href="#Source-File-Encoding-소스파일-인코딩" class="headerlink" title="Source File Encoding (소스파일 인코딩)"></a>Source File Encoding (소스파일 인코딩)</h1><br><br><p>이번 토픽은 소스파일 인코딩 입니다. </p><br><br><p>파이썬 배포에 사용되는 코드는 항상 UTF-8 을 사용해야 합니다. </p><p>파이썬2 에서는 ASCII </p><br><p><a href="https://namu.wiki/w/UTF-8" target="_blank" rel="noopener">https://namu.wiki/w/UTF-8</a></p><br><blockquote><p>UTF-8 은 가장 많이 사용되는 가변길이 유니코드 인코딩이다.</p><p>GO 언어를 만든 켄 톰슨과 롭 파이크가 만들었다 </p></blockquote><br><br><p>[<a href="https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4%20%EC%BD%94%EB%93%9C?from=ASCII]" target="_blank" rel="noopener">https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4%20%EC%BD%94%EB%93%9C?from=ASCII]</a>(<a href="https://namu.wiki/w/아스키" target="_blank" rel="noopener">https://namu.wiki/w/아스키</a> 코드?from=ASCII)</p><br><blockquote><p>ASCII 코드는 미국 ANSI 에서 표준화한 정보 교환용 7비트 부호체계 </p><p>2 바이트 이상의 코드를 표현할수 없기 때문에. </p><p>국제 표준에서는 유니코드로 넘어감.</p></blockquote><br><br><p>PEP8에 따르면, 파이썬2에서 ASCII 를 사용하는 파일들이나 혹은 파이썬3에서 UTF-8을 사용하는 파일들 모두 </p><p>인코딩 선언이 되어 있지 않아야 합니다. </p><br><a id="more"></a><br><blockquote><p>*<em>참고로 *</em></p><p>encoding 선언이 되어 있지 않으면, </p><p>기본 인코딩은 UTF-8 입니다. </p><p>from Python3 공식문서 </p></blockquote><br><br><p>파이썬 표준 라이브러리에서는, 기본 인코딩이 아닌 문자는 아래의 경우만 사용합니다<br></p><br><p>a) 테스트 목적<br></p><p>b) comment 나 docstring 에서 게시자의 이름이 non-ASCII  문자를 포함하고 있을때 </p><br><br><p><strong>PEP에서는 특별히 Non-ASCII 문자가 포함되어 있는 경우가 아니면</strong><br></p><p>아래의 escapes 를 사용하여 문자열에 있는 non-ASCII 데이터를 표현하는 방식을 선호합니다. </p><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\x <span class="comment"># Character with hex value e.g. \xhh</span></span><br><span class="line">\u <span class="comment"># Unicode Character with 16-bit hex value xxx e.g. u'\u004D'</span></span><br><span class="line">\U<span class="comment"># Unicode Character with 32-bit hex value xxxxxxxx e.g. u'\U0000004D'</span></span><br><span class="line">\N<span class="comment"># Character named name in the Unicode database e.g. \N&#123;name&#125;</span></span><br></pre></td></tr></table></figure><br><br><p>PEP3131 에 파이썬 3.0 과 그 이후 버전에 대한 원칙이 나와 있습니다.<br></p><br><br><p>PEP8 에서 정리하는 바는 다음과 같습니다 <br></p><br><p>1) 파이썬의 표준 라이브러리 안에 있는 모든 식별자는 ASCII-Only 식별자여야 하고. 가능하면 영문으로 씁니다.<br></p><p>2) 추가로 문자열과 주석들도 ASCII  형식으로 되어 있어야만 합니다. 이부분에 대한 예외는 아래와 같습니다. <br></p><p>  a) ASCII 방식이 아닌것을 테스트 하고자 할때. <br></p><p>  b) 게시자의 이름이 라틴 알파벳으로 되어 있지 않은 경우, Non-ASCII로 표현 되어도 됩니다. </p><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>저는 아직도 ASCII 와 UTF-8 인코딩 방식에 대해서 깊게 알지 못합니다. </p><p>두가지의 인코딩 방식에 대해서 정확하게 이해해야지만, PEP8 에서 이야기 하는 부분을 정확하게 이해할것 같습니다. </p><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Source-File-Encoding/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>PEP8 Code Layout - Blank Lines</title>
-      <link>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Blank-Lines/</link>
-      <guid>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Blank-Lines/</guid>
-      <pubDate>Sat, 04 Apr 2020 16:25:03 GMT</pubDate>
-      <description>
-      
-        &lt;h1 id=&quot;PEP8-Code-Layout-Blank-Lines-빈줄&quot;&gt;&lt;a href=&quot;#PEP8-Code-Layout-Blank-Lines-빈줄&quot; class=&quot;headerlink&quot; title=&quot;PEP8 Code Layout - Blank Lines (빈줄)&quot;&gt;&lt;/a&gt;PEP8 Code Layout - Blank Lines (빈줄)&lt;/h1&gt;&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;이번 토픽은, PEP8 에서 권장하는 코드내에 빈줄 공간들에 대해서 다룹니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt; &lt;strong&gt;가장 상위의 함수와 클래스 정의는 2줄의 빈줄로 공간을 둡니다&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;이것이 의미하는 바는 아래의 예제를 보면 알수 있습니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 가장 상위의 함수와 클래스들 사이의 2줄 공간 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 가장 상위의 클래스 두개끼리는 2줄의 빈공간이 있습니다. &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;DjangoJenge&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;pass&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;DjangoJenge2&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;pass&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 가장 상위의 함수 두개끼리는 2줄의 빈공간을 둡니다. &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Djangojeng&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;pass&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Djangojeng&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;클래스 내의 메써드 정의는 1줄로 공간을 둡니다.&lt;br&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h1 id="PEP8-Code-Layout-Blank-Lines-빈줄"><a href="#PEP8-Code-Layout-Blank-Lines-빈줄" class="headerlink" title="PEP8 Code Layout - Blank Lines (빈줄)"></a>PEP8 Code Layout - Blank Lines (빈줄)</h1><br><br><p>이번 토픽은, PEP8 에서 권장하는 코드내에 빈줄 공간들에 대해서 다룹니다. </p><br><br><blockquote><p> <strong>가장 상위의 함수와 클래스 정의는 2줄의 빈줄로 공간을 둡니다</strong> <br></p></blockquote><p><br><br></p><p>이것이 의미하는 바는 아래의 예제를 보면 알수 있습니다. </p><p><br><br></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 가장 상위의 함수와 클래스들 사이의 2줄 공간 </span></span><br><span class="line"><span class="comment"># 가장 상위의 클래스 두개끼리는 2줄의 빈공간이 있습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJenge</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJenge2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 가장 상위의 함수 두개끼리는 2줄의 빈공간을 둡니다. </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Djangojeng</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Djangojeng</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><br><blockquote><p>클래스 내의 메써드 정의는 1줄로 공간을 둡니다.<br></p></blockquote><a id="more"></a><p><br><br></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스 내의 메써드 정의는 1줄 공간을 둡니다. </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJenge1</span><span class="params">()</span>:</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_python</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span> </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_python2</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span> </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DjangoJeng2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_django</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span> </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">learn_django2</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><p><br><br></p><p>위 예시를 보면, 가장 상위에 위치하는 클래스들 끼리는 2줄 빈공간이 존재하고. <br></p><p>클래스 안에 있는 메서드 들 끼리는 1줄 빈공간들이 존재합니다.</p><p><br><br></p><blockquote><p>함수내에 빈줄은 드물게 사용해야 합니다.</p><p>함수내에 빈줄은 논리적 부분을 표시하기 위해서 사용 가능합니다. </p></blockquote><p><br><br></p><p>예를들면, </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 함수내에 논리적인 부분을 표시하기 위해서 빈줄을 함수내에서 사용합니다. </span></span><br><span class="line"><span class="comment"># 아주 드물게 사용해야 합니다.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop</span><span class="params">(j)</span>:</span></span><br><span class="line">    c = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, j):</span><br><span class="line">        c = c + <span class="number">1</span> </span><br><span class="line">    </span><br><span class="line">    print(c)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># for 문과 print 문 사이에 하나의 빈줄이 존재합니다.</span></span><br></pre></td></tr></table></figure><p><br><br></p><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>PEP8 안에 빈줄 (Blank Lines)에 관한 내용은 유용한 내용인데도 불구하고 <br></p><p>예시가 빈약해서 이해하기 힘들었습니다. <br></p><p><br><br></p><p>최대한 맞는 예시를 들으려 했지만 부족할수 있습니다. </p><br><p>하지만, 걱정 안하셔도 됩니다. </p><br><blockquote><p>Pycharm을 사용하면 자동으로 PEP8에 맞는 스타일을 가이드 해줍니다 </p><p>코드를 작성할때 이따금씩 노란색 밑줄이 쳐질때가 있는데, PEP8에 어긋날때 표시가 됩니다. </p><p>잘 유의해서 확인하고, PEP8 가이드라인에 맞게 코드를 작성하면 됩니다! </p></blockquote>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Blank-Lines/#disqus_thread</comments>
     </item>
     
   </channel>

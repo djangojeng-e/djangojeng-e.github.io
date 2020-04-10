@@ -204,6 +204,462 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/" class="post-title-link" itemprop="url">가상환경 pyenv, virtualenv - 4편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-10 19:47:13 / Updated at: 20:05:58" itemprop="dateCreated datePublished" datetime="2020-04-10T19:47:13+09:00">2020-04-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/" itemprop="url" rel="index"><span itemprop="name">환경설정</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD/" itemprop="url" rel="index"><span itemprop="name">가상환경</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/10/가상환경-pyenv-virtualenv-4편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="가상환경-설정-pyenv-virtualenv-4편"><a href="#가상환경-설정-pyenv-virtualenv-4편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv - 4편"></a>가상환경 설정 - pyenv, virtualenv - 4편</h2><h2 id="pyenv-virtualenv를-사용해서-가상환경-사용"><a href="#pyenv-virtualenv를-사용해서-가상환경-사용" class="headerlink" title="pyenv-virtualenv를 사용해서 가상환경 사용"></a><code>pyenv-virtualenv</code>를 사용해서 가상환경 사용</h2><br>
+
+<br>
+
+<p>지난 포스팅에서 파이썬 3.8.0 을 설치하였습니다. </p>
+<p>가상환경 생성 준비는 다 된것 같으니. 직접 가상환경을 생성하고 사용해 봅니다. </p>
+<br>
+
+<h2 id="파이썬-버전-확인"><a href="#파이썬-버전-확인" class="headerlink" title="파이썬 버전 확인"></a>파이썬 버전 확인</h2><br>
+
+<p><code>pyenv versions</code>를 실행하여, 버전을 확인합니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ pyenv versions</span><br><span class="line">* system (<span class="built_in">set</span> by /home/ubuntu/.pyenv/version)</span><br><span class="line">  3.8.0</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>현재 시스템에서 사용하고 있는 파이썬 버전이 표시됩니다. <code>3.8.0</code>을 설치하였는데. 아직 사용중이지 않습니다. </p>
+<br>
+
+<blockquote>
+<p><code>*</code> 가 붙어 있는게 현재 사용하고 있는 버전의 파이썬입니다 </p>
+</blockquote>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/" class="post-title-link" itemprop="url">가상환경 pyenv, virtualenv - 3편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-10 19:17:45 / Updated at: 20:07:15" itemprop="dateCreated datePublished" datetime="2020-04-10T19:17:45+09:00">2020-04-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/" itemprop="url" rel="index"><span itemprop="name">환경설정</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD/" itemprop="url" rel="index"><span itemprop="name">가상환경</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/10/가상환경-pyenv-virtualenv-3편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="가상환경-설정-pyenv-virtualenv-3편"><a href="#가상환경-설정-pyenv-virtualenv-3편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 3편"></a>가상환경 설정 - pyenv, virtualenv 3편</h2><br>
+
+<blockquote>
+<p>우분투가 새로 설치되었으면, </p>
+<p>이 3편부터 진행 하면 됩니다. </p>
+</blockquote>
+<br>
+
+<p>본격적으로 가상환경에 필요한 <code>pyenv</code>설치를 진행 합니다 </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/" class="post-title-link" itemprop="url">가상환경 pyenv, virtualenv - 2편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-10 19:02:17 / Updated at: 19:17:21" itemprop="dateCreated datePublished" datetime="2020-04-10T19:02:17+09:00">2020-04-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/" itemprop="url" rel="index"><span itemprop="name">환경설정</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD/" itemprop="url" rel="index"><span itemprop="name">가상환경</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/10/가상환경-pyenv-virtualenv-2편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="가상환경-설정-pyenv-virtualenv-2편"><a href="#가상환경-설정-pyenv-virtualenv-2편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 2편"></a>가상환경 설정 - pyenv, virtualenv 2편</h2><br>
+
+<p>제 개인 컴퓨터에는 우분투가 설치되어 있고. 이미 파이썬과 가상환경 세팅이 완료가 되어 있기 때문에. </p>
+<p><br>아주 처음부터 진행하기 위해서 AWS EC2를 새로 생성해서, 갓 설치된 우분투로 가상환경 설치를 진행 해보려 합니다.  </p>
+<br>
+
+<blockquote>
+<p><strong>컴퓨터에 우분투를 새로 설치하였으면</strong> </p>
+<p><strong>AWS로 접속 하지 않고 본인의 피씨 터미널에서 진행해야 합니다</strong> </p>
+</blockquote>
+<br>
+
+<p>순전히, 새로운 우분투가 필요해서 AWS 에 접속해서 진행한것이지. 새로 우분투를 설치한 피씨가 있었으면, <br></p>
+<p>제 피씨에서 진행 했을겁니다. </p>
+<p><strong>컴퓨터에 새로 우분투를 설치하신분은 이 과정은 넘어갑니다</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-2%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-1%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-1%ED%8E%B8/" class="post-title-link" itemprop="url">가상환경 pyenv, virtualenv - 1편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-10 18:47:02 / Updated at: 19:00:47" itemprop="dateCreated datePublished" datetime="2020-04-10T18:47:02+09:00">2020-04-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/" itemprop="url" rel="index"><span itemprop="name">환경설정</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD/" itemprop="url" rel="index"><span itemprop="name">가상환경</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-1%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/10/가상환경-pyenv-virtualenv-1편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="가상환경-설정-pyenv-virtualenv-1편"><a href="#가상환경-설정-pyenv-virtualenv-1편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 1편"></a>가상환경 설정 - pyenv, virtualenv 1편</h2><br>
+
+<br>
+
+<blockquote>
+<p>virtualenv, pyenv-virtualenv </p>
+<p>pyenv 는 다중의 파이썬 버전을 쉽게 바꿔가며 사용할수 있게 해주는 도구 입니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="Virtualenv"><a href="#Virtualenv" class="headerlink" title="Virtualenv"></a>Virtualenv</h2><br>
+
+<br>
+
+<blockquote>
+<p>virtualenv 는 분리된 파이썬 환경을 </p>
+<p>만들어 주는 도구 입니다.</p>
+</blockquote>
+<br>
+
+<p><br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-1%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/10/PEP8-Variable-Annotations/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -966,483 +1422,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/08/PEP8-Programming-Recommendations-1%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/08/PEP8-Programming-Recommendations-1%ED%8E%B8/" class="post-title-link" itemprop="url">PEP8 Programming Recommendations - 1편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-08 02:32:08 / Updated at: 02:59:49" itemprop="dateCreated datePublished" datetime="2020-04-08T02:32:08+09:00">2020-04-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/PEP8/" itemprop="url" rel="index"><span itemprop="name">PEP8</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/08/PEP8-Programming-Recommendations-1%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/08/PEP8-Programming-Recommendations-1편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="PEP8-Programming-Recommendations-1편"><a href="#PEP8-Programming-Recommendations-1편" class="headerlink" title="PEP8 Programming Recommendations - 1편"></a>PEP8 Programming Recommendations - 1편</h2><br>
-
-<br>
-
-<p><strong>프로그래밍 권장 사항들 - 1편입니다</strong></p>
-<br>
-
-<br>
-
-<h2 id="다른-파이썬-라이브러리의-구현"><a href="#다른-파이썬-라이브러리의-구현" class="headerlink" title="다른 파이썬 라이브러리의 구현"></a>다른 파이썬 라이브러리의 구현<br></h2><p><br><br></p>
-<p>코드는 다른 파이썬 구현에 불리하지 않은 방식으로 작성되어야 합니다. </p>
-<p>다른 파이썬의 구현체들 (PyPy, Jython, IronPython, Cython, Pysco 등등) </p>
-<br>
-
-<p>예를들면, CPython에서 <code>a += b</code> 혹은 <code>a = a + b</code> 형태의 문자열 연결은 효율적인 구현체 이지만. <br></p>
-<p>이 형태조차, CPython 에서도 특정 타입에만 통하고, 모든 구현에 나오지 않습니다. </p>
-<br>
-
-<p>따라서, CPython의 효율적인 내부 문자열 연결 구현에 너무 의존하는것은 좋지 않습니다<br></p>
-<p><br><br></p>
-<blockquote>
-<p>퍼포먼스가 중요한 라이브러리에서는, <code>&#39;&#39;.join()</code> 형태가 대신 사용되어야 합니다 </p>
-</blockquote>
-<p><br><br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/08/PEP8-Programming-Recommendations-1%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/" class="post-title-link" itemprop="url">PEP8 Naming Conventions - 4편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-07 18:38:46 / Updated at: 19:03:47" itemprop="dateCreated datePublished" datetime="2020-04-07T18:38:46+09:00">2020-04-07</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/07/PEP8-Naming-Conventions-4편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="파이썬-Naming-Convention-4편"><a href="#파이썬-Naming-Convention-4편" class="headerlink" title="파이썬 Naming Convention - 4편"></a>파이썬 Naming Convention - 4편</h2><br>
-
-<br>
-
-<h2 id="Public-and-Internal-Interface"><a href="#Public-and-Internal-Interface" class="headerlink" title="Public and Internal Interface"></a>Public and Internal Interface</h2><br>
-
-<br>
-
-<blockquote>
-<p>이전 버전과 호환성을 보장하는것은 </p>
-<p>오직 퍼블릭 인터페이스에만 적용됩니다. </p>
-</blockquote>
-<br>
-
-<br>
-
-<p>따라서, 사용자들은 퍼블릭 인터페이스와 내부 인터페이스를 잘 구분하는것이 중요합니다. </p>
-<br>
-
-<br>
-
-<p><strong>public interface (공용 인터페이스)</strong>는 독립적인 소프트웨어 엔티티가 상호 작용하는 논리적 지점입니다. 엔티니는 단일 컴퓨터, 네트워크 또는 다양한 토폴로지에서 서로 상호 작용할수 있습니다. 상호 작용을 계속 하려면, 퍼블릭 이너페이스가 안정적이여야 하고, 향후 변경 및 개선 및 사용중단을 지원하도록 잘 설계되어야 합니다. </p>
-<br>
-
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/07/PEP8-Naming-Conventions-4%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-3%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/07/PEP8-Naming-Conventions-3%ED%8E%B8/" class="post-title-link" itemprop="url">PEP8 Naming Conventions -3편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-07 15:37:50 / Updated at: 15:52:22" itemprop="dateCreated datePublished" datetime="2020-04-07T15:37:50+09:00">2020-04-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/PEP8/" itemprop="url" rel="index"><span itemprop="name">PEP8</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/07/PEP8-Naming-Conventions-3%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/07/PEP8-Naming-Conventions-3편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="파이썬-Naming-Convention-3-편"><a href="#파이썬-Naming-Convention-3-편" class="headerlink" title="파이썬 Naming Convention - 3 편"></a>파이썬 Naming Convention - 3 편</h2><br>
-
-<br>
-
-<h2 id="Presriptive-Naming-Convention-Cont"><a href="#Presriptive-Naming-Convention-Cont" class="headerlink" title="Presriptive: Naming Convention (Cont.)"></a>Presriptive: Naming Convention (Cont.)</h2><br>
-
-<br>
-
-<p>지난 포스팅에 이어, Prescriptive Naming Convention 을 이어갑니다 </p>
-<br>
-
-<br>
-
-<h2 id="Desigining-for-Interface"><a href="#Desigining-for-Interface" class="headerlink" title="Desigining for Interface"></a>Desigining for Interface</h2><br>
-
-<br>
-
-<p>인터페이스를 위한 설계에 대한 내용입니다. </p>
-<br>
-
-<blockquote>
-<p>언제나</p>
-<p>클래스의 메써드와 인스턴스 변수들이</p>
-<p>퍼블릭값일지 아닐지에 대한 결정을 해야합니다. </p>
-</blockquote>
-<br>
-
-<p>결정하기가 쉽지 않다면, <code>non-public</code> 값을 선택 합니다. <br></p>
-<p>나중에 <code>non-public</code>을 <code>public</code>으로 바꾸는게, <code>public</code>을 <code>non-public</code>으로 지정하는것보다 쉽습니다. </p>
-<br>
-
-<br>
-
-<h2 id="Public-vs-Non-Public-Attributes"><a href="#Public-vs-Non-Public-Attributes" class="headerlink" title="Public vs Non-Public Attributes"></a>Public vs Non-Public Attributes</h2><br>
-
-<br>
-
-<p><strong><code>Public attributs</code> (퍼블릭 속성)</strong>은 대외적으로 여러분들과 관계없는 클라이언트들이 클래스를 사용할것이 예상될때 사용합니다.</p>
-<br>
-
-<p><strong><code>Non-ublic attributs</code> (논 퍼블릭 속성)</strong>은 제 3자에 의해서 사용되지 않을때 사용하는 속성들입니다. <code>non-public</code>속성들은 나중에 수정되거나 삭제될수 있고. 수정이나 삭제에가 되지 않는다는 보장은 없습니다. </p>
-<br>
-
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/07/PEP8-Naming-Conventions-3%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/07/PEP8-Naming-Conventions-2%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/07/PEP8-Naming-Conventions-2%ED%8E%B8/" class="post-title-link" itemprop="url">PEP8 Naming Conventions - 2편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-07 13:18:04 / Updated at: 13:46:49" itemprop="dateCreated datePublished" datetime="2020-04-07T13:18:04+09:00">2020-04-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/PEP8/" itemprop="url" rel="index"><span itemprop="name">PEP8</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/07/PEP8-Naming-Conventions-2%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/07/PEP8-Naming-Conventions-2편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="파이썬-Naming-Convention-2편"><a href="#파이썬-Naming-Convention-2편" class="headerlink" title="파이썬 Naming Convention - 2편"></a>파이썬 Naming Convention - 2편</h2><br>
-
-<br>
-
-<p><strong>Prescriptive: Naming Conventions</strong><br><br><br></p>
-<p>타이틀이 prescriptive: Naming Conventions 인데. Prescriptive 의 뜻은 규범 혹은 처방등의 의미로 쓰입니다.<br><br></p>
-<p>이름짓기에 관한 처방 혹은 규범이라는 뜻이 되겠네요.<br><br></p>
-<h2 id="Names-to-Avoid-피해야할-이름들"><a href="#Names-to-Avoid-피해야할-이름들" class="headerlink" title="Names to Avoid (피해야할 이름들)"></a>Names to Avoid (피해야할 이름들)</h2><br>
-
-<p>절대로 피해야 할 변수명은, 아래와 같습니다.  </p>
-<br>
-
-<ul>
-<li>소문자 엘<code>l</code></li>
-<li>대문자 오 <code>O</code></li>
-<li>대문자 아이 <code>I</code></li>
-</ul>
-<br>
-
-<blockquote>
-<p>l (엘), O(오), I(아이)<br></p>
-<p>이 문자들은, 숫자 1과 0 하고 구분이 잘 안가기 때문에 사용하는것을 피해야 합니다.<br></p>
-</blockquote>
-<br>
-
-<h2 id="ASCII-호환"><a href="#ASCII-호환" class="headerlink" title="ASCII 호환"></a>ASCII 호환</h2><br>
-
-<p>파이썬 스탠다드 라이브러리에서 사용되는 식별자들은 ASCII 호환이 되어야 합니다. <br></p>
-<p>이 부분은, PEP3131에 나와있습니다.<br><br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/07/PEP8-Naming-Conventions-2%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1513,20 +1492,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
