@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"djangojeng-e.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="google-site-verification" content="WlX9ix7sXmMXMWSZS-fiLnWpgx6T0Dz2ON3R7RcK4bA" />
+  <meta name="description" content="첫번째 뷰 작성하기  지난 시간에 polls 앱을 생성하였고, 이번 포스팅에는 첫번째 view 를 작성해 봅니다    디렉토리 구조는 아래와 같고, polls&#x2F;view.py 파일을 작성을 진행해봅니다.    123456789polls&#x2F;    __init__.py    admin.py    apps.py    migrations&#x2F;        __init__">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Writing your first Django app, part1 - 4편">
+<meta property="og:url" content="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/index.html">
+<meta property="og:site_name" content="장고쟁이">
+<meta property="og:description" content="첫번째 뷰 작성하기  지난 시간에 polls 앱을 생성하였고, 이번 포스팅에는 첫번째 view 를 작성해 봅니다    디렉토리 구조는 아래와 같고, polls&#x2F;view.py 파일을 작성을 진행해봅니다.    123456789polls&#x2F;    __init__.py    admin.py    apps.py    migrations&#x2F;        __init__">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image1.png">
+<meta property="og:image" content="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image2.png">
+<meta property="og:image" content="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image3.png">
+<meta property="og:image" content="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image4.png">
+<meta property="article:published_time" content="2020-04-11T21:10:07.000Z">
+<meta property="article:modified_time" content="2020-04-11T21:47:42.615Z">
+<meta property="article:author" content="장고쟁이">
+<meta property="article:tag" content="Django">
+<meta property="article:tag" content="Tutorial">
+<meta property="article:tag" content="공식문서">
+<meta property="article:tag" content="투표앱">
+<meta property="article:tag" content="polls">
+<meta property="article:tag" content="MTV">
+<meta property="article:tag" content="View">
+<meta property="article:tag" content="Model">
+<meta property="article:tag" content="Template">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image1.png">
+
+<link rel="canonical" href="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Writing your first Django app, part1 - 4편 | 장고쟁이</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="naver-site-verification" content="b855a7ad81fb77d8cd20dc2267432ca962ba8376" />
+<link rel="alternate" href="/rss2.xml" title="장고쟁이" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">장고쟁이</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">당신은 멋쟁이, 우리는 장고쟁이~</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/djangojeng-e" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Writing your first Django app, part1 - 4편
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-12 06:10:07 / Updated at: 06:47:42" itemprop="dateCreated datePublished" datetime="2020-04-12T06:10:07+09:00">2020-04-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Tutorials/" itemprop="url" rel="index"><span itemprop="name">Tutorials</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/12/Writing-your-first-Django-app-part1-4편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="첫번째-뷰-작성하기"><a href="#첫번째-뷰-작성하기" class="headerlink" title="첫번째 뷰 작성하기"></a>첫번째 뷰 작성하기</h2><br>
+
+<p>지난 시간에 polls 앱을 생성하였고, 이번 포스팅에는 첫번째 view 를 작성해 봅니다 </p>
+<br>
+
+<p>디렉토리 구조는 아래와 같고, <code>polls/view.py</code> 파일을 작성을 진행해봅니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="Django의-MTV-모델"><a href="#Django의-MTV-모델" class="headerlink" title="Django의 MTV 모델"></a>Django의 MTV 모델</h2><p><br><br></p>
+<p>view 를 작성하기 전에, django 의 MTV 모델에 대해서 알아야 하는데. 간단하게 짚고 넘어가자면.. </p>
+<br>
+
+<p>Models, Templates, View 의 약자로 <br></p>
+<br>
+
+<ul>
+<li>Models - 데이터베이스의 구조 설계 <br></li>
+<li>Templates: 화면에 보이는 포맷 </li>
+<li>Views: 전달된 요청을 처리하고 반환하는 로직 </li>
+</ul>
+<br>
+
+<p>처음 접하면 생소하기도 하고, 헷갈리기도 해서. 몇가지 그림들을 가져와 봤습니다. </p>
+<br>
+
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image1.png" class="">
+
+<br>
+
+<blockquote>
+<p>사용자가 URL 을 통해서 View 에 요청을 하면 <br></p>
+<p>View 는 요청을 처리하고, 사용자에게 결과물을 반환합니다<br></p>
+<p>View 는 Model 을 통해서 데이터베이스에서 데이터를 가져올수도 있고, 저장할수도 있습니다</p>
+<p>View 는 Templates 에 결과를 그려주기도 합니다.  <br></p>
+<p>처리 결과를 Template 에 그려주고, 그 Template 을 사용자에게 다시 반환하는것도 View 가 할 역할입니다. </p>
+</blockquote>
+<p><br><br></p>
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image2.png" class=""> 
+
+<br>
+
+<br>
+
+<blockquote>
+<p>따라서, view 를 작성하려면, </p>
+<p>요청을 받을 URL 도 있어야 하고 </p>
+<p>사용할 Model 도 있어야 하고 </p>
+<p>화면을 출력할 Template 도 있어야 합니다 </p>
+<br>
+
+<p>View 에는 요청을 받아서, 요청을 처리하고 값을 반환해주는 함수들이 필요합니다. </p>
+</blockquote>
+<p><br><br></p>
+<h2 id="MTV-순서"><a href="#MTV-순서" class="headerlink" title="MTV 순서"></a>MTV 순서</h2><p><br><br></p>
+<p>처음에 django 공부할때, 어떤거 부터 작성해야 하는지에 대해서 많이 헷갈렸었는데. 튜토리얼에서는 View 부터 작성하고 시작합니다. </p>
+<br>
+
+<p>어떤분들은, models 부터 시작하고, 어떤분들은 templates 부터 시작합니다. 어디서부터 시작하는지는 개인 취향에 맡겨야 할것 같습니다. 결과물만 좋다면,, 순서는 뭐 중요하지 않지요. </p>
+<br>
+
+<p>공식문서에 나와있는 순서들도 100% 맞는 순서가 아니니, 참고 합니다. </p>
+<br>
+
+<p><strong>공식문서 튜토리얼에서 진행하는 순서는 View 부터 진행합니다</strong></p>
+<br>
+
+<h2 id="View-작성하기"><a href="#View-작성하기" class="headerlink" title="View 작성하기"></a>View 작성하기</h2><p><br><br></p>
+<blockquote>
+<p>튜토리얼에서, 첫번쨰 View 를 작성 진행하는 순서는 아래와 같습니다 </p>
+</blockquote>
+<br>
+
+<p>1) <code>polls/views.py</code>에 view 작성 </p>
+<p>2) 요청을 전달할 <code>polls/urls.py</code> 생성 및 작성 (이 url은 작성된 view 를 요청합니다) </p>
+<p>3) 프로젝트 url 과 <code>polls/urls.py</code> 를 연결 </p>
+<br>
+
+<blockquote>
+<p>url 을 통해서 사용자가 요청을 보내면, </p>
+<p>view 는 요청을 처리하고. 사용자에게 값을 반환합니다. </p>
+</blockquote>
+<br>
+
+<p>자 그럼, 첫번째 뷰를 작성해 봅니다. <code>polls/views.py</code>를 열고, 아래 파이썬 코드를 작성합니다.</p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world. You're at the polls index."</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이것이 django 에서 제일 간단한 view 입니다. 이 view 를 호출하기 위해서는 url 이 필요하겠죠? </p>
+<p><br>따라서 url을 생성해 줍니다</p>
+<br>
+
+<h3 id="polls-urls-py-생성하기"><a href="#polls-urls-py-생성하기" class="headerlink" title="polls/urls.py 생성하기"></a>polls/urls.py 생성하기</h3><br>
+
+<br>
+
+<blockquote>
+<p><code>polls/</code> 폴더에 <code>urls.py</code> 를 생성해 줍니다.</p>
+<p>아래 디렉토리 구조는  <code>urls.py</code> 를 polls 폴더에 생성한 후의 구조 입니다.</p>
+</blockquote>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    urls.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>polls/urls.py 에 아래 코드를 적어줍니다.</p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># polls/urls.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path </span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">''</span>, views.index, name=<span class="string">'index'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="루트-URLConf-설정"><a href="#루트-URLConf-설정" class="headerlink" title="루트 URLConf 설정"></a>루트 URLConf 설정</h3><br>
+
+<p>루트 URLConf 에서,  <code>polls/urls.py</code> 를 연결해 줍니다. 여기서 얘기하는 루트 URLConf 는 <code>mysite/urls.py</code> 입니다.</p>
+<br>
+
+<blockquote>
+<p>mysite/urls.py 를 열고, urlpatterns 에 </p>
+<p>polls/urls.py 가 포함되게 해줍니다 </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysite/urls.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin </span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include, path </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'polls/'</span>, include(<span class="string">'polls.urls'</span>)),</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="호출-순서"><a href="#호출-순서" class="headerlink" title="호출 순서"></a>호출 순서</h3><br>
+
+<p>루트 URLConf 설정을 해주고, 잠시 작동 순서를 생각해봅니다. </p>
+<p><br>브라우저에서 <code>polls/</code> 로 접속해보면, 아래와 같은 동작 순서가 그려집니다. </p>
+<ol>
+<li>브라우저에서 <code>polls/</code> 로 접속 </li>
+<li><code>polls/</code> 에서 <code>include()</code> 함수를 통해서 <code>polls/urls.py</code> 로 연결 </li>
+<li><code>polls/urls.py</code> 는 <code>&#39;&#39;</code>로 접속했을때, 위에서 작성한 <code>polls/views.py</code> 에 있는 <code>index</code> 함수를 호출 (즉, <code>127.0.0.0:8000/polls/</code> 로 접속했을때 <code>index</code>함수가 호출됨) </li>
+<li><code>polls/views.py</code> 에 있는 <code>index</code> 함수는 요청을 처리후 <code>HttpResponse</code> 로 값을 반환 </li>
+<li>브라우저에 요청이 처리되고 반환값이 표시 </li>
+</ol>
+<br>
+
+<h3 id="include-함수"><a href="#include-함수" class="headerlink" title="include()함수"></a><code>include()</code>함수</h3><p><br><br></p>
+<p>튜토리얼에서는 <code>include()</code> 함수에 대해서 설명을 하고 있는데. <code>include()</code> 함수는 루트에 존재하는 urls.py 가 다른 url 설정들을 참조할수 있게 해줍니다. 언제든 Django가 <code>include()</code>를 만나면, 참조하는 다른 url 설정으로 남은 문자열들을 전달합니다. </p>
+<br>
+
+<p>튜토리얼에서는 <code>include()</code> 함수에 대해서 간단하게 설명하고 있는데.<br>Django 초심자라면, 이 시점에서 이 설명을 들으면 오히려 튜토리얼 진행을 할수 없을만큼 헷갈립니다.<br><br></p>
+<blockquote>
+<p>include() 함수는 다름 URL 패턴들을 포함할수 있게 합니다. </p>
+<p>다른 url 패턴들을 포함하고 싶을때에는 언제나 include() 함수를 사용합니다 </p>
+<p>admin.site.urls 는 예외입니다. </p>
+</blockquote>
+<p><br><br></p>
+<h2 id="서버를-실행해서-확인하기"><a href="#서버를-실행해서-확인하기" class="headerlink" title="서버를 실행해서 확인하기"></a>서버를 실행해서 확인하기</h2><br>
+
+<p><code>python manage.py runserver</code>를 실행하고, 브라우저를 엽니다<br></p>
+<p>브라우저 주소창에 <code>127.0.0.1:8000</code> 이 표시되어 있고, page not found(404) 가 표시됩니다<br><br></p>
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image3.png" class=""> 
+
+<br>
+
+<p>페이지를 찾을수 없는 이유는, 루트에 있는 url 파일을 확인해 보면 알수 있습니다. <br></p>
+<p>mysite/urls.py 파일을 참조하면, <strong>등록되어 있는  urls 는 총 2개로 <code>admin/</code> 과 <code>polls/</code> 2개 뿐입니다</strong><br></p>
+<p><br>이 2가지 url 을 제외한 url 을 입력하면, 당연히 django 에서 url을 찾을수 없겟죠? ㅎㅎ </p>
+<br>
+
+<blockquote>
+<p>127.0.0.1:8000/polls 혹은 </p>
+<p>127.0.0.1:8000/admin 으로 접속하면 해당 페이지들을 찾을수 있을겁니다.  </p>
+</blockquote>
+<br>
+
+<p><strong><code>127.0.0.1:8000/polls/</code>로 접속해 봅니다. polls/views.py 에 있는 Index 뷰가 정상적으로 화면에 메시지를 출력할것 입니다.</strong></p>
+<br>
+
+<br>
+
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image4.png" class=""> 
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>공식문서 튜토리얼에 첫번째 뷰 작성하기 부분 마지막에는 <code>path()</code> 함수에 대한 설명이 있는데. 이부분은 아직 깊게 들어갈 필요가 없습니다. <br>이제까지 내용도 소화하기 힘든데, path() 까지 깊게 짚지 않고, 향후에 실력이 더 쌓이면 깊게 들어가 보겠습니다. </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Django/" rel="tag"># Django</a>
+              <a href="/tags/Tutorial/" rel="tag"># Tutorial</a>
+              <a href="/tags/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" rel="tag"># 공식문서</a>
+              <a href="/tags/%ED%88%AC%ED%91%9C%EC%95%B1/" rel="tag"># 투표앱</a>
+              <a href="/tags/polls/" rel="tag"># polls</a>
+              <a href="/tags/MTV/" rel="tag"># MTV</a>
+              <a href="/tags/View/" rel="tag"># View</a>
+              <a href="/tags/Model/" rel="tag"># Model</a>
+              <a href="/tags/Template/" rel="tag"># Template</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/12/Writing-your-first-Django-app-part1-3%ED%8E%B8/" rel="prev" title="Writing your first Django app, part1 - 3편">
+      <i class="fa fa-chevron-left"></i> Writing your first Django app, part1 - 3편
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#첫번째-뷰-작성하기"><span class="nav-number">1.</span> <span class="nav-text">첫번째 뷰 작성하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Django의-MTV-모델"><span class="nav-number">2.</span> <span class="nav-text">Django의 MTV 모델</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MTV-순서"><span class="nav-number">3.</span> <span class="nav-text">MTV 순서</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View-작성하기"><span class="nav-number">4.</span> <span class="nav-text">View 작성하기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#polls-urls-py-생성하기"><span class="nav-number">4.1.</span> <span class="nav-text">polls&#x2F;urls.py 생성하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#루트-URLConf-설정"><span class="nav-number">4.2.</span> <span class="nav-text">루트 URLConf 설정</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#호출-순서"><span class="nav-number">4.3.</span> <span class="nav-text">호출 순서</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#include-함수"><span class="nav-number">4.4.</span> <span class="nav-text">include()함수</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#서버를-실행해서-확인하기"><span class="nav-number">5.</span> <span class="nav-text">서버를 실행해서 확인하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#마치며"><span class="nav-number">6.</span> <span class="nav-text">마치며..</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">장고쟁이</p>
+  <div class="site-description" itemprop="description">장고쟁이의 Python, Django 공부 노트</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/djangojeng-e" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;djangojeng-e" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:headfat1218@gmail.com" title="E-Mail → mailto:headfat1218@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<div>
+
+
+<iframe width="210" height="180" src="https://www.youtube.com/embed/TmrlClNCRtA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+</div>
+
+    </div>
+
+
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">장고쟁이</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://djangojeng-e.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/";
+    this.page.identifier = "2020/04/12/Writing-your-first-Django-app-part1-4편/";
+    this.page.title = "Writing your first Django app, part1 - 4편";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://djangojeng-e.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

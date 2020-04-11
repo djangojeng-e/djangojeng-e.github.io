@@ -1,6 +1,392 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part1 - 4편</title>
+    <url>/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="첫번째-뷰-작성하기"><a href="#첫번째-뷰-작성하기" class="headerlink" title="첫번째 뷰 작성하기"></a>첫번째 뷰 작성하기</h2><br>
+
+<p>지난 시간에 polls 앱을 생성하였고, 이번 포스팅에는 첫번째 view 를 작성해 봅니다 </p>
+<br>
+
+<p>디렉토리 구조는 아래와 같고, <code>polls/view.py</code> 파일을 작성을 진행해봅니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="Django의-MTV-모델"><a href="#Django의-MTV-모델" class="headerlink" title="Django의 MTV 모델"></a>Django의 MTV 모델</h2><p><br><br></p>
+<p>view 를 작성하기 전에, django 의 MTV 모델에 대해서 알아야 하는데. 간단하게 짚고 넘어가자면.. </p>
+<br>
+
+<p>Models, Templates, View 의 약자로 <br></p>
+<br>
+
+<ul>
+<li>Models - 데이터베이스의 구조 설계 <br></li>
+<li>Templates: 화면에 보이는 포맷 </li>
+<li>Views: 전달된 요청을 처리하고 반환하는 로직 </li>
+</ul>
+<br>
+
+<p>처음 접하면 생소하기도 하고, 헷갈리기도 해서. 몇가지 그림들을 가져와 봤습니다. </p>
+<br>
+
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image1.png" class="">
+
+<br>
+
+<blockquote>
+<p>사용자가 URL 을 통해서 View 에 요청을 하면 <br></p>
+<p>View 는 요청을 처리하고, 사용자에게 결과물을 반환합니다<br></p>
+<p>View 는 Model 을 통해서 데이터베이스에서 데이터를 가져올수도 있고, 저장할수도 있습니다</p>
+<p>View 는 Templates 에 결과를 그려주기도 합니다.  <br></p>
+<p>처리 결과를 Template 에 그려주고, 그 Template 을 사용자에게 다시 반환하는것도 View 가 할 역할입니다. </p>
+</blockquote>
+<p><br><br></p>
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image2.png" class=""> 
+
+<br>
+
+<br>
+
+<blockquote>
+<p>따라서, view 를 작성하려면, </p>
+<p>요청을 받을 URL 도 있어야 하고 </p>
+<p>사용할 Model 도 있어야 하고 </p>
+<p>화면을 출력할 Template 도 있어야 합니다 </p>
+<br>
+
+<p>View 에는 요청을 받아서, 요청을 처리하고 값을 반환해주는 함수들이 필요합니다. </p>
+</blockquote>
+<p><br><br></p>
+<h2 id="MTV-순서"><a href="#MTV-순서" class="headerlink" title="MTV 순서"></a>MTV 순서</h2><p><br><br></p>
+<p>처음에 django 공부할때, 어떤거 부터 작성해야 하는지에 대해서 많이 헷갈렸었는데. 튜토리얼에서는 View 부터 작성하고 시작합니다. </p>
+<br>
+
+<p>어떤분들은, models 부터 시작하고, 어떤분들은 templates 부터 시작합니다. 어디서부터 시작하는지는 개인 취향에 맡겨야 할것 같습니다. 결과물만 좋다면,, 순서는 뭐 중요하지 않지요. </p>
+<br>
+
+<p>공식문서에 나와있는 순서들도 100% 맞는 순서가 아니니, 참고 합니다. </p>
+<br>
+
+<p><strong>공식문서 튜토리얼에서 진행하는 순서는 View 부터 진행합니다</strong></p>
+<br>
+
+<h2 id="View-작성하기"><a href="#View-작성하기" class="headerlink" title="View 작성하기"></a>View 작성하기</h2><p><br><br></p>
+<blockquote>
+<p>튜토리얼에서, 첫번쨰 View 를 작성 진행하는 순서는 아래와 같습니다 </p>
+</blockquote>
+<br>
+
+<p>1) <code>polls/views.py</code>에 view 작성 </p>
+<p>2) 요청을 전달할 <code>polls/urls.py</code> 생성 및 작성 (이 url은 작성된 view 를 요청합니다) </p>
+<p>3) 프로젝트 url 과 <code>polls/urls.py</code> 를 연결 </p>
+<br>
+
+<blockquote>
+<p>url 을 통해서 사용자가 요청을 보내면, </p>
+<p>view 는 요청을 처리하고. 사용자에게 값을 반환합니다. </p>
+</blockquote>
+<br>
+
+<p>자 그럼, 첫번째 뷰를 작성해 봅니다. <code>polls/views.py</code>를 열고, 아래 파이썬 코드를 작성합니다.</p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world. You're at the polls index."</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이것이 django 에서 제일 간단한 view 입니다. 이 view 를 호출하기 위해서는 url 이 필요하겠죠? </p>
+<p><br>따라서 url을 생성해 줍니다</p>
+<br>
+
+<h3 id="polls-urls-py-생성하기"><a href="#polls-urls-py-생성하기" class="headerlink" title="polls/urls.py 생성하기"></a>polls/urls.py 생성하기</h3><br>
+
+<br>
+
+<blockquote>
+<p><code>polls/</code> 폴더에 <code>urls.py</code> 를 생성해 줍니다.</p>
+<p>아래 디렉토리 구조는  <code>urls.py</code> 를 polls 폴더에 생성한 후의 구조 입니다.</p>
+</blockquote>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    urls.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>polls/urls.py 에 아래 코드를 적어줍니다.</p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># polls/urls.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path </span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">''</span>, views.index, name=<span class="string">'index'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="루트-URLConf-설정"><a href="#루트-URLConf-설정" class="headerlink" title="루트 URLConf 설정"></a>루트 URLConf 설정</h3><br>
+
+<p>루트 URLConf 에서,  <code>polls/urls.py</code> 를 연결해 줍니다. 여기서 얘기하는 루트 URLConf 는 <code>mysite/urls.py</code> 입니다.</p>
+<br>
+
+<blockquote>
+<p>mysite/urls.py 를 열고, urlpatterns 에 </p>
+<p>polls/urls.py 가 포함되게 해줍니다 </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mysite/urls.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin </span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include, path </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'polls/'</span>, include(<span class="string">'polls.urls'</span>)),</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="호출-순서"><a href="#호출-순서" class="headerlink" title="호출 순서"></a>호출 순서</h3><br>
+
+<p>루트 URLConf 설정을 해주고, 잠시 작동 순서를 생각해봅니다. </p>
+<p><br>브라우저에서 <code>polls/</code> 로 접속해보면, 아래와 같은 동작 순서가 그려집니다. </p>
+<ol>
+<li>브라우저에서 <code>polls/</code> 로 접속 </li>
+<li><code>polls/</code> 에서 <code>include()</code> 함수를 통해서 <code>polls/urls.py</code> 로 연결 </li>
+<li><code>polls/urls.py</code> 는 <code>&#39;&#39;</code>로 접속했을때, 위에서 작성한 <code>polls/views.py</code> 에 있는 <code>index</code> 함수를 호출 (즉, <code>127.0.0.0:8000/polls/</code> 로 접속했을때 <code>index</code>함수가 호출됨) </li>
+<li><code>polls/views.py</code> 에 있는 <code>index</code> 함수는 요청을 처리후 <code>HttpResponse</code> 로 값을 반환 </li>
+<li>브라우저에 요청이 처리되고 반환값이 표시 </li>
+</ol>
+<br>
+
+<h3 id="include-함수"><a href="#include-함수" class="headerlink" title="include()함수"></a><code>include()</code>함수</h3><p><br><br></p>
+<p>튜토리얼에서는 <code>include()</code> 함수에 대해서 설명을 하고 있는데. <code>include()</code> 함수는 루트에 존재하는 urls.py 가 다른 url 설정들을 참조할수 있게 해줍니다. 언제든 Django가 <code>include()</code>를 만나면, 참조하는 다른 url 설정으로 남은 문자열들을 전달합니다. </p>
+<br>
+
+<p>튜토리얼에서는 <code>include()</code> 함수에 대해서 간단하게 설명하고 있는데.<br>Django 초심자라면, 이 시점에서 이 설명을 들으면 오히려 튜토리얼 진행을 할수 없을만큼 헷갈립니다.<br><br></p>
+<blockquote>
+<p>include() 함수는 다름 URL 패턴들을 포함할수 있게 합니다. </p>
+<p>다른 url 패턴들을 포함하고 싶을때에는 언제나 include() 함수를 사용합니다 </p>
+<p>admin.site.urls 는 예외입니다. </p>
+</blockquote>
+<p><br><br></p>
+<h2 id="서버를-실행해서-확인하기"><a href="#서버를-실행해서-확인하기" class="headerlink" title="서버를 실행해서 확인하기"></a>서버를 실행해서 확인하기</h2><br>
+
+<p><code>python manage.py runserver</code>를 실행하고, 브라우저를 엽니다<br></p>
+<p>브라우저 주소창에 <code>127.0.0.1:8000</code> 이 표시되어 있고, page not found(404) 가 표시됩니다<br><br></p>
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image3.png" class=""> 
+
+<br>
+
+<p>페이지를 찾을수 없는 이유는, 루트에 있는 url 파일을 확인해 보면 알수 있습니다. <br></p>
+<p>mysite/urls.py 파일을 참조하면, <strong>등록되어 있는  urls 는 총 2개로 <code>admin/</code> 과 <code>polls/</code> 2개 뿐입니다</strong><br></p>
+<p><br>이 2가지 url 을 제외한 url 을 입력하면, 당연히 django 에서 url을 찾을수 없겟죠? ㅎㅎ </p>
+<br>
+
+<blockquote>
+<p>127.0.0.1:8000/polls 혹은 </p>
+<p>127.0.0.1:8000/admin 으로 접속하면 해당 페이지들을 찾을수 있을겁니다.  </p>
+</blockquote>
+<br>
+
+<p><strong><code>127.0.0.1:8000/polls/</code>로 접속해 봅니다. polls/views.py 에 있는 Index 뷰가 정상적으로 화면에 메시지를 출력할것 입니다.</strong></p>
+<br>
+
+<br>
+
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image4.png" class=""> 
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>공식문서 튜토리얼에 첫번째 뷰 작성하기 부분 마지막에는 <code>path()</code> 함수에 대한 설명이 있는데. 이부분은 아직 깊게 들어갈 필요가 없습니다. <br>이제까지 내용도 소화하기 힘든데, path() 까지 깊게 짚지 않고, 향후에 실력이 더 쌓이면 깊게 들어가 보겠습니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+        <tag>MTV</tag>
+        <tag>View</tag>
+        <tag>Model</tag>
+        <tag>Template</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Writing your first Django app, part1 - 3편</title>
+    <url>/2020/04/12/Writing-your-first-Django-app-part1-3%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="Polls-app-생성하기"><a href="#Polls-app-생성하기" class="headerlink" title="Polls app 생성하기"></a>Polls app 생성하기</h2><br>
+
+<br>
+
+<p>이전 과정까지 프로젝트 환경 설정과 생성을 진행 하였습니다. 이제 개발을 시작해도 됩니다<br></p>
+<br>
+
+<p>Django에서 쓰는 각가의 어플리케이션은 특정한 규약을 따르는 파이썬 패키지로 이루어져 있습니다<br></p>
+<p>django 는 자동으로 앱의 기본 디렉토리 구조를 생성하는 유틸리티를 가지고 있습니다<br></p>
+<br>
+
+<blockquote>
+<p>따라서, 디렉토리를 생성하는데에 시간을 쓰기 보다는 </p>
+<p>코드를 쓰는데에 더 집중할수 있습니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a><br><br>
+
+<h2 id="Projects-vs-Apps"><a href="#Projects-vs-Apps" class="headerlink" title="Projects vs Apps"></a>Projects vs Apps</h2><p><br><br></p>
+<p>Django 에서 프로젝트와 어플리케이션의 다른점을 꼭 알고 가야합니다. </p>
+<br>
+
+<p>일단, 하나의 프로젝트는 여러개의 앱들을 가질수 있습니다.<br>하나의 앱은 어떠한 동작을 수행하기 위해서 만들어 집니다.<br><br><br></p>
+<blockquote>
+<p><strong>app(앱)</strong> </p>
+<p>웹 어플리케이션으로 어떠한 동작을 수행합니다 </p>
+<p>예) 웹블로그 시스템, 공공 기록을 가진 데이터베이스, 혹은 작은 투표앱 </p>
+</blockquote>
+<p><br><br></p>
+<blockquote>
+<p><strong>project(프로젝트)</strong></p>
+<p>하나의 특정 웹사이트를 위한 설정들과 앱들의 모임입니다. </p>
+<p>프로젝트는 여러개의 앱을 가질수 있습니다. </p>
+<p>하나의 앱은 여러개의 프로젝트 안에 존재할수 있습니다. </p>
+</blockquote>
+<p><br><br></p>
+<p>Apps(앱) 들은 파이썬 경로 어디에든 있을수 있습니다. 이 튜토리얼에서는 <code>manage.py</code> 파일이 존재하는 폴더에 우리의 투표앱을 생성할것 입니다. </p>
+<br>
+
+<p>그래서, 생성된 프로젝트 <code>mysite</code> 의 하위 모듈이 아닌, 루트 폴더 기준에서, 앱이 자체적으로 모듈로 불러서 쓸수 있게 만들겁니다.<br><br><br></p>
+<h2 id="앱-생성하기"><a href="#앱-생성하기" class="headerlink" title="앱 생성하기"></a>앱 생성하기</h2><p><br><br></p>
+<p><code>manage.py</code> 파일이 존재하는 폴더에서 아래 커맨드를 입력하여 앱을 생성합니다<br><br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py startapp polls</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>앱 생성후에는 polls 폴더는 아래와 같은 구조여야 합니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<p>앱을 생성하고 나서의 파이참 화면 내역입니다. 왼쪽 네비게이션에 디렉토리 생성 사항을 체크할수 있습니다. </p>
+<br>
+
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-3%ED%8E%B8/image1.png" class="">
+
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p><br><br></p>
+<p>생성된 프로젝트 안에, 앱을 하나 생성해 주었습니다. </p>
+<p>프로젝트 &gt; 앱, 이 개념을 잘 알아야 합니다. </p>
+<br>
+
+<p>다음 포스팅에는 첫번째 view 를 다루는 내용을 진행 합니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Writing your first Django app, part1 - 2편</title>
+    <url>/2020/04/12/Writing-your-first-Django-app-part1-2%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="개발-서버"><a href="#개발-서버" class="headerlink" title="개발 서버"></a>개발 서버</h2><br>
+
+<p>지난 포스팅에서 Django 프로젝트를 생성하였습니다. </p>
+<p><br>생성된 django 프로젝트가 동작을 하는지 확인해 보겠습니다. </p>
+<p><br><code>mysite</code>폴더로 이동하고, <code>python manage.py runserver</code> 커멘드를 실행해줍니다. <a id="more"></a></p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(django-tutorial)  ~/django_tutorial/mysite (master)  ls</span><br><span class="line">manage.py  mysite</span><br><span class="line">(django-tutorial)  ~/django_tutorial/mysite  (master) python manage.py runserver</span><br><span class="line"></span><br><span class="line">Watching <span class="keyword">for</span> file changes with StatReloader</span><br><span class="line">Performing system checks...</span><br><span class="line"></span><br><span class="line">System check identified no issues (0 silenced).</span><br><span class="line"></span><br><span class="line">You have 17 unapplied migration(s). Your project may not work properly until you apply the migrations <span class="keyword">for</span> app(s): admin, auth, contenttypes, sessions.</span><br><span class="line">Run <span class="string">'python manage.py migrate'</span> to apply them.</span><br><span class="line"></span><br><span class="line">April 11, 2020 - 06:48:28</span><br><span class="line">Django version 3.0.5, using settings <span class="string">'mysite.settings'</span></span><br><span class="line">Starting development server at http://127.0.0.1:8000/</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>17 unapplied migration(s) </p>
+<p>17개의 적용되지 않은 마이그레이션이 있다는 메시지는 </p>
+<p>일단 무시하고 넘어갑니다. 곧 이것에 대해서 다루게 될겁니다. </p>
+</blockquote>
+<br>
+
+<p>Django 개발 서버를 시작하였습니다. 파이썬으로만 쓰여진 아주 가벼운 웹 서버 입니다. </p>
+<p><br>이 웹서버는 Django 에 포함되어 있고, Apache 같은 프로덕션 서버를 설정할 필요 없이, 빠르게 개발할수 있게 만들어져 있습니다. <br></p>
+<p>프로덕션 서버를 만들 준비가 되면, 그때가서 프로덕션 서버 설정을 하면 됩니다. </p>
+<br>
+
+<br>
+
+<p>한가지 알아야 할 점은, 이 서버를 프로덕션 환경에서 사용하면 안된다는 점입니다. 개발서버는 오직 개발중에 사용될 의도로 만들어 졌습니다. </p>
+<br>
+
+<h2 id="웹서버-접속해보기"><a href="#웹서버-접속해보기" class="headerlink" title="웹서버 접속해보기"></a>웹서버 접속해보기</h2><br>
+
+<p>서버가 실행중이니, 브라우저에서 웹서버에 접속해 봅니다 <code>http://127.0.0.1:8000</code></p>
+<br>
+
+<p>아래 이미지와 같이, 로켓 그림과 함께 congratulations! 가 표시된 페이지를 본다면, 잘 실행되고 있다는 겁니다. </p>
+<br>
+
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-2%ED%8E%B8/image1.png" class="">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>runserver 커맨드는 기본값으로 </p>
+<p>내부 IP port 8000 에 개발서버를 시작합니다. <br></p>
+<br>
+
+<p>포트값을 바꾸고 싶으면, 커맨드라인에서 인자값을 바꿔줍니다. 예를들어 <br></p>
+<p>python manage.py runserver 8080 <br></p>
+<br>
+
+<p>서버의 IP 를 바꾸고 싶다면, IP 값을 포트값과 같이 전달해 줍니다. 예를들어 <br><br>python manage.py runserver 0:8000 </p>
+<p>0 은 0.0.0.0 의 약자입니다.</p>
+</blockquote>
+<br>
+
+<h2 id="자동-runserver-리로딩"><a href="#자동-runserver-리로딩" class="headerlink" title="자동 runserver 리로딩"></a>자동 runserver 리로딩</h2><br>
+
+<p>개발 서버는 각 요청마다 파이썬 코드를 자동으로 다시 불러오게 됩니다. </p>
+<p><br>코드의 변경 사항의 결과를 보기위해서, 매번 서버를 다시 시작하지 않아도 됩니다. </p>
+<p><br>그렇지만, 어떤 파일들을 추가할때는 자동으로 다시 불러오지 않습니다. 따라서 해당 상황에서는, 서버를 다시 재시작 시켜 주어야 합니다. </p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>개발 서버를 구동 시켜 보았습니다. </p>
+<p><code>python manage.py runserver</code>를 실행시켜보면, 서버가 시작됩니다 </p>
+<br>
+
+<p>한번 서버를 실행 시키면, 에러가 없는 파이썬 코드를 수정할때마다 서버가 수정된 코드들을 다시 읽어 옵니다. </p>
+<p><br>서버를 재시작 시킬 필요가 없지만. 특정 파일들을 추가할때에는 그렇지 않을 경우가 존재하기 때문에, 그런 상황에서는 서버를 다시 실행 시켜 줍니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part1 - 1편</title>
     <url>/2020/04/11/Writing-your-first-Django-app-part1-1%ED%8E%B8/</url>
     <content><![CDATA[<br>
