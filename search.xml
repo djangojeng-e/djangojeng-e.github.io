@@ -1,6 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part1 - 1편</title>
+    <url>/2020/04/11/Writing-your-first-Django-app-part1-1%ED%8E%B8/</url>
+    <content><![CDATA[<br>
+
+<p>지난시간에 간단한 초기 설정을 마쳤습니다. </p>
+<p>공식문서 튜토리얼 진행을 하면서 추가 설정을 같이 진행 합니다. </p>
+<br>
+
+<h2 id="초기설정-파이썬-인터프리터-설정"><a href="#초기설정-파이썬-인터프리터-설정" class="headerlink" title="초기설정: 파이썬 인터프리터 설정"></a>초기설정: 파이썬 인터프리터 설정</h2><br>
+
+<p>파이참을 열고, 파이썬 인터프리터를 우리가 생성한 가상환경으로 설정을 해주어야 합니다. </p>
+<br>
+
+<blockquote>
+<p>파이참에서 <code>FILE</code> 안에 <code>SETTINGS</code> 메뉴를 열어줍니다. </p>
+<p><code>python interpreter</code> 설정을 해주어야 합니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a><br>
+
+<ol>
+<li>맨 오른쪽에 조그마한 설정 아이콘을 클릭 </li>
+<li>프로젝트 인터프리터 목록창이 나오는데, 우측에 조그맣게 있는 <code>+</code> 버튼을 눌러서 <code>Add Python Interpreter</code>창 실행 </li>
+<li><code>Existing Envrionment</code>를 클릭하고, 이전 포스팅에서 생성한 가상환경 <code>django-tutorial</code>로 설정</li>
+<li><code>OK</code> 버튼을 눌러서, 인터프리터 설정 완료 </li>
+<li>파이참 재시작 </li>
+</ol>
+<br>
+
+<img src="/2020/04/11/Writing-your-first-Django-app-part1-1%ED%8E%B8/image1.png" class="">
+
+<br>
+
+<blockquote>
+<p>가상 환경에 깔려 있는 패키지들이 표시됩니다 </p>
+</blockquote>
+<br>
+
+<img src="/2020/04/11/Writing-your-first-Django-app-part1-1%ED%8E%B8/image2.png" class=""> 
+
+<br>
+
+<br>
+
+<h2 id="Creating-a-Project-프로젝트-생성하기"><a href="#Creating-a-Project-프로젝트-생성하기" class="headerlink" title="Creating a Project(프로젝트 생성하기)"></a>Creating a Project(프로젝트 생성하기)</h2><br>
+
+<br>
+
+<p>django를 처음 사용하는것이라면, 초기 설정을 잘해야 합니다. </p>
+<p><br>예를들면, django 프로젝트에는, django 의 인스턴스를 생성하는 모든 설정들 (아래 참조) 를 자동 생성하는 코드들이 필요합니다.  </p>
+<br>
+
+<ul>
+<li>Django 데이터베이스 설정 </li>
+<li>Django 특화 옵션들 </li>
+<li>어플리케이션 특화 옵션들 </li>
+</ul>
+<br>
+
+<p>폴더 설정을 잘 마쳤으면, 다음 커맨드를 입력하여, 프로젝트를 자동 생성 합니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">django-admin startproject mysite</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>저는 지난시간에 파이참을 열어놓았기 때문에, 파이참에서 아래와 같이 커맨드를 입력해주었습니다. </p>
+<br>
+
+<img src="/2020/04/11/Writing-your-first-Django-app-part1-1%ED%8E%B8/image3.png" class="">
+
+<br>
+
+<blockquote>
+<p>아래와 같이 mysite 라는 폴더와 파일들이 자동 생성 되었습니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/04/11/Writing-your-first-Django-app-part1-1%ED%8E%B8/image4.png" class="">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>참고로, </p>
+<p>django 프로젝트 이름은 파이썬이나 Django 자체에서 쓰이는 </p>
+<p>빌트인 이름들은 피해서 짓습니다. </p>
+<p>예) 프로젝트명으로 django 를 사용하지 않습니다 (웹프레임워크 django와 이름 충돌) </p>
+<p>예) 프로젝트명으로 test 라고 짓지 않습니다 (파이썬 빌트인 패키지과 충돌)</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="생성된-프로젝트-둘러보기"><a href="#생성된-프로젝트-둘러보기" class="headerlink" title="생성된 프로젝트 둘러보기"></a>생성된 프로젝트 둘러보기</h2><br>
+
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysite/</span><br><span class="line">    manage.py</span><br><span class="line">    mysite/</span><br><span class="line">        __init__.py</span><br><span class="line">        settings.py</span><br><span class="line">        urls.py</span><br><span class="line">        asgi.py</span><br><span class="line">        wsgi.py</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>생성된 프로젝트를 둘러보니, mysite 라는 프로젝트가 생성되고.<br></p>
+<p>위의 구조로, 폴더와 파일들이 생성된것을 확인 할수 있습니다. </p>
+<br>
+
+<h2 id="프로젝트-파일들"><a href="#프로젝트-파일들" class="headerlink" title="프로젝트 파일들"></a>프로젝트 파일들</h2><br>
+
+
+
+<br>
+
+<ul>
+<li><p>바깥의 <code>mysite/</code>는 루트 디렉토리로 프로젝트의 컨테이너 입니다. 해당 폴더 이름은 django 로 지을수도 있고. 언제든 이름을 바꿔줄수 있습니다. <br></p>
+</li>
+<li><p><code>manage.py</code> 는 커맨드 라인 유틸리티로 django project 와 여러가지 방식으로 상호 작용 합니다. <br></p>
+</li>
+<li><p>안쪽의 <code>mysite/</code> 폴더는 프로젝트를 위한 실제 파이썬 패키지 입니다. 이 이름은 일반 파이썬 패키지명과 같은 방식으로, 폴더내의 어떤것이든 가져오기 위해 필요한 이름입니다. </p>
+<br>
+
+<p>예) mysite.urls,  mysite.asgi, mysite.settings<br> </p>
+</li>
+<li><p><code>mysite/__init__.py</code> 은 비어있는 파일로, 파이썬에게 해당 폴더가 파이썬 패키지라는것을 알려줍니다. 파이썬 초심자라면, 파이썬 문서패키지에 대해 더 읽어보기 섹션을 참조하길 바랍니다. <br></p>
+</li>
+<li><p><code>mysite/urls.py</code>는 django 프로젝트를 위한 url 선언들이 들어 있습니다. django 로 개발된 사이트의 목차 같은 역할을 합니다. <br></p>
+</li>
+<li><p><code>mystie/asgi.py</code> 는 <code>ASGI</code>가 호환되는 웹서버의 진입지점으로 django project  를 수행합니다.<br> </p>
+</li>
+<li><p><code>mysite/wsgi.py</code>는 <code>WSGI</code>가 호환되는 웹서버의 진입지점으로 django project 를 수행합니다.</p>
+</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="초기설정-마무리"><a href="#초기설정-마무리" class="headerlink" title="초기설정 마무리"></a>초기설정 마무리</h2><br>
+
+<br>
+
+<p>프로젝트 생성이 완료 되었으니, 초반에 설치했던 <code>django-extension</code>를 프로젝트에 등록 해줍니다. </p>
+<br>
+
+<p><code>mysite/settings.py</code> 안에 <code>INSTALLED_APPS = []</code> 안쪽에<br><br></p>
+<blockquote>
+<p><code>django_extensions</code>를 추가해 줍니다.  </p>
+</blockquote>
+<br>
+
+<br>
+
+<img src="/2020/04/11/Writing-your-first-Django-app-part1-1%ED%8E%B8/image5.png" class="">
+
+
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>Django 프로젝트 생성을 완료하였습니다. 초기 설정은 아직 좀 더 남아 있기는 하지만, </p>
+<p>이정도로 마치고 넘어가면서. 추가로 필요한 설정이 있으면, 그때마다 하겠습니다. </p>
+<br>]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part1 - 초기설정</title>
     <url>/2020/04/11/Writing-your-first-Django-app-part1-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/</url>
     <content><![CDATA[<h2 id="장고-공식문서-튜토리얼-초기세팅"><a href="#장고-공식문서-튜토리얼-초기세팅" class="headerlink" title="장고 공식문서 튜토리얼 초기세팅"></a>장고 공식문서 튜토리얼 초기세팅</h2><br>
