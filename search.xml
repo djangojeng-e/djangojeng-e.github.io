@@ -1,6 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part1 - 초기설정</title>
+    <url>/2020/04/11/Writing-your-first-Django-app-part1-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/</url>
+    <content><![CDATA[<h2 id="장고-공식문서-튜토리얼-초기세팅"><a href="#장고-공식문서-튜토리얼-초기세팅" class="headerlink" title="장고 공식문서 튜토리얼 초기세팅"></a>장고 공식문서 튜토리얼 초기세팅</h2><br>
+
+<br>
+
+<p>공식문서에 나와있는 첫번째 앱 만들기 튜토리얼을 진행해봅니다. </p>
+<br>
+
+<p>이 튜토리얼을 통해서, 아주 기본적인 투표앱을 만드는 과정을 해보겠습니다. </p>
+<br>
+
+<br>
+
+<p>투표앱은 두부분으로 이루어져있습니다. </p>
+<br>
+
+<p>1) 사람들이 투표소 (투표의 내역) 를 보고, 투표를 할수 있는 하나의 공용 사이트 </p>
+<p>2) 투표소 (투표의 내역) 를 추가, 변경, 삭제할수 있는 관리자 사이트</p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<p>Django가 이미 설치 되어있다고 가정하고 진행되는 튜토리얼 입니다. </p>
+<p><br>아래 커맨드를 사용하여 어떤 버전의 django 가 설치되어 있는지 확인 할수 있습니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m django --version</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="튜토리얼-진행전-초기세팅-OS는-Ubuntu18-04"><a href="#튜토리얼-진행전-초기세팅-OS는-Ubuntu18-04" class="headerlink" title="튜토리얼 진행전 초기세팅 (OS는 Ubuntu18.04)"></a>튜토리얼 진행전 초기세팅 (OS는 Ubuntu18.04)</h2><br>
+
+<br>
+
+<h3 id="가상환경-설정"><a href="#가상환경-설정" class="headerlink" title="가상환경 설정"></a>가상환경 설정</h3><br>
+
+<br>
+
+<p>가상환경 설정을 진행 합니다. (가상환경 설정준비가 되어 있지 않다면, 아래 링크 참조)<br></p>
+<p><a href="https://djangojeng-e.github.io/2020/04/10/가상환경-pyenv-virtualenv-4편/#more">https://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/#more</a></p>
+<p><br>저는 아래와 같은 커맨드들을 입력하여. 초기 설정을 진행합니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 홈 디렉토리에서 django_tutorial 폴더 생성 </span></span><br><span class="line">mkdir django_tutorial </span><br><span class="line"></span><br><span class="line"><span class="comment"># 홈 디렉토리에서 django_tutorial 폴더로 이동 </span></span><br><span class="line"><span class="built_in">cd</span> django_tutorial </span><br><span class="line"></span><br><span class="line"><span class="comment"># 튜토리얼을 위한 가상환경 생성 (python 3.7.4로 생성) </span></span><br><span class="line">pyenv virtualenv 3.7.4 django_tutorial</span><br><span class="line">Looking <span class="keyword">in</span> links: /tmp/tmp9y92lrdq</span><br><span class="line">Requirement already satisfied: setuptools <span class="keyword">in</span> /home/dhkang/.pyenv/versions/3.7.4/envs/django-tutorial/lib/python3.7/site-packages (40.8.0)</span><br><span class="line">Requirement already satisfied: pip <span class="keyword">in</span> /home/dhkang/.pyenv/versions/3.7.4/envs/django-tutorial/lib/python3.7/site-packages (19.0.3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 해당 폴더에 생성된 가상환경 적용 </span></span><br><span class="line">pyenv <span class="built_in">local</span> django_tutorial</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>폴더에 가상환경 적용 완료 (아래 스크린 캡쳐 참조) </p>
+</blockquote>
+<br>
+
+<img src="/2020/04/11/Writing-your-first-Django-app-part1-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/image1.png" class="">
+
+
+
+<br>
+
+<h3 id="Django-설치"><a href="#Django-설치" class="headerlink" title="Django 설치"></a>Django 설치</h3><br>
+
+<p><code>pip list</code>를 실행해서, 현재 설치된 패키지들을 검사합니다. django가 설치되어 있지 않습니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pip list </span><br><span class="line"></span><br><span class="line">Package    Version</span><br><span class="line">---------- -------</span><br><span class="line">pip        19.0.3 </span><br><span class="line">setuptools 40.8.0 </span><br><span class="line">You are using pip version 19.0.3, however version 20.0.2 is available.</span><br><span class="line">You should consider upgrading via the <span class="string">'pip install --upgrade pip'</span> <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p><code>pip install django</code> 명령어를 실행해서, django 를 설치합니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pip install django </span><br><span class="line">Installing collected packages: pytz, asgiref, sqlparse, django</span><br><span class="line">Successfully installed asgiref-3.2.7 django-3.0.5 pytz-2019.3 sqlparse-0.3.1</span><br><span class="line">You are using pip version 19.0.3, however version 20.0.2 is available.</span><br><span class="line">You should consider upgrading via the <span class="string">'pip install --upgrade pip'</span> <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<p>다시한번 <code>pip list</code>를 실행하면, django 가 설치되어 있는것을 확인 할수 있습니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pip list </span><br><span class="line">Package    Version</span><br><span class="line">---------- -------</span><br><span class="line">asgiref    3.2.7  </span><br><span class="line">Django     3.0.5  </span><br><span class="line">pip        19.0.3 </span><br><span class="line">pytz       2019.3 </span><br><span class="line">setuptools 40.8.0 </span><br><span class="line">sqlparse   0.3.1</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="Django-Extensions-설치"><a href="#Django-Extensions-설치" class="headerlink" title="Django Extensions 설치"></a>Django Extensions 설치</h3><br>
+
+<p>튜토리얼 진행하면서, shell 을 사용할때가 나올텐데. Shell 대신, shell plus 를 사용하기 위해서 </p>
+<p><br><code>django-extensions</code>를 설치해줍니다 <br></p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install django-extensions</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>django-extensions 를 사용하기 위해선, </p>
+<p>추후에 django 프로젝트를 생성하고, </p>
+<p><code>settings.py</code> 에 <code>INSTALLED_APPS</code> 에  등록 해주어야 합니다</p>
+</blockquote>
+<br>
+
+<p><code>pip list</code>를 실행하면, <code>django-extensions</code>가 설치된것을 확인할수 있습니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(django-tutorial) ~/django_tutorial (master)  pip list</span><br><span class="line">Package           Version</span><br><span class="line">----------------- -------</span><br><span class="line">asgiref           3.2.7  </span><br><span class="line">Django            3.0.5  </span><br><span class="line">django-extensions 2.2.9  </span><br><span class="line">pip               19.0.3 </span><br><span class="line">pytz              2019.3 </span><br><span class="line">setuptools        40.8.0 </span><br><span class="line">six               1.14.0 </span><br><span class="line">sqlparse          0.3.1</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h3 id="Pycharm-실행"><a href="#Pycharm-실행" class="headerlink" title="Pycharm 실행"></a>Pycharm 실행</h3><p><br><br></p>
+<p>파이참을 실행하는 커맨드는 각자 다를수 있는데.<br></p>
+<p>저는 터미널에서 <code>pycharm-community .</code> 을 실행하면 실행이 됩니다. 해당 폴더에서 실행 합니다<br><br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(django-tutorial)  ~/django_tutorial (master) pycharm-community .</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>간단한 초기설정을 마쳤습니다. </p>
+<p>아직 초기 세팅이 다 끝난것은 아닙니다. 파이참 인터프리터 설정도 해주어야 하고, django-extensions 도 세팅을 해주어야 합니다. <br></p>
+<p>다음 포스팅 시작할때, 추가 초기설정도 하고, <br>향후 진행하면서 필요한 설정은, 그때그때 진행 하겠습니다. </p>
+<br>
+
+<p>튜토리얼을 위한 깃헙 주소 : <a href="https://github.com/djangojeng-e/django_tutorial.git" target="_blank" rel="noopener">https://github.com/djangojeng-e/django_tutorial.git</a></p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>가상환경 pyenv, virtualenv - 4편</title>
     <url>/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="가상환경-설정-pyenv-virtualenv-4편"><a href="#가상환경-설정-pyenv-virtualenv-4편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv - 4편"></a>가상환경 설정 - pyenv, virtualenv - 4편</h2><h2 id="pyenv-virtualenv를-사용해서-가상환경-사용"><a href="#pyenv-virtualenv를-사용해서-가상환경-사용" class="headerlink" title="pyenv-virtualenv를 사용해서 가상환경 사용"></a><code>pyenv-virtualenv</code>를 사용해서 가상환경 사용</h2><br>
