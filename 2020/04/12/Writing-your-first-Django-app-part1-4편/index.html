@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image3.png">
 <meta property="og:image" content="http://djangojeng-e.github.io/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image4.png">
 <meta property="article:published_time" content="2020-04-11T21:10:07.000Z">
-<meta property="article:modified_time" content="2020-04-11T21:47:42.615Z">
+<meta property="article:modified_time" content="2020-04-11T21:54:52.375Z">
 <meta property="article:author" content="장고쟁이">
 <meta property="article:tag" content="Django">
 <meta property="article:tag" content="Tutorial">
@@ -240,7 +240,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-04-12 06:10:07 / Updated at: 06:47:42" itemprop="dateCreated datePublished" datetime="2020-04-12T06:10:07+09:00">2020-04-12</time>
+              <time title="Post created: 2020-04-12 06:10:07 / Updated at: 06:54:52" itemprop="dateCreated datePublished" datetime="2020-04-12T06:10:07+09:00">2020-04-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -299,7 +299,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
 
 <p><br><br></p>
-<h2 id="Django의-MTV-모델"><a href="#Django의-MTV-모델" class="headerlink" title="Django의 MTV 모델"></a>Django의 MTV 모델</h2><p><br><br></p>
+<h2 id="Django의-MTV-모델"><a href="#Django의-MTV-모델" class="headerlink" title="Django의 MTV 모델"></a>Django의 MTV 모델</h2><p><br><br><a id="more"></a></p>
 <p>view 를 작성하기 전에, django 의 MTV 모델에 대해서 알아야 하는데. 간단하게 짚고 넘어가자면.. </p>
 <br>
 
@@ -318,20 +318,18 @@
 
 <img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image1.png" class="">
 
-<br>
-
+<p><br><br></p>
 <blockquote>
-<p>사용자가 URL 을 통해서 View 에 요청을 하면 <br></p>
-<p>View 는 요청을 처리하고, 사용자에게 결과물을 반환합니다<br></p>
+<p>사용자가 URL 을 통해서 View 에 요청을 하면 </p>
+<p>View 는 요청을 처리하고, 사용자에게 결과물을 반환합니다</p>
 <p>View 는 Model 을 통해서 데이터베이스에서 데이터를 가져올수도 있고, 저장할수도 있습니다</p>
-<p>View 는 Templates 에 결과를 그려주기도 합니다.  <br></p>
+<p>View 는 Templates 에 결과를 그려주기도 합니다.  </p>
 <p>처리 결과를 Template 에 그려주고, 그 Template 을 사용자에게 다시 반환하는것도 View 가 할 역할입니다. </p>
 </blockquote>
 <p><br><br></p>
 <img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image2.png" class=""> 
 
-<br>
-
+<p><br><br></p>
 <br>
 
 <blockquote>
@@ -348,10 +346,11 @@
 <p>처음에 django 공부할때, 어떤거 부터 작성해야 하는지에 대해서 많이 헷갈렸었는데. 튜토리얼에서는 View 부터 작성하고 시작합니다. </p>
 <br>
 
-<p>어떤분들은, models 부터 시작하고, 어떤분들은 templates 부터 시작합니다. 어디서부터 시작하는지는 개인 취향에 맡겨야 할것 같습니다. 결과물만 좋다면,, 순서는 뭐 중요하지 않지요. </p>
+<p>어떤분들은, models 부터 시작하고, 어떤분들은 templates 부터 시작합니다. </p>
+<p>어디서부터 시작하는지는 개인 취향에 맡겨야 할것 같습니다. 결과물만 좋다면,, 순서는 뭐 중요하지 않지요. </p>
 <br>
 
-<p>공식문서에 나와있는 순서들도 100% 맞는 순서가 아니니, 참고 합니다. </p>
+<p>공식문서에 나와있는 순서들도 100% 맞는 순서가 아니지만, 참고 합니다. </p>
 <br>
 
 <p><strong>공식문서 튜토리얼에서 진행하는 순서는 View 부터 진행합니다</strong></p>
@@ -366,25 +365,21 @@
 <p>1) <code>polls/views.py</code>에 view 작성 </p>
 <p>2) 요청을 전달할 <code>polls/urls.py</code> 생성 및 작성 (이 url은 작성된 view 를 요청합니다) </p>
 <p>3) 프로젝트 url 과 <code>polls/urls.py</code> 를 연결 </p>
-<br>
-
+<p><br><br></p>
 <blockquote>
 <p>url 을 통해서 사용자가 요청을 보내면, </p>
 <p>view 는 요청을 처리하고. 사용자에게 값을 반환합니다. </p>
 </blockquote>
-<br>
-
+<p><br><br></p>
 <p>자 그럼, 첫번째 뷰를 작성해 봅니다. <code>polls/views.py</code>를 열고, 아래 파이썬 코드를 작성합니다.</p>
 <br>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world. You're at the polls index."</span>)</span><br></pre></td></tr></table></figure>
 
-<br>
-
+<p><br><br></p>
 <p>이것이 django 에서 제일 간단한 view 입니다. 이 view 를 호출하기 위해서는 url 이 필요하겠죠? </p>
 <p><br>따라서 url을 생성해 줍니다</p>
-<br>
-
+<p><br><br></p>
 <h3 id="polls-urls-py-생성하기"><a href="#polls-urls-py-생성하기" class="headerlink" title="polls/urls.py 생성하기"></a>polls/urls.py 생성하기</h3><br>
 
 <br>
@@ -397,40 +392,36 @@
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    urls.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
 
-<br>
-
+<p><br><br></p>
 <blockquote>
 <p>polls/urls.py 에 아래 코드를 적어줍니다.</p>
 </blockquote>
-<br>
-
+<p><br><br></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># polls/urls.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path </span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">''</span>, views.index, name=<span class="string">'index'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <br>
 
-<h3 id="루트-URLConf-설정"><a href="#루트-URLConf-설정" class="headerlink" title="루트 URLConf 설정"></a>루트 URLConf 설정</h3><br>
-
+<h3 id="루트-URLConf-설정"><a href="#루트-URLConf-설정" class="headerlink" title="루트 URLConf 설정"></a>루트 URLConf 설정</h3><p><br><br></p>
 <p>루트 URLConf 에서,  <code>polls/urls.py</code> 를 연결해 줍니다. 여기서 얘기하는 루트 URLConf 는 <code>mysite/urls.py</code> 입니다.</p>
-<br>
-
+<p><br><br></p>
 <blockquote>
 <p>mysite/urls.py 를 열고, urlpatterns 에 </p>
 <p>polls/urls.py 가 포함되게 해줍니다 </p>
 </blockquote>
-<br>
-
+<p><br><br></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysite/urls.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin </span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include, path </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'polls/'</span>, include(<span class="string">'polls.urls'</span>)),</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <br>
 
-<h3 id="호출-순서"><a href="#호출-순서" class="headerlink" title="호출 순서"></a>호출 순서</h3><br>
-
+<h3 id="호출-순서"><a href="#호출-순서" class="headerlink" title="호출 순서"></a>호출 순서</h3><p><br><br></p>
 <p>루트 URLConf 설정을 해주고, 잠시 작동 순서를 생각해봅니다. </p>
-<p><br>브라우저에서 <code>polls/</code> 로 접속해보면, 아래와 같은 동작 순서가 그려집니다. </p>
+<p><br><br><strong>브라우저에서 <code>polls/</code> 로 접속해보면, 아래와 같은 동작 순서가 그려집니다.</strong> </p>
+<br>
+
 <ol>
 <li>브라우저에서 <code>polls/</code> 로 접속 </li>
 <li><code>polls/</code> 에서 <code>include()</code> 함수를 통해서 <code>polls/urls.py</code> 로 연결 </li>
@@ -444,7 +435,7 @@
 <p>튜토리얼에서는 <code>include()</code> 함수에 대해서 설명을 하고 있는데. <code>include()</code> 함수는 루트에 존재하는 urls.py 가 다른 url 설정들을 참조할수 있게 해줍니다. 언제든 Django가 <code>include()</code>를 만나면, 참조하는 다른 url 설정으로 남은 문자열들을 전달합니다. </p>
 <br>
 
-<p>튜토리얼에서는 <code>include()</code> 함수에 대해서 간단하게 설명하고 있는데.<br>Django 초심자라면, 이 시점에서 이 설명을 들으면 오히려 튜토리얼 진행을 할수 없을만큼 헷갈립니다.<br><br></p>
+<p>튜토리얼에서는 <code>include()</code> 함수에 대해서 간단하게 설명하고 있는데.<br>Django 초심자라면, 이 시점에서 이 설명을 들으면 오히려 튜토리얼 진행을 할수 없을만큼 헷갈립니다.<br><br><br></p>
 <blockquote>
 <p>include() 함수는 다름 URL 패턴들을 포함할수 있게 합니다. </p>
 <p>다른 url 패턴들을 포함하고 싶을때에는 언제나 include() 함수를 사용합니다 </p>
@@ -453,23 +444,22 @@
 <p><br><br></p>
 <h2 id="서버를-실행해서-확인하기"><a href="#서버를-실행해서-확인하기" class="headerlink" title="서버를 실행해서 확인하기"></a>서버를 실행해서 확인하기</h2><br>
 
-<p><code>python manage.py runserver</code>를 실행하고, 브라우저를 엽니다<br></p>
-<p>브라우저 주소창에 <code>127.0.0.1:8000</code> 이 표시되어 있고, page not found(404) 가 표시됩니다<br><br></p>
-<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image3.png" class=""> 
-
 <br>
 
+<p><code>python manage.py runserver</code>를 실행하고, 브라우저를 엽니다<br></p>
+<p>브라우저 주소창에 <code>127.0.0.1:8000</code> 이 표시되어 있고, page not found(404) 가 표시됩니다<br><br><br></p>
+<img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image3.png" class=""> 
+
+<p><br><br></p>
 <p>페이지를 찾을수 없는 이유는, 루트에 있는 url 파일을 확인해 보면 알수 있습니다. <br></p>
 <p>mysite/urls.py 파일을 참조하면, <strong>등록되어 있는  urls 는 총 2개로 <code>admin/</code> 과 <code>polls/</code> 2개 뿐입니다</strong><br></p>
 <p><br>이 2가지 url 을 제외한 url 을 입력하면, 당연히 django 에서 url을 찾을수 없겟죠? ㅎㅎ </p>
-<br>
-
+<p><br><br></p>
 <blockquote>
 <p>127.0.0.1:8000/polls 혹은 </p>
 <p>127.0.0.1:8000/admin 으로 접속하면 해당 페이지들을 찾을수 있을겁니다.  </p>
 </blockquote>
-<br>
-
+<p><br><br><br></p>
 <p><strong><code>127.0.0.1:8000/polls/</code>로 접속해 봅니다. polls/views.py 에 있는 Index 뷰가 정상적으로 화면에 메시지를 출력할것 입니다.</strong></p>
 <br>
 
@@ -477,11 +467,9 @@
 
 <img src="/2020/04/12/Writing-your-first-Django-app-part1-4%ED%8E%B8/image4.png" class=""> 
 
-<br>
-
-<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
-
-<p>공식문서 튜토리얼에 첫번째 뷰 작성하기 부분 마지막에는 <code>path()</code> 함수에 대한 설명이 있는데. 이부분은 아직 깊게 들어갈 필요가 없습니다. <br>이제까지 내용도 소화하기 힘든데, path() 까지 깊게 짚지 않고, 향후에 실력이 더 쌓이면 깊게 들어가 보겠습니다. </p>
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p><br><br></p>
+<p>공식문서 튜토리얼에 첫번째 뷰 작성하기 부분 마지막에는 <code>path()</code> 함수에 대한 설명이 있는데.<br> 이부분은 아직 깊게 들어갈 필요가 없습니다. <br>이제까지 내용도 소화하기 힘든데, path() 까지 깊게 짚지 않고, 향후에 실력이 더 쌓이면 깊게 들어가 보겠습니다. </p>
 
     </div>
 
@@ -511,7 +499,10 @@
     <a href="/2020/04/12/Writing-your-first-Django-app-part1-3%ED%8E%B8/" rel="prev" title="Writing your first Django app, part1 - 3편">
       <i class="fa fa-chevron-left"></i> Writing your first Django app, part1 - 3편
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/13/Writing-your-first-Django-app-part2-1%ED%8E%B8/" rel="next" title="Writing your first Django app, part2 - 1편">
+      Writing your first Django app, part2 - 1편 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -592,7 +583,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -605,7 +596,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-count">69</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
@@ -624,6 +615,9 @@
       </div>
 
 <div>
+
+
+
 
 
 <iframe width="210" height="180" src="https://www.youtube.com/embed/TmrlClNCRtA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
