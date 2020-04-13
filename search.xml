@@ -1,6 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part2 - 2편</title>
+    <url>/2020/04/13/Writing-your-first-Django-app-part2-2%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="모델-작성하기"><a href="#모델-작성하기" class="headerlink" title="모델 작성하기"></a>모델 작성하기</h2><br>
+
+<p>지난 포스팅에서 데이터베이스 설정을 마쳤습니다. 튜토리얼에서 진행하는 기본 데이터베이스인 SQLite 를 사용하고, 기본앱들에 대한 migrate 를 완료해서, 필요한 데이터베이스 테이블들을 생성해 주었습니다. </p>
+<br>
+
+<p>이번 파트는, 모델을 작성해 봅니다. 데이터베이스 레이아웃과 추가적인 메타데이터를 정의 합니다. </p>
+<br>
+
+<a id="more"></a>
+
+<blockquote>
+<p>모델은 하나의 데이터에 대한 확실한 사실적 정의를 내립니다. </p>
+<p>모델은 필요한 저장할 데이터의 필드들과 동작들의 정보를 가지고 있습니다. </p>
+<p>Django 는 DRY 원칙을 따릅니다 (Don’t Repeat Yourself) </p>
+<br>
+
+<p>목표하는것은 데이터 모델을 한곳에 정의하고, 그곳에서 자동으로 도출해 내는겁니다. </p>
+<br>
+
+<p>Ruby on Rails 와는 다르게, 여기서는 migrations 를 포함합니다. </p>
+<p>예를들면, migrations 는 전적으로 모델파일에서 추출되고, </p>
+<br>
+
+<p>Django 는 본질적으로 데이터베이스 스키마를 현재 모델에 업데이트 할수 있게 내역을 기록합니다. </p>
+</blockquote>
+<p><br><br></p>
+<h2 id="모델-클래스-작성하기"><a href="#모델-클래스-작성하기" class="headerlink" title="모델 클래스 작성하기"></a>모델 클래스 작성하기</h2><p><br><br></p>
+<p>투표앱 튜토리얼에서는, 2개의 모델을 작성합니다. </p>
+<p><br><br></p>
+<ul>
+<li>Question - 질문과 발행날짜 정보를 가지고 있는 투표 질문 </li>
+<li>Choice - 질문에 대한 선택문들과 투표집계 정보를 가지고 있습니다 </li>
+</ul>
+<p><br>각각의 Choice 들은 하나의 Question과 연관되어 있습니다. </p>
+<br>
+
+<blockquote>
+<p>해당 컨셉은 파이썬 클래스들로 표현됩니다. </p>
+<p>polls/models.py 파일을 열고, 아래와 같이 작성해 줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    pub_date = models.DateTimeField(<span class="string">'date published'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">  question = models.ForeignKey(Question, on_delete=models.CASCADE) </span><br><span class="line">  choice_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">  votes = models.IntegerField(default=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>여기서, 각가의 모델들은 <code>django.db.models.Model</code>을 상속받는 서브클래스들로 표현됩니다. </p>
+<p><br>각 모델은 몇개의 클래스 변수들을 가지고 있는데,</p>
+<br>
+
+<blockquote>
+<p>각 클래스 변수들은 모델안의 데이터베이스 필드들을 표현합니다 </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="필드-정보"><a href="#필드-정보" class="headerlink" title="필드 정보"></a>필드 정보</h2><br>
+
+<br>
+
+<p>각 필드들은 필드클래스의 인스턴스들로 표현됩니다. </p>
+<br>
+
+<p>예) 케릭터필드를 위한 CharField, 날짜시간필드를 위한 DateTimeField </p>
+<br>
+
+<p>이 필드 정보들은 각 필드들이 가지는 데이터 타입이 어떤것인지 Django 에게 말해줍니다. </p>
+<p><br>각 필드 인스턴스들의 이름들 (예, question_text 혹은 pub_date)은 필드들의 기계친화적 이름들입니다. </p>
+<p><br>이 필드 이름들을 파이썬 코드에서 사용할수 있고, 데이터베이스에서 컬럼명으로 사용됩니다.  사람이 읽기 편한 형태의 이름으로 필드를 만들기 위해서 선택적으로 첫번째 위치인자를 필드명으로 사용할수 있습니다. </p>
+<br>
+
+<p>보통 Django의 내부 설명 용도로 쓰이는, 문서를 2배로 늘려버립니다. 만약, 필드가 제공되지 않으면, Django는 기계친화적인 이름을 우선 사용합니다. </p>
+<br>
+
+<p>튜토리얼에서는, Question.pub_date 만 인간이 읽기 좋은 형태의 이름을 정의합니다. 그외에 다른 필드들은, 기계친화적 이름이라도 사람이 읽기 충분합니다. </p>
+<br>
+
+
+
+<br>
+
+<h2 id="Field-클래스들의-필수-인수"><a href="#Field-클래스들의-필수-인수" class="headerlink" title="Field 클래스들의 필수 인수"></a>Field 클래스들의 필수 인수</h2><br>
+
+<br>
+
+<p>어떤 필드 클래스들은 필수적으로 인수를 가져야 합니다. </p>
+<p><br>예를들어, CharField 는 최대 길이값인 max_length 인수를 가져야 하고, 데이터베이스 스키마에 사용될 뿐만 아니라 검증에도 사용됩니다.</p>
+<br>
+
+<br>
+
+<p>필드는 여러가지 선택적 인수들을 가질수도 있습니다. 튜토리얼에서는 votes 의 기본값을 0으로 세팅해주었습니다. </p>
+<br>
+
+<br>
+
+<h2 id="데이터베이스-관계의-정의"><a href="#데이터베이스-관계의-정의" class="headerlink" title="데이터베이스 관계의 정의"></a>데이터베이스 관계의 정의</h2><br>
+
+<br>
+
+<p>마지막으로, 튜토리얼의 데이터베이스 모델에서는 관계가 정의 되어 있습니다. </p>
+<p><br>ForeignKey를 사용해서 Question 과 Choice 의 관계가 정의되어 있습니다. Django 는 모든 공통적인 데이터베이스 관계들을 지원합니다. 예) <code>many-to-one</code>, <code>many-to-many</code>, <code>one-to-one</code></p>
+<br>
+
+<blockquote>
+<p>튜토리얼에 나온 Question 과 Choice 는, </p>
+<p>일 대 다수의 관계인 </p>
+<p>one-to-many (many-to-one) 의 관계를 가지고 있습니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<p>하나의 질문에, 여러가지 선택지가 있다는 얘기 입니다. </p>
+<br>
+
+<p>2020년 4월 현재에 진행되고 있는, 제 21대 국회의원 선거를 예로 들면.<br></p>
+<p>‘우리 지역에서 누가 국회의원이 되어야 하나?’ 라는 질문에, 여러 후보들이 존재합니다.<br><br></p>
+<p>하나의 질문에 여러가지 선택이 있는겁니다.  <br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>아주 간단한 모델을 작성해 보았습니다.</p>
+<p><br>다음 포스팅에는 모델의 활성화를 진행해 볼겁니다.<br></p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+        <tag>데이터베이스</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part2 - 1편</title>
     <url>/2020/04/13/Writing-your-first-Django-app-part2-1%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="데이터베이스-셋업"><a href="#데이터베이스-셋업" class="headerlink" title="데이터베이스 셋업"></a>데이터베이스 셋업</h2><p>첫번째 장고앱 만들기 part2 에 대한 포스팅 시작입니다. </p>
