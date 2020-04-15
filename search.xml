@@ -1,6 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part2 - 3편</title>
+    <url>/2020/04/15/Writing-your-first-Django-app-part2-3%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="모델-활성화-하기"><a href="#모델-활성화-하기" class="headerlink" title="모델 활성화 하기"></a>모델 활성화 하기</h2><br>
+
+<br>
+
+<p>모델에 적혀있는 작은 코드들은 Django 에게 많은 정보를 줍니다. 모델에 있는 코드로, Django 는 아래 작업을 수행할수 있습니다.</p>
+<br>
+
+<ul>
+<li>이 앱을 위한 데이터베이스 스키마 생성 (CREATE TABLE 구문) </li>
+<li>Question 과 Choice 객체를 접근할수 있는 파이썬 데이터베이스 엑세스 API 생성 </li>
+</ul>
+<br>
+
+<p><strong>하지만 우선, 프로젝트에 우리의 polls 앱이 설치 되었다는것을 알려 줘야 합니다</strong></p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>철학 </p>
+<p>Django 앱들은 뺏다꼇다 플러그인 이 가능합니다. </p>
+<p>앱들은 여러개의 프로젝트에서 사용될수 있고, 배포도 될수 있습니다 </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="INSTALLED-APPS-에-등록하기"><a href="#INSTALLED-APPS-에-등록하기" class="headerlink" title="INSTALLED_APPS 에 등록하기"></a>INSTALLED_APPS 에 등록하기</h2><br>
+
+<br>
+
+<p>앱을 프로젝트에 포함 시키기 위해서, <code>mysite/settings.py</code> 에 있는 <code>INSTALLED_APPS</code> 설정안에, 앱의 설정 클래스 참조값을 추가해 줍니다. 앱의 설정 클래스는 <code>PollsConfig</code> 라는 이름으로, <code>polls/apps.py</code> 파일 안에 존재합니다. 따라서 이 경로를 참조하기 위해서 <code>polls.apps.PollsConfig</code> 라고 쓰고 사용합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># polls 앱 안에, apps.py 에 있는 PollsConfig </span></span><br><span class="line"><span class="comment"># . 으로 이어서 참조값을 만듭니다. </span></span><br><span class="line"><span class="comment"># 이값을 mysite/settings.py 파일에 등록해 줍니다. </span></span><br><span class="line"></span><br><span class="line">polls.apps.PollsConfig</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<blockquote>
+<p>mysite/settings.py 파일을 열어서. 위의 <code>.</code>으로 연결된 경로, </p>
+<p><code>polls.apps.PollsConfig</code>를 INSTALLED_APPS 설정에 추가해 줍니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mysite/settings.py </span></span><br><span class="line"></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'polls.apps.PollsConfig'</span>,    <span class="comment"># 추가된 항목 </span></span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>참고로, <code>polls.apps.PollsConfig</code> 라고 쓰기 귀찮으면, </p>
+<p>그냥 앱의 이름인 <code>polls</code> 라고만 써주어도 됩니다. </p>
+<p><code>&#39;&#39;</code> 안에 넣어주는것을 잊지 않습니다. </p>
+</blockquote>
+<br>
+
+
+
+<h2 id="makemigrations-하기"><a href="#makemigrations-하기" class="headerlink" title="makemigrations 하기"></a>makemigrations 하기</h2><br>
+
+<br>
+
+<p>이제 Django 프로젝트에 polls 앱을 포함시켰습니다. </p>
+<p><br>INSTALLED_APPS 에  polls 앱을 잘 등록하였으면, 아래 명령어를 실행 합니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python manage.py makemigrations polls </span><br><span class="line"><span class="comment"># 아래와같은 메시지가 표시되어야 합니다 </span></span><br><span class="line">Migrations <span class="keyword">for</span> <span class="string">'polls'</span>:</span><br><span class="line">  polls/migrations/<span class="number">0001</span>_initial.py</span><br><span class="line">    - Create model Question</span><br><span class="line">    - Create model Choice</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>polls/migrations/0001_inital.py</code> 파일이 잘 생성되었는지 확인 합니다. </p>
+<br>
+
+<br>
+
+<blockquote>
+<p>만약 makemigrations 가 제대로 실행되지 않는다면, </p>
+<p>polls/models.py 에 오타가 있을수도 있고, mysite/settings.py 에 제대로 앱이 등록 되지 않았을수 있습니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<p><code>makemigrations</code> 명령어를 실행시키므로써, 모델에 변경사항이 있다는것을 Django 에게 얘기 해줍니다.</p>
+<p>(여기서 변경사항은, 이전 포스팅에서 새로 작성한 모델입니다) 그리고 변경 사항들은 <code>migration</code> 형태로 저장됩니다. </p>
+<br>
+
+<p>migrations는 Django가 변경된 모델 사항들을 저장하는 방법입니다 (즉, 데이터베이스 스키마). migrations는 디스크에 파일 형태로 저장됩니다. 방금 생성한 첫번째 migration 을 읽고 싶으면, 읽을수 있습니다. 이 파일은 <code>polls/migrations/0001_inital.py</code> 파일 입니다. </p>
+<br>
+
+<p>하지만, Django 가 이 파일을 하나씩 만들때마다 우리는 이 파일들을 하나씩 다 읽을 필요가 없습니다. 이 파일들은 수동으로 Django가 무언가를 변경시키는것을 비틀기 위해서 사람이 수정할수 있는 형식으로 디자인 되었습니다. </p>
+<br>
+
+<blockquote>
+<p>migrate 하기 </p>
+<p>migrations 와 데이터베이스 스키마를 자동으로 실행시킬수 있는 커맨드가 존재합니다 </p>
+<p>바로, migrate 입니다 </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="sqlmigrate-명령어"><a href="#sqlmigrate-명령어" class="headerlink" title="sqlmigrate 명령어"></a>sqlmigrate 명령어</h2><br>
+
+<br>
+
+<p>튜토리얼에서는, <code>sqlmigrate</code> 명령어를 소개합니다만, 데이터베이스 구문을 모르면, 이해하기 힘듭니다. 초심자들은,, 일단 이부분을 깊게 들어가지 않는것을 권장 합니다 </p>
+<br>
+
+<p>일단, 튜토리얼에서 얘기하는 sqlmigrate 명령어를 간단하게 짚고 넘어갑니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python manage.py sqlmigrate polls <span class="number">0001</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 실행하면, 아래와 비슷한 형식의 결과를 볼수 있을겁니다. </span></span><br><span class="line"></span><br><span class="line">BEGIN;</span><br><span class="line">--</span><br><span class="line">-- Create model Question</span><br><span class="line">--</span><br><span class="line">CREATE TABLE <span class="string">"polls_question"</span> (</span><br><span class="line">    <span class="string">"id"</span> serial NOT NULL PRIMARY KEY,</span><br><span class="line">    <span class="string">"question_text"</span> varchar(<span class="number">200</span>) NOT NULL,</span><br><span class="line">    <span class="string">"pub_date"</span> timestamp <span class="keyword">with</span> time zone NOT NULL</span><br><span class="line">);</span><br><span class="line">--</span><br><span class="line">-- Create model Choice</span><br><span class="line">--</span><br><span class="line">CREATE TABLE <span class="string">"polls_choice"</span> (</span><br><span class="line">    <span class="string">"id"</span> serial NOT NULL PRIMARY KEY,</span><br><span class="line">    <span class="string">"choice_text"</span> varchar(<span class="number">200</span>) NOT NULL,</span><br><span class="line">    <span class="string">"votes"</span> integer NOT NULL,</span><br><span class="line">    <span class="string">"question_id"</span> integer NOT NULL</span><br><span class="line">);</span><br><span class="line">ALTER TABLE <span class="string">"polls_choice"</span></span><br><span class="line">  ADD CONSTRAINT <span class="string">"polls_choice_question_id_c5b4b260_fk_polls_question_id"</span></span><br><span class="line">    FOREIGN KEY (<span class="string">"question_id"</span>)</span><br><span class="line">    REFERENCES <span class="string">"polls_question"</span> (<span class="string">"id"</span>)</span><br><span class="line">    DEFERRABLE INITIALLY DEFERRED;</span><br><span class="line">CREATE INDEX <span class="string">"polls_choice_question_id_c5b4b260"</span> ON <span class="string">"polls_choice"</span> (<span class="string">"question_id"</span>);</span><br><span class="line"></span><br><span class="line">COMMIT;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>아래 사항들을 숙지해 둡니다 <br></p>
+<br>
+
+<ul>
+<li>정확한 출력 값은 어떤 데이터베이스를 사용하느냐에 따라서 바뀝니다. 위의 예시는 <code>PostgreSQL</code>을 위해 생성되었습니다. </li>
+<li>테이블명은 자동으로 생성되는데 앱의 이름 (polls) 과 소문자의 모델 이름 (즉, question 과 choice) 들을 합쳐서 지어 집니다 </li>
+<li>외래키 필드 이름에는 Django의 규칙으로 <code>_id</code> 를 붙여줍니다 </li>
+<li>외래키 관계는 명시적으로 <code>FOREIGN KEY</code> 제약으로 만들어집니다. <code>DEFFERABLE</code> 부분에 대해서는 걱정 안해도 됩니다. PostgreSQL 에게 트랜젝션이 끝날때까지 외래키를 실행 시키지 않는 역할을 합니다. </li>
+<li>프로젝트가 사용하는 데이터베이스에 맞춤 설정이 되어 있습니다. 예를들면, ﻿(auto_increment(MySQL), serial(PostgreSQL), integer primary key autoincrement(SQLite) 들이 자동으로 처리됩니다</li>
+<li>﻿sqlmigrate 캐먼드는 사실 데이터베이스를 위한 migration을 실행 시키지 않습니다. 대신, Django가 생각하는 데이터베이스 요구사항을 화면에 출력해서 사용자가 볼수 있게 해줍니다. Django 가 무엇을 할것인지 혹은 데이터베이스 관리자가 변경을 위해 SQL script 를 필요로 할때 유용하게 쓰입니다.</li>
+</ul>
+<p><br><br></p>
+<h2 id="migrate-실행-하기"><a href="#migrate-실행-하기" class="headerlink" title="migrate 실행 하기"></a>migrate 실행 하기</h2><p><br><br></p>
+<p>이제 진짜 migrate 를 실행 해 봅니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">python manage.py migrate</span><br><span class="line"></span><br><span class="line">Operations to perform:</span><br><span class="line">  Apply all migrations: admin, auth, contenttypes, polls, sessions</span><br><span class="line">Running migrations:</span><br><span class="line">  Applying polls<span class="number">.0001</span>_initial... OK</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<blockquote>
+<p>migrate 커맨드는 적용되지 않은, 모든 migrations  들을 가지고 </p>
+<p>데이터베이스에 적용합니다 </p>
+<p>데이터베이스 스키마와 모든 변경사항들을 동기화 시켜 줍니다</p>
+</blockquote>
+<p><br><br></p>
+<p>migrations 는 매우 강력한 기능입니다. migrations 는 개발 기간동안 데이터베이스 혹은 테이블을 삭제하지 않고도 모델을 수정 할수 있게 해줍니다. 데이터의 손실없이 실시간으로 데이터베이스를 업그레이드 하는데에 특화 되어 있습니다. </p>
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p><br><br></p>
+<h3 id="숙지하고-있어야할-스텝들"><a href="#숙지하고-있어야할-스텝들" class="headerlink" title="숙지하고 있어야할 스텝들"></a>숙지하고 있어야할 스텝들</h3><br>
+
+<ol>
+<li>App 생성 </li>
+<li>settings.py 에 INSTALLED_APPS 에 App 등록</li>
+<li>해당 App 의 모델 생성 혹은 수정 </li>
+<li>python manage.py makemigrations 실행 </li>
+<li>python manage.py migrate 실행  </li>
+</ol>
+<br>
+
+<p>커맨드가 이렇게 분리되어 있는 이유는, migrations 를 버전 관리 시스템에 커밋하고 앱과 함께 배달하기 위해서 입니다. 개발을 쉽게 해주는것 뿐만 아니라, 다른 개발자들이 사용할수 있고, 프로덕션 환경에서 사용할수 있게 해줍니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+        <tag>모델</tag>
+        <tag>sqlmigrate</tag>
+        <tag>makemigrations</tag>
+        <tag>migrate</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part2 - 2편</title>
     <url>/2020/04/13/Writing-your-first-Django-app-part2-2%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="모델-작성하기"><a href="#모델-작성하기" class="headerlink" title="모델 작성하기"></a>모델 작성하기</h2><br>
