@@ -1,6 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part2 - 6편</title>
+    <url>/2020/04/24/Writing-your-first-Django-app-part2-6%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="API-가지고-놀기-3편"><a href="#API-가지고-놀기-3편" class="headerlink" title="API 가지고 놀기 - 3편"></a>API 가지고 놀기 - 3편</h2><br>
+
+<p>지난 시간에 이어서, API 실험을 이어서 합니다. </p>
+<p><br>[1] 부터 [6] 까지는, 지난 포스팅에서 진행한 내용 입니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [1]: Question.objects.all()                                                                                                                                            </span><br><span class="line">Out[1]: &lt;QuerySet [&lt;Question: What's up?&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [2]: Question.objects.filter(id=1)                                                                                                                                     </span><br><span class="line">Out[2]: &lt;QuerySet [&lt;Question: What's up?&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [3]: Question.objects.filter(question_text__startswith='What')                                                                                                         </span><br><span class="line">Out[3]: &lt;QuerySet [&lt;Question: What's up?&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [4]: from django.utils import timezone                                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [5]: current_year = timezone.now().year                                                                                                                                </span><br><span class="line"></span><br><span class="line">In [6]: Question.objects.get(pub_date__year=current_year)                                                                                                                 </span><br><span class="line">Out[6]: &lt;Question: What's up?&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<a id="more"></a>
+
+<h2 id="없는-데이터-요청하기"><a href="#없는-데이터-요청하기" class="headerlink" title="없는 데이터 요청하기"></a>없는 데이터 요청하기</h2><br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> id가 2번인 값을 조회했습니다. </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Question은 한개밖에 없으니까, 2번은 존재하지 않습니다. </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 따라서 아래와 같은 에러가 표시됩니다. </span></span><br><span class="line"></span><br><span class="line">In [7]: Question.objects.get(id=2)                                                                                                                                        </span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">DoesNotExist                              Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-7-75091ca84516&gt; in &lt;module&gt;</span><br><span class="line"><span class="meta">----&gt;</span><span class="bash"> 1 Question.objects.get(id=2)</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="pk로-데이터-찾기"><a href="#pk로-데이터-찾기" class="headerlink" title="pk로 데이터 찾기"></a>pk로 데이터 찾기</h2><br>
+
+<br>
+
+<p>primary key 로 데이터를 조회하는것은 일반적인 일입니다. 따라서, Django  는 primary-key 단축키를 제공합니다. 아래 코드는 <code>Question.objects.get(id=1)</code> 과 동일합니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [8]: Question.objects.get(pk=1)                                                                                                                                        </span><br><span class="line">Out[8]: &lt;Question: What's up?&gt;</span><br><span class="line"></span><br><span class="line">In [9]: Question.objects.get(id=1)                                                                                                                                        </span><br><span class="line">Out[9]: &lt;Question: What's up?&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Custom-메서드-동작-확인"><a href="#Custom-메서드-동작-확인" class="headerlink" title="Custom 메서드 동작 확인"></a>Custom 메서드 동작 확인</h2><br>
+
+<br>
+
+<p>Question 에 was_plubished_recently() 라는 메서드를 추가해 줬었습니다. </p>
+<p>이게 잘 작동하는지 확인 해 봅니다. True 를 반환 한다면, 잘 작동하는것으로 볼수 있습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [12]: q = Question.objects.get(pk=1)                                                                                                                                   </span><br><span class="line"></span><br><span class="line">In [13]: q.was_published_recently()                                                                                                                                       </span><br><span class="line">Out[13]: True</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Choice-로-조회하기"><a href="#Choice-로-조회하기" class="headerlink" title="Choice 로 조회하기"></a>Choice 로 조회하기</h2><br>
+
+<br>
+
+<p>DATABASE API를 통해서, 하나의 Question 에 여러개의 Choice 를 등록할수 있습니다. </p>
+<p>몇개의 Choice 를 하나의 Question 에 등록하는 과정을 진행 합니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> q에 pk값이 1인 Question 을 할당합니다 </span></span><br><span class="line">In [1]: q = Question.objects.get(pk=1)                                                                                                                                    </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> q.choice_set.all() 을 하면, 해당 Question 에 달려있는 Choice 들이 검색됩니다. </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 비어있는 쿼리셋이 출력됩니다. 아직, 해당 Question 에는 어떠한 Choice 도 등록한적 없기 때문입니다. </span></span><br><span class="line">In [2]: q.choice_set.all()                                                                                                                                                </span><br><span class="line">Out[2]: &lt;QuerySet []&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>Question 과 Choice 는 ForeignKey 로 연결되어 있습니다. </p>
+<p>One-To-Many 관계로 이어져 있습니다. </p>
+<p>하나의 Question - 다수의 Choice 관계 입니다. </p>
+<p>하나의 Question 을 q 에 할당했고, </p>
+<p>q 에 달려있는 Choice 는, q.choice_set.all() 로 검색이 가능합니다. </p>
+</blockquote>
+<br>
+
+<h2 id="Choice-등록하기"><a href="#Choice-등록하기" class="headerlink" title="Choice 등록하기"></a>Choice 등록하기</h2><br>
+
+<br>
+
+<p>What’s up Question 에 3개의 Choice 를 등록해 봅니다 </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [3]: q                                                                                                                                                                 </span><br><span class="line">Out[3]: &lt;Question: What's up?&gt;</span><br><span class="line"></span><br><span class="line">In [4]: q.choice_set.create(choice_text='Not Much', votes=0)                                                                                                              </span><br><span class="line">Out[4]: &lt;Choice: Not Much&gt;</span><br><span class="line"></span><br><span class="line">In [5]: q.choice_set.create(choice_text='The Sky', votes=0)                                                                                                               </span><br><span class="line">Out[5]: &lt;Choice: The Sky&gt;</span><br><span class="line"></span><br><span class="line">In [6]: c = q.choice_set.create(choice_text='Just Hacking again', votes=0)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Choice-객체에서-Question-객체-조회"><a href="#Choice-객체에서-Question-객체-조회" class="headerlink" title="Choice 객체에서 Question 객체 조회"></a>Choice 객체에서 Question 객체 조회</h2><p><br><br></p>
+<blockquote>
+<p>q가 가진 모든 Choice 조회 </p>
+<p>q.choice_set.all() </p>
+<p>q가 가진 모든 choice 의 갯수 조회 </p>
+<p>q.choice_set.count() </p>
+</blockquote>
+<p><br><br></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Choice 객체 에서 관계된 Question 객체를 조회할수 있는 API 가 있습니다 </span></span><br><span class="line">In [7]: c.question                                                                                                                                                        </span><br><span class="line">Out[7]: &lt;Question: What's up?&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 반대로, Question 객체에서 Choice 객체를 조회할수 있습니다. </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> What<span class="string">'s up Question 인 q 에 달려있는 모든 Choice 를 볼수 있습니다 </span></span></span><br><span class="line">In [8]: q.choice_set.all()                                                                                                                                                </span><br><span class="line">Out[8]: &lt;QuerySet [&lt;Choice: Not Much&gt;, &lt;Choice: The Sky&gt;, &lt;Choice: Just Hacking again&gt;]&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> q 에 달려있는 Choice 의 갯수를 볼수 있습니다 </span></span><br><span class="line">In [9]: q.choice_set.count()                                                                                                                                              </span><br><span class="line">Out[9]: 3</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="의-사용"><a href="#의-사용" class="headerlink" title="__의 사용"></a><code>__</code>의 사용</h2><br>
+
+<p>API는 자동으로 필요한만큼의 관계들을 따라갑니다. 두개의 언더스코어를 사용해서 관계를 분리 시킬수 있습니다. <br>몇개의 관계로 나누어도 상관 없습니다<br><br></p>
+<p>Choice 중 question 의 <code>pub__date</code>가 이번년 인것을 찾으려면, 아래와 같이 써줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [10]: from django.utils import timezone                                                                                                                                </span><br><span class="line"></span><br><span class="line">In [11]: current_year = timezone.now().year                                                                                                                               </span><br><span class="line"></span><br><span class="line">In [12]: Choice.objects.filter(question__pub_date__year=current_year)                                                                                                     </span><br><span class="line">Out[12]: &lt;QuerySet [&lt;Choice: Not Much&gt;, &lt;Choice: The Sky&gt;, &lt;Choice: Just Hacking again&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Choice-하나-삭제하기"><a href="#Choice-하나-삭제하기" class="headerlink" title="Choice 하나 삭제하기"></a>Choice 하나 삭제하기</h2><br>
+
+<p>delete() 함수를 사용해서, 하나의 choice 를 삭제합니다 </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> q 에 달린 choice 중에 <span class="string">'Just hacking'</span> 으로 시작하는것을 조회 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> c 에 할당 </span></span><br><span class="line">In [13]: c = q.choice_set.filter(choice_text__startswith='Just hacking')                                                                                                  </span><br><span class="line"></span><br><span class="line">In [14]: c                                                                                                                                                                </span><br><span class="line">Out[14]: &lt;QuerySet [&lt;Choice: Just Hacking again&gt;]&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> delete() 메써드를 사용해서, c 를 삭제 </span></span><br><span class="line">In [15]: c.delete()                                                                                                                                                       </span><br><span class="line">Out[15]: (1, &#123;'polls.Choice': 1&#125;)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 삭제후, q에 달려 있는 choice 조회 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 3개였던것이 2개만 출력됩니다</span></span><br><span class="line">In [16]: q.choice_set.all()                                                                                                                                               </span><br><span class="line">Out[16]: &lt;QuerySet [&lt;Choice: Not Much&gt;, &lt;Choice: The Sky&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>이 Queryset 하고 API 부분이, 매우 중요한 부분입니다. </p>
+<p>더 많은 정보는, 장고 공식문서에 <strong>Accessing related objects</strong> 를 참조하시면 됩니다. </p>
+<p>또한, <code>__</code> 사용에 대해서는, <strong>Field lookups</strong> 와 <strong>Database API reference</strong> 를 참조하시면 됩니다.  </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+        <tag>ORM</tag>
+        <tag>데이터베이스API</tag>
+        <tag>QuerySet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part2 - 5편</title>
     <url>/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="API-가지고-놀기-2편"><a href="#API-가지고-놀기-2편" class="headerlink" title="API 가지고 놀기 - 2편"></a>API 가지고 놀기 - 2편</h2><br>
