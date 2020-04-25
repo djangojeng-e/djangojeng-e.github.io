@@ -1,6 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part2 - 7편</title>
+    <url>/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="Django-어드민-소개"><a href="#Django-어드민-소개" class="headerlink" title="Django 어드민 소개"></a>Django 어드민 소개</h2><br>
+
+<br>
+
+<p>지난 시간까지 데이터베이스를 둘러보았습니다. </p>
+<p><br>기본 API 를 통해서 데이터를 추가하고, 수정하고, 삭제하는것을 진행 해보았습니다. </p>
+<br>
+
+<p>이번 포스팅에서는 Django 가 제공하는 관리자 페이지, 즉 Django Admin 에 대해서 알아봅니다. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>철학 </p>
+<p>직원이나 고객들이 사이트의 컨텐츠를 추가하고, 바꾸고, 삭제하는 </p>
+<p>관리자 페이지를 만드는일은 지루한 일입니다. 그다지 창의성을 요구하는일도 아닙니다. </p>
+<br>
+
+<p>이러한 사유로, Django 는 전적으로 관리자 인터페이스를 생성하는것을 자동화 하였습니다. </p>
+<br>
+
+<p>Django 는 뉴스룸 환경에서 작성되었습니다. </p>
+<p>컨텐츠 발행자들과 일반 공용 사이트의 구분이 명확한 환경에서 쓰여졌습니다. </p>
+<p>사이트 관리자는 시스템을 사용해서 뉴스 스토리, 스포츠 점수 등을 추가하고, 이러한 컨텐츠들은 공용 사이트에 표시됩니다. </p>
+<br>
+
+<p>Django 는 사이트 관리자가 컨텐츠들을 수정하기 위한 통합 인터페이스를 생성해야 하는 문제를 해결해 줍니다. </p>
+<br>
+
+<p>어드민은 사이트 방문자에 의해서 사용될 목적이 없습니다. </p>
+<p>어드민은 관리자 페이지로, 사이트 관리자들을 위한 페이지 입니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="Django-어드민-사용자-생성하기"><a href="#Django-어드민-사용자-생성하기" class="headerlink" title="Django 어드민 사용자 생성하기"></a>Django 어드민 사용자 생성하기</h2><br>
+
+<p>관리자 페이지는, 사이트 관리자들이 로그인 하고 사용할수 있게 만들어야 합니다. </p>
+<p><br>모든 사람들이 사용할수 있다면, 관리자 페이지가 아니게 되겠죠. </p>
+<br>
+
+<p>따라서, 관리자 사이트를 사용할 사용자를 생성해야 하고, 해당 사용자가 관리자 페이지에 접근할수 있게 해야 합니다. </p>
+<br>
+
+<p>어드민 사용자를 생성하기 위해서는, <code>python manage.py createsuperuser</code>명령어를 터미널에서 실행 합니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(django-tutorial)  ~/django_tutorial/mysite  ( master ) ls</span><br><span class="line">db.sqlite3  manage.py  mysite  polls</span><br><span class="line">(django-tutorial)  ~/django_tutorial/mysite  ( master ) python manage.py createsuperuser</span><br><span class="line">Username (leave blank to use <span class="string">'dhkang'</span>): admin</span><br><span class="line">Email address: admin@example.com</span><br><span class="line">Password: </span><br><span class="line">Password (again): </span><br><span class="line">Superuser created successfully.</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>관리자 페이지 사용자를 생성하고, username, email address, password, password(again)을 입력하면, 어드민 사용자가 성공적으로 생성됩니다. </p>
+<br>
+
+<h2 id="개발-서버-실행하기"><a href="#개발-서버-실행하기" class="headerlink" title="개발 서버 실행하기"></a>개발 서버 실행하기</h2><br>
+
+<p>Django 어드민 사이트는 기본적으로 활성화가 되어 잇습니다. </p>
+<p><br>개발 서버를 시작하고, 어드민을 알아볼수 있습니다. </p>
+<br>
+
+<blockquote>
+<p>개발 서버를 시작했으면, 브라우저를 열어서, 아래 URL로 접속합니다. </p>
+<p><a href="http://127.0.0.1:8000/admin" target="_blank" rel="noopener">http://127.0.0.1:8000/admin</a></p>
+</blockquote>
+<br>
+
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/image1.png" class=""> 
+
+<br>
+
+<br>
+
+<blockquote>
+<p>어드민 사이트에 접속하기 위해서 </p>
+<p>위에서 생성한 username 과 비밀번호를 입력하고 로그인 합니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/image2.png" class=""> 
+
+<br>
+
+<br>
+
+<p>번역 옵션이 기본적으로 활성화 되어 있기 때문에, 로그인 화면은 브라우저의 기본 언어로 표시됩니다. </p>
+<br>
+
+<h2 id="Admin-사이트-들어가기"><a href="#Admin-사이트-들어가기" class="headerlink" title="Admin 사이트 들어가기"></a>Admin 사이트 들어가기</h2><br>
+
+<br>
+
+<p>아이디와 비밀번호를 입력한뒤에, 로그인 버튼을 누르면, </p>
+<p>아래와 같은 Django admin 인덱스 페이지를 볼수 있습니다. </p>
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/image3.png" class=""> 
+
+<br>
+
+<p>화면에 보이는것 처럼, 몇가지 수정 가능한 컨텐츠들을 볼수 있습니다. groups 과 users 컨텐츠들은, Django 의 인증 프레임워크인, django.contrib.auth 모듈에서 제공이 됩니다. </p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>장고 어드민 페이지를 접속해 보았습니다. 복습으로 순서를 정리하자면,, </p>
+<br>
+
+<p>1)  python manage.py createsuperuser 로 어드민 관리자 아이디 생성 </p>
+<p>2) python manage.py runserver 로 개발 서버 시작 </p>
+<p>3) <a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/</a> 으로 관리자 페이지 접속 </p>
+<p>4) 생성된 관리자 아이디로 로그인 </p>
+<p>5) 관리자 페이지 접속 완료 </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+        <tag>ORM</tag>
+        <tag>장고</tag>
+        <tag>Admin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part2 - 6편</title>
     <url>/2020/04/24/Writing-your-first-Django-app-part2-6%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="API-가지고-놀기-3편"><a href="#API-가지고-놀기-3편" class="headerlink" title="API 가지고 놀기 - 3편"></a>API 가지고 놀기 - 3편</h2><br>
