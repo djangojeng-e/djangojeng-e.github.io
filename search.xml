@@ -1,6 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part3 - 1편</title>
+    <url>/2020/04/25/Writing-your-first-Django-app-part3-1%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="Part-3-Overview"><a href="#Part-3-Overview" class="headerlink" title="Part 3 Overview"></a>Part 3 Overview</h2><br>
+
+<p>이번 튜토리얼은 part2 에 이어서, part 3  를 진행합니다. </p>
+<p><br>여전히 투표 어플리케이션에 대해 진행이 됩니다. </p>
+<br>
+
+<blockquote>
+<p>Public Interface 인 “view” 에 집중합니다. </p>
+<p>복습을 위해, 아래 그림들을 이전 포스팅에서 가져 왔습니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part3-1%ED%8E%B8/image1.png" class="">
+
+<br>
+
+<p>view 란 Django 안에 있는 하나의 웹페이지 종류로, 보통 특정 기능과 특정 템플릿에 대해 수행합니다. </p>
+<p><br><a id="more"></a></p>
+<p>예를들면, 블로그 어플리케이션은 아래 view 들이 필요할수 있습니다. </p>
+<br>
+
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part3-1%ED%8E%B8/image2.png" class=""> 
+
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>블로그 어플리케이션에 필요할수 있는 view 목록</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>블로그 홈페이지</td>
+<td>가장 최근의 게시글 몇개를 표시합니다</td>
+</tr>
+<tr>
+<td>게시글 디테일 페이지</td>
+<td>하나의 게시글을 위한 특정페이지의 영구적인 주소</td>
+</tr>
+<tr>
+<td>연도별 아카이브 페이지</td>
+<td>해당 연도에 작성된 모든 게시글들 표시</td>
+</tr>
+<tr>
+<td>월별 아카이브 페이지</td>
+<td>해당 월에 작성된 모든 게시글들 표시</td>
+</tr>
+<tr>
+<td>일별 아카이브 페이지</td>
+<td>해당 일에 작성된 모든 게시글들  표시</td>
+</tr>
+<tr>
+<td>커멘트 엑션</td>
+<td>해당 포스트에 다른 커멘트들을 관리</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="Polls-앱에-필요한-view-목록"><a href="#Polls-앱에-필요한-view-목록" class="headerlink" title="Polls 앱에 필요한 view 목록"></a>Polls 앱에 필요한 view 목록</h2><br>
+
+<table>
+<thead>
+<tr>
+<th><strong>Polls 어플리케이션에 필요한 View 목록</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Question 인덱스 페이지</td>
+<td>가장 최근에 등록된 질문 몇개들을 표시</td>
+</tr>
+<tr>
+<td>Question 디테일 페이지</td>
+<td>결과를 제외한 질문의 텍스트를 표시, 투표를 할수 있는 양식 제공</td>
+</tr>
+<tr>
+<td>Question 결과 페이지</td>
+<td>해당 투표질문의 결과를 표시</td>
+</tr>
+<tr>
+<td>투표 액션</td>
+<td>특정 투표질문에 있는 특정 옵션의 투표를 관리</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<p>Django 에서는, 웹페이지들과 다른 컨텐츠가 view 로 전달이 되어서 나옵니다. 각각의 view 는 python 함수로 표시가 됩니다 (혹은, 클래스기반 view 일 경우, 메서드로 표시가 됩니다) </p>
+<br>
+
+<blockquote>
+<p>Django 는 요청된 URL 을 확인하여, </p>
+<p>어떤 view 를 호출할것인가 판단합니다. </p>
+<p>한마디로, 도메인 이름 뒤에 붙는 URL 부분을 확인하여, View 를 호출합니다. </p>
+</blockquote>
+<br>
+
+<p>웹 서핑을 하면서 한번쯤은 이런 URL을 본적이 있을겁니다 “ME2/Sites/dirmod.asp?sid=&amp;type=gen&amp;mod=Core+Pages&amp;gid=A6CD4967199A42D9B65B1B” </p>
+<br>
+
+<p>Django 에서는 이것보다는 더 엘레강스한 URL 패턴들을 허용 합니다 </p>
+<br>
+
+<blockquote>
+<p>URL Pattern 의 예는 아래와 같습니다. </p>
+<p><code>/newsarchive/&lt;year&gt;/&lt;month&gt;/</code></p>
+</blockquote>
+<br>
+
+<p>Django 에서 URL 을 view 로 연결하려면, </p>
+<p>URLConfs 를 사용하면 됩니다. URLConf 는 URL 패턴을 view에 연결합니다. </p>
+<br>
+
+<p>이번 튜토리얼은 기본적인 URLConfs 사용에 대한 매핑을 제공합니다. </p>
+<br>
+
+<p>더 많은 세부사항은, URL Dispatcher 문서를 확인 하면 됩니다. </p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>다시 한번 복습하지만, 아래 그림처럼, </p>
+<br>
+
+<p>브라우저로 해당 URL 을 접속하면, VIEW를 호출하고, <br>해당 VIEW 에 있는 함수는 MODEL 이나 Template을 통해서 데이터베이스에 접근하거나,<br> 결과를 사용자에게 다시 돌려줄수 있습니다. </p>
+<br>
+
+<p>해당 URL 에서 View 를 호출하기 위해서는, URLConf 의 URL 설정을 해주어야 합니다. </p>
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part3-1%ED%8E%B8/image1.png" class=""> 
+
+<br>]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+        <tag>장고</tag>
+        <tag>view</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part2 - 9편</title>
     <url>/2020/04/25/Writing-your-first-Django-app-part2-9%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="어드민-페이지-기능-살펴보기"><a href="#어드민-페이지-기능-살펴보기" class="headerlink" title="어드민 페이지 기능 살펴보기"></a>어드민 페이지 기능 살펴보기</h2><br>
