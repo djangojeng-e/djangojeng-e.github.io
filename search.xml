@@ -1,6 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part2 - 9편</title>
+    <url>/2020/04/25/Writing-your-first-Django-app-part2-9%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="어드민-페이지-기능-살펴보기"><a href="#어드민-페이지-기능-살펴보기" class="headerlink" title="어드민 페이지 기능 살펴보기"></a>어드민 페이지 기능 살펴보기</h2><br>
+
+<br>
+
+<p>지난 포스팅에서, Question 을 관리 할수 있도록, </p>
+<p><br>Question 모델을 어드민 페이지에 등록을 하였습니다. </p>
+<p><br>Django 는 이제 관리자 페이지에 Question 을 표시해야 하는것을 압니다. </p>
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part2-9%ED%8E%B8/image1.png" class=""> 
+
+<br>
+
+
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>화면에 보이는 Question 을 클릭하면, </p>
+<p>Question 들을 바꿀수 있는 리스트 페이지로 이동합니다. </p>
+<p>해당 페이지는 데이터베이스에 존재하는 모든 question  들을 표시하고, </p>
+<p>관리자는 하나를 선택해서 컨텐츠를 바꿀수 있습니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part2-9%ED%8E%B8/image2.png" class=""> 
+
+<br>
+
+<p>이전 포스팅에서 등록했던 ‘What’s up?’ 질문이 등록되어 있는것을 확인 할수 있습니다. </p>
+<p>이 ‘What’s up?’ 을 클릭합니다. </p>
+<br>
+
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part2-9%ED%8E%B8/image3.png" class=""> 
+
+<br>
+
+<p><strong>여기서 알아야 할것은 아래와 같습니다.</strong> </p>
+<ul>
+<li><p>해당 폼은 Question 모델을 따라서 자동으로 생성됩니다. </p>
+</li>
+<li><p>다른 형태의 필드 타입들 (DateTimeField, CharField) 는 적절한 HTML input widget 으로 표시됩니다. 각 타입필드는 django admin 에서 어떻게 표시되어야 하는지 알고 있습니다. </p>
+</li>
+<li><p>각 DateTimeField 는 JavaScript 숏컷을 가집니다. 날짜는 “Today” 숏컷 그리고 날짜 팝업을 가지고, 시간은 “Now” 숏컷과 공통된 시간대를 나열하는 편리한 팝업을 가집니다.</p>
+</li>
+</ul>
+<br>
+
+<br>
+
+<p><strong>밑부분에 위치하는 버튼들은 아래와 같습니다</strong> </p>
+<ul>
+<li><p>Save: 변경 사항들을 저장하고, 해당 객체에 대한 변경 리스트를 반환합니다</p>
+</li>
+<li><p>Save and continue editing: 변경 사항들을 저장하고, 이 객체에 대한 관리자 페이지를 다시 로드 합니다 </p>
+</li>
+<li><p>Save and add another: 변경 사항들을 저장하고, 이 객체에 대한 빈값을 로드합니다. 새로운 값을 입력하기 편하게 만들어 줍니다 </p>
+</li>
+<li><p>Delete: 삭제 확인 페이지를 표시해줍니다 </p>
+</li>
+</ul>
+<br>
+
+<p>만약 “Date published” 값이 튜토리얼1 에서 입력한 시간과 맞지 않는다면, TIME_ZONE 세팅에서 맞는 값을 지정하지 않았을지 모릅니다. TIME_ZONE 세팅을 바꾸고 다시 페이지를 열어서 맞는값이 표시되는지 확인하면 됩니다. <br><br></p>
+<h2 id="변경-내역-확인하기"><a href="#변경-내역-확인하기" class="headerlink" title="변경 내역 확인하기"></a>변경 내역 확인하기</h2><br>
+
+<p>“Date published” 값을 “Today” 와 “Now” 버튼을 사용해서 바꿔줍니다. 바꾼뒤에는, “Save and continue Editing” 버튼을 눌러줍니다. </p>
+<br>
+
+<blockquote>
+<p>그리고 나서, 우측 상단에 있는 “History” 버튼을 눌러줍니다. </p>
+</blockquote>
+<br>
+
+<p>Django 어드민 페이지에서, 이 객체에 대한 모든 수정 사항들을 표시하는 페이지를 확인 할수 있습니다. </p>
+<p>시간과 사용자 내역을 볼수 있습니다. </p>
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part2-9%ED%8E%B8/image4.png" class=""> 
+
+
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>모델 API 와 어드민 사이트와 친숙해 졌으면, 어떻게 polls 앱에 더 많은 views 를 추가할수 있는 알아보기 위해 part3 로 넘어갑니다.  </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+        <tag>장고</tag>
+        <tag>admin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Writing your first Django app, part2 - 8편</title>
+    <url>/2020/04/25/Writing-your-first-Django-app-part2-8%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="polls-앱을-어드민에서-수정하기"><a href="#polls-앱을-어드민에서-수정하기" class="headerlink" title="polls 앱을 어드민에서 수정하기"></a>polls 앱을 어드민에서 수정하기</h2><br>
+
+<p>지난 포스팅에, 관리자 사이트 꼐정을 만들고, Django에서 기본으로 제공하는 관리자 페이지에 접속해 보았습니다. 접속해 보면, 우리가 생성한 polls 앱을 수정할수 있는 컨텐츠가 보이지 않습니다. </p>
+<br>
+
+<br>
+
+<p>polls 앱의 컨텐츠는 Quetion 과 Choice 인데, <br>관리자 페이지에서 추가, 수정, 삭제가 되지 않는다면, 관리자 페이지가 무슨 의미가 있을까요? </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>따라서, </p>
+<p>관리자 페이지에서 해당 컨텐츠들 (polls 앱에 있는 Question, Choice) 을 </p>
+<p>관리할수 있게, 관리자 페이지에 등록 해 줘야 합니다. </p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>관리자 페이지에 등록하기 위해서, </p>
+<p>polls/admin.py 파일에 아래 내용을 추가해 줍니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin </span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question        <span class="comment"># polls 앱안에 models 에서 Question 모델 가져오기 </span></span><br><span class="line"></span><br><span class="line">admin.site.register(Question)       <span class="comment"># 가져온 Question 모델을 어드민에 등록</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="관리자-페이지에서-확인"><a href="#관리자-페이지에서-확인" class="headerlink" title="관리자 페이지에서 확인"></a>관리자 페이지에서 확인</h2><br>
+
+<p><br>Question 컨텐츠를 관리자 페이지에서 관리할수 있도록, 관리자페이지에 가서 확인 해 봅니다. </p>
+<br>
+
+<p>1) python manage.py runserver 로 개발서버를 실행합니다</p>
+<p>2) <a href="http://127.0.0.1:8000/admin" target="_blank" rel="noopener">http://127.0.0.1:8000/admin</a> 으로 접속을 합니다</p>
+<p>3) 이전 포스팅에서 생성한 아이디와 비밀번호를 입력해서 로그인 합니다</p>
+<p>4) 어드민 페이지로 접속을 하고, Questions 가 관리자 페이지에 잘 등록되었는지 확인 합니다. </p>
+<br>
+
+<br>
+
+<p>polls/admin.py 파일에 코드를 추가했더니, 아래와 같이 Questions 가 관리자 페이지가 보입니다.</p>
+<br>
+
+<br>
+
+<img src="/2020/04/25/Writing-your-first-Django-app-part2-8%ED%8E%B8/image1.png" class=""> 
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>어드민 페이지에서 컨텐츠를 관리하기 위해서, 컨텐츠 정보를 어드민 페이지에 등록 하였습니다. </p>
+<p><br><code>admin.site.register(모델 클래스명)</code> 코드를 잊지 맙시다~  </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Tutorial</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+        <tag>장고</tag>
+        <tag>admin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part2 - 7편</title>
     <url>/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="Django-어드민-소개"><a href="#Django-어드민-소개" class="headerlink" title="Django 어드민 소개"></a>Django 어드민 소개</h2><br>
