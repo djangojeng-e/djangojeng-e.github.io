@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part3 - 2편</title>
+    <url>/2020/04/26/Writing-your-first-Django-app-part3-2%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="더-많은-view-쓰기"><a href="#더-많은-view-쓰기" class="headerlink" title="더 많은 view 쓰기"></a>더 많은 view 쓰기</h2><br>
+
+<br>
+
+<p>지난 포스팅에서 짧게 polls 앱에 필요한 views를 둘러보았습니다. </p>
+<p><br>이제 몇개의 view 들을 polls/views.py 에 더 써줄겁니다. 추가될 view 들은 좀 다릅니다. </p>
+<p><br>추가되는 view 들은 인수를 가집니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world. You're at the polls index."</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"You're looking at question %s."</span> % question_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">results</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    response = <span class="string">"You're looking at the results of question %s."</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(response % question_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vote</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"You're voting on question %s."</span> % question_id)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>새로 추가된 view 들을 URL과 연결해 줍니다 </p>
+<p>polls/urls.py 에 아래와 같이 각 view 들을 URL 과 연결해 줍니다 .</p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="HttpResponse"><a href="#HttpResponse" class="headerlink" title="HttpResponse"></a>HttpResponse</h2><p><br><br></p>
+<p>참고로, <code>HttpResponse</code> 함수는, 단순히 괄호안에 들어간 값을 브라우저에 출력해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views         <span class="comment"># polls/views.py 를 가져옴</span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># 예: /polls/</span></span><br><span class="line">    <span class="comment"># http://127.0.0.1:8000/polls/ 로 접속시, views 에 있는 index 함수 호출후 실행 </span></span><br><span class="line">    path(<span class="string">''</span>, views.index, name=<span class="string">'index'</span>),</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 예: /polls/5/</span></span><br><span class="line">    <span class="comment"># http://127.0.0.1:8000/polls/5/ 로 접속시, views 에 있는 detail 함수 호출후 실행 </span></span><br><span class="line">    path(<span class="string">'&lt;int:question_id&gt;/'</span>, views.detail, name=<span class="string">'detail'</span>),</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 예: /polls/5/results/</span></span><br><span class="line">    <span class="comment"># http://127.0.0.1:8000/polls/5/results/ 로 접속시, view 에 있는 results 함수 호출후 실행 </span></span><br><span class="line">    path(<span class="string">'&lt;int:question_id&gt;/results/'</span>, views.results, name=<span class="string">'results'</span>),</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 예: /polls/5/vote/</span></span><br><span class="line">    <span class="comment"># http://127.0.0.1:8000/polls/5/vote/ 로 접속시, view 에 있는 vote 함수 호출후 실행  </span></span><br><span class="line">    path(<span class="string">'&lt;int:question_id&gt;/vote/'</span>, views.vote, name=<span class="string">'vote'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p><a href="http://127.0.0.1:8000/polls/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls</a>/34 도 브라우저에서 실행 해서 한번 봅니다. 이렇게 하면, views 에 있는 detail() 메서드가 실행되고, URL에 포함되어 있는 어떤 ID 값을 인수로 받아서 화면에 결과값이 출력됩니다. </p>
+ <br>
+
+<p><a href="http://127.0.0.1:8000/polls/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls</a>/34/results <br></p>
+<p><a href="http://127.0.0.1:8000/polls/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls</a>/34/vote 도 실행 해 보세요. </p>
+<br>
+
+<p><strong>HttpResponse 함수가 실행되고, 단순히 괄호안에  들어간 값을 브라우저에 출력해 줍니다.</strong><br><br></p>
+<blockquote>
+<p>누군가가 웹사이트에 있는 페이지를 요청 하면, </p>
+<p>예를들어, <a href="http://127.0.0.1:8000/polls/34/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls/34/</a></p>
+<br>
+
+<p>Django 는 RootURL 설정으로인해 mysite/urls.py 파이썬 모듈을 읽어 들입니다. </p>
+<p>루트 URL 설정으로 경로가, </p>
+<p><code>path(&#39;polls&#39;, include(&#39;polls.urls&#39;))</code>로 설정되어 있기 때문에, </p>
+<p>polls/urls.py 에 있는 url 설정이 불러져서 작동합니다. </p>
+</blockquote>
+<p><br><br></p>
+<h2 id="lt-int-question-id-gt-는-인자"><a href="#lt-int-question-id-gt-는-인자" class="headerlink" title="&lt;int:question_id&gt;는 인자"></a><code>&lt;int:question_id&gt;</code>는 인자</h2><br>
+
+<p>polls/ 가 URL 경로에 매칭이되고, polls.urls 로 넘어가는데. </p>
+<p>polls/34/  라는 URL 경로에 들어가면, 34 가 <code>&lt;int:question_id&gt;</code> 와 매칭이 됩니다, 따라서 detail() 뷰를 호출할때. 이것을 인자로 넘겨줍니다.</p>
+<p><br><br></p>
+<blockquote>
+<p>URL 의 확장자는 붙여줄 필요는 없지만, </p>
+<p>원한다면 붙여주어도 괜찮습니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">path(<span class="string">'polls/latest.html'</span>, views.index),</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p>아직도 좀 헷갈리는 부분이긴 한데. </p>
+<p>url 을 통해서 요청을 받고, 그 요청을 view 에서 처리한다는 개념을 다시 복습하고 갑니다. </p>
+<p>url 을 통해서 요청을 받을때, 그 요청에 인수까지 받아서 view 에 있는 함수에 전달해 줄수 있다. </p>
+<p>이런식으로 개념을 잡고 넘어갑니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>투표앱</tag>
+        <tag>polls</tag>
+        <tag>장고</tag>
+        <tag>view</tag>
+        <tag>튜토리얼</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part3 - 1편</title>
     <url>/2020/04/25/Writing-your-first-Django-app-part3-1%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="Part-3-Overview"><a href="#Part-3-Overview" class="headerlink" title="Part 3 Overview"></a>Part 3 Overview</h2><br>
