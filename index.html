@@ -204,6 +204,186 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/28/Writing-your-first-Django-app-part3-6%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/28/Writing-your-first-Django-app-part3-6%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part3 - 6편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-28 19:39:10 / Updated at: 19:46:54" itemprop="dateCreated datePublished" datetime="2020-04-28T19:39:10+09:00">2020-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Tutorials/" itemprop="url" rel="index"><span itemprop="name">Tutorials</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/28/Writing-your-first-Django-app-part3-6%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/28/Writing-your-first-Django-app-part3-6편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="템플릿에서-하드-코드된-코드-제거하기"><a href="#템플릿에서-하드-코드된-코드-제거하기" class="headerlink" title="템플릿에서 하드 코드된 코드 제거하기"></a>템플릿에서 하드 코드된 코드 제거하기</h2><br>
+
+<br>
+
+<p>polls/index.html 템플릿에서 question 에 연결된 링크를 기억해야 합니다. </p>
+<p><br>해당 링크는 부분적으로 아래와 같이 하드 코드 되어 있습니다. </p>
+<br>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/polls/&#123;&#123; question.id &#125;&#125;/"</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>하드 코드된 코드들의 문제점은, </p>
+<p><br>템플릿 수가 많아질때, URL 들을 바꾸는것이 굉장히 어려워 진다는 점입니다. </p>
+<br>
+
+<p>하지만 path() 함수내 polls.urls 모듈에 대한 인자를 정의 하여, 특정 URL에 대한 의존도를 없앨수 있습니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> %&#125;</span><span class="xml"> 템플릿 테그를 사용해서 이 작업을 수행합니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>polls/index.html 의 코드를 아래와 같이 바꿔줍니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> 'detail' question.id %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-variable">&#123;&#123; question.question_text &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml"># 참고 polls/urls.py </span></span><br><span class="line"></span><br><span class="line"><span class="xml">urlpatterns = [</span></span><br><span class="line"><span class="xml">    path("", views.index, name='index'),</span></span><br><span class="line"><span class="xml">    path('<span class="tag">&lt;<span class="name">int:question_id</span>&gt;</span>/', views.detail, name='detail'), </span></span><br><span class="line"><span class="xml">    # 위 a 태그 안에 'detail' 을 지정함 </span></span><br><span class="line"><span class="xml">    path('<span class="tag">&lt;<span class="name">int:question_id</span>&gt;</span>/results/', views.results, name='results'),</span></span><br><span class="line"><span class="xml">    path('<span class="tag">&lt;<span class="name">int:question_id</span>&gt;</span>/vote/', views.vote, name='vote'),</span></span><br><span class="line"><span class="xml">]</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"> </span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> %&#125;</span><span class="xml"> 태그 안에,  'detail' 이름을 가진 url 주소를 정의하고, </span></span><br><span class="line"><span class="xml"> question.id 라는 인자를 넣어주었습니다. </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">이러한 방식으로, polls.urls 모듈에 있는 URL 정의를 조회하여 <span class="tag">&lt;<span class="name">a</span>&gt;</span> 태그가 작업을 수행 합니다.</span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<blockquote>
+<p>polls/specifics/12/ 같이 </p>
+<p>detail view 를 보여주는 URL 주소명을 다른것으로 바꾸고 싶을때에는, </p>
+<p>이전에는 polls/index.html 의 a 태그를 바꾸어 줬어야 했겟지만, </p>
+<p>이제는 polls/urls.py 파일에 name=’detail’ 을 가진 path 를 </p>
+<p>아래와 같이 고쳐주면 됩니다.  </p>
+</blockquote>
+<br>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">path('specifics/<span class="tag">&lt;<span class="name">int:question_id</span>&gt;</span>/', views.detail, name='detail'),</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>실험을 해보기 위해서, 브라우저에서 <a href="http://127.0.0.1:8000/polls/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls/</a> 로 접속합니다.</p>
+<p>What’s up? 질문이 화면에 출력이 됩니다. </p>
+<br>
+
+<img src="/2020/04/28/Writing-your-first-Django-app-part3-6%ED%8E%B8/image1.png" class="">
+
+<br>
+
+<br>
+
+<p>이 What’s up? 을 클릭하면, polls/urls.py 에 있는 detail 뷰가 호출이 되고, <br> </p>
+<p>아래 path() 를 참조하여, url을 찾아가고, detial 뷰가 실행 됩니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">path('specifics/<span class="tag">&lt;<span class="name">int:question_id</span>&gt;</span>/', views.detail, name='detail'),</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>브라우저에서  <a href="http://127.0.0.1:8000/polls/specifics/1/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls/specifics/1/</a> 로 이동하게 됩니다. <br></p>
+<p>그리고, 화면에 What’s up? 질문에 딸린 choice 들이 표시가 되겠죠. </p>
+<br>
+
+<br>
+
+<img src="/2020/04/28/Writing-your-first-Django-app-part3-6%ED%8E%B8/image2.png" class="">
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>urls.py 파일안에  path() 함수 안에 URL name 을 짓고. </p>
+<p>이 이름을 템플릿에서 사용할수 있습니다.  </p>
+<br>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/28/Writing-your-first-Django-app-part3-5%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -229,7 +409,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-04-28 19:25:31 / Updated at: 19:35:54" itemprop="dateCreated datePublished" datetime="2020-04-28T19:25:31+09:00">2020-04-28</time>
+              <time title="Post created: 2020-04-28 19:25:31 / Updated at: 19:36:59" itemprop="dateCreated datePublished" datetime="2020-04-28T19:25:31+09:00">2020-04-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -285,66 +465,14 @@
 <p>컨텍스트 변수 question 이 polls/html 로 전달이 되어 render 가 됩니다. </p>
 </blockquote>
 <br>
-
-<p>polls/templates/polls/detail.html 템플릿을 아래와 같이 고쳐줍니다. </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><span class="template-variable">&#123;&#123; question.question_text &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> choice <span class="keyword">in</span> question.choice_set.all %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123; choice.choice_text &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>템플릿 시스템은 변수의 속성들에 접근하기 위해서 <code>.</code> 을 찍어 조회를 하는, dot-lookup 형식을 사용합니다. </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; question.question_text &#125;&#125;</span><span class="xml"> 에서 </span></span><br><span class="line"></span><br><span class="line"><span class="xml">첫번째로 django 는 question 객체에 대한 사전을 조회 합니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml">두번째로, . 뒤에 question_text 라는 속성값을 조회 합니다.</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-서버를 시작하고, 브라우저를 열어서** [**http://127.0.0.1:8000/polls/1/**](http://127.0.0.1:8000/polls/1/) **에 접속하면,** 
-
-<p><strong>아래와 같이 question 하나와, 해당 question에 있는 choice 들이 리스트 되어 있는것을 확인 할수 있습니다.</strong> </p>
-<br>
-
-<img src="/2020/04/28/Writing-your-first-Django-app-part3-5%ED%8E%B8/image1.png" class="">
-
-<p><br><br></p>
-<h2 id="메서드의-호출"><a href="#메서드의-호출" class="headerlink" title="메서드의 호출"></a>메서드의 호출</h2><br>
-
-<br>
-
-
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> choice <span class="keyword">in</span> question.choice_set.all %&#125;</span><span class="xml">   </span></span><br><span class="line"><span class="xml"># question 에 붙어있는 선택들을 for 문으로 순회 시작 </span></span><br><span class="line"><span class="xml">   </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123; choice.choice_text &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"># 순회 하는동안 <span class="tag">&lt;<span class="name">li</span>&gt;</span> 태그 안에 하나씩 choice_text 들을 출력 </span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span><span class="xml">                                  # for 문 종료</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<br>
-
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">메써드의 호출은 </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> %&#125;</span><span class="xml"> 반복문에서 이루어집니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml">question.choice_set.all 은 파이썬 코드에서 question.choice_set.all() 로 해석이 됩니다. </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">question.choice_set.all() 은 순회가능한 Choice 객체들을 반환하고, </span></span><br><span class="line"></span><br><span class="line"><span class="xml">이것은 </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> %&#125;</span><span class="xml"> 테그 안에서 사용하기 적합합니다.</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<br>
-
-<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
-
-<br>
-
-<p>템플릿에 나오는 템플릿 언어의 구분이 많이 힘들었습니다. </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> %&#125;</span><span class="xml"> 나 </span><span class="template-variable">&#123;&#123; question.choice_set.all &#125;&#125;</span><span class="xml"> 같은 템플릿 언어들 말입니다. </span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% %&#125;</span><span class="xml"> 어떠한 로직들을 불러오는 코드라고 생각하고 (예 조건문, 반복문) </span></span><br><span class="line"><span class="template-variable">&#123;&#123; &#125;&#125;</span><span class="xml"> 는 변수나 객체의 값들만 가지는 코드라고 이해하고 넘어갑니다.</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/28/Writing-your-first-Django-app-part3-5%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1196,113 +1324,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part2 - 5편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-17 20:33:45 / Updated at: 20:45:46" itemprop="dateCreated datePublished" datetime="2020-04-17T20:33:45+09:00">2020-04-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Tutorials/" itemprop="url" rel="index"><span itemprop="name">Tutorials</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/17/Writing-your-first-Django-app-part2-5편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="API-가지고-놀기-2편"><a href="#API-가지고-놀기-2편" class="headerlink" title="API 가지고 놀기 - 2편"></a>API 가지고 놀기 - 2편</h2><br>
-
-<p>지난 포스팅에서, 쿼리셋을 조회 했더니, 아래와 같이 알수 없는 쿼리셋이 반환되서 나왔습니다. </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In [14]: Question.objects.all() Out[14]: </span><br><span class="line"></span><br><span class="line">&lt;QuerySet [&lt;Question: Question object (1)&gt;]&gt;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>Question object (1) 이라고만 표시되어 쿼리셋이 조회가 됩니다. </p>
-<p><br>이렇게 조회가 되면, 이게 무슨 질문인지, 언제 생성된 질문인지 알수가 없어지게 되서. 전혀 유용하지 않은 정보가 됩니다. </p>
-<br>
-
-<p>이번 포스팅에서 이것을 어떻게 유용한 형태로 표시할것인지에 대한 과정을 진행 합니다. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1373,7 +1394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
