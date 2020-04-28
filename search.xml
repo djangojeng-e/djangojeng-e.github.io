@@ -1,6 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part3 - 4편</title>
+    <url>/2020/04/28/Writing-your-first-Django-app-part3-4%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="render-숏컷"><a href="#render-숏컷" class="headerlink" title="render() 숏컷"></a>render() 숏컷</h2><br>
+
+<br>
+
+<p>템플릿을 읽고, 컨텍스를 채우고, 렌더가 된 템플릿을 결과값으로 가진 HttpResponse 객체를 반환 하는 일은 매우 흔한 일입니다. 따라서, Django 는 이것에 대한 shortcut 함수를 제공합니다. </p>
+<br>
+
+<blockquote>
+<p>render() 함수는 </p>
+<p>템플릿을 읽고, context 를 채우고, </p>
+<p>결과를 템플릿에 객체로 반환합니다. </p>
+</blockquote>
+<br>
+
+<p>render() 함수를 알아보기 위해서, polls/views.py 에 index() 함수를 다시 써줍니다. </p>
+<br>
+
+<a id="more"></a> 
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="comment"># render 를 가져옵니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    latest_question_list = Question.objects.order_by(<span class="string">'-pub_date'</span>)[:<span class="number">5</span>]</span><br><span class="line">    context = &#123;<span class="string">'latest_question_list'</span>: latest_question_list&#125;</span><br><span class="line">    <span class="comment"># return HttpResponse(template.render(context, request)) 대신 아래 render() 를 써줍니다.</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'polls/index.html'</span>, context)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>render() 가 기존에 썼었던 HttpResponse 와 같은 작업을 수행하는것을 확인할수 있습니다. </p>
+<br>
+
+<blockquote>
+<p>브라우저에서, 아래 URL로 접속해서 확인 합니다. </p>
+<p><a href="http://127.0.0.1:8000/polls/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls/</a></p>
+</blockquote>
+<br>
+
+<img src="/2020/04/28/Writing-your-first-Django-app-part3-4%ED%8E%B8/image1.png" class=""> 
+
+
+
+<br>
+
+<blockquote>
+<p>render() 를 사용하면, </p>
+<p>loader 와 HttpResonse 모듈들을 불러오지 않아도 됩니다. </p>
+</blockquote>
+<br>
+
+<p>render() 함수는 </p>
+<br>
+
+<ol>
+<li>요청을 첫번째 인자로 받고, </li>
+<li>템플릿 이름을 두번째 인자로 받고, </li>
+<li>사전 형태의 자료를 선택적으로 세번째 인자로 받습니다. </li>
+</ol>
+<br>
+
+<blockquote>
+<p>render() 함수는, </p>
+<p>주어진 context 들이 그려진 template 에 </p>
+<p>HttpResponse 객체를 반환 합니다 </p>
+</blockquote>
+<br>
+
+<h2 id="404-에러-발생-시키기"><a href="#404-에러-발생-시키기" class="headerlink" title="404 에러 발생 시키기"></a>404 에러 발생 시키기</h2><br>
+
+<p>polls/views.py 에 있는 detail() 뷰를 한번 보겠습니다 (주어진 투표의 질문들을 나열하는 페이지). </p>
+<p><br>Http404를 통해서, 404 에러를 발생시키는 detail 뷰는 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> Http404</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        question = Question.objects.get(pk=question_id)</span><br><span class="line">    <span class="keyword">except</span> Question.DoesNotExist:</span><br><span class="line">        <span class="keyword">raise</span> Http404(<span class="string">"Question does not exist"</span>)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'polls/detail.html'</span>, &#123;<span class="string">'question'</span>: question&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>여기서 새로운 컨셉은 Http404 예외 인데, </p>
+<p>요청된 ID 를 가진 question 이 존재하지 않을때 예외를 발생시킵니다. </p>
+</blockquote>
+<br>
+
+<p>테스트를 진행 하기 위해서, polls/templates/polls/detail.html 파일을 생성하고, 아래 내용을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; quetions &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>현재 데이터베이스에 있는 질문은 딱 1개로, </p>
+<p>이전 과정에서 생성한 “What’s up?” 질문밖에 없으므로, </p>
+<p>id 값이 2 인 질문은 존재하지 않습니다. </p>
+</blockquote>
+<br>
+
+<p><a href="http://127.0.0.1:8000/polls/1/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls/1/</a> 로 접속하면, </p>
+<p>What’s Up? 질문이 페이지에 출력이 되겠지만. </p>
+<br>
+
+<p> <a href="http://127.0.0.1:8000/polls/2/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls/2/</a> 로 접속하면, </p>
+<p>출력할 질문이 없어서, 예외가 발생합니다. 이때 Http404 가 메시지를 출력할겁니다. </p>
+<br>
+
+<img src="/2020/04/28/Writing-your-first-Django-app-part3-4%ED%8E%B8/image2.png" class=""> 
+
+<br>
+
+<p>Quetion does not exist 가 잘 표시되는것을 확인할수 있습니다. </p>
+<br>
+
+<h2 id="get-object-or-404-숏컷-함수"><a href="#get-object-or-404-숏컷-함수" class="headerlink" title="get_object_or_404() 숏컷 함수"></a>get_object_or_404() 숏컷 함수</h2><br>
+
+<p>get() 함수를 사용하고, 객체가 존재하지 않을때,<br></p>
+<p>Http404 를 발생시키는것은 매우 빈번하게 일어나는 일입니다. Django 는 이것에 대한 숏컷도 제공합니다. </p>
+<p><br>다시 쓰여진 detail() 뷰는 아래와 같습니다.<br></p>
+<br>
+
+<p>polls/views.py 에 detail() 뷰를 아래와 같이 수정해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"><span class="comment"># get_object_or_404 를 코드 상단에서 가져오는것을 잊지 않습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'polls/detail.html'</span>, &#123;<span class="string">'question'</span>: question&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<p>get_object_or_404() 함수는 Django 모델을 첫번째 인수로 받고, 키워드 인수들을 두번째로 받습니다. </p>
+<p>받은 인수들을 get() 함수에 전달하고, 객체가 존재하지 않으면 Http404 를 발생 시킵니다.  </p>
+<p><br><br></p>
+<blockquote>
+<p>아래 캡쳐 화면을 통해서, </p>
+<p>get_object_or_404() 가 잘 동작하는지 확인 해 봅시다. </p>
+<p><a href="http://127.0.0.1:8000/polls/1/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls/1/</a> 로 접속하면, </p>
+<p>What’s Up? 질문이 페이지에 출력이 되겠지만. </p>
+<p> <a href="http://127.0.0.1:8000/polls/2/" target="_blank" rel="noopener">http://127.0.0.1:8000/polls/2/</a> 로 접속하면, </p>
+<p>출력할 질문이 없어서, 예외가 발생하는것은 같은데. </p>
+<p>메시지가 “No Question matches the given query” 라고 표시됩니다. </p>
+</blockquote>
+<p><br><br></p>
+<img src="/2020/04/28/Writing-your-first-Django-app-part3-4%ED%8E%B8/image3.png" class=""> 
+
+<br>
+
+<p>또한, get_list_or_404() 라는 함수도 존재합니다. get_object_or_404 와 비슷하게 동작하지만, </p>
+<p>받은 인자들을 함수 대신, filter() 함수에 전달 합니다. <br></p>
+<br>
+
+<p>get_list_or_404() 함수는, 빈 리스트가 조회되었을때,  Http404 를 발생 시킵니다. </p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>장고 숏컷을 다시 리뷰 합니다. </p>
+<br>
+
+<ol>
+<li>render() 함수 </li>
+<li>Http404() 함수 </li>
+<li>get_object_or_404() 함수 </li>
+</ol>
+<br>
+
+<p>filter() 함수와 get() 함수의 차이점도 숙지하고 지나갑니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>polls</tag>
+        <tag>장고</tag>
+        <tag>view</tag>
+        <tag>튜토리얼</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part3 - 3편</title>
     <url>/2020/04/27/Writing-your-first-Django-app-part3-3%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="실제로-무언가를-하는-view-작성하기"><a href="#실제로-무언가를-하는-view-작성하기" class="headerlink" title="실제로 무언가를 하는 view 작성하기"></a>실제로 무언가를 하는 view 작성하기</h2><br>
