@@ -1,6 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part4 - 1편</title>
+    <url>/2020/04/30/Writing-your-first-Django-app-part4-1%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="최소한의-폼-작성하기"><a href="#최소한의-폼-작성하기" class="headerlink" title="최소한의 폼 작성하기"></a>최소한의 폼 작성하기</h2><br>
+
+<br>
+
+<p>튜토리얼 part3 에 이어서, 계속 진행 합니다. Web-poll 어플리케이션을 이어서 진행하고. </p>
+<br>
+
+<p>part4 에서는 form 프로세싱과 코드양을 줄이는데 집중합니다. </p>
+<br>
+
+<p>polls/detail.html 수정하기 </p>
+<br>
+
+<blockquote>
+<p>지난 포스팅까지 작성한 </p>
+<p>디테일 템플릿 polls/detail.html  파일에 </p>
+<p>html <code>&lt;form&gt;</code> 요소를 추가하여 업데이트 해줍니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><span class="template-variable">&#123;&#123; question.question_text &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> error_message %&#125;</span><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span></span><span class="template-variable">&#123;&#123; error_message &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> 'polls:vote' question.id %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">csrf_token</span></span> %&#125;</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> choice <span class="keyword">in</span> question.choice_set.all %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"choice"</span> <span class="attr">id</span>=<span class="string">"choice</span></span></span><span class="template-variable">&#123;&#123; forloop.counter &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">value</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; choice.id &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"choice</span></span></span><span class="template-variable">&#123;&#123; forloop.counter &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span><span class="template-variable">&#123;&#123; choice.choice_text &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Vote"</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>빠른 설명: </p>
+<br>
+
+<ul>
+<li><p>위 템플릿은 각각의 Question 의 Choice 를 라디오 버튼으로 표시해 줍니다.  각 라디오 버튼의 Value 값은 질문에 붙어 있는 Choice 의 ID 가 됩니다. 각 라디오 버튼의 이름은 choice 가 됩니다. 이것이 의미하는 바는, 누군가가 하나의 라디오 버튼을 누르고 폼을 제출하면, 폼은 POST데이터 <code>choice=#</code> 을 전송합니다. <code>#</code>은 선택된 choice  의 ID 값입니다. </p>
+</li>
+<li><pre><code class="django"><span class="xml">form 에 action 은 <span class="comment">{% url 'polls:vote' question.id %}</span> 를 설정해줍니다. </span>
+<span class="xml"><span class="comment"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">  form의 method  는 POST 로 설정해 줍니다. Form 의 method 를 POST 로 설정해 주는것은 중요합니다. 왜냐하면, 이 form 을 제출한다는것은 서버쪽의 데이터를 변경할것이기 때문입니다. 언제든 서버쪽 데이터를 바꾸고 싶으면, method&#x3D;&quot;POST&quot; 를 사용하면 됩니다. Django 에만 국한된 이야기가 아니라, 전반적으로 좋은 웹개발을 위한 연습이 됩니다. </span><br><span class="line"></span><br><span class="line">- forloop.counter 는 for 태그가 반복문의 몇번을 수행했는지 표시합니다</span><br><span class="line"></span><br><span class="line">- POST 폼을 생성하고 있기 때문에, 우리는 &#96;Cross Site Request Forgeries&#96;. 즉, 사이트간 요청 위조에 대해서 걱정해야 합니다. 감사하게도, 이것에 대해서 너무 걱정할 필요가 없습니다. Django 는 이것에 대한 아주 요용한 시스템을 갖추고 있습니다. </span><br><span class="line"></span><br><span class="line">  &#96;&#96;&#96;django</span><br><span class="line">  내부 URL 을 타겟으로 하는 모든 POST 폼들은 &#123;% csrf_token %&#125; 템플릿 테그를 사용해 줍니다.</span><br></pre></td></tr></table></figure></span></span>
+
+
+</code></pre>
+</li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="CSRF-사이트간-요청-위조"><a href="#CSRF-사이트간-요청-위조" class="headerlink" title="CSRF (사이트간 요청 위조)"></a>CSRF (사이트간 요청 위조)</h2><br>
+
+
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">내부 URL 을 타겟으로 하는 모든 POST 폼들은 </span><span class="template-tag">&#123;% <span class="name"><span class="name">csrf_token</span></span> %&#125;</span><span class="xml"> 템플릿 테그를 사용해 줍니다.</span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<blockquote>
+<p>Cross-site Request Forgery (CSRF, XSRF) 는, </p>
+<p>웹사이트 취약점 공격의 하나로, 사용자가 자신의 의지와는 무관하게</p>
+<p>공격자가 의도한 행위 (수정, 삭제, 등록) 을 웹사이트에 요청하게 하는 공격을 의미합니다. </p>
+<p>출처 : 위키백과 </p>
+</blockquote>
+<br>
+
+
+
+<h2 id="URL-설정"><a href="#URL-설정" class="headerlink" title="URL 설정"></a>URL 설정</h2><p><br><br></p>
+<p>이제 form 이 수행하는 Django view 를 수정해줘야 할 차례입니다. 전송된 데이터를 가지고 무언가를 수행할 django view 를 작성해 줍시다. part3 에서, vote 를 처리하는 url 설정을 해주었었습니다.</p>
+<br>
+
+<br>
+
+
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">path('<span class="tag">&lt;<span class="name">int:question_id</span>&gt;</span>/vote/', views.vote, name='vote'),</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="polls-views-py-수정하기"><a href="#polls-views-py-수정하기" class="headerlink" title="polls/views.py 수정하기"></a>polls/views.py 수정하기</h2><br>
+
+<p>위 url 은 vote 함수를 불러옵니다. part3 에서, 이것을 처리하는 예시 view 를 작성했었는데, </p>
+<p>이 polls/views.py 파일에서 vote() 함수를 아래와 같이 업데이트 해줍니다.</p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, HttpResponseRedirect</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Choice, Question</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vote</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        selected_choice = question.choice_set.get(pk=request.POST[<span class="string">'choice'</span>])</span><br><span class="line">    <span class="keyword">except</span> (KeyError, Choice.DoesNotExist):</span><br><span class="line">        <span class="comment"># 투표 폼을 다시 출력 </span></span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'polls/detail.html'</span>, </span><br><span class="line">                  &#123; <span class="string">'question'</span>: question,</span><br><span class="line">                    <span class="string">'error_message'</span>: <span class="string">"You didn't select a choice"</span>,</span><br><span class="line">                    &#125;)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        selected_choice.votes += <span class="number">1</span> </span><br><span class="line">        selected_choice.save()</span><br><span class="line">        <span class="comment"># 항상 POST 데이터를 성공적으로 다루었을때는</span></span><br><span class="line">        <span class="comment"># HttpResponseRedirect 를 반환해 줍니다 </span></span><br><span class="line">        <span class="comment"># 이것으로 사용자가 데이터를 뒤로가기 버튼을 눌러서 데이터를 두번 전송하는것을 방지합니다. </span></span><br><span class="line">        <span class="keyword">return</span> HttpResponseRedirect(reverse(<span class="string">'polls:results'</span>, args=(question.id,)))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>위의 예시에는, 아직 우리가 공부하지 않은 몇가지가 있습니다. </p>
+<br>
+
+<ul>
+<li><p><code>request.POST</code>는 사전 형태의 객체로 전송된 데이터를 key 이름으로 접근할수 있게 해줍니다. 해당 예시에서는, <code>request.POST[&#39;choie&#39;]</code>는 선택된 choice 의 ID 를 문자열 형태로 반환합니다. <code>request.POST</code> 값은 언제나 문자열로 되어 있습니다. </p>
+</li>
+<li><p>Django 는 <code>request.GET</code>도 지원합니다. GET 데이터를 접근할때 사용합니다. 하지만, 튜토리얼에서는, 명시적으로 <code>request.POST</code>를 사용합니다. 데이터를 바꿀때에는 <code>POST</code> 콜을 통해서만 작업합니다. </p>
+</li>
+<li><p>만약 choice 가 POST 데이터에서 제공되지 않았을때, <code>request.POST[&#39;choice&#39;]</code> 는 <code>KeyError</code>를 발생시킵니다. 위의 예시 코드는 choice 가 주어지지 않았을때, KeyError 를 확인하고 question 폼을 다시 표시합니다. </p>
+</li>
+<li><p>choice 카운트가 증가하였을때, 코드는 <code>HttpResponse</code> 대신에, <code>HttpResponseRedirect</code>를 반환합니다. <code>HttpResponseRedirect</code>는 하나의 인자, 즉 redirect 할 URL 을 받습니다. 위의 코드에 주석으로 나와 있듯이, POST 데이터를 성공적으로 다루었을때에는, <code>HttpResponseRedirect</code>를 반환하여, 데이터가 2번 전송되는것을 방지 합니다. </p>
+</li>
+<li><p><code>reverse()</code> 함수를 <code>HttpResponseRedirect</code>에 사용하는데. reverse() 함수는 view에서 하드코드된 URL 을 가지게 되는것을 방지합니다. <code>reverse(&#39;polls:results&#39;, args=(question.id))</code> 에서 보이듯, view 의 이름과 전달할 변수명을 받습니다. 해당 예시에서는, reverse() 함수가 아래와 같은 문자열을 반환 합니다.  </p>
+</li>
+<li><pre><code class="django"><span class="xml">reverse('polls:results', args=(quesiton.id,)) </span>
+
+<span class="xml">'/polls/3/results/' </span>
+
+<span class="xml"># 3 은 question.id 이고 </span>
+<span class="xml"># Redirect 된 URL 은 'results' 뷰를 호출하여 마지막 페이지를 출력합니다 </span>
+<span class="xml"><span class="comment"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">part3 에서 다루었지만, request 는 HttpRequest 객체입니다. </span><br><span class="line"></span><br><span class="line">&lt;br&gt;HttpRequest 객체에 대해서 더 알고 싶으면, request and response 문서를 확인 하면 됩니다. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">누군가가 질문에 대한 투표를 마치면, vote() 뷰는 질문에 대한 results 페이지로 리다이렉트 시킵니다. 따라서, result view 도 바꿔줘야 합니다. </span><br><span class="line"></span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">## polls&#x2F;views.py (Results view) 수정</span><br><span class="line"></span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">polls&#x2F;views.py 에 results() 함수를 아래와 같이 업데이트 해줍니다. </span><br><span class="line"></span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;django</span><br><span class="line">from django.shortcuts import get_object_or_404, render</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def results(request, question_id):</span><br><span class="line">    question &#x3D; get_object_or_404(Question, pk&#x3D;question_id)</span><br><span class="line">    return render(request, &#39;polls&#x2F;results.html&#39;, &#123;&#39;question&#39;: question&#125;)</span><br></pre></td></tr></table></figure></span></span>
+</code></pre>
+</li>
+</ul>
+<br>
+
+<br>
+
+<p>part3 에서 봤던 detail() 뷰와 거의 흡사합니다만, template 이름만 다른것을 확인 할수 있습니다. </p>
+<br>
+
+<blockquote>
+<p>results 뷰에서, </p>
+<p>‘polls/results.html’에 render 를 해주는데.</p>
+<p>polls/results.html 파일이 없습니다. <br></p>
+<p>polls/results.html 파일을 생성하고, 아래와 같이 내용을 채워줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><span class="template-variable">&#123;&#123; question.question_text &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> choice <span class="keyword">in</span> question.choice_set.all %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123; choice.choice_text &#125;&#125;</span><span class="xml"> -- </span><span class="template-variable">&#123;&#123; choice.votes &#125;&#125;</span><span class="xml"> vote</span><span class="template-variable">&#123;&#123; choice.votes|<span class="name">pluralize</span> &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> 'polls:detail' question.id %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Vote again?<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<br>
+
+<br>
+
+<blockquote>
+<p>서버를 시작하고, 체크해봅니다. 브라우저에서 polls/ 로 접속합니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/04/30/Writing-your-first-Django-app-part4-1%ED%8E%B8/image1.png" class=""> 
+
+<br>
+
+
+
+<blockquote>
+<p>what’s up? 질문을 클릭합니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/04/30/Writing-your-first-Django-app-part4-1%ED%8E%B8/image2.png" class="">
+
+<br>
+
+<blockquote>
+<p>Not Much 를 선택하고 Vote 를 눌러봅니다 </p>
+</blockquote>
+<br>
+
+<img src="/2020/04/30/Writing-your-first-Django-app-part4-1%ED%8E%B8/image3.png" class="">
+
+<br>
+
+<blockquote>
+<p>아무것도 선택 안하고, </p>
+<p>vote 버튼을 누르면, 에러가 표시될겁니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/04/30/Writing-your-first-Django-app-part4-1%ED%8E%B8/image4.png" class=""> 
+
+<br>
+
+<p><strong>Race conditions</strong></p>
+<br>
+
+<p>vote() 뷰는 조그마한 문제점이 하나 있습니다. Votes 뷰는 첫번째로, selected_choice 객체를 데이터베이스에서 가져옵니다. 그리고, 새 votes 의 값을 계산하고 데이터베이스에 다시 저장합니다. </p>
+<p>하지만, 만약 두명의 사용자가 동시에 vote 를 할때에는, 이것이 잘못 될수도 있습니다. </p>
+<p>이것은 race condition 이라고 불리우는데, F() 함수를 사용해서 이점을 피할수도 있습니다. </p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>reverse() 함수를 자주 사용하던데, reverse 함수 사용법을 다시 숙지 해야 합니다. </p>
+<p>그리고 F() 함수도 나중에 리뷰해야 할것 같습니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>polls</tag>
+        <tag>장고</tag>
+        <tag>튜토리얼</tag>
+        <tag>forms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part3 - 7편</title>
     <url>/2020/04/30/Writing-your-first-Django-app-part3-7%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="URL-이름공간-분리하기"><a href="#URL-이름공간-분리하기" class="headerlink" title="URL 이름공간 분리하기"></a>URL 이름공간 분리하기</h2><br>
