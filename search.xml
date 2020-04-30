@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part3 - 7편</title>
+    <url>/2020/04/30/Writing-your-first-Django-app-part3-7%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="URL-이름공간-분리하기"><a href="#URL-이름공간-분리하기" class="headerlink" title="URL 이름공간 분리하기"></a>URL 이름공간 분리하기</h2><br>
+
+<p>이번 튜토리얼은, polls 앱 하나 밖에 없습니다. </p>
+<p>하지만, 실제 Django 프로젝트에서는, 프로젝트에서 사용되는 앱의 갯수가, 5개, 10개, 20개 혹은 그 이상이 될수 있습니다. </p>
+<br>
+
+<p>그렇다면, Django 는 URL 이름들을 어떻게 구분해야 할까요? </p>
+<br>
+
+<a id="more"></a> 
+
+<br>
+
+<blockquote>
+<p>예를들어, </p>
+<p>polls 앱은 detail view 를 가지고 있습니다. </p>
+<p>하지만, polls 앱 외에 다른 앱인 blog 앱이 존재한다고 가정할때, </p>
+<p>그 앱도 detail view 를 가지고 있을수 있습니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">그렇다면, </span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> %&#125;</span><span class="xml"> 태그안에서 어떻게 이 두가지의 detail view 를 구분할까요?</span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<h2 id="URLConf-에-이름공간-추가하기"><a href="#URLConf-에-이름공간-추가하기" class="headerlink" title="URLConf 에 이름공간 추가하기"></a>URLConf 에 이름공간 추가하기</h2><br>
+
+<p>정답은, URLConf 에 이름공간들을 추가해 주는것입니다. </p>
+<p><br>polls/urls.py 파일로 가서, app_name 을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">from django.urls import path</span></span><br><span class="line"></span><br><span class="line"><span class="xml">from . import views</span></span><br><span class="line"></span><br><span class="line"><span class="xml">app_name = 'polls'         # Namespace 를 추가해줍니다 </span></span><br><span class="line"><span class="xml">urlpatterns = [</span></span><br><span class="line"><span class="xml">    path('', views.index, name='index'),</span></span><br><span class="line"><span class="xml">    path('<span class="tag">&lt;<span class="name">int:question_id</span>&gt;</span>/', views.detail, name='detail'),</span></span><br><span class="line"><span class="xml">    path('<span class="tag">&lt;<span class="name">int:question_id</span>&gt;</span>/results/', views.results, name='results'),</span></span><br><span class="line"><span class="xml">    path('<span class="tag">&lt;<span class="name">int:question_id</span>&gt;</span>/vote/', views.vote, name='vote'),</span></span><br><span class="line"><span class="xml">]</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="URLConf-에-추가된-Namesapce-사용"><a href="#URLConf-에-추가된-Namesapce-사용" class="headerlink" title="URLConf 에 추가된 Namesapce 사용"></a>URLConf 에 추가된 Namesapce 사용</h2><br>
+
+<p>polls/index.html 템플릿은 아래와 같이 작성되어 있습니다. (지난 포스팅) </p>
+<br>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% if latest_question_list %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    &#123;% for question in latest_question_list %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'detail' question.id %&#125;"</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>No polls are available.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>바뀐 namespace 를 적용하고, a 태그가 정확하게 polls 에 있는 detail  뷰를 가르키게 하려면, </p>
+<p>아래와 같이 a 태그를 수정해 줍니다. </p>
+<br>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'polls:detail' question.id %&#125;"</span>&gt;</span></span><br><span class="line">    &#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> %&#125;</span><span class="xml"> 태그안에, </span></span><br><span class="line"><span class="xml">'polls:detail' 이라고 써주어서, polls 에 있는 detail path 라는것을 지정해 줍니다.</span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>polls 앱 말고, 다른 앱이 존재 한다면, namespace  를 분리하기 위해서, 아래 절차를 따르면 됩니다. </p>
+<br>
+
+<ol>
+<li><p>해당 엡의 urls.py 에 app_name 을 지정 </p>
+</li>
+<li><p>템플릿에서 </p>
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> %&#125;</span><span class="xml">  태그안에 '앱이름:url명' 으로 url  연결</span></span><br><span class="line"></span><br><span class="line"><span class="xml">e.g. </span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> 'polls:detail' question.id %&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<br>
+
+<p>뷰를 작성하는것이 편해졌다면, 이제 튜토리얼의 part 4 로 넘어갑니다. </p>
+<p><br>part4 는, form  프로세싱과 generic 뷰에 대한 기본을 다룹니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Tutorials</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>polls</tag>
+        <tag>장고</tag>
+        <tag>튜토리얼</tag>
+        <tag>템플릿</tag>
+        <tag>URL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part3 - 6편</title>
     <url>/2020/04/28/Writing-your-first-Django-app-part3-6%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="템플릿에서-하드-코드된-코드-제거하기"><a href="#템플릿에서-하드-코드된-코드-제거하기" class="headerlink" title="템플릿에서 하드 코드된 코드 제거하기"></a>템플릿에서 하드 코드된 코드 제거하기</h2><br>
