@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/04/30/Writing-your-first-Django-app-part4-2%ED%8E%B8/</loc>
+        <lastmod>2020-04-30T14:14:23.296Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/04/30/Writing-your-first-Django-app-part4-1%ED%8E%B8/</loc>
         <lastmod>2020-04-30T10:09:35.511Z</lastmod>
         <changefreq>weekly</changefreq>
