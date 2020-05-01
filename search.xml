@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part5 - 2편</title>
+    <url>/2020/05/01/Writing-your-first-Django-app-part5-2%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="기본테스트-전략"><a href="#기본테스트-전략" class="headerlink" title="기본테스트 전략"></a>기본테스트 전략</h2><br>
+
+<p>테스트 작성에 접근하는 방식은 많습니다. </p>
+<br>
+
+<p>어떤 프로그래머들은 “test-driven development” (테스트 기반 개발 방식) 원칙을 따릅니다. </p>
+<p><br>테스트 기반 개발 방식에서는, 개발자들이 실제 코드를 작성하기 전에 테스트를 먼저 작성합니다. </p>
+<br>
+
+<br>
+
+<p>이것은 직관적이지 않아 보일수 있습니다만, 어쨋든 대부분의 사람들이 하는일과 다를바가 별로 없습니다. 문제점들을 묘사하고, 문제점들을 풀기 위해서 코드를 작성합니다. </p>
+<a id="more"></a>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>테스트 기반 개발 방식은, 파이썬 테스트 케이스를 공식화 합니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<p>종종, 테스팅에 새로 입문하는 사람들은, 어떤 코드를 먼저 작성하고, 나중에 테스트가 있어야 한다고 결정합니다. </p>
+<p><br>하지만, 그때는 테스트를 좀 더 일찍 작성하는것이 나았을거라 생각할겁니다. 하지만, 언제든 테스트 작성을 시작하는것은 늦지 않았습니다. </p>
+<br>
+
+<br>
+
+<p>때때로, 테스트 작성을 시작해야하는 시점을 결정하기 어렵습니다. </p>
+<p><br>만약, 몇천줄의 파이썬 코드를 이미 작성했다고 가정한다면, 어떤것을 테스트 해야할지 결정하는것이 쉽지 않을수 있습니다. 이런 상황에서는, 다음에 코드를 바꿀때에, 첫번째 테스트를 작성하는것이 좋습니다. </p>
+<p><br>새로운 코드를 추가할때나 버그를 수정할때 말이죠. 바로 이것을 다음에 진행 해 볼 예정입니다. </p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>테스트 코드 작성은 실제 코드를 작성하기 이전에 이미 작성하는것이 좋지만. <br></p>
+<p>코드가 이미 몇천줄 작성이 되어 있더라도 언제든 테스트 코드를 작성하는것은 늦지 않습니다.</p>
+<p><br><br></p>
+<p>이미 작성된 코드가 너무 방대할 경우, 해당 코드에 새로운 기능을 추가하거나 버그를 고치는 코드를 작성할때 테스트 코드 작성을 시작해도 늦지 않습니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>polls</tag>
+        <tag>장고</tag>
+        <tag>튜토리얼</tag>
+        <tag>자동화테스트</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part5 - 1편</title>
     <url>/2020/05/01/Writing-your-first-Django-app-part5-1%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="자동화된-테스트-소개하기"><a href="#자동화된-테스트-소개하기" class="headerlink" title="자동화된 테스트 소개하기"></a>자동화된 테스트 소개하기</h2><br>
