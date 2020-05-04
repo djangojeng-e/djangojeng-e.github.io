@@ -1,6 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part5 - 5편</title>
+    <url>/2020/05/04/Writing-your-first-Django-app-part5-5%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="새로운-view-테스트하기"><a href="#새로운-view-테스트하기" class="headerlink" title="새로운 view 테스트하기"></a>새로운 view 테스트하기</h2><br>
+
+<br>
+
+<p>이제 우리는 runserver 를 통해서 만족스러운 결과를 가질수 있습니다.</p>
+<p><br>브라우저로 사이트를 열어서 과거와 미래 날짜를 가진 Question 을 생성하고, 발행이 완료된 Question 만 리스트 되어야 합니다. shell 세션을 기반으로, tests.py 를 작성해 줍니다. </p>
+<br>
+
+<br>
+
+<p>첫번째로, polls/tests.py 에 reverse 를 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<p>그 다음에, 질문들을 생성하기 위해서 단축 함수를 만들어주고,</p>
+<p><br>새로운 클래스도 생성해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_question</span><span class="params">(question_text, days)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Create a question with the given 'question_text' and published the given 		number of 'days' offset to now (negative for question published in the past, </span></span><br><span class="line"><span class="string">    positive for questions that have yet to be published).</span></span><br><span class="line"><span class="string">	"""</span></span><br><span class="line">    time = timezone.now() + datetime.timedelta(days=days)</span><br><span class="line">    <span class="keyword">return</span> Question.objects.create(question_text=question_text, pub_date=time)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionIndexViewTest</span><span class="params">(TestCase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_no_questions</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        If no questions exist, an appropriate message is displayed. </span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        response = self.client.get(reverse(<span class="string">'polls:index'</span>))</span><br><span class="line">        self.assertEqual(response.status_code, <span class="number">200</span>)</span><br><span class="line">        self.assertContains(response, <span class="string">"No polls are available"</span>)</span><br><span class="line">        self.assertQuerysetEqual(response.context[<span class="string">'latest_question_list'</span>], [])</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_past_question</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Questions with a pub_date in the past are displayed on the index page </span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        create_question(question_text=<span class="string">"Past question."</span>, days=<span class="number">30</span>)</span><br><span class="line">        response = self.client.get(reverse(<span class="string">'polls:index'</span>))</span><br><span class="line">        self.assertQuerysetEqual(</span><br><span class="line">        	response.context[<span class="string">'latest_question_list'</span>],</span><br><span class="line">            [<span class="string">'&lt;Question: Past quesiton.&gt;'</span>]</span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">test_future_question</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Questions with a pub_date in the future aren't displayed on</span></span><br><span class="line"><span class="string">        the index page.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        create_question(question_text=<span class="string">"Future question."</span>, days=<span class="number">30</span>)</span><br><span class="line">        response = self.client.get(reverse(<span class="string">'polls:index'</span>))</span><br><span class="line">        self.assertContains(response, <span class="string">"No polls are available."</span>)</span><br><span class="line">        self.assertQuerysetEqual(response.context[<span class="string">'latest_question_list'</span>], [])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_future_question_and_past_question</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Even if both past and future questions exist, only past questions</span></span><br><span class="line"><span class="string">        are displayed.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        create_question(question_text=<span class="string">"Past question."</span>, days=<span class="number">-30</span>)</span><br><span class="line">        create_question(question_text=<span class="string">"Future question."</span>, days=<span class="number">30</span>)</span><br><span class="line">        response = self.client.get(reverse(<span class="string">'polls:index'</span>))</span><br><span class="line">        self.assertQuerysetEqual(</span><br><span class="line">            response.context[<span class="string">'latest_question_list'</span>],</span><br><span class="line">            [<span class="string">'&lt;Question: Past question.&gt;'</span>]</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_two_past_questions</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        The questions index page may display multiple questions.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        create_question(question_text=<span class="string">"Past question 1."</span>, days=<span class="number">-30</span>)</span><br><span class="line">        create_question(question_text=<span class="string">"Past question 2."</span>, days=<span class="number">-5</span>)</span><br><span class="line">        response = self.client.get(reverse(<span class="string">'polls:index'</span>))</span><br><span class="line">        self.assertQuerysetEqual(</span><br><span class="line">            response.context[<span class="string">'latest_question_list'</span>],</span><br><span class="line">            [<span class="string">'&lt;Question: Past question 2.&gt;'</span>, <span class="string">'&lt;Question: Past question 1.&gt;'</span>]</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>세부사항들을 잠시 체크하고 넘어갑니다. </p>
+<br>
+
+<p>첫번째로, quesiton 숏컷 함수인, create_question 은 질문 생성하는데에 반복되는 부분을 책임집니다. </p>
+<br>
+
+<p>test_no_questions 는 질문을 생성하지 않습니다. 하지만 “No polls are available” 이라는 메시지를 체크 하고, latest_question_list 가 비어있는것을 검증합니다. <br>django.test.TestCase 클래스는 추가적인 assertion 메써드들을 제공합니다.<br><br> 해당 예시에서는, assertContains() 그리고 assertQuerysetEqual() 을 사용합니다. </p>
+<p><br><br></p>
+<p>test_past_question 에서는, 질문을 생성하고 리스트에 표시되는지 확인 합니다. </p>
+<br>
+
+<p>test_future_question 에서는, pub_date 가 미래일인 질문을 생성합니다.<br> 데이터베이스는 각 테스트 메써드 마다 재설정 됩니다. <br><br>따라서, 첫번째 질문은 더이상 데이터베이스에 존재하지 않습니다. 그러므로, 인덱스는 아무 질문들도 가지고 있지 않아야 합니다. </p>
+<p><br><br></p>
+<p>추가적으로, 우리는 관리자 입력값과 사용자 경험 그리고 각 상태 와 각 변경사항, 예상된 결과들의 발행 같은 것들을 테스트를 통해 하나의 이야기를 만들어 가는겁니다. </p>
+<br>
+
+<p>python manage.py test polls 를 실행하면, 8개의 테스트가 진행되고 OK 가 됩니다. </p>
+<br>
+
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Creating <span class="built_in">test</span> database <span class="keyword">for</span> <span class="built_in">alias</span> <span class="string">'default'</span>...</span><br><span class="line">System check identified no issues (0 silenced).</span><br><span class="line">........</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Ran 8 tests <span class="keyword">in</span> 0.031s</span><br><span class="line"></span><br><span class="line">OK</span><br><span class="line">Destroying <span class="built_in">test</span> database <span class="keyword">for</span> <span class="built_in">alias</span> <span class="string">'default'</span>...</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<br>
+
+<h3 id="DetailView-테스트-하기"><a href="#DetailView-테스트-하기" class="headerlink" title="DetailView 테스트 하기"></a>DetailView 테스트 하기</h3><br>
+
+<p>우리가 또 해결해야 하는것은, 미래의 질문들이 인덱스에 표시가 되지 않는다 하더라도, </p>
+<p><br>사용자들이 정확한 URL 을 알고 있거나, 추측할수 있다면, 사용자들은, 여전히 질문들에 접근할수 있습니다.  </p>
+<p><br>따라서, DetailView 에 비슷한 제약을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DetailView</span><span class="params">(generic.DetailView)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_queryset</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        아직 발행되지 않은 질문들을 제외합니다.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> Question.objects.filter(pub_date__lte=timezone.now())</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>그리고, 물론, 몇개의 테스트를 추가해 줄겁니다. pub_date 가 미래는 출력이 되지 않는 상황에서,<br></p>
+<p>pub_date 가 과거값인 Question 이 출력될수 있는지, </p>
+<p><br><br></p>
+<p>polls/tests.py 파일을 아래와 같이 업데이트 해줍니다</p>
+<p><br><br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionDetailViewTests</span><span class="params">(TestCase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_future_question</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        The detail view of a question with a pub_date in the future</span></span><br><span class="line"><span class="string">        returns a 404 not found.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        future_question = create_question(question_text=<span class="string">'Future question.'</span>, days=<span class="number">5</span>)</span><br><span class="line">        url = reverse(<span class="string">'polls:detail'</span>, args=(future_question.id,))</span><br><span class="line">        response = self.client.get(url)</span><br><span class="line">        self.assertEqual(response.status_code, <span class="number">404</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_past_question</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        The detail view of a question with a pub_date in the past</span></span><br><span class="line"><span class="string">        displays the question's text.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        past_question = create_question(question_text=<span class="string">'Past Question.'</span>, days=<span class="number">-5</span>)</span><br><span class="line">        url = reverse(<span class="string">'polls:detail'</span>, args=(past_question.id,))</span><br><span class="line">        response = self.client.get(url)</span><br><span class="line">        self.assertContains(response, past_question.question_text)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>python manage.py test polls 를 실행하면,<br></p>
+<p>아래와 같이 10가지의 테스트 케이스가 OK 됩니다.<br><br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Creating <span class="built_in">test</span> database <span class="keyword">for</span> <span class="built_in">alias</span> <span class="string">'default'</span>...</span><br><span class="line">System check identified no issues (0 silenced).</span><br><span class="line">..........</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Ran 10 tests <span class="keyword">in</span> 0.047s</span><br><span class="line"></span><br><span class="line">OK</span><br><span class="line">Destroying <span class="built_in">test</span> database <span class="keyword">for</span> <span class="built_in">alias</span> <span class="string">'default'</span>...</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="더많은-테스트를-위한-아이디어"><a href="#더많은-테스트를-위한-아이디어" class="headerlink" title="더많은 테스트를 위한 아이디어"></a>더많은 테스트를 위한 아이디어</h2><p><br><br></p>
+<p>비슷한 개념의 get_queryset 메써드를 ResultsView 에 추가해 주어야 하고 새로운 테스트 클래스를 생성 해주어야 합니다.. <br>방금 DetailView 를 위해 한 작업과 굉장히 비슷한 작업이 될것이고, <br>사실 반복적인 작업이 될것 입니다. </p>
+<p><br><br></p>
+<p>또한 다른 방식으로도 어플리케이션을 향상 시킬수 있습니다.<br> 예를 들어, Choices 가 없는 Questions 를 사이트에 발행 시키는것은 어리석은 짓입니다. <br>따라서, 우리의 뷰들은 이것에 대해 체크하고 Choice 가 없는 Questions 들을 제외할수 있습니다. <br><br>우리의 테스트들은 Choices 가 없는 Question 을 생성하고, 발행이 되지 않았는지 테스트 하고 비슷한 Question 인데  Choices 가 있는 것을 생성해서, 발행 되는지 테스트 합니다. </p>
+<p><br><br></p>
+<p>아마도, 로그인이 되어있는 관리자들은 발행이 취소된 Questions 도 볼수 있어야 합니다. 하지만, 일반 사이트 방문자는 볼수 없어야 하겠죠. 다시한번, 이것을 위해서 소프트웨어에 추가되어야 하는 그 어떤것이던지, </p>
+<p><br><br></p>
+<p>테스트와 함께 병행 되어야 합니다. 테스트를 먼저 작성하고 테스트를 통과하는 코드를 작성하던, </p>
+<p>로직을 먼저 생각한다음에 테스트를 작성하여 증명하던지. </p>
+<p><br><br></p>
+<p>어떤 방식으로던, 테스트와 같이 병행되어야 합니다.  <br><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p><br><br></p>
+<p>view 들을 테스트 해보았는데. </p>
+<p>아직은 test 를 작성할 상황이 많지 않았어서 그런지.. 전반적인 순서라던지, 감이 오지 않네요. </p>
+<p>작동은 완벽하게 되지만, 코드 동작 자체의 연계성에 대한 이해가 좀 부족한것 같습니다;;; </p>
+<br>
+
+<p>조금 더 공부 진행하면서 알아봐야 할것 같습니다. <br></p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>polls</tag>
+        <tag>장고</tag>
+        <tag>튜토리얼</tag>
+        <tag>자동화테스트</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part5 - 4편</title>
     <url>/2020/05/03/Writing-your-first-Django-app-part5-4%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="View-테스트-하기"><a href="#View-테스트-하기" class="headerlink" title="View 테스트 하기"></a>View 테스트 하기</h2><br>
