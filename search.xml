@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part5 - 6편</title>
+    <url>/2020/05/05/Writing-your-first-Django-app-part5-6%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="더많은-테스트가-좋습니다"><a href="#더많은-테스트가-좋습니다" class="headerlink" title="더많은 테스트가 좋습니다"></a>더많은 테스트가 좋습니다</h2><br>
+
+<br>
+
+<p>우리가 작성한 테스트는 우리의 제어 능력을 벗어나 보일지 모릅니다. </p>
+<p><br>이대로 가다가는, 테스트에 있는 코드가 어플리케이션에 있는 코드보다 많아질것이고, </p>
+<p><br>미심쩍은 반복만 늘어날것입니다. 기타 코드와 비교해서 우아할것 같아 보이지 않기도 합니다. </p>
+<br>
+
+<br>
+
+<p>상관 없습니다! 코드가 자라나게 냅둬도 되니다 ㅎㅎ</p>
+<p><br>가장 좋은 방법은 테스트를 한번만 작성하고, 잊고 사는겁니다. 테스트는 프로그래밍 개발이 계속 되는동안 그 기능을 계속 수행합니다. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<p>때때로, 테스트들은 업데이트 되어야 합니다. view 를 수정해서 Choices 를 가진 Questions 만 발행 된다고 가정해 봅시다. 이런 상황에서는, 이미 존재하는 많은 테스트들이 실패할것입니다. 따라서, 테스트들은 view  에 맞게 업데이트 되어야 합니다. </p>
+<p><br><br></p>
+<p>개발을 계속 하면서, 테스트가 불필요해지는 경우를 발견할수 있습니다. </p>
+<p><br>테스트가 불필요해진다는것은 문제될게 없습니다. 테스트가 불필요해진다는것은 좋은 일입니다. </p>
+<br>
+
+<p>테스트들이 좋게 마련이 되어 있으면, 관리를 못하는 상황이 오지 않습니다. 아래는 테스트에 대한 좋은 원칙들 입니다.</p>
+<br>
+
+<ul>
+<li>별도의 Testclass 를 각 모델 혹은 뷰에 가짐 </li>
+<li>별도의 테스트 메서드를 각 테스트를 하고 싶은 조건에 가짐 </li>
+<li>테스트 메서드 이름은 해당 함수를 묘사 </li>
+</ul>
+<br>
+
+<br>
+
+<h2 id="추가-테스트"><a href="#추가-테스트" class="headerlink" title="추가 테스트"></a>추가 테스트</h2><br>
+
+<p>튜토리얼은 몇가지의 기본 테스팅을 소개합니다. </p>
+<p><br>더 할수 있는것이 존재하고, 몇가지 매우 유용한 도구들도 존재합니다. <br><br><br></p>
+<p>예를들어, 우리의 테스트가 모델의 내부 로직과, 정보를 발행하는 방식을 둘러보았고, </p>
+<p><br>Selenium 같은 ‘in-browser’ 프레임워크를 사용해서 HTML  이 실제로 브라우저에서 그려지는지도 테스트 할수 있습니다. </p>
+<br>
+
+<p>이러한 툴들은, Django 코드의 동작을 확인하는것 뿐만 아니라, JavaScript 의 브라우저를 실행하여, 마치 사람이 동작시키는것처럼 테스트를 할수 있습니다. Django 는 Selenium 같은 툴과 연동을 도와주기 위해서, LiveServerTestCase  같은 모듈을 제공합니다.<br></p>
+<br>
+
+<p>만약 복잡한 어플리케이션을 가지고 있다면, 자동으로 각 커밋마다 테스트를 실행 시키고 싶을수 있습니다. </p>
+<p><br>지속적인 연동의 목적을 가지고 말이죠, 따라서 품질관리가 스스로 혹은 적어도 부분적으로는 자동화가 됩니다. </p>
+<p><br><br></p>
+<p>테스트 되지 않은 응용 프로그램 부분을 확인 하는 좋은 방법은 코드 범위를 확인 하는것 입니다. </p>
+<br>
+
+<p>또한, 깨지기 쉬운 코드나 죽은 코드를 식별하는데에 도움이 됩니다. 코드를 테스트 할수 없는 경우 보통 코드를 리펙토링 하거나 제거 합니다. 적용 범위는 죽은 코드를 식별하는데에 도움이 됩니다. 자세한 내용은 coverage.py 와의 통합을 참조하면 됩니다. </p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>테스트에 대한 토픽을 한번 읽어보았는데. </p>
+<p>무슨 소리하는건지 하나도 모르겠습니다. <br></p>
+<br>
+
+<p>테스트를 진행하는것을 겪어본적이 없으니, 당췌 뭔소린지 알수가 없군요. </p>
+<br>
+
+<p>공부를 더 진행 해보면서, 체크 해봐야 되겠습니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>polls</tag>
+        <tag>튜토리얼</tag>
+        <tag>자동화테스트</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part5 - 5편</title>
     <url>/2020/05/04/Writing-your-first-Django-app-part5-5%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="새로운-view-테스트하기"><a href="#새로운-view-테스트하기" class="headerlink" title="새로운 view 테스트하기"></a>새로운 view 테스트하기</h2><br>
