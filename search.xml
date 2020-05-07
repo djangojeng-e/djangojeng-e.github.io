@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part 7 - 1편</title>
+    <url>/2020/05/07/Writing-your-first-Django-app-part-7-1%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="Admin-form-고치기"><a href="#Admin-form-고치기" class="headerlink" title="Admin form 고치기"></a>Admin form 고치기</h2><br>
+
+<p>Question 모델을 admin.site.register(Question) 을 사용해서 polls/admin.py 에 등록을 하면, </p>
+<p><br>Django 는 기본 어드민 표시 양식을 만들수 있었습니다.  그러나, 때때로 우리는 관리자 양식이 조금 다르게 보이고 작동하길 원합니다.<br></p>
+<br>
+
+<p>관리자 페이지가 조금 다른 모습과 조금 다른 동작을 원한다면, </p>
+<p><br>Django 에 객체를 등록할때, 이 옵션에 대해서 얘기해 주어야 합니다. </p>
+<a id="more"></a>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>polls/admin.py 파일에 </p>
+<p>class QuestionAdmin 코드를 추가해 주고, </p>
+<p>코드 순서를 아래와 같이 바꾸어 줍니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="fields-사용하기"><a href="#fields-사용하기" class="headerlink" title="fields 사용하기"></a>fields 사용하기</h2><br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">from django.contrib import admin </span></span><br><span class="line"><span class="xml">from .models import Question </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">class QuestionAdmin(admin.ModelAdmin):</span></span><br><span class="line"><span class="xml">    fields = ['pub_date', 'question_text']</span></span><br><span class="line"></span><br><span class="line"><span class="xml">admin.site.register(Question, QuestionAdmin)</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>새로 등록된 QuestionAdmin 클래스를, admin.site.register 의 두번째 인자로 넣어줍니다.</p>
+<p><br>이 특정 변경 사항은, Publication date” 가 “Question” 필드 전에 나오게 만듭니다. </p>
+<br>
+
+<br>
+
+<img src="/2020/05/07/Writing-your-first-Django-app-part-7-1%ED%8E%B8/image1.png" class=""> 
+
+<br>
+
+<p>두개의 필드밖에 없는 앱이라서 별로 특별해 보이지 않을지 모르지만, </p>
+<p><br>필드가 많은때에는, 사용성 측면에서 직관적인 순서가 중요할수 있습니다.</p>
+<br>
+
+<br>
+
+<h2 id="fieldsets-사용하기"><a href="#fieldsets-사용하기" class="headerlink" title="fieldsets 사용하기"></a>fieldsets 사용하기</h2><br>
+
+<br>
+
+<blockquote>
+<p>polls/admin.py 파일에서, </p>
+<p>fieldsets 를 사용해서, form 을 나눕니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    fieldsets = [</span><br><span class="line">        (<span class="string">'질문내용'</span>, 		&#123;<span class="string">'fields'</span>: [<span class="string">'question_text'</span>]&#125;),</span><br><span class="line">        (<span class="string">'Date information'</span>, &#123;<span class="string">'fields'</span>: [<span class="string">'pub_date'</span>]&#125;),</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>fieldsets 안에 있는 각 튜플들의 첫번째 요소들은 fieldset 의 제목들입니다. </p>
+<p><br>polls/admin.py 파일을 위와 같이 고쳐놓고, <br>서버를 실행한다음, 어드민에 접속하면, 아래와 같은 화면을 볼수 있습니다.<br><br></p>
+<img src="/2020/05/07/Writing-your-first-Django-app-part-7-1%ED%8E%B8/image2.png" class="">
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>간단하게 admin 을 커스터마이즈 해보았습니다. </p>
+<p>다음 포스팅에서는, 관계된 객체를 어드민에 추가하는것에 대해 둘러봅니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>polls</tag>
+        <tag>admin</tag>
+        <tag>튜토리얼</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part 6 - 2편</title>
     <url>/2020/05/06/Writing-your-first-Django-app-part-6-2%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="Background-image-추가하기"><a href="#Background-image-추가하기" class="headerlink" title="Background-image 추가하기"></a>Background-image 추가하기</h2><br>

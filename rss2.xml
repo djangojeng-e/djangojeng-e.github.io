@@ -9,8 +9,32 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Wed, 06 May 2020 05:24:37 GMT</pubDate>
+    <pubDate>Thu, 07 May 2020 01:14:33 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Writing your first Django app, part 7 - 1편</title>
+      <link>http://djangojeng-e.github.io/2020/05/07/Writing-your-first-Django-app-part-7-1%ED%8E%B8/</link>
+      <guid>http://djangojeng-e.github.io/2020/05/07/Writing-your-first-Django-app-part-7-1%ED%8E%B8/</guid>
+      <pubDate>Thu, 07 May 2020 01:01:21 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;Admin-form-고치기&quot;&gt;&lt;a href=&quot;#Admin-form-고치기&quot; class=&quot;headerlink&quot; title=&quot;Admin form 고치기&quot;&gt;&lt;/a&gt;Admin form 고치기&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;Question 모델을 admin.site.register(Question) 을 사용해서 polls/admin.py 에 등록을 하면, &lt;/p&gt;
+&lt;p&gt;&lt;br&gt;Django 는 기본 어드민 표시 양식을 만들수 있었습니다.  그러나, 때때로 우리는 관리자 양식이 조금 다르게 보이고 작동하길 원합니다.&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
+&lt;p&gt;관리자 페이지가 조금 다른 모습과 조금 다른 동작을 원한다면, &lt;/p&gt;
+&lt;p&gt;&lt;br&gt;Django 에 객체를 등록할때, 이 옵션에 대해서 얘기해 주어야 합니다. &lt;/p&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Admin-form-고치기"><a href="#Admin-form-고치기" class="headerlink" title="Admin form 고치기"></a>Admin form 고치기</h2><br><p>Question 모델을 admin.site.register(Question) 을 사용해서 polls/admin.py 에 등록을 하면, </p><p><br>Django 는 기본 어드민 표시 양식을 만들수 있었습니다.  그러나, 때때로 우리는 관리자 양식이 조금 다르게 보이고 작동하길 원합니다.<br></p><br><p>관리자 페이지가 조금 다른 모습과 조금 다른 동작을 원한다면, </p><p><br>Django 에 객체를 등록할때, 이 옵션에 대해서 얘기해 주어야 합니다. </p><a id="more"></a><br><br><blockquote><p>polls/admin.py 파일에 </p><p>class QuestionAdmin 코드를 추가해 주고, </p><p>코드 순서를 아래와 같이 바꾸어 줍니다. </p></blockquote><br><br><h2 id="fields-사용하기"><a href="#fields-사용하기" class="headerlink" title="fields 사용하기"></a>fields 사용하기</h2><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">from django.contrib import admin </span></span><br><span class="line"><span class="xml">from .models import Question </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">class QuestionAdmin(admin.ModelAdmin):</span></span><br><span class="line"><span class="xml">    fields = ['pub_date', 'question_text']</span></span><br><span class="line"></span><br><span class="line"><span class="xml">admin.site.register(Question, QuestionAdmin)</span></span><br></pre></td></tr></table></figure><br><br><p>새로 등록된 QuestionAdmin 클래스를, admin.site.register 의 두번째 인자로 넣어줍니다.</p><p><br>이 특정 변경 사항은, Publication date” 가 “Question” 필드 전에 나오게 만듭니다. </p><br><br><img src="/2020/05/07/Writing-your-first-Django-app-part-7-1%ED%8E%B8/image1.png" class=""> <br><p>두개의 필드밖에 없는 앱이라서 별로 특별해 보이지 않을지 모르지만, </p><p><br>필드가 많은때에는, 사용성 측면에서 직관적인 순서가 중요할수 있습니다.</p><br><br><h2 id="fieldsets-사용하기"><a href="#fieldsets-사용하기" class="headerlink" title="fieldsets 사용하기"></a>fieldsets 사용하기</h2><br><br><blockquote><p>polls/admin.py 파일에서, </p><p>fieldsets 를 사용해서, form 을 나눕니다. </p></blockquote><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    fieldsets = [</span><br><span class="line">        (<span class="string">'질문내용'</span>, &#123;<span class="string">'fields'</span>: [<span class="string">'question_text'</span>]&#125;),</span><br><span class="line">        (<span class="string">'Date information'</span>, &#123;<span class="string">'fields'</span>: [<span class="string">'pub_date'</span>]&#125;),</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure><br><p>fieldsets 안에 있는 각 튜플들의 첫번째 요소들은 fieldset 의 제목들입니다. </p><p><br>polls/admin.py 파일을 위와 같이 고쳐놓고, <br>서버를 실행한다음, 어드민에 접속하면, 아래와 같은 화면을 볼수 있습니다.<br><br></p><img src="/2020/05/07/Writing-your-first-Django-app-part-7-1%ED%8E%B8/image2.png" class=""><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>간단하게 admin 을 커스터마이즈 해보았습니다. </p><p>다음 포스팅에서는, 관계된 객체를 어드민에 추가하는것에 대해 둘러봅니다. </p><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/05/07/Writing-your-first-Django-app-part-7-1%ED%8E%B8/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Writing your first Django app, part 6 - 2편</title>
@@ -580,32 +604,6 @@
       <content:encoded><![CDATA[<h2 id="polls-앱을-어드민에서-수정하기"><a href="#polls-앱을-어드민에서-수정하기" class="headerlink" title="polls 앱을 어드민에서 수정하기"></a>polls 앱을 어드민에서 수정하기</h2><br><p>지난 포스팅에, 관리자 사이트 꼐정을 만들고, Django에서 기본으로 제공하는 관리자 페이지에 접속해 보았습니다. 접속해 보면, 우리가 생성한 polls 앱을 수정할수 있는 컨텐츠가 보이지 않습니다. </p><br><br><p>polls 앱의 컨텐츠는 Quetion 과 Choice 인데, <br>관리자 페이지에서 추가, 수정, 삭제가 되지 않는다면, 관리자 페이지가 무슨 의미가 있을까요? </p><br><a id="more"></a><br><blockquote><p>따라서, </p><p>관리자 페이지에서 해당 컨텐츠들 (polls 앱에 있는 Question, Choice) 을 </p><p>관리할수 있게, 관리자 페이지에 등록 해 줘야 합니다. </p></blockquote><br><blockquote><p>관리자 페이지에 등록하기 위해서, </p><p>polls/admin.py 파일에 아래 내용을 추가해 줍니다. </p></blockquote><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin </span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question        <span class="comment"># polls 앱안에 models 에서 Question 모델 가져오기 </span></span><br><span class="line"></span><br><span class="line">admin.site.register(Question)       <span class="comment"># 가져온 Question 모델을 어드민에 등록</span></span><br></pre></td></tr></table></figure><br><br><h2 id="관리자-페이지에서-확인"><a href="#관리자-페이지에서-확인" class="headerlink" title="관리자 페이지에서 확인"></a>관리자 페이지에서 확인</h2><br><p><br>Question 컨텐츠를 관리자 페이지에서 관리할수 있도록, 관리자페이지에 가서 확인 해 봅니다. </p><br><p>1) python manage.py runserver 로 개발서버를 실행합니다</p><p>2) <a href="http://127.0.0.1:8000/admin" target="_blank" rel="noopener">http://127.0.0.1:8000/admin</a> 으로 접속을 합니다</p><p>3) 이전 포스팅에서 생성한 아이디와 비밀번호를 입력해서 로그인 합니다</p><p>4) 어드민 페이지로 접속을 하고, Questions 가 관리자 페이지에 잘 등록되었는지 확인 합니다. </p><br><br><p>polls/admin.py 파일에 코드를 추가했더니, 아래와 같이 Questions 가 관리자 페이지가 보입니다.</p><br><br><img src="/2020/04/25/Writing-your-first-Django-app-part2-8%ED%8E%B8/image1.png" class=""> <br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><p>어드민 페이지에서 컨텐츠를 관리하기 위해서, 컨텐츠 정보를 어드민 페이지에 등록 하였습니다. </p><p><br><code>admin.site.register(모델 클래스명)</code> 코드를 잊지 맙시다~  </p>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/04/25/Writing-your-first-Django-app-part2-8%ED%8E%B8/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Writing your first Django app, part2 - 7편</title>
-      <link>http://djangojeng-e.github.io/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/</link>
-      <guid>http://djangojeng-e.github.io/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/</guid>
-      <pubDate>Sat, 25 Apr 2020 03:14:56 GMT</pubDate>
-      <description>
-      
-        &lt;h2 id=&quot;Django-어드민-소개&quot;&gt;&lt;a href=&quot;#Django-어드민-소개&quot; class=&quot;headerlink&quot; title=&quot;Django 어드민 소개&quot;&gt;&lt;/a&gt;Django 어드민 소개&lt;/h2&gt;&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;지난 시간까지 데이터베이스를 둘러보았습니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;기본 API 를 통해서 데이터를 추가하고, 수정하고, 삭제하는것을 진행 해보았습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;이번 포스팅에서는 Django 가 제공하는 관리자 페이지, 즉 Django Admin 에 대해서 알아봅니다. &lt;/p&gt;
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="Django-어드민-소개"><a href="#Django-어드민-소개" class="headerlink" title="Django 어드민 소개"></a>Django 어드민 소개</h2><br><br><p>지난 시간까지 데이터베이스를 둘러보았습니다. </p><p><br>기본 API 를 통해서 데이터를 추가하고, 수정하고, 삭제하는것을 진행 해보았습니다. </p><br><p>이번 포스팅에서는 Django 가 제공하는 관리자 페이지, 즉 Django Admin 에 대해서 알아봅니다. </p><br><a id="more"></a><br><blockquote><p>철학 </p><p>직원이나 고객들이 사이트의 컨텐츠를 추가하고, 바꾸고, 삭제하는 </p><p>관리자 페이지를 만드는일은 지루한 일입니다. 그다지 창의성을 요구하는일도 아닙니다. </p><br><p>이러한 사유로, Django 는 전적으로 관리자 인터페이스를 생성하는것을 자동화 하였습니다. </p><br><p>Django 는 뉴스룸 환경에서 작성되었습니다. </p><p>컨텐츠 발행자들과 일반 공용 사이트의 구분이 명확한 환경에서 쓰여졌습니다. </p><p>사이트 관리자는 시스템을 사용해서 뉴스 스토리, 스포츠 점수 등을 추가하고, 이러한 컨텐츠들은 공용 사이트에 표시됩니다. </p><br><p>Django 는 사이트 관리자가 컨텐츠들을 수정하기 위한 통합 인터페이스를 생성해야 하는 문제를 해결해 줍니다. </p><br><p>어드민은 사이트 방문자에 의해서 사용될 목적이 없습니다. </p><p>어드민은 관리자 페이지로, 사이트 관리자들을 위한 페이지 입니다. </p></blockquote><br><br><h2 id="Django-어드민-사용자-생성하기"><a href="#Django-어드민-사용자-생성하기" class="headerlink" title="Django 어드민 사용자 생성하기"></a>Django 어드민 사용자 생성하기</h2><br><p>관리자 페이지는, 사이트 관리자들이 로그인 하고 사용할수 있게 만들어야 합니다. </p><p><br>모든 사람들이 사용할수 있다면, 관리자 페이지가 아니게 되겠죠. </p><br><p>따라서, 관리자 사이트를 사용할 사용자를 생성해야 하고, 해당 사용자가 관리자 페이지에 접근할수 있게 해야 합니다. </p><br><p>어드민 사용자를 생성하기 위해서는, <code>python manage.py createsuperuser</code>명령어를 터미널에서 실행 합니다. </p><br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(django-tutorial)  ~/django_tutorial/mysite  ( master ) ls</span><br><span class="line">db.sqlite3  manage.py  mysite  polls</span><br><span class="line">(django-tutorial)  ~/django_tutorial/mysite  ( master ) python manage.py createsuperuser</span><br><span class="line">Username (leave blank to use <span class="string">'dhkang'</span>): admin</span><br><span class="line">Email address: admin@example.com</span><br><span class="line">Password: </span><br><span class="line">Password (again): </span><br><span class="line">Superuser created successfully.</span><br></pre></td></tr></table></figure><br><p>관리자 페이지 사용자를 생성하고, username, email address, password, password(again)을 입력하면, 어드민 사용자가 성공적으로 생성됩니다. </p><br><h2 id="개발-서버-실행하기"><a href="#개발-서버-실행하기" class="headerlink" title="개발 서버 실행하기"></a>개발 서버 실행하기</h2><br><p>Django 어드민 사이트는 기본적으로 활성화가 되어 잇습니다. </p><p><br>개발 서버를 시작하고, 어드민을 알아볼수 있습니다. </p><br><blockquote><p>개발 서버를 시작했으면, 브라우저를 열어서, 아래 URL로 접속합니다. </p><p><a href="http://127.0.0.1:8000/admin" target="_blank" rel="noopener">http://127.0.0.1:8000/admin</a></p></blockquote><br><br><img src="/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/image1.png" class=""> <br><br><blockquote><p>어드민 사이트에 접속하기 위해서 </p><p>위에서 생성한 username 과 비밀번호를 입력하고 로그인 합니다. </p></blockquote><br><br><img src="/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/image2.png" class=""> <br><br><p>번역 옵션이 기본적으로 활성화 되어 있기 때문에, 로그인 화면은 브라우저의 기본 언어로 표시됩니다. </p><br><h2 id="Admin-사이트-들어가기"><a href="#Admin-사이트-들어가기" class="headerlink" title="Admin 사이트 들어가기"></a>Admin 사이트 들어가기</h2><br><br><p>아이디와 비밀번호를 입력한뒤에, 로그인 버튼을 누르면, </p><p>아래와 같은 Django admin 인덱스 페이지를 볼수 있습니다. </p><br><img src="/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/image3.png" class=""> <br><p>화면에 보이는것 처럼, 몇가지 수정 가능한 컨텐츠들을 볼수 있습니다. groups 과 users 컨텐츠들은, Django 의 인증 프레임워크인, django.contrib.auth 모듈에서 제공이 됩니다. </p><br><br><h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br><br><p>장고 어드민 페이지를 접속해 보았습니다. 복습으로 순서를 정리하자면,, </p><br><p>1)  python manage.py createsuperuser 로 어드민 관리자 아이디 생성 </p><p>2) python manage.py runserver 로 개발 서버 시작 </p><p>3) <a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/</a> 으로 관리자 페이지 접속 </p><p>4) 생성된 관리자 아이디로 로그인 </p><p>5) 관리자 페이지 접속 완료 </p>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/04/25/Writing-your-first-Django-app-part2-7%ED%8E%B8/#disqus_thread</comments>
     </item>
     
   </channel>
