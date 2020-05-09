@@ -204,6 +204,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/26/Writing-your-first-Django-app-part3-2%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/26/Writing-your-first-Django-app-part3-2%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part3 - 2편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-26 12:41:35 / Updated at: 12:52:02" itemprop="dateCreated datePublished" datetime="2020-04-26T12:41:35+09:00">2020-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Tutorials/" itemprop="url" rel="index"><span itemprop="name">Tutorials</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/26/Writing-your-first-Django-app-part3-2%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/26/Writing-your-first-Django-app-part3-2편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="더-많은-view-쓰기"><a href="#더-많은-view-쓰기" class="headerlink" title="더 많은 view 쓰기"></a>더 많은 view 쓰기</h2><br>
+
+<br>
+
+<p>지난 포스팅에서 짧게 polls 앱에 필요한 views를 둘러보았습니다. </p>
+<p><br>이제 몇개의 view 들을 polls/views.py 에 더 써줄겁니다. 추가될 view 들은 좀 다릅니다. </p>
+<p><br>추가되는 view 들은 인수를 가집니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world. You're at the polls index."</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"You're looking at question %s."</span> % question_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">results</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    response = <span class="string">"You're looking at the results of question %s."</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(response % question_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vote</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"You're voting on question %s."</span> % question_id)</span><br></pre></td></tr></table></figure>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/26/Writing-your-first-Django-app-part3-2%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/25/Writing-your-first-Django-app-part3-1%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1140,123 +1244,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/13/Writing-your-first-Django-app-part2-1%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/13/Writing-your-first-Django-app-part2-1%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part2 - 1편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-13 17:01:44 / Updated at: 17:32:23" itemprop="dateCreated datePublished" datetime="2020-04-13T17:01:44+09:00">2020-04-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Tutorials/" itemprop="url" rel="index"><span itemprop="name">Tutorials</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/13/Writing-your-first-Django-app-part2-1%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/13/Writing-your-first-Django-app-part2-1편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="데이터베이스-셋업"><a href="#데이터베이스-셋업" class="headerlink" title="데이터베이스 셋업"></a>데이터베이스 셋업</h2><p>첫번째 장고앱 만들기 part2 에 대한 포스팅 시작입니다. </p>
-<p>튜토리얼은 part1 에서 이어지고, part2 에서는 데이터베이스 셋업과 첫번째 모델 생성 그리고 Django의 자동 생성 어드민 사이트에 대해 소개 합니다. </p>
-<br>
-
-<br>
-
-<h2 id="데이터베이스-셋업하기"><a href="#데이터베이스-셋업하기" class="headerlink" title="데이터베이스 셋업하기"></a>데이터베이스 셋업하기</h2><br>
-
-<br>
-
-<p><code>mysite/settings.py</code> 파일을 열어줍니다. settings.py 는 Django 설정들을 대표하는 모듈레벨의 변수들을 가지고 있는 일반 파이썬 모듈입니다. </p>
-<p><br><br></p>
-<p>기본값으로 설정되어 있는 데이터베이스는 SQLite 입니다.  <br>만약 데이터베이스 초심자 혹은 그냥 Django 를 시도해 보고 싶은거라면, SQLite 가 가장 쉬운 데이터베이스 사용 선택지 입니다. </p>
-<br>
-
-<blockquote>
-<p>SQLite 는 파이썬에 포함되어 있습니다 </p>
-<p>따라서, 별도로 데이터베이스를 지원하기 위한 설치과정은 없습니다. </p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/13/Writing-your-first-Django-app-part2-1%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1322,7 +1314,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
