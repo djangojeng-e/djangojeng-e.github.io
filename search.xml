@@ -1,6 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Writing your first Django app, part 7 - 4편</title>
+    <url>/2020/05/09/Writing-your-first-Django-app-part-7-4%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="admin-모양과-느낌-꾸미기"><a href="#admin-모양과-느낌-꾸미기" class="headerlink" title="admin 모양과 느낌 꾸미기"></a>admin 모양과 느낌 꾸미기</h2><br>
+
+<p>확실히 django administration 을 어디믄 페이지 상단에 가지는것은 좋아보이지 않습니다.</p>
+<p><br>그저 따분한 타이틀 텍스트 같아 보여서 더더욱이 안좋아 보이고, 지루해 보입니다.</p>
+<br>
+
+<br>
+
+<p>Django 의 템플릿 시스템을 사용하여 바꿀수 있습니다. </p>
+<p><br>Django admin 은 Django 에 의해서 동작하고, 어드민 인터페이스는 Django 의 자체 템플릿 시스템을 사용합니다.<br><br></p>
+<a id="more"></a>
+
+<br>
+
+<h2 id="프로젝트의-templates-꾸미기"><a href="#프로젝트의-templates-꾸미기" class="headerlink" title="프로젝트의 templates 꾸미기"></a>프로젝트의 templates 꾸미기</h2><p><br><br></p>
+<p>프로젝트 폴더내에 templates 라는 폴더를 생성합니다 (manage.py 파일과 같은 위치에 생성합니다) </p>
+<br>
+
+<p>templates 폴더는 Django 가 접근할수 있는 파일 시스템 어디에 위치해 있어도 상관없습니다. </p>
+<p><br>하지만,  project 폴더 내에 templates 폴더를 갖게 하는것은 관례적으로 따라하기 좋습니다. </p>
+<br>
+
+<br>
+
+<blockquote>
+<p>mysite/settings.py 파일을 열고, </p>
+<p>TEMPLATES 세팅에 DIR 옵션을 추가해 줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">TEMPLATES = [</span></span><br><span class="line"><span class="xml">    &#123;</span></span><br><span class="line"><span class="xml">        'BACKEND': 'django.template.backends.django.DjangoTemplates',</span></span><br><span class="line"><span class="xml">        'DIRS': [os.path.join(BASE_DIR, 'templates')],</span></span><br><span class="line"><span class="xml">        'APP_DIRS': True,</span></span><br><span class="line"><span class="xml">        'OPTIONS': &#123;</span></span><br><span class="line"><span class="xml">            'context_processors': [</span></span><br><span class="line"><span class="xml">                'django.template.context_processors.debug',</span></span><br><span class="line"><span class="xml">                'django.template.context_processors.request',</span></span><br><span class="line"><span class="xml">                'django.contrib.auth.context_processors.auth',</span></span><br><span class="line"><span class="xml">                'django.contrib.messages.context_processors.messages',</span></span><br><span class="line"><span class="xml">            ],</span></span><br><span class="line"><span class="xml">        &#125;,</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">]</span></span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<blockquote>
+<p>DIRS 는 파일시스템 폴더들을 가진 리스트입니다. </p>
+<p>Django 가 templates 를 읽을때 확인 합니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<blockquote>
+<p>템플릿 정리하기 </p>
+<p>static files 들과 비슷하게, </p>
+<p>우리는 모든 템플릿들을 하나의 큰 템플릿 폴더안에 넣어둘수 있고, 완벽하게 작동할것입니다. </p>
+<p>하지만, 특정 어플리케이션을 따르는 템플릿들은 </p>
+<p>프로젝트의 tempaltes 폴더안에 넣기보다는 어플리케이션의 templates 폴더에 넣습니다. </p>
+<p>(예, polls/templates)</p>
+<p>resuable app 튜토리얼에서 이것에 대해 더 얘기해볼겁니다 </p>
+</blockquote>
+<br>
+
+<br>
+
+<p>생성된 templates 폴더 안에, admin 폴더를 생성합니다. <br>그리고, django/contrib/admin/templates 에서 admin/base_site.html 을 복사해서 붙여놓습니다. </p>
+<p><br>아래 커맨드를 실행해서, django 소스 파일들이 어디있는지 찾아냅니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python -c <span class="string">"import django; print(django.__path__)"</span></span><br><span class="line">(django-tutorial)  dhkang  ~/django_tutorial/mysite   master  python -c <span class="string">"import django; print(django.__path__)"</span></span><br><span class="line">[<span class="string">'/home/dhkang/.pyenv/versions/3.7.4/envs/django-tutorial/lib/python3.7/site-packages/django'</span>]</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<p>해당 경로로 들어가서, base_site.html 파일을 cp 커멘드를 입력하여, mysite/templates 폴더 안에 카피해줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> dhkang  ~/.pyenv/versions/3.7.4/envs/django-tutorial/lib/python3.7/site-packages/django/contrib/admin/templates/admin   master  </span><br><span class="line">cp base_site.html ~/django_tutorial/mysite/templates/</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="admin-base-site-html-수정하기"><a href="#admin-base-site-html-수정하기" class="headerlink" title="admin base_site.html 수정하기"></a>admin base_site.html 수정하기</h2><br>
+
+<blockquote>
+<p>mysite/templates/admin/base_site.html </p>
+<p>파일을, 아래와 같이 수정해 줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">extends</span></span> "admin/base.html" %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> title %&#125;</span><span class="template-variable">&#123;&#123; title &#125;&#125;</span><span class="xml"> | </span><span class="template-variable">&#123;&#123; site_title|<span class="name">default</span>:_('Django site admin') &#125;&#125;</span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> branding %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"site-name"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> 'admin:index' %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>Polls Administration<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> nav-global %&#125;</span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>이 방식을 사용해서 어떻게 템플릿들을 덮어쓸수 있는지 가르쳐줍니다. 실제 프로젝트에서는, django.contrib.admin.AdminSite.site_header 속성을 사용해서 이런 특수한 꾸미기를 더 쉽게 만들수 있습니다. </p>
+<p><br><br></p>
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> branding %&#125;</span><span class="xml"> 이나 </span><span class="template-variable">&#123;&#123; title &#125;&#125;</span><span class="xml"> 같은 템플릿 테그들이 이 템플릿 </span></span><br><span class="line"><span class="template-tag">&#123;% %&#125;</span><span class="xml"> 나 </span><span class="template-variable">&#123;&#123; &#125;&#125;</span><span class="xml"> 태그들은 django 언어들입니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml">Django admin/base_site.html 파일을 그릴때, </span></span><br><span class="line"><span class="xml">이 템플릿 언어들이 검토되어 마지막 HTML 페이지를 그려냅니다.</span></span><br><span class="line"></span><br><span class="line"><span class="xml">튜토리얼 part3 에서 이미 확인한 바 있습니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>Django 의 기본 어드민 템플릿 어떤것이든 덮어써서 사용할수 있습니다. </p>
+<p><br>템플릿을 덮어쓸때에는, base_html 을 덮어쓴 방식과 같은 일을 수행하면 됩니다. <br></p>
+<br>
+
+<blockquote>
+<p>admin 에 들어가서, </p>
+<p>템플릿이 잘 수정되었는지 확인 합니다. </p>
+<p>Polls Administration 이라고 어드민 페이지 상단에 잘 표시되는걸 확인할수 있습니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/05/09/Writing-your-first-Django-app-part-7-4%ED%8E%B8/image1.png" class="">
+
+<br>
+
+<h2 id="어플리케이션의-템플릿-꾸미기"><a href="#어플리케이션의-템플릿-꾸미기" class="headerlink" title="어플리케이션의 템플릿 꾸미기"></a>어플리케이션의 템플릿 꾸미기</h2><br>
+
+<p>눈치빠른 독자들은, 물어볼것입니다. <br></p>
+<p>만약, DIRS 가 기본값으로 비어 있으면, Django 는 어떻게 기본 admin templates 를 찾았을까요? </p>
+<p><br>정답은, APP_DIRS 가 True 로 설정 되어 있었기 때문입니다. </p>
+<p><br>Django 는 자동으로 각 어플리케이션 안에 있는 templates/ 서브 디렉토리를 찾고 폴백으로 사용합니다. <br></p>
+<p>(django.contrib.admin 도 하나의 어플리케이션이란것을 잊지 않습니다) </p>
+<br>
+
+<p>poll 어플리케이션은 너무 복잡하지 않고, 사용자 정의 admin 템플릿들을 필요로 하지 않습니다. <br>하지만, 만약 앱이 더 복잡하게 자라나고 Django 의 기본 어드민 템플릿들을 어떤 기능들을 위해서 수정이 필요할때는,<br> 어플리케이션들의 템플릿들을 고쳐주는것이 프로젝트의 템플릿을 고쳐주는것보다 나을것입니다. </p>
+<br>
+
+<br>
+
+<p>이 방식으로, polls application 을 새로운 프로젝트에 포함시킬수 있고, 사용자 정의 템플릿을 필요에 따라 찾을것입니다. </p>
+<p><br><br></p>
+<p>Django 가 어떻게 템플릿들을 찾는지에 대해서는, template loading documentation 문서를 참조합니다.  </p>
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>Django 어드민 페이지의 템플릿을 수정해 보았습니다. <br></p>
+<p>어드민 템플릿에서 기존 템플릿 파일을 프로젝트내에 templates/admin 폴더에 복사해서 붙여놓고. <br></p>
+<p>파일을 수정하면 됩니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+        <tag>공식문서</tag>
+        <tag>polls</tag>
+        <tag>admin</tag>
+        <tag>튜토리얼</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part 7 - 3편</title>
     <url>/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="어드민-변경메뉴-목록-꾸미기"><a href="#어드민-변경메뉴-목록-꾸미기" class="headerlink" title="어드민 변경메뉴 목록 꾸미기"></a>어드민 변경메뉴 목록 꾸미기</h2><br>
