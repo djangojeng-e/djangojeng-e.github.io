@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/</loc>
+        <lastmod>2020-05-14T17:17:52.694Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/05/10/Writing-your-first-Django-app-part-7-5%ED%8E%B8/</loc>
         <lastmod>2020-05-09T16:45:14.722Z</lastmod>
         <changefreq>weekly</changefreq>

@@ -1,6 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 1편 - 초기설정</title>
+    <url>/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/</url>
+    <content><![CDATA[<h2 id="미니프로젝트-시작"><a href="#미니프로젝트-시작" class="headerlink" title="미니프로젝트 시작"></a>미니프로젝트 시작</h2><br>
+
+<p>간단한 todolist 프로젝트를 진행하며, </p>
+<p><br>이제까지 공부한 내용을 복습도 하고, 그동안 구현하지 못했던것들도 찾으면서 구현해 보려 합니다. </p>
+<p><br>내가 할일을 생성하고, 업데이트하고, 삭제하는, Todolist 사이트를 만들어 봅니다. </p>
+<br>
+
+<h2 id="개발-개요"><a href="#개발-개요" class="headerlink" title="개발 개요"></a>개발 개요</h2><br>
+
+<table>
+<thead>
+<tr>
+<th><strong>개발 정보</strong></th>
+<th><strong>디테일</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>python version</td>
+<td>3.8.0</td>
+</tr>
+<tr>
+<td>os</td>
+<td>ubuntu18.04</td>
+</tr>
+<tr>
+<td>django version</td>
+<td>3.06</td>
+</tr>
+<tr>
+<td>CSS Framework</td>
+<td>Bulma</td>
+</tr>
+<tr>
+<td>개발 툴</td>
+<td>visual studio code</td>
+</tr>
+<tr>
+<td>배포</td>
+<td>AWS</td>
+</tr>
+<tr>
+<td>데이터베이스</td>
+<td>sqlite3 혹은 postgreSQL</td>
+</tr>
+</tbody></table>
+<br>
+
+<ul>
+<li>개발내역은, 프로젝트의 진행 상황과 숙련도에 따라서 달라질수 있음. </li>
+</ul>
+<br>
+
+<a id="more"></a> 
+
+<br>
+
+<br>
+
+<h2 id="가상환경-세팅"><a href="#가상환경-세팅" class="headerlink" title="가상환경 세팅"></a>가상환경 세팅</h2><br>
+
+<br>
+
+<p>터미널에서 아래 명령어를 실행하여, 가상환경을 설정하고, 프로젝트 폴더에 적용해 줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pyenv virtualenv 3.8.0 to-do-list</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>스크린샷, </p>
+<br>
+
+<img src="/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/image1.png" class="">
+
+<br>
+
+<p>프로젝트 폴더앞에, (to-do-list) 라고 써지면, 잘 적용 된겁니다. </p>
+<br>
+
+<h2 id="VisualStudioCode-열기"><a href="#VisualStudioCode-열기" class="headerlink" title="VisualStudioCode 열기"></a>VisualStudioCode 열기</h2><br>
+
+<p>프로젝트 폴더에 가상환경이 잘 적용 되었으면, </p>
+<p>Visual Studio Code 로 해당 프로젝트 폴더를 열어줍니다. </p>
+<br>
+
+<img src="/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/image2.png" class="">
+
+<br>
+
+<br>
+
+<h3 id="가상환경에-장고-설치"><a href="#가상환경에-장고-설치" class="headerlink" title="가상환경에 장고 설치"></a>가상환경에 장고 설치</h3><br>
+
+<br>
+
+<p>가장 중요한 Django 를 설치해 줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install django</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<img src="/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/image3.png" class="">
+
+
+
+
+
+<br>
+
+<br>
+
+<blockquote>
+<p>pip list 를 통하여, </p>
+<p>현재 가상환경에 설치된 패키지를 확인해 봅니다. </p>
+<p>Django 3.0.6 이 정상적으로 설치된것을 확인 할수 있습니다. </p>
+</blockquote>
+<br>
+
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Package    Version</span><br><span class="line">---------- -------</span><br><span class="line">asgiref    3.2.7  </span><br><span class="line">Django     3.0.6  </span><br><span class="line">pip        19.2.3 </span><br><span class="line">pytz       2020.1 </span><br><span class="line">setuptools 41.2.0 </span><br><span class="line">sqlparse   0.3.1  </span><br><span class="line">WARNING: You are using pip version 19.2.3, however version 20.1 is available.</span><br><span class="line">You should consider upgrading via the <span class="string">'pip install --upgrade pip'</span> <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="가상환경의-패키지-목록"><a href="#가상환경의-패키지-목록" class="headerlink" title="가상환경의 패키지 목록"></a>가상환경의 패키지 목록</h2><p><br><br></p>
+<blockquote>
+<p>pip freeze &gt; requirements.txt 명령어를 실행하여, </p>
+<p>해당 가상환경에 설치된 모든 패키지들을 리스트 해줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<blockquote>
+<p>이 프로젝트가 나중에 누군가와 공유된다면, </p>
+<p>이 프로젝트를 사용하고 싶은 사람들은, 나중에 아래 명령어를 통해서 </p>
+<p>프로젝트에 들어간 패키지들을 설치하고 사용합니다. </p>
+</blockquote>
+<p><br><br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>기본적인 개발 환경 설정을 마쳤습니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>미니프로젝트</tag>
+        <tag>todolist</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Writing your first Django app, part 7 - 5편</title>
     <url>/2020/05/10/Writing-your-first-Django-app-part-7-5%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="admin-인덱스-페이지-꾸미기"><a href="#admin-인덱스-페이지-꾸미기" class="headerlink" title="admin 인덱스 페이지 꾸미기"></a>admin 인덱스 페이지 꾸미기</h2><br>
