@@ -1,6 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 3편 - 모델설계하기</title>
+    <url>/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Todo-List-모델-설계하기"><a href="#Todo-List-모델-설계하기" class="headerlink" title="Todo List 모델 설계하기"></a>Todo List 모델 설계하기</h2><br>
+
+<br>
+
+<h3 id="INSTALLED-APPS-에-앱등록하기"><a href="#INSTALLED-APPS-에-앱등록하기" class="headerlink" title="INSTALLED_APPS 에 앱등록하기"></a>INSTALLED_APPS 에 앱등록하기</h3><br>
+
+<p>config/settings.py 파일에 INSTALLED_APPS 안에, todo 앱을 등록해 줍니다. </p>
+<br>
+
+<img src="/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/image1.png" class="">
+
+<br>
+
+<a id="more"></a>
+
+<blockquote>
+<p>settings.py 파일을 수정해주는 김에, </p>
+<p>언어설정과, 타임존 세팅까지 해줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">LANGUAGE_CODE - <span class="string">'ko-kr'</span></span><br><span class="line">TIME_ZONE = <span class="string">'Asia/Seoul'</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<img src="/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/image2.png" class="">
+
+<br>
+
+<br>
+
+<h2 id="모델-계획하기"><a href="#모델-계획하기" class="headerlink" title="모델 계획하기"></a>모델 계획하기</h2><br>
+
+<blockquote>
+<p>내가 할일 이라는, Todo List 의 모델을 설계해 봅니다. </p>
+<p>기본적으로, 아래와 같이 테이블로 정리된 사항들을 가지고 있었으면 좋겠습니다. </p>
+</blockquote>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>번호</strong></th>
+<th><strong>필드명</strong></th>
+<th><strong>설명</strong></th>
+<th><strong>데이터타입</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>name</td>
+<td>내가 할일에 대한 짧은 이름</td>
+<td>문자</td>
+</tr>
+<tr>
+<td>2</td>
+<td>description</td>
+<td>내가 할일에 대한 정보</td>
+<td>긴 문자열</td>
+</tr>
+<tr>
+<td>3</td>
+<td>date_created</td>
+<td>할일 생성 날짜</td>
+<td>날짜</td>
+</tr>
+<tr>
+<td>4</td>
+<td>date_deadline</td>
+<td>데드라인 날짜</td>
+<td>날짜</td>
+</tr>
+<tr>
+<td>5</td>
+<td>images_related</td>
+<td>관련된 이미지 (선택사항)</td>
+<td>이미지</td>
+</tr>
+<tr>
+<td>6</td>
+<td>files_related</td>
+<td>관련된 파일들 (선택사항)</td>
+<td>파일</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<p>하나의 TodoList 는, 관련된 images 와 files 필드들을 가지어, </p>
+<p>할일에 대한 더 많은 세부정보를 첨부할수 있게 해주었습니다. 이를 모두 한 테이블에 넣기 보다는, </p>
+<p><br> <br></p>
+<p>아래와 같이,  3가지 테이블로 나누고, 필드들을 정리해보았습니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>TodoList</strong></th>
+<th></th>
+<th><strong>TodoList_images</strong></th>
+<th></th>
+<th><strong>TodoList_files</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>필드명</td>
+<td>데이터 타입</td>
+<td>필드명</td>
+<td>데이터 타입</td>
+<td>필드명</td>
+<td>데이터 타입</td>
+</tr>
+<tr>
+<td>name</td>
+<td>CharField</td>
+<td>todo</td>
+<td>ForeignKey</td>
+<td>todo</td>
+<td>ForeignKey</td>
+</tr>
+<tr>
+<td>description</td>
+<td>TextField</td>
+<td>image</td>
+<td>ImageField</td>
+<td>file</td>
+<td>FileField</td>
+</tr>
+<tr>
+<td>date_created</td>
+<td>DateField()</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>date_deadline</td>
+<td>DateField()</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<blockquote>
+<p>하나의 Todo 는 여러개의 이미지들을 가질수 있고, </p>
+<p>하나의 Todo 는 여러개의 파일들을 가질수 있습니다. </p>
+<p>두 테이블은 하나의 Todo 에 ForeignKey 로 연결 됩니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="models-py-파일-작성하기"><a href="#models-py-파일-작성하기" class="headerlink" title="models.py 파일 작성하기"></a>models.py 파일 작성하기</h2><br>
+
+<br>
+
+<p>위에서 계획했던 모델링 대로, models.py 파일을 실제로 작성해 봅니다. </p>
+<p><br>저는 아래와 같이 작성해 주었습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">40</span>, verbose_name=<span class="string">"할일제목"</span>)</span><br><span class="line">    description = models.TextField(max_length=<span class="number">200</span>, verbose_name=<span class="string">"할일세부사항"</span>)</span><br><span class="line">    date_created = models.DateField(auto_now_add=<span class="literal">True</span>, verbose_name=<span class="string">"생성날짜"</span>)</span><br><span class="line">    date_deadline = models.DateField(verbose_name=<span class="string">"데드라인"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remaining_days</span><span class="params">(self)</span>:</span></span><br><span class="line">        delta = self.date_deadline - date.today()</span><br><span class="line">        days = delta.days </span><br><span class="line">        <span class="keyword">return</span> days</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">f'<span class="subst">&#123;self.name&#125;</span> | <span class="subst">&#123;self.description&#125;</span> | <span class="subst">&#123;self.date_created&#125;</span> | 		  <span class="subst">&#123;self.date_deadline&#125;</span>'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList_images</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    todo = models.ForeignKey(TodoList, on_delete=models.CASCADE)</span><br><span class="line">    image = models.ImageField(upload_to=<span class="string">'todo/images/%Y/%m'</span>, blank=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList_files</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    todo = models.ForeignKey(TodoList, on_delete=models.CASCADE)</span><br><span class="line">    files = models.FileField(upload_to=<span class="string">'todo/files/%Y/%m'</span>, blank=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="Images-를-위한-패키지-Pillow-설치"><a href="#Images-를-위한-패키지-Pillow-설치" class="headerlink" title="Images 를 위한 패키지 Pillow 설치"></a>Images 를 위한 패키지 Pillow 설치</h2><p><br><br></p>
+<p>모델을 다 작성한 다음, migrations 를 시도하면, 아래와 같은 오류 메시지가 뜹니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">SystemCheckError: System check identified some issues:</span><br><span class="line"></span><br><span class="line">ERRORS:</span><br><span class="line">todo.TodoList_images.image: (fields.E210) Cannot use ImageField because Pillow is not installed.</span><br><span class="line">        HINT: Get Pillow at https://pypi.org/project/Pillow/ or run <span class="built_in">command</span> <span class="string">"python -m pip install Pillow"</span>.</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p> 이 에러를 해결하기 위해서는, 이미지 파일을 위한 패키지인, pillow 를 설치해야만 합니다. </p>
+<p><br>아래 명령어를 실행하여, 패키지를 설치해 줍니다.<br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install Pillow</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<p>설치가 완료되었으면, makemigrations 와 migrate 를 실행하여, 데이터베이스를 생성해 줍니다. </p>
+<br>
+
+<h2 id="makemigrations-migrate-해주기"><a href="#makemigrations-migrate-해주기" class="headerlink" title="makemigrations, migrate 해주기"></a>makemigrations, migrate 해주기</h2><br>
+
+<br>
+
+<p>python manage.py makemigrations 를 실행, </p>
+<br>
+
+<img src="/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/image3.png" class="">
+
+<br>
+
+<p>python manage.py migrate 를 실행, </p>
+<br>
+
+<img src="/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/image4.png" class="">]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>미니프로젝트</tag>
+        <tag>todolist</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 2편 - 프로젝트와 앱 생성하기</title>
     <url>/2020/05/15/TodoList-2%ED%8E%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%99%80-%EC%95%B1-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="프로젝트-생성하기"><a href="#프로젝트-생성하기" class="headerlink" title="프로젝트 생성하기"></a>프로젝트 생성하기</h2><br>
