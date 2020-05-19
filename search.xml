@@ -1,6 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 4편 - 모델 확인하기</title>
+    <url>/2020/05/19/TodoList-4%ED%8E%B8-%EB%AA%A8%EB%8D%B8-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Todo-List-모델-확인하기"><a href="#Todo-List-모델-확인하기" class="headerlink" title="Todo List 모델 확인하기"></a>Todo List 모델 확인하기</h2><br>
+
+<br>
+
+<p>지난 포스팅에 작성했던 모델이 잘 작동하는지 확인을 해보아야 겠습니다. </p>
+<br>
+
+<p>어드민을 통해 확인을 진행 해보려 합니다. </p>
+<p><br>어드민에 todo 앱을 등록해 주는데서 부터 시작해 봅니다. </p>
+<br>
+
+<h2 id="어드민-페이지에-todo-앱-등록하기"><a href="#어드민-페이지에-todo-앱-등록하기" class="headerlink" title="어드민 페이지에 todo 앱 등록하기"></a>어드민 페이지에 todo 앱 등록하기</h2><p><br><a id="more"></a></p>
+<p>todo/admin.py 파일을 열고, 아래와 같이 어드민에, TodoList 모델을 등록해 줍니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin </span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> TodoList, TodoList_files, TodoLies_images </span><br><span class="line"><span class="comment"># Register your models here. </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoListAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList_imagesAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList_filesAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">admin.site.register(TodoList, TodoListAdmin)</span><br><span class="line">admin.site.register(TodoList_images, TodoList_imagesAdmin)</span><br><span class="line">admin.site.register(TodoList_images, TodoList_filesAdmin)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="어드민-관리자-계정-생성하기"><a href="#어드민-관리자-계정-생성하기" class="headerlink" title="어드민 관리자 계정 생성하기"></a>어드민 관리자 계정 생성하기</h2><br>
+
+<p>아래 명령어를 실행해서, 관리자 계정 하나를 생성합니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>계정 실행을 완료 하였으면, python manage.py runserver 를 실행하여, <br>서버를 실행한다음, 어드민 사이트로 접속 합니다.</p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py runserver</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p><a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/</a> 에 접속하여 로그인 하면,</p>
+<p>아래와 같은 화면을 볼수 있을겁니다. </p>
+<br>
+
+<br>
+
+<img src="/2020/05/19/TodoList-4%ED%8E%B8-%EB%AA%A8%EB%8D%B8-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0/image1.png" class="">
+
+<br>
+
+<br>
+
+<h2 id="Todo-List-하나-추가해-보기"><a href="#Todo-List-하나-추가해-보기" class="headerlink" title="Todo List 하나 추가해 보기"></a>Todo List 하나 추가해 보기</h2><br>
+
+<p>Todo Lists 에 Add 버튼을 눌러서, todo list 하나를 추가해 보려 합니다. </p>
+<p><br>아래와 같이, 디테일을 입력후, SAVE 버튼을 눌러봅니다.<br></p>
+<br>
+
+<img src="/2020/05/19/TodoList-4%ED%8E%B8-%EB%AA%A8%EB%8D%B8-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0/image2.png" class="">
+
+<br>
+
+<p>아래와 같이 잘 생성이 됩니다 </p>
+<p><br><br></p>
+<img src="/2020/05/19/TodoList-4%ED%8E%B8-%EB%AA%A8%EB%8D%B8-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0/image3.png" class="">
+
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>아쉬운대로, 일단 모델의 기본 동작은 잘 되고 있는것 같습니다.<br></p>
+<p>하지만, 프로젝트 진행중에, 모델을 다시 수정해 줘야 할일이 올지 몰릅니다. </p>
+<br>]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>미니프로젝트</tag>
+        <tag>todolist</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 3편 - 모델설계하기</title>
     <url>/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Todo-List-모델-설계하기"><a href="#Todo-List-모델-설계하기" class="headerlink" title="Todo List 모델 설계하기"></a>Todo List 모델 설계하기</h2><br>
