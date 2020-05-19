@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 5편 - 어드민 수정하기</title>
+    <url>/2020/05/20/TodoList-5%ED%8E%B8-%EC%96%B4%EB%93%9C%EB%AF%BC-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Todo-List-어드민-수정하기"><a href="#Todo-List-어드민-수정하기" class="headerlink" title="Todo List 어드민 수정하기"></a>Todo List 어드민 수정하기</h2><br>
+
+<p>지난 포스팅에서, 모델이 잘 작동하는것을 확인 해 보았습니다. </p>
+<p><br>하지만, 어드민 페이지에서 todo  를 추가할때 뭔가 아쉬운점이 있습니다. </p>
+<br>
+
+<p>분명히, Todo 에는 연관된 이미지도 파일도 올라갈수 있어야 하는데. </p>
+<p><br>어드민에 등록되어 잇는 Todo 는, 아주 기본적인 필드들만 가진 TodoList 를 생성할수 있습니다. </p>
+<br>
+
+<br>
+
+<img src="/2020/05/20/TodoList-5%ED%8E%B8-%EC%96%B4%EB%93%9C%EB%AF%BC-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0/image1.png" class="">
+
+<br>
+
+<blockquote>
+<p>TodoList 를 생성할때, </p>
+<p>이미지와 파일도 추가할수 있게 어드민에 등록해 보겠습니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a> 
+
+<br>
+
+<h2 id="todo-admin-py-파일-수정하기"><a href="#todo-admin-py-파일-수정하기" class="headerlink" title="todo/admin.py 파일 수정하기"></a>todo/admin.py 파일 수정하기</h2><br>
+
+<br>
+
+<p>inline 클래스들을 작성해주고, </p>
+<p>TodoListAdmin 클래스의 inlines = [] 에 넣어주면 됩니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin </span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> TodoList, TodoList_files, TodoList_images </span><br><span class="line"><span class="comment"># Register your models here. </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList_filesInline</span><span class="params">(admin.StackedInline)</span>:</span></span><br><span class="line">    model = TodoList_files </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList_imageInline</span><span class="params">(admin.StackedInline)</span>:</span></span><br><span class="line">    model = TodoList_images</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoListAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    inlines = [TodoList_filesInline, TodoList_imageInline]</span><br><span class="line">    list_display = (<span class="string">'name'</span>, <span class="string">'description'</span>, <span class="string">'date_created'</span>, <span class="string">'date_deadline'</span>, 	                       <span class="string">'remaining_days'</span>)</span><br><span class="line">    list_filter = [<span class="string">'date_created'</span>]</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">admin.site.register(TodoList, TodoListAdmin)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>어드민을 위와 같이 고쳐주면, 어드민에서 TodoList 의 표시가 마법처럼 바뀝니다. </p>
+<br>
+
+<img src="/2020/05/20/TodoList-5%ED%8E%B8-%EC%96%B4%EB%93%9C%EB%AF%BC-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0/image2.png" class="">
+
+<p><br><br></p>
+<blockquote>
+<p>그리고, 추가할때 </p>
+<p>파일과 이미지도 넣을수 있습니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/05/20/TodoList-5%ED%8E%B8-%EC%96%B4%EB%93%9C%EB%AF%BC-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0/image3.png" class="">
+
+<img src="/2020/05/20/TodoList-5%ED%8E%B8-%EC%96%B4%EB%93%9C%EB%AF%BC-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0/image4.png" class="">
+
+<img src="/2020/05/20/TodoList-5%ED%8E%B8-%EC%96%B4%EB%93%9C%EB%AF%BC-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0/image5.png" class="">
+
+<p><br><br></p>
+<p>파일 하나, 이미지 하나를 추가한뒤에, 저장 버튼을 눌러줍니다. </p>
+<p><br>파일과 이미지를 가지고 있는 투두리스트 생성에 성공 했습니다.<br><br></p>
+<img src="/2020/05/20/TodoList-5%ED%8E%B8-%EC%96%B4%EB%93%9C%EB%AF%BC-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0/image6.png" class="">
+
+<p><br><br></p>
+<p>모델에서 파일이나, 이미지를 upload 할시에, 저장할 폴더를 생성해 주었기 때문에,<br><br>todo/images 폴더와, todo/files 폴더가 생성된것을 확인 할수 있습니다. <br><br></p>
+<img src="/2020/05/20/TodoList-5%ED%8E%B8-%EC%96%B4%EB%93%9C%EB%AF%BC-%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0/image7.png" class=""><br><br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+
+<p>admin.py 파일을 어떻게 수정해 주었는지 복습하고 넘어갑니다. </p>
+<br>
+
+<p>Inline 클래스들을 생성해주고 (model 을 지정함).<br><br></p>
+<p>기존 TodoListAdmin(models.ModelAdmin) 클래스에서, inlines = [] 에 넣어줍니다. </p>
+<p>list_display 에 모델에 있는 필드명들을 넣어주고, list_filter 는 생성날짜 기준으로 해주었습니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>미니프로젝트</tag>
+        <tag>todolist</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 4편 - 모델 확인하기</title>
     <url>/2020/05/19/TodoList-4%ED%8E%B8-%EB%AA%A8%EB%8D%B8-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Todo-List-모델-확인하기"><a href="#Todo-List-모델-확인하기" class="headerlink" title="Todo List 모델 확인하기"></a>Todo List 모델 확인하기</h2><br>
