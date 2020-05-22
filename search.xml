@@ -1,6 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 7편 - BULMA CSS 적용하기</title>
+    <url>/2020/05/22/TodoList-7%ED%8E%B8-BULMA-CSS-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Bulma-CSS-Framework-적용"><a href="#Bulma-CSS-Framework-적용" class="headerlink" title="Bulma CSS Framework 적용"></a>Bulma CSS Framework 적용</h2><br>
+
+<br>
+
+<img src="/2020/05/22/TodoList-7%ED%8E%B8-BULMA-CSS-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image1.png" class="">
+
+<br>
+
+<br>
+
+<p>부트스트랩과 비슷한 CSS Framework 의 하나인 BULMA 를, </p>
+<p><br>이번 투두 리스트 미니 프로젝트에 적용해 보려 합니다.<br> 처음 접해보는 CSS 프레임워크지만, 시도한번 해보려 합니다. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<h2 id="참고-사이트"><a href="#참고-사이트" class="headerlink" title="참고 사이트"></a>참고 사이트</h2><br>
+
+<p>CSS 를 프로젝트에 적용하기 위한 참고 사이트는 아래와 같습니다.</p>
+<br>
+
+<ol>
+<li>django-bulma 패키지  <a href="https://github.com/timonweb/django-bulma" target="_blank" rel="noopener">https://github.com/timonweb/django-bulma</a></li>
+<li>bulma 공식 페이지 <a href="https://bulma.io" target="_blank" rel="noopener">https://bulma.io</a> </li>
+</ol>
+<br>
+
+<br>
+
+<h2 id="django-bulma-패키지-설치"><a href="#django-bulma-패키지-설치" class="headerlink" title="django-bulma 패키지 설치"></a>django-bulma 패키지 설치</h2><br>
+
+<br>
+
+<p>아래 명령어를 실행하여, bulma  프레임워크를 장고 프로젝트에 설치해 줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install django-bulma</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<img src="/2020/05/22/TodoList-7%ED%8E%B8-BULMA-CSS-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image2.png" class="">
+
+<br>
+
+<h2 id="settings-py-파일-INSTALLED-APPS-등록"><a href="#settings-py-파일-INSTALLED-APPS-등록" class="headerlink" title="settings.py 파일 INSTALLED_APPS 등록"></a>settings.py 파일 INSTALLED_APPS 등록</h2><br>
+
+<br>
+
+<p>config/settings.py 파일안, INSTALLED_APPS 에 아래와 같이,</p>
+<p><br>bulma 를 등록해줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Application definition</span></span><br><span class="line"></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="string">'todo'</span>,</span><br><span class="line">    <span class="string">'django_extensions'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Bulma CSS Framework </span></span><br><span class="line">    <span class="string">'bulma'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Bulma-프레임워크를-사용할-static-폴더"><a href="#Bulma-프레임워크를-사용할-static-폴더" class="headerlink" title="Bulma 프레임워크를 사용할 static 폴더"></a>Bulma 프레임워크를 사용할 static 폴더</h2><br>
+
+<p>프레임워크 파일들을 가지고 있을, 정적파일 폴더를 생성하고 설정해 줍니다.  </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── config</span><br><span class="line">│   ├── asgi.py</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── wsgi.py</span><br><span class="line">├── db.sqlite3</span><br><span class="line">├── manage.py</span><br><span class="line">├── requirements.txt</span><br><span class="line">├── static            <span class="comment"># 프로젝트 폴더에, static 폴더를 생성 (manage.py와 같은 위치)</span></span><br><span class="line">└── todo</span><br><span class="line">    ├── admin.py</span><br><span class="line">    ├── apps.py</span><br><span class="line">    ├── __init__.py</span><br><span class="line">    ├── migrations</span><br><span class="line">    ├── models.py</span><br><span class="line">    ├── templates</span><br><span class="line">    │   └── todo</span><br><span class="line">    │       └── todo-lists.html</span><br><span class="line">    ├── tests.py</span><br><span class="line">    ├── urls.py</span><br><span class="line">    └── views.py</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<blockquote>
+<p>static 폴더 생성을 완료 하였으면, </p>
+<p>settings.py 파일을 열고, STATICFILES_DIRS = [] 을 설정해주어야 합니다.</p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Static files (CSS, JavaScript, Images)</span></span><br><span class="line"><span class="comment"># https://docs.djangoproject.com/en/3.0/howto/static-files/</span></span><br><span class="line"></span><br><span class="line">STATIC_URL = <span class="string">'/static/'</span></span><br><span class="line">STATICFILES_DIRS = [os.path.join(BASE_DIR, <span class="string">'static'</span>)]</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="Bulma-프레임워크-복사하기"><a href="#Bulma-프레임워크-복사하기" class="headerlink" title="Bulma 프레임워크 복사하기"></a>Bulma 프레임워크 복사하기</h2><p><br><br></p>
+<p>static 폴더에, 수동으로 BULMA 프레임워크 파일들을 복사해주어도 괜찮지만, </p>
+<p><br>아래 명령어를 실행해서, bulma css 파일들을 static 폴더로 복사해 올수 있습니다.<br><br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py copy_bulma_static_into_project</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>명령어를 실행하면,<br>static 폴더안에, bulma 폴더가 생기고, 그 안에 css 파일들이 들어 있는것을 확인 할수 있습니다.<br><br></p>
+<img src="/2020/05/22/TodoList-7%ED%8E%B8-BULMA-CSS-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image3.png" class="">
+
+<p><br><br></p>
+<h2 id="bulma-CSS-를-템플릿에-적용하기"><a href="#bulma-CSS-를-템플릿에-적용하기" class="headerlink" title="bulma CSS 를 템플릿에 적용하기"></a>bulma CSS 를 템플릿에 적용하기</h2><br>
+
+<p>CSS 파일들을 프로젝트에 가져왔으면, 이제 적용해 보아야 겟죠? </p>
+<br>
+
+<h3 id="base-html-파일-생성하기"><a href="#base-html-파일-생성하기" class="headerlink" title="base.html 파일 생성하기"></a>base.html 파일 생성하기</h3><br>
+
+<p>프로젝트 전반에 걸쳐서, 이 프레임워크를 적용시킬수 있는 base.html 파일을</p>
+<p><br>templates/base.html 경로에 생성을 합니다<br><br></p>
+<p>이 base.html 파일에, static 폴더에 있는 bulma css 파일들을 적용하고. <br>이 base.html 파일이 다른 페이지들에 확장되서 쓰여질겁니다.</p>
+<br>
+
+<p>templates/base.html 파일을 아래와 같이 생성하고 작성해줍니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">load</span></span> static %&#125;</span></span><br><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">class</span>=<span class="string">"has-navbar-fixed-top"</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>To do List - </span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> title %&#125;</span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">static</span></span> 'bulma/css/style.css' %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span> </span></span><br><span class="line"></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> head %&#125;</span><span class="xml"> </span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> contents %&#125;</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<h3 id="todolist-템플릿을-수정"><a href="#todolist-템플릿을-수정" class="headerlink" title="todolist 템플릿을 수정"></a>todolist 템플릿을 수정</h3><p><br>이전 포스팅에 만들어 놓은 투두리스트 - 리스트페이지인 <br></p>
+<p>todo/templates/todo/todo-lists.html 파일 상단에 아래와 같은 내용을 추가해주고, 수정해 줍니다<br><br></p>
+<p>base.html 파일을 상속 받습니다.</p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">extends</span></span> 'base.html' %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> title %&#125;</span><span class="xml">내가 할일 뭐지?</span><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">block</span></span> content %&#125;</span></span><br><span class="line"><span class="xml">  </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> todo <span class="keyword">in</span> to_do_list %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>할일 제목 : </span><span class="template-variable">&#123;&#123; todo.name &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>생성 날짜 : </span><span class="template-variable">&#123;&#123; todo.date_created &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>데드라인 날짜 : </span><span class="template-variable">&#123;&#123; todo.date_deadline &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>남은 일수 : </span><span class="template-variable">&#123;&#123; todo.remaining_days &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endblock</span></span> content %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="Bulma-프레임워크-적용-확인"><a href="#Bulma-프레임워크-적용-확인" class="headerlink" title="Bulma 프레임워크 적용 확인"></a>Bulma 프레임워크 적용 확인</h2><br>
+
+<p>투두리스트를 리스트 해주는 페이지에 다시 접속해서, </p>
+<p><br>CSS 프레임워크가 잘 적용 되었을지 확인 해봅니다 <br><br></p>
+<p>적용전, </p>
+<br>
+
+<img src="/2020/05/22/TodoList-7%ED%8E%B8-BULMA-CSS-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image4.png" class="">
+
+<p><br><br></p>
+<p>적용후, </p>
+<br>
+
+<img src="/2020/05/22/TodoList-7%ED%8E%B8-BULMA-CSS-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image5.png" class="">
+
+<p><br><br></p>
+<p>해당 이미지는, 기본 템플릿만 적용한 이미지이지만, <br>어쨋든, 글씨꼴이나 색깔이 느낌이 전반적으로 바뀌었다면, 잘 적용 된것입니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>미니프로젝트</tag>
+        <tag>todolist</tag>
+        <tag>bulma</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 6편 - 리스트 페이지 만들기</title>
     <url>/2020/05/21/TodoList-6%ED%8E%B8-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/</url>
     <content><![CDATA[<p>Todo 리스트가 출력될 화면을 만들어 볼겁니다. </p>
