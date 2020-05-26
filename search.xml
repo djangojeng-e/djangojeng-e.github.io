@@ -1,6 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 11편 - 디테일 페이지에 이미지와 파일 표시</title>
+    <url>/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/</url>
+    <content><![CDATA[<h2 id="디테일-페이지에-이미지와-파일-표시"><a href="#디테일-페이지에-이미지와-파일-표시" class="headerlink" title="디테일 페이지에 이미지와 파일 표시"></a>디테일 페이지에 이미지와 파일 표시</h2><br>
+
+<h2 id="MEDIA-경로-설정"><a href="#MEDIA-경로-설정" class="headerlink" title="MEDIA 경로 설정"></a>MEDIA 경로 설정</h2><br>
+
+<br>
+
+<p>개발 단계에서 MEDIA 파일을 업로드 해줄 MEDIA 경로를 설정해 주어야 합니다. </p>
+<p><br>confit/settings.py 파일로 가서, 아래와 같이 MEDIA 경로를 설정해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># MEDIA_ROOT 설정 </span></span><br><span class="line"><span class="comment"># 사용자가 업로드하는 미디어 정적 파일들의 기본 경로 </span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'.media'</span>)</span><br><span class="line">MEDIA_URL = <span class="string">'/media/'</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<a id="more"></a>
+
+<h2 id="image-와-file-URL-을-위한-쿼리셋-연습"><a href="#image-와-file-URL-을-위한-쿼리셋-연습" class="headerlink" title="image 와 file URL 을 위한 쿼리셋 연습"></a>image 와 file URL 을 위한 쿼리셋 연습</h2><br>
+
+<p>쿼리셋을 연습하기 위해서</p>
+<p><br>두개의 이미지 파일과, 두개의 파일을 가지고 있는 투두리스트 하나를 어드민에서 생성해 주었습니다. </p>
+<p><br>image 의 URL을 얻기위해서, Shell_plus 에서 연습한 내용은 아래와 같습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [1]: t = TodoList.objects.get(pk=3)   </span><br><span class="line">In [2]: images = TodoList_images.objects.filter(todo=t) </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> images 에, 해당 todo에 관련된 TodoList_images images 들을 담고, </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 이를 순회하면서, 각 image 가 어떤 속성이 있는지 프린트 해봅니다. </span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">In [3]: for image in images: </span><br><span class="line">   ...:     print(dir(image))    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 각 image 마다, image 라는 속성이 존재 하는것을 확인 할수 있습니다 </span></span><br><span class="line">In [4]: for image in images: </span><br><span class="line">   ...:     print(dir(image.image)) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> image.image 에는 url 속성이 있어서, image.image.url 을 출력하면, </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 각 이미지들의 url 을 얻을수 있습니다. </span></span><br><span class="line"></span><br><span class="line">In [6]: for image in images: </span><br><span class="line">   ...:     print(image.image.url)</span><br><span class="line">/media/todo/images/2020/05/todolist_logo.jpg</span><br><span class="line">/media/todo/images/2020/05/main.jpg</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="이미지-URL-적용하기"><a href="#이미지-URL-적용하기" class="headerlink" title="이미지 URL 적용하기"></a>이미지 URL 적용하기</h2><br>
+
+<p>이를 잘 활용하여, templates/todo/todo_list.html 파일에 적용해봅니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span></span><br><span class="line"><span class="xml">       남은 일수 : </span><span class="template-variable">&#123;&#123; todolist.remaining_days &#125;&#125;</span></span><br><span class="line"><span class="xml">       <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span></span><br><span class="line"><span class="xml">       관련 이미지 : </span></span><br><span class="line"><span class="xml">       </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> image <span class="keyword">in</span> todolist.todolist_images_set.all %&#125;</span></span><br><span class="line"><span class="xml">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; image.image.url &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">width</span>=<span class="string">"300px"</span> <span class="attr">height</span>=<span class="string">"350px"</span> <span class="attr">alt</span>=<span class="string">"reference_image"</span>&gt;</span></span></span><br><span class="line"><span class="xml">       </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml">       <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>이렇게 까지 작업을 하고, 다시 투두 리스트의 디테일을 확인해보면, <br>이미지가 화면에 나올것이라고 생각하고 확인해 보면, 이미지가 화면에 표시되지 않는것을 확인 할수 있습니다. </p>
+<br>
+
+<img src="/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/image1.png" class="">
+
+<br>
+
+<p>브라우저를 열어서 요소 검사를 해보면, 아래와 같이 HTML 은 잘 작성이 되어 있는데, </p>
+<p><br>이미지 표시가 안됩니다. </p>
+<br>
+
+<img src="/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/image2.png" class="">
+
+<br>
+
+<h2 id="URL-patterns-에-MEDIA-URL-추가"><a href="#URL-patterns-에-MEDIA-URL-추가" class="headerlink" title="URL patterns 에 MEDIA_URL 추가"></a>URL patterns 에 MEDIA_URL 추가</h2><br>
+
+<p>이 문제를 해결하기 위해서는, </p>
+<p><br>config/urls.py 파일을 수정해 주어야 합니다. <br>기존 urlpatterns 에, MEDIA_URL 그리고, 루트를 설정해 주어야 합니다. <br><br></p>
+<h3 id="config-urls-py-파일-수정"><a href="#config-urls-py-파일-수정" class="headerlink" title="config/urls.py 파일 수정"></a>config/urls.py 파일 수정</h3><p><br><br></p>
+<ol>
+<li>from django.conf import settings </li>
+<li>from django.conf.urls.static import static </li>
+</ol>
+<p><br><br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"><span class="keyword">from</span> django.conf.urls.static <span class="keyword">import</span> static </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.stie.urls),</span><br><span class="line">    path(<span class="string">''</span>, include(<span class="string">'todo.urls'</span>)),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">urlpatterns += static(</span><br><span class="line">	prefix=settings.MEDIA_URL, </span><br><span class="line">    document_root=settings.MEDIA_ROOT, </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<blockquote>
+<p>위와 같이 수정을 해주었다면, </p>
+<p>브라우저에서 한번 확인 해 봅니다. 투두리스트의 디테일을 확인하면, </p>
+<p>해당 투두리스트의 관련 이미지가 화면에 표시되는것을 확인할수 있습니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/image3.png" class="">
+
+<p><br><br></p>
+<h2 id="파일-정보도-표시해주기"><a href="#파일-정보도-표시해주기" class="headerlink" title="파일 정보도 표시해주기"></a>파일 정보도 표시해주기</h2><br>
+
+<p>매우매우 비슷한 방식으로, </p>
+<p><br>파일 정보도 디테일 페이지에 표시해줄수 있습니다.<br><br></p>
+<p>일단, templates/todo/todolist_detail.html 파일에, 파일정보 부분을 아래와 같이 고쳐줍니다.<br><br></p>
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span></span><br><span class="line"><span class="xml">          관련 이미지 : </span></span><br><span class="line"><span class="xml">          </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> image <span class="keyword">in</span> todolist.todolist_images_set.all %&#125;</span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; image.image.url &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">width</span>=<span class="string">"300px"</span> <span class="attr">height</span>=<span class="string">"350px"</span> <span class="attr">alt</span>=<span class="string">"reference_image"</span>&gt;</span></span></span><br><span class="line"><span class="xml">          </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span></span><br><span class="line"><span class="xml">          관련 파일 : <span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">          </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> file <span class="keyword">in</span> todolist.todolist_files_set.all %&#125;</span></span><br><span class="line"><span class="xml">          </span><span class="template-variable">&#123;&#123; file.files.url &#125;&#125;</span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123; file.files.url &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>(파일보기)<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">          </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>파일과 이미지를 표시하는 templates/todo/todolist_detail.html 을 위와 같이 수정해 주었다면, <br></p>
+<p>브라우저로 어떻게 표시되는지 확인하러 갑니다. <br><br></p>
+<img src="/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/image4.png" class="">
+
+<br>
+
+<p>관련 파일이라고 하는 항목에, 파일 주소가 표시되고, <br>파일보기 링크가 표시되는것을 확인 할수 있습니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>미니프로젝트</tag>
+        <tag>todolist</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 10편 - 리스트 더보기 (디테일) 기능 구현</title>
     <url>/2020/05/25/TodoList-10%ED%8E%B8-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EB%8D%94%EB%B3%B4%EA%B8%B0-%EB%94%94%ED%85%8C%EC%9D%BC-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84/</url>
     <content><![CDATA[<br>
