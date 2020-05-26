@@ -1,6 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 12편 - 투두리스트 삭제 기능 구현</title>
+    <url>/2020/05/27/TodoList-12%ED%8E%B8-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%82%AD%EC%A0%9C-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84/</url>
+    <content><![CDATA[<h2 id="Todo-List-투두리스트-삭제-기능-구현"><a href="#Todo-List-투두리스트-삭제-기능-구현" class="headerlink" title="Todo List - 투두리스트 삭제 기능 구현"></a>Todo List - 투두리스트 삭제 기능 구현</h2><br>
+
+<p>투두 리스트 삭제 기능을 추가해 보려 합니다. </p>
+<br>
+
+<p>삭제 버튼은, 투두리스트 페이지와, </p>
+<p><br>투두리스트 디테일 페이지에 추가해 줄겁니다. </p>
+<p><br>DeleteView 를 사용하기 때문에, <br><br>삭제 버튼을 누르면, ‘정말 삭제하겠습니까?’ 라는 문구를 가진 컨펌 페이지가 뜨고, <br>한번 더 삭제하기 버튼을 누르면, <br>삭제가 완료되고. <br><br>취소 버튼을 누르면, 다시 투두리스트 리스트 페이지로 가게 됩니다. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>DeleteView 는 클래스 기반 뷰로, </p>
+<p>기본적으로, 정말로 삭제할것인지에 대한 컨펌 페이지를 가지고 있어서 </p>
+<p>삭제 버튼을 눌렀을때, 이 컨펌 페이지를 거쳐서 삭제를 눌러야 </p>
+<p>객체가 삭제 됩니다. </p>
+</blockquote>
+<br>
+
+<p>구현 과정은 아래와 같습니다. </p>
+<br>
+
+<ol>
+<li><p>todo/views.py 파일에 DeleteView 클래스를 추가 </p>
+</li>
+<li><p>templates/todo/delete.html 파일 생성및 작성 </p>
+</li>
+<li><p>templates/todo/todolist_list.html 파일 수정 (삭제버튼 설정) </p>
+</li>
+<li><p>templates/todo/todolist_detail.html 파일 수정 (삭제버튼 설정) </p>
+</li>
+<li><p>todo/urls.py 파일에서 delete URL 설정 </p>
+</li>
+</ol>
+<br>
+
+<br>
+
+<h2 id="todo-views-py-파일에-DeleteView-클래스-추가"><a href="#todo-views-py-파일에-DeleteView-클래스-추가" class="headerlink" title="todo/views.py 파일에 DeleteView 클래스 추가"></a>todo/views.py 파일에 DeleteView 클래스 추가</h2><br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DeleteView</span><span class="params">(generic.DeleteView)</span>:</span></span><br><span class="line">    model = TodoList </span><br><span class="line">    success_url = <span class="string">'/'</span></span><br><span class="line">    tempalte_name = <span class="string">'todo/delete.html'</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="templates-todo-delete-html-파일-생성-및-작성"><a href="#templates-todo-delete-html-파일-생성-및-작성" class="headerlink" title="templates/todo/delete.html 파일 생성 및 작성"></a>templates/todo/delete.html 파일 생성 및 작성</h2><br>
+
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">base.html 상속받는 대신에, </span><span class="template-tag">&#123;% <span class="name"><span class="name">load</span></span> static %&#125;</span><span class="xml"> 을 사용하여, </span></span><br><span class="line"><span class="xml">static 폴더 안에 있는 style.css 파일을 직접 가져와 사용했습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml">DeleteView 를 사용하기 때문에, </span><span class="template-variable">&#123;&#123; form &#125;&#125;</span><span class="xml"> 을 사용하여, 삭제 폼을 만들어 주었고, </span></span><br><span class="line"></span><br><span class="line"><span class="xml">삭제 버튼과 취소 버튼을 만들어 주었습니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">load</span></span> static %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">static</span></span> 'bulma/css/style.css' %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field is-grouped is-grouped-centered"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><span class="template-variable">&#123;&#123; object &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field is-grouped is-grouped-centered"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"POST"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123; form &#125;&#125;</span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">csrf_token</span></span> %&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"control"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"button is-danger"</span> <span class="attr">value</span>=<span class="string">"삭제"</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-light"</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> 'todo:todolist' %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        취소</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field is-grouped is-grouped-centered"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"control"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        해당 투두리스트를 삭제 하시겠습니까?</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<h2 id="templates-todo-todolist-list-html-파일-수정"><a href="#templates-todo-todolist-list-html-파일-수정" class="headerlink" title="templates/todo/todolist_list.html 파일 수정"></a>templates/todo/todolist_list.html 파일 수정</h2><br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">삭제하기 버튼을 누르면, "/delete/</span><span class="template-variable">&#123;&#123; todo.id &#125;&#125;</span><span class="xml">" url 로 넘어가서, </span></span><br><span class="line"><span class="xml">DeleteView 를 호출할것입니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"card-footer"</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/detail/</span></span></span><span class="template-variable">&#123;&#123; todo.id &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">class</span>=<span class="string">"card-footer-item"</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"button is-primary is-fullwidth"</span>&gt;</span>더보기<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"card-footer-item"</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"button is-warning is-fullwidth"</span>&gt;</span>수정하기<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/delete/</span></span></span><span class="template-variable">&#123;&#123; todo.id &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">class</span>=<span class="string">"card-footer-item"</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"button is-danger is-fullwidth"</span>&gt;</span>삭제하기<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="templates-todo-todolist-detail-html-파일-수정"><a href="#templates-todo-todolist-detail-html-파일-수정" class="headerlink" title="templates/todo/todolist_detail.html 파일 수정"></a>templates/todo/todolist_detail.html 파일 수정</h2><br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">삭제하기 버튼을 누르면, "/delete/</span><span class="template-variable">&#123;&#123; todo.id &#125;&#125;</span><span class="xml">" url 로 넘어가서, </span></span><br><span class="line"><span class="xml">DeleteView 를 호출하게 해서, </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">Detail 페이지에서도 삭제가 가능하게 하려 했지만, </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">DeleteView 를 Detail 페이지에서 호출하면, 에러가 납니다. (이에 대한 해결 방법을 찾지 못하고 있음) </span></span><br><span class="line"></span><br><span class="line"><span class="xml">따라서, 삭제 버튼을 누르면, 다시 리스트 페이지로 되돌아오게 해주었습니다..</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"card-footer"</span>&gt;</span></span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> 'todo:todolist' %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">class</span>=<span class="string">"card-footer-item"</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"button is-link is-fullwidth"</span>&gt;</span>뒤로가기<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"card-footer-item"</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"button is-warning is-fullwidth"</span>&gt;</span>수정하기<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"</span></span></span><span class="template-tag">&#123;% <span class="name"><span class="name">url</span></span> 'todo:todolist' %&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">class</span>=<span class="string">"card-footer-item"</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"button is-danger is-fullwidth"</span>&gt;</span>삭제하기<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<h2 id="todo-urls-py-파일에서-delete-URL-설정"><a href="#todo-urls-py-파일에서-delete-URL-설정" class="headerlink" title="todo/urls.py 파일에서 delete URL 설정"></a>todo/urls.py 파일에서 delete URL 설정</h2><br>
+
+<p>‘delete/<a href="int:pk">int:pk</a>/‘ 라는 URL 을 가지면, DeleteView 를 호출하고, </p>
+<p>삭제 페이지로 넘어가게 됩니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> .views <span class="keyword">import</span> IndexView, DetailView, DeleteView</span><br><span class="line"></span><br><span class="line">app_name = <span class="string">'todo'</span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">''</span>, IndexView.as_view(), name=<span class="string">'todolist'</span>),</span><br><span class="line">    path(<span class="string">'detail/&lt;int:pk&gt;/'</span>, DetailView.as_view(), name=<span class="string">"todolist_detail"</span>),</span><br><span class="line">    path(<span class="string">'delete/&lt;int:pk&gt;/'</span>, DeleteView.as_view(), name=<span class="string">"todolist_delete"</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><p><br>서버를 시작하고, 삭제 테스트를 해봅니다. </p>
+<br>
+
+<p>투두 리스트 페이지에서 삭제 진행 </p>
+<br>
+
+<img src="/2020/05/27/TodoList-12%ED%8E%B8-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%82%AD%EC%A0%9C-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84/image1.png" class="">
+
+<br>
+
+<p>삭제 버튼을 누르면, 아래 컨펌 페이지가 뜨고, 여기서 한번 더 삭제를 누르면 객체가 삭제 완료 됩니다. </p>
+<br>
+
+<img src="/2020/05/27/TodoList-12%ED%8E%B8-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%82%AD%EC%A0%9C-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84/image2.png" class="">
+
+<br>
+
+<p>삭제 버튼을 누르면, 투두리스트 삭제가 진행 되는것을 확인 하였습니다만. <br></p>
+<p>디테일 페이지에서 삭제 동작을 구현하지 못한것이 아쉽습니다. <br>클래스 베이스 뷰에 있는 DeleteView 를 더 많이 경험해 봐야 알것 같습니다. </p>
+<p><br><br></p>
+<p><strong>만약, DeleteView 를 사용하지 않고, 함수형으로 이 기능을 구현하고 싶다면,</strong> </p>
+<hr>
+<p><br>views.py 에 아래와 같은 함수를 작성하고, 적절히 URL 을 연결하여 사용하면 됩니다. </p>
+<br>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># views.py </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_todo</span><span class="params">(request, pk)</span>:</span></span><br><span class="line">    t = TodoList.objects.get(pk=pk)</span><br><span class="line">    t.delete() </span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'/'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># todo/urls.py </span></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> .views <span class="keyword">import</span> IndexView, DetailView, DeleteView, UpdateView, TodoCreate</span><br><span class="line"><span class="keyword">from</span> .views <span class="keyword">import</span> delete_todo</span><br><span class="line">app_name = <span class="string">'todo'</span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">''</span>, IndexView.as_view(), name=<span class="string">'todolist'</span>),</span><br><span class="line">    path(<span class="string">'detail/&lt;int:pk&gt;/'</span>, DetailView.as_view(), name=<span class="string">"todolist_detail"</span>),</span><br><span class="line">    path(<span class="string">'delete/&lt;int:pk&gt;/'</span>, DeleteView.as_view(), name=<span class="string">"todolist_delete"</span>),</span><br><span class="line">    path(<span class="string">'delete_todo/&lt;int:pk&gt;/'</span>, delete_todo, name=<span class="string">"delete_todo"</span>),</span><br><span class="line">    path(<span class="string">'update/&lt;int:pk&gt;/'</span>, UpdateView.as_view(), name=<span class="string">'todolist_update'</span>),</span><br><span class="line">    path(<span class="string">'create/'</span>, TodoCreate, name=<span class="string">'todolist_create'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><br><br>다만, 이렇게 구현 하면, DeleteView 를 사용했을때랑은 다르게, </p>
+<p>Confirm page 가 나오지 않고. 바로 삭제가 됩니다. <br></p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>미니프로젝트</tag>
+        <tag>todolist</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 11편 - 디테일 페이지에 이미지와 파일 표시</title>
     <url>/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/</url>
     <content><![CDATA[<h2 id="디테일-페이지에-이미지와-파일-표시"><a href="#디테일-페이지에-이미지와-파일-표시" class="headerlink" title="디테일 페이지에 이미지와 파일 표시"></a>디테일 페이지에 이미지와 파일 표시</h2><br>
