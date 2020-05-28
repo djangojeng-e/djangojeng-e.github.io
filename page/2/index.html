@@ -204,6 +204,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">TodoList 3편 - 모델설계하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-05-18 17:30:22 / Updated at: 17:46:25" itemprop="dateCreated datePublished" datetime="2020-05-18T17:30:22+09:00">2020-05-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/18/TodoList-3편-모델설계하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Todo-List-모델-설계하기"><a href="#Todo-List-모델-설계하기" class="headerlink" title="Todo List 모델 설계하기"></a>Todo List 모델 설계하기</h2><br>
+
+<br>
+
+<h3 id="INSTALLED-APPS-에-앱등록하기"><a href="#INSTALLED-APPS-에-앱등록하기" class="headerlink" title="INSTALLED_APPS 에 앱등록하기"></a>INSTALLED_APPS 에 앱등록하기</h3><br>
+
+<p>config/settings.py 파일에 INSTALLED_APPS 안에, todo 앱을 등록해 줍니다. </p>
+<br>
+
+<img src="/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/image1.png" class="">
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/18/TodoList-3%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%84%A4%EA%B3%84%ED%95%98%EA%B8%B0/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/15/TodoList-2%ED%8E%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%99%80-%EC%95%B1-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1252,112 +1356,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/05/Writing-your-first-Django-app-part5-6%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/05/Writing-your-first-Django-app-part5-6%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part5 - 6편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-05-05 15:11:32 / Updated at: 15:23:21" itemprop="dateCreated datePublished" datetime="2020-05-05T15:11:32+09:00">2020-05-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/05/05/Writing-your-first-Django-app-part5-6%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/05/Writing-your-first-Django-app-part5-6편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="더많은-테스트가-좋습니다"><a href="#더많은-테스트가-좋습니다" class="headerlink" title="더많은 테스트가 좋습니다"></a>더많은 테스트가 좋습니다</h2><br>
-
-<br>
-
-<p>우리가 작성한 테스트는 우리의 제어 능력을 벗어나 보일지 모릅니다. </p>
-<p><br>이대로 가다가는, 테스트에 있는 코드가 어플리케이션에 있는 코드보다 많아질것이고, </p>
-<p><br>미심쩍은 반복만 늘어날것입니다. 기타 코드와 비교해서 우아할것 같아 보이지 않기도 합니다. </p>
-<br>
-
-<br>
-
-<p>상관 없습니다! 코드가 자라나게 냅둬도 되니다 ㅎㅎ</p>
-<p><br>가장 좋은 방법은 테스트를 한번만 작성하고, 잊고 사는겁니다. 테스트는 프로그래밍 개발이 계속 되는동안 그 기능을 계속 수행합니다. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/05/Writing-your-first-Django-app-part5-6%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1428,7 +1426,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
