@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/06/01/TodoList-16%ED%8E%B8-allauth%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%A1%9C%EA%B7%B8%EC%95%84%EC%9B%83/</loc>
+        <lastmod>2020-06-01T02:48:44.291Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/05/30/TodoList-15%ED%8E%B8-allauth-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98/</loc>
         <lastmod>2020-05-29T21:21:40.235Z</lastmod>
         <changefreq>weekly</changefreq>
