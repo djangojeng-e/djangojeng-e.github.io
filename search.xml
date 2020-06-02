@@ -1,6 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 17편 - allauth로 네이버로 로그인 구현</title>
+    <url>/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/</url>
+    <content><![CDATA[<p>allauth 를 사용하여, 소셜 로그인중 하나인 네이버로 로그인 하기를 구현 하고 싶습니다. <br></p>
+<br>
+
+<p>이를 구현하기 위해서는, 네이버 개발자 센터를 방문하여 </p>
+<p><br>네이버 아이디로 로그인 API 키를 발급 받아야 합니다.<br><br></p>
+<p> <a href="https://developers.naver.com/apps/#/register" target="_blank" rel="noopener">https://developers.naver.com/apps/#/register</a></p>
+<br>
+
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image1.png" class="">
+
+<p><br><br></p>
+<a id="more"></a>
+
+<h2 id="네이버-아이디-로그인-API-키-발급"><a href="#네이버-아이디-로그인-API-키-발급" class="headerlink" title="네이버 아이디 로그인 API 키 발급"></a>네이버 아이디 로그인 API 키 발급</h2><p><br><br></p>
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image2.png" class=""><br><br>
+
+<p>서비스 URL : <a href="http://127.0.0.1:8000/" target="_blank" rel="noopener">http://127.0.0.1:8000</a></p>
+<p>네이버아이디로그인 Callback URL : <a href="http://127.0.0.1:8000/accounts/naver/login/callback/" target="_blank" rel="noopener">http://127.0.0.1:8000/accounts/naver/login/callback/</a></p>
+<br>
+
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image3.png" class="">
+
+<br>
+
+<p>등록하기 버튼을 누르면, 앱이 등록 됩니다.<br></p>
+<p>그리고, 클라이언트 ID 와 클라이언트 secret 생성이 됩니다.<br><br></p>
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image4.png" class="">
+
+<br>
+
+<h2 id="INSTALLED-APPS-에-네이버-추가"><a href="#INSTALLED-APPS-에-네이버-추가" class="headerlink" title="INSTALLED_APPS 에 네이버 추가"></a>INSTALLED_APPS 에 네이버 추가</h2><br>
+
+<p>settings.py 안에, INSTALLED_APPS 에 <br></p>
+<p>소셜로그인 제공자로 네이버를 추가해줍니다. <br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment"># Allauth를 위한 Apps </span></span><br><span class="line">    <span class="string">'django.contrib.sites'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">'allauth'</span>,</span><br><span class="line">    <span class="string">'allauth.account'</span>,</span><br><span class="line">    <span class="string">'allauth.socialaccount'</span>, </span><br><span class="line"></span><br><span class="line">    <span class="comment"># ... 소셜로그인을 할 제공자 리스트를 아래에 포함 </span></span><br><span class="line">    <span class="string">'allauth.socialaccount.providers.naver'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="어드민에서-social-application-모델-추가"><a href="#어드민에서-social-application-모델-추가" class="headerlink" title="어드민에서 social application 모델 추가"></a>어드민에서 social application 모델 추가</h2><p><br><br></p>
+<p>어드민에 접속하여, 소셜 계정 / 소셜 어플리케이션을 추가 해줍니다. </p>
+<br>
+
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image5.png" class=""> 
+
+
+
+
+
+<p><br><br></p>
+<p>이름은, 아래와 같이 네아로 라고 쓰고,</p>
+<p>클라이언트 아이디와 비밀 키는, 네이버 개발자 센터에서 앱을 등록했을때 발급받은,  <br></p>
+<p>아이디와 키값을 입력합니다. </p>
+<p><br><br></p>
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image6.png" class="">
+
+
+
+<br>
+
+<p>그리고, 하단에 있는, 이용 가능한 Sites 에, example.com 을 선택하여, </p>
+<p><br>오른쪽으로 옮겨 줍니다 </p>
+<br>
+
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image7.png" class="">
+
+<br>
+
+<p>여기까지 설정을 마쳤으면, 저장 버튼을 눌러줍니다. </p>
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>네이버 아이디로 로그인 하기 기능을 위한 기본 세팅을 마쳤습니다. </p>
+<p><br>이제부터 잘 작동하는지 확인해 봅니다. 우선, 서버를 실행하고, 로그인 페이지로 갑니다. </p>
+<p><br>기존 로그인 폼 위에, Naver 라고 텍스트 링크가 생겨난걸 확인 할수 있습니다. </p>
+<br>
+
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image8.png" class="">
+
+<br>
+
+<p>naver 텍스트를 클릭하면, 아래와 같이 네이버 로그인 페이지가 뜹니다. </p>
+<br>
+
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image9.png" class="">
+
+<br>
+
+<p>네이버 페이지에서 OK 버튼을 누르면, 로그인이 완료 됩니다.<br><br></p>
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image10.png" class="">
+
+<p><br><br></p>
+<p>다시 로그아웃 하고, 어드민으로 접속해서 소셜 계정 탭을 확인하면,<br></p>
+<p>네이버 로그인을 사용해서 로그인 했던 사용자의 정보가 들어와 있는것을 확인 할수 있습니다. </p>
+<br>
+
+<img src="/2020/06/02/TodoList-17%ED%8E%B8-allauth%EB%A1%9C-%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/image11.png" class="">
+
+<br>]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>미니프로젝트</tag>
+        <tag>todolist</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 16편 - allauth를 사용하여 로그인, 로그아웃</title>
     <url>/2020/06/01/TodoList-16%ED%8E%B8-allauth%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EB%A1%9C%EA%B7%B8%EC%95%84%EC%9B%83/</url>
     <content><![CDATA[<h2 id="allauth-사용-로그인-로그아웃-구현"><a href="#allauth-사용-로그인-로그아웃-구현" class="headerlink" title="allauth 사용 로그인, 로그아웃 구현"></a>allauth 사용 로그인, 로그아웃 구현</h2><p>지난 포스팅에서, allauth 패키지 설치를 완료 하였고, </p>
