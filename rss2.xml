@@ -9,7 +9,7 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Wed, 03 Jun 2020 07:22:06 GMT</pubDate>
+    <pubDate>Wed, 03 Jun 2020 07:23:52 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -19,9 +19,7 @@
       <pubDate>Wed, 03 Jun 2020 07:19:37 GMT</pubDate>
       <description>
       
-        
-        
-          &lt;h2 id=&quot;프로젝트-중간정리&quot;&gt;&lt;a href=&quot;#프로젝트-중간정리&quot; class=&quot;headerlink&quot; title=&quot;프로젝트 중간정리&quot;&gt;&lt;/a&gt;프로젝트 중간정리&lt;/h2&gt;&lt;br&gt;
+        &lt;h2 id=&quot;프로젝트-중간정리&quot;&gt;&lt;a href=&quot;#프로젝트-중간정리&quot; class=&quot;headerlink&quot; title=&quot;프로젝트 중간정리&quot;&gt;&lt;/a&gt;프로젝트 중간정리&lt;/h2&gt;&lt;br&gt;
 
 
 
@@ -30,13 +28,36 @@
 
 
 
-&lt;p&gt;그리고 빈약한
-        
+&lt;p&gt;그리고 빈약한 미니프로젝트 진행 상황을 중간 정리 합니다. &lt;/p&gt;
+&lt;br&gt;
+
+
+
+&lt;br&gt;
+
+
+
+&lt;p&gt;&lt;strong&gt;아쉬운 점&lt;/strong&gt; &lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;가장 아쉬운점 :&lt;/strong&gt; &lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;forms.py 를 사용하여 폼을 그리고, 폼에서 넘어오는 데이터 처리 등. 전반적으로 폼이 문제인것 같음..;;&lt;/strong&gt;  &lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;br&gt;
+
+
+
+&lt;p&gt;1) 자바스크립트를 몰라서 동적으로 브라우저에서 값을 바꾸거나, 좀더 다이나믹하게 만들수가 없었다. &lt;/p&gt;
+&lt;p&gt;2) 디자인 - Bulma CSS 를 사용하여, 어느정도 생으로 프론트 작업 하는것보단 편했지만, 여전히 무언가 아쉽다 &lt;/p&gt;
+&lt;p&gt;3) 클래스 기반 뷰의 사용이 아직 서툴다 &lt;/p&gt;
+&lt;p&gt;4) allauth 를 사용해서 로그인 로그아웃 그리고 네이버 로그인 기능까지 구현 하긴 했지만. 내부 동작을 파악하고 한것이 아니다. &lt;/p&gt;
+&lt;p&gt;5) models.py 파일을 보면, 무언가 효율적으로 쓴것 같지가 않다 &lt;/p&gt;
       
       </description>
       
       
-      <content:encoded><![CDATA[<h2 id="프로젝트-중간정리"><a href="#프로젝트-중간정리" class="headerlink" title="프로젝트 중간정리"></a>프로젝트 중간정리</h2><br><p>매우 간단한,<br></p><br><p>그리고 빈약한 미니프로젝트 진행 상황을 중간 정리 합니다. </p><br><br><p><strong>아쉬운 점</strong> </p><hr><p><strong>가장 아쉬운점 :</strong> </p><hr><p><strong>forms.py 를 사용하여 폼을 그리고, 폼에서 넘어오는 데이터 처리 등. 전반적으로 폼이 문제인것 같음..;;</strong>  </p><hr><hr><br><p>1) 자바스크립트를 몰라서 동적으로 브라우저에서 값을 바꾸거나, 좀더 다이나믹하게 만들수가 없었다. </p><p>2) 디자인 - Bulma CSS 를 사용하여, 어느정도 생으로 프론트 작업 하는것보단 편했지만, 여전히 무언가 아쉽다 </p><p>3) 클래스 기반 뷰의 사용이 아직 서툴다 </p><p>4) allauth 를 사용해서 로그인 로그아웃 그리고 네이버 로그인 기능까지 구현 하긴 했지만. 내부 동작을 파악하고 한것이 아니다. </p><p>5) models.py 파일을 보면, 무언가 효율적으로 쓴것 같지가 않다 </p><br><p><strong>현재까지 좋았던 점</strong>  </p><br><p><strong>가장 좋았던점:</strong> </p><hr><p><strong>어떻게든 꾸역꾸역 하려고 하면서, 문서도 많이 보게 되고, 다른 사람들이 짜놓은 코드 예시도 많이 접할수 있었다.</strong> <br></p><p><strong>참고해서 구현한 기능들이 동작하는것을 볼때, 묘한 성취감과 기쁨을 느낀다.</strong> </p><hr><p>****<br></p><br><p>1) Bulma CSS 를 적용하여, 프론트가 생으로 하는거보단 이쁘게 된것 같다. </p><p>2) Django 패키지 - Django-bulma 와 allauth 를 사용해 보았다. </p><p>3) 간편하게 로그인, 로그아웃, 회원가입 기능을 구현하였다. </p><p>4) 관리자 페이지에 모델을 등록하는 방법에 대해 조금 더 익숙해 졌다. </p><p>5) 여기저기 찾아서, javascript 를 구현해 보았다. </p> <br><hr><br><p>마치며.. </p><p>아주 빈약한 프로젝트지만, 다음 포스팅부터, AWS에 배포를 진행해보려 합니다.</p><p>배포를 진행하기 전에, 중간 정리를 한번 해보았네요.  </p>]]></content:encoded>
+      <content:encoded><![CDATA[<h2 id="프로젝트-중간정리"><a href="#프로젝트-중간정리" class="headerlink" title="프로젝트 중간정리"></a>프로젝트 중간정리</h2><br><p>매우 간단한,<br></p><br><p>그리고 빈약한 미니프로젝트 진행 상황을 중간 정리 합니다. </p><br><br><p><strong>아쉬운 점</strong> </p><hr><p><strong>가장 아쉬운점 :</strong> </p><hr><p><strong>forms.py 를 사용하여 폼을 그리고, 폼에서 넘어오는 데이터 처리 등. 전반적으로 폼이 문제인것 같음..;;</strong>  </p><hr><hr><br><p>1) 자바스크립트를 몰라서 동적으로 브라우저에서 값을 바꾸거나, 좀더 다이나믹하게 만들수가 없었다. </p><p>2) 디자인 - Bulma CSS 를 사용하여, 어느정도 생으로 프론트 작업 하는것보단 편했지만, 여전히 무언가 아쉽다 </p><p>3) 클래스 기반 뷰의 사용이 아직 서툴다 </p><p>4) allauth 를 사용해서 로그인 로그아웃 그리고 네이버 로그인 기능까지 구현 하긴 했지만. 내부 동작을 파악하고 한것이 아니다. </p><p>5) models.py 파일을 보면, 무언가 효율적으로 쓴것 같지가 않다 </p><a id="more"></a><br><p><strong>현재까지 좋았던 점</strong>  </p><br><p><strong>가장 좋았던점:</strong> </p><hr><p><strong>어떻게든 꾸역꾸역 하려고 하면서, 문서도 많이 보게 되고, 다른 사람들이 짜놓은 코드 예시도 많이 접할수 있었다.</strong> <br></p><p><strong>참고해서 구현한 기능들이 동작하는것을 볼때, 묘한 성취감과 기쁨을 느낀다.</strong> </p><hr><p>****<br></p><br><p>1) Bulma CSS 를 적용하여, 프론트가 생으로 하는거보단 이쁘게 된것 같다. </p><p>2) Django 패키지 - Django-bulma 와 allauth 를 사용해 보았다. </p><p>3) 간편하게 로그인, 로그아웃, 회원가입 기능을 구현하였다. </p><p>4) 관리자 페이지에 모델을 등록하는 방법에 대해 조금 더 익숙해 졌다. </p><p>5) 여기저기 찾아서, javascript 를 구현해 보았다. </p> <br><hr><br><p>마치며.. </p><p>아주 빈약한 프로젝트지만, 다음 포스팅부터, AWS에 배포를 진행해보려 합니다.</p><p>배포를 진행하기 전에, 중간 정리를 한번 해보았네요.  </p>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/06/03/TodoList-18%ED%8E%B8-%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A4%91%EA%B0%84-%EC%A0%95%EB%A6%AC/#disqus_thread</comments>
     </item>
