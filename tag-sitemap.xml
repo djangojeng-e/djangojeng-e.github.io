@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/EC2/</loc>
+        <lastmod>2020-06-04T11:31:02.510Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/AWS/</loc>
+        <lastmod>2020-06-04T11:31:02.510Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/todolist/</loc>
         <lastmod>2020-06-03T07:23:52.062Z</lastmod>
         <changefreq>weekly</changefreq>
