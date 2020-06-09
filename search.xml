@@ -1,6 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 22편 - AWS RDS 생성하기</title>
+    <url>/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="AWS-RDS-생성하기"><a href="#AWS-RDS-생성하기" class="headerlink" title="AWS RDS 생성하기"></a>AWS RDS 생성하기</h2><br>
+
+<p>지난 포스팅에서는, 진행한건 아래와 같습니다. </p>
+<br>
+
+<ol>
+<li>AWS EC2 생성</li>
+<li>EC2 인스턴스에 프로젝트 폴더 업로드 </li>
+<li>EC2 인스턴스 안에서 서버 실행 </li>
+<li>브라우저로 EC2 접속 </li>
+<li>프로젝트 동작 확인  </li>
+</ol>
+<br>
+
+<p>하지만, 문제가 하나 있었습니다. </p>
+<br>
+
+<blockquote>
+<p>static 파일을 읽어오지 못해서, 이미지와 CSS 적용이 되질 않았었습니다. </p>
+<p>일단 이 부분에 대해서는, 나중에 찾아가면서 해결해 보도록 하고, </p>
+<p>데이터 베이스를 기본 데이터베이스인 Sqlite3 대신에, 다른 DB 를 적용 해 보려 합니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<h2 id="AWS-RDS-사이트-접속"><a href="#AWS-RDS-사이트-접속" class="headerlink" title="AWS RDS 사이트 접속"></a>AWS RDS 사이트 접속</h2><br>
+
+<p><a href="https://ap-northeast-2.console.aws.amazon.com/rds/home?region=ap-northeast-2#databases:" target="_blank" rel="noopener">https://ap-northeast-2.console.aws.amazon.com/rds/</a></p>
+<br>
+
+<p>AWS에 접속하여, RDS 인스턴스 생성 과정으로 넘어갑니다. </p>
+<p>데이터베이스 인스턴스 창으로 가서, 우측 상단에 데이터베이스 생성 버튼을 눌러줍니다. </p>
+<br>
+
+<img src="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/image1.png" class="">
+
+<br>
+
+<img src="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/image2.png" class="">
+
+<br>
+
+<p>PostgreSQL 로 설정해 주고, 프리티어를 선택합니다. </p>
+<br>
+
+<img src="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/image3.png" class=""> 
+
+<br>
+
+<p>DB 계정 정보, 인스턴스 식별자, 사용자 이름, 암호를 설정해 줍니다. </p>
+<br>
+
+<img src="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/image4.png" class=""> 
+
+<br>
+
+<p>쭈욱 내리면서, 바꿀 내용이 있는지 확인해 봅니다. 딱히 바꿀것은 없습니다. </p>
+<br>
+
+<img src="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/image5.png" class="">
+
+<br>
+
+<img src="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/image6.png" class="">
+
+<br>
+
+<p>손댈곳은 없는것 같고, 데이터베이스 생성 버튼을 눌러서, 생성 진행을 해줍니다. </p>
+<br>
+
+<img src="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/image7.png" class="">
+
+<br>
+
+<p>생성 버튼을 누르면, 아래와 같이 생성중 이라고 표시가 됩니다. </p>
+<br>
+
+<p>생성이 완료 된 후에 사용 시작 하면 됩니다. </p>
+<br>
+
+<img src="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/image8.png" class="">
+
+
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>RDS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 21편 - AWS EC2에 배포 시작</title>
     <url>/2020/06/08/TodoList-21%ED%8E%B8-AWS-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC-%EC%8B%9C%EC%9E%91/</url>
     <content><![CDATA[<h2 id="AWS-EC2에-배포-시작"><a href="#AWS-EC2에-배포-시작" class="headerlink" title="AWS EC2에 배포 시작"></a>AWS EC2에 배포 시작</h2><br>
