@@ -1,6 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 24편 - AWS S3 적용하기</title>
+    <url>/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Amazon-S3-적용하기"><a href="#Amazon-S3-적용하기" class="headerlink" title="Amazon S3 적용하기"></a>Amazon S3 적용하기</h2><br>
+
+<blockquote>
+<p>Amazon S3 란? </p>
+<p>Amazon S3 는 인터넷상 어디서나 원하는 양의 데이터를 저장하고 검색할수 있도록 구축된, </p>
+<p>객체 스토리지 입니다. 안정성이 매우 뛰어나고, 가용성이 높으며, </p>
+<p>무제한으로 확장 가능한 데이터 스토리지 인프라를 매우 저렴한 비용으로 제공하는, </p>
+<p>간단한 스토리지 서비스 입니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a> 
+
+<br>
+
+<h2 id="Amazon-S3로-무엇을-할수-있나요"><a href="#Amazon-S3로-무엇을-할수-있나요" class="headerlink" title="Amazon S3로 무엇을 할수 있나요?"></a>Amazon S3로 무엇을 할수 있나요?</h2><br>
+
+<blockquote>
+<p>스토리지를 이용하여, 간편한 웹 서비스 인터페이스를 사용할수 있습니다. </p>
+<p>인터넷 스토리지를 이용한 어플리케이션을 쉽게 개발할수 있습니다. </p>
+<p>원하는 형식의 데이터를 원하는 만큼 저장하고, 동일한 데이터를 수백만번 읽거나 비상 재해 복구 용도로만 사용하고, 간단한 FTP 어플리케이션 또는, Amazon.com 소매 웹사이트와 같은 복잡한 웹 어플리케이션을 구축할수 있습니다. </p>
+<br>
+
+<p>Amazon S3 를 사용하는 개발자는 데이터 저장 방법에 대한 고민을 하기 보다, </p>
+<p>좀더 혁신적인 것들에 집중할수 있습니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="AWS-S3-생성하기"><a href="#AWS-S3-생성하기" class="headerlink" title="AWS S3 생성하기"></a>AWS S3 생성하기</h2><br>
+
+<p>우선, S3 를 생성하기 위해서, AWS S3 Management 콘솔에 접속합니다. </p>
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image1.png" class="">
+
+<br>
+
+<p>버킷 만들기를 클릭합니다</p>
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image2.png" class="">
+
+<br>
+
+<p>버킷 이름을 정하고, 버킷 만들기 버튼을 눌러서 버킷을 생성해 줍니다. </p>
+<br>
+
+<br>
+
+<h2 id="필요한-패키지-설치"><a href="#필요한-패키지-설치" class="headerlink" title="필요한 패키지 설치"></a>필요한 패키지 설치</h2><br>
+
+<br>
+
+<p>터미널에서, 아래 명령어를 실행해서, <code>django-storages</code> 와 <code>boto3</code> 를 설치해 줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install django-storages</span><br><span class="line">pip install boto3</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>그리고 나서, settings.py 에 INSTALLED_APPS 에 storage 를 등록해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="string">'todo'</span>,</span><br><span class="line">    <span class="string">'django_extensions'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment"># storages 설정 </span></span><br><span class="line">    <span class="string">'storages'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Bulma CSS Framework </span></span><br><span class="line">    <span class="string">'bulma'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Allauth를 위한 Apps </span></span><br><span class="line">    <span class="string">'django.contrib.sites'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">'allauth'</span>,</span><br><span class="line">    <span class="string">'allauth.account'</span>,</span><br><span class="line">    <span class="string">'allauth.socialaccount'</span>, </span><br><span class="line"></span><br><span class="line">    <span class="comment"># ... 소셜로그인을 할 제공자 리스트를 아래에 포함 </span></span><br><span class="line">    <span class="string">'allauth.socialaccount.providers.naver'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="settings-py-에-S3-기본설정"><a href="#settings-py-에-S3-기본설정" class="headerlink" title="settings.py 에 S3 기본설정"></a>settings.py 에 S3 기본설정</h2><br>
+
+<p>생성된 버킷을 사용하기 위한 패키지들을 모두 설치했으면, S3를 Django 에서 사용하기 위해서,</p>
+<p><br>settings.py 파일에, 아래 내용을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># django-storages </span></span><br><span class="line"><span class="comment"># Django의 FilesStorage로 S3Boto3Storage (AWS S3) </span></span><br><span class="line">DEFAULT_FILE_STORAGE = <span class="string">'storages.backends.s3boto3.S3Boto3Storage'</span></span><br><span class="line">AWS_ACCESS_KEY_ID = <span class="string">''</span></span><br><span class="line">AWS_SECRET_ACCESS_KEY = <span class="string">''</span></span><br><span class="line">AWS_STORAGE_BUCKET_NAME = <span class="string">'todolist-djangojenge'</span></span><br><span class="line">AWS_S3_CUSTOM_DOMAIN = <span class="string">'%s.s3.amazonaws.com'</span> % AWS_STORAGE_BUCKET_NAME</span><br><span class="line">AWS_AUTO_CREATE_BUCKET = <span class="literal">True</span></span><br><span class="line">AWS_S3_REGION_NAME = <span class="string">'ap-northeast-2'</span></span><br><span class="line">AWS_DEFAULT_ACL = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>여기서 중요한 값들은,  아래 두가지 AWS 관련 값들입니다. </p>
+<br>
+
+<ol>
+<li>AWS_ACCESS_KEY_ID </li>
+<li>AWS_SECRET_ACCESS_KEY </li>
+</ol>
+<br>
+
+<p>이 값들을 받아오기 위한 과정을 아래에 설명합니다. </p>
+<br>
+
+<h2 id="AWS-IAM-에서-ACCESS-KEY-값들-받아오기"><a href="#AWS-IAM-에서-ACCESS-KEY-값들-받아오기" class="headerlink" title="AWS IAM 에서 ACCESS_KEY 값들 받아오기"></a>AWS IAM 에서 ACCESS_KEY 값들 받아오기</h2><br>
+
+<p>AWS_ACCESS_KEY_ID 와 AWS_SECRET_ACCESS_KEY 를 가져오기 위해서는, </p>
+<p><br>AWS IAM 서비스에 접속을 해줍니다. </p>
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image3.png" class="">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>IAM (Idnetity and Access Management (IAM)) 에서, </p>
+<p>사용자 추가를 해줍니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image4.png" class="">
+
+<br>
+
+<p>사용자 추가 버튼을 누르면, 아래와 같이. 세부정보 설정 페이지가 나오고, </p>
+<p><br>사용자 이름을 쓴 다음, 엑세스 유형을 프로그래밍 방식 엑세스로 선택 합니다. </p>
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image5.png" class="">
+
+<p><br>****</p>
+<p><strong>다음 버튼을 누르면, 권한 설정 페이지로 넘어갑니다.</strong> </p>
+<p><br>아래와 같이, <strong>기존 정책 직접연결 탭을 누르고</strong> , 정책 필터에 AmazonS3FullAccess 를 검색하여, </p>
+<p>정책이름을 클릭합니다. AmazonS3FullAccess 에 표시를 하고, 다음으로 넘어갑니다. </p>
+<br>
+
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image6.png" class="">
+
+<br>
+
+<p>다음은 태그를 설정하는 페이지인데, 그다지 중요하지 않습니다. </p>
+<p><br>그냥 다음으로 넘어갑니다.<br></p>
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image7.png" class="">
+
+<br>
+
+<p>검토 사항을 체크하고, 사용자 만들기를 클릭합니다.</p>
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image8.png" class="">
+
+<br>
+
+<p>사용자 만들기를 클릭하면, 아래 화면 엑세스키 ID 와 비밀엑세스 키 밑에, <br></p>
+<p>각각의 값들이 표시 되어서 나옵니다. </p>
+<br>
+
+<blockquote>
+<p>ACCESS_KEY_ID 와 SECRET_ACCESS_KEY 를 여기에서 잘 복사해 둡니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image9.png" class="">
+
+<br>
+
+<br>
+
+<blockquote>
+<p>이제 이 값들을, </p>
+<p>settings.py 파일에 AWS_ACCESS_KEY_ID 값과 AWS_SECRET_ACCESS_KEY 값에 넣어줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># django-storages </span></span><br><span class="line"><span class="comment"># Django의 FilesStorage로 S3Boto3Storage (AWS S3) </span></span><br><span class="line">DEFAULT_FILE_STORAGE = <span class="string">'storages.backends.s3boto3.S3Boto3Storage'</span></span><br><span class="line">AWS_ACCESS_KEY_ID = <span class="string">''</span>         <span class="comment"># ACCESS_KEY_ID 입력 </span></span><br><span class="line">AWS_SECRET_ACCESS_KEY = <span class="string">''</span>     <span class="comment"># SECRET_ACCESS_KEY 입력 </span></span><br><span class="line">AWS_STORAGE_BUCKET_NAME = <span class="string">'todolist-djangojenge'</span></span><br><span class="line">AWS_S3_CUSTOM_DOMAIN = <span class="string">'%s.s3.amazonaws.com'</span> % AWS_STORAGE_BUCKET_NAME</span><br><span class="line">AWS_AUTO_CREATE_BUCKET = <span class="literal">True</span></span><br><span class="line">AWS_S3_REGION_NAME = <span class="string">'ap-northeast-2'</span></span><br><span class="line">AWS_DEFAULT_ACL = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="정적파일-경로-설정"><a href="#정적파일-경로-설정" class="headerlink" title="정적파일 경로 설정"></a>정적파일 경로 설정</h2><p><br><br></p>
+<p>settings.py 파일에 STATIC 관련 내용을 아래와 같이 바꿔줍니다.<br><br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Static files (CSS, JavaScript, Images)</span></span><br><span class="line"><span class="comment"># https://docs.djangoproject.com/en/3.0/howto/static-files/</span></span><br><span class="line">PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))</span><br><span class="line">STATIC_ROOT = os.path.join(PROJECT_DIR, <span class="string">'static'</span>)</span><br><span class="line">AWS_LOCATION = <span class="string">'static'</span></span><br><span class="line">STATIC_URL = <span class="string">'https://%s/%s/'</span> % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)</span><br><span class="line">STATICFILES_STORAGE = <span class="string">'storages.backends.s3boto3.S3Boto3Storage'</span></span><br><span class="line">STATICFILES_DIRS = [os.path.join(BASE_DIR, <span class="string">'static'</span>)]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위와 같이 STATIC 관련 내용을 설정해주었으면, 아래 명령어를 실행하여, staticfiles 들을 모아줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py collectstatic</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python manage.py collectstatic </span><br><span class="line">You have requested to collect static files at the destination</span><br><span class="line">location as specified <span class="keyword">in</span> your settings.</span><br><span class="line"></span><br><span class="line">This will overwrite existing files!</span><br><span class="line">Are you sure you want to <span class="keyword">do</span> this?</span><br><span class="line"></span><br><span class="line">Type <span class="string">'yes'</span> to <span class="built_in">continue</span>, or <span class="string">'no'</span> to cancel: yes</span><br><span class="line">Found another file with the destination path <span class="string">'bulma/sass/package.json'</span>. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.</span><br><span class="line">Found another file with the destination path <span class="string">'bulma/sass/package-lock.json'</span>. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.</span><br><span class="line">Found another file with the destination path <span class="string">'bulma/sass/style.sass'</span>. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.</span><br><span class="line">Found another file with the destination path <span class="string">'bulma/css/style.css.map'</span>. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.</span><br><span class="line">Found another file with the destination path <span class="string">'bulma/css/style.min.css'</span>. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.</span><br><span class="line">Found another file with the destination path <span class="string">'bulma/css/style.css'</span>. It will be ignored since only the first encountered file is collected. If this is not what you want, make sure every static file has a unique path.</span><br><span class="line"></span><br><span class="line">144 static files copied.</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>S3에 로그인해서 들어가보면, static 하고 todo 폴더가 생성되어 있는것을 확인 할수 있었습니다. </p>
+<p><br>정적파일과, 미디어 파일을 관리하는 폴더입니다.<br><br></p>
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image10.png" class="">
+
+<br>
+
+<p>그런데, 문제가 하나 생깁니다.. 정적파일을 모으고 서버를 실행시켜도. </p>
+<p><br>정적파일들이 적용되지 않는것을 확인할수 있습니다. <br></p>
+<br>
+
+<img src="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/image11.png" class="">
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>S3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 23편 - AWS RDS 사용하기</title>
     <url>/2020/06/10/TodoList-23%ED%8E%B8-AWS-RDS-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="AWS-RDS-사용하기"><a href="#AWS-RDS-사용하기" class="headerlink" title="AWS RDS 사용하기"></a>AWS RDS 사용하기</h2><br>
