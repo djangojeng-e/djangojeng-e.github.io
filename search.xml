@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 25편 - AWS S3 정적 이미지와 CSS 파일 적용</title>
+    <url>/2020/06/16/TodoList-25%ED%8E%B8-AWS-S3-%EC%A0%95%EC%A0%81-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-CSS-%ED%8C%8C%EC%9D%BC-%EC%A0%81%EC%9A%A9/</url>
+    <content><![CDATA[<h2 id="AWS-S3-정적-이미지와-CSS-파일-적용"><a href="#AWS-S3-정적-이미지와-CSS-파일-적용" class="headerlink" title="AWS S3 정적 이미지와 CSS 파일 적용"></a>AWS S3 정적 이미지와 CSS 파일 적용</h2><br>
+
+<p>이전 포스팅에서, </p>
+<p>S3 를 사용해 보았는데, 그전까지 잘 보이던 CSS 와 이미지 파일들이 보이지 않았습니다. </p>
+<br>
+
+<p>이미지와 CSS가 적용되지 않은 사이트를 보게되니, 살짝 당황 했었습니다. </p>
+<br>
+
+<br>
+
+<p>아래 두가지 사유로 인해서, 적용이 되지 않는다는것을 알아냈습니다. </p>
+<br>
+
+<ol>
+<li>경로</li>
+<li>권한 (엑세스 설정) </li>
+</ol>
+<br>
+
+<a id="more"></a> 
+
+<br>
+
+<h2 id="경로-settings-py-파일에-S3관련-세팅-재확인"><a href="#경로-settings-py-파일에-S3관련-세팅-재확인" class="headerlink" title="경로 (settings.py 파일에 S3관련 세팅 재확인)"></a>경로 (settings.py 파일에 S3관련 세팅 재확인)</h2><br>
+
+<p>정적파일이 있는 URL 을 잘 찾을수 있도록, 경로를 다시 한번 확인해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># django-storages</span></span><br><span class="line"><span class="comment"># django FIleStorage로 S3Boto3Storage (AWS S3) 사용 </span></span><br><span class="line">SECRETS = json.load(open(os.path.join(BASE_DIR, <span class="string">'secrets.json'</span>), <span class="string">'rt'</span>))</span><br><span class="line">DEFAULT_FILE_STORAGE = <span class="string">'storages.backends.s3boto3.S3BotoStorage'</span></span><br><span class="line">AWS_ACCESS_KEY_ID = SECRETS[<span class="string">'AWS_ACCESS_KEY_ID'</span>]</span><br><span class="line">AWS_SECRET_ACCESS_KEY = SECRETS[<span class="string">'AWS_SECRET_ACCESS_KEY'</span>]</span><br><span class="line">AWS_STORAGE_BUCKET_NAME = <span class="string">'todolist-djangojenge'</span></span><br><span class="line">AWS_S3_REGION_NAME = <span class="string">'ap-northeast-2'</span></span><br><span class="line">AWS_S3_CUSTOM_DOMAIN = <span class="string">'%s.s3.%s.amazonaws.com'</span> % (AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME)</span><br><span class="line">AWS_AUTO_CREATE_BUCKET = <span class="literal">True</span></span><br><span class="line">AWS_DEFAULT_ACL = <span class="string">'public-read'</span></span><br><span class="line">AWS_S3_OBJECT_PARAMETERS = &#123;<span class="string">'CacheControl'</span>: <span class="string">'max-age=86400'</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Static files (CSS, JavaScript, Images)</span></span><br><span class="line"><span class="comment"># https://docs.djangoproject.com/en/3.0/howto/static-files/</span></span><br><span class="line">PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))</span><br><span class="line">STATIC_ROOT = os.path.join(PROJECT_DIR, <span class="string">'static'</span>)</span><br><span class="line">AWS_LOCATION = <span class="string">'static'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 필자의 경우, 아래 STATIC_URL 이 'https://%s/' %(AWS_S3_CUSTOM_DOMAIN) 으로만 되어 있었음</span></span><br><span class="line"><span class="comment"># S3에 있는 정적파일들의 Full 주소는, 아래 조합과 같음. </span></span><br><span class="line">STATIC_URL = <span class="string">'https://%s/%s/'</span> % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION) </span><br><span class="line"></span><br><span class="line">STATICFILES_STORAGE = <span class="string">'storages.backends.s3boto3.S3Boto3Storage'</span></span><br><span class="line">STATICFILES_DIRS = [os.path.join(BASE_DIR, <span class="string">'static'</span>)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># MEDIA_ROOT 설정 </span></span><br><span class="line"><span class="comment"># user-uploaded static files 의 기본 경로 </span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'.media'</span>)</span><br><span class="line">MEDIA_URL = <span class="string">'/media/'</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>참고로, secrets.json 파일은, 프로젝트 폴더 내에 존재하는 json 파일로, </p>
+<p><br>이 파일에 AWS_ACCESS_KEY 값과, AWS_SECRET_ACCESS_KEY 값이 json 형태로 저장되어 있습니다. </p>
+<p><br>이를, json.loads 를 사용하여, settings.py 파일에 적용해 줍니다. </p>
+<br>
+
+<h2 id="권한-엑세스-설정"><a href="#권한-엑세스-설정" class="headerlink" title="권한 (엑세스 설정)"></a>권한 (엑세스 설정)</h2><br>
+
+<blockquote>
+<p>기본적으로, S3 버킷은, private 으로 설정이 되어 있어서, </p>
+<p>그냥 정적파일을 읽어 오려 하면, 안 읽어 집니다. </p>
+</blockquote>
+<br>
+
+<p>따라서, S3 버킷 접근 속성을, Public 으로 바꾸어줘야. </p>
+<p><br>서버를 실행 시켰을때, 정적파일들을 읽을수 있게 되어, 이 파일들을 이용해서 화면에 렌더해줄수 있습니다. </p>
+<p><br>아래 사이트에 아주 자세히 나와 있어서, 참조하고 권한을 고쳐주면 됩니다. </p>
+<br>
+
+<p><a href="https://www.simplified.guide/aws/create-public-s3-bucket" target="_blank" rel="noopener">https://www.simplified.guide/aws/create-public-s3-bucket</a></p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>S3 적용후에, 정적파일들이 적용 되지 않아서 당황했었지만, <br></p>
+<p>다행히, 에러를 해결할수 있었습니다. 이제 정적파일들과 미디어 파일들은, 로컬 위치가 아닌, S3에서 불러 옵니다. <br></p>
+<p>S3 에서 불러와도 로컬에서 불러온것처럼, 잘 적용되고 표시되는것을 확인할수 있었습니다. </p>
+<br>
+
+<img src="/2020/06/16/TodoList-25%ED%8E%B8-AWS-S3-%EC%A0%95%EC%A0%81-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-CSS-%ED%8C%8C%EC%9D%BC-%EC%A0%81%EC%9A%A9/image1.png" class="">]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>S3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 24편 - AWS S3 적용하기</title>
     <url>/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Amazon-S3-적용하기"><a href="#Amazon-S3-적용하기" class="headerlink" title="Amazon S3 적용하기"></a>Amazon S3 적용하기</h2><br>
