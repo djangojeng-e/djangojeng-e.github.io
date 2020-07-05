@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/ubuntu18-04/</loc>
+        <lastmod>2020-07-05T09:15:42.849Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Docker/</loc>
+        <lastmod>2020-07-05T09:15:42.849Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/S3/</loc>
         <lastmod>2020-06-15T15:24:27.974Z</lastmod>
         <changefreq>weekly</changefreq>
