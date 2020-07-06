@@ -22,34 +22,20 @@
 
   <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <meta name="google-site-verification" content="WlX9ix7sXmMXMWSZS-fiLnWpgx6T0Dz2ON3R7RcK4bA" />
-  <meta name="description" content="어드민 변경메뉴 목록 꾸미기  현재 Question 어드민 페이지는 좋아 보입니다.  change list 페이지를 변경해 보도록 합시다. change list 페이지는 시스템에 있는 모든 질문들을 출력합니다.         기본값으로, Django 는 각 객체의 str() 을 출력해 줍니다.">
+  <meta name="description" content="Docker 리뷰   도커란?  컨테이너 기반의 오픈소스 가상화 플랫폼으로,  컨테이너는 다양한 프로그램, 실행환경을 추상화 하고. 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해줍니다.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Writing your first Django app, part 7 - 3편">
-<meta property="og:url" content="http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/index.html">
+<meta property="og:title" content="TodoList 27편 - Docker 리뷰">
+<meta property="og:url" content="http://djangojeng-e.github.io/2020/07/06/TodoList-27%ED%8E%B8-Docker-%EB%A6%AC%EB%B7%B0/index.html">
 <meta property="og:site_name" content="장고쟁이">
-<meta property="og:description" content="어드민 변경메뉴 목록 꾸미기  현재 Question 어드민 페이지는 좋아 보입니다.  change list 페이지를 변경해 보도록 합시다. change list 페이지는 시스템에 있는 모든 질문들을 출력합니다.         기본값으로, Django 는 각 객체의 str() 을 출력해 줍니다.">
+<meta property="og:description" content="Docker 리뷰   도커란?  컨테이너 기반의 오픈소스 가상화 플랫폼으로,  컨테이너는 다양한 프로그램, 실행환경을 추상화 하고. 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해줍니다.">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image1.png">
-<meta property="og:image" content="http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image2.png">
-<meta property="og:image" content="http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image3.png">
-<meta property="og:image" content="http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image4.png">
-<meta property="og:image" content="http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image5.png">
-<meta property="article:published_time" content="2020-05-08T06:59:45.000Z">
-<meta property="article:modified_time" content="2020-05-08T07:20:35.615Z">
+<meta property="article:published_time" content="2020-07-06T11:07:38.000Z">
+<meta property="article:modified_time" content="2020-07-06T11:13:47.945Z">
 <meta property="article:author" content="장고쟁이">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Django">
-<meta property="article:tag" content="공식문서">
-<meta property="article:tag" content="polls">
-<meta property="article:tag" content="admin">
-<meta property="article:tag" content="튜토리얼">
-<meta property="article:tag" content="list_display">
-<meta property="article:tag" content="list_filter">
-<meta property="article:tag" content="search_fields">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image1.png">
 
-<link rel="canonical" href="http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/">
+<link rel="canonical" href="http://djangojeng-e.github.io/2020/07/06/TodoList-27%ED%8E%B8-Docker-%EB%A6%AC%EB%B7%B0/">
 
 
 <script id="page-configurations">
@@ -61,7 +47,7 @@
   };
 </script>
 
-  <title>Writing your first Django app, part 7 - 3편 | 장고쟁이</title>
+  <title>TodoList 27편 - Docker 리뷰 | 장고쟁이</title>
   
 
 
@@ -217,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/06/TodoList-27%ED%8E%B8-Docker-%EB%A6%AC%EB%B7%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -230,7 +216,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          Writing your first Django app, part 7 - 3편
+          TodoList 27편 - Docker 리뷰
         </h2>
 
         <div class="post-meta">
@@ -241,7 +227,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-05-08 15:59:45 / Updated at: 16:20:35" itemprop="dateCreated datePublished" datetime="2020-05-08T15:59:45+09:00">2020-05-08</time>
+              <time title="Post created: 2020-07-06 20:07:38 / Updated at: 20:13:47" itemprop="dateCreated datePublished" datetime="2020-07-06T20:07:38+09:00">2020-07-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,7 +239,7 @@
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
                 </span>
             </span>
 
@@ -273,8 +259,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/08/Writing-your-first-Django-app-part-7-3편/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/07/06/TodoList-27%ED%8E%B8-Docker-%EB%A6%AC%EB%B7%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/06/TodoList-27편-Docker-리뷰/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -289,143 +275,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="어드민-변경메뉴-목록-꾸미기"><a href="#어드민-변경메뉴-목록-꾸미기" class="headerlink" title="어드민 변경메뉴 목록 꾸미기"></a>어드민 변경메뉴 목록 꾸미기</h2><br>
-
-<p>현재 Question 어드민 페이지는 좋아 보입니다. </p>
-<p><br>change list 페이지를 변경해 보도록 합시다. change list 페이지는 시스템에 있는 모든 질문들을 출력합니다.</p>
-<br>
-
-<br>
-
-<img src="/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image1.png" class="">
-
-<br>
-
-<p>기본값으로, Django 는 각 객체의 str() 을 출력해 줍니다. </p>
-<br>
-
-<a id="more"></a><br>하지만, 때때로, 각각의 fields 를 출력하는게 더 도움될때가 있습니다. <br>어드민 옵션으로, list_display 를 사용해서 display 를 바꿔줄수 있습니다. 
-
-<br>
-
-<br>
-
-<h2 id="list-display-어드민-옵션"><a href="#list-display-어드민-옵션" class="headerlink" title="list_display 어드민 옵션"></a>list_display 어드민 옵션</h2><br>
-
-<br>
+        <h2 id="Docker-리뷰"><a href="#Docker-리뷰" class="headerlink" title="Docker 리뷰"></a>Docker 리뷰</h2><br>
 
 <blockquote>
-<p>list_display 어드민 옵션은, </p>
-<p>field 명들을 가진 튜플로 이루어져 있습니다. </p>
-<p>polls/admin.py 파일을 열어서, list_display 를 써보도록 합시다. </p>
+<p><strong>도커란?</strong> </p>
+<p>컨테이너 기반의 오픈소스 가상화 플랫폼으로, </p>
+<p>컨테이너는 다양한 프로그램, 실행환경을 추상화 하고. 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해줍니다. </p>
 </blockquote>
 <br>
 
-<br>
+<a id="more"></a>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    list_display = (<span class="string">'question_text'</span>, <span class="string">'pub_date'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="컨테이너-Container"><a href="#컨테이너-Container" class="headerlink" title="컨테이너 (Container)"></a>컨테이너 (Container)</h3><br>
 
-<br>
-
-<img src="/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image2.png" class="">
-
-<br>
-
-<blockquote>
-<p>was_published_recently() 메서드도, </p>
-<p>list_display 안에 추가해 봅니다. </p>
-</blockquote>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    list_display = (<span class="string">'question_text'</span>. <span class="string">'pub_date'</span>, <span class="string">'was_published_recently'</span>)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>list_display 튜플안에 있는 필드대로, 테이블이 생성되고, 데이터가 출력 되는것을 확인 할수 있습니다. </p>
-<br>
-
-<img src="/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image3.png" class="">
-
-<br>
-
-<p>컬럼의 헤더를 클릭하면, 값을 기반으로 정렬이 가능합니다. </p>
-<p><br>was_published_recently 헤더는 예외입니다, arbitrary method 를 정렬하는것은 지원하지 않기 때문입니다. <br></p>
-<blockquote>
-<p>polls/models.py 파일을 개선 시킬수 있습니다. </p>
-<p>몇가지 속성들을 추가해 줍니다. </p>
-</blockquote>
-<p><br><br></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">was_published_recently</span><span class="params">(self)</span>:</span></span><br><span class="line">        now = timezone.now()</span><br><span class="line">        <span class="keyword">return</span> now - datetime.timedelta(days=<span class="number">1</span>) &lt;= self.pub_date &lt;= now</span><br><span class="line">    was_published_recently.admin_order_field = <span class="string">'pub_date'</span></span><br><span class="line">    was_published_recently.boolean = <span class="literal">True</span> </span><br><span class="line">    was_published_recently.short_description = <span class="string">'Published recently?'</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>이 메서드 속성들에 대해서 더 알고 싶으면, list_display 문서를 참조 하면 됩니다. </p>
-<br>
-
-<h2 id="list-filter-옵션"><a href="#list-filter-옵션" class="headerlink" title="list_filter 옵션"></a>list_filter 옵션</h2><br>
-
-<blockquote>
-<p>polls/admin.py 파일을 다시 열고, </p>
-<p>Question 의 변경 리스트 페이지의 개선사항을 추가합니다. </p>
-<p>list_filter 를 사용해서, QuestionAdmin 에 추가해줍니다. </p>
-</blockquote>
-<p><br><br></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    fieldsets = [</span><br><span class="line">        (<span class="string">'질문들'</span>, &#123;<span class="string">'fields'</span>: [<span class="string">'question_text'</span>]&#125;),</span><br><span class="line">        (<span class="string">'날짜정보'</span>, &#123;<span class="string">'fields'</span>: [<span class="string">'pub_date'</span>], <span class="string">'classes'</span>: [<span class="string">'collapse'</span>]&#125;),</span><br><span class="line">    ]</span><br><span class="line">    inlines = [ChoiceInline]</span><br><span class="line">    list_display = (<span class="string">'question_text'</span>, <span class="string">'pub_date'</span>, <span class="string">'was_published_recently'</span>)</span><br><span class="line">    list_filter = [<span class="string">'pub_date'</span>]</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>어드민에서 Filter 사이드바를 추가해주어서, 사람들이 pub_date 로 필터를 할수 있게 해줍니다. </p>
-<br>
-
-<img src="/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image4.png" class="">
-
-<br>
-
-<p>출력된 필터 타입은, 필터를 하고 싶은 필드의 타입을 따라갑니다. </p>
-<p><br>pub_date 는 DateTimeField 이기 때문에,<br>Django 에서는, filter option 으로, <br> “Any date”, “Today”, “Past 7 days”, “This month”, “This Year” 라고 적절하게 옵션을 써줍니다. <br><br></p>
+<p>격리된 공간에서 프로세스가 동작하는 기술로, 가상화 기술이지만 기존 가상화 기술과는 약간의 차이가 있습니다. </p>
+<p><br>추가적인 OS를 설치하여 가상화 하는 방법 대신에, 프로세스를 격리 하는 방식을 사용합니다 </p>
+<p><br>리눅스 컨테이너를 사용하여, 단순히 프로세스를 격리시켜서 가볍고 빠르게 동작하게 할수 있습니다. </p>
+<p><br>CPU 나 메모리는 딱 프로세스가 필요한 만큼만 추가로 사용하고, 성능적으로도 손실이 별로 없습니다. </p>
 <br>
 
 
 
-<h2 id="검색기능-추가"><a href="#검색기능-추가" class="headerlink" title="검색기능 추가"></a>검색기능 추가</h2><p><br>모양새가 좋아졌습니다. 검색 기능도 가능하게 추가해 보겠습니다. </p>
+<h3 id="이미지-image"><a href="#이미지-image" class="headerlink" title="이미지 (image)"></a>이미지 (image)</h3><br>
+
+<p><strong>이미지는 컨테이너 실행에 필요한 파일과 설정값들을 포함하고 있는것으로.</strong> </p>
+<p><br>상태값을 가지게 되며, immutable 합니다 (즉, 한번 선언되면 수정될수는 없음). 같은 이미지를 가지고 여러개의 컨테이너를 생성할수 있고, 컨테이너의 상태가 바뀌거나 컨테이너가 삭제 되더라도, 이미지는 변하지 않고, 그대로 남습니다. </p>
+<br>
+
+<p>새로운 서버가 추가되면, 미리 만들어 놓은 이미지를 다운받고 컨테이너를 생성만 하면 됩니다. </p>
+<br>
+
+<p>한 서버에 여러개의 컨테이너를 실행할수 있고, 수십, 수백, 수천대의 컨테이너 실행도 괜찮습니다. </p>
 <br>
 
 <blockquote>
-<p>polls/admin.py 파일을 열고, </p>
-<p>아래 내용을 QuestionAdmin 클래스에 추가해 줍니다. </p>
-<p>search_fields = [‘quesiton_text’]</p>
+<p><strong>Docker Image (도커 이미지)는</strong> </p>
+<p>Docker Hub 와 Docker Registry 저장소를 직접 만들어 관리할수 있습니다 </p>
 </blockquote>
-<br>
-
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    fieldsets = [</span><br><span class="line">        (<span class="string">'질문들'</span>, &#123;<span class="string">'fields'</span>: [<span class="string">'question_text'</span>]&#125;),</span><br><span class="line">        (<span class="string">'날짜정보'</span>, &#123;<span class="string">'fiedls'</span>: [<span class="string">'pub_date'</span>], <span class="string">'classes'</span>: [<span class="string">'collapse'</span>]&#125;),</span><br><span class="line">    ]</span><br><span class="line">    inlines = [ChoiceInline]</span><br><span class="line">    list_display = (<span class="string">'quesiton_text'</span>, <span class="string">'pub_date'</span>, <span class="string">'was_published_recently'</span>)</span><br><span class="line">    list_filter = [<span class="string">'pub_date'</span>]</span><br><span class="line">    search_fields = [<span class="string">'question_text'</span>]</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<p>화면에 검색바가 하나 추가되는것을 확인 할수 있습니다. </p>
-<br>
-
-<img src="/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/image5.png" class="">
-
-<br>
-
-<p>검색 바에 내용을 입력하면, Django 는 question_text 필드를 조회할것 입니다. <br><br></p>
-<p>사용하고 싶은 필드들을 입력할수 있습니다. <br>다만, 서치바 뒤에서 작업되는 방식은 LIKE 쿼리문이 동작하는 것과 동일한 방식으로 사용됩니다. <br>사용 가능한 필드 숫자를 제한하여 데이터베이스가 조회 작업을 하기 편하게 해줘야 합니다. </p>
-<p><br><br></p>
-<p>Change List, 즉 변경 리스트는 pagination 을 제공합니다.<br> 기본값은 100개의 아이템을 한페이지에 출력 하는것입니다. </p>
-<br>
-
-<br>
-
-<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
-
-<p>어드민 파일 클래스에, 아래 내용들을 추가하면, </p>
-<p>디스플레이가 바뀐다는것을 복습하고 넘어갑니다. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list_display = (<span class="string">'question_text'</span>, <span class="string">'pub_date'</span>, <span class="string">'was_published_recently'</span>)</span><br><span class="line">list_filter = [<span class="string">'pub_date'</span>]</span><br><span class="line">search_fields = [<span class="string">'question_text'</span>]</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -435,15 +321,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
-              <a href="/tags/Django/" rel="tag"># Django</a>
-              <a href="/tags/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" rel="tag"># 공식문서</a>
-              <a href="/tags/polls/" rel="tag"># polls</a>
-              <a href="/tags/admin/" rel="tag"># admin</a>
-              <a href="/tags/%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC/" rel="tag"># 튜토리얼</a>
-              <a href="/tags/list-display/" rel="tag"># list_display</a>
-              <a href="/tags/list-filter/" rel="tag"># list_filter</a>
-              <a href="/tags/search-fields/" rel="tag"># search_fields</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
           </div>
 
         
@@ -452,13 +330,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/07/Writing-your-first-Django-app-part-7-2%ED%8E%B8/" rel="prev" title="Writing your first Django app, part 7 - 2편">
-      <i class="fa fa-chevron-left"></i> Writing your first Django app, part 7 - 2편
+    <a href="/2020/07/05/TodoList-26%ED%8E%B8-Docker-%EC%84%A4%EC%B9%98-Ubuntu18-04-%EA%B8%B0%EC%A4%80/" rel="prev" title="TodoList 26편 - Docker 설치 (Ubuntu18.04) 기준">
+      <i class="fa fa-chevron-left"></i> TodoList 26편 - Docker 설치 (Ubuntu18.04) 기준
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/09/Writing-your-first-Django-app-part-7-4%ED%8E%B8/" rel="next" title="Writing your first Django app, part 7 - 4편">
-      Writing your first Django app, part 7 - 4편 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -525,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#어드민-변경메뉴-목록-꾸미기"><span class="nav-number">1.</span> <span class="nav-text">어드민 변경메뉴 목록 꾸미기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list-display-어드민-옵션"><span class="nav-number">2.</span> <span class="nav-text">list_display 어드민 옵션</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list-filter-옵션"><span class="nav-number">3.</span> <span class="nav-text">list_filter 옵션</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#검색기능-추가"><span class="nav-number">4.</span> <span class="nav-text">검색기능 추가</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#마치며"><span class="nav-number">5.</span> <span class="nav-text">마치며..</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-리뷰"><span class="nav-number">1.</span> <span class="nav-text">Docker 리뷰</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#컨테이너-Container"><span class="nav-number">1.1.</span> <span class="nav-text">컨테이너 (Container)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#이미지-image"><span class="nav-number">1.2.</span> <span class="nav-text">이미지 (image)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -758,9 +633,9 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "http://djangojeng-e.github.io/2020/05/08/Writing-your-first-Django-app-part-7-3%ED%8E%B8/";
-    this.page.identifier = "2020/05/08/Writing-your-first-Django-app-part-7-3편/";
-    this.page.title = "Writing your first Django app, part 7 - 3편";
+    this.page.url = "http://djangojeng-e.github.io/2020/07/06/TodoList-27%ED%8E%B8-Docker-%EB%A6%AC%EB%B7%B0/";
+    this.page.identifier = "2020/07/06/TodoList-27편-Docker-리뷰/";
+    this.page.title = "TodoList 27편 - Docker 리뷰";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {

@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 27편 - Docker 리뷰</title>
+    <url>/2020/07/06/TodoList-27%ED%8E%B8-Docker-%EB%A6%AC%EB%B7%B0/</url>
+    <content><![CDATA[<h2 id="Docker-리뷰"><a href="#Docker-리뷰" class="headerlink" title="Docker 리뷰"></a>Docker 리뷰</h2><br>
+
+<blockquote>
+<p><strong>도커란?</strong> </p>
+<p>컨테이너 기반의 오픈소스 가상화 플랫폼으로, </p>
+<p>컨테이너는 다양한 프로그램, 실행환경을 추상화 하고. 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해줍니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+<h3 id="컨테이너-Container"><a href="#컨테이너-Container" class="headerlink" title="컨테이너 (Container)"></a>컨테이너 (Container)</h3><br>
+
+<p>격리된 공간에서 프로세스가 동작하는 기술로, 가상화 기술이지만 기존 가상화 기술과는 약간의 차이가 있습니다. </p>
+<p><br>추가적인 OS를 설치하여 가상화 하는 방법 대신에, 프로세스를 격리 하는 방식을 사용합니다 </p>
+<p><br>리눅스 컨테이너를 사용하여, 단순히 프로세스를 격리시켜서 가볍고 빠르게 동작하게 할수 있습니다. </p>
+<p><br>CPU 나 메모리는 딱 프로세스가 필요한 만큼만 추가로 사용하고, 성능적으로도 손실이 별로 없습니다. </p>
+<br>
+
+
+
+<h3 id="이미지-image"><a href="#이미지-image" class="headerlink" title="이미지 (image)"></a>이미지 (image)</h3><br>
+
+<p><strong>이미지는 컨테이너 실행에 필요한 파일과 설정값들을 포함하고 있는것으로.</strong> </p>
+<p><br>상태값을 가지게 되며, immutable 합니다 (즉, 한번 선언되면 수정될수는 없음). 같은 이미지를 가지고 여러개의 컨테이너를 생성할수 있고, 컨테이너의 상태가 바뀌거나 컨테이너가 삭제 되더라도, 이미지는 변하지 않고, 그대로 남습니다. </p>
+<br>
+
+<p>새로운 서버가 추가되면, 미리 만들어 놓은 이미지를 다운받고 컨테이너를 생성만 하면 됩니다. </p>
+<br>
+
+<p>한 서버에 여러개의 컨테이너를 실행할수 있고, 수십, 수백, 수천대의 컨테이너 실행도 괜찮습니다. </p>
+<br>
+
+<blockquote>
+<p><strong>Docker Image (도커 이미지)는</strong> </p>
+<p>Docker Hub 와 Docker Registry 저장소를 직접 만들어 관리할수 있습니다 </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 26편 - Docker 설치 (Ubuntu18.04) 기준</title>
     <url>/2020/07/05/TodoList-26%ED%8E%B8-Docker-%EC%84%A4%EC%B9%98-Ubuntu18-04-%EA%B8%B0%EC%A4%80/</url>
     <content><![CDATA[<h2 id="Docker-설치-ubuntu18-04"><a href="#Docker-설치-ubuntu18-04" class="headerlink" title="Docker 설치 (ubuntu18.04)"></a>Docker 설치 (ubuntu18.04)</h2><p><br><br></p>
