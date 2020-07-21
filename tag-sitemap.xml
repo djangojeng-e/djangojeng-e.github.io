@@ -3,8 +3,15 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EC%25BB%25A8%25ED%2585%258C%25EC%259D%25B4%25EB%2584%2588/</loc>
+        <lastmod>2020-07-21T13:07:15.673Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/Docker/</loc>
-        <lastmod>2020-07-07T11:30:40.020Z</lastmod>
+        <lastmod>2020-07-21T13:07:15.673Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
