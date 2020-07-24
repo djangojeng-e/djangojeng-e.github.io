@@ -1,6 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 30편 - 생성된 이미지 DockerHub 에 푸쉬</title>
+    <url>/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/</url>
+    <content><![CDATA[<h2 id="DockerHub-에-이미지-푸쉬"><a href="#DockerHub-에-이미지-푸쉬" class="headerlink" title="DockerHub 에 이미지 푸쉬"></a>DockerHub 에 이미지 푸쉬</h2><br>
+
+<p>현재까지 진행한 순서대로 정리하면, </p>
+<br>
+
+<ol>
+<li>AWS EC2 생성 </li>
+<li>AWS RDS 생성 - PostgreSQL 적용 </li>
+<li>AWS S3 생성 및 적용 </li>
+<li>AWS S3 정적 이미지와 CSS 파일 적용 </li>
+<li>Docker 설치 </li>
+<li>Dockerfile 작성 후 이미지 생성 </li>
+<li>생성된 이미지를 DockerHub 에 push </li>
+</ol>
+<br>
+
+<h2 id="이미지-저장소"><a href="#이미지-저장소" class="headerlink" title="이미지 저장소"></a>이미지 저장소</h2><br>
+
+<p>도커는 빌드한 이미지를 서버에 배포하기 위한 파일을 도커 레지스트리, 즉, Docker registery 라는 저장소를 사용해 복사합니다. 빌드가 완료된 이미지를 레지스트리에 푸쉬 (push) 하고, 다른 서버에서 (pull) 하여 사용하는 구조로 되어 있습니다. </p>
+<br>
+
+<p>살짝, git 과 비슷한 느낌입니다. </p>
+<br>
+
+<img src="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/image1.png" class="">
+
+
+
+<a id="more"></a> 
+
+<br>
+
+<h2 id="Docker-Hub"><a href="#Docker-Hub" class="headerlink" title="Docker Hub"></a>Docker Hub</h2><br>
+
+<p>도커 허브는, 도커에서 제공하는 이미지 저장소 입니다. <br></p>
+<p>ubuntu, centos, debian 등의 베이스 이미지와, ruby, golang, java, python 등의 공식 이미지가 저장되어 있습니다. </p>
+<br>
+
+<p>회원 가입 이후에, 대용량 이미지를 무료로 저장할수 있고, 다운로드 트래픽도 무료 입니다. <br><br></p>
+<p>하지만, 모든 이미지는 공개되어 누구나 접근 가능하고, 비공개로 설정하려면 유료 서비스를 이용해야 합니다.<br></p>
+<p>도커 헙 페이지에 접속하여, 회원가입을 마칩니다. <br>회원가입을 다 마치면, 로그인을 하여, 사용 준비를 할수 있습니다.<br></p>
+<br>
+
+<img src="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/image2.png" class="">
+
+<br>
+
+<h2 id="Docker-Hub-로그인"><a href="#Docker-Hub-로그인" class="headerlink" title="Docker Hub 로그인"></a>Docker Hub 로그인</h2><br>
+
+<p>계정을 생성해주었으면, 터미널에서 아래 명령어를 실행하여, </p>
+<p><br>도커 허브 계정을 사용할수 있게 로그인 합니다. </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker login</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>아래와 같은 메시지가 뜨고, 성공적으로 로그인이 되는걸 확인할수 있습니다. </p>
+<p><br>로그아웃 하기 전까지, 로그인 정보가 유지됩니다.<br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Configure a credential helper to remove this warning. See</span><br><span class="line">https://docs.docker.com/engine/reference/commandline/login/<span class="comment">#credentials-store</span></span><br><span class="line"></span><br><span class="line">Login Succeeded</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<h2 id="Docker-Hub-Push"><a href="#Docker-Hub-Push" class="headerlink" title="Docker Hub Push"></a>Docker Hub Push</h2><br>
+
+<p>지난 포스팅에서, Dockerfile 을 이용하여, docker image 를 생성해 주었었습니다. </p>
+<br>
+
+<p><code>docker images</code>명령어를 실행하여, 이미지 목록을 확인해 보면, 지난 시간에 생성해 주었었던, <br></p>
+<p><code>todolist:latest</code> 이미지가 있는것을 확인 할수 있습니다. </p>
+<br>
+
+
+
+<img src="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/image3.png" class="">
+
+
+
+<br>
+
+<p>이제 이 이미지를, DockerHub 에 전송해 보도록 하겠습니다. </p>
+<br>
+
+<blockquote>
+<p>우선, tag 명령어를 사용하여, </p>
+<p>업로드할 이미지의 이름을 지정해 줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker tag todolist:latest headfat1218/todolist:latest</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>이미지를 지정해주었으면, 이제 push 명령어를 사용하여, </p>
+<p>push 를 진행 합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker push headfat1218/todolist:latest</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>명령어를 실행하면, 아래와 같이 진행이 되고 </p>
+<br>
+
+<img src="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/image4.png" class="">
+
+<br>
+
+<img src="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/image5.png" class="">
+
+<br>
+
+<blockquote>
+<p>push 가 완료 된 후에, DockerHub 페이지로 가보면, </p>
+<p>repository 에 전송 되어 있는것을 확인 할수 있습니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/image6.png" class="">
+
+<br>
+
+<h2 id="이미지를-푸쉬-하는-이유"><a href="#이미지를-푸쉬-하는-이유" class="headerlink" title="이미지를 푸쉬 하는 이유"></a>이미지를 푸쉬 하는 이유</h2><br>
+
+<p>DockerHub 에 업로드 된 이미지는, 어디서든 pull 받아서 사용할수 있습니다. </p>
+<p><br>아래 명령어를 예로 들어보면, DockerHub repository 저장소, headfat1218/todolist:latest 를 다운 받아와서 사용하겠다는 명령어 입니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8000:8000 --name todolist headfat1218/todolist:latest</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>터미널에서, 위 명령어를 실행한뒤에, 브라우저에 접속해서 127.0.0.1:8000 으로 접속하면, </p>
+<p><br>프로젝트가 잘 작동합니다. <br></p>
+<p>로컬에서는 배포가 잘 이루어 지는것 같아 보이는데… 그 다음 스텝은 무엇이 될까요…? ㅠㅠ</p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>DockerHub</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 29편 - Dockerfile 작성후 이미지 생성</title>
     <url>/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/</url>
     <content><![CDATA[<h2 id="Dockerfile-작성"><a href="#Dockerfile-작성" class="headerlink" title="Dockerfile 작성"></a>Dockerfile 작성</h2><br>
