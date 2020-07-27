@@ -204,6 +204,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/" class="post-title-link" itemprop="url">TodoList 1편 - 초기설정</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-05-15 02:06:50 / Updated at: 02:17:52" itemprop="dateCreated datePublished" datetime="2020-05-15T02:06:50+09:00">2020-05-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/15/TodoList-1편-초기설정/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="미니프로젝트-시작"><a href="#미니프로젝트-시작" class="headerlink" title="미니프로젝트 시작"></a>미니프로젝트 시작</h2><br>
+
+<p>간단한 todolist 프로젝트를 진행하며, </p>
+<p><br>이제까지 공부한 내용을 복습도 하고, 그동안 구현하지 못했던것들도 찾으면서 구현해 보려 합니다. </p>
+<p><br>내가 할일을 생성하고, 업데이트하고, 삭제하는, Todolist 사이트를 만들어 봅니다. </p>
+<br>
+
+<h2 id="개발-개요"><a href="#개발-개요" class="headerlink" title="개발 개요"></a>개발 개요</h2><br>
+
+<table>
+<thead>
+<tr>
+<th><strong>개발 정보</strong></th>
+<th><strong>디테일</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>python version</td>
+<td>3.8.0</td>
+</tr>
+<tr>
+<td>os</td>
+<td>ubuntu18.04</td>
+</tr>
+<tr>
+<td>django version</td>
+<td>3.06</td>
+</tr>
+<tr>
+<td>CSS Framework</td>
+<td>Bulma</td>
+</tr>
+<tr>
+<td>개발 툴</td>
+<td>visual studio code</td>
+</tr>
+<tr>
+<td>배포</td>
+<td>AWS</td>
+</tr>
+<tr>
+<td>데이터베이스</td>
+<td>sqlite3 혹은 postgreSQL</td>
+</tr>
+</tbody></table>
+<br>
+
+<ul>
+<li>개발내역은, 프로젝트의 진행 상황과 숙련도에 따라서 달라질수 있음. </li>
+</ul>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/10/Writing-your-first-Django-app-part-7-5%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1189,106 +1332,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/03/Writing-your-first-Django-app-part5-4%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/03/Writing-your-first-Django-app-part5-4%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part5 - 4편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-05-03 15:49:43 / Updated at: 16:05:26" itemprop="dateCreated datePublished" datetime="2020-05-03T15:49:43+09:00">2020-05-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/05/03/Writing-your-first-Django-app-part5-4%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/03/Writing-your-first-Django-app-part5-4편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="View-테스트-하기"><a href="#View-테스트-하기" class="headerlink" title="View 테스트 하기"></a>View 테스트 하기</h2><br>
-
-<p>우리가 작성한 polls 어플리케이션은 구분을 잘 못합니다. </p>
-<p><br>이게 무슨 이야기냐면, polls app은 아무 질문이나 발행하고, pub_date 필드가 미래의 값인것도 발행 가능합니다. 이점은 개선 되어야 할점입니다. </p>
-<p><br><br></p>
-<p>pub_date 를 미래의 날짜로 설정한다는것은, </p>
-<p><br>Question 은 그때 발행은 되지만, 해당 pub_date 날짜가 올때까지 보여지지 않아야 합니다. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/03/Writing-your-first-Django-app-part5-4%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1359,7 +1402,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">111</span>
+          <span class="site-state-item-count">112</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

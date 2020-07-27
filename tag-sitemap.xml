@@ -4,7 +4,21 @@
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/DockerHub/</loc>
-        <lastmod>2020-07-24T04:51:36.938Z</lastmod>
+        <lastmod>2020-07-27T11:21:09.242Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/Docker/</loc>
+        <lastmod>2020-07-27T11:21:09.242Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/AWS/</loc>
+        <lastmod>2020-07-27T11:21:09.242Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -24,13 +38,6 @@
     </url>
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/Docker/</loc>
-        <lastmod>2020-07-21T13:07:15.673Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://djangojeng-e.github.io/tags/ubuntu18-04/</loc>
         <lastmod>2020-07-05T09:15:42.849Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -39,13 +46,6 @@
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/S3/</loc>
-        <lastmod>2020-06-15T15:24:27.974Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/AWS/</loc>
         <lastmod>2020-06-15T15:24:27.974Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
