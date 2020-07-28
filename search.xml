@@ -1,6 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TodoList 32편 - .dockerignore 파일</title>
+    <url>/2020/07/28/TodoList-32%ED%8E%B8-dockerignore-%ED%8C%8C%EC%9D%BC/</url>
+    <content><![CDATA[<h2 id="dockerignore-파일"><a href="#dockerignore-파일" class="headerlink" title="dockerignore 파일"></a>dockerignore 파일</h2><br>
+
+<p>현재까지 배포를 위해 진행한 스텝입니다 </p>
+<br>
+
+<ol>
+<li>AWS EC2 생성 </li>
+<li>AWS RDS 생성 - PostgreSQL 적용 </li>
+<li>AWS S3 생성 및 적용 </li>
+<li>AWS S3 정적 이미지와 CSS 파일 적용 </li>
+<li>Docker 설치 </li>
+<li>Dockerfile 작성 후 이미지 생성 </li>
+<li>생성된 이미지를 DockerHub 에 Push </li>
+<li>Docker 를 이용하여 EC2 에 배포하기 (.dockerigrnoe파일) </li>
+</ol>
+<br>
+
+<p>지난 포스팅까지, Docker 를 이용하여, EC2 에 배포하는것 까지 진행 하였고. <br></p>
+<p>EC2 에 잘 배포가 되는것까지 확인 하였습니다. </p>
+<br>
+
+<blockquote>
+<p>하지만, Docker 를 사용하여, </p>
+<p>EC2 에 배포할때에, .dockerignore 파일에 대해서 </p>
+<p>신경 써야 한다는 점을 잊지 말아야 합니다 </p>
+</blockquote>
+<a id="more"></a> 
+
+<br>
+
+<h2 id="dockerignore-파일이란"><a href="#dockerignore-파일이란" class="headerlink" title=".dockerignore 파일이란?"></a>.dockerignore 파일이란?</h2><br>
+
+<br>
+
+<p><code>.gitignore</code> 파일과 비슷하게, <code>.dockerignore</code> 파일은 하나의 도구로써, <br></p>
+<p>정말로 필요한 Docker 빌드 내용을 정의 하는데에 사용됩니다. </p>
+<br>
+
+<p>이 파일을 사용함으로써, 어떤 폴더와 파일들이 도커를 빌드할때에 무시되고, 예외처리가 될지 기준을 정합니다<br></p>
+<p>마치, git 에 무언가를 작업하여 올릴때, gitignore 에 올리지 말아야 할 파일과 디렉토리를 정하는것 처럼 말입니다. <br></p>
+<p><code>.dockerignore</code> 파일에 포함된 파일들과 폴더들은, <br>빌드내용에 포함되지 않게 되어서 도커 서버에 업로드가 되지 않을것입니다. </p>
+<br>
+
+<h2 id="왜-신경을-써야-하나요"><a href="#왜-신경을-써야-하나요" class="headerlink" title="왜 신경을 써야 하나요?"></a>왜 신경을 써야 하나요?</h2><br>
+
+<p>실제로, 요즘 컴퓨터들은 빠르고, 네트워크도 꽤나 안정적이고 빠른데다가 저장소를 사용하는것도 많이 저렴해 졌습니다. 그렇다면, </p>
+<blockquote>
+<p><code>.dockerignore</code>를 사용하여, 파일들과 폴더들을 업로드 하지 않는 이유가. </p>
+<p>용량때문만은 아닐것입니다.  </p>
+</blockquote>
+<br>
+
+<p>어째서 .dockerignore 를 사용해야 하는지에 대해서 몇가지 예를 들어 봅니다. </p>
+<br>
+
+<br>
+
+<h3 id="도커-이미지-사이즈"><a href="#도커-이미지-사이즈" class="headerlink" title="도커 이미지 사이즈"></a>도커 이미지 사이즈</h3><br>
+
+<p>요즘 컴퓨터들이 아무리 빠르고, 네트워크도 안정적이고, 저장소가 저렴해졌다고 해도, </p>
+<p><br>도커 이미지의 용량에 대해서 신경쓰지 않아도 된다는 이야기는 아닙니다. 여전히 용량은 중요한 포인트 이고, 어떤 상황에서는, 하나의 도커 이미지를 여러개의 서버에 올려서 사용해야 할때도 있습니다. </p>
+<br>
+
+<p>이런 상황에서는, 이미지 사이즈와 이미지 생성 시간이 중요해 집니다. </p>
+<br>
+
+<p>예를들면, 5 MB 짜리 도커 이미지를 100개의 서버에 배포하는것이, 700MB 짜리 도커 이미지를 100개의 서버에 배포하는것보다 훨씬 빠르고 저렴할것입니다. </p>
+<br>
+
+<p>따라서, .dockerignore 를 사용하여, 용량관리를 해보는것도 나쁘지 않은 생각입니다. </p>
+<br>
+
+<h3 id="의도하지-않은-비밀값-노출"><a href="#의도하지-않은-비밀값-노출" class="headerlink" title="의도하지 않은 비밀값 노출"></a>의도하지 않은 비밀값 노출</h3><br>
+
+<p>빌드 내용을 제어하지 않는다면, </p>
+<p><br>의도치 않게 우리의 코드, 커밋 내역 그리고 비밀값들 (키와 인증키 등등) 이 노출 될수 있습니다. </p>
+<br>
+
+<p><code>ADD .</code> 혹은 <code>COPY .</code> 커맨드를 사용하여 파일들을 도커 이미지 안에 복사를 한다면, 우리는 의도하지 않게 소스 파일들을 포함하고, 모든 깃 내역과, 비밀값들 (.aws, env, 혹은 개인정보 키같은 값들), 캐시, 그리고 기타 파일들을 도커 빌드 내용에 넣어, 결국에 도커 이미지 안에 의도치 않게 넣을수 있습니다. </p>
+<br>
+
+<p>DockerHub 에 존재하는 도커 이미지중에 여러개의 이미지들은, 어플리케이션 소스 코드, 비밀번호, 키값들 그리고 인증값들을 노출하고 있습니다. <code>.git</code> 폴더를 도커 이미지안에 실수로라도 복사하는것은 특히나 좋지 않습니다. </p>
+<br>
+
+<p>따라서, <code>.dockerignore</code> 를 사용하여, 이런 비밀값들이나 민감한 정보 관리를 할수 있습니다. </p>
+<p><br><code>.git folder</code>를 <code>.dockerignore</code>  파일에 항상 표시해두는것이 좋습니다. </p>
+<br>
+
+<h3 id="Cache-무효"><a href="#Cache-무효" class="headerlink" title="Cache 무효"></a>Cache 무효</h3><br>
+
+<p>어플리케이션의 전체 코드베이스를 이미지에 넣는 방식은 대체로 아래 명령어를 사용하는것이 일반적입니다. </p>
+<br>
+
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">COPY</span><span class="bash"> . /user/src/app</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이런 경우에는, 전체 빌드 내용을 이미지에 복사하게 됩니다. </p>
+<p><br>그리고 한가지 더 중요한점은, 각 Dockerfile 명령어는 새로운 레이어를 생성한다는 점입니다. </p>
+<br>
+
+<p>따라서, 포함된 파일들에 대한 수정 사항들은, <code>COPY . /opt/myapp</code> 레이어와 새로운 이미지 레이어가 다음 빌드에 생성되게 될때, 빌드 캐시를 무효화 합니다 (빌드를 훨씬 더 느리게 한다는 이야기 입니다) </p>
+<br>
+
+<br>
+
+<p>만약 우리의 작업 폴더들이 매우 빈번히 업데이트가 되는 파일들을 가지고 있다면, (로그, 테스트 결과, 깃내역, 임시 캐시파일등등), 우리는 이 레이어를 매번 dockr build 를 실행할때마다 생성하게 될것입니다. </p>
+<br>
+
+<p>따라서, 빌드 내용을 맞게 관리 하지 않는다면, 빌드들은 캐시를 맞는 방법으로 사용할수가 없어서, 매우 느려질겁니다. </p>
+<br>
+
+<br>
+
+<h3 id="dockerignore-문법"><a href="#dockerignore-문법" class="headerlink" title=".dockerignore 문법"></a>.dockerignore 문법</h3><br>
+
+<p>이제 우리는 어째서 도커 빌드 내용을 제어해야만 하고, 이것이 어떻게 이루어지는지 살펴 보았습니다. </p>
+<br>
+
+
+
+<blockquote>
+<p>.dockerignore 파일은, </p>
+<p>깃툴에서 사용되는, .girignore  파일과 비슷합니다. </p>
+</blockquote>
+<br>
+
+<p>깃헙에서 사용되는 <code>.gitignore</code> 파일들과 비슷하게, 도커 빌드 내용을 생성할때 무시되어야 할 파일들과 폴더들을 특정 패턴을 통해 설정할수 있습니다. </p>
+<br>
+
+<blockquote>
+<p><code>.dockerignore</code> 파일 문법이, <code>.gitignore</code>  파일과 비슷한 문법이다 하더라도, </p>
+<p>그것들이 똑같지는 않습니다! </p>
+</blockquote>
+<br>
+
+<p>예시) </p>
+<br>
+
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .git 과 .cache 폴더를 무시 </span></span><br><span class="line">.git </span><br><span class="line">.cache </span><br><span class="line"></span><br><span class="line"><span class="comment"># ignore all *.class files in all folders, including build root</span></span><br><span class="line"><span class="comment"># 모든 폴더안에 있는 모든, *.class 파일들을 무시   </span></span><br><span class="line">**/*.class </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 모든 마크다운 파일들 (md) 파일들을 무시, </span></span><br><span class="line"><span class="comment"># 모든 README*.md 파일 무시 </span></span><br><span class="line">*.md </span><br><span class="line">IREADME*.md</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h3 id="Dockerfile-을-dockerignore-에-포함되어야-하나요"><a href="#Dockerfile-을-dockerignore-에-포함되어야-하나요" class="headerlink" title="Dockerfile 을 .dockerignore 에 포함되어야 하나요?"></a>Dockerfile 을 .dockerignore 에 포함되어야 하나요?</h3><br>
+
+<p>이 질문에 대한 명확한 답은 존재하지 않습니다. </p>
+<p><br>대부분 개인 취향에 달려 있긴 하지만. <code>.dockerfile</code> 을 <code>Dockerfile</code> 안에 포함하는것이 권장 됩니다<br></p>
+<p>그리고, 그전에, Dockerfile 이 어떠한 민감한 정보도 갖고 있지 않도록 합니다. </p>
+<p><br><br></p>
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p><code>.dockerignore</code> 파일을 도커 이미지들을 생성하는 모든 프로젝트에 사용해야 합니다. </p>
+<p><br><code>.dockerignore</code>는 도커 이미지들을 작고, 빠르고, 안전하게 만들어 줍니다.<br>또한, 로컬 개발에서 도커 캐시를 도와주기도 합니다. </p>
+<br>
+
+<p>최소한, git 폴더는 .dockerignore 파일에 포함되어야만 합니다. 그리고 아래 프로젝트 특화 추가 파일들도 추가해주어야 합니다. </p>
+<br>
+
+<ul>
+<li>빌드로그 </li>
+<li>스크립트 / 결과 테스트 </li>
+<li>임시 파일들 </li>
+<li>캐싱 </li>
+<li>로컬 비밀값들 </li>
+<li>docker-compose.yml 같은 로컬 개발 파일들 </li>
+</ul>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>미니프로젝트</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>dockerignore</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TodoList 31편 - Docker를 이용하여 EC2에 배포</title>
     <url>/2020/07/27/TodoList-31%ED%8E%B8-Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC/</url>
     <content><![CDATA[<p>현재까지 배포를 위해 진행한 순서는, </p>
