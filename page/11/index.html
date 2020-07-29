@@ -204,6 +204,116 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/" class="post-title-link" itemprop="url">Hexo 블로그 - 블로그내에 검색 기능 추가</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-03-26 22:29:45" itemprop="dateCreated datePublished" datetime="2020-03-26T22:29:45+09:00">2020-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-03-27 22:15:56" itemprop="dateModified" datetime="2020-03-27T22:15:56+09:00">2020-03-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo-Blog/" itemprop="url" rel="index"><span itemprop="name">Hexo Blog</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/26/Hexo-블로그-블로그내에-검색-기능-추가/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="블로그내-검색기능-추가"><a href="#블로그내-검색기능-추가" class="headerlink" title="블로그내 검색기능 추가"></a>블로그내 검색기능 추가</h1><br>
+
+<p>블로그내에 검색기능을 추가하려 합니다. <br></p>
+<p>카테고리나, 태그로 검색해도 괜찮지만, 포스트들을 검색할수 있는 기능이 있으면 좋을것 같습니다 </p>
+<br>
+
+<br>
+
+<h2 id="hexo-generator-searchdb-설치하기"><a href="#hexo-generator-searchdb-설치하기" class="headerlink" title="hexo-generator-searchdb 설치하기"></a>hexo-generator-searchdb 설치하기</h2><br>
+
+<p><code>search data generator</code>플러그인을 설치 해줍니다. </p>
+<p><br>해당 플러그인은 여러분의 포스트의 필요한 데이터를 포함하고 있는 <code>검색 인덱스 파일</code>을 생성하는데 사용하고. <br></p>
+<p>이 파일들을을 이용해서, 블로그내에 로컬 서치 엔진 으로 사용합니다. </p>
+<br>
+
+<p><br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/03/22/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-SEO-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1141,98 +1251,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/03/15/NeXT-Theme-Categories-and-Tags/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/15/NeXT-Theme-Categories-and-Tags/" class="post-title-link" itemprop="url">NeXT Theme - Categories and Tags</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-03-15 10:06:46" itemprop="dateCreated datePublished" datetime="2020-03-15T10:06:46+09:00">2020-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-03-31 15:52:24" itemprop="dateModified" datetime="2020-03-31T15:52:24+09:00">2020-03-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo-Blog/" itemprop="url" rel="index"><span itemprop="name">Hexo Blog</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/03/15/NeXT-Theme-Categories-and-Tags/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/15/NeXT-Theme-Categories-and-Tags/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>카테고리와 태그 설정 테스트 페이지.</p>
-<h3 id="Custom-Page-Support"><a href="#Custom-Page-Support" class="headerlink" title="Custom Page Support"></a>Custom Page Support</h3><p>Next allows users to add custom pages in menu.</p>
-<div class="tabs" id="adding-custom-page"><ul class="nav-tabs"><li class="tab active"><a href="#adding-custom-page-1">Adding New Page →</a></li><li class="tab"><a href="#adding-custom-page-2">Setting Front-matter Values →</a></li></ul><div class="tab-content"><div class="tab-pane active" id="adding-custom-page-1"><p>In your terminal emulator, change to Hexo site dir. Use <code>hexo new page custom_name</code> to create a new <code>custom_name</code> page:</p>
-<pre><code>$ cd your-hexo-site
-$ hexo new page custom_name</code></pre></div><div class="tab-pane" id="adding-custom-page-2"><p>Front-matter is a block of YAML or JSON at the beginning of the file that is used to configure settings for your writings. Settings Front-matter values and more detailed can be found in <a href="https://hexo.io/docs/front-matter" target="_blank" rel="noopener">Front-matter</a>. You can also add contents in <code>custom_name/index.md</code> if you like.</p></div></div></div>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1303,7 +1321,7 @@ $ hexo new page custom_name</code></pre></div><div class="tab-pane" id="adding-c
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1316,7 +1334,7 @@ $ hexo new page custom_name</code></pre></div><div class="tab-pane" id="adding-c
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">108</span>
+        <span class="site-state-item-count">110</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
