@@ -204,6 +204,119 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/31/Django-Models-2%ED%8E%B8-using-models/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/31/Django-Models-2%ED%8E%B8-using-models/" class="post-title-link" itemprop="url">Django Models 2편 - using models </a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-07-31 07:54:42 / Updated at: 08:06:33" itemprop="dateCreated datePublished" datetime="2020-07-31T07:54:42+09:00">2020-07-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/07/31/Django-Models-2%ED%8E%B8-using-models/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/31/Django-Models-2편-using-models/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Using-models-모델-사용하기"><a href="#Using-models-모델-사용하기" class="headerlink" title="Using models (모델 사용하기)"></a>Using models (모델 사용하기)</h2><br>
+
+<h3 id="앱-등록하기"><a href="#앱-등록하기" class="headerlink" title="앱 등록하기"></a>앱 등록하기</h3><br>
+
+<p>모델을 정의 한 후에 우리는, Django 에게 이 모델을 사용할것이라고 얘기해주어야 합니다. </p>
+<p><br>Django 에게 이 모델을 사용할것이라고 알려주기 위해서는, </p>
+<br>
+
+<blockquote>
+<p>settings.py 에 있는 INSTALLED_APPS 에 해당 모듈명을 추가해 주어야 합니다 </p>
+</blockquote>
+<br>
+
+<p>예를들어, <code>python manage.py startapp usemodel</code> 명령어를 통해, usemodel 이라는 앱을 생성하였다고 가정하면, settings.py 파일에 INSTALLED_APPS 안에, 생성된 모델이 아래와 같이 등록 되어 있어야 합니다.  </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="comment">#...</span></span><br><span class="line">    <span class="string">'usemodel'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/31/Django-Models-2%ED%8E%B8-using-models/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1196,117 +1309,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/06/16/TodoList-25%ED%8E%B8-AWS-S3-%EC%A0%95%EC%A0%81-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-CSS-%ED%8C%8C%EC%9D%BC-%EC%A0%81%EC%9A%A9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/16/TodoList-25%ED%8E%B8-AWS-S3-%EC%A0%95%EC%A0%81-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-CSS-%ED%8C%8C%EC%9D%BC-%EC%A0%81%EC%9A%A9/" class="post-title-link" itemprop="url">TodoList 25편 - AWS S3 정적 이미지와 CSS 파일 적용</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-06-16 00:14:43 / Updated at: 00:24:27" itemprop="dateCreated datePublished" datetime="2020-06-16T00:14:43+09:00">2020-06-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/06/16/TodoList-25%ED%8E%B8-AWS-S3-%EC%A0%95%EC%A0%81-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-CSS-%ED%8C%8C%EC%9D%BC-%EC%A0%81%EC%9A%A9/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/16/TodoList-25편-AWS-S3-정적-이미지와-CSS-파일-적용/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="AWS-S3-정적-이미지와-CSS-파일-적용"><a href="#AWS-S3-정적-이미지와-CSS-파일-적용" class="headerlink" title="AWS S3 정적 이미지와 CSS 파일 적용"></a>AWS S3 정적 이미지와 CSS 파일 적용</h2><br>
-
-<p>이전 포스팅에서, </p>
-<p>S3 를 사용해 보았는데, 그전까지 잘 보이던 CSS 와 이미지 파일들이 보이지 않았습니다. </p>
-<br>
-
-<p>이미지와 CSS가 적용되지 않은 사이트를 보게되니, 살짝 당황 했었습니다. </p>
-<br>
-
-<br>
-
-<p>아래 두가지 사유로 인해서, 적용이 되지 않는다는것을 알아냈습니다. </p>
-<br>
-
-<ol>
-<li>경로</li>
-<li>권한 (엑세스 설정) </li>
-</ol>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/16/TodoList-25%ED%8E%B8-AWS-S3-%EC%A0%95%EC%A0%81-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-CSS-%ED%8C%8C%EC%9D%BC-%EC%A0%81%EC%9A%A9/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1377,7 +1379,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">116</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/07/31/Django-Models-2%ED%8E%B8-using-models/</loc>
+        <lastmod>2020-07-30T23:06:33.771Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/</loc>
         <lastmod>2020-07-30T13:15:54.569Z</lastmod>
         <changefreq>weekly</changefreq>
