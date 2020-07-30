@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/</loc>
+        <lastmod>2020-07-30T13:15:54.569Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/07/29/TodoList-33%ED%8E%B8-Docker%EB%A1%9C-%EB%B0%B0%ED%8F%AC-nginx-%EC%99%80-gunicorn/</loc>
         <lastmod>2020-07-29T05:50:37.918Z</lastmod>
         <changefreq>weekly</changefreq>
