@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 3편 - Fields (Field Types)</title>
+    <url>/2020/08/01/Django-Models-3%ED%8E%B8-Fields-Field-Types/</url>
+    <content><![CDATA[<h2 id="Fields"><a href="#Fields" class="headerlink" title="Fields"></a>Fields</h2><br>
+
+<p>모델에서 가장 중요하고, 가장 요구되는 사항중 하나는. </p>
+<p><br>모델에서 정의하는 데이터베이스 필드들의 리스트 입니다. </p>
+<br>
+
+<p>필드는 클래스 속성으로 정의되어 있습니다. </p>
+<br>
+
+<blockquote>
+<p>주의사항, </p>
+<p>필드명은, clean, save, delete 와 같은 model API 와 충돌할수 있는 이름으로 지으면 안됩니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a> 
+
+<br>
+
+<p>예시 코드는 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Musician</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    first_name = models.CharField(max_length=<span class="number">50</span>)  <span class="comment"># Musician class 의 속성 </span></span><br><span class="line">    last_name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    instrument = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Album</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    artist = models.ForiengKey(Musician, on_delete=models.CASCADE)</span><br><span class="line">    name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    release_date = models.DateField()</span><br><span class="line">    num_stars = models.IntegerField()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Field-Types"><a href="#Field-Types" class="headerlink" title="Field Types"></a>Field Types</h2><br>
+
+<p>각 모델안에 필드들은 적절한 필드클래스의 인스턴스여야 합니다. </p>
+<br>
+
+<p>Django 는 필드 클래스에 정의되어 있는 type 들을 사용해서 여러가자 사항들을 결정합니다. </p>
+<br>
+
+<ul>
+<li>INTEGER, VARCHAR, TEXT 같은 컬럼 타입을 결정하여, 데이터베이스가 어떤 종류의 데이터를 저장할건지 결정합니다 </li>
+<li>폼 필드를 출력할때 어떤 기본  HTML 위젯을 사용할지 결정합니다 </li>
+<li>DJango 의 어드민과 자동 생성되는 폼에서 사용할 최소한의 검증사항들을 결정합니다. </li>
+</ul>
+<br>
+
+<p>Django 는 여러개의 내장 필드 타입들을 지원합니다. 필드타입의 리스트를 확인하고 싶다면,  model field reference 문서를 확인하면 됩니다. Django 의 내장 필드타입으로 충분하지 않다면, 본인 스스로 커스텀 필드를 작성할수도 있습니다. wrting custom model fields 문서를 참조하면 됩니다. </p>
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>Django 에서 모델을 작성할때, models.py 안에 작성하는 클래스는 데이터베이스 테이블이 되고. </p>
+<p><br>클래스 안의 속성들을 통해서 필드명과 데이터 타입을 정의할수 있습니다. </p>
+<br>]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 2편 - using models </title>
     <url>/2020/07/31/Django-Models-2%ED%8E%B8-using-models/</url>
     <content><![CDATA[<h2 id="Using-models-모델-사용하기"><a href="#Using-models-모델-사용하기" class="headerlink" title="Using models (모델 사용하기)"></a>Using models (모델 사용하기)</h2><br>
