@@ -1,6 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 6편 - Fields (verbose field names)</title>
+    <url>/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/</url>
+    <content><![CDATA[<h2 id="Models-Fields-verbose-field-names"><a href="#Models-Fields-verbose-field-names" class="headerlink" title="Models - Fields (verbose field names)"></a>Models - Fields (verbose field names)</h2><br>
+
+<p><code>ForeignKey</code>, <code>ManyToManyField</code> 그리고 <code>OneToOneField</code> 들을 제외한, 각 필드 타입은 선택적으로 첫번째 위치인자로, <code>verbose name</code> 을 받습니다. </p>
+<br>
+
+<p><code>verbose name</code> 이 주어지지 않았을때는, Django 는 자동으로 field 의 속성명의 언더스코어를 공백으로 전환하여 verbose name 을 생성합니다. </p>
+<br>
+
+<blockquote>
+<p>verbose name 은 </p>
+<p>사용자가 사용하는 자세한 이름을 의미합니다 </p>
+</blockquote>
+<br>
+
+<p><code>verbose name</code> 을 지정하지 않으면, 어드민에 표시되는 이름이 이상하다는것을 느낄수 있을겁니다. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>아래 예시에서, verbose name 은 “person’s first name” 입니다 </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">first_name = models.CharField(<span class="string">"person's first name"</span>, max_length=<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<blockquote>
+<p>아래 예시에서는, verbose name 이 “first name” 입니다.</p>
+<p>필드 타입의 첫번째 인자로, verbose name 이 명시되지 않았기 때문에, </p>
+<p>필드명 first_name 에서, 언더스코어를 공백으로 전환하여 verbose name 을 표시합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">first_name = models.CharField(max_length=<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<blockquote>
+<p>verbose_name 을 정의한 모델의 예시입니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Members</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>, verbose_name=<span class="string">'이름'</span>)</span><br><span class="line">    nick_name = models.CharField(max_length=<span class="number">50</span>, verbose_name=<span class="string">"닉네임"</span>)</span><br><span class="line">    birth_date = models.DateField(verbose_name=<span class="string">"생년월일"</span>, null=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위 Members 모델에서는, name, nick_name, birth_date 이 각각 한글로 표시된 verbose_name 들을 어드민에 표시할것입니다.  </p>
+<br>
+
+<h2 id="외래키-모델들"><a href="#외래키-모델들" class="headerlink" title="외래키 모델들"></a>외래키 모델들</h2><br>
+
+<p>아직 살펴보지는 않았지만, <code>ForeignKey</code>, <code>ManyToManyField</code> 그리고 <code>OneToOneField</code> 들은 첫번째 인자로 모델 클래스가 옵니다. </p>
+<blockquote>
+<p>따라서, <code>verbose_name</code>을 키워드 인자로 사용해줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">poll = models.ForeignKey(Poll, on_delete=models.CASCADE, verbose_name=<span class="string">"the related poll"</span>)</span><br><span class="line"><span class="comment"># poll 은 ForeignKey (외래키) 로 Poll 이라는 클래스를 첫번째 인자로 받음 </span></span><br><span class="line"><span class="comment"># verbose_name 은 키워드 인자로 넣어줌 </span></span><br><span class="line"></span><br><span class="line">sites = models.ManyToManyField(Site, verbose_name=<span class="string">"list of sites"</span>)</span><br><span class="line"><span class="comment"># sites 는 ManyToManyField 로 Site 라는 클래스를 첫번째 인자로 받음 </span></span><br><span class="line"><span class="comment"># verbose_name 은 키워드 인자로 넣어줌 </span></span><br><span class="line"></span><br><span class="line">place = models.OneToOneField(Place, on_delete=models.CASCADE, verbose_name=<span class="string">'related place'</span>)</span><br><span class="line"><span class="comment"># place 는 OneToOneField 로 Place 라는 클래스를 첫번째 인자로 받음 </span></span><br><span class="line"><span class="comment"># verbose_name 은 키워드 인자로 넣어줌</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위의 예시에서는, 단지 <code>ForeignKey</code>, <code>ManyToManyField</code>  그리고 <code>OneToOneField</code> 를 사용할때에, verbose_name 이 어떻게 키워드 인자로 들어가는지에 대한 코딩 스타일만 보여주고 있습니다. </p>
+<br>
+
+<blockquote>
+<p>관례적으로, </p>
+<p>verbose_name 의 첫번째 글자는 대문자로 써주지 않습니다. </p>
+<p>Django 가 필요할때 자동으로 첫번째 글자를 대문자화 해줍니다. </p>
+</blockquote>
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>verbose_name 에 대해서 알아보았습니다.<br>verbose_name 을 사용하면, 어떤것이 달라지는지 완벽한 예시가 있으면 좋았을텐데, <br><br></p>
+<p>현재까지는, verbose_name 을 사용할경우, 해당 필드가 어드민에 표시되는 바가 달라지게 된다는점을 알고 넘어가면 될것 같습니다. </p>
+<br>
+
+<p>지난 포스팅에서 Runner 모델을 작성했었는데, 아래와 같이, <br></p>
+<p>name 필드에 verbose_name 을 추가해주었습니다. “러너 이름” </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Runner</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    MedalType = models.TextChoices(<span class="string">'MedalType'</span>, <span class="string">'GOLD SILVER BRONZE'</span>)</span><br><span class="line">    name = models.CharField(<span class="string">"러너이름"</span>, max_length=<span class="number">60</span>)</span><br><span class="line">    medal = models.CharField(blank=<span class="literal">True</span>, choices=MedalType.choices, max_length=<span class="number">10</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name + <span class="string">" "</span> + self.medal</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>위와같이 verbose_name 을 모델 필드에 추가하면, 아래처럼 어드민에 “러너이름” 이라고 표시가 됩니다. </p>
+<br>
+
+<img src="/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/image1.png" class="">]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 5편 - Fields (Automatic primary key fields)</title>
     <url>/2020/08/02/Django-Models-5%ED%8E%B8-Fields-Automatic-primary-key-fields/</url>
     <content><![CDATA[<h2 id="Models-Fields-Automatic-primary-key"><a href="#Models-Fields-Automatic-primary-key" class="headerlink" title="Models - Fields(Automatic primary key)"></a>Models - Fields(Automatic primary key)</h2><br>
