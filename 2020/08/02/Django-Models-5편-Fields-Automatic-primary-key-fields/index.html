@@ -22,21 +22,20 @@
 
   <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <meta name="google-site-verification" content="WlX9ix7sXmMXMWSZS-fiLnWpgx6T0Dz2ON3R7RcK4bA" />
-  <meta name="description" content="장고쟁이의 Python, Django 공부 노트">
-<meta property="og:type" content="website">
-<meta property="og:title" content="장고쟁이">
-<meta property="og:url" content="http://djangojeng-e.github.io/tags/AWS/index.html">
+  <meta name="description" content="Models - Fields(Automatic primary key)  기본값으로, Django 는 각 모델에 다음과 같은 field 를 부여 합니다.  아래 필드는, 해당 모델에 명시적으로 정의해 놓지 않아도, 자동으로 적용이 되어 있습니다.      1id &#x3D; models.AutoField(primary_key&#x3D;True)    이는, 자동으로 증가하는">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django Models 5편 - Fields (Automatic primary key fields)">
+<meta property="og:url" content="http://djangojeng-e.github.io/2020/08/02/Django-Models-5%ED%8E%B8-Fields-Automatic-primary-key-fields/index.html">
 <meta property="og:site_name" content="장고쟁이">
-<meta property="og:description" content="장고쟁이의 Python, Django 공부 노트">
+<meta property="og:description" content="Models - Fields(Automatic primary key)  기본값으로, Django 는 각 모델에 다음과 같은 field 를 부여 합니다.  아래 필드는, 해당 모델에 명시적으로 정의해 놓지 않아도, 자동으로 적용이 되어 있습니다.      1id &#x3D; models.AutoField(primary_key&#x3D;True)    이는, 자동으로 증가하는">
 <meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-08-02T10:22:49.000Z">
+<meta property="article:modified_time" content="2020-08-02T10:27:10.758Z">
 <meta property="article:author" content="장고쟁이">
-<meta property="article:tag" content="python">
-<meta property="article:tag" content=" django">
-<meta property="article:tag" content=" web programming">
-<meta property="article:tag" content=" hexo">
+<meta property="article:tag" content="models">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://djangojeng-e.github.io/tags/AWS/">
+<link rel="canonical" href="http://djangojeng-e.github.io/2020/08/02/Django-Models-5%ED%8E%B8-Fields-Automatic-primary-key-fields/">
 
 
 <script id="page-configurations">
@@ -44,11 +43,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false
+    isPost : true
   };
 </script>
 
-  <title>태그: AWS | 장고쟁이</title>
+  <title>Django Models 5편 - Fields (Automatic primary key fields) | 장고쟁이</title>
   
 
 
@@ -199,194 +198,149 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">AWS
-          <small>태그</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/02/Django-Models-5%ED%8E%B8-Fields-Automatic-primary-key-fields/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Django Models 5편 - Fields (Automatic primary key fields)
         </h2>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-02 19:22:49 / Updated at: 19:27:10" itemprop="dateCreated datePublished" datetime="2020-08-02T19:22:49+09:00">2020-08-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/02/Django-Models-5%ED%8E%B8-Fields-Automatic-primary-key-fields/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/02/Django-Models-5편-Fields-Automatic-primary-key-fields/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h2 class="collection-header">2020</h2>
-    </div>
+        <h2 id="Models-Fields-Automatic-primary-key"><a href="#Models-Fields-Automatic-primary-key" class="headerlink" title="Models - Fields(Automatic primary key)"></a>Models - Fields(Automatic primary key)</h2><br>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>기본값으로, Django 는 각 모델에 다음과 같은 field 를 부여 합니다. </p>
+<p>아래 필드는, 해당 모델에 명시적으로 정의해 놓지 않아도, 자동으로 적용이 되어 있습니다. </p>
+<br>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-27T20:06:46+09:00"
-              content="2020-07-27">
-          07-27
-        </time>
-      </div>
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/07/27/TodoList-31%ED%8E%B8-Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC/" itemprop="url">
-            <span itemprop="name">TodoList 31편 - Docker를 이용하여 EC2에 배포</span>
-          </a>
-      </h3>
 
-    </header>
-  </article>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<br>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-16T00:14:43+09:00"
-              content="2020-06-16">
-          06-16
-        </time>
-      </div>
+<p>이는, 자동으로 증가하는 primary key 입니다. </p>
+<br>
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/06/16/TodoList-25%ED%8E%B8-AWS-S3-%EC%A0%95%EC%A0%81-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-CSS-%ED%8C%8C%EC%9D%BC-%EC%A0%81%EC%9A%A9/" itemprop="url">
-            <span itemprop="name">TodoList 25편 - AWS S3 정적 이미지와 CSS 파일 적용</span>
-          </a>
-      </h3>
+<p>만약 사용자 정의의 primary key  를 명시하고 싶으면, primary_key 로 사용하고 싶은 필드에, <code>primary_key=True</code> 를 명시해주면 됩니다. </p>
+<br>
 
-    </header>
-  </article>
+<p>만약, 여러분들이 명시적으로, 어떠한 필드에 <code>primary_key = True</code> 를 설정한것을 보면, django 는 자동으로 id 컬럼을 추가하지 않을것입니다. </p>
+<br>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>각 모델은, 정확히 하나의 필드가 primary_key = True 를 가질것을 요구합니다 (두개 이상의 필드가 primary_key=True  를 가질수는 없다는 이야기 입니다) </p>
+<br>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-12T14:29:41+09:00"
-              content="2020-06-12">
-          06-12
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/06/12/TodoList-24%ED%8E%B8-AWS-S3-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/" itemprop="url">
-            <span itemprop="name">TodoList 24편 - AWS S3 적용하기</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-10T23:23:22+09:00"
-              content="2020-06-10">
-          06-10
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/06/10/TodoList-23%ED%8E%B8-AWS-RDS-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" itemprop="url">
-            <span itemprop="name">TodoList 23편 - AWS RDS 사용하기</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-09T19:39:19+09:00"
-              content="2020-06-09">
-          06-09
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/" itemprop="url">
-            <span itemprop="name">TodoList 22편 - AWS RDS 생성하기</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-08T22:06:28+09:00"
-              content="2020-06-08">
-          06-08
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/06/08/TodoList-21%ED%8E%B8-AWS-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC-%EC%8B%9C%EC%9E%91/" itemprop="url">
-            <span itemprop="name">TodoList 21편 - AWS EC2에 배포 시작</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-05T08:57:57+09:00"
-              content="2020-06-05">
-          06-05
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/06/05/TodoList-20%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%97%90-%EC%A0%91%EC%86%8D-%ED%8C%8C%EC%9D%BC-%EC%A0%84%EC%86%A1/" itemprop="url">
-            <span itemprop="name">TodoList 20편 - AWS EC2 인스턴스에 접속, 파일 전송</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-04T20:14:49+09:00"
-              content="2020-06-04">
-          06-04
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/06/04/TodoList-19%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/" itemprop="url">
-            <span itemprop="name">TodoList 19편 - AWS EC2 인스턴스 생성하기</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/models/" rel="tag"># models</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/" rel="prev" title="Django Models 4편 - Fields (Field Options)">
+      <i class="fa fa-chevron-left"></i> Django Models 4편 - Fields (Field Options)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -433,6 +387,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Models-Fields-Automatic-primary-key"><span class="nav-number">1.</span> <span class="nav-text">Models - Fields(Automatic primary key)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -662,6 +617,26 @@ window.addEventListener('pjax:success', () => {
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://djangojeng-e.github.io/2020/08/02/Django-Models-5%ED%8E%B8-Fields-Automatic-primary-key-fields/";
+    this.page.identifier = "2020/08/02/Django-Models-5편-Fields-Automatic-primary-key-fields/";
+    this.page.title = "Django Models 5편 - Fields (Automatic primary key fields)";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://djangojeng-e.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
 </script>
 
     </div>

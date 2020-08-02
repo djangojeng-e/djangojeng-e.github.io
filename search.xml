@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 5편 - Fields (Automatic primary key fields)</title>
+    <url>/2020/08/02/Django-Models-5%ED%8E%B8-Fields-Automatic-primary-key-fields/</url>
+    <content><![CDATA[<h2 id="Models-Fields-Automatic-primary-key"><a href="#Models-Fields-Automatic-primary-key" class="headerlink" title="Models - Fields(Automatic primary key)"></a>Models - Fields(Automatic primary key)</h2><br>
+
+<p>기본값으로, Django 는 각 모델에 다음과 같은 field 를 부여 합니다. </p>
+<p>아래 필드는, 해당 모델에 명시적으로 정의해 놓지 않아도, 자동으로 적용이 되어 있습니다. </p>
+<br>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이는, 자동으로 증가하는 primary key 입니다. </p>
+<br>
+
+<p>만약 사용자 정의의 primary key  를 명시하고 싶으면, primary_key 로 사용하고 싶은 필드에, <code>primary_key=True</code> 를 명시해주면 됩니다. </p>
+<br>
+
+<p>만약, 여러분들이 명시적으로, 어떠한 필드에 <code>primary_key = True</code> 를 설정한것을 보면, django 는 자동으로 id 컬럼을 추가하지 않을것입니다. </p>
+<br>
+
+<p>각 모델은, 정확히 하나의 필드가 primary_key = True 를 가질것을 요구합니다 (두개 이상의 필드가 primary_key=True  를 가질수는 없다는 이야기 입니다) </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 4편 - Fields (Field Options)</title>
     <url>/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/</url>
     <content><![CDATA[<h2 id="Field-Options"><a href="#Field-Options" class="headerlink" title="Field Options"></a>Field Options</h2><br>
