@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"djangojeng-e.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta name="google-site-verification" content="WlX9ix7sXmMXMWSZS-fiLnWpgx6T0Dz2ON3R7RcK4bA" />
+  <meta name="description" content="Field Options  각각의 필드들은, 해당 필드에 특화된 독립 변수들을 갖습니다.     예를들면,  CharField 와 CharField 의 서브클래스들은,  max_length 같은, 데이터를 저장하기 위해서 길이를 정의하는 독립된 변수들을 갖게 됩니다.     또한, 모든 필드 타입들에 유효한, 공통 독립 변수들도 존재합니다.  모든 변수들은">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django Models 4편 - Fields (Field Options)">
+<meta property="og:url" content="http://djangojeng-e.github.io/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/index.html">
+<meta property="og:site_name" content="장고쟁이">
+<meta property="og:description" content="Field Options  각각의 필드들은, 해당 필드에 특화된 독립 변수들을 갖습니다.     예를들면,  CharField 와 CharField 의 서브클래스들은,  max_length 같은, 데이터를 저장하기 위해서 길이를 정의하는 독립된 변수들을 갖게 됩니다.     또한, 모든 필드 타입들에 유효한, 공통 독립 변수들도 존재합니다.  모든 변수들은">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="http://djangojeng-e.github.io/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/image1.png">
+<meta property="og:image" content="http://djangojeng-e.github.io/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/image2.png">
+<meta property="og:image" content="http://djangojeng-e.github.io/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/image3.png">
+<meta property="article:published_time" content="2020-08-02T01:53:03.000Z">
+<meta property="article:modified_time" content="2020-08-02T02:33:54.089Z">
+<meta property="article:author" content="장고쟁이">
+<meta property="article:tag" content="models">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://djangojeng-e.github.io/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/image1.png">
+
+<link rel="canonical" href="http://djangojeng-e.github.io/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Django Models 4편 - Fields (Field Options) | 장고쟁이</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="naver-site-verification" content="b855a7ad81fb77d8cd20dc2267432ca962ba8376" />
+<link rel="alternate" href="/rss2.xml" title="장고쟁이" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">장고쟁이</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">당신은 멋쟁이, 우리는 장고쟁이~</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/djangojeng-e" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Django Models 4편 - Fields (Field Options)
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-02 10:53:03 / Updated at: 11:33:54" itemprop="dateCreated datePublished" datetime="2020-08-02T10:53:03+09:00">2020-08-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/02/Django-Models-4편-Fields-Field-Options/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Field-Options"><a href="#Field-Options" class="headerlink" title="Field Options"></a>Field Options</h2><br>
+
+<p>각각의 필드들은, 해당 필드에 특화된 독립 변수들을 갖습니다. </p>
+<br>
+
+<blockquote>
+<p>예를들면, </p>
+<p>CharField 와 CharField 의 서브클래스들은, </p>
+<p>max_length 같은, 데이터를 저장하기 위해서 길이를 정의하는 독립된 변수들을 갖게 됩니다. </p>
+</blockquote>
+<br>
+
+<p>또한, 모든 필드 타입들에 유효한, 공통 독립 변수들도 존재합니다. </p>
+<p><br>모든 변수들은, 선택적으로 사용할수 있고, reference 문서에 완벽하게 설명이 되어 있지만. </p>
+<p><br><strong>가장 공통적으로 많이 사용되는것들을 정리하고 넘어갑니다.</strong> <br></p>
+<br>
+
+<a id="more"></a> 
+
+<br>
+
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><br>
+
+<p><code>null=True</code> 일 경우에, Django 는 빈값을 NULL 로 데이터베이스에 저장합니다. </p>
+<p>기본값은 False 입니다. </p>
+<br>
+
+<h3 id="blank"><a href="#blank" class="headerlink" title="blank"></a>blank</h3><br>
+
+<p><code>blank=True</code> 일 경우에, 필드는 비어있는 값이 허용됩니다. 기본값은 False 입니다. </p>
+<br>
+
+<br>
+
+<h2 id="NULL-vs-Blank"><a href="#NULL-vs-Blank" class="headerlink" title="NULL vs Blank?"></a>NULL vs Blank?</h2><br>
+
+<blockquote>
+<p>blank 와 null 은 다르다는것을 숙지해야 합니다. </p>
+<p>null 은 순수하게 데이터베이스 측면에서 생각하는 값이고, </p>
+<p>blank 는 검증 혹은 유효성 검사 측면에서 바라보는것입니다. </p>
+<br>
+
+<p>null 은 필드의 값이 NULL (정보없음) 으로 저장되는것을 허용하고, </p>
+<p>blank 는 필드가 폼(입력 양식) 에서 비어있는 채로 저장되는것을 허용합니다. </p>
+<br>
+
+<p>blank = false 이면, 해당 필드가 비어있는채로 저장되는것을 허용하지 않습니다. </p>
+<p>비슷하게도, null=false 일 경우에, 필드의 값이 NULL (정보없음) 으로 저장되는것을 허용하지 않습니다. </p>
+</blockquote>
+<br>
+
+<h3 id="choices"><a href="#choices" class="headerlink" title="choices"></a>choices</h3><br>
+
+<p>2개로된 튜플은, 필드의 선택값으로 사용할수 있습니다. </p>
+<p><br>튜플이 주어지면, 기본 양식 폼 위젯은 문자열 필드 대신에 select box 가 될것이고, 튜플에 들어있는 선택들로, 선택이 제한됩니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">YEAR_IN_SCHOOL_CHOICES = [</span><br><span class="line">    (<span class="string">'FR'</span>, <span class="string">'Freshman'</span>), </span><br><span class="line">    (<span class="string">'SO'</span>, <span class="string">'Sophomore'</span>), </span><br><span class="line">    (<span class="string">'JR'</span>, <span class="string">'Junior'</span>), </span><br><span class="line">    (<span class="string">'SR'</span>, <span class="string">'Senior'</span>), </span><br><span class="line">    (<span class="string">'GR'</span>, <span class="string">'Graduate'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>여기서 알아야 할게, </p>
+<br>
+
+<blockquote>
+<p>Choices 의 순서가 바뀔대마다, 새로운 migration  이 생겨납니다. </p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>또한, </p>
+<p>튜플의 첫번째 값은, 데이터베이스에 저장되는 값이고, </p>
+<p>튜플의 두번째 값은, 필드의 입력양식 위젯에 표시됩니다. 즉, 이 모델을 가지고 폼 (입력양식) 을 만들었을때, 입력양식 위젯에 표시되는것은, 튜플의 두번째 값이고. </p>
+<p>실제 사용자가 이 입력양식을 통해서 값을 입력하여 데이터베이스에 저장할시에는, 튜플의 첫번째 값으로 저장이 됩니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<p>모델 인스턴스가 주어졌을때, Choices 를 가진 필드의 표시값은, get_shirt_size_display() 메서드를 사용해서 접근할수 있습니다. 아래 예시를 통해서 알아봅니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    SHIRT_SIZES = (</span><br><span class="line">    	(<span class="string">'S'</span>, <span class="string">'Small'</span>),</span><br><span class="line">        (<span class="string">'M'</span>, <span class="string">'Medium'</span>),</span><br><span class="line">        (<span class="string">'L'</span>, <span class="string">'Large'</span>),</span><br><span class="line">    )</span><br><span class="line">    name = models.CharField(max_length=<span class="number">60</span>)</span><br><span class="line">    shirt_size = models.CharField(max_length=<span class="number">1</span>, choices=SHIRT_SIZES)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+
+
+<h4 id="choices-값의-표시"><a href="#choices-값의-표시" class="headerlink" title="choices 값의 표시"></a>choices 값의 표시</h4><p><br><br></p>
+<ul>
+<li>shirt_size 가 데이터베이스에 저장될때에는, 튜플의 첫번째 값들인, S, M, L 로 저장이 되고 </li>
+<li>shirt_size 가 폼에 표시될때는, Small, Medium, Large 로 표시가 됩니다 </li>
+<li>이렇게 데이터베이스 외의 위치에서 표시되는 값들은, get_shirt_size_display() 로 호출할수 있습니다. </li>
+</ul>
+<br>
+
+<br>
+
+<blockquote>
+<p>실제로 model 을 작성해서 테스트 해봅니다 </p>
+<p>shell 에 접속하여, 아래 코드를 입력합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shell 에 접속 </span></span><br><span class="line">python manage.py shell </span><br><span class="line"></span><br><span class="line"><span class="comment"># shell 접속후에 실습 </span></span><br><span class="line"></span><br><span class="line">In [1]: p = Person(name=<span class="string">"Superman"</span>, shirt_size=<span class="string">"L"</span>)                                   </span><br><span class="line"></span><br><span class="line">In [2]: <span class="comment"># Person의 name이 Superman, 셔츠 사이즈가 L 인 인스턴스 생성                                                                                                      </span></span><br><span class="line"></span><br><span class="line">In [3]: p.save()                                                                                                                                                          </span><br><span class="line"></span><br><span class="line">In [4]: <span class="comment">#  p.save() 를 호출하여, p 를 데이터베이스에 저장                                                                                                                 </span></span><br><span class="line"></span><br><span class="line">In [5]: p.shirt_size                                                                                                                                                      </span><br><span class="line">Out[5]: <span class="string">'L'</span></span><br><span class="line"></span><br><span class="line">In [6]: p.get_shirt_size_display()                                                                                                                                        </span><br><span class="line">Out[6]: <span class="string">'Large'</span></span><br><span class="line"></span><br><span class="line">In [7]: <span class="comment"># p의 shirt_size의 display 값을 표시</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>어드민에서 SHIRT_SIZE 는  Large 라고 표시됩니다.</p>
+<br>
+
+<img src="/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/image1.png" class="">
+
+<br>
+
+<p>하지만, 정작 DB 에는, L 로 저장되어 있는것을 확인 할수 있습니다. </p>
+<br>
+
+<img src="/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/image2.png" class="">
+
+<br>
+
+<br>
+
+<h4 id="간단하게-choices-정의하기"><a href="#간단하게-choices-정의하기" class="headerlink" title="간단하게 choices 정의하기"></a>간단하게 choices 정의하기</h4><br>
+
+<p>enumeration 클래스들을 사용해서 간단한 방법으로 choices 들을 정의할수 있습니다 </p>
+<br>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line">class Runner(models.Model);</span><br><span class="line">	MedalType = models.TextChoices(<span class="string">'MedalType'</span>, <span class="string">'GOLD SILVER BRONZE'</span>)</span><br><span class="line">	<span class="comment"># 튜플에서 두번째 값인, 'GOLD SILVER BRONZE' 가 선택할수 있는값이 됨 </span></span><br><span class="line">	name = models.CharField(max_length=<span class="number">60</span>)</span><br><span class="line">	medal = models.CharField(blank=<span class="literal">True</span>, choices=MedalType.choices, max_length=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>Runner 를 추가할때, GOLD SILVER BRONZE 셋중 하나를 선택해서 추가할수 있습니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/image3.png" class="">
+
+<p><br><br></p>
+<h3 id="default"><a href="#default" class="headerlink" title="default"></a>default</h3><br>
+
+<p>필드의 기본값을 지정합니다. 기본값은 특정 값일수도 있고, 호출 가능한 객체일수도 있습니다. </p>
+<p>호출 가능한 객체라면, 새로운 객체가 생성될때마다, 호출이 됩니다.<br></p>
+<p>예) </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line">class Djangojeng_e(models.Model);</span><br><span class="line">	<span class="comment"># 이름이 장고쟁이인 객체만 생성할수 있음 </span></span><br><span class="line">	name = models.CharFied(max_length=<span class="number">20</span>, default=<span class="string">'장고쟁이'</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="help-text"><a href="#help-text" class="headerlink" title="help_text"></a>help_text</h3><br>
+
+<p>추가적인 help 텍스트가 입력양식 위젯과 함께 표시가 됩니다. 필드가 입력양식에서 사용되지 않더라도. </p>
+<p><br>문서화 할때에 유용합니다 <br><br></p>
+<h3 id="primary-key"><a href="#primary-key" class="headerlink" title="primary_key"></a>primary_key</h3><br>
+
+<p><code>primary_key = True</code> 일때, 해당 필드는 모델의 primary key 가 됩니다. </p>
+<br>
+
+<p>모델안에 어떻나 필드도 primary_key = True 라고 명시하지 않은 경우에는, django가 자동적으로 IntegerField 를 추가하여, primary key 를 지니게 합니다. 딸사ㅓ, primary_key = True 라고 어떠한 필드에도 설정해줄 필요는 없습니다. 하지만, 기본 primary-key 동작을 오버라이드 하고 싶으면, 명시적으로 설정해 주면 됩니다.  <br><br></p>
+<p>primary key 필드는 read-only 입니다.<br>만약, 이미 존재하는 객체의 primary key 값을 바꾸고 저장하면, 새로운 객체가 기존의 객체와 같이 생성이 됩니다. 예를들면, <br><br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">100</span>, primary_key=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># 이름이 primary_key 값으로 되어있음</span></span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. name 이 '사과' 인 객체를 생성 </span></span><br><span class="line">fruit = Fruit.objects.create(name=<span class="string">'사과'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. name 을 '배' 로 바꾸어줌 </span></span><br><span class="line">fruit.name = <span class="string">'배'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 바뀐 name 을 데이터베이스에 저장 </span></span><br><span class="line">fruit.save() </span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 값 list 를 조회 </span></span><br><span class="line">Fruit.objects.values_list(<span class="string">'nam'</span>, flat=<span class="literal">True</span>)</span><br><span class="line">Out[<span class="number">4</span>]: &lt;QuerySet [<span class="string">'사과'</span>, <span class="string">'배'</span>]&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: Fruit.objects.all()                               <span class="comment"># 모든 객체 조회                                                                                                                 </span></span><br><span class="line">Out[<span class="number">5</span>]: &lt;QuerySet [&lt;Fruit: 사과&gt;, &lt;Fruit: 배&gt;]&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># primary key 값인 name 을 바꾸고 저장했기 때문에, 새로운 객체인 '배' 가 생겨난것을 확인</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="unique"><a href="#unique" class="headerlink" title="unique"></a>unique</h3><br>
+
+<p>만일 True 일 경우, 해당 필드는 테이블 전체에서 고유한 값이여야 합니다. </p>
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>공통된 필드 옵션에 대한 짧은 설명이었습니다. 더 많은 디테일들은, common model field option reference 문서에서 확인할수 있습니다. </p>
+<br>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/models/" rel="tag"># models</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/01/Django-Models-3%ED%8E%B8-Fields-Field-Types/" rel="prev" title="Django Models 3편 - Fields (Field Types)">
+      <i class="fa fa-chevron-left"></i> Django Models 3편 - Fields (Field Types)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Field-Options"><span class="nav-number">1.</span> <span class="nav-text">Field Options</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.</span> <span class="nav-text">null</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blank"><span class="nav-number">1.2.</span> <span class="nav-text">blank</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NULL-vs-Blank"><span class="nav-number">2.</span> <span class="nav-text">NULL vs Blank?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#choices"><span class="nav-number">2.1.</span> <span class="nav-text">choices</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#choices-값의-표시"><span class="nav-number">2.1.1.</span> <span class="nav-text">choices 값의 표시</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#간단하게-choices-정의하기"><span class="nav-number">2.1.2.</span> <span class="nav-text">간단하게 choices 정의하기</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default"><span class="nav-number">2.2.</span> <span class="nav-text">default</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#help-text"><span class="nav-number">2.3.</span> <span class="nav-text">help_text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#primary-key"><span class="nav-number">2.4.</span> <span class="nav-text">primary_key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unique"><span class="nav-number">2.5.</span> <span class="nav-text">unique</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#마치며"><span class="nav-number">3.</span> <span class="nav-text">마치며..</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">장고쟁이</p>
+  <div class="site-description" itemprop="description">장고쟁이의 Python, Django 공부 노트</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">111</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/djangojeng-e" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;djangojeng-e" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:headfat1218@gmail.com" title="E-Mail → mailto:headfat1218@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<div>
+
+
+
+
+
+<iframe width="210" height="180" src="https://www.youtube.com/embed/OycgifzTHgk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+</div>
+
+    </div>
+
+
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">장고쟁이</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://djangojeng-e.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://djangojeng-e.github.io/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/";
+    this.page.identifier = "2020/08/02/Django-Models-4편-Fields-Field-Options/";
+    this.page.title = "Django Models 4편 - Fields (Field Options)";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://djangojeng-e.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

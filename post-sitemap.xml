@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/08/02/Django-Models-4%ED%8E%B8-Fields-Field-Options/</loc>
+        <lastmod>2020-08-02T02:33:54.089Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/08/01/Django-Models-3%ED%8E%B8-Fields-Field-Types/</loc>
         <lastmod>2020-08-01T06:05:11.854Z</lastmod>
         <changefreq>weekly</changefreq>
