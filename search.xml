@@ -1,6 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 7편 - Relationships (Many-to-one)</title>
+    <url>/2020/08/03/Django-Models-7%ED%8E%B8-Relationships-Many-to-one/</url>
+    <content><![CDATA[<h2 id="Models-Relationships-Many-to-one"><a href="#Models-Relationships-Many-to-one" class="headerlink" title="Models - Relationships (Many-to-one)"></a>Models - Relationships (Many-to-one)</h2><br>
+
+<br>
+
+<p>확실히, 관계형 데이터베이스의 장점은, 테이블들끼리 관계를 생성하는데에서 옵니다. </p>
+<br>
+
+<blockquote>
+<p><strong>관계형 데이터베이스란?</strong></p>
+<p>데이터베이스계의 주류로, </p>
+<p>데이터를 로우 (Row:행, 줄) 과 컬럼 (Column: 열, 칸) 이라는 일종의 표 형태로 저장하고, </p>
+<p>데이터의 종속성은 관계 (Relation) 으로 표현한다. </p>
+<p>한 테이블에 있는 모든 로우는 같은 길이의 컬럼을 가지고 있으며, 이 컬럼의 구조와 데이터의 관계가 테이블 스키마 (Schema) 로 사전 정의 된다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p>Django 는 가장 공통적인 relational database 3가지를 지원합니다. </p>
+<br>
+
+<ul>
+<li><p>many-to-one (1:M, 1 대 다수)</p>
+</li>
+<li><p>many-to-many (M:M, 다수 대 다수)</p>
+</li>
+<li><p>one-to-one (1:1, 일 대 일 )</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<br>
+
+<h2 id="Many-to-one-relationships"><a href="#Many-to-one-relationships" class="headerlink" title="Many-to-one relationships"></a>Many-to-one relationships</h2><br>
+
+<p>다수 : 1 혹은 1: 다수 관계를 정의하기 위해서는, django.db.models.ForeignKey 를 사용합니다. </p>
+<p>모델내에 클래스 속성으로 다른 필드 타입을 사용하는것과 비슷하게 사용할수 있습니다. </p>
+<br>
+
+<blockquote>
+<p>ForeignKey 는 위치 인자를 필수적으로 필요로 합니다 </p>
+<p>ForeignKey 를 사용하면, 다른 모델과 해당 필드에 관계를 만들어 놓을수 있습니다. </p>
+<p>ForeignKey 를 사용할때에는, 위치인자에 관계를 만들고 싶은 다른 class 이름을 넣어줍니다. </p>
+<br>
+
+<p>예를들면, </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Manufuacturer</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ... </span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># 여러대의 Car 는 1개의 Manufacturuer 를 가집니다 </span></span><br><span class="line">    <span class="comment"># ForeginKey 를 사용해서, 이 관계를 모델링 해줄수 있습니다. </span></span><br><span class="line">    <span class="comment"># 위의 Manufacturer 클래스를 소문자화한 이름으로 필드명을 짓는것이 권장 됩니다. </span></span><br><span class="line">    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>Car 모델은 하나의 Manufacturer 를 가집니다 </li>
+<li>하나의 Manufacturer (브랜드 공장) 은 여러개의 자동차를 생산합니다 </li>
+<li>하지만, 각 자동차는 하나의 Manufacturer 만 가질수 있습니다 </li>
+<li>다수 : 1 의 데이터베이스 관계를 성립하여, ForeignKey 를 이용해 위의 예시처럼 정의해주었습니다. </li>
+</ul>
+<br>
+
+<p>또한, 재귀적인 관계를 생성할수도 있습니다 (many-to-one 관계를 스스로 갖는 객체) </p>
+<br>
+
+<p>필수는 아니지만, 권장되는 사항은, ForeignKey 필드 이름은 해당 모델의 소문자로 표현하는게 좋습니다. </p>
+<p><br>하지만, 당연히 필드명은 우리가 원하는데로 지을수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    company_that_makes_it = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 필드명을 company_that_makes_it 으로, 사용자가 사용하기 편하게 지어줬습니다 </span></span><br><span class="line">    <span class="comment"># 하지만, 이 필드명은 Manufacturer 의 소문자 형태인 manufacturer 로 짓는것이 권장됩니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dev_Department</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    team = models.CharField(max_length=<span class="number">40</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dev_Staff</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">40</span>, verbose_name=<span class="string">"직원이름"</span>)</span><br><span class="line">    department = models.ForeignKey(Dev_Department, on_delete=models.CASCADE)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>개발 조직에 있는 하나의 팀에는, 여러명의 직원이 소속될수 있습니다 </li>
+<li>Dev_Staff 는, 직원의 이름과 부서 팀을 정의합니다. ForeignKey 를 사용하여, Dev_Department 와 관계를 가지게 정의되었습니다. </li>
+</ul>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 6편 - Fields (verbose field names)</title>
     <url>/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/</url>
     <content><![CDATA[<h2 id="Models-Fields-verbose-field-names"><a href="#Models-Fields-verbose-field-names" class="headerlink" title="Models - Fields (verbose field names)"></a>Models - Fields (verbose field names)</h2><br>
