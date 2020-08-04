@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/08/04/Django-Models-8%ED%8E%B8-Relationships-Many-to-many-B/</loc>
+        <lastmod>2020-08-04T13:15:45.288Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/08/03/Django-Models-8%ED%8E%B8-Relationships-Many-to-many/</loc>
         <lastmod>2020-08-03T09:53:37.695Z</lastmod>
         <changefreq>weekly</changefreq>

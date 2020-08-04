@@ -1,6 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 8편 - Relationships (Many-to-many) B</title>
+    <url>/2020/08/04/Django-Models-8%ED%8E%B8-Relationships-Many-to-many-B/</url>
+    <content><![CDATA[<h2 id="Many-to-Many-2편"><a href="#Many-to-Many-2편" class="headerlink" title="Many-to-Many-2편"></a>Many-to-Many-2편</h2><br>
+
+<p>Many-To-Many 인스턴스들 생성하기 </p>
+<br>
+
+<p>지난 포스팅에서, through 를 사용하여, 중간 모델을 가진 Many-to-Many 관계에 대한 모델을 작성했고. </p>
+<br>
+
+<p>중간모델 Membership 을 사용하는 ManyToManyField 를 설정하였습니다. </p>
+<p><br>이제 몇가지 many-to-many relationship 을 생성할 준비가 되어 있습니다. 중간 모델의 인스턴스들을 생성하면서 Membership 을 사용하는 Many-to-Many 관계를 생성해 봅시다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">128</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Group</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">128</span>)</span><br><span class="line">    members = models.ManyToManyField(Person, through=<span class="string">'Membership'</span>)</span><br><span class="line">    <span class="comment"># through="Membership" 을 넣어줌으로, </span></span><br><span class="line">    <span class="comment"># Membership 이 Person 과 Group  사이의 중간 모델 역할을 하게 만들수 있음 </span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Membership</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># 중간 모델에서는, Person과 Group이 ForeignKey 로 등록 되어 있어야 함 </span></span><br><span class="line">    person = models.ForeignKey(Person, on_delete=models.CASCADE)</span><br><span class="line">    group = models.ForeignKey(Group, on_delete=models.CASCADE)</span><br><span class="line">    date_joined = models.DateField() </span><br><span class="line">    invite_reason = models.CharField(max_length=<span class="number">64</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위 모델을 바탕으로, shell 에서 객체를 만들어 봅니다. </p>
+<br>
+
+<blockquote>
+<p>shell 에 접속하려면,</p>
+<p>python manage.py shell 명령어를 커맨드 라인에서 실행 시키면 됩니다.  </p>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ringo = Person.objects.create(name="Ringo Starr")</span><br><span class="line">paul = Person.objects.create(name="Paul McCartney")</span><br><span class="line">beatles = Group.objects.create(name="The Beatles")</span><br><span class="line"></span><br><span class="line">import datetime </span><br><span class="line"></span><br><span class="line">m1 = Membership(person=ringo, group=beatles, date_joined=datetime.datetime(1962,8, 16), invite_reason="Needed a new drummer.")</span><br><span class="line"></span><br><span class="line">m1.save()</span><br><span class="line"></span><br><span class="line">In [7]: beatles.members.all()                                                                                                                                             </span><br><span class="line">Out[7]: &lt;QuerySet [&lt;Person: Ringo Starr&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [8]: ringo.group_set.all()                                                                                                                                             </span><br><span class="line">Out[8]: &lt;QuerySet [&lt;Group: The Beatles&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [9]: m2 = Membership.objects.create(person=paul, group=beatles, date_joined=datetime.datetime(1960, 8, 1), invite_reason="Wanted to form a band.")                     </span><br><span class="line"></span><br><span class="line">In [10]: beatles.members.all()                                                                                                                                            </span><br><span class="line">Out[10]: &lt;QuerySet [&lt;Person: Ringo Starr&gt;, &lt;Person: Paul McCartney&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>add(), create() 혹은 set() 을 사용해서 관계들을 생성할수도 있습니다. </p>
+<p>요구되는 필드에 through_defaults 만 명시해주면 됩니다. </p>
+</blockquote>
+<br>
+
+<p>공식문서에는, 아래와 같은 예제가 있는데. shell 에서 쳐보면, 하나도 제대로 동작하지 않습니다. </p>
+<p><br>공식문서를 무슨생각으로 만들어 놓은건지;;; </p>
+<br>
+
+<p>john 이라는 객체를 생성하면 잘 동작할것입니다만. 우선, 아래와 같이 연습 내역을 담습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [11]: beatles.members.add(john, through_defaults=&#123;'date_joined': date(1960, 8, 1)&#125;)                                                                                    </span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">NameError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-11-47e459b083b9&gt; in &lt;module&gt;</span><br><span class="line"><span class="meta">----&gt;</span><span class="bash"> 1 beatles.members.add(john, through_defaults=&#123;<span class="string">'date_joined'</span>: date(1960, 8, 1)&#125;)</span></span><br><span class="line"></span><br><span class="line">NameError: name 'john' is not defined</span><br><span class="line"></span><br><span class="line">In [12]: beatles.members.create(name="George Harrison", through_defaults=&#123;'date_joined': datetime.datetime(1960, 8, 1)&#125; </span><br><span class="line">    ...: )                                                                                                                                                                </span><br><span class="line">Out[12]: &lt;Person: George Harrison&gt;</span><br><span class="line"></span><br><span class="line">In [13]: beatles.members.set([john, paul, ringo, george], through_defaults=&#123;'date_joined': date(1960, 8, 1)&#125;)                                                             </span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">NameError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-13-cad5aee581b9&gt; in &lt;module&gt;</span><br><span class="line"><span class="meta">----&gt;</span><span class="bash"> 1 beatles.members.set([john, paul, ringo, george], through_defaults=&#123;<span class="string">'date_joined'</span>: date(1960, 8, 1)&#125;)</span></span><br><span class="line"></span><br><span class="line">NameError: name 'john' is not defined</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>만약 중간 모델에 의해서, through 테이블이 커스텀 정의가 되었는데, (model1, model2 ) 페어에 강제적으로 고유성을 요구하지 않고, 다중의 값을 허용한다면, remove() 를 호출해서 모든 중간 모델 인스턴스들을 제거할수 있습니다.</p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [14]: Membership.objects.create(person=ringo, group=beatles, date_joined=datetime.datetime(1968, 9, 4), invite_reason="You've been gone for a month and we miss you.") </span><br><span class="line">Out[14]: &lt;Membership: Membership object (9)&gt;</span><br><span class="line"></span><br><span class="line">In [15]: beatles.members.all()                                                                                                                                            </span><br><span class="line">Out[15]: &lt;QuerySet [&lt;Person: Ringo Starr&gt;, &lt;Person: Paul McCartney&gt;, &lt;Person: George Harrison&gt;, &lt;Person: Ringo Starr&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [16]: beatles.members.remove(ringo)                                                                                                                                    </span><br><span class="line"></span><br><span class="line">In [17]: beatles.members.all()                                                                                                                                            </span><br><span class="line">Out[17]: &lt;QuerySet [&lt;Person: Paul McCartney&gt;, &lt;Person: George Harrison&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>clear() 메서드는, </p>
+<p>하나의 인스턴스를 위한 모든 Many-to-Many 관계들을 없애줍니다.</p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [18]: # 비틀즈가 해산                                                                                                                                                  </span><br><span class="line"></span><br><span class="line">In [19]: beatles.members.clear()                                                                                                                                          </span><br><span class="line"></span><br><span class="line">In [20]: # 이 방식은 중간 모델 인스턴스를 삭제해줍니다                                                                                                                    </span><br><span class="line"></span><br><span class="line">In [21]: Membership.objects.all()                                                                                                                                         </span><br><span class="line">Out[21]: &lt;QuerySet []&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>한번 many-to-many 관계를 성립하였으면, 쿼리들을 발행할수 있습니다. 보통의 many-to-many 관계와 같이, many-to-many 로 관계된 모델들의 속성들을 사용하여 쿼리를 사용할수 있습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 멤버의 이름이 <span class="string">'Paul'</span> 로 시작하는 그룹 찾기                                                                                                                     </span></span><br><span class="line"></span><br><span class="line">In [39]: Group.objects.filter(members__name__startswith='Paul')                                                                                                           </span><br><span class="line">Out[39]: &lt;QuerySet [&lt;Group: The Beatles&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>중간 모델을 사용하면서, 중간 모델의 속성을 쿼리 조회 할수 있습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Person 중에, group 이름이 <span class="string">'The Beatles'</span> 이면서 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Membership에 든 날짜가 1961년 1월 1일 보다 이후인 객체를 조회 </span></span><br><span class="line">In [40]: Person.objects.filter( </span><br><span class="line">    ...:     group__name='The Beatles', </span><br><span class="line">    ...:     membership__date_joined__gt=datetime.datetime(1961, 1, 1))                                                                                                   </span><br><span class="line">Out[40]: &lt;QuerySet [&lt;Person: Ringo Starr&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<blockquote>
+<p>membership  의 정보를 바로 접근하고 싶으면, </p>
+<p>바로 Membership 모델에 쿼리를 보내면 됩니다. </p>
+</blockquote>
+<br>
+
+
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [41]: ringos_membership = Membership.objects.get(group=beatles, person=ringo)                                                                                          </span><br><span class="line"></span><br><span class="line">In [42]: ringos_membership.date_joined                                                                                                                                    </span><br><span class="line">Out[42]: datetime.date(1962, 8, 16)</span><br><span class="line"></span><br><span class="line">In [43]: ringos_membership.invite_reason                                                                                                                                  </span><br><span class="line">Out[43]: 'Needed a new drummer.'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>Person 객체에서 부터 거꾸로 가는  </p>
+<p>Many-To-Many reverse 관계도 존재합니다 </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [44]: ringos_membership = ringo.membership_set.get(group=beatles)                                                                                                      </span><br><span class="line"></span><br><span class="line">In [45]: ringos_membership.date_joined                                                                                                                                    </span><br><span class="line">Out[45]: datetime.date(1962, 8, 16)</span><br><span class="line"></span><br><span class="line">In [46]: ringos_membership.invite_reason                                                                                                                                  </span><br><span class="line">Out[46]: 'Needed a new drummer.'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<p>공식문서가 예시도 너무 불충분하고,, 뭐라 설명은 하는지는 잘 모르겠습니다. </p>
+<p><br>다음 포스팅에서는, ManyToMany 예제를 좀 들어서, 데이터베이스 검색 및 쿼리문 사용을 좀 연습 해봐야 할것 같습니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 8편 - Relationships (Many-to-many) A</title>
     <url>/2020/08/03/Django-Models-8%ED%8E%B8-Relationships-Many-to-many/</url>
     <content><![CDATA[<h2 id="Many-to-many-Relationships"><a href="#Many-to-many-Relationships" class="headerlink" title="Many-to-many Relationships"></a>Many-to-many Relationships</h2><br>

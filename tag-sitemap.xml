@@ -3,15 +3,15 @@
 
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/many-to-many/</loc>
-        <lastmod>2020-08-03T09:53:37.695Z</lastmod>
+        <loc>http://djangojeng-e.github.io/tags/models/</loc>
+        <lastmod>2020-08-04T13:15:45.288Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/models/</loc>
-        <lastmod>2020-08-03T07:27:42.557Z</lastmod>
+        <loc>http://djangojeng-e.github.io/tags/many-to-many/</loc>
+        <lastmod>2020-08-03T09:53:37.695Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
