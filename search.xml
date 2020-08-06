@@ -1,6 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 9편 - One-to-One</title>
+    <url>/2020/08/06/Django-Models-9%ED%8E%B8-One-to-One/</url>
+    <content><![CDATA[<h2 id="Models-Relationships-One-to-One"><a href="#Models-Relationships-One-to-One" class="headerlink" title="Models - Relationships (One-to-One)"></a>Models - Relationships (One-to-One)</h2><br>
+
+<h3 id="one-to-one-relationships"><a href="#one-to-one-relationships" class="headerlink" title="one-to-one relationships"></a>one-to-one relationships</h3><br>
+
+<p>one-to-one 관계, 즉 1대 1 관계를 정의하기 위해서는, </p>
+<p><br><code>OneToOneField</code>를 사용해 줍니다. 다른 필드 타입을 사용하는것과 비슷하게, 모델 클래스 안에 클래스 속성으로 정의해 줍니다. </p>
+<br>
+
+<p>OneToOneField 는 위치 인자를 필요로 합니다. </p>
+<br>
+
+<blockquote>
+<p>OneToOneField 는 연결된 모델 클래스를, 필수 위치 인자로 받습니다 </p>
+</blockquote>
+<br>
+
+<p>예를들어, “places” 라는 데이터베이스를 만들고 있었는데,  <code>address</code> 나 <code>phone number</code> 같이 매우 보편적인 것들을 데이터베이스에 만드려고 하는 상황이 올지 모릅니다. </p>
+<br>
+
+<p>places 라는 장소위에 restaurant 이라는 데이터베이스를 만들고 싶으면, Place 를 만들때 포함하였던 </p>
+<br>
+
+<blockquote>
+<p>데이터베이스 필드들을 Restaurant 모델에 반복하여 생성해 주기 보다는, </p>
+<p>Restaurant 이 OneToOneField 를 Place 에 갖게 하면 됩니다. </p>
+</blockquote>
+<br>
+
+<p>이게 무슨 이야기냐면,,, 하나의 장소 (Place)는 <code>address</code> 나 <code>phone number</code> 같은 보편적인 정보를 가지고 있을지 모릅니다. 그런데 만약, 하나의 장소 위에 식당 (restaurant) 을 만들고 싶다면? </p>
+<br>
+
+<p>restaurant 모델을 만들어 줄때에 <code>address</code> 나 <code>phone number</code> 같은 보편적인 필드들을 다시 정의하지 않고,</p>
+<p><br>Restaurant 이 OneToOneField 를 사용하여 Place 모델과 연결되면 됩니다.  </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<p>사실, Restaurant 도 하나의 Place 이기 때문에, 이런 상황을 해결 하기 위해서는 보통 상속 개념을 사용합니다. </p>
+<p>클래스를 상속 하면, 상속받는 클래스의 필드와 메서드들을 사용할수 있다는것을 숙지해둡시다. </p>
+<br>
+
+<p>데이터베이스 상속은 암묵적으로, <code>one-to-one</code> 관계를 형성합니다. </p>
+<br>
+
+<h2 id="OneToOneField-예시"><a href="#OneToOneField-예시" class="headerlink" title="OneToOneField 예시"></a>OneToOneField 예시</h2><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your models here </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Place</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    address = models.CharField(max_length=<span class="number">80</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"%s the place"</span> % self.name </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Restaurant</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># OneToOneField 의 첫번째 인자로, Place 클래스를 받음 </span></span><br><span class="line">    place = models.OneToOneField(Place, on_delete=models.CASCADE, 		 primary_key=<span class="literal">True</span>)</span><br><span class="line">    serves_hot_dogs = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    serves_pizza = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"%s the restaurant"</span> % self.place.name </span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Waiter</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)</span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"%s the waiter at %s"</span> % (self.name, self.restaurant)</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<p>위의 예시 모델에서, 하나의 장소 <code>Place</code> 에는 하나의 <code>Restaurant</code> 이 존재하고, 이는 <code>OneToOneField</code> 로 연결되어 있습니다. 하나의 <code>Restaurant</code> 에는 <code>ForeignKey</code> 로 연결되어 있는, <code>Waiter</code>  라는 모델이 존재합니다. </p>
+<p><br>이는, 하나의 Restaurant 에 일하는 웨이터가 여러명 있을수 있는 관계를 모델링 한것입니다. <br><br></p>
+<blockquote>
+<p><code>OneToOneField</code> 는 선택 인자로 parent_link 를 받습니다. </p>
+</blockquote>
+<br>
+
+<h2 id="Python-API-사용해보기"><a href="#Python-API-사용해보기" class="headerlink" title="Python API 사용해보기"></a>Python API 사용해보기</h2><br>
+
+<p>장소 (Place) 2 곳을 생성해 줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [1]: p1 = Place(name="명랑핫도그", address="성남시 분당구 정자1동")                                                                                                    </span><br><span class="line"></span><br><span class="line">In [2]: p1.save()                                                                                                                                                         </span><br><span class="line"></span><br><span class="line">In [3]: p2 = Place(name="피자헛", address="성남시 분당구 금곡동 불정로 87")                                                                                               </span><br><span class="line"></span><br><span class="line">In [4]: p2.save()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>식당을 생성해 주고, 부모 객체를 해당 객체의 primary key 로 전달해줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [5]: r = Restaurant(place=p1, serves_hot_dogs=True, serves_pizza=False)                                                                                                </span><br><span class="line"></span><br><span class="line">In [6]: r.save()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>r 은 Restaurant 의 인스턴스 이니까, 하나의 Restaurant 인스턴스는, 해당 장소에 접근할수 있습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [7]: r.place                                                                                                                                                           </span><br><span class="line">Out[7]: &lt;Place: 명랑핫도그 the place&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>반대로, 하나의 Place 는 restaurant 에 접근할수 있습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [8]: p1.restaurant                                                                                                                                                     </span><br><span class="line">Out[8]: &lt;Restaurant: 명랑핫도그 the restaurant&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>p2 는 연결된 restaurant 이 아직 없습니다. </p>
+<p>따라서, 아래 코드를 shell 에서 실행 하면, p2 에는 restaurant 이 없다고 나옵니다 </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [9]: from django.core.exceptions import ObjectDoesNotExist                                                                                                             </span><br><span class="line"></span><br><span class="line">In [10]: try: </span><br><span class="line">    ...:     p2.restaurant </span><br><span class="line">    ...: except ObjectDoesNotExist: </span><br><span class="line">    ...:     print("There is no restaurant here.") </span><br><span class="line">    ...:                                                                                                                                                                  </span><br><span class="line"><span class="meta">#</span><span class="bash"> Shift + Enter 를 실행하면, 실행됨. </span></span><br><span class="line"></span><br><span class="line">There is no restaurant here.</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p><code>hasattr</code> 메서드를 사용하여, 예외처리를 하지 않아도 됩니다. </p>
+<ul>
+<li><code>hasattr</code> 는 파이썬 내장함수 입니다.</li>
+<li>객체가 주어진 이름의 어트리뷰트를 가지고 있을때 True 를 반환하고, 그렇지 않을때에 False 를 반환합니다.  </li>
+<li><code>hasatt(object, name)</code></li>
+</ul>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [11]: hasattr(p2, 'restaurant')                                                                                                                                        </span><br><span class="line">Out[11]: False</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>할당 기호 (<code>=</code>) 를  사용하여, place 를 설정해 줍니다. place 는 Restaurant 의 primary key 이므로, save 는 새로운 restaurant 을 생성합니다 </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 위에서 r = Restaurant(place=p1, serves_hot_dogs=True, serves_pizza=False)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> r.place = p2 로 바꿔줍니다. </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">In [12]: r.place = p2                                                                                                                                               </span><br><span class="line">In [13]: r.save()                                                                                                                                                   </span><br><span class="line"></span><br><span class="line">In [14]: p2.restaurant                                                                                                                                                    </span><br><span class="line">Out[14]: &lt;Restaurant: 피자헛 the restaurant&gt;</span><br><span class="line"></span><br><span class="line">In [15]: r.place                                                                                                                                                          </span><br><span class="line">Out[15]: &lt;Place: 피자헛 the place&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>Place 를 다시 역으로 바꿔줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [16]: p1.restaurant = r                                                                                                                                                </span><br><span class="line"></span><br><span class="line">In [17]: p1.restaurant                                                                                                                                                    </span><br><span class="line">Out[17]: &lt;Restaurant: 명랑핫도그 the restaurant&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>One-To-One 관계가 할당 되기 이전에 </p>
+<p>객체가 저장 되어 있어야 ValueError 가 나질 않습니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [18]: p3 = Place(name='Daemon Dogs', address='944 W. Fullerton')                                                                                                       </span><br><span class="line"></span><br><span class="line">In [19]: Restaurant.objects.create(place=p3, serves_hot_dogs=True, serves_pizza=False)                                                                                    </span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">ValueError                                Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-19-18b4cdec5239&gt; in &lt;module&gt;</span><br><span class="line"><span class="meta">----&gt;</span><span class="bash"> 1 Restaurant.objects.create(place=p3, serves_hot_dogs=True, serves_pizza=False)</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>Restaurant.objects.all() 은 Restaurants 만 반환합니다. Place 는 반환하지 않습니다. </p>
+<p>Place.objects.all() 은 Places 들을 반환합니다. Restaurant을 가지고 있던 안있던,  결과를 반환합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [20]: Restaurant.objects.all()                                                                                                                                         </span><br><span class="line">Out[20]: &lt;QuerySet [&lt;Restaurant: 명랑핫도그 the restaurant&gt;, &lt;Restaurant: 피자헛 the restaurant&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [21]: Place.objects.order_by('name')                                                                                                                                   </span><br><span class="line">Out[21]: &lt;QuerySet [&lt;Place: 명랑핫도그 the place&gt;, &lt;Place: 피자헛 the place&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>관계간 룩업들을 사용하여, 해당 모델에 쿼리문을 작성할수 있습니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">In [22]: Restaurant.objects.get(place&#x3D;p1)                                                                                                                                 </span><br><span class="line">Out[22]: &lt;Restaurant: 명랑핫도그 the restaurant&gt;</span><br><span class="line"></span><br><span class="line">In [23]: Restaurant.objects.get(place__pk&#x3D;1)                                                                                                                              </span><br><span class="line">Out[23]: &lt;Restaurant: 명랑핫도그 the restaurant&gt;</span><br><span class="line"></span><br><span class="line">In [24]: Restaurant.objects.filter(place__name__startswith&#x3D;&quot;명&quot;)                                                                                                          </span><br><span class="line">Out[24]: &lt;QuerySet [&lt;Restaurant: 명랑핫도그 the restaurant&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [25]: Restaurant.objects.exclude(place__address__contains&#x3D;&quot;헛&quot;)                                                                                                        </span><br><span class="line">Out[25]: &lt;QuerySet [&lt;Restaurant: 명랑핫도그 the restaurant&gt;, &lt;Restaurant: 피자헛 the restaurant&gt;]&gt;</span><br><span class="line"></span><br><span class="line"># 한글은 조회 필터가 안걸리는지, exclude 를 했는데도. 조회가 되서 나옵니다;;;;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>물론 거꾸로도 작동 합니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [27]: Place.objects.get(pk=1)                                                                                                                                          </span><br><span class="line">Out[27]: &lt;Place: 명랑핫도그 the place&gt;</span><br><span class="line"></span><br><span class="line">In [28]: Place.objects.get(restaurant__place=p1)                                                                                                                          </span><br><span class="line">Out[28]: &lt;Place: 명랑핫도그 the place&gt;</span><br><span class="line"></span><br><span class="line">In [29]: Place.objects.get(restaurant=r)                                                                                                                                  </span><br><span class="line">Out[29]: &lt;Place: 명랑핫도그 the place&gt;</span><br><span class="line"></span><br><span class="line">In [30]: Place.objects.get(restaurant__place__name__startswith="명")                                                                                                      </span><br><span class="line">Out[30]: &lt;Place: 명랑핫도그 the place&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>Waiter 를 Restaurant 에 추가해 줍니다. </p>
+<p>Waiter는 Restaurant 에 ForeignKey 로 등록 되어 있습니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [31]: w = r.waiter_set.create(name="장고쟁이")                                                                                                                         </span><br><span class="line"></span><br><span class="line">In [32]: w                                                                                                                                                                </span><br><span class="line">Out[32]: &lt;Waiter: 장고쟁이 the waiter at 명랑핫도그 the restaurant&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>웨이터들을 쿼리를 통해 조회합니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [33]: Waiter.objects.filter(restaurant__place=p1)                                                                                                                      </span><br><span class="line">Out[33]: &lt;QuerySet [&lt;Waiter: 장고쟁이 the waiter at 명랑핫도그 the restaurant&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [34]: Waiter.objects.filter(restaurant__place__name__startswith="명")                                                                                                  </span><br><span class="line">Out[34]: &lt;QuerySet [&lt;Waiter: 장고쟁이 the waiter at 명랑핫도그 the restaurant&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="데이터베이스-리뷰"><a href="#데이터베이스-리뷰" class="headerlink" title="데이터베이스 리뷰"></a>데이터베이스 리뷰</h2><br>
+
+<img src="/2020/08/06/Django-Models-9%ED%8E%B8-One-to-One/image1.png" class="">
+
+
+
+<img src="/2020/08/06/Django-Models-9%ED%8E%B8-One-to-One/image2.png" class=""> 
+
+<img src="/2020/08/06/Django-Models-9%ED%8E%B8-One-to-One/image3.png" class="">  
+
+<p><br><br></p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 8편 - Many-to-many 예시</title>
     <url>/2020/08/05/Django-Models-8%ED%8E%B8-Many-to-many-%EC%98%88%EC%8B%9C/</url>
     <content><![CDATA[<h2 id="Django-Models-ManyToMany-예시"><a href="#Django-Models-ManyToMany-예시" class="headerlink" title="Django Models - ManyToMany 예시"></a>Django Models - ManyToMany 예시</h2><br>
