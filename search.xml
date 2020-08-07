@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 10편 - Fields (Models across files)</title>
+    <url>/2020/08/07/Django-Models-10%ED%8E%B8-Fields-Models-across-files/</url>
+    <content><![CDATA[<h2 id="파일사이에-모델들"><a href="#파일사이에-모델들" class="headerlink" title="파일사이에 모델들"></a>파일사이에 모델들</h2><br>
+
+<blockquote>
+<p>다른 앱에 존재하는 모델끼리 관계를 형성해도 괜찮습니다. </p>
+<p>다른 앱에 존재하는 모델을 사용하려면, 관계된 모델을 파일 상단에 가져와서 사용합니다. </p>
+</blockquote>
+<br>
+
+<p>다른 모델 클래스를 가져온 다음에는, 필요한곳에 사용하면 됩니다. </p>
+<br>
+
+<p>공식문서에서는 예시가 많이 빈약한데, 프로젝트 구조가 아래처럼 되어 있다고 가정합니다. </p>
+<br>
+
+<blockquote>
+<p>order 라는 앱이 있고, product 라는앱이 있습니다 </p>
+<br>
+
+<p>이런 구조안에서, order/models.py 파일에서, product/models.py 에 있는 모델을 </p>
+<p>가져다 사용할수 있습니다.  </p>
+</blockquote>
+<p><br><a id="more"></a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">├── config</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── settings.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── wsgi.py</span><br><span class="line">├── db.sqlite3</span><br><span class="line">├── manage.py</span><br><span class="line">├── order</span><br><span class="line">│   ├── admin.py</span><br><span class="line">│   ├── apps.py</span><br><span class="line">│   ├── forms.py</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── migrations</span><br><span class="line">│   ├── models.py</span><br><span class="line">│   ├── tests.py</span><br><span class="line">│   └── views.py</span><br><span class="line">├── product</span><br><span class="line">│   ├── admin.py</span><br><span class="line">│   ├── apps.py</span><br><span class="line">│   ├── forms.py</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── migrations</span><br><span class="line">│   ├── models.py</span><br><span class="line">│   ├── tests.py</span><br><span class="line">│   └── views.py</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><br>
+
+<blockquote>
+<p>파일 상단에, 다른 앱에 존재하는 클래스를 가져와서 사용하면 됩니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> order.models <span class="keyword">import</span> Order 	</span><br><span class="line"></span><br><span class="line"><span class="comment"># order 앱에 있는 models.py 에서 Order 라는 모델을 불러옴</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ... </span></span><br><span class="line">    order = models.ForeignKey(Order, on_delete=models.CASCADE)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="공식문서-예시"><a href="#공식문서-예시" class="headerlink" title="공식문서 예시"></a>공식문서 예시</h2><br>
+
+<p>공식문서 예시에서는, geography 에 있는 models 를 불러오고, 그 안에 있는 ZipCode 클래스를 가져와서 사용하는것을 보여주고 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"><span class="keyword">from</span> geography.models <span class="keyword">import</span> ZipCode </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Restaurant</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ... </span></span><br><span class="line">    zip_code = models.ForeignKey(</span><br><span class="line">    ZipCode, on_delete=models.SET_NULL,</span><br><span class="line">    blank=<span class="literal">True</span>,</span><br><span class="line">    null=<span class="literal">True</span>, </span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>파일 상단에 다른 앱에 존재하는 모델을 불러오기 위해서는, 아래 형식으로 불러와주면 됩니다. </p>
+<br>
+
+<p><code>from &lt;앱이름&gt;.models import &lt;가져올클래스이름&gt;</code></p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 9편 - One-to-One</title>
     <url>/2020/08/06/Django-Models-9%ED%8E%B8-One-to-One/</url>
     <content><![CDATA[<h2 id="Models-Relationships-One-to-One"><a href="#Models-Relationships-One-to-One" class="headerlink" title="Models - Relationships (One-to-One)"></a>Models - Relationships (One-to-One)</h2><br>
