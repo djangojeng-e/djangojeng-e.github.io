@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/08/08/Django-Models-11%ED%8E%B8-Fields-Field-name-restrictions/</loc>
+        <lastmod>2020-08-08T04:23:15.658Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/08/07/Django-Models-10%ED%8E%B8-Fields-Models-across-files/</loc>
         <lastmod>2020-08-07T02:24:21.917Z</lastmod>
         <changefreq>weekly</changefreq>

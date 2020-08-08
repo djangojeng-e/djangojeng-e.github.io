@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 11편 - Fields (Field name restrictions)</title>
+    <url>/2020/08/08/Django-Models-11%ED%8E%B8-Fields-Field-name-restrictions/</url>
+    <content><![CDATA[<h2 id="Models-Fields-Field-Name-Restrictions"><a href="#Models-Fields-Field-Name-Restrictions" class="headerlink" title="Models - Fields(Field Name Restrictions)"></a>Models - Fields(Field Name Restrictions)</h2><br>
+
+<h3 id="Field-name-restrictions"><a href="#Field-name-restrictions" class="headerlink" title="Field name restrictions"></a>Field name restrictions</h3><br>
+
+<p>Django 는 모델 필드 이름들에 대한 제약이 있습니다. </p>
+<br>
+
+<ol>
+<li><p>필드명은 파이썬 예약어들이 될수 없습니다. 만약 사용한다면, 파이썬 문법 에러를 발생 시킵니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	<span class="keyword">pass</span> = models.IntegerField()</span><br><span class="line"></span><br><span class="line"><span class="comment"># pass 는 파이썬에서 reversed word (예약어) 입니다 </span></span><br><span class="line"><span class="comment"># 따라서, 모델의 필드명이 될수 없습니다</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<br>
+
+<ol start="2">
+<li><p>필드명은 하나 이상의 언더스코어를 사용할수 없습니다. Django 의 쿼리 조회문이 언더스코어를 2개 사용하기 때문에, 필드명은, <code>__</code> 를 가질수 없습니다.  <br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	foo__bar = models.IntegerField() </span><br><span class="line">	</span><br><span class="line"><span class="comment"># foo__bar 는 언더스코어 2개를 가지고 있습니다. 잘못된 필드명입니다.</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<br>
+
+<ol start="3">
+<li><p>비슷한 이유로, 언더스코어로 끝나면 안됩니다. 쿼리 구문과 겹치기 때문입니다 <br></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	foobar_ = models.InegerField() </span><br><span class="line">	</span><br><span class="line"><span class="comment"># foobar_ 처럼 언더스코어로 끝나는 필드명은 사용하면 안됩니다.</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<br>
+
+<a id="more"></a>
+
+
+
+<br>
+
+<p>하지만, 이런 제약들은 유도리 있게 잘 사용될수 있습니다. 필드명은 데이터베이스 컬럼명과 꼭 같지 않아도 되기 때문입니다. </p>
+<br>
+
+<p>join, where 혹은 select 같은 SQL 예약어들은 모델 필드명에 사용해도 됩니다. </p>
+<p><br>Django 는 모든 SQL 쿼리 기반에서의 데이터베이스 테이블 이름들과 컬럼명들에서 자유롭습니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 10편 - Fields (Models across files)</title>
     <url>/2020/08/07/Django-Models-10%ED%8E%B8-Fields-Models-across-files/</url>
     <content><![CDATA[<h2 id="파일사이에-모델들"><a href="#파일사이에-모델들" class="headerlink" title="파일사이에 모델들"></a>파일사이에 모델들</h2><br>
