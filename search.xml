@@ -1,6 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 12편 - Meta Options</title>
+    <url>/2020/08/09/Django-Models-12%ED%8E%B8-Meta-Options/</url>
+    <content><![CDATA[<h2 id="Models-Meta-Options"><a href="#Models-Meta-Options" class="headerlink" title="Models - Meta Options"></a>Models - Meta Options</h2><br>
+
+<blockquote>
+<p>Metadata </p>
+<p>데이터의 집합체로 다른 데이터에 대한 설명과 정보를 제공합니다 </p>
+</blockquote>
+<br>
+
+<p>모델에 metadata 를 부여할수 있습니다. 클래스 안에 Meta 클래스를 사용해서 부여할수 있습니다. </p>
+<p><br>아래 예시와 같이 모델 클래스 안에 부가적으로, Meta 클래스를 넣어서 metadata 를 넣을수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ox</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    horn_length = models.IntegerField()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 아래와 같이 Ox 모델 클래스 안쪽에 Meta 클래스를 넣어서 metadata 를 부여 할수 있습니다 </span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ordering = [<span class="string">"horn_length"</span>]</span><br><span class="line">        verbose_name_plural = <span class="string">"oxen"</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>필드가 아닌 무엇이든, 모델의 메타데이터가 될수 있습니다. </p>
+<p><br>필드는, 메타 데이터가 될수 없습니. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>정렬 옵션인 ordering, </p>
+<p>데이터 베이스 테이블명,  db_table </p>
+<p>혹은 사람이 읽기 편한 단수와 복수 이름들인, verbose_name, verbose_name_plural </p>
+<p>이런것들이 Meta 클래스안에 정의 될수 있습니다. </p>
+</blockquote>
+<br>
+
+<p>모델에 대한 class Meta 적용은 전적으로 선택 사항입니다. </p>
+<br>
+
+<p>Meta Option 에 가능한 모든 옵션들에 대해서는,  model option reference 문서에서 보면 됩니다. </p>
+<br>
+
+<h2 id="Meta-option-리스트"><a href="#Meta-option-리스트" class="headerlink" title="Meta option 리스트"></a>Meta option 리스트</h2><br>
+
+<p>메타 옵션에는 아래와 같은 항목들이 존재합니다. </p>
+<p>모든 리스트를 확인하고 싶다면, <a href="https://docs.djangoproject.com/en/3.0/ref/models/options/" target="_blank" rel="noopener">https://docs.djangoproject.com/en/3.0/ref/models/options/</a></p>
+<p><br>링크를 확인 하면 됩니다. </p>
+<table>
+<thead>
+<tr>
+<th>Meta Options</th>
+<th>Function</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>abstract</td>
+<td>모델이 abstract base class 가 됩니다</td>
+<td><code>abstract = True</code></td>
+</tr>
+<tr>
+<td>app_label</td>
+<td>모델이 INSTALLED_APPS 밖에 있는 어플리케이션에 존재할때에 선언합니다</td>
+<td><code>app_label = myapp</code></td>
+</tr>
+<tr>
+<td>base_manager_name</td>
+<td>메니저의 속성 이름을 지정합니다. 예를들면, objects</td>
+<td></td>
+</tr>
+<tr>
+<td>db_table</td>
+<td>해당 모델을 위한 데이터베이스 테이블 명을 지정합니다</td>
+<td><code>db_table = &#39;music_album&#39;</code></td>
+</tr>
+<tr>
+<td>db_tablespace</td>
+<td>데이터베이스 테이블 스페이스의 이름</td>
+<td></td>
+</tr>
+<tr>
+<td>default_manager_name</td>
+<td>해당 모델을 위해 사용할 메니저의 이름을 지정합니다</td>
+<td></td>
+</tr>
+<tr>
+<td>default_related_name</td>
+<td>관련된 객체에서 역으로 접근할 이름을 지정합니다.  기본값은, <code>모델명_set</code> 입니다</td>
+<td></td>
+</tr>
+<tr>
+<td>get_latest_by</td>
+<td>보편적으로 ,DateField, DateTimeField 혹은 IntegerField 같은 모델명에 사용합니다.</td>
+<td>get_latest_by = “order_date”, get_latest_by = [‘-priority’, ‘order_date’]</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 11편 - Fields (Field name restrictions)</title>
     <url>/2020/08/08/Django-Models-11%ED%8E%B8-Fields-Field-name-restrictions/</url>
     <content><![CDATA[<h2 id="Models-Fields-Field-Name-Restrictions"><a href="#Models-Fields-Field-Name-Restrictions" class="headerlink" title="Models - Fields(Field Name Restrictions)"></a>Models - Fields(Field Name Restrictions)</h2><br>
