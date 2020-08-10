@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 13편 - Model Attributes</title>
+    <url>/2020/08/10/Django-Models-13%ED%8E%B8-Model-Attributes/</url>
+    <content><![CDATA[<h2 id="Model-Attributes"><a href="#Model-Attributes" class="headerlink" title="Model Attributes"></a>Model Attributes</h2><br>
+
+<p>모델의 가장 중요한 속성은 Manager 입니다. </p>
+<br>
+
+
+
+<blockquote>
+<p>Manager 는 </p>
+<p>Django 데이터베이스 쿼리 운영을 제공 하는 인터페이스로, </p>
+<p>데이터베이스에서 인스턴스들을 검색할때 사용 됩니다. <br></p>
+<p>만약, 사용자 정의 Manager 가 정의되어 있지 않다면, 기본값으로, Manager 의 이름은 objects 입니다. </p>
+</blockquote>
+<br>
+
+<p>Manager 는 모델 클래스들을 통해서만 접근 가능합니다. 모델 인스턴스로는 접근이 가능하지 않습니다. </p>
+<br>
+
+<a id="more"></a>
+
+<h2 id="Manager-의-사용"><a href="#Manager-의-사용" class="headerlink" title="Manager 의 사용"></a>Manager 의 사용</h2><br>
+
+<p>우리가 Django 에서 해당 모델의 데이터베이스 모든 데이터를 조회할때에는, 아래와 같이 ORM 을 작성합니다. </p>
+<p><br>이때 사용되는, objects 가 Manager의 기본 이름입니다. <br></p>
+<p><code>&lt;model명&gt;.objects.all()</code></p>
+<br>
+
+<p>예시를 들어보자면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>, verbose_name=<span class="string">'학생 이름'</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위의 Student 모델이 있다고 가정할때에, 해당 모델의 데이터베이스를 조회하는 명령어들은 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Student.objects.all()   # Student 의 모든 객체를 조회 </span><br><span class="line">Student.objects.get(name='장고쟁이') # 이름이 장고쟁이인 Student 를 찾음</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 12편 - Meta Options</title>
     <url>/2020/08/09/Django-Models-12%ED%8E%B8-Meta-Options/</url>
     <content><![CDATA[<h2 id="Models-Meta-Options"><a href="#Models-Meta-Options" class="headerlink" title="Models - Meta Options"></a>Models - Meta Options</h2><br>
