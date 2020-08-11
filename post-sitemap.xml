@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/</loc>
+        <lastmod>2020-08-11T08:10:48.776Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/08/10/Django-Models-13%ED%8E%B8-Model-Attributes/</loc>
         <lastmod>2020-08-10T06:48:25.185Z</lastmod>
         <changefreq>weekly</changefreq>
