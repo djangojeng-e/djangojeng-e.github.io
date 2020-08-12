@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 15편 - 이미 정의된 모델 메서드 오버라이드 하기</title>
+    <url>/2020/08/12/Django-Models-15%ED%8E%B8-%EC%9D%B4%EB%AF%B8-%EC%A0%95%EC%9D%98%EB%90%9C-%EB%AA%A8%EB%8D%B8-%EB%A9%94%EC%84%9C%EB%93%9C-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%93%9C-%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Overriding-predefined-model-methods"><a href="#Overriding-predefined-model-methods" class="headerlink" title="Overriding predefined model methods"></a>Overriding predefined model methods</h2><br>
+
+<p>여러분들이 커스터마이즈 하고 싶은 데이터베이스의 동작을 캡슐화 해주는 모델 메서드들도 존재 합니다. </p>
+<br>
+
+<p>특히 우리는 종종 <code>save()</code> 와 <code>delete()</code> 의 동작 방식을 바꾸고 싶어 집니다.  </p>
+<br>
+
+<blockquote>
+<p>save() 나 delete() 같은 메서드들을 override 해서 동작 방식을 바꾸는것도 가능하고,</p>
+<p>다른 어떤 모델 메서드들을 override 해서 사용하는것도 가능합니다.  </p>
+</blockquote>
+<br>
+
+<p>내장된 메서드, <code>save()</code> 같은 메서드를 override 하여 사용하는 고전적인 예시는, </p>
+<p><br>하나의 객체를 저장할때마다 다른 무언가를 발생시키고 싶을 때입니다.</p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<h2 id="Method-override-예시"><a href="#Method-override-예시" class="headerlink" title="Method override 예시"></a>Method override 예시</h2><br>
+
+<p>예시 코드를 둘러봅니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Blog</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    tagline = models.TextField()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self, *args, **kwargs)</span>:</span></span><br><span class="line">        do_something()</span><br><span class="line">        super().save(*args, **kwargs)  <span class="comment"># 실제 save() 를 호출 </span></span><br><span class="line">        do_something_else()</span><br><span class="line">        </span><br><span class="line"><span class="comment"># save()를 호출할때, do_something() 부분에 어떠한 작업을 하는 코드를 써주면, </span></span><br><span class="line"><span class="comment"># 실제 save() 가 동작하기 전에, do_something() 을 수행합니다 </span></span><br><span class="line"><span class="comment"># 그리고, save()가 호출 되고 나서는, do_something_else() 부분에 있는 또다른 </span></span><br><span class="line"><span class="comment"># 작업을 해줄수 있습니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>def save(self, *args, **kwargs)</code> 를 사용하여, 평범하게 객체를 저장하기 보다는, 다른 작업을 실행하고 저장할수 있는 기능을 가질수 있습니다.  </p>
+<br>
+
+
+
+<blockquote>
+<p>저장하는것을 방지할수도 있습니다 </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Blog</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    tagline = models.TextField() </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.name == <span class="string">"Yoko One's blog"</span>:</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        <span class="comment"># 블로그 이름이 "Yoko One's blog" 이면, save 가 호출 되지 않고 </span></span><br><span class="line">        <span class="comment"># 비어있는값이 return 됩니다 </span></span><br><span class="line">        <span class="comment"># "Yoko One's blog" 가 제목이 아닐경우, else 로 넘어갑니다. </span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            super().save(*args, **kwargs)	<span class="comment"># 실제 save()를 호출해서 save() 진행</span></span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<br>
+
+<h2 id="super-save-args-kwargs"><a href="#super-save-args-kwargs" class="headerlink" title="super().save(*args, **kwargs)"></a><code>super().save(*args, **kwargs)</code></h2><br>
+
+<p>처음에는 생소해 보일지 모르지만, </p>
+<br>
+
+<blockquote>
+<p><code>super().save(*args, **kwargs)</code> 를 통해서, </p>
+<p>superclass 의 메서드를 호출하는것이 중요합니다. </p>
+<p>이것을 호출하여, 객체가 여전히 데이터베이스에 저장되게 하는것이 중요합니다. </p>
+</blockquote>
+<br>
+
+<p>superclass 메서드를 호출하지 않는다면, 기본적인 저장 동작이 일어나지 않을것이고. </p>
+<p><br>이는 데이터베이스를 건들지 않습니다. </p>
+<br>
+
+<p>또한, 모델 메서드에 전달된 인자들을 전달하는것도 중요합니다. </p>
+<p><br><code>*args, **kwargs</code> 부분이 이 역할을 수행합니다. <br></p>
+<p>Django 는 때때로, 내장 모델 메서드들의 능력을 확장하고, 새로운 인자들을 추가해줄수 있습니다. </p>
+<br>
+
+<blockquote>
+<p>정의된 모델안에서, <code>*args</code> 와 <code>**kwargs</code> 를 사용하면, </p>
+<p>인자들이 추가 되었을때, 코드가 자동으로 해당 인자들을 지원합니다.</p>
+</blockquote>
+<br>
+
+<h2 id="Quick-Note"><a href="#Quick-Note" class="headerlink" title="Quick Note"></a>Quick Note</h2><br>
+
+<blockquote>
+<p>override 된 모델 메서드들은, 대량으로 운영되는 상황에서는 호출되지 않습니다. </p>
+<br>
+
+<p>객체를 위한, <code>delete()</code> 메서드는 쿼리셋을 이용해서 대량으로 객체를 지울때에는 호출 되지 않습니다. 혹은, cascading delete 일때도 호출되지 않습니다. </p>
+<br>
+
+<p>사용자 정의 delete 로직의 실행을 확실시 하고 싶으면, </p>
+<p>pre_delete 그리고/혹은 post_delete 신호를 사용합니다.</p>
+<br>
+
+<p>안타깝게도, 객체를 대량으로 creating 혹은 updating 하는 작업은 존재하지 않습니다. </p>
+<p>save(), pre_save() 그리고 post_save()  들이 대량으로 작업해야 하는 상황에서는 호출되지 않기 때문입니다.  </p>
+</blockquote>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+        <tag>super.save()</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 14편 - Model Methods</title>
     <url>/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/</url>
     <content><![CDATA[<h2 id="Model-Methods"><a href="#Model-Methods" class="headerlink" title="Model Methods"></a>Model Methods</h2><br>
