@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 16편 - Model Inheritance</title>
+    <url>/2020/08/13/Django-Models-16%ED%8E%B8-Model-Inheritance/</url>
+    <content><![CDATA[<h2 id="Model-Inheritance-모델-상속"><a href="#Model-Inheritance-모델-상속" class="headerlink" title="Model Inheritance (모델 상속)"></a>Model Inheritance (모델 상속)</h2><br>
+
+<p>Django 에서 모델 상속은, 파이썬에서 일반적인 클래스 상속을 하는것과 거의 비슷하게 작동합니다.  </p>
+<br>
+
+<p>다만, django 의 기본에는 충실해야 합니다. 이것이 의미하는것은, Django 모델 클래스들은 <code>django.db.models.Model</code> 의 서브 클래스가 되어야 한다는 이야기 입니다. </p>
+<br>
+
+<p>여러분들이 결정해야 할 사항은 아래와 같습니다. </p>
+<br>
+
+<ol>
+<li>부모 모델이 자신의 모델이 될지 </li>
+<li>부모 모델은 단지 공통된 정보를 가지고, 자식 모델들을 통해서만 정보가 보이게 하게 할지 </li>
+</ol>
+<br>
+
+<p>이 개념을 쉽게 이해하기 위해서는, 파이썬에서 클래스의 상속 개념을 잘 알고 있어야 합니다. </p>
+<br>
+
+<br>
+
+<blockquote>
+<p>Django 에서는 상속에 대한 3가지 스타일들이 존재 합니다. </p>
+</blockquote>
+<br>
+
+<ol>
+<li>보통은, 자식 모델들의 필드에 대해서 타이핑 하기 싫을때, 부모 클래스가 정보만 가지게끔 사용할수 있습니다. 이 클래스는 절대로 분리되서 사용될수 없습니다. 따라서, <code>Abstract base classes</code> 들이 당신이 원하는것이 될겁니다. </li>
+<li>이미 존재하는 모델 (다른 어플리케이션에 있는 모델)을 상속을 받고 있고, 각 모델이 각자의 데이터베이스 테이블을 가지고 있다면, <code>Multi-table inheritance</code> 를 사용할수 있습니다.</li>
+<li>모델 필드의 수정 없이, 모델의 파이썬 레벨 동작을 고치고 싶다면, <code>proxy models</code> 를 사용하면 됩니다.  </li>
+</ol>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<p>정리하자면, </p>
+<br>
+
+<blockquote>
+<p>Django 에서 모델 상속에 대해, 아래 3가지 스타일이 존재합니다. </p>
+<br>
+
+<p>1) Abstract base classes </p>
+<p>2) Multi-table inheritance </p>
+<p>3) Proxy models </p>
+</blockquote>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 15편 - 이미 정의된 모델 메서드 오버라이드 하기</title>
     <url>/2020/08/12/Django-Models-15%ED%8E%B8-%EC%9D%B4%EB%AF%B8-%EC%A0%95%EC%9D%98%EB%90%9C-%EB%AA%A8%EB%8D%B8-%EB%A9%94%EC%84%9C%EB%93%9C-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%93%9C-%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Overriding-predefined-model-methods"><a href="#Overriding-predefined-model-methods" class="headerlink" title="Overriding predefined model methods"></a>Overriding predefined model methods</h2><br>

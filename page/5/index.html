@@ -216,6 +216,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/" class="post-title-link" itemprop="url">TodoList 11편 - 디테일 페이지에 이미지와 파일 표시</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-05-26 19:30:31 / Updated at: 19:48:05" itemprop="dateCreated datePublished" datetime="2020-05-26T19:30:31+09:00">2020-05-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/26/TodoList-11편-디테일-페이지에-이미지와-파일-표시/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="디테일-페이지에-이미지와-파일-표시"><a href="#디테일-페이지에-이미지와-파일-표시" class="headerlink" title="디테일 페이지에 이미지와 파일 표시"></a>디테일 페이지에 이미지와 파일 표시</h2><br>
+
+<h2 id="MEDIA-경로-설정"><a href="#MEDIA-경로-설정" class="headerlink" title="MEDIA 경로 설정"></a>MEDIA 경로 설정</h2><br>
+
+<br>
+
+<p>개발 단계에서 MEDIA 파일을 업로드 해줄 MEDIA 경로를 설정해 주어야 합니다. </p>
+<p><br>confit/settings.py 파일로 가서, 아래와 같이 MEDIA 경로를 설정해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MEDIA_ROOT 설정 </span></span><br><span class="line"><span class="comment"># 사용자가 업로드하는 미디어 정적 파일들의 기본 경로 </span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'.media'</span>)</span><br><span class="line">MEDIA_URL = <span class="string">'/media/'</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/26/TodoList-11%ED%8E%B8-%EB%94%94%ED%85%8C%EC%9D%BC-%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80-%ED%8C%8C%EC%9D%BC-%ED%91%9C%EC%8B%9C/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/25/TodoList-10%ED%8E%B8-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EB%8D%94%EB%B3%B4%EA%B8%B0-%EB%94%94%ED%85%8C%EC%9D%BC-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1217,149 +1324,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/" class="post-title-link" itemprop="url">TodoList 1편 - 초기설정</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-05-15 02:06:50 / Updated at: 02:17:52" itemprop="dateCreated datePublished" datetime="2020-05-15T02:06:50+09:00">2020-05-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/15/TodoList-1편-초기설정/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="미니프로젝트-시작"><a href="#미니프로젝트-시작" class="headerlink" title="미니프로젝트 시작"></a>미니프로젝트 시작</h2><br>
-
-<p>간단한 todolist 프로젝트를 진행하며, </p>
-<p><br>이제까지 공부한 내용을 복습도 하고, 그동안 구현하지 못했던것들도 찾으면서 구현해 보려 합니다. </p>
-<p><br>내가 할일을 생성하고, 업데이트하고, 삭제하는, Todolist 사이트를 만들어 봅니다. </p>
-<br>
-
-<h2 id="개발-개요"><a href="#개발-개요" class="headerlink" title="개발 개요"></a>개발 개요</h2><br>
-
-<table>
-<thead>
-<tr>
-<th><strong>개발 정보</strong></th>
-<th><strong>디테일</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>python version</td>
-<td>3.8.0</td>
-</tr>
-<tr>
-<td>os</td>
-<td>ubuntu18.04</td>
-</tr>
-<tr>
-<td>django version</td>
-<td>3.06</td>
-</tr>
-<tr>
-<td>CSS Framework</td>
-<td>Bulma</td>
-</tr>
-<tr>
-<td>개발 툴</td>
-<td>visual studio code</td>
-</tr>
-<tr>
-<td>배포</td>
-<td>AWS</td>
-</tr>
-<tr>
-<td>데이터베이스</td>
-<td>sqlite3 혹은 postgreSQL</td>
-</tr>
-</tbody></table>
-<br>
-
-<ul>
-<li>개발내역은, 프로젝트의 진행 상황과 숙련도에 따라서 달라질수 있음. </li>
-</ul>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/15/TodoList-1%ED%8E%B8-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1430,7 +1394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
