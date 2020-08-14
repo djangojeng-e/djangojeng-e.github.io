@@ -216,6 +216,122 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/04/Django-Models-8%ED%8E%B8-Relationships-Many-to-many-B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/04/Django-Models-8%ED%8E%B8-Relationships-Many-to-many-B/" class="post-title-link" itemprop="url">Django Models 8편 - Relationships (Many-to-many) B</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-04 21:29:24 / Updated at: 22:15:45" itemprop="dateCreated datePublished" datetime="2020-08-04T21:29:24+09:00">2020-08-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/04/Django-Models-8%ED%8E%B8-Relationships-Many-to-many-B/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/04/Django-Models-8편-Relationships-Many-to-many-B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Many-to-Many-2편"><a href="#Many-to-Many-2편" class="headerlink" title="Many-to-Many-2편"></a>Many-to-Many-2편</h2><br>
+
+<p>Many-To-Many 인스턴스들 생성하기 </p>
+<br>
+
+<p>지난 포스팅에서, through 를 사용하여, 중간 모델을 가진 Many-to-Many 관계에 대한 모델을 작성했고. </p>
+<br>
+
+<p>중간모델 Membership 을 사용하는 ManyToManyField 를 설정하였습니다. </p>
+<p><br>이제 몇가지 many-to-many relationship 을 생성할 준비가 되어 있습니다. 중간 모델의 인스턴스들을 생성하면서 Membership 을 사용하는 Many-to-Many 관계를 생성해 봅시다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">128</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Group</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">128</span>)</span><br><span class="line">    members = models.ManyToManyField(Person, through=<span class="string">'Membership'</span>)</span><br><span class="line">    <span class="comment"># through="Membership" 을 넣어줌으로, </span></span><br><span class="line">    <span class="comment"># Membership 이 Person 과 Group  사이의 중간 모델 역할을 하게 만들수 있음 </span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Membership</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># 중간 모델에서는, Person과 Group이 ForeignKey 로 등록 되어 있어야 함 </span></span><br><span class="line">    person = models.ForeignKey(Person, on_delete=models.CASCADE)</span><br><span class="line">    group = models.ForeignKey(Group, on_delete=models.CASCADE)</span><br><span class="line">    date_joined = models.DateField() </span><br><span class="line">    invite_reason = models.CharField(max_length=<span class="number">64</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위 모델을 바탕으로, shell 에서 객체를 만들어 봅니다. </p>
+<br>
+
+<blockquote>
+<p>shell 에 접속하려면,</p>
+<p>python manage.py shell 명령어를 커맨드 라인에서 실행 시키면 됩니다.  </p>
+</blockquote>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/04/Django-Models-8%ED%8E%B8-Relationships-Many-to-many-B/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/03/Django-Models-8%ED%8E%B8-Relationships-Many-to-many/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1197,124 +1313,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/28/TodoList-32%ED%8E%B8-dockerignore-%ED%8C%8C%EC%9D%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/28/TodoList-32%ED%8E%B8-dockerignore-%ED%8C%8C%EC%9D%BC/" class="post-title-link" itemprop="url">TodoList 32편 - .dockerignore 파일</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-07-28 14:29:32 / Updated at: 14:57:31" itemprop="dateCreated datePublished" datetime="2020-07-28T14:29:32+09:00">2020-07-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/07/28/TodoList-32%ED%8E%B8-dockerignore-%ED%8C%8C%EC%9D%BC/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/28/TodoList-32편-dockerignore-파일/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="dockerignore-파일"><a href="#dockerignore-파일" class="headerlink" title="dockerignore 파일"></a>dockerignore 파일</h2><br>
-
-<p>현재까지 배포를 위해 진행한 스텝입니다 </p>
-<br>
-
-<ol>
-<li>AWS EC2 생성 </li>
-<li>AWS RDS 생성 - PostgreSQL 적용 </li>
-<li>AWS S3 생성 및 적용 </li>
-<li>AWS S3 정적 이미지와 CSS 파일 적용 </li>
-<li>Docker 설치 </li>
-<li>Dockerfile 작성 후 이미지 생성 </li>
-<li>생성된 이미지를 DockerHub 에 Push </li>
-<li>Docker 를 이용하여 EC2 에 배포하기 (.dockerigrnoe파일) </li>
-</ol>
-<br>
-
-<p>지난 포스팅까지, Docker 를 이용하여, EC2 에 배포하는것 까지 진행 하였고. <br></p>
-<p>EC2 에 잘 배포가 되는것까지 확인 하였습니다. </p>
-<br>
-
-<blockquote>
-<p>하지만, Docker 를 사용하여, </p>
-<p>EC2 에 배포할때에, .dockerignore 파일에 대해서 </p>
-<p>신경 써야 한다는 점을 잊지 말아야 합니다 </p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/28/TodoList-32%ED%8E%B8-dockerignore-%ED%8C%8C%EC%9D%BC/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1385,7 +1383,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
