@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/08/15/Django-Models-17%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Abstract-Base-Class-2/</loc>
+        <lastmod>2020-08-15T05:53:52.232Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/08/14/Django-Models-17%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Abstract-Base-Class-1/</loc>
         <lastmod>2020-08-14T08:53:41.086Z</lastmod>
         <changefreq>weekly</changefreq>
