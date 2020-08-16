@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 18편 - Model 상속 related_name, related_query_name</title>
+    <url>/2020/08/16/Django-Models-18%ED%8E%B8-Model-%EC%83%81%EC%86%8D-related-name-related-query-name/</url>
+    <content><![CDATA[<h2 id="Be-careful-with-related-name-and-related-query-name"><a href="#Be-careful-with-related-name-and-related-query-name" class="headerlink" title="Be careful with related_name and related_query_name"></a>Be careful with related_name and related_query_name</h2><br>
+
+<p>만약 우리가 ForeginKey 나 ManyToManyField 에 related_name 혹은 related_query_name 을 사용하고 있다면, 우리는 언제나 고유한 reverse name 과 query name 들을 해당 필드에 지정해 주어야 합니다. </p>
+<br>
+
+<p>이 related_name 과 related_query_name 부분에 대해서, 아주 심도있게 clarification 한 곳이 없으므로. </p>
+<br>
+
+<p>예시만 보고 지나갑니다. </p>
+<a id="more"></a>
+
+<br>
+
+<p>common/models.py </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    m2m = models.ManyToManyField(</span><br><span class="line">    OtherModel, </span><br><span class="line">    related_name = <span class="string">"%(app_label)s_%(class)s_related"</span>,</span><br><span class="line">    related_query_name = <span class="string">"%(app_label)s_%(class)ss"</span>,</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">  	<span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        abstract = <span class="literal">True</span> </span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChilA</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line">class ChildB(Base);</span><br><span class="line">	<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>다른 앱도 같이 주어 집니다 rare/models.py </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> common.models <span class="keyword">import</span> Base</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildB</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>common.ChilA.m2m 필드의 역방향 이름은, </p>
+<p>common_childa_related 이고, </p>
+<p>역방향 쿼리 이름은, common_childas 가 될것입니다. </p>
+<br>
+
+<p>common.ChildB.m2m  필드의 역방향 이름은, </p>
+<p>common_childb_related 이고, </p>
+<p>역방향 쿼리 이름은, common_childbs 가 될것입니다. </p>
+<br>
+
+<p>마지막으로, </p>
+<br>
+
+<p>rare.childB.m2m 의 역방향 이름은, rare_childb_related 가 되고, </p>
+<p>역방향 쿼리 이름은, rare_childbs 가 될것입니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 17편 - Model 상속 (Abstract Base Class) 2</title>
     <url>/2020/08/15/Django-Models-17%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Abstract-Base-Class-2/</url>
     <content><![CDATA[<h2 id="Meta-Inheritance"><a href="#Meta-Inheritance" class="headerlink" title="Meta Inheritance"></a>Meta Inheritance</h2><br>

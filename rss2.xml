@@ -9,8 +9,33 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Sat, 15 Aug 2020 05:53:52 GMT</pubDate>
+    <pubDate>Sun, 16 Aug 2020 08:53:52 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Django Models 18편 - Model 상속 related_name, related_query_name</title>
+      <link>http://djangojeng-e.github.io/2020/08/16/Django-Models-18%ED%8E%B8-Model-%EC%83%81%EC%86%8D-related-name-related-query-name/</link>
+      <guid>http://djangojeng-e.github.io/2020/08/16/Django-Models-18%ED%8E%B8-Model-%EC%83%81%EC%86%8D-related-name-related-query-name/</guid>
+      <pubDate>Sun, 16 Aug 2020 08:44:39 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;Be-careful-with-related-name-and-related-query-name&quot;&gt;&lt;a href=&quot;#Be-careful-with-related-name-and-related-query-name&quot; class=&quot;headerlink&quot; title=&quot;Be careful with related_name and related_query_name&quot;&gt;&lt;/a&gt;Be careful with related_name and related_query_name&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;만약 우리가 ForeginKey 나 ManyToManyField 에 related_name 혹은 related_query_name 을 사용하고 있다면, 우리는 언제나 고유한 reverse name 과 query name 들을 해당 필드에 지정해 주어야 합니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;p&gt;이 related_name 과 related_query_name 부분에 대해서, 아주 심도있게 clarification 한 곳이 없으므로. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;p&gt;예시만 보고 지나갑니다. &lt;/p&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Be-careful-with-related-name-and-related-query-name"><a href="#Be-careful-with-related-name-and-related-query-name" class="headerlink" title="Be careful with related_name and related_query_name"></a>Be careful with related_name and related_query_name</h2><br><p>만약 우리가 ForeginKey 나 ManyToManyField 에 related_name 혹은 related_query_name 을 사용하고 있다면, 우리는 언제나 고유한 reverse name 과 query name 들을 해당 필드에 지정해 주어야 합니다. </p><br><p>이 related_name 과 related_query_name 부분에 대해서, 아주 심도있게 clarification 한 곳이 없으므로. </p><br><p>예시만 보고 지나갑니다. </p><a id="more"></a><br><p>common/models.py </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    m2m = models.ManyToManyField(</span><br><span class="line">    OtherModel, </span><br><span class="line">    related_name = <span class="string">"%(app_label)s_%(class)s_related"</span>,</span><br><span class="line">    related_query_name = <span class="string">"%(app_label)s_%(class)ss"</span>,</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        abstract = <span class="literal">True</span> </span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChilA</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line">class ChildB(Base);</span><br><span class="line"><span class="keyword">pass</span></span><br></pre></td></tr></table></figure><br><p>다른 앱도 같이 주어 집니다 rare/models.py </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> common.models <span class="keyword">import</span> Base</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildB</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><br><blockquote><p>common.ChilA.m2m 필드의 역방향 이름은, </p><p>common_childa_related 이고, </p><p>역방향 쿼리 이름은, common_childas 가 될것입니다. </p><br><p>common.ChildB.m2m  필드의 역방향 이름은, </p><p>common_childb_related 이고, </p><p>역방향 쿼리 이름은, common_childbs 가 될것입니다. </p><br><p>마지막으로, </p><br><p>rare.childB.m2m 의 역방향 이름은, rare_childb_related 가 되고, </p><p>역방향 쿼리 이름은, rare_childbs 가 될것입니다. </p></blockquote><br><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/08/16/Django-Models-18%ED%8E%B8-Model-%EC%83%81%EC%86%8D-related-name-related-query-name/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Django Models 17편 - Model 상속 (Abstract Base Class) 2</title>
@@ -750,38 +775,6 @@
       <content:encoded><![CDATA[<h2 id="Using-models-모델-사용하기"><a href="#Using-models-모델-사용하기" class="headerlink" title="Using models (모델 사용하기)"></a>Using models (모델 사용하기)</h2><br><h3 id="앱-등록하기"><a href="#앱-등록하기" class="headerlink" title="앱 등록하기"></a>앱 등록하기</h3><br><p>모델을 정의 한 후에 우리는, Django 에게 이 모델을 사용할것이라고 얘기해주어야 합니다. </p><p><br>Django 에게 이 모델을 사용할것이라고 알려주기 위해서는, </p><br><blockquote><p>settings.py 에 있는 INSTALLED_APPS 에 해당 모듈명을 추가해 주어야 합니다 </p></blockquote><br><p>예를들어, <code>python manage.py startapp usemodel</code> 명령어를 통해, usemodel 이라는 앱을 생성하였다고 가정하면, settings.py 파일에 INSTALLED_APPS 안에, 생성된 모델이 아래와 같이 등록 되어 있어야 합니다.  </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="comment">#...</span></span><br><span class="line">    <span class="string">'usemodel'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure><br><br><a id="more"></a><br><h3 id="makemigrations"><a href="#makemigrations" class="headerlink" title="makemigrations"></a>makemigrations</h3><br><p>INSTALLED_APPS 에 새로운 앱을 추가해 주고, 해당 앱에 대한 모델을 작성해 주었으면, </p><p>데이터베이스에 적용을 해주어야 합니다. 하지만, 적용전에 <code>python manage.py makemigrations</code> 명령어를 통해서, 데이터베이스 적용 전에 migrations 파일을 만들어 줍니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br></pre></td></tr></table></figure><br><blockquote><p>해당 앱의 모델을 아직 작성하지 않아도, 위의 makemigrations 명령어는 정상으로 실행됩니다. </p><p>왜냐하면, 새로운 모델이 생성되었기 때문입니다. </p><p>이렇게 앱과 모델을 등록한다음에는, 앱의 모델을 변경할때마다, </p><p>makemigrations 와 migrate 명령어를 실행하여, 데이터베이스에 변경사항을 적용 해주어야 합니다. </p></blockquote><br><h3 id="migrate"><a href="#migrate" class="headerlink" title="migrate"></a>migrate</h3><br><p>makemigrations 명령어를 실행 시켜 주었으면, <code>migrate</code> 명령어를 통해서, 데이터 베이스에 실제 적용을 합니다. </p><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure><br><br><h2 id="모델을-사용하는-순서"><a href="#모델을-사용하는-순서" class="headerlink" title="모델을 사용하는 순서"></a>모델을 사용하는 순서</h2><br><ol><li>앱생성 </li><li>앱을 settings.py 에 등록 </li><li><code>python manage.py makemigrations</code></li><li><code>python manage.py migrate</code></li></ol>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/07/31/Django-Models-2%ED%8E%B8-using-models/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Django Models 1편 - Quick Example</title>
-      <link>http://djangojeng-e.github.io/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/</link>
-      <guid>http://djangojeng-e.github.io/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/</guid>
-      <pubDate>Thu, 30 Jul 2020 11:39:34 GMT</pubDate>
-      <description>
-      
-        &lt;h2 id=&quot;Models-Quick-example&quot;&gt;&lt;a href=&quot;#Models-Quick-example&quot; class=&quot;headerlink&quot; title=&quot;Models - Quick example&quot;&gt;&lt;/a&gt;Models - Quick example&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;Django 공식문서에 나와있는, models 에 대한 부분을 둘러봅니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;공식 문서에는 완벽한 번역본이 존재하지 않고, 설명이 너무 불충분해서, 초반에 공부할때에 많은 어려움이 있었습니다. &lt;/p&gt;
-&lt;p&gt;물론,, 지금도 쉽지는 않지만.. 어쨋든, Django models 에 대한 포스팅을 시작합니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Models (모델)&lt;/strong&gt; &lt;/p&gt;
-&lt;p&gt;모델은 당신의 데이터에 대한 정보를 가지고 있고, 당신의 데이터에 대한 정의를 내리는 하나의 소스 입니다.&lt;/p&gt;
-&lt;p&gt;모델은 당신에게 필요하고 저장하고자 하는 필드들과 동작들에 대한 정보를 포함하고 있습니다&lt;/p&gt;
-&lt;p&gt;각 모델들은, 보통 하나의 데이터 베이스 테이블로 매핑 됩니다.﻿&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="Models-Quick-example"><a href="#Models-Quick-example" class="headerlink" title="Models - Quick example"></a>Models - Quick example</h2><br><p>Django 공식문서에 나와있는, models 에 대한 부분을 둘러봅니다. </p><p><br>공식 문서에는 완벽한 번역본이 존재하지 않고, 설명이 너무 불충분해서, 초반에 공부할때에 많은 어려움이 있었습니다. </p><p>물론,, 지금도 쉽지는 않지만.. 어쨋든, Django models 에 대한 포스팅을 시작합니다. </p><br><br><blockquote><p><strong>Models (모델)</strong> </p><p>모델은 당신의 데이터에 대한 정보를 가지고 있고, 당신의 데이터에 대한 정의를 내리는 하나의 소스 입니다.</p><p>모델은 당신에게 필요하고 저장하고자 하는 필드들과 동작들에 대한 정보를 포함하고 있습니다</p><p>각 모델들은, 보통 하나의 데이터 베이스 테이블로 매핑 됩니다.﻿</p></blockquote><br><a id="more"></a><br><h2 id="기본-사항들"><a href="#기본-사항들" class="headerlink" title="기본 사항들"></a>기본 사항들</h2><br><ol><li>각 모델은 Python 클래스 이고, <code>django.db.models.Model</code> 의 서브 클래스 이다 </li><li>각 모델의 속성들은 데이터베이스 필드를 표현 합니다 </li><li>이 모든 정보들을 가지고, Django 는 자동으로 생성된 database-access API 를 제공합니다. </li></ol><br><br><h2 id="빠른-예제"><a href="#빠른-예제" class="headerlink" title="빠른 예제"></a>빠른 예제</h2><br><p>아래 예제는, first_name, last_name 정보를 가지는 Person 모델을 정의 합니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Person(models.Model);</span><br><span class="line">first_name = models.CharField(max_length=<span class="number">30</span>)</span><br><span class="line">    last_name = models.CharField(max_length=<span class="number">30</span>)</span><br></pre></td></tr></table></figure><br><p>first_name 과 last_name 은 모델의 필드들입니다. 각 필드들은, 클래스의 속성들로 표현되어 있습니다. </p><br><p>그리고, 각 속성들은 database 컬럼들과 메칭 됩니다. </p><br><blockquote><p>처음에 공부할때, 데이터베이스의 Column 그리고 Field 에 대해서 잘 몰라서 </p><p>이해가 안갔었는데,  아래 그림을 가져와서 참고 합니다. </p></blockquote><br><img src="/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/image1.png" class=""><br><ul><li>위의 모델에서  class Person 이라는 클래스는 데이터베이스 테이블명이 됩니다 </li><li>first_name 은 해당 테이블의 필드명이 되고, 최대 길이는 30자 입니다 </li><li>last_name 은 해당 테이블의 필드명이 되고, 최대 길이는 30자 입니다   </li></ul><br><blockquote><p>위의 Person 모델은 아래와 같은 데이터베이스 테이블을 생성합니다. </p></blockquote><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> myapp_person (</span><br><span class="line">    <span class="string">"id"</span> <span class="built_in">serial</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">    <span class="string">"first_name"</span> <span class="built_in">varchar</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    <span class="string">"last_name"</span> <span class="built_in">varchar</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure><br><h2 id="기술적인-노트"><a href="#기술적인-노트" class="headerlink" title="기술적인 노트"></a>기술적인 노트</h2><br><ul><li>테이블의 이름은, myapp_person 으로 지정되어 있는데, 이것은 자동적으로 메타데이터에서 따옵니다. 하지만, 이 이름은 오버라이드 될수 있습니다 </li><li>id 필드는 자동으로 추가됩니다. 이 동작 방식도 수정될수는 있습니다 </li><li>이번 예제에서 사용된 CREATE TABLE SQL 구문은, PostgreSQL 구문을 사용한 형식입니다. 하지만, django 는 데이터베이스 백앤드를 당신의 settings.py 파일에 명시되어 있는 데이터베이스에 맞추어 사용합니다. </li></ul>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/#disqus_thread</comments>
     </item>
     
   </channel>
