@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 19편 - Model 상속 Multi-table inheritance 2편</title>
+    <url>/2020/08/18/Django-Models-19%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Multi-table-inheritance-2%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="Multi-table-inheritance-2편"><a href="#Multi-table-inheritance-2편" class="headerlink" title="Multi-table inheritance 2편"></a>Multi-table inheritance 2편</h2><br>
+
+<h3 id="Inheritance-and-reverse-relations"><a href="#Inheritance-and-reverse-relations" class="headerlink" title="Inheritance and reverse relations"></a>Inheritance and reverse relations</h3><br>
+
+<p>multi-table 상속은 암시적으로, OneToOneField 를 사용하여 자식 클래스와 부모 클래스를 연결해 주기 때문에, 부모 클래스에서 자식 클래스로 이동이 가능해 집니다. </p>
+<br>
+
+<p>하지만, 이는 ForeignKey 와 ManyToManyField 관계들을 위한 기본 related_name 값을 사용합니다. </p>
+<br>
+
+<p>만일 우리가, ForeignKey 나 ManyToManyField 관게들을 부모의 서브클래스에 넣어준다면, 각 필드에 related_name 속성들을 지정해 주어야 합니다. </p>
+<br>
+
+<p>각 필드에 이 relate_name 속성을 지정해 주지 않는다면, Django는 유효성 에러를 발생 시킬겁니다. </p>
+<br>
+
+<br>
+<a id="more"></a>
+
+<br>
+
+<p>예시를 들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Place</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    address = models.CharField(max_length=<span class="number">80</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Restaurant</span><span class="params">(Place)</span>:</span></span><br><span class="line">    serves_hot_dogs = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    serves_pizza = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 새로운 서브 클래스 추가 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Supplier</span><span class="params">(Place)</span>:</span></span><br><span class="line">    customers = models.ManyToManyField(Place)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이렇게 코드를 짜면, 에러를 발생 시킵니다. </p>
+<p><br>새로운 클래스를 추가하고, python manage.py makemigraitons 를 실행하면, 아래와 같은 에러가 출력 됩니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">(django-tutorial)  dhkang  ~/django_tutorial/django_docs master python manage.py makemigrations</span><br><span class="line">SystemCheckError: System check identified some issues:</span><br><span class="line"></span><br><span class="line">ERRORS:</span><br><span class="line">multitableinheritance.Supplier.customers: (fields.E305) Reverse query name </span><br><span class="line">for 'Supplier.customers' clashes with reverse query name for 'Supplier.place_ptr'.</span><br><span class="line">        HINT: Add or change a related_name argument to the definition for </span><br><span class="line">'Supplier.customers' or 'Supplier.place_ptr'.</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>related_name 을 아래와 같이 customers 필드에 추가를 하면, 에러가 해결됩니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Place</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    address = models.CharField(max_length=<span class="number">80</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Restaurant</span><span class="params">(Place)</span>:</span></span><br><span class="line">    serves_hot_dogs = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    serves_pizza = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="comment"># 새로운 서브 클래스 추가 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Supplier</span><span class="params">(Place)</span>:</span></span><br><span class="line">    customers = models.ManyToManyField(Place, related_name=<span class="string">'provider'</span>)</span><br><span class="line">    <span class="comment"># related_name='provider' 라고 지정을 해줌</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>related_name</code> 을 지정해주고, python manage.py makemigrations 를 실행해주면, migrations 가 생성됩니다.<br><br></p>
+<h3 id="Specifying-the-parent-link-field"><a href="#Specifying-the-parent-link-field" class="headerlink" title="Specifying the parent link field"></a>Specifying the parent link field</h3><br>
+
+<p>이전에도 언급되었듯이, django 는 자동적으로 OneToONeField 를 사용하여, 자식 클래스를 Abstract base 클래스가 아닌 부모 클래스 모델에 연결해 줍니다. 만약 부모와 연결되는 속성들의 이름을 제어하고 싶다면, 스스로 OneToOneField 를 생성하고, parent_link = True 로 설정하여, 당신의 필드가 부모 클래스에 뒤쪽으로 연결 된다는것을 표시할수 있습니다.<br><br></p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 19편 - Model 상속 Multi-table inheritance 1편</title>
     <url>/2020/08/17/Django-Models-19%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Multi-table-inheritance-1%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="Model-상속-Multi-table-inheritance"><a href="#Model-상속-Multi-table-inheritance" class="headerlink" title="Model 상속 (Multi-table inheritance )"></a>Model 상속 (Multi-table inheritance )</h2><br>

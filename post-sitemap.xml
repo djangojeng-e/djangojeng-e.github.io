@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/08/18/Django-Models-19%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Multi-table-inheritance-2%ED%8E%B8/</loc>
+        <lastmod>2020-08-18T11:11:32.726Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/08/17/Django-Models-19%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Multi-table-inheritance-1%ED%8E%B8/</loc>
         <lastmod>2020-08-17T07:28:53.854Z</lastmod>
         <changefreq>weekly</changefreq>
