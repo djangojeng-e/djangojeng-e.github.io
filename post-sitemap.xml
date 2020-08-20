@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/08/20/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-2/</loc>
+        <lastmod>2020-08-20T05:41:57.588Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/08/19/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-1/</loc>
         <lastmod>2020-08-19T11:40:10.151Z</lastmod>
         <changefreq>weekly</changefreq>
