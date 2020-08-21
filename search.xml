@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 21편 - Multiple Inheritance</title>
+    <url>/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/</url>
+    <content><![CDATA[<h2 id="Multiple-Inheritance"><a href="#Multiple-Inheritance" class="headerlink" title="Multiple Inheritance"></a>Multiple Inheritance</h2><br>
+
+<p>파이썬에서 서브클래스를 받는것과 같이, DJango 모델은 다수의 부모 모델들을 상속 받는게 가능합니다. </p>
+<p><br>하지만, 파이썬에서 일반적으로 이름짓는 방식들이 이 Django 모델 클래스에 적용된다는점을 염두해 두고 있어야 합니다 (예, 예약어들은 클래스명으로 사용할수 없음)</p>
+<br>
+
+<p>특정 이름, (예, Meta) 가 나타나는 첫번째 기본 클래스가 사용 될것입니다. 예를들면, 이것의 의미는 만약 다수의 부모 클래스들이 Meta 클래스를 하나씩 가지고 있는다면, 오직 첫번째 것만 사용이 되고, 나머지들은 무시 됩니다. </p>
+<br>
+
+<p>보편적으로 우리는, 다수의 부모 클래스로부터 상속 받을 필요가 없는 경우가 많습니다. 주 사용처는, “mix-in” 클래스들을 사용할때 유용하다는 점입니다. 특정 추가 필드를 추가하거나 “mix-in” 을 상속받는 모든 클래스에 메서드를 추가할때 유용합니다. </p>
+<br>
+
+<p>당신의 상속 구조를 가능한한 최대로 간단하고 명료하게 유지하도록 노력해야 합니다. 그래야, 특정 정보가 어디서 왔는지 알아내기 위해 고생할 필요가 없어집니다. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p>다수의 모델에서 상속받을때, </p>
+<p>공통된 id, primary key 필드를 가지고 있는 모델들로부터 상속받는것은 에러를 발생 시킬겁니다. </p>
+<br>
+
+<p>제대로 다중 상속을 사용하기 위해서는, </p>
+<p>명시적으로 AutoField 를 base 모델들 안에 사용합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    article_id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    book_id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookReview</span><span class="params">(Book, Article)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>혹은 AutoField 를 가지기 위해서, 공통 조상을 사용합니다. 이것은 각 부모 모델과 공통 조상 사이에 명시적으로 OneToOneField 를 사용하는것을 필요로 합니다. </p>
+<br>
+
+<p>그래야, 자식 클래스에 자동으로 생성되었거나 상속이 된 필드들 간에 충돌을 피할수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Piece</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(Piece)</span>:</span></span><br><span class="line">    article_piece = models.OneToOneField(Piece, on_delete=models.CASCADE, parent_link=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(Piece)</span>:</span></span><br><span class="line">    book_piece = models.OneToOneField(Piece, on_delete=models.CASCADE, parent_link=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookReview</span><span class="params">(Book, Article)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="Field-name-“hiding”-is-not-permitted"><a href="#Field-name-“hiding”-is-not-permitted" class="headerlink" title="Field name “hiding” is not permitted"></a>Field name “hiding” is not permitted</h3><br>
+
+<blockquote>
+<p>일반 파이썬 클래스 상속에서, </p>
+<p>자녀 클래스가 부모 클래스의 속성을 override 하는것이 허용됩니다.</p>
+<p>하지만, Django 에서는, 모델 필드들에 허용되지 않습니다. </p>
+</blockquote>
+<br>
+
+<p>만약에 Abstract 모델 베이스 클래스가 author 라는 필드를 가지고 있으면, 이 베이스 클래스를 상속받는 어떤 클래스도 author 라는 필드 혹은 Author 라는 속성을 정의할수 없습니다. </p>
+<br>
+
+<p>이런 제약은, Abstract  모델에서 상속받은 모델 필드들에는 적용되지 않습니다. 이런 경우에 필드들은 다른 필드나 값으로 override 될수 있고, field_name = None 으로 제거 될수도 있습니다. </p>
+<br>
+
+<blockquote>
+<p>주의사항 </p>
+<p>모델 managers 는 Abstract base 클래스들에서 상속됩니다. </p>
+<p>상속된 Manager 로 참조되는 상속된 필드를 Override 하는것은 버그를 일으킬수 있습니다. </p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>노트 </p>
+<p>어떤 필드들은 모델에 추가 속성들을 정의 합니다 </p>
+<p>예를들어, </p>
+<p>ForeignKey 는 _id 가 필드명에 추가된 추가 속성을 정의하고, related_name 과 related_query_name 을 Foreign 모델에 정의합니다. </p>
+<p>이 추가 속성들은 override 될수 없습니다. 만약에 해당 필드를 저으이하는 필드가 수정 되었거나, </p>
+<p>삭제되어서 해당 추가 속성을 더이상 정의하지 않는한, 이 추가 속성들은 override 될수 없습니다. </p>
+</blockquote>
+<br>
+
+<p>부모 모델안에 필드들을 overriding 하는것은, 새로운 인스턴스들을 시작하거나 직렬화 같은 영역 안에서 어려움을 초래할수 있습니다. 이런 기능들은, 일반 파이썬 클래스 상속과 같은 방식으로 처리하지 않아도 되는것입니다. 따라서, Django 모델 상속과 Python 클래스 상속의 차이점은 임의적이지 않습니다. </p>
+<br>
+
+<p>이 제약은 필드 인스턴스들인 속성에만 적용됩니다. </p>
+<br>
+
+<p>표준 파이썬 속성들은, 원한다면, override 될수 있습니다. </p>
+<br>
+
+<p>속성 이름에도 적용이 됩니다. 만약 수동으로 데이터베이스 컬럼명을 바꾸고 있다면, multi-table 상속을 위해서 같은 컬럼명을 자식 모델과 조상 모델에 나타나게 할수 있습니다. (두개의 다른 데이터베이스 테이블에 있는 컬럼들 입니다.)</p>
+<br>
+
+<p>만약, 어떤 조상 모델이던지간에, 어떠한 모델 필드를 override 한다면, django 는 FieldError 를 발생 시킵니다. </p>
+<br>
+
+
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 20편 - Model 상속 (Proxy models - 2)</title>
     <url>/2020/08/20/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-2/</url>
     <content><![CDATA[<h2 id="Model-Inheritance-proxy-models-2"><a href="#Model-Inheritance-proxy-models-2" class="headerlink" title="Model Inheritance proxy models - 2"></a>Model Inheritance proxy models - 2</h2><br>
