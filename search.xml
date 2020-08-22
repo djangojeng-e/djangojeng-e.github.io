@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Models 22편 - 패키지안 모델 정리하기</title>
+    <url>/2020/08/22/Django-Models-22%ED%8E%B8-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%95%88-%EB%AA%A8%EB%8D%B8-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Models-Organising-models-in-a-package"><a href="#Models-Organising-models-in-a-package" class="headerlink" title="Models - Organising models in a package"></a>Models - Organising models in a package</h2><h3 id="Organising-models-in-a-package"><a href="#Organising-models-in-a-package" class="headerlink" title="Organising models in a package"></a>Organising models in a package</h3><br>
+
+<p><code>manage.py startapp</code> 커맨드는 models.py 를 포함한 어플리케이션 구조를 생성합니다. 많은 모델들을 가지고 있다면, 별도의 파일에 정리를 해두는것도 유용한 방법입니다. </p>
+<br>
+
+<p>그렇게 하기 위해서는,  models 패키지를 생성해야 합니다. </p>
+<br>
+
+<ol>
+<li>models.py 를 없애고 </li>
+<li>app이름/models/디렉토리 를 생성합니다 </li>
+<li>app이름/models/디렉토리 안에, <code>__init__.py</code> 파일을 생성하고, 당신의 모델을 저장할 파일들을 생성합니다 </li>
+<li><code>__init__.py</code> 파일에  import 해주어야 합니다 </li>
+</ol>
+<br>
+
+<p>예를들어, organic.py , synthetic.py 가 모델 디렉토리 안에 있었다면, </p>
+<br>
+
+<blockquote>
+<p><code>__init__.py</code> 파일에 import 해주는것을 잊지 않아야 합니다. </p>
+<p><code>myapp/models/__init__.py</code></p>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> .organic <span class="keyword">import</span> Person </span><br><span class="line"><span class="keyword">from</span> .synthetic <span class="keyword">import</span> Robot</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>명시적으로 각 모델을 가져오는것은, <code>from .models import *</code> 을 사용하는것보다 이점이 있습니다. </p>
+<p><br>이름 공간을 어수선하게 하지 않게되고, 코드를 좀더 읽기 좋게 하고, 코드 분석 툴들을 더 유용하게 해줍니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>공식문서</category>
+      </categories>
+      <tags>
+        <tag>models</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Models 21편 - Multiple Inheritance</title>
     <url>/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/</url>
     <content><![CDATA[<h2 id="Multiple-Inheritance"><a href="#Multiple-Inheritance" class="headerlink" title="Multiple Inheritance"></a>Multiple Inheritance</h2><br>
