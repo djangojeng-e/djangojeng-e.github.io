@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AWS Elastic Beanstalk 배포 - 4</title>
+    <url>/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-4/</url>
+    <content><![CDATA[<h2 id="Django-프로젝트-생성하기"><a href="#Django-프로젝트-생성하기" class="headerlink" title="Django 프로젝트 생성하기"></a>Django 프로젝트 생성하기</h2><br>
+
+<p><code>django-admin startproject ebdjango</code> 명령어를 실행하여, ebdjango 라는 프로젝트를 하나 생성해 줍니다. <br></p>
+<br>
+
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk  ls</span><br><span class="line">eb_env</span><br><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk  django-admin startproject ebdjango</span><br><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk  ls</span><br><span class="line">ebdjango  eb_env</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>ebdjango</code>라는 폴더가 생성되고, 프로젝트가 생성된것을 확인 할수 있습니다. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<p><code>ebdjango</code> 폴더로 이동하여, <code>python manage.py runserver</code> 명령어를 실행하고, 서버를 시작해 줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk  <span class="built_in">cd</span> ebdjango </span><br><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk/ebdjango  ls</span><br><span class="line">ebdjango  manage.py</span><br><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk/ebdjango  python manage.py runserver</span><br><span class="line">Performing system checks...</span><br><span class="line"></span><br><span class="line">System check identified no issues (0 silenced).</span><br><span class="line"></span><br><span class="line">You have 15 unapplied migration(s). Your project may not work properly until you apply the migrations <span class="keyword">for</span> app(s): admin, auth, contenttypes, sessions.</span><br><span class="line">Run <span class="string">'python manage.py migrate'</span> to apply them.</span><br><span class="line"></span><br><span class="line">September 24, 2020 - 03:55:51</span><br><span class="line">Django version 2.1.1, using settings <span class="string">'ebdjango.settings'</span></span><br><span class="line">Starting development server at http://127.0.0.1:8000/</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>서버를 실행한뒤에, </p>
+<p><a href="http://127.0.0.1:8000" target="_blank" rel="noopener">http://127.0.0.1:8000</a> 에 접속하면, 정상적으로 django 애플리케이션이 실행 되는것을 확인할수 있습니다. </p>
+<br>
+
+<img src="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-4/image1.png" class="">
+
+<p><br><br></p>
+]]></content>
+      <categories>
+        <category>AWS</category>
+        <category>Elastic Beanstalk</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>Elastic Beanstalk</tag>
+        <tag>배포</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AWS Elastic Beanstalk 배포 - 3</title>
     <url>/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-3/</url>
     <content><![CDATA[<h2 id="배포전-환경설정"><a href="#배포전-환경설정" class="headerlink" title="배포전 환경설정"></a>배포전 환경설정</h2><br>
