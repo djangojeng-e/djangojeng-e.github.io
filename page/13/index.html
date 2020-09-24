@@ -216,6 +216,259 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Imports/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/05/PEP8-Code-Layout-Imports/" class="post-title-link" itemprop="url">PEP8 Code Layout - Imports</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-05 13:44:34 / Updated at: 14:03:51" itemprop="dateCreated datePublished" datetime="2020-04-05T13:44:34+09:00">2020-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/PEP8/" itemprop="url" rel="index"><span itemprop="name">PEP8</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/05/PEP8-Code-Layout-Imports/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/05/PEP8-Code-Layout-Imports/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="PEP8-Code-Layout-Imports-가져오기"><a href="#PEP8-Code-Layout-Imports-가져오기" class="headerlink" title="PEP8 Code Layout - Imports (가져오기)"></a>PEP8 Code Layout - Imports (가져오기)</h1><br>
+
+<br>
+
+<p>PEP8 코드 레이아웃, <code>imports</code>편 입니다. </p>
+<br>
+
+<p><code>imports</code> 는 해당 파일에 다른 함수나 모듈을 불러올때 사용하는 명령어 입니다. </p>
+<p><br>표준 라이브러리 기능이나, 다른 모듈에 있는 함수, 클래스 혹은 메써드들을 가져올때 사용합니다. </p>
+<br>
+
+<blockquote>
+<p>PEP8에 따르면, Imports 는 보통 별도의 줄로 되어 있어야 합니다. <br></p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">import</span> os </span><br><span class="line"><span class="keyword">import</span> sys </span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">import</span> sys, os</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>하지만, 아래의 경우도 괜찮습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예</span></span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> Popen, PIPE</span><br></pre></td></tr></table></figure>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/05/PEP8-Code-Layout-Imports/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Source-File-Encoding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/05/PEP8-Code-Layout-Source-File-Encoding/" class="post-title-link" itemprop="url">PEP8 Code Layout - Source File Encoding</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-05 01:43:05 / Updated at: 01:57:09" itemprop="dateCreated datePublished" datetime="2020-04-05T01:43:05+09:00">2020-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/PEP8/" itemprop="url" rel="index"><span itemprop="name">PEP8</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/05/PEP8-Code-Layout-Source-File-Encoding/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/05/PEP8-Code-Layout-Source-File-Encoding/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Source-File-Encoding-소스파일-인코딩"><a href="#Source-File-Encoding-소스파일-인코딩" class="headerlink" title="Source File Encoding (소스파일 인코딩)"></a>Source File Encoding (소스파일 인코딩)</h1><br>
+
+<br>
+
+<p>이번 토픽은 소스파일 인코딩 입니다. </p>
+<br>
+
+<br>
+
+<p>파이썬 배포에 사용되는 코드는 항상 UTF-8 을 사용해야 합니다. </p>
+<p>파이썬2 에서는 ASCII </p>
+<br>
+
+<p><a href="https://namu.wiki/w/UTF-8" target="_blank" rel="noopener">https://namu.wiki/w/UTF-8</a></p>
+<br>
+
+<blockquote>
+<p>UTF-8 은 가장 많이 사용되는 가변길이 유니코드 인코딩이다.</p>
+<p>GO 언어를 만든 켄 톰슨과 롭 파이크가 만들었다 </p>
+</blockquote>
+<br>
+
+<br>
+
+<p>[<a href="https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4%20%EC%BD%94%EB%93%9C?from=ASCII]" target="_blank" rel="noopener">https://namu.wiki/w/%EC%95%84%EC%8A%A4%ED%82%A4%20%EC%BD%94%EB%93%9C?from=ASCII]</a>(<a href="https://namu.wiki/w/아스키" target="_blank" rel="noopener">https://namu.wiki/w/아스키</a> 코드?from=ASCII)</p>
+<br>
+
+<blockquote>
+<p>ASCII 코드는 미국 ANSI 에서 표준화한 정보 교환용 7비트 부호체계 </p>
+<p>2 바이트 이상의 코드를 표현할수 없기 때문에. </p>
+<p>국제 표준에서는 유니코드로 넘어감.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p>PEP8에 따르면, 파이썬2에서 ASCII 를 사용하는 파일들이나 혹은 파이썬3에서 UTF-8을 사용하는 파일들 모두 </p>
+<p>인코딩 선언이 되어 있지 않아야 합니다. </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/05/PEP8-Code-Layout-Source-File-Encoding/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/05/PEP8-Code-Layout-Blank-Lines/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1222,234 +1475,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/" class="post-title-link" itemprop="url">Hexo 블로그 - 블로그내에 검색 기능 추가</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-03-26 22:29:45" itemprop="dateCreated datePublished" datetime="2020-03-26T22:29:45+09:00">2020-03-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-03-27 22:15:56" itemprop="dateModified" datetime="2020-03-27T22:15:56+09:00">2020-03-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo-Blog/" itemprop="url" rel="index"><span itemprop="name">Hexo Blog</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/26/Hexo-블로그-블로그내에-검색-기능-추가/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="블로그내-검색기능-추가"><a href="#블로그내-검색기능-추가" class="headerlink" title="블로그내 검색기능 추가"></a>블로그내 검색기능 추가</h1><br>
-
-<p>블로그내에 검색기능을 추가하려 합니다. <br></p>
-<p>카테고리나, 태그로 검색해도 괜찮지만, 포스트들을 검색할수 있는 기능이 있으면 좋을것 같습니다 </p>
-<br>
-
-<br>
-
-<h2 id="hexo-generator-searchdb-설치하기"><a href="#hexo-generator-searchdb-설치하기" class="headerlink" title="hexo-generator-searchdb 설치하기"></a>hexo-generator-searchdb 설치하기</h2><br>
-
-<p><code>search data generator</code>플러그인을 설치 해줍니다. </p>
-<p><br>해당 플러그인은 여러분의 포스트의 필요한 데이터를 포함하고 있는 <code>검색 인덱스 파일</code>을 생성하는데 사용하고. <br></p>
-<p>이 파일들을을 이용해서, 블로그내에 로컬 서치 엔진 으로 사용합니다. </p>
-<br>
-
-<p><br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/26/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B8%94%EB%A1%9C%EA%B7%B8%EB%82%B4%EC%97%90-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/03/22/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-SEO-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/22/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-SEO-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">Hexo 블로그 - SEO 세팅하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-03-22 20:05:14" itemprop="dateCreated datePublished" datetime="2020-03-22T20:05:14+09:00">2020-03-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-03-23 21:41:44" itemprop="dateModified" datetime="2020-03-23T21:41:44+09:00">2020-03-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo-Blog/" itemprop="url" rel="index"><span itemprop="name">Hexo Blog</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/03/22/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-SEO-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/22/Hexo-블로그-SEO-세팅하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="NeXT-Theme-검색엔진-최적화"><a href="#NeXT-Theme-검색엔진-최적화" class="headerlink" title="NeXT Theme 검색엔진 최적화"></a>NeXT Theme 검색엔진 최적화</h1><h2 id="검색엔진-최적화-SEO-시작"><a href="#검색엔진-최적화-SEO-시작" class="headerlink" title="검색엔진 최적화 (SEO) 시작"></a>검색엔진 최적화 (SEO) 시작</h2><br>
-
-<p>블로그이든, 홈페이지든, 쇼핑몰이든, 어떠한 서비스 이든, 만들어 놓기만 하고, <br></p>
-<p>사람들이 검색해서 찾지 못한다면, 사용자들이 사용할수 없겠죠? ㅎㅎ <br></p>
-<p><br><br></p>
-<blockquote>
-<p><strong>사용자들이 웹에 검색해서 원하는 컨텐츠들을 우리 블로그에서 찾을수 있도록 하기 위해서,</strong> </p>
-<br>
-
-<p>우리는 모두  블로그나, 웹사이트 혹은 어떠한 웹서비스를 검색엔진에 최적화를 시켜놓아야 합니다. <br><br></p>
-</blockquote>
-<p><br>점점 저의 블로그도 뼈대를 갖춰 가고 있으니, 사람들이 필요한 정보를 검색해서 찾을수 있게. <br></p>
-<p>돈을 들여서 검색광고를 하면, 더 많은 사용자들에게 찾아지겠지만, 이 블로그는 어디까지나 공부가 목적이니. <br></p>
-<br>
-
-<p>비용을 전혀 들이지 않고 검색이 잘 나올수 있게.  SEO 세팅을 좀 해보겠습니다 ㅎㅎ </p>
-<br>
-
-<br>
-
-<p><strong>SEO (Search Engine Optimization)</strong>  과정을 알아봅니다. </p>
-<br>
-
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/22/Hexo-%EB%B8%94%EB%A1%9C%EA%B7%B8-SEO-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1520,7 +1545,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">142</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1533,7 +1558,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-count">116</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
