@@ -1,6 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AWS Elastic Beanstalk 배포 - 6</title>
+    <url>/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-6/</url>
+    <content><![CDATA[<h2 id="EB-CLI-로-사이트-배포하기"><a href="#EB-CLI-로-사이트-배포하기" class="headerlink" title="EB CLI 로 사이트 배포하기"></a>EB CLI 로 사이트 배포하기</h2><br>
+
+<p>지난 포스팅까지, Elastic Beanstalk 에 배포를 위한 기본 설정과, Elastic Beanstalk 를 위한 추가 설정까지 마쳤습니다 (<code>ebextensions</code> 폴더 생성후, <code>django.config</code> 파일 생성 완료)</p>
+<br>
+
+<p>Elastic Beanstalk 에 사이트를 배포할 준비가 다 되었습니다. </p>
+<br>
+
+<p>프로젝트 디렉토리는 아래와 같은 구조로 되어 있습니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk/ebdjango  l</span><br><span class="line">total 24K</span><br><span class="line">drwxr-xr-x 4 dhkang dhkang 4.0K  9월 24 13:09 .</span><br><span class="line">drwxr-xr-x 5 dhkang dhkang 4.0K  9월 24 12:52 ..</span><br><span class="line">-rw-r--r-- 1 dhkang dhkang    0  9월 24 12:55 db.sqlite3</span><br><span class="line">drwxr-xr-x 3 dhkang dhkang 4.0K  9월 24 12:55 ebdjango</span><br><span class="line">drwxr-xr-x 2 dhkang dhkang 4.0K  9월 24 13:12 .ebextensions</span><br><span class="line">-rwxr-xr-x 1 dhkang dhkang  540  9월 24 12:52 manage.py</span><br><span class="line">-rw-r--r-- 1 dhkang dhkang   27  9월 24 13:06 requirements.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>자 이제, 어플리케이션 환경을 생성하고, 설정된 어플리케이션을, Elastic Beanstalk 로 배포합니다. </p>
+<br>
+
+<blockquote>
+<p>EB CLI 를 사용하여, 배포하기 위해 아래 순서대로 진행 해 봅니다 </p>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+
+
+<br>
+
+<h2 id="eb-init-으로-EB-CLI-레포지토리-시작하기"><a href="#eb-init-으로-EB-CLI-레포지토리-시작하기" class="headerlink" title="eb init 으로 EB CLI 레포지토리 시작하기"></a><code>eb init</code> 으로 EB CLI 레포지토리 시작하기</h2><br>
+
+<p>로컬 컴퓨터의 프로젝트 폴더에서, 아래 명령어를 실행하여 EB CLI 레포지토리를 시작해 줍니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk/ebdjango  eb init -i -p python-3.6 django-tutorial</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>-i</code> 옵션을 사용하여, 지역을 선택할수 있습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk/ebdjango  eb init -i -p python-3.6 django-tutorial</span><br><span class="line"></span><br><span class="line">Select a default region</span><br><span class="line">1) us-east-1 : US East (N. Virginia)</span><br><span class="line">2) us-west-1 : US West (N. California)</span><br><span class="line">3) us-west-2 : US West (Oregon)</span><br><span class="line">4) eu-west-1 : EU (Ireland)</span><br><span class="line">5) eu-central-1 : EU (Frankfurt)</span><br><span class="line">6) ap-south-1 : Asia Pacific (Mumbai)</span><br><span class="line">7) ap-southeast-1 : Asia Pacific (Singapore)</span><br><span class="line">8) ap-southeast-2 : Asia Pacific (Sydney)</span><br><span class="line">9) ap-northeast-1 : Asia Pacific (Tokyo)</span><br><span class="line"></span><br><span class="line">(default is 3): 8</span><br><span class="line"></span><br><span class="line">Application django-tutorial has been created.</span><br><span class="line">Do you want to <span class="built_in">set</span> up SSH <span class="keyword">for</span> your instances?</span><br><span class="line">(Y/n): Y</span><br><span class="line"></span><br><span class="line">Select a keypair.</span><br><span class="line">1) elastic_beanstalk</span><br><span class="line">2) [ Create new KeyPair ]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>2번을 눌러줘 봅니다. </p>
+<br>
+
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Select a keypair.</span><br><span class="line">1) aws-eb</span><br><span class="line">2) [ Create new KeyPair ]</span><br><span class="line">(default is 1): 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Type a keypair name.</span><br><span class="line">(Default is aws-eb2): </span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved <span class="keyword">in</span> /home/werwre/.ssh/aws-eb.</span><br><span class="line">Your public key has been saved <span class="keyword">in</span> /home/dfdfefe/.ssh/aws-eb.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:dfeg+3ih82hi2hkfn292/12323dfsdf aws-eb</span><br><span class="line">The key<span class="string">'s randomart image is:</span></span><br><span class="line"><span class="string">+---[RSA 2048]----+</span></span><br><span class="line"><span class="string">|                 |</span></span><br><span class="line"><span class="string">|       .abc      |</span></span><br><span class="line"><span class="string">|    44455.o+.    |</span></span><br><span class="line"><span class="string">|    ##.o+o .23   |</span></span><br><span class="line"><span class="string">|    #@$.So. .    |</span></span><br><span class="line"><span class="string">|     # + *o..    |</span></span><br><span class="line"><span class="string">|  E!@#@1###.+    |</span></span><br><span class="line"><span class="string">| .o*+@#!$!.=o#   |</span></span><br><span class="line"><span class="string">|  #######+=.o#.  |</span></span><br><span class="line"><span class="string">+----[SHA256]-----+</span></span><br><span class="line"><span class="string">WARNING: Uploaded SSH public key for "aws-eb" into EC2 for region ap-southeast-2.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="eb-create-를-사용하여-환경을-생성"><a href="#eb-create-를-사용하여-환경을-생성" class="headerlink" title="eb create 를 사용하여 환경을 생성"></a>eb create 를 사용하여 환경을 생성</h2><br>
+
+<p><code>eb create</code> 명령어를 사용하여, 배포 환경을 생성해 줍니다. </p>
+<p>환경명은 <code>django-env</code> 입니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk/ebdjango  eb create django-env</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>시간이 좀 걸리는데, 작업을 다 마치고 나면, 아래와 같이 환경이 생성된것을 확인할수 있습니다. </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">g-stack-AWSEBCloudwatchAlarmHigh-1GEUR7I1T33QF</span><br><span class="line">2020-09-24 08:00:08    INFO    Created CloudWatch alarm named: awseb<span class="_">-e</span>-cizji5shhg-stack-AWSEBCloudwatchAlarmLow-6M9MHE521DWB</span><br><span class="line">2020-09-24 08:00:36    INFO    Application available at django-env.eba-taamyy5q.ap-southeast-2.elasticbeanstalk.com.</span><br><span class="line">2020-09-24 08:00:36    INFO    Successfully launched environment: django-env</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="eb-status-명령어로-도메인-명을-확인"><a href="#eb-status-명령어로-도메인-명을-확인" class="headerlink" title="eb status 명령어로 도메인 명을 확인"></a>eb status 명령어로 도메인 명을 확인</h2><br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk/ebdjango  eb status</span><br><span class="line">Environment details <span class="keyword">for</span>: django-env</span><br><span class="line">  Application name: django-tutorial</span><br><span class="line">  Region: ap-southeast-2</span><br><span class="line">  Deployed Version: app-200924_165824</span><br><span class="line">  Environment ID: e-cizji5shhg</span><br><span class="line">  Platform: arn:aws:elasticbeanstalk:ap-southeast-2::platform/Python 3.6 running on 64bit Amazon Linux/2.9.14</span><br><span class="line">  Tier: WebServer-Standard-1.0</span><br><span class="line">  CNAME: django-env.eba-taamyy5q.ap-southeast-2.elasticbeanstalk.com</span><br><span class="line">  Updated: 2020-09-24 08:00:36.586000+00:00</span><br><span class="line">  Status: Ready</span><br><span class="line">  Health: Green</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h2 id="Django-settings-py-파일-수정하기"><a href="#Django-settings-py-파일-수정하기" class="headerlink" title="Django settings.py 파일 수정하기"></a>Django settings.py 파일 수정하기</h2><br>
+
+<p>Django 앱의 settings.py 파일 안에, <code>ALLOWED_HOSTS</code>에, CNAME 으로 표시된 도메인명을 넣어줍니다.  </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># SECURITY WARNING: don't run with debug turned on in production!</span></span><br><span class="line">DEBUG = True</span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = [<span class="string">'django-env.eba-taamyy5q.ap-southeast-2.elasticbeanstalk.com</span></span><br><span class="line"><span class="string">'</span>]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="eb-deploy-로-배포-진행"><a href="#eb-deploy-로-배포-진행" class="headerlink" title="eb deploy 로 배포 진행"></a><code>eb deploy</code> 로 배포 진행</h2><br>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk/ebdjango  eb deploy</span><br><span class="line">Creating application version archive <span class="string">"app-200924_170655"</span>.</span><br><span class="line">Uploading django-tutorial/app-200924_170655.zip to S3. This may take a <span class="keyword">while</span>.</span><br><span class="line">Upload Complete.</span><br><span class="line">2020-09-24 08:06:56    INFO    Environment update is starting.      </span><br><span class="line">2020-09-24 08:07:36    INFO    Deploying new version to instance(s).</span><br><span class="line"> -- Events -- (safe to Ctrl+C) Use <span class="string">"eb abort"</span> to cancel the <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure>
+
+<p><br><br><br></p>
+<h2 id="eb-open-명령어를-사용하여-웹사이트-실행"><a href="#eb-open-명령어를-사용하여-웹사이트-실행" class="headerlink" title="eb open 명령어를 사용하여, 웹사이트 실행"></a><code>eb open</code> 명령어를 사용하여, 웹사이트 실행</h2><br>
+
+<p><code>eb open</code> 명령어를 사용하여, 사이트를 열어봅니다. </p>
+<br>
+
+<p>터미널에서 명령어를 실행하면, 자동으로 브라우저가 열리고. Django 앱이 실행됩니다. <br></p>
+<br>
+
+<p>아래와 같은 화면을 보면, 성공입니다.</p>
+<img src="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-6/image.png" class="">]]></content>
+      <categories>
+        <category>AWS</category>
+        <category>Elastic Beanstalk</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>Elastic Beanstalk</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AWS Elastic Beanstalk 배포 - 5</title>
     <url>/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-5/</url>
     <content><![CDATA[<h2 id="Elastic-Beanstalk-를-위한-설정"><a href="#Elastic-Beanstalk-를-위한-설정" class="headerlink" title="Elastic Beanstalk 를 위한 설정"></a>Elastic Beanstalk 를 위한 설정</h2><br>
