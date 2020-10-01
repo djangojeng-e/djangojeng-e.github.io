@@ -9,8 +9,52 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Thu, 24 Sep 2020 08:29:46 GMT</pubDate>
+    <pubDate>Thu, 01 Oct 2020 09:35:03 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Django Forms 2편 - HTML FORMS</title>
+      <link>http://djangojeng-e.github.io/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/</link>
+      <guid>http://djangojeng-e.github.io/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/</guid>
+      <pubDate>Thu, 01 Oct 2020 09:25:47 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h2 id=&quot;HTML-FORMS&quot;&gt;&lt;a href=&quot;#HTML-FORMS&quot; class=&quot;headerlink&quot; title=&quot;HTML FORMS&quot;&gt;&lt;/a&gt;HTML FORMS&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;HTML 에서 form 은 &lt;code&gt;&amp;lt;form&amp;gt
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="HTML-FORMS"><a href="#HTML-FORMS" class="headerlink" title="HTML FORMS"></a>HTML FORMS</h2><br><p>HTML 에서 form 은 <code>&lt;form&gt;</code> … <code>&lt;/form&gt;</code> 안에 있는 요소들의 집합입니다. </p><p><br>이는 방문자들이 text 를 입력하고, 옵션을 선택하고, 객체들을 관리하고 혹은 제어하게 만들어 줍니다. </p><p><br>그리고 나서, 해당 정보를 다시 서버로 보내줄수도 있습니다. </p><br><p>이러한 몇가지 폼 인터페이스 요소들은 (예, text input, 혹은 checkboxes) HTML 자체에 내장 되어 있습니다만. 다른것들은 훨씬 더 복잡합니다. 예를들면, 보통 JavaScript 와 CSS 그리고  HTML 을 사용하여 날짜선택 팝업 혹은 슬라이더, 그리고 제어를 조종하는 <code>&lt;input&gt;</code> 요소들이 그렇습니다. </p><br><br><h2 id="Form-이-지정해줘야할-2가지"><a href="#Form-이-지정해줘야할-2가지" class="headerlink" title="Form 이 지정해줘야할 2가지"></a>Form 이 지정해줘야할 2가지</h2><br><p>form 은 대부분 아래 두가지를 지정해주어야 합니다. </p><br><ol><li>where?  사용자가 입력한 데이터가 어디로 반환 되어야 하는지 </li><li>how? 어떠한 <code>HTTP Method</code> 로 데이터가 반환 되어야 하는지 </li></ol><br><p>예시를 들자면, Django Admin 의 로그인 폼은 몇가지 아래의 <code>&lt;input&gt;</code>  요소들을 가지고 있습니다. </p><br> <ol><li><p>username 을 위한  <code>type=&quot;text&quot;</code> 라는 것이고, </p></li><li><p>다른 하나는, password 를 위한 input </p></li><li><p>마지막으로, 로그인을 진행하는 버튼을 위한 type=”submit” 을 가지고 있습니다. </p></li></ol><br><p>그리고, 어드민에는 Django 가 입력값을 받은 다음에 무엇을 해야하는지 결정하기 위해, 사용자가 볼수 없는 숨겨진 텍스트 필드들도 존재합니다. </p><br><p>또한, 브라우저에 폼 데이터가 어떤 URL 로 보내져야 하는지, <code>&lt;form&gt;</code>의 action 속성에다가 URL 을 지정해 줍니다 <code>/admin/</code>. 그리고, 폼 데이터는, method 속성에 지정된 HTTP 동작을 통해서 보내집니다 (예, POST)</p><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Log in"</span>&gt;</span></span><br></pre></td></tr></table></figure><br><p>위 요소가 실행되면, 데이터는 /admin/ 에 반환됩니다. </p><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Django Forms 1편 - FORM 으로 작업하기</title>
+      <link>http://djangojeng-e.github.io/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/</link>
+      <guid>http://djangojeng-e.github.io/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/</guid>
+      <pubDate>Thu, 01 Oct 2020 09:17:28 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h2 id=&quot;Working-with-Forms&quot;&gt;&lt;a href=&quot;#Working-with-Forms&quot; class=&quot;headerlink&quot; title=&quot;Working with Forms&quot;&gt;&lt;/a&gt;Working with Forms&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Working-with-Forms"><a href="#Working-with-Forms" class="headerlink" title="Working with Forms"></a>Working with Forms</h2><br><p>Django 의 Form에 대해 공식문서를 읽으면서 내용을 정리합니다.  </p><br><blockquote><p>Django 공식문서에서 Form 부분은, </p><p>web forms 에 대한 기본과, Django 에서 어떻게 Form 들이 다루어 지는지 소개합니다. </p><br><p>특정 부분에 대한 좀 더 자세한 디테일을 위해서는, </p><p><code>The Forms API</code>, <code>Form Fields</code> 그리고 <code>Form and field validation</code> 문서들을 보면 자세히 알수 있습니다. </p></blockquote><br><p>여러분들의 웹사이트와 어플리케이션이 단순히 컨텐츠만 발행하고, 방문자들한테서 input 을 받는 사이트가 아니라면, 여러분들은 form 에 대해 이해하고 사용할 필요가 없습니다. </p><br><p>하지만, 그 반대라면, 여러분들의 웹사이트와 어플리케이션은, 단순히 컨텐츠만 발행할 뿐만 아니라, 방문자들한테서 input 을 받고, 받은 input 을 기반으로 어떠한 작업을 실행해야 할지 모릅니다. </p><br><p>이러한 경우에는, form 에 대해서 이해하고 잘 사용할 필요가 있습니다. </p><br><p>Django 는 다양한 도구들과 라이브러리를 제공하여, 당신이 form 을 만들고 사이트 방문자로부터 값을 입력 받을수 있게 도와줍니다. </p><br><p>거기에, 입력값을 처리하고 값에 반응하는 작업을 할수도 있습니다. </p><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>AWS Elastic Beanstalk 배포 - 6</title>
@@ -608,74 +652,6 @@
       <content:encoded><![CDATA[<h2 id="Model-Methods"><a href="#Model-Methods" class="headerlink" title="Model Methods"></a>Model Methods</h2><br><p>모델 클래스에는,  사용자 정의 메서드를 추가할수 있습니다. (row-level, 즉, 줄 단위)</p><p><br>Manager 메서드 (objects) 는, table 전체에 적용되고. 모델 메서드들은, 특정한 모델 인스턴스에 적용됩니다.  </p><br><p>해당 모델의 인스턴스에 대해서, 특별한 비지니스 로직을 동작하고 싶을때에, 이런 모델 메서드를 사용해서. 하나의 모델에 모아놓고 사용할수 있습니다. </p><br><p>아래 예시에는, 몇가지 사용자 정의 메서드가 정의되어 있습니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    first_name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    last_name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    birth_date = models.DateField()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">baby_boomer_status</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># "Returns the person's baby-boomer status. "</span></span><br><span class="line">        <span class="comment"># 해당 사람이, baby_boomer 세대인지 아닌지 판단합니다. </span></span><br><span class="line">        <span class="keyword">import</span> datetime </span><br><span class="line">        <span class="keyword">if</span> self.birth_date &lt; datetime.datetime(<span class="number">1945</span>, <span class="number">8</span>, <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Pre-boomer"</span></span><br><span class="line">        <span class="keyword">elif</span> self.birth_date &lt; datetime.datetime(<span class="number">1965</span>, <span class="number">1</span>, <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Baby boomer"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Post-boomer"</span></span><br><span class="line">        </span><br><span class="line"><span class="meta">    @property </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">full_name</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># "Returns the person's full name"</span></span><br><span class="line">        <span class="comment"># 해당 사람의 이름을 리턴합니다 </span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'%s %s'</span> % (self.first_name, self.last_name)</span><br></pre></td></tr></table></figure><br><br><a id="more"></a><br><p>예시에서, 마지막으로 작성된 <code>def full_name(self)</code> 메서드는, property 입니다. </p><br><p>모델 인스턴스는 자동으로 각 모델에 부여된 메서드의 목록을 가지고 있고. </p><p><br>아래 예시에서 보면, colin 이라는 인스턴스가 모델에 정의된 메서드들을 사용할수 있다는것을 확인합니다. <br></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">colin = Person.objects.create(first_name="colin", last_name="firth", birth_date="1961-10-07")</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> colin 이라는 객체를 가져옴 </span></span><br><span class="line">colin = Person.objects.get(first_name="colin")</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> colin 이라는 인스턴스의 baby_boomer_status 메서드를 호출 </span></span><br><span class="line">colin.baby_boomer_status </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> colin 이라는 인스턴스의 full_name 메서드를 호출 </span></span><br><span class="line">colin.full_name</span><br></pre></td></tr></table></figure><p><br><br></p><h2 id="str-메서드"><a href="#str-메서드" class="headerlink" title="__str__() 메서드"></a><code>__str__()</code> 메서드</h2><br><p>객체의 문자열 표시를 반환하는 파이썬 <code>magic method</code> (매직 메서드) 입니다. 이 메서드는 파이썬과 장고가 언제든 모델 인스턴스가 순수한 문자열로 표시되길 원할때에 사용됩니다. </p><br><blockquote><p> <code>__str__()</code> 메서드를 사용하면, 해당 모델 인스턴스를 문자열로 표시해서 반환할수 있습니다. </p></blockquote><br><p>이 메서드는 아주 많이, 많이, 많이, 그리고 자주, 사용되는 메서드입니다.  </p><br><h2 id="get-absolute-url"><a href="#get-absolute-url" class="headerlink" title="get_absolute_url()"></a><code>get_absolute_url()</code></h2><br><p>이 메서드는 Django 에게 어떻게 객체에 대한 URL 을 계산해야 하는지 얘기해 줍니다. </p><p><br>Django 는 이 메서드를 어드민 인터페이스에서 사용합니다. 또는 언제든 객체의 URL 을 알아내야 할때 사용합니다. </p><br><p>어떤 객체든 고유한 URL 이 식별하는 객체일때, 이 메서드로 정의 합니다. </p><br><h2 id="Model-Method-연습"><a href="#Model-Method-연습" class="headerlink" title="Model Method 연습"></a>Model Method 연습</h2><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">In [1]: import datetime                                                                                                                                                   </span><br><span class="line"></span><br><span class="line">In [2]: colin = Person.objects.create(first_name="Colin", </span><br><span class="line">                                      last_name="Firth", </span><br><span class="line">                                      birth_date=datetime.date(1960, 9, 10))                                                       </span><br><span class="line"></span><br><span class="line">In [3]: colin.first_name                                                                                                                                                  </span><br><span class="line">Out[3]: 'Colin'</span><br><span class="line"></span><br><span class="line">In [4]: colin.last_name                                                                                                                                                   </span><br><span class="line">Out[4]: 'Firth'</span><br><span class="line"></span><br><span class="line">In [5]: colin.birth_date                                                                                                                                                  </span><br><span class="line">Out[5]: datetime.date(1960, 9, 10)</span><br><span class="line"></span><br><span class="line">In [6]: colin.baby_boomer_status                                                                                                                                          </span><br><span class="line">Out[6]: &lt;bound method Person.baby_boomer_status of &lt;Person: Person object (4)&gt;&gt;</span><br><span class="line"></span><br><span class="line">In [7]: colin.full_name                                                                                                                                                   </span><br><span class="line">Out[7]: 'Colin Firth'</span><br></pre></td></tr></table></figure><br>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Django Models 13편 - Model Attributes</title>
-      <link>http://djangojeng-e.github.io/2020/08/10/Django-Models-13%ED%8E%B8-Model-Attributes/</link>
-      <guid>http://djangojeng-e.github.io/2020/08/10/Django-Models-13%ED%8E%B8-Model-Attributes/</guid>
-      <pubDate>Mon, 10 Aug 2020 06:41:50 GMT</pubDate>
-      <description>
-      
-        &lt;h2 id=&quot;Model-Attributes&quot;&gt;&lt;a href=&quot;#Model-Attributes&quot; class=&quot;headerlink&quot; title=&quot;Model Attributes&quot;&gt;&lt;/a&gt;Model Attributes&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;모델의 가장 중요한 속성은 Manager 입니다. &lt;/p&gt;
-&lt;br&gt;
-
-
-
-&lt;blockquote&gt;
-&lt;p&gt;Manager 는 &lt;/p&gt;
-&lt;p&gt;Django 데이터베이스 쿼리 운영을 제공 하는 인터페이스로, &lt;/p&gt;
-&lt;p&gt;데이터베이스에서 인스턴스들을 검색할때 사용 됩니다. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;만약, 사용자 정의 Manager 가 정의되어 있지 않다면, 기본값으로, Manager 의 이름은 objects 입니다. &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-
-&lt;p&gt;Manager 는 모델 클래스들을 통해서만 접근 가능합니다. 모델 인스턴스로는 접근이 가능하지 않습니다. &lt;/p&gt;
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="Model-Attributes"><a href="#Model-Attributes" class="headerlink" title="Model Attributes"></a>Model Attributes</h2><br><p>모델의 가장 중요한 속성은 Manager 입니다. </p><br><blockquote><p>Manager 는 </p><p>Django 데이터베이스 쿼리 운영을 제공 하는 인터페이스로, </p><p>데이터베이스에서 인스턴스들을 검색할때 사용 됩니다. <br></p><p>만약, 사용자 정의 Manager 가 정의되어 있지 않다면, 기본값으로, Manager 의 이름은 objects 입니다. </p></blockquote><br><p>Manager 는 모델 클래스들을 통해서만 접근 가능합니다. 모델 인스턴스로는 접근이 가능하지 않습니다. </p><br><a id="more"></a><h2 id="Manager-의-사용"><a href="#Manager-의-사용" class="headerlink" title="Manager 의 사용"></a>Manager 의 사용</h2><br><p>우리가 Django 에서 해당 모델의 데이터베이스 모든 데이터를 조회할때에는, 아래와 같이 ORM 을 작성합니다. </p><p><br>이때 사용되는, objects 가 Manager의 기본 이름입니다. <br></p><p><code>&lt;model명&gt;.objects.all()</code></p><br><p>예시를 들어보자면, </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>, verbose_name=<span class="string">'학생 이름'</span>)</span><br></pre></td></tr></table></figure><br><p>위의 Student 모델이 있다고 가정할때에, 해당 모델의 데이터베이스를 조회하는 명령어들은 아래와 같습니다. </p><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student.objects.all()   # Student 의 모든 객체를 조회 </span><br><span class="line">Student.objects.get(name='장고쟁이') # 이름이 장고쟁이인 Student 를 찾음</span><br></pre></td></tr></table></figure><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/08/10/Django-Models-13%ED%8E%B8-Model-Attributes/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Django Models 12편 - Meta Options</title>
-      <link>http://djangojeng-e.github.io/2020/08/09/Django-Models-12%ED%8E%B8-Meta-Options/</link>
-      <guid>http://djangojeng-e.github.io/2020/08/09/Django-Models-12%ED%8E%B8-Meta-Options/</guid>
-      <pubDate>Sun, 09 Aug 2020 02:46:31 GMT</pubDate>
-      <description>
-      
-        &lt;h2 id=&quot;Models-Meta-Options&quot;&gt;&lt;a href=&quot;#Models-Meta-Options&quot; class=&quot;headerlink&quot; title=&quot;Models - Meta Options&quot;&gt;&lt;/a&gt;Models - Meta Options&lt;/h2&gt;&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Metadata &lt;/p&gt;
-&lt;p&gt;데이터의 집합체로 다른 데이터에 대한 설명과 정보를 제공합니다 &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-
-&lt;p&gt;모델에 metadata 를 부여할수 있습니다. 클래스 안에 Meta 클래스를 사용해서 부여할수 있습니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;아래 예시와 같이 모델 클래스 안에 부가적으로, Meta 클래스를 넣어서 metadata 를 넣을수 있습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.db &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; models &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Ox&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(models.Model)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    horn_length = models.IntegerField()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# 아래와 같이 Ox 모델 클래스 안쪽에 Meta 클래스를 넣어서 metadata 를 부여 할수 있습니다 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Meta&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ordering = [&lt;span class=&quot;string&quot;&gt;&quot;horn_length&quot;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        verbose_name_plural = &lt;span class=&quot;string&quot;&gt;&quot;oxen&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;필드가 아닌 무엇이든, 모델의 메타데이터가 될수 있습니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;필드는, 메타 데이터가 될수 없습니. &lt;/p&gt;
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="Models-Meta-Options"><a href="#Models-Meta-Options" class="headerlink" title="Models - Meta Options"></a>Models - Meta Options</h2><br><blockquote><p>Metadata </p><p>데이터의 집합체로 다른 데이터에 대한 설명과 정보를 제공합니다 </p></blockquote><br><p>모델에 metadata 를 부여할수 있습니다. 클래스 안에 Meta 클래스를 사용해서 부여할수 있습니다. </p><p><br>아래 예시와 같이 모델 클래스 안에 부가적으로, Meta 클래스를 넣어서 metadata 를 넣을수 있습니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ox</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    horn_length = models.IntegerField()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 아래와 같이 Ox 모델 클래스 안쪽에 Meta 클래스를 넣어서 metadata 를 부여 할수 있습니다 </span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ordering = [<span class="string">"horn_length"</span>]</span><br><span class="line">        verbose_name_plural = <span class="string">"oxen"</span></span><br></pre></td></tr></table></figure><br><p>필드가 아닌 무엇이든, 모델의 메타데이터가 될수 있습니다. </p><p><br>필드는, 메타 데이터가 될수 없습니. </p><br><a id="more"></a><br><blockquote><p>정렬 옵션인 ordering, </p><p>데이터 베이스 테이블명,  db_table </p><p>혹은 사람이 읽기 편한 단수와 복수 이름들인, verbose_name, verbose_name_plural </p><p>이런것들이 Meta 클래스안에 정의 될수 있습니다. </p></blockquote><br><p>모델에 대한 class Meta 적용은 전적으로 선택 사항입니다. </p><br><p>Meta Option 에 가능한 모든 옵션들에 대해서는,  model option reference 문서에서 보면 됩니다. </p><br><h2 id="Meta-option-리스트"><a href="#Meta-option-리스트" class="headerlink" title="Meta option 리스트"></a>Meta option 리스트</h2><br><p>메타 옵션에는 아래와 같은 항목들이 존재합니다. </p><p>모든 리스트를 확인하고 싶다면, <a href="https://docs.djangoproject.com/en/3.0/ref/models/options/" target="_blank" rel="noopener">https://docs.djangoproject.com/en/3.0/ref/models/options/</a></p><p><br>링크를 확인 하면 됩니다. </p><table><thead><tr><th>Meta Options</th><th>Function</th><th>Remarks</th></tr></thead><tbody><tr><td>abstract</td><td>모델이 abstract base class 가 됩니다</td><td><code>abstract = True</code></td></tr><tr><td>app_label</td><td>모델이 INSTALLED_APPS 밖에 있는 어플리케이션에 존재할때에 선언합니다</td><td><code>app_label = myapp</code></td></tr><tr><td>base_manager_name</td><td>메니저의 속성 이름을 지정합니다. 예를들면, objects</td><td></td></tr><tr><td>db_table</td><td>해당 모델을 위한 데이터베이스 테이블 명을 지정합니다</td><td><code>db_table = &#39;music_album&#39;</code></td></tr><tr><td>db_tablespace</td><td>데이터베이스 테이블 스페이스의 이름</td><td></td></tr><tr><td>default_manager_name</td><td>해당 모델을 위해 사용할 메니저의 이름을 지정합니다</td><td></td></tr><tr><td>default_related_name</td><td>관련된 객체에서 역으로 접근할 이름을 지정합니다.  기본값은, <code>모델명_set</code> 입니다</td><td></td></tr><tr><td>get_latest_by</td><td>보편적으로 ,DateField, DateTimeField 혹은 IntegerField 같은 모델명에 사용합니다.</td><td>get_latest_by = “order_date”, get_latest_by = [‘-priority’, ‘order_date’]</td></tr><tr><td></td><td></td><td></td></tr></tbody></table><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/08/09/Django-Models-12%ED%8E%B8-Meta-Options/#disqus_thread</comments>
     </item>
     
   </channel>
