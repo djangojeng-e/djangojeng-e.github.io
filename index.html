@@ -220,6 +220,288 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/02/Django-Forms-4%ED%8E%B8-Form-%EC%97%90-%EB%8C%80%ED%95%9C-Django-%EC%9D%98-%EC%97%AD%ED%95%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/02/Django-Forms-4%ED%8E%B8-Form-%EC%97%90-%EB%8C%80%ED%95%9C-Django-%EC%9D%98-%EC%97%AD%ED%95%A0/" class="post-title-link" itemprop="url">Django Forms 4편 - Form 에 대한 Django 의 역할</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-02 14:08:20 / Updated at: 14:12:13" itemprop="dateCreated datePublished" datetime="2020-10-02T14:08:20+09:00">2020-10-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/02/Django-Forms-4%ED%8E%B8-Form-%EC%97%90-%EB%8C%80%ED%95%9C-Django-%EC%9D%98-%EC%97%AD%ED%95%A0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/02/Django-Forms-4편-Form-에-대한-Django-의-역할/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Django’s-role-in-forms"><a href="#Django’s-role-in-forms" class="headerlink" title="Django’s role in forms"></a>Django’s role in forms</h2><br>
+
+<p>폼을 다루는것은 복잡한 일입니다. </p>
+<br>
+
+<p>Django 의 어드민을 생각해보면, </p>
+<br>
+
+<p>서로 다른 종류의 데이터들의 많은 항목들이 폼안에 출력되도록 준비 되어야 하고, </p>
+<p><br>HTML 로 렌더링 되어야하고, 편리한 인터페이스를 사용해서 편집되어야 하고, 서버로 반환되어야 하고, 유효성 검사와 정리가 되어야 하고, 그리고 나서도 추후 처리를 위해 저장 혹은 전달 되어야 합니다. </p>
+<br>
+
+<p>Django 의 form 기능은, 이 복잡한 일의 상당한 부분들을 간소화 시키고 자동화 시킵니다. </p>
+<br>
+
+<p>또한, Django 에서 폼은 대부분의 프로그래머들이 자신들이 코드를 작성한것만큼 안전하게 작동합니다. </p>
+<br>
+
+<h2 id="Django-Form-이-다루는-영역"><a href="#Django-Form-이-다루는-영역" class="headerlink" title="Django Form 이 다루는 영역"></a>Django Form 이 다루는 영역</h2><br>
+
+<ol>
+<li>데이터를 준비하고 재구조화 하여, 렌더할 준비 </li>
+<li>데이터를 위한 HTML 폼을 생성 </li>
+<li>클라이언트가 제출한 폼들과 데이터를 받는 부분 </li>
+<li>받은 데이터를 처리 </li>
+</ol>
+<br>
+
+<p>이 모든것들을 수동으로 수행하는 코드를 작성하는것도 가능하지만, </p>
+<p><br>django 는 여러분들을 위해 모든것들을 처리할 수 있습니다. </p>
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/02/Django-Forms-3%ED%8E%B8-GET-and-POST/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/02/Django-Forms-3%ED%8E%B8-GET-and-POST/" class="post-title-link" itemprop="url">Django Forms 3편 - GET and POST</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-02 13:56:21 / Updated at: 14:07:02" itemprop="dateCreated datePublished" datetime="2020-10-02T13:56:21+09:00">2020-10-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/02/Django-Forms-3%ED%8E%B8-GET-and-POST/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/02/Django-Forms-3편-GET-and-POST/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="GET-vs-POST-Method"><a href="#GET-vs-POST-Method" class="headerlink" title="GET vs POST Method"></a>GET vs POST Method</h2><br>
+
+<blockquote>
+<p>GET 과 POST 는 </p>
+<p>Form 을 다룰때 쓸수 있는 유일한 HTTP Method 입니다. </p>
+</blockquote>
+<br>
+
+<p>Django 의 로그인 폼은 POST 메서드를 사용하여 반환 되고, </p>
+<br>
+
+<p>브라우저는 폼 데이터들을 모아서, 전송을 위한 인코딩을 합니다. 인코딩을 한뒤에 서버로 보낸다음 서버에서 응답을 받습니다. </p>
+<br>
+
+<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><br>
+
+<p>POST 와 비교했을때, GET 메서드는, </p>
+<br>
+
+<blockquote>
+<p>제출된 데이터를 문자열로 모으고, </p>
+<p>모아진 문자열들을 URL 을 만들때 사용합니다. </p>
+<br>
+
+<p>URL 은 데이터가 전송되어야만하는 주소를 가지고 있고, </p>
+<p>데이터 키 와 값을 가지고 있습니다. </p>
+</blockquote>
+<br>
+
+<h2 id="GET-과-POST-의-다른-사용-목적"><a href="#GET-과-POST-의-다른-사용-목적" class="headerlink" title="GET  과 POST  의 다른 사용 목적"></a>GET  과 POST  의 다른 사용 목적</h2><br>
+
+<p>시스템의 상태를 바꾸기 위해서 사용되는 요청들 같은 경우, </p>
+<p><br>예를들어, 데이터베이스에 어떠한 변경을 만들어주는 요청들은 POST 를 사용해야 합니다. </p>
+<br>
+
+<blockquote>
+<p>*<em>POST 를 사용해야 할때 *</em></p>
+<p>시스템의 상태를 바꾸기 위한 요청을 받을때, </p>
+<p>예) 데이터베이스에 변경 사항들을 만들어주는 요청을 다룰때 </p>
+<br>
+
+<p><strong>GET을 사용해야 할때</strong></p>
+<p>GET 은 시스템의 상태에 영향을 주지 않는 요청을 처리할때만 사용되어야 합니다 </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="GET-의-위험성"><a href="#GET-의-위험성" class="headerlink" title="GET 의 위험성"></a>GET 의 위험성</h2><br>
+
+<p>GET 메서드는, 폼에서 입력된 데이터를 받아서 URL 로 만들어 줍니다. </p>
+<br>
+
+<p>따라서, GET은 패스워드 폼 사용에는 적합하지 않습니다. 왜냐하면, 입력된 패스워드가 URL 에 보여지게 될것이기 때문입니다. 그리고, 브라우저 히스토리와 서버 로그에 순수 텍스트로 나타나게 될겁니다. </p>
+<p><br>보안상 문제가 생기겠죠? </p>
+<br>
+
+<br>
+
+<p>또한, 큰 데이터 양이나, 이미지 같은 이진수 데이터에도 적합하지 않습니다. </p>
+<br>
+
+<blockquote>
+<p>GET 요청을 어드민 폼에 사용하는 웹 어플리케이션은 보안상 아주 위험합니다. </p>
+<br>
+
+<p>공격자들은, 폼의 요청을 조작하여 시스템의 아주 민감한 부분에 접근할수 있습니다. </p>
+<p>Django 의 CSRF protection 같은, 다른 보호 방법과 같이 쓰여지는 POST 의 경우, 공격자들의 접근을 좀더 관리 할수 있습니다. </p>
+</blockquote>
+<p><br><br></p>
+<h2 id="GET-을-사용하면-좋을때"><a href="#GET-을-사용하면-좋을때" class="headerlink" title="GET 을 사용하면 좋을때"></a>GET 을 사용하면 좋을때</h2><br>
+
+<blockquote>
+<p><strong>GET 을 사용하면 좋을때</strong></p>
+<p>GET Method 는, 웹 검색 폼 같은것에 사용하기 적합합니다 </p>
+<p>왜냐하면, GET 요청으로 표현되는 URL 들은 쉽게 북마크 될수도 있고, </p>
+<p>쉽게 공유될수 있으면서, 쉽게 다시 제출될수 있습니다. </p>
+</blockquote>
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1240,259 +1522,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/22/Django-Models-22%ED%8E%B8-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%95%88-%EB%AA%A8%EB%8D%B8-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/Django-Models-22%ED%8E%B8-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%95%88-%EB%AA%A8%EB%8D%B8-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">Django Models 22편 - 패키지안 모델 정리하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-22 15:44:10 / Updated at: 15:49:02" itemprop="dateCreated datePublished" datetime="2020-08-22T15:44:10+09:00">2020-08-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/08/22/Django-Models-22%ED%8E%B8-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%95%88-%EB%AA%A8%EB%8D%B8-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/22/Django-Models-22편-패키지안-모델-정리하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Models-Organising-models-in-a-package"><a href="#Models-Organising-models-in-a-package" class="headerlink" title="Models - Organising models in a package"></a>Models - Organising models in a package</h2><h3 id="Organising-models-in-a-package"><a href="#Organising-models-in-a-package" class="headerlink" title="Organising models in a package"></a>Organising models in a package</h3><br>
-
-<p><code>manage.py startapp</code> 커맨드는 models.py 를 포함한 어플리케이션 구조를 생성합니다. 많은 모델들을 가지고 있다면, 별도의 파일에 정리를 해두는것도 유용한 방법입니다. </p>
-<br>
-
-<p>그렇게 하기 위해서는,  models 패키지를 생성해야 합니다. </p>
-<br>
-
-<ol>
-<li>models.py 를 없애고 </li>
-<li>app이름/models/디렉토리 를 생성합니다 </li>
-<li>app이름/models/디렉토리 안에, <code>__init__.py</code> 파일을 생성하고, 당신의 모델을 저장할 파일들을 생성합니다 </li>
-<li><code>__init__.py</code> 파일에  import 해주어야 합니다 </li>
-</ol>
-<br>
-
-<p>예를들어, organic.py , synthetic.py 가 모델 디렉토리 안에 있었다면, </p>
-<br>
-
-<blockquote>
-<p><code>__init__.py</code> 파일에 import 해주는것을 잊지 않아야 합니다. </p>
-<p><code>myapp/models/__init__.py</code></p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/22/Django-Models-22%ED%8E%B8-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%95%88-%EB%AA%A8%EB%8D%B8-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/" class="post-title-link" itemprop="url">Django Models 21편 - Multiple Inheritance</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-21 14:32:16 / Updated at: 14:46:54" itemprop="dateCreated datePublished" datetime="2020-08-21T14:32:16+09:00">2020-08-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/21/Django-Models-21편-Multiple-Inheritance/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Multiple-Inheritance"><a href="#Multiple-Inheritance" class="headerlink" title="Multiple Inheritance"></a>Multiple Inheritance</h2><br>
-
-<p>파이썬에서 서브클래스를 받는것과 같이, DJango 모델은 다수의 부모 모델들을 상속 받는게 가능합니다. </p>
-<p><br>하지만, 파이썬에서 일반적으로 이름짓는 방식들이 이 Django 모델 클래스에 적용된다는점을 염두해 두고 있어야 합니다 (예, 예약어들은 클래스명으로 사용할수 없음)</p>
-<br>
-
-<p>특정 이름, (예, Meta) 가 나타나는 첫번째 기본 클래스가 사용 될것입니다. 예를들면, 이것의 의미는 만약 다수의 부모 클래스들이 Meta 클래스를 하나씩 가지고 있는다면, 오직 첫번째 것만 사용이 되고, 나머지들은 무시 됩니다. </p>
-<br>
-
-<p>보편적으로 우리는, 다수의 부모 클래스로부터 상속 받을 필요가 없는 경우가 많습니다. 주 사용처는, “mix-in” 클래스들을 사용할때 유용하다는 점입니다. 특정 추가 필드를 추가하거나 “mix-in” 을 상속받는 모든 클래스에 메서드를 추가할때 유용합니다. </p>
-<br>
-
-<p>당신의 상속 구조를 가능한한 최대로 간단하고 명료하게 유지하도록 노력해야 합니다. 그래야, 특정 정보가 어디서 왔는지 알아내기 위해 고생할 필요가 없어집니다. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1558,7 +1592,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-count">151</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1571,7 +1605,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">117</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

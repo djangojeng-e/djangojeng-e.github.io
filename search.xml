@@ -1,6 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Forms 4편 - Form 에 대한 Django 의 역할</title>
+    <url>/2020/10/02/Django-Forms-4%ED%8E%B8-Form-%EC%97%90-%EB%8C%80%ED%95%9C-Django-%EC%9D%98-%EC%97%AD%ED%95%A0/</url>
+    <content><![CDATA[<h2 id="Django’s-role-in-forms"><a href="#Django’s-role-in-forms" class="headerlink" title="Django’s role in forms"></a>Django’s role in forms</h2><br>
+
+<p>폼을 다루는것은 복잡한 일입니다. </p>
+<br>
+
+<p>Django 의 어드민을 생각해보면, </p>
+<br>
+
+<p>서로 다른 종류의 데이터들의 많은 항목들이 폼안에 출력되도록 준비 되어야 하고, </p>
+<p><br>HTML 로 렌더링 되어야하고, 편리한 인터페이스를 사용해서 편집되어야 하고, 서버로 반환되어야 하고, 유효성 검사와 정리가 되어야 하고, 그리고 나서도 추후 처리를 위해 저장 혹은 전달 되어야 합니다. </p>
+<br>
+
+<p>Django 의 form 기능은, 이 복잡한 일의 상당한 부분들을 간소화 시키고 자동화 시킵니다. </p>
+<br>
+
+<p>또한, Django 에서 폼은 대부분의 프로그래머들이 자신들이 코드를 작성한것만큼 안전하게 작동합니다. </p>
+<br>
+
+<h2 id="Django-Form-이-다루는-영역"><a href="#Django-Form-이-다루는-영역" class="headerlink" title="Django Form 이 다루는 영역"></a>Django Form 이 다루는 영역</h2><br>
+
+<ol>
+<li>데이터를 준비하고 재구조화 하여, 렌더할 준비 </li>
+<li>데이터를 위한 HTML 폼을 생성 </li>
+<li>클라이언트가 제출한 폼들과 데이터를 받는 부분 </li>
+<li>받은 데이터를 처리 </li>
+</ol>
+<br>
+
+<p>이 모든것들을 수동으로 수행하는 코드를 작성하는것도 가능하지만, </p>
+<p><br>django 는 여러분들을 위해 모든것들을 처리할 수 있습니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Forms</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Forms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Django Forms 3편 - GET and POST</title>
+    <url>/2020/10/02/Django-Forms-3%ED%8E%B8-GET-and-POST/</url>
+    <content><![CDATA[<h2 id="GET-vs-POST-Method"><a href="#GET-vs-POST-Method" class="headerlink" title="GET vs POST Method"></a>GET vs POST Method</h2><br>
+
+<blockquote>
+<p>GET 과 POST 는 </p>
+<p>Form 을 다룰때 쓸수 있는 유일한 HTTP Method 입니다. </p>
+</blockquote>
+<br>
+
+<p>Django 의 로그인 폼은 POST 메서드를 사용하여 반환 되고, </p>
+<br>
+
+<p>브라우저는 폼 데이터들을 모아서, 전송을 위한 인코딩을 합니다. 인코딩을 한뒤에 서버로 보낸다음 서버에서 응답을 받습니다. </p>
+<br>
+
+<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><br>
+
+<p>POST 와 비교했을때, GET 메서드는, </p>
+<br>
+
+<blockquote>
+<p>제출된 데이터를 문자열로 모으고, </p>
+<p>모아진 문자열들을 URL 을 만들때 사용합니다. </p>
+<br>
+
+<p>URL 은 데이터가 전송되어야만하는 주소를 가지고 있고, </p>
+<p>데이터 키 와 값을 가지고 있습니다. </p>
+</blockquote>
+<br>
+
+<h2 id="GET-과-POST-의-다른-사용-목적"><a href="#GET-과-POST-의-다른-사용-목적" class="headerlink" title="GET  과 POST  의 다른 사용 목적"></a>GET  과 POST  의 다른 사용 목적</h2><br>
+
+<p>시스템의 상태를 바꾸기 위해서 사용되는 요청들 같은 경우, </p>
+<p><br>예를들어, 데이터베이스에 어떠한 변경을 만들어주는 요청들은 POST 를 사용해야 합니다. </p>
+<br>
+
+<blockquote>
+<p>*<em>POST 를 사용해야 할때 *</em></p>
+<p>시스템의 상태를 바꾸기 위한 요청을 받을때, </p>
+<p>예) 데이터베이스에 변경 사항들을 만들어주는 요청을 다룰때 </p>
+<br>
+
+<p><strong>GET을 사용해야 할때</strong></p>
+<p>GET 은 시스템의 상태에 영향을 주지 않는 요청을 처리할때만 사용되어야 합니다 </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="GET-의-위험성"><a href="#GET-의-위험성" class="headerlink" title="GET 의 위험성"></a>GET 의 위험성</h2><br>
+
+<p>GET 메서드는, 폼에서 입력된 데이터를 받아서 URL 로 만들어 줍니다. </p>
+<br>
+
+<p>따라서, GET은 패스워드 폼 사용에는 적합하지 않습니다. 왜냐하면, 입력된 패스워드가 URL 에 보여지게 될것이기 때문입니다. 그리고, 브라우저 히스토리와 서버 로그에 순수 텍스트로 나타나게 될겁니다. </p>
+<p><br>보안상 문제가 생기겠죠? </p>
+<br>
+
+<br>
+
+<p>또한, 큰 데이터 양이나, 이미지 같은 이진수 데이터에도 적합하지 않습니다. </p>
+<br>
+
+<blockquote>
+<p>GET 요청을 어드민 폼에 사용하는 웹 어플리케이션은 보안상 아주 위험합니다. </p>
+<br>
+
+<p>공격자들은, 폼의 요청을 조작하여 시스템의 아주 민감한 부분에 접근할수 있습니다. </p>
+<p>Django 의 CSRF protection 같은, 다른 보호 방법과 같이 쓰여지는 POST 의 경우, 공격자들의 접근을 좀더 관리 할수 있습니다. </p>
+</blockquote>
+<p><br><br></p>
+<h2 id="GET-을-사용하면-좋을때"><a href="#GET-을-사용하면-좋을때" class="headerlink" title="GET 을 사용하면 좋을때"></a>GET 을 사용하면 좋을때</h2><br>
+
+<blockquote>
+<p><strong>GET 을 사용하면 좋을때</strong></p>
+<p>GET Method 는, 웹 검색 폼 같은것에 사용하기 적합합니다 </p>
+<p>왜냐하면, GET 요청으로 표현되는 URL 들은 쉽게 북마크 될수도 있고, </p>
+<p>쉽게 공유될수 있으면서, 쉽게 다시 제출될수 있습니다. </p>
+</blockquote>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Forms</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Forms</tag>
+        <tag>GET</tag>
+        <tag>POST</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Forms 2편 - HTML FORMS</title>
     <url>/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/</url>
     <content><![CDATA[<h2 id="HTML-FORMS"><a href="#HTML-FORMS" class="headerlink" title="HTML FORMS"></a>HTML FORMS</h2><br>
