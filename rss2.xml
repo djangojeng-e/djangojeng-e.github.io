@@ -9,8 +9,30 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Fri, 02 Oct 2020 05:12:13 GMT</pubDate>
+    <pubDate>Sat, 03 Oct 2020 08:25:57 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Django Forms 5편 - Django Form Class</title>
+      <link>http://djangojeng-e.github.io/2020/10/03/Django-Forms-5%ED%8E%B8-Django-Form-Class/</link>
+      <guid>http://djangojeng-e.github.io/2020/10/03/Django-Forms-5%ED%8E%B8-Django-Form-Class/</guid>
+      <pubDate>Sat, 03 Oct 2020 08:19:02 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h2 id=&quot;Django-Form-Class&quot;&gt;&lt;a href=&quot;#Django-Form-Class&quot; class=&quot;headerlink&quot; title=&quot;Django Form Class&quot;&gt;&lt;/a&gt;Django Form Class&lt;/h2&gt;&lt;br&gt;
+
+&lt;h3 id=
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Django-Form-Class"><a href="#Django-Form-Class" class="headerlink" title="Django Form Class"></a>Django Form Class</h2><br><h3 id="Forms-in-Django"><a href="#Forms-in-Django" class="headerlink" title="Forms in Django"></a>Forms in Django</h3><br><p>우리는 HTML 폼에 대해서 간단히 설명 했습니다.  하지만, <code>&lt;form&gt;</code> HTML 태그는 단지 필요한 도구일뿐입니다. </p><br><p>웹 어플리케이션의 맥락에서, </p><br><blockquote><p>form 은 HTML <code>&lt;form&gt;</code> 테그를 가르키거나, </p><p>혹은, 그것을 생성하는 Django Form, </p><p>또는, 제출되었을때 반환되는 구조화된 데이터 </p><p>또는, 이 모든 부분들의 end-to-end 동작의 집합들이라고 말할수 있습니다. </p></blockquote><br><h2 id="Django-Form-Class-1"><a href="#Django-Form-Class-1" class="headerlink" title="Django Form Class"></a>Django Form Class</h2><br><p>이 컴포넌트들의 시스템의 심장은 Django 의 Form Class 입니다. </p><p><br>매우 같은 방식으로, Django 모델이 객체의 구조, 동작 그리고 어떻게 표시가 되어야 하는지에 대해서 논리적인 묘사를 하듯이, </p><br><blockquote><p>Form 클래스는 Form 을 묘사하고, </p><p>어떻게 작동하고 나타나야 하는지에 대해 결정합니다. </p></blockquote><br><br><p>모델 클래스의 필드들이 데이터베이스 필드들을 가르키고 매핑되는것과 비슷하게도, </p><br><p>폼 클래스의 필드들은 HTML form <code>&lt;input&gt;</code> 요소와 매핑 됩니다 (ModelForm 은 모델 클래스의 필드들을 HTML form <code>&lt;input&gt;</code> 요소를 Form 을 통해서 매핑 합니다.)</p><br><br><blockquote><p>폼의 필드들은 그들 스스로 클래스들입니다. </p><p>폼이 제출될때, 데이터를 관리하고 유효성 검사를 수행합니다. </p></blockquote><br><p>DateField 와 FileField 는 매우 다른 종류의 데이터와 그 데이터 들과 같이 해야만 하는 다른 일들을 다룹니다. </p><br><p>폼 필드는 브라우저에서 사용자에게 HTML widget 으로 표시됩니다. </p><p>각 필드 타입들은 적절한 기본 widget class 들을 가지고 있지만, 필요할때에는 override 되서 사용될수 있습니다. </p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/10/03/Django-Forms-5%ED%8E%B8-Django-Form-Class/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Django Forms 4편 - Form 에 대한 Django 의 역할</title>
@@ -579,55 +601,6 @@
       <content:encoded><![CDATA[<h2 id="Model-Inheritance-Abstract-Base-Classes"><a href="#Model-Inheritance-Abstract-Base-Classes" class="headerlink" title="Model Inheritance (Abstract Base Classes)"></a>Model Inheritance (Abstract Base Classes)</h2><br><p><code>Abstract Base classes</code></p><br><p>Abstract base 클래스들은, 여러분들이 어떠한 공통된 정보들을, 다른 모델들에 넣고 싶을때에 유용하게 쓸수 있습니다. </p><br><p>Base 클래스를 작성한다음, <code>Meta class</code> 에다가, <code>abstract=True</code>  로 설정합니다. </p><p><br>그러면, 해당 모델은, 데이터베이스를 생성하는데에 사용되지 않습니다. </p><br><blockquote><p>다른 모델들의 Base 클래스로 사용될때에는, </p><p>Base 클래스의 필드들이 자식 클래스들에 추가 됩니다. </p></blockquote><br><p>예시를 들자면, </p><br><a id="more"></a><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommonInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    age = models.PositiveIntegerField()</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        abstract = <span class="literal">True</span> </span><br><span class="line">        <span class="comment"># class Meta 를 선언함으로써, 다른 모델들이 상속 받을수 있는 모델이 됨 </span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(CommonInfo)</span>:</span></span><br><span class="line">    <span class="comment"># 공통된 정보를 가지고 있는 CommonInfo 클래스를 상속받는 Student 클래스 모델 </span></span><br><span class="line">    home_group = models.CharField(max_length=<span class="number">5</span>)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span><span class="params">(CommonInfo)</span>:</span></span><br><span class="line">    <span class="comment"># 공통된 정보를 가지고 있는 CommonInfo 클래스를 상속받는 Teacher 클래스 모델 </span></span><br><span class="line">    teaching_subject = models.CharField(max_length=<span class="number">20</span>)</span><br></pre></td></tr></table></figure><br><p>위의 예시에서, CommonInfo 클래스에 있는 name 과 age 필드는, </p><p>Student 모델과, Teacher 모델이 상속받는 필드입니다. </p><br><p>따라서, Student 모델은 3가지 필드들을 갖게 됩니다. name, age 그리고 home_group. </p><p>비슷한 의미로, Teacher 모델은 name, age 그리고 teaching_subject 필드를 갖게 됩니다. </p><br><blockquote><p>CommonInfo 모델은 abstract base 클래스 이기 때문에, </p><p>CommonInfo 모델은 일반 Django 모델로 사용될수 없습니다. </p><br><p>CommonInfo 모델은 데이터베이스 테이블을 생성하지도 않고, manager 도 갖지 않습니다 (object  메서드를 가지지 않습니다). 그리고, 직접적인 인스턴스 생성과 저장도 되지 않습니다. </p></blockquote><br><p>abstract base class 에서 상속받은 필드들은 다른 필드 혹은 값으로 override 될수 있습니다. </p><p><br>혹은, None 으로 제거 될수 있습니다. </p><br><p><code>abstract base</code> 클래스 상속 방식은, 공통된 정보를 파이썬 레벨에 두고, </p><p>각각의 자식 모델마다 한개의 데이터베이스 테이블을 데이터베이스에 생성합니다. </p><br><p>실제로 위의 예시에서 CommonInfo 클래스로 Shell 에 들어가서, 몇가지 명령어를 실행해보면, 에러가 납니다. </p><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">In [1]: common = CommonInfo.objects.create(name="django", age=22)                                                                                                         </span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">NameError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-1-8d6637697465&gt; in &lt;module&gt;</span><br><span class="line"><span class="meta">----&gt;</span><span class="bash"> 1 common = CommonInfo.objects.create(name=<span class="string">"django"</span>, age=22)</span></span><br><span class="line"></span><br><span class="line">NameError: name 'CommonInfo' is not defined</span><br><span class="line"></span><br><span class="line">In [2]: CommonInfo.objects.all()                                                                                                                                          </span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">NameError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-2-fc35ec638311&gt; in &lt;module&gt;</span><br><span class="line"><span class="meta">----&gt;</span><span class="bash"> 1 CommonInfo.objects.all()</span></span><br><span class="line"></span><br><span class="line">NameError: name 'CommonInfo' is not defined</span><br><span class="line"></span><br><span class="line">In [3]: c = CommonInfo()                                                                                                                                                  </span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">NameError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-3-2542378fc97f&gt; in &lt;module&gt;</span><br><span class="line"><span class="meta">----&gt;</span><span class="bash"> 1 c = CommonInfo()</span></span><br><span class="line"></span><br><span class="line">NameError: name 'CommonInfo' is not defined</span><br></pre></td></tr></table></figure>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/08/14/Django-Models-17%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Abstract-Base-Class-1/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Django Models 16편 - Model Inheritance</title>
-      <link>http://djangojeng-e.github.io/2020/08/13/Django-Models-16%ED%8E%B8-Model-Inheritance/</link>
-      <guid>http://djangojeng-e.github.io/2020/08/13/Django-Models-16%ED%8E%B8-Model-Inheritance/</guid>
-      <pubDate>Thu, 13 Aug 2020 14:08:09 GMT</pubDate>
-      <description>
-      
-        &lt;h2 id=&quot;Model-Inheritance-모델-상속&quot;&gt;&lt;a href=&quot;#Model-Inheritance-모델-상속&quot; class=&quot;headerlink&quot; title=&quot;Model Inheritance (모델 상속)&quot;&gt;&lt;/a&gt;Model Inheritance (모델 상속)&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;Django 에서 모델 상속은, 파이썬에서 일반적인 클래스 상속을 하는것과 거의 비슷하게 작동합니다.  &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;다만, django 의 기본에는 충실해야 합니다. 이것이 의미하는것은, Django 모델 클래스들은 &lt;code&gt;django.db.models.Model&lt;/code&gt; 의 서브 클래스가 되어야 한다는 이야기 입니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;여러분들이 결정해야 할 사항은 아래와 같습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;ol&gt;
-&lt;li&gt;부모 모델이 자신의 모델이 될지 &lt;/li&gt;
-&lt;li&gt;부모 모델은 단지 공통된 정보를 가지고, 자식 모델들을 통해서만 정보가 보이게 하게 할지 &lt;/li&gt;
-&lt;/ol&gt;
-&lt;br&gt;
-
-&lt;p&gt;이 개념을 쉽게 이해하기 위해서는, 파이썬에서 클래스의 상속 개념을 잘 알고 있어야 합니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Django 에서는 상속에 대한 3가지 스타일들이 존재 합니다. &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-
-&lt;ol&gt;
-&lt;li&gt;보통은, 자식 모델들의 필드에 대해서 타이핑 하기 싫을때, 부모 클래스가 정보만 가지게끔 사용할수 있습니다. 이 클래스는 절대로 분리되서 사용될수 없습니다. 따라서, &lt;code&gt;Abstract base classes&lt;/code&gt; 들이 당신이 원하는것이 될겁니다. &lt;/li&gt;
-&lt;li&gt;이미 존재하는 모델 (다른 어플리케이션에 있는 모델)을 상속을 받고 있고, 각 모델이 각자의 데이터베이스 테이블을 가지고 있다면, &lt;code&gt;Multi-table inheritance&lt;/code&gt; 를 사용할수 있습니다.&lt;/li&gt;
-&lt;li&gt;모델 필드의 수정 없이, 모델의 파이썬 레벨 동작을 고치고 싶다면, &lt;code&gt;proxy models&lt;/code&gt; 를 사용하면 됩니다.  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="Model-Inheritance-모델-상속"><a href="#Model-Inheritance-모델-상속" class="headerlink" title="Model Inheritance (모델 상속)"></a>Model Inheritance (모델 상속)</h2><br><p>Django 에서 모델 상속은, 파이썬에서 일반적인 클래스 상속을 하는것과 거의 비슷하게 작동합니다.  </p><br><p>다만, django 의 기본에는 충실해야 합니다. 이것이 의미하는것은, Django 모델 클래스들은 <code>django.db.models.Model</code> 의 서브 클래스가 되어야 한다는 이야기 입니다. </p><br><p>여러분들이 결정해야 할 사항은 아래와 같습니다. </p><br><ol><li>부모 모델이 자신의 모델이 될지 </li><li>부모 모델은 단지 공통된 정보를 가지고, 자식 모델들을 통해서만 정보가 보이게 하게 할지 </li></ol><br><p>이 개념을 쉽게 이해하기 위해서는, 파이썬에서 클래스의 상속 개념을 잘 알고 있어야 합니다. </p><br><br><blockquote><p>Django 에서는 상속에 대한 3가지 스타일들이 존재 합니다. </p></blockquote><br><ol><li>보통은, 자식 모델들의 필드에 대해서 타이핑 하기 싫을때, 부모 클래스가 정보만 가지게끔 사용할수 있습니다. 이 클래스는 절대로 분리되서 사용될수 없습니다. 따라서, <code>Abstract base classes</code> 들이 당신이 원하는것이 될겁니다. </li><li>이미 존재하는 모델 (다른 어플리케이션에 있는 모델)을 상속을 받고 있고, 각 모델이 각자의 데이터베이스 테이블을 가지고 있다면, <code>Multi-table inheritance</code> 를 사용할수 있습니다.</li><li>모델 필드의 수정 없이, 모델의 파이썬 레벨 동작을 고치고 싶다면, <code>proxy models</code> 를 사용하면 됩니다.  </li></ol><br><a id="more"></a><br><p>정리하자면, </p><br><blockquote><p>Django 에서 모델 상속에 대해, 아래 3가지 스타일이 존재합니다. </p><br><p>1) Abstract base classes </p><p>2) Multi-table inheritance </p><p>3) Proxy models </p></blockquote><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/08/13/Django-Models-16%ED%8E%B8-Model-Inheritance/#disqus_thread</comments>
     </item>
     
   </channel>

@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Forms 5편 - Django Form Class</title>
+    <url>/2020/10/03/Django-Forms-5%ED%8E%B8-Django-Form-Class/</url>
+    <content><![CDATA[<h2 id="Django-Form-Class"><a href="#Django-Form-Class" class="headerlink" title="Django Form Class"></a>Django Form Class</h2><br>
+
+<h3 id="Forms-in-Django"><a href="#Forms-in-Django" class="headerlink" title="Forms in Django"></a>Forms in Django</h3><br>
+
+<p>우리는 HTML 폼에 대해서 간단히 설명 했습니다.  하지만, <code>&lt;form&gt;</code> HTML 태그는 단지 필요한 도구일뿐입니다. </p>
+<br>
+
+<p>웹 어플리케이션의 맥락에서, </p>
+<br>
+
+<blockquote>
+<p>form 은 HTML <code>&lt;form&gt;</code> 테그를 가르키거나, </p>
+<p>혹은, 그것을 생성하는 Django Form, </p>
+<p>또는, 제출되었을때 반환되는 구조화된 데이터 </p>
+<p>또는, 이 모든 부분들의 end-to-end 동작의 집합들이라고 말할수 있습니다. </p>
+</blockquote>
+<br>
+
+<h2 id="Django-Form-Class-1"><a href="#Django-Form-Class-1" class="headerlink" title="Django Form Class"></a>Django Form Class</h2><br>
+
+<p>이 컴포넌트들의 시스템의 심장은 Django 의 Form Class 입니다. </p>
+<p><br>매우 같은 방식으로, Django 모델이 객체의 구조, 동작 그리고 어떻게 표시가 되어야 하는지에 대해서 논리적인 묘사를 하듯이, </p>
+<br>
+
+<blockquote>
+<p>Form 클래스는 Form 을 묘사하고, </p>
+<p>어떻게 작동하고 나타나야 하는지에 대해 결정합니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<p>모델 클래스의 필드들이 데이터베이스 필드들을 가르키고 매핑되는것과 비슷하게도, </p>
+<br>
+
+<p>폼 클래스의 필드들은 HTML form <code>&lt;input&gt;</code> 요소와 매핑 됩니다 (ModelForm 은 모델 클래스의 필드들을 HTML form <code>&lt;input&gt;</code> 요소를 Form 을 통해서 매핑 합니다.)</p>
+<br>
+
+<br>
+
+<blockquote>
+<p>폼의 필드들은 그들 스스로 클래스들입니다. </p>
+<p>폼이 제출될때, 데이터를 관리하고 유효성 검사를 수행합니다. </p>
+</blockquote>
+<br>
+
+<p>DateField 와 FileField 는 매우 다른 종류의 데이터와 그 데이터 들과 같이 해야만 하는 다른 일들을 다룹니다. </p>
+<br>
+
+<p>폼 필드는 브라우저에서 사용자에게 HTML widget 으로 표시됩니다. </p>
+<p>각 필드 타입들은 적절한 기본 widget class 들을 가지고 있지만, 필요할때에는 override 되서 사용될수 있습니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Forms</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Forms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Forms 4편 - Form 에 대한 Django 의 역할</title>
     <url>/2020/10/02/Django-Forms-4%ED%8E%B8-Form-%EC%97%90-%EB%8C%80%ED%95%9C-Django-%EC%9D%98-%EC%97%AD%ED%95%A0/</url>
     <content><![CDATA[<h2 id="Django’s-role-in-forms"><a href="#Django’s-role-in-forms" class="headerlink" title="Django’s role in forms"></a>Django’s role in forms</h2><br>

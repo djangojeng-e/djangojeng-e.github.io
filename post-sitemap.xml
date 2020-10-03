@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/10/03/Django-Forms-5%ED%8E%B8-Django-Form-Class/</loc>
+        <lastmod>2020-10-03T08:25:57.745Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/10/02/Django-Forms-4%ED%8E%B8-Form-%EC%97%90-%EB%8C%80%ED%95%9C-Django-%EC%9D%98-%EC%97%AD%ED%95%A0/</loc>
         <lastmod>2020-10-02T05:12:13.404Z</lastmod>
         <changefreq>weekly</changefreq>
