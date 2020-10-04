@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Forms 6편 - 인스턴스화, 프로세싱, 폼 그리기</title>
+    <url>/2020/10/04/Django-Forms-6%ED%8E%B8-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%ED%99%94-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8B%B1-%ED%8F%BC-%EA%B7%B8%EB%A6%AC%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Instantiating-processing-and-rendering-forms"><a href="#Instantiating-processing-and-rendering-forms" class="headerlink" title="Instantiating, processing and rendering forms"></a>Instantiating, processing and rendering forms</h2><br>
+
+<blockquote>
+<p>Django 에서 객체를 렌더링 해줄때 우리는 보통, </p>
+<br>
+
+<ol>
+<li>view 에서 객체를 확보합니다 (예, 데이터베이스에서 가져오기)</li>
+<li>template 컨텍스트에 전달해 줍니다 </li>
+<li>템플릿 변수들을 사용하여, HTML 마크업으로 확장 시킵니다 </li>
+</ol>
+</blockquote>
+<br>
+
+<p>템플릿에서 하나의 폼을 렌더링 해주는것은 다른 종류의 객체를 렌더링 해주는것과 거의 흡사 합니다. </p>
+<br>
+
+<p>하지만, 거기에는 몇가지 차이점들이 존재합니다. </p>
+<br>
+
+<ol>
+<li>데이터를 포함하고 있지 않은 모델 인스턴스일 경우에는, 우리가 그 인스턴스를 렌더링 해서 템플릿에서 어떠한 작업을 수행하려 할때, 유용하지 않을때가 많습니다. 하지만, 폼에서는 채워지지 않은 폼을 렌더 해주는것에 완벽한 의미가 있습니다 - 우리는 사용자가 비어있는 폼을 채워주길 바라며, 이것이 폼이 하고자 하는 일입니다 </li>
+<li>따라서, 우리가 뷰에서 모델 인스턴스를 다룰때에, 우리는 보통 데이터베이스에서 조회해 옵니다만, 폼을 다룰때에는, 뷰에서 폼을 인스턴스화 시켜주면 됩니다. </li>
+</ol>
+<br>
+
+<h2 id="폼-인스턴스화"><a href="#폼-인스턴스화" class="headerlink" title="폼 인스턴스화"></a>폼 인스턴스화</h2><br>
+
+<p>하나의 폼을 인스턴스화 할때에는, 우리는 폼을 비어있게 할것인지 혹은 미리 채워놓을것인지 선택할수 있습니다. </p>
+<br>
+
+<p>예를들면, 폼에 채울 데이터는 아래와 같습니다. </p>
+<br>
+
+<br>
+
+<ul>
+<li>저장된 모델 인스턴스에서부터 온 데이터 </li>
+<li>다른 소스들에서 합친 데이터 </li>
+<li>이전 HTML 폼 제출에서 받은 데이터 </li>
+</ul>
+<br>
+
+<p>이전 HTML 폼 제출에서 받은 데이터가 흥미로운 부분인데, 이것은 사용자들이 단순히 웹사이트를 읽기만 하는것이 아니라, 정보를 역으로 보낼수 있게 해주기 때문에 흥미롭습니다. </p>
+<br>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Forms</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Forms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Forms 5편 - Django Form Class</title>
     <url>/2020/10/03/Django-Forms-5%ED%8E%B8-Django-Form-Class/</url>
     <content><![CDATA[<h2 id="Django-Form-Class"><a href="#Django-Form-Class" class="headerlink" title="Django Form Class"></a>Django Form Class</h2><br>
