@@ -220,6 +220,246 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part2 - 5편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-17 20:33:45 / Updated at: 20:45:46" itemprop="dateCreated datePublished" datetime="2020-04-17T20:33:45+09:00">2020-04-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Tutorials/" itemprop="url" rel="index"><span itemprop="name">Tutorials</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/17/Writing-your-first-Django-app-part2-5편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="API-가지고-놀기-2편"><a href="#API-가지고-놀기-2편" class="headerlink" title="API 가지고 놀기 - 2편"></a>API 가지고 놀기 - 2편</h2><br>
+
+<p>지난 포스팅에서, 쿼리셋을 조회 했더니, 아래와 같이 알수 없는 쿼리셋이 반환되서 나왔습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In [14]: Question.objects.all() Out[14]: </span><br><span class="line"></span><br><span class="line">&lt;QuerySet [&lt;Question: Question object (1)&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>Question object (1) 이라고만 표시되어 쿼리셋이 조회가 됩니다. </p>
+<p><br>이렇게 조회가 되면, 이게 무슨 질문인지, 언제 생성된 질문인지 알수가 없어지게 되서. 전혀 유용하지 않은 정보가 됩니다. </p>
+<br>
+
+<p>이번 포스팅에서 이것을 어떻게 유용한 형태로 표시할것인지에 대한 과정을 진행 합니다. </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/16/Writing-your-first-Django-app-part2-4%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/16/Writing-your-first-Django-app-part2-4%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part2 - 4편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-16 00:42:04 / Updated at: 01:01:30" itemprop="dateCreated datePublished" datetime="2020-04-16T00:42:04+09:00">2020-04-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Tutorials/" itemprop="url" rel="index"><span itemprop="name">Tutorials</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/16/Writing-your-first-Django-app-part2-4%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/16/Writing-your-first-Django-app-part2-4편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="API-가지고-놀기"><a href="#API-가지고-놀기" class="headerlink" title="API 가지고 놀기"></a>API 가지고 놀기</h2><br>
+
+<p>파이썬에 있는 인터렉티브한 쉘에 진입해서 DJango 가 제공하는 기본 데이터베이스 API 를 가지고 놀아봅니다. </p>
+<p>Python shell 에 진입하기 위해서는 아래 커맨드를 사용합니다.  </p>
+<br>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>일반 shell 에 접속해서 할수도 있지만, 저는 shell_plus 를 사용해서 진행해 봤습니다. </p>
+<p>shell_plus 를 사용하기 위해서는 django-extensions 를 설치하고, settings.py 에 INSTALLED_APPS 에 등록 해줘야 합니다. </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/16/Writing-your-first-Django-app-part2-4%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/15/Writing-your-first-Django-app-part2-3%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1165,258 +1405,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/" class="post-title-link" itemprop="url">가상환경 pyenv, virtualenv - 4편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-10 19:47:13 / Updated at: 20:05:58" itemprop="dateCreated datePublished" datetime="2020-04-10T19:47:13+09:00">2020-04-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/" itemprop="url" rel="index"><span itemprop="name">환경설정</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD/" itemprop="url" rel="index"><span itemprop="name">가상환경</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/10/가상환경-pyenv-virtualenv-4편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="가상환경-설정-pyenv-virtualenv-4편"><a href="#가상환경-설정-pyenv-virtualenv-4편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv - 4편"></a>가상환경 설정 - pyenv, virtualenv - 4편</h2><h2 id="pyenv-virtualenv를-사용해서-가상환경-사용"><a href="#pyenv-virtualenv를-사용해서-가상환경-사용" class="headerlink" title="pyenv-virtualenv를 사용해서 가상환경 사용"></a><code>pyenv-virtualenv</code>를 사용해서 가상환경 사용</h2><br>
-
-<br>
-
-<p>지난 포스팅에서 파이썬 3.8.0 을 설치하였습니다. </p>
-<p>가상환경 생성 준비는 다 된것 같으니. 직접 가상환경을 생성하고 사용해 봅니다. </p>
-<br>
-
-<h2 id="파이썬-버전-확인"><a href="#파이썬-버전-확인" class="headerlink" title="파이썬 버전 확인"></a>파이썬 버전 확인</h2><br>
-
-<p><code>pyenv versions</code>를 실행하여, 버전을 확인합니다. </p>
-<br>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@ip-172-31-47-234:~$ pyenv versions</span><br><span class="line">* system (<span class="built_in">set</span> by /home/ubuntu/.pyenv/version)</span><br><span class="line">  3.8.0</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>현재 시스템에서 사용하고 있는 파이썬 버전이 표시됩니다. <code>3.8.0</code>을 설치하였는데. 아직 사용중이지 않습니다. </p>
-<br>
-
-<blockquote>
-<p><code>*</code> 가 붙어 있는게 현재 사용하고 있는 버전의 파이썬입니다 </p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-4%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/" class="post-title-link" itemprop="url">가상환경 pyenv, virtualenv - 3편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-10 19:17:45 / Updated at: 20:07:15" itemprop="dateCreated datePublished" datetime="2020-04-10T19:17:45+09:00">2020-04-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/" itemprop="url" rel="index"><span itemprop="name">환경설정</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD/" itemprop="url" rel="index"><span itemprop="name">가상환경</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/10/가상환경-pyenv-virtualenv-3편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="가상환경-설정-pyenv-virtualenv-3편"><a href="#가상환경-설정-pyenv-virtualenv-3편" class="headerlink" title="가상환경 설정 - pyenv, virtualenv 3편"></a>가상환경 설정 - pyenv, virtualenv 3편</h2><br>
-
-<blockquote>
-<p>우분투가 새로 설치되었으면, </p>
-<p>이 3편부터 진행 하면 됩니다. </p>
-</blockquote>
-<br>
-
-<p>본격적으로 가상환경에 필요한 <code>pyenv</code>설치를 진행 합니다 </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/10/%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD-pyenv-virtualenv-3%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1487,7 +1475,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">153</span>
+          <span class="site-state-item-count">155</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
