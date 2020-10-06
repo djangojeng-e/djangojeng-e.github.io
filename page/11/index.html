@@ -220,6 +220,122 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/24/Writing-your-first-Django-app-part2-6%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/24/Writing-your-first-Django-app-part2-6%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part2 - 6편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-24 20:30:29 / Updated at: 20:43:12" itemprop="dateCreated datePublished" datetime="2020-04-24T20:30:29+09:00">2020-04-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Tutorials/" itemprop="url" rel="index"><span itemprop="name">Tutorials</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/24/Writing-your-first-Django-app-part2-6%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/24/Writing-your-first-Django-app-part2-6편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="API-가지고-놀기-3편"><a href="#API-가지고-놀기-3편" class="headerlink" title="API 가지고 놀기 - 3편"></a>API 가지고 놀기 - 3편</h2><br>
+
+<p>지난 시간에 이어서, API 실험을 이어서 합니다. </p>
+<p><br>[1] 부터 [6] 까지는, 지난 포스팅에서 진행한 내용 입니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">In [1]: Question.objects.all()                                                                                                                                            </span><br><span class="line">Out[1]: &lt;QuerySet [&lt;Question: What's up?&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [2]: Question.objects.filter(id=1)                                                                                                                                     </span><br><span class="line">Out[2]: &lt;QuerySet [&lt;Question: What's up?&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [3]: Question.objects.filter(question_text__startswith='What')                                                                                                         </span><br><span class="line">Out[3]: &lt;QuerySet [&lt;Question: What's up?&gt;]&gt;</span><br><span class="line"></span><br><span class="line">In [4]: from django.utils import timezone                                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [5]: current_year = timezone.now().year                                                                                                                                </span><br><span class="line"></span><br><span class="line">In [6]: Question.objects.get(pub_date__year=current_year)                                                                                                                 </span><br><span class="line">Out[6]: &lt;Question: What's up?&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/24/Writing-your-first-Django-app-part2-6%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/17/Writing-your-first-Django-app-part2-5%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1282,129 +1398,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/11/Writing-your-first-Django-app-part1-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/11/Writing-your-first-Django-app-part1-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/" class="post-title-link" itemprop="url">Writing your first Django app, part1 - 초기설정</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-11 18:30:59 / Updated at: 18:46:56" itemprop="dateCreated datePublished" datetime="2020-04-11T18:30:59+09:00">2020-04-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Tutorials/" itemprop="url" rel="index"><span itemprop="name">Tutorials</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/11/Writing-your-first-Django-app-part1-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/11/Writing-your-first-Django-app-part1-초기설정/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="장고-공식문서-튜토리얼-초기세팅"><a href="#장고-공식문서-튜토리얼-초기세팅" class="headerlink" title="장고 공식문서 튜토리얼 초기세팅"></a>장고 공식문서 튜토리얼 초기세팅</h2><br>
-
-<br>
-
-<p>공식문서에 나와있는 첫번째 앱 만들기 튜토리얼을 진행해봅니다. </p>
-<br>
-
-<p>이 튜토리얼을 통해서, 아주 기본적인 투표앱을 만드는 과정을 해보겠습니다. </p>
-<br>
-
-<br>
-
-<p>투표앱은 두부분으로 이루어져있습니다. </p>
-<br>
-
-<p>1) 사람들이 투표소 (투표의 내역) 를 보고, 투표를 할수 있는 하나의 공용 사이트 </p>
-<p>2) 투표소 (투표의 내역) 를 추가, 변경, 삭제할수 있는 관리자 사이트</p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/11/Writing-your-first-Django-app-part1-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1475,7 +1468,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">155</span>
+          <span class="site-state-item-count">156</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
