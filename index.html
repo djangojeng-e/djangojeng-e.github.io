@@ -220,6 +220,172 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/" class="post-title-link" itemprop="url">Django Forms 13편 - 폼 템플릿 작업하기-1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-09 08:06:52 / Updated at: 08:24:46" itemprop="dateCreated datePublished" datetime="2020-10-09T08:06:52+09:00">2020-10-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/09/Django-Forms-13편-폼-템플릿-작업하기-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Working-with-form-templates"><a href="#Working-with-form-templates" class="headerlink" title="Working with form templates"></a>Working with form templates</h2><br>
+
+<p>폼을 템플릿으로 가져오기 위해서 해야할 모든것은, 폼 인스턴스를 템플릿 컨텍스트에 넣어주는것입니다. </p>
+<br>
+
+<br>
+
+
+
+<ol>
+<li><p>폼인스턴스 생성</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># views.py 에서 </span></span><br><span class="line">form = NameForm()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>템플릿 컨텍스트에 넣기 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> render(request, form.html, &#123;<span class="string">'form'</span>: form&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<br>
+
+<p>템플릿 컨텍스트에 넣어진 컨텍스트 즉, <code>{&#39;form&#39;: form}</code> 은, 해당 템플릿 페이지에서, 아래와 같이 사용될수 있습니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; form &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이렇게 하면, 템플릿에서 적절하게 label 과 input 요소들을 렌더해줄수 있습니다. </p>
+<br>
+
+<br>
+
+<h2 id="Form-rendering-options"><a href="#Form-rendering-options" class="headerlink" title="Form rendering options"></a>Form rendering options</h2><br>
+
+<blockquote>
+<p><strong>추가해야할 폼 템플릿 요소들</strong> </p>
+<p>폼의 출력은 <code>&lt;form&gt;</code> 테그 혹은 폼의 제출 약식들을 포함하지 않는다는것을 잊지 마세요. </p>
+<p><code>&lt;form&gt;</code> 태그와 <code>&lt;submit&gt;</code> 태그 같은것들은 여러분들이 스스로 넣어줘야 합니다. </p>
+</blockquote>
+<br>
+
+<p>Django 에서 Form 을 템플릿에 렌더할때에, 옵션을 붙여서 폼의 출력 형태를 바꾸어 줄수 있습니다.  </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; form.as_table &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">tr</span>&gt;</span> 테그로 감싸진 테이블로 폼을 렌더해줍니다 </span></span><br><span class="line"><span class="template-variable">&#123;&#123; form.as_p &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">p</span>&gt;</span> 테그로 감싸진 폼을 렌더해 줍니다 </span></span><br><span class="line"><span class="template-variable">&#123;&#123; form.as_ul &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">ul</span>&gt;</span> 태그로 감싸진 폼을 렌더해 줍니다</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>form.as_table 과 form.as_ul 같은 경우, 상위 태그인 <code>&lt;table&gt;</code> 과, <code>&lt;ul&gt;</code> 요소들을 여러분들 스스로 작성하고 감싸주어야 합니다. </p>
+<br>
+
+
+
+<br>
+
+<h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><br>
+
+<p>아주 간단한 폼을 템플릿에 렌더해 보면, </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/08/Django-Forms-12%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1438,171 +1604,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/02/Django-Forms-3%ED%8E%B8-GET-and-POST/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/02/Django-Forms-3%ED%8E%B8-GET-and-POST/" class="post-title-link" itemprop="url">Django Forms 3편 - GET and POST</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-02 13:56:21 / Updated at: 14:07:02" itemprop="dateCreated datePublished" datetime="2020-10-02T13:56:21+09:00">2020-10-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/02/Django-Forms-3%ED%8E%B8-GET-and-POST/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/02/Django-Forms-3편-GET-and-POST/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="GET-vs-POST-Method"><a href="#GET-vs-POST-Method" class="headerlink" title="GET vs POST Method"></a>GET vs POST Method</h2><br>
-
-<blockquote>
-<p>GET 과 POST 는 </p>
-<p>Form 을 다룰때 쓸수 있는 유일한 HTTP Method 입니다. </p>
-</blockquote>
-<br>
-
-<p>Django 의 로그인 폼은 POST 메서드를 사용하여 반환 되고, </p>
-<br>
-
-<p>브라우저는 폼 데이터들을 모아서, 전송을 위한 인코딩을 합니다. 인코딩을 한뒤에 서버로 보낸다음 서버에서 응답을 받습니다. </p>
-<br>
-
-<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><br>
-
-<p>POST 와 비교했을때, GET 메서드는, </p>
-<br>
-
-<blockquote>
-<p>제출된 데이터를 문자열로 모으고, </p>
-<p>모아진 문자열들을 URL 을 만들때 사용합니다. </p>
-<br>
-
-<p>URL 은 데이터가 전송되어야만하는 주소를 가지고 있고, </p>
-<p>데이터 키 와 값을 가지고 있습니다. </p>
-</blockquote>
-<br>
-
-<h2 id="GET-과-POST-의-다른-사용-목적"><a href="#GET-과-POST-의-다른-사용-목적" class="headerlink" title="GET  과 POST  의 다른 사용 목적"></a>GET  과 POST  의 다른 사용 목적</h2><br>
-
-<p>시스템의 상태를 바꾸기 위해서 사용되는 요청들 같은 경우, </p>
-<p><br>예를들어, 데이터베이스에 어떠한 변경을 만들어주는 요청들은 POST 를 사용해야 합니다. </p>
-<br>
-
-<blockquote>
-<p>*<em>POST 를 사용해야 할때 *</em></p>
-<p>시스템의 상태를 바꾸기 위한 요청을 받을때, </p>
-<p>예) 데이터베이스에 변경 사항들을 만들어주는 요청을 다룰때 </p>
-<br>
-
-<p><strong>GET을 사용해야 할때</strong></p>
-<p>GET 은 시스템의 상태에 영향을 주지 않는 요청을 처리할때만 사용되어야 합니다 </p>
-</blockquote>
-<br>
-
-<br>
-
-<h2 id="GET-의-위험성"><a href="#GET-의-위험성" class="headerlink" title="GET 의 위험성"></a>GET 의 위험성</h2><br>
-
-<p>GET 메서드는, 폼에서 입력된 데이터를 받아서 URL 로 만들어 줍니다. </p>
-<br>
-
-<p>따라서, GET은 패스워드 폼 사용에는 적합하지 않습니다. 왜냐하면, 입력된 패스워드가 URL 에 보여지게 될것이기 때문입니다. 그리고, 브라우저 히스토리와 서버 로그에 순수 텍스트로 나타나게 될겁니다. </p>
-<p><br>보안상 문제가 생기겠죠? </p>
-<br>
-
-<br>
-
-<p>또한, 큰 데이터 양이나, 이미지 같은 이진수 데이터에도 적합하지 않습니다. </p>
-<br>
-
-<blockquote>
-<p>GET 요청을 어드민 폼에 사용하는 웹 어플리케이션은 보안상 아주 위험합니다. </p>
-<br>
-
-<p>공격자들은, 폼의 요청을 조작하여 시스템의 아주 민감한 부분에 접근할수 있습니다. </p>
-<p>Django 의 CSRF protection 같은, 다른 보호 방법과 같이 쓰여지는 POST 의 경우, 공격자들의 접근을 좀더 관리 할수 있습니다. </p>
-</blockquote>
-<p><br><br></p>
-<h2 id="GET-을-사용하면-좋을때"><a href="#GET-을-사용하면-좋을때" class="headerlink" title="GET 을 사용하면 좋을때"></a>GET 을 사용하면 좋을때</h2><br>
-
-<blockquote>
-<p><strong>GET 을 사용하면 좋을때</strong></p>
-<p>GET Method 는, 웹 검색 폼 같은것에 사용하기 적합합니다 </p>
-<p>왜냐하면, GET 요청으로 표현되는 URL 들은 쉽게 북마크 될수도 있고, </p>
-<p>쉽게 공유될수 있으면서, 쉽게 다시 제출될수 있습니다. </p>
-</blockquote>
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1673,7 +1674,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">159</span>
+          <span class="site-state-item-count">160</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

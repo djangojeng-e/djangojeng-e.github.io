@@ -9,8 +9,85 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Thu, 08 Oct 2020 01:13:55 GMT</pubDate>
+    <pubDate>Thu, 08 Oct 2020 23:24:46 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Django Forms 13편 - 폼 템플릿 작업하기-1</title>
+      <link>http://djangojeng-e.github.io/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/</link>
+      <guid>http://djangojeng-e.github.io/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/</guid>
+      <pubDate>Thu, 08 Oct 2020 23:06:52 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;Working-with-form-templates&quot;&gt;&lt;a href=&quot;#Working-with-form-templates&quot; class=&quot;headerlink&quot; title=&quot;Working with form templates&quot;&gt;&lt;/a&gt;Working with form templates&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;폼을 템플릿으로 가져오기 위해서 해야할 모든것은, 폼 인스턴스를 템플릿 컨텍스트에 넣어주는것입니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;폼인스턴스 생성&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# views.py 에서 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;form = NameForm()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;템플릿 컨텍스트에 넣기 &lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; render(request, form.html, &amp;#123;&lt;span class=&quot;string&quot;&gt;&#39;form&#39;&lt;/span&gt;: form&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;br&gt;
+
+&lt;p&gt;템플릿 컨텍스트에 넣어진 컨텍스트 즉, &lt;code&gt;{&amp;#39;form&amp;#39;: form}&lt;/code&gt; 은, 해당 템플릿 페이지에서, 아래와 같이 사용될수 있습니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;figure class=&quot;highlight django&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;template-variable&quot;&gt;&amp;#123;&amp;#123; form &amp;#125;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;이렇게 하면, 템플릿에서 적절하게 label 과 input 요소들을 렌더해줄수 있습니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;h2 id=&quot;Form-rendering-options&quot;&gt;&lt;a href=&quot;#Form-rendering-options&quot; class=&quot;headerlink&quot; title=&quot;Form rendering options&quot;&gt;&lt;/a&gt;Form rendering options&lt;/h2&gt;&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;추가해야할 폼 템플릿 요소들&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;폼의 출력은 &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; 테그 혹은 폼의 제출 약식들을 포함하지 않는다는것을 잊지 마세요. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; 태그와 &lt;code&gt;&amp;lt;submit&amp;gt;&lt;/code&gt; 태그 같은것들은 여러분들이 스스로 넣어줘야 합니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;p&gt;Django 에서 Form 을 템플릿에 렌더할때에, 옵션을 붙여서 폼의 출력 형태를 바꾸어 줄수 있습니다.  &lt;/p&gt;
+&lt;br&gt;
+
+&lt;figure class=&quot;highlight django&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;template-variable&quot;&gt;&amp;#123;&amp;#123; form.as_table &amp;#125;&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;tr&lt;/span&gt;&amp;gt;&lt;/span&gt; 테그로 감싸진 테이블로 폼을 렌더해줍니다 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;template-variable&quot;&gt;&amp;#123;&amp;#123; form.as_p &amp;#125;&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt; 테그로 감싸진 폼을 렌더해 줍니다 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;template-variable&quot;&gt;&amp;#123;&amp;#123; form.as_ul &amp;#125;&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt; &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;ul&lt;/span&gt;&amp;gt;&lt;/span&gt; 태그로 감싸진 폼을 렌더해 줍니다&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;br&gt;
+
+&lt;p&gt;form.as_table 과 form.as_ul 같은 경우, 상위 태그인 &lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt; 과, &lt;code&gt;&amp;lt;ul&amp;gt;&lt;/code&gt; 요소들을 여러분들 스스로 작성하고 감싸주어야 합니다. &lt;/p&gt;
+&lt;br&gt;
+
+
+
+&lt;br&gt;
+
+&lt;h2 id=&quot;예제&quot;&gt;&lt;a href=&quot;#예제&quot; class=&quot;headerlink&quot; title=&quot;예제&quot;&gt;&lt;/a&gt;예제&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;아주 간단한 폼을 템플릿에 렌더해 보면, &lt;/p&gt;
+&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Working-with-form-templates"><a href="#Working-with-form-templates" class="headerlink" title="Working with form templates"></a>Working with form templates</h2><br><p>폼을 템플릿으로 가져오기 위해서 해야할 모든것은, 폼 인스턴스를 템플릿 컨텍스트에 넣어주는것입니다. </p><br><br><ol><li><p>폼인스턴스 생성</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># views.py 에서 </span></span><br><span class="line">form = NameForm()</span><br></pre></td></tr></table></figure></li><li><p>템플릿 컨텍스트에 넣기 </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> render(request, form.html, &#123;<span class="string">'form'</span>: form&#125;)</span><br></pre></td></tr></table></figure></li></ol><br><p>템플릿 컨텍스트에 넣어진 컨텍스트 즉, <code>{&#39;form&#39;: form}</code> 은, 해당 템플릿 페이지에서, 아래와 같이 사용될수 있습니다. </p><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; form &#125;&#125;</span></span><br></pre></td></tr></table></figure><br><p>이렇게 하면, 템플릿에서 적절하게 label 과 input 요소들을 렌더해줄수 있습니다. </p><br><br><h2 id="Form-rendering-options"><a href="#Form-rendering-options" class="headerlink" title="Form rendering options"></a>Form rendering options</h2><br><blockquote><p><strong>추가해야할 폼 템플릿 요소들</strong> </p><p>폼의 출력은 <code>&lt;form&gt;</code> 테그 혹은 폼의 제출 약식들을 포함하지 않는다는것을 잊지 마세요. </p><p><code>&lt;form&gt;</code> 태그와 <code>&lt;submit&gt;</code> 태그 같은것들은 여러분들이 스스로 넣어줘야 합니다. </p></blockquote><br><p>Django 에서 Form 을 템플릿에 렌더할때에, 옵션을 붙여서 폼의 출력 형태를 바꾸어 줄수 있습니다.  </p><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; form.as_table &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">tr</span>&gt;</span> 테그로 감싸진 테이블로 폼을 렌더해줍니다 </span></span><br><span class="line"><span class="template-variable">&#123;&#123; form.as_p &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">p</span>&gt;</span> 테그로 감싸진 폼을 렌더해 줍니다 </span></span><br><span class="line"><span class="template-variable">&#123;&#123; form.as_ul &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">ul</span>&gt;</span> 태그로 감싸진 폼을 렌더해 줍니다</span></span><br></pre></td></tr></table></figure><br><p>form.as_table 과 form.as_ul 같은 경우, 상위 태그인 <code>&lt;table&gt;</code> 과, <code>&lt;ul&gt;</code> 요소들을 여러분들 스스로 작성하고 감싸주어야 합니다. </p><br><br><h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><br><p>아주 간단한 폼을 템플릿에 렌더해 보면, </p><br><a id="more"></a><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"># forms.py </span></span><br><span class="line"></span><br><span class="line"><span class="xml">from django import forms </span></span><br><span class="line"></span><br><span class="line"><span class="xml">class ContactForm(forms.Form):</span></span><br><span class="line"><span class="xml">subject = forms.CharField(max_length=100)</span></span><br><span class="line"><span class="xml">message = forms.CharField(widget=forms.Textarea)</span></span><br><span class="line"><span class="xml">sender = forms.EmailField()</span></span><br><span class="line"><span class="xml">cc_mysself = forms.BooleanField(required=False)</span></span><br><span class="line"></span><br><span class="line"><span class="xml"># views.py </span></span><br><span class="line"><span class="xml">def form_render(request):</span></span><br><span class="line"><span class="xml">form = ContactForm() </span></span><br><span class="line"><span class="xml">return render(request, 'form.html', &#123;'form': form&#125;)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml"># form.html 에서 </span><span class="template-variable">&#123;&#123; form.as_p &#125;&#125;</span><span class="xml"> 로 렌더를 해보면,</span></span><br><span class="line"><span class="xml"># 아래처럼 html 태그가 생성됩니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_subject"</span>&gt;</span>Subject:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"id_subject"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"subject"</span> <span class="attr">maxlength</span>=<span class="string">"100"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_message"</span>&gt;</span>Message:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"message"</span> <span class="attr">id</span>=<span class="string">"id_message"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_sender"</span>&gt;</span>Sender:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"sender"</span> <span class="attr">id</span>=<span class="string">"id_sender"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_cc_myself"</span>&gt;</span>Cc myself:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"cc_myself"</span> <span class="attr">id</span>=<span class="string">"id_cc_myself"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Django Forms 12편 - Django Form 클래스에 대해 2</title>
@@ -591,36 +668,6 @@
       <content:encoded><![CDATA[<h2 id="Models-Organising-models-in-a-package"><a href="#Models-Organising-models-in-a-package" class="headerlink" title="Models - Organising models in a package"></a>Models - Organising models in a package</h2><h3 id="Organising-models-in-a-package"><a href="#Organising-models-in-a-package" class="headerlink" title="Organising models in a package"></a>Organising models in a package</h3><br><p><code>manage.py startapp</code> 커맨드는 models.py 를 포함한 어플리케이션 구조를 생성합니다. 많은 모델들을 가지고 있다면, 별도의 파일에 정리를 해두는것도 유용한 방법입니다. </p><br><p>그렇게 하기 위해서는,  models 패키지를 생성해야 합니다. </p><br><ol><li>models.py 를 없애고 </li><li>app이름/models/디렉토리 를 생성합니다 </li><li>app이름/models/디렉토리 안에, <code>__init__.py</code> 파일을 생성하고, 당신의 모델을 저장할 파일들을 생성합니다 </li><li><code>__init__.py</code> 파일에  import 해주어야 합니다 </li></ol><br><p>예를들어, organic.py , synthetic.py 가 모델 디렉토리 안에 있었다면, </p><br><blockquote><p><code>__init__.py</code> 파일에 import 해주는것을 잊지 않아야 합니다. </p><p><code>myapp/models/__init__.py</code></p></blockquote><br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .organic <span class="keyword">import</span> Person </span><br><span class="line"><span class="keyword">from</span> .synthetic <span class="keyword">import</span> Robot</span><br></pre></td></tr></table></figure><br><p>명시적으로 각 모델을 가져오는것은, <code>from .models import *</code> 을 사용하는것보다 이점이 있습니다. </p><p><br>이름 공간을 어수선하게 하지 않게되고, 코드를 좀더 읽기 좋게 하고, 코드 분석 툴들을 더 유용하게 해줍니다. </p><br>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/08/22/Django-Models-22%ED%8E%B8-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%95%88-%EB%AA%A8%EB%8D%B8-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Django Models 21편 - Multiple Inheritance</title>
-      <link>http://djangojeng-e.github.io/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/</link>
-      <guid>http://djangojeng-e.github.io/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/</guid>
-      <pubDate>Fri, 21 Aug 2020 05:32:16 GMT</pubDate>
-      <description>
-      
-        &lt;h2 id=&quot;Multiple-Inheritance&quot;&gt;&lt;a href=&quot;#Multiple-Inheritance&quot; class=&quot;headerlink&quot; title=&quot;Multiple Inheritance&quot;&gt;&lt;/a&gt;Multiple Inheritance&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;파이썬에서 서브클래스를 받는것과 같이, DJango 모델은 다수의 부모 모델들을 상속 받는게 가능합니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;하지만, 파이썬에서 일반적으로 이름짓는 방식들이 이 Django 모델 클래스에 적용된다는점을 염두해 두고 있어야 합니다 (예, 예약어들은 클래스명으로 사용할수 없음)&lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;특정 이름, (예, Meta) 가 나타나는 첫번째 기본 클래스가 사용 될것입니다. 예를들면, 이것의 의미는 만약 다수의 부모 클래스들이 Meta 클래스를 하나씩 가지고 있는다면, 오직 첫번째 것만 사용이 되고, 나머지들은 무시 됩니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;보편적으로 우리는, 다수의 부모 클래스로부터 상속 받을 필요가 없는 경우가 많습니다. 주 사용처는, “mix-in” 클래스들을 사용할때 유용하다는 점입니다. 특정 추가 필드를 추가하거나 “mix-in” 을 상속받는 모든 클래스에 메서드를 추가할때 유용합니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;당신의 상속 구조를 가능한한 최대로 간단하고 명료하게 유지하도록 노력해야 합니다. 그래야, 특정 정보가 어디서 왔는지 알아내기 위해 고생할 필요가 없어집니다. &lt;/p&gt;
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="Multiple-Inheritance"><a href="#Multiple-Inheritance" class="headerlink" title="Multiple Inheritance"></a>Multiple Inheritance</h2><br><p>파이썬에서 서브클래스를 받는것과 같이, DJango 모델은 다수의 부모 모델들을 상속 받는게 가능합니다. </p><p><br>하지만, 파이썬에서 일반적으로 이름짓는 방식들이 이 Django 모델 클래스에 적용된다는점을 염두해 두고 있어야 합니다 (예, 예약어들은 클래스명으로 사용할수 없음)</p><br><p>특정 이름, (예, Meta) 가 나타나는 첫번째 기본 클래스가 사용 될것입니다. 예를들면, 이것의 의미는 만약 다수의 부모 클래스들이 Meta 클래스를 하나씩 가지고 있는다면, 오직 첫번째 것만 사용이 되고, 나머지들은 무시 됩니다. </p><br><p>보편적으로 우리는, 다수의 부모 클래스로부터 상속 받을 필요가 없는 경우가 많습니다. 주 사용처는, “mix-in” 클래스들을 사용할때 유용하다는 점입니다. 특정 추가 필드를 추가하거나 “mix-in” 을 상속받는 모든 클래스에 메서드를 추가할때 유용합니다. </p><br><p>당신의 상속 구조를 가능한한 최대로 간단하고 명료하게 유지하도록 노력해야 합니다. 그래야, 특정 정보가 어디서 왔는지 알아내기 위해 고생할 필요가 없어집니다. </p><br><a id="more"></a><br><blockquote><p>다수의 모델에서 상속받을때, </p><p>공통된 id, primary key 필드를 가지고 있는 모델들로부터 상속받는것은 에러를 발생 시킬겁니다. </p><br><p>제대로 다중 상속을 사용하기 위해서는, </p><p>명시적으로 AutoField 를 base 모델들 안에 사용합니다. </p></blockquote><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    article_id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    book_id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookReview</span><span class="params">(Book, Article)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><br><p>혹은 AutoField 를 가지기 위해서, 공통 조상을 사용합니다. 이것은 각 부모 모델과 공통 조상 사이에 명시적으로 OneToOneField 를 사용하는것을 필요로 합니다. </p><br><p>그래야, 자식 클래스에 자동으로 생성되었거나 상속이 된 필드들 간에 충돌을 피할수 있습니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Piece</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(Piece)</span>:</span></span><br><span class="line">    article_piece = models.OneToOneField(Piece, on_delete=models.CASCADE, parent_link=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(Piece)</span>:</span></span><br><span class="line">    book_piece = models.OneToOneField(Piece, on_delete=models.CASCADE, parent_link=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookReview</span><span class="params">(Book, Article)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure><br><h3 id="Field-name-“hiding”-is-not-permitted"><a href="#Field-name-“hiding”-is-not-permitted" class="headerlink" title="Field name “hiding” is not permitted"></a>Field name “hiding” is not permitted</h3><br><blockquote><p>일반 파이썬 클래스 상속에서, </p><p>자녀 클래스가 부모 클래스의 속성을 override 하는것이 허용됩니다.</p><p>하지만, Django 에서는, 모델 필드들에 허용되지 않습니다. </p></blockquote><br><p>만약에 Abstract 모델 베이스 클래스가 author 라는 필드를 가지고 있으면, 이 베이스 클래스를 상속받는 어떤 클래스도 author 라는 필드 혹은 Author 라는 속성을 정의할수 없습니다. </p><br><p>이런 제약은, Abstract  모델에서 상속받은 모델 필드들에는 적용되지 않습니다. 이런 경우에 필드들은 다른 필드나 값으로 override 될수 있고, field_name = None 으로 제거 될수도 있습니다. </p><br><blockquote><p>주의사항 </p><p>모델 managers 는 Abstract base 클래스들에서 상속됩니다. </p><p>상속된 Manager 로 참조되는 상속된 필드를 Override 하는것은 버그를 일으킬수 있습니다. </p></blockquote><br><blockquote><p>노트 </p><p>어떤 필드들은 모델에 추가 속성들을 정의 합니다 </p><p>예를들어, </p><p>ForeignKey 는 _id 가 필드명에 추가된 추가 속성을 정의하고, related_name 과 related_query_name 을 Foreign 모델에 정의합니다. </p><p>이 추가 속성들은 override 될수 없습니다. 만약에 해당 필드를 저으이하는 필드가 수정 되었거나, </p><p>삭제되어서 해당 추가 속성을 더이상 정의하지 않는한, 이 추가 속성들은 override 될수 없습니다. </p></blockquote><br><p>부모 모델안에 필드들을 overriding 하는것은, 새로운 인스턴스들을 시작하거나 직렬화 같은 영역 안에서 어려움을 초래할수 있습니다. 이런 기능들은, 일반 파이썬 클래스 상속과 같은 방식으로 처리하지 않아도 되는것입니다. 따라서, Django 모델 상속과 Python 클래스 상속의 차이점은 임의적이지 않습니다. </p><br><p>이 제약은 필드 인스턴스들인 속성에만 적용됩니다. </p><br><p>표준 파이썬 속성들은, 원한다면, override 될수 있습니다. </p><br><p>속성 이름에도 적용이 됩니다. 만약 수동으로 데이터베이스 컬럼명을 바꾸고 있다면, multi-table 상속을 위해서 같은 컬럼명을 자식 모델과 조상 모델에 나타나게 할수 있습니다. (두개의 다른 데이터베이스 테이블에 있는 컬럼들 입니다.)</p><br><p>만약, 어떤 조상 모델이던지간에, 어떠한 모델 필드를 override 한다면, django 는 FieldError 를 발생 시킵니다. </p><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/#disqus_thread</comments>
     </item>
     
   </channel>
