@@ -8,6 +8,22 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/10/08/Django-Forms-12%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-2/</loc>
+        <lastmod>2020-10-08T01:13:55.704Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/2020/10/08/Django-Forms-11%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-1/</loc>
+        <lastmod>2020-10-07T22:22:07.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/10/07/Django-Forms-10%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-3/</loc>
         <lastmod>2020-10-07T04:09:43.581Z</lastmod>
         <changefreq>weekly</changefreq>

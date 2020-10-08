@@ -1,6 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Forms 12편 - Django Form 클래스에 대해 2</title>
+    <url>/2020/10/08/Django-Forms-12%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-2/</url>
+    <content><![CDATA[<h2 id="Fields-에-대해서"><a href="#Fields-에-대해서" class="headerlink" title="Fields 에 대해서"></a>Fields 에 대해서</h2><br>
+
+<p>이전 포스팅들에서 다루었었던 예시보다 좀더 유용한 폼을 한번 생각해 봅시다. </p>
+<p><br>개인적인 웹사이트에 contact me 기능을 구현하는 폼을 생각해 봅시다. Contact Me 폼을 작성하기 위한 <code>forms.py</code> 파일은 아래와 같이 작성될수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django <span class="keyword">import</span> forms </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContactForm</span><span class="params">(forms.Form)</span>:</span></span><br><span class="line">    subject = forms.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    message = forms.CharField(widget=forms.Textarea)</span><br><span class="line">    sender = forms.EmailField()</span><br><span class="line">    cc_myself = forms.BooleanField(required=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이전 포스팅에서 들었었던 폼의 예시는, 하나의 필드만 사용했었습니다. your_ name 과 CharField 만 사용햇었습니다. </p>
+<p><br>하지만, 이번 경우에는, 4가지의 필드들을 가지고 있습니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>Fields</strong></th>
+<th><strong>FieldTypes</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>subject</td>
+<td>CharField</td>
+</tr>
+<tr>
+<td>message</td>
+<td>CharField(widget=forms.Textarea)</td>
+</tr>
+<tr>
+<td>sender</td>
+<td>EmailField</td>
+</tr>
+<tr>
+<td>cc_myself</td>
+<td>BooleanField</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="Widgets"><a href="#Widgets" class="headerlink" title="Widgets"></a>Widgets</h2><br>
+
+<p>각 폼의 필드는 그에 상응하는 Widget 클래스를 가지고 있습니다, 위의 예시에서는 widget=forms.Textarea 로 지정되어 <code>&lt;input type=&quot;text&quot;&gt;</code> 같은 HTML 폼 widget 이 될것입니다. </p>
+<br>
+
+<p>대부분의 경우, 필드는 적당한 기본 widget 을 가지고 있을것입니다. </p>
+<p><br>예를들면, 기본값으로 CharField 는 TextInput widget 을 가질것이고, 이는 <code>&lt;input type=&quot;text&quot;&gt;</code> 를 HTML 안에서 만들어 내줍니다. </p>
+<br>
+
+<p>만약 <code>&lt;textarea&gt;</code> 가 필요했다면, 적절한 widget 을 Form 필드를 정의할때 지정해 주면 됩니다. 우리는 이것을 message 필드를 정의할때 지정해 주었습니다. </p>
+<br>
+
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<h2 id="Field-Data"><a href="#Field-Data" class="headerlink" title="Field Data"></a>Field Data</h2><br>
+
+<p>어떤 데이터이든 폼과 함께 제출되었고, <code>is_valid()</code> 함수를 호출하여 성공적으로 검증되었으면 (is_valid() 가 True 를 반환했을때),  </p>
+<p><br>검증된 폼 데이터는 <code>form.cleaned_data</code> 에 사전 형태로 있을것입니다. 이 데이터는 여러분들을 위해 python 데이터 타입으로 좋게 전환되어 있습니다.  </p>
+<br>
+
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>우리는 여전히 검증되지 않은 데이터들을, request.POST 를 사용하여 </p>
+<p>직접 엑세스 할수 있습니다. 하지만, 검증된 데이터를 다루는것이 더 좋습니다. </p>
+</blockquote>
+<br>
+
+<p>위에 있는 contact form 예시에서, cc_myself 는 불리언 값이 될것 입니다. 비슷하게도, IntegerField 와 FloatField  같은 필드들은, Python 이 값을 int 와 Float 으로 전환 합니다. </p>
+<br>
+
+<h2 id="Form-데이터-처리하기"><a href="#Form-데이터-처리하기" class="headerlink" title="Form 데이터 처리하기"></a>Form 데이터 처리하기</h2><br>
+
+<p>폼에서 제출된 데이터가, is_valid() 함수를 사용하여 검증이 된 데이터라고 할때, 아래 예시에서는 어떻게 폼에서 받은 데이터를 뷰에서 다룰수 있는지 간단하게 보여줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> form.is_valid():</span><br><span class="line">    subject = form.cleaned_data[<span class="string">'subject'</span>]</span><br><span class="line">    message = form.cleaned_data[<span class="string">'message'</span>]</span><br><span class="line">    sender = form.cleaned_data[<span class="string">'sender'</span>]</span><br><span class="line">    cc_myself = form.cleaned_data[<span class="string">'cc_myself'</span>]</span><br><span class="line">    </span><br><span class="line">    recipients = [<span class="string">'info@example.com'</span>]</span><br><span class="line">    <span class="keyword">if</span> cc_myself:</span><br><span class="line">        recipients.append(sender)</span><br><span class="line">        </span><br><span class="line">    send_mail(subject, message, sender, recipients)</span><br><span class="line">    <span class="keyword">return</span> HttpResponseRedirect(<span class="string">'/thanks/'</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>기본적으로, form.is_valid() 가 True 이면, 각 필드들에 입력된 데이터들은, <code>form.cleaned_data[&#39;subject&#39;]</code> 같은 형식에 담아져 있습니다. 이는, 검증된 폼 데이터가 form.cleaned_data  에 사전 형태로 저장되어 있기 때문입니다. </p>
+<br>
+
+<p>이 예시에서, send_mail 에 대한 구현은 다루지 않습니다. 이 send_mail 을 더 알고 싶으면, Django 에서 이메일 보내기를 더 알아야 합니다. </p>
+<p>Sending Email 문서를 참조하면 되는데, 처음엔 무슨 소리인지 이해가지 않을겁니다. </p>
+<br>
+
+<p>몇가지 필드 타입들은 추가적인 처리가 필요할수 있습니다. 예를들면, 폼을 사용하여 업로드된 파일들은 좀 다르게 다루어질 필요가 있습니다. <br></p>
+<p>이런 파일들은 (request.POST 보다는 request.FILES 로 조회될수 있습니다)</p>
+<br>
+
+<p>어떻게 업로드된 파일들을 다루는지에 대해서는, binding uploaded files to a form 문서를 확인하시면 됩니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Forms</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Forms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Django Forms 11편 - Django Form 클래스에 대해 1</title>
+    <url>/2020/10/08/Django-Forms-11%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-1/</url>
+    <content><![CDATA[<h2 id="Django-Form-Classes"><a href="#Django-Form-Classes" class="headerlink" title="Django Form Classes"></a>Django Form Classes</h2><br>
+
+<h3 id="More-about-Django-Form-Classes"><a href="#More-about-Django-Form-Classes" class="headerlink" title="More about Django Form Classes"></a>More about Django Form Classes</h3><br>
+
+<blockquote>
+<p><strong>모든 폼 클래스들은</strong></p>
+<p>django.forms.Form 혹은 django.forms.ModelForm 클래스 둘중 하나의 </p>
+<p>서브 클래스들로 생성 됩니다. </p>
+</blockquote>
+<br>
+
+<p>ModelForm 은 Form.Form 그리고 ModelForm 의 서브클래스로. 사실상 공통 기능들을 BaseForm 클래스로부터 상속 받는다고 생각하면 됩니다. </p>
+<br>
+
+<br>
+
+<blockquote>
+<p><strong>Models and Forms</strong></p>
+<p>여러분드르이 폼이 직접적으로 Django 모델을 추가하거나 수정하는데에 쓰인다면, </p>
+<p>ModelForm 이 시간과 노력 그리고 코드의 양을 줄이는데에 크게 기여할수 있습니다. </p>
+<p>왜냐하면, ModelForm 은 Model 클래스로부터 적절한 필드들과 속성들을 가지고 폼을 생성해 주기 때문입니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h3 id="Bound-and-Unbound-Form-instances"><a href="#Bound-and-Unbound-Form-instances" class="headerlink" title="Bound and Unbound Form instances"></a>Bound and Unbound Form instances</h3><br>
+
+<p><strong>Bound 된 폼과, unbound 된 폼 사이의 차이점을 알아둡시다</strong></p>
+<br>
+
+<blockquote>
+<p><strong>Unbound Form</strong></p>
+<p>폼과 관련된 데이터를 가지고 있지 않은 폼을 의미 합니다. </p>
+<p>사용자에게 폼이 렌더 되었을때, 해당 폼은 비어 있거나, 기본값들을 가지고 있을것입니다. </p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><strong>Bound Form</strong></p>
+<p>제출된 데이터를 가지고 있습니다. </p>
+<p>따라서, 데이터가 유효한지 얘기하기 위해서 사용될수 있습니다. </p>
+<p>만약, 유효하지 않은 bound form 이 렌더 된다면, 해당 폼은 인라인으로 에러 메시지들을 포함하여 사용자에게 어떤 데이터를 고쳐야 하는지 얘기해줄수 있습니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h3 id="is-bound-속성"><a href="#is-bound-속성" class="headerlink" title="is_bound 속성"></a><code>is_bound</code> 속성</h3><br>
+
+<p>form 의 <code>is_bound</code> 속성은 해당 폼이 데이터를 가지고 있는지 없는지 확인해 줄수 있습니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Forms</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Forms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Forms 10편 - Django 에서 폼만들기 3</title>
     <url>/2020/10/07/Django-Forms-10%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-3/</url>
     <content><![CDATA[<h2 id="The-Template"><a href="#The-Template" class="headerlink" title="The Template"></a>The Template</h2><br>
