@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django Forms 15편 - 폼 템플릿 작업하기-3</title>
+    <url>/2020/10/11/Django-Forms-15%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-3/</url>
+    <content><![CDATA[<h2 id="Rendering-form-error-messages"><a href="#Rendering-form-error-messages" class="headerlink" title="Rendering form error messages"></a>Rendering form error messages</h2><br>
+
+<p>폼에 에러 메시지들을 출력해줄수 있습니다. 하지만, 물론 이 부분은 유연한 추가 작업일 뿐입니다. </p>
+<br>
+
+<p>현재까지 우리는, 폼 에러들을 어떻게 출력해주어야 하는지에 대해 걱정하지 않아도 되었었습니다. </p>
+<p><br>이번 예시에서 우리는, 각 필드에서 발생하는 에러와 폼 전체에서 발생하는 에러에 대해서 어떻게 관리 해야 하는지에 대해서 다룹니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; form.non_field_errors &#125;&#125;</span><span class="xml"> 가 폼의 가장 상단에 위치하고, 템플릿은 각 필드에 error 들을 조회 한다는것을 숙지 합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; form.필드명.errors &#125;&#125;</span><span class="xml"> 를 사용하면, 폼 에러의 리스트를 출력해 줍니다. 이는 순서가 정해지지 않은 unordered list 로 렌더 됩니다 </span></span><br><span class="line"><span class="xml">아래와 같이 보여질수 있습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"errorlist"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Sender is required.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>해당 리스트는 errorlist  의 CSS 클래스를 가지고, 모양을 스타일링 할수 있게 해줍니다. 만약, 여러분들이 조금 더 출력 된 에러들을 커스터마이즈 하고 싶다면, 반복문을 사용하여 이를 꾸며줄수 있습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> form.subject.errors %&#125;</span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">ol</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> error <span class="keyword">in</span> form.subject.errors %&#125;</span></span><br><span class="line"><span class="xml">        	<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span></span><span class="template-variable">&#123;&#123; error|<span class="name">escape</span> &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml">        </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>필드 에러가 아닌것 (그리고 혹은, form.as_p) 를 사용하여, 폼의 상단에 렌더된 숨겨진 필드 에러들은 추가적인 nonfield 클래스와 함께 렌더가 됩니다. </p>
+<p><br>이는, 특히 필드 특화된 에러들과의 구분을 도와줍니다.  예를들면, </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"errorlist nonfield"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Generic Validation error<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>The Forms API 를 확인하면, 에러들과, 스타일링 그리고 템플릿 안에서의 폼 속성들에 대한 것들을 확인 할수 있습니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Forms</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Forms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Forms 14편 - 폼 템플릿 작업하기-2</title>
     <url>/2020/10/10/Django-Forms-14%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-2/</url>
     <content><![CDATA[<h2 id="Rendering-Fields-Manually"><a href="#Rendering-Fields-Manually" class="headerlink" title="Rendering Fields Manually"></a>Rendering Fields Manually</h2><br>

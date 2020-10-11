@@ -9,8 +9,28 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Sat, 10 Oct 2020 08:48:55 GMT</pubDate>
+    <pubDate>Sun, 11 Oct 2020 09:22:30 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Django Forms 15편 - 폼 템플릿 작업하기-3</title>
+      <link>http://djangojeng-e.github.io/2020/10/11/Django-Forms-15%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-3/</link>
+      <guid>http://djangojeng-e.github.io/2020/10/11/Django-Forms-15%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-3/</guid>
+      <pubDate>Sun, 11 Oct 2020 09:13:40 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h2 id=&quot;Rendering-form-error-messages&quot;&gt;&lt;a href=&quot;#Rendering-form-error-messages&quot; class=&quot;headerlink&quot; title=&quot;Rendering form error messages&quot;&gt;&lt;/a
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Rendering-form-error-messages"><a href="#Rendering-form-error-messages" class="headerlink" title="Rendering form error messages"></a>Rendering form error messages</h2><br><p>폼에 에러 메시지들을 출력해줄수 있습니다. 하지만, 물론 이 부분은 유연한 추가 작업일 뿐입니다. </p><br><p>현재까지 우리는, 폼 에러들을 어떻게 출력해주어야 하는지에 대해 걱정하지 않아도 되었었습니다. </p><p><br>이번 예시에서 우리는, 각 필드에서 발생하는 에러와 폼 전체에서 발생하는 에러에 대해서 어떻게 관리 해야 하는지에 대해서 다룹니다. </p><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; form.non_field_errors &#125;&#125;</span><span class="xml"> 가 폼의 가장 상단에 위치하고, 템플릿은 각 필드에 error 들을 조회 한다는것을 숙지 합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; form.필드명.errors &#125;&#125;</span><span class="xml"> 를 사용하면, 폼 에러의 리스트를 출력해 줍니다. 이는 순서가 정해지지 않은 unordered list 로 렌더 됩니다 </span></span><br><span class="line"><span class="xml">아래와 같이 보여질수 있습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"errorlist"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Sender is required.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure><br><p>해당 리스트는 errorlist  의 CSS 클래스를 가지고, 모양을 스타일링 할수 있게 해줍니다. 만약, 여러분들이 조금 더 출력 된 에러들을 커스터마이즈 하고 싶다면, 반복문을 사용하여 이를 꾸며줄수 있습니다. </p><br><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> form.subject.errors %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> error <span class="keyword">in</span> form.subject.errors %&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span></span><span class="template-variable">&#123;&#123; error|<span class="name">escape</span> &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml">        </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br></pre></td></tr></table></figure><br><br><p>필드 에러가 아닌것 (그리고 혹은, form.as_p) 를 사용하여, 폼의 상단에 렌더된 숨겨진 필드 에러들은 추가적인 nonfield 클래스와 함께 렌더가 됩니다. </p><p><br>이는, 특히 필드 특화된 에러들과의 구분을 도와줍니다.  예를들면, </p><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"errorlist nonfield"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Generic Validation error<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure><br><p>The Forms API 를 확인하면, 에러들과, 스타일링 그리고 템플릿 안에서의 폼 속성들에 대한 것들을 확인 할수 있습니다. </p><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/10/11/Django-Forms-15%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-3/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Django Forms 14편 - 폼 템플릿 작업하기-2</title>
@@ -637,26 +657,6 @@
       <content:encoded><![CDATA[<h2 id="Django-애플리케이션-배포하기"><a href="#Django-애플리케이션-배포하기" class="headerlink" title="Django 애플리케이션 배포하기"></a>Django 애플리케이션 배포하기</h2><br><p>AWS Elastic Beanstalk 에 Django 애플리케이션을 배포하는 연습을 진행 해 보려 합니다. </p><p><br>우선, 배포 진행을 하기전에 알아야할 주요 환경은 아래와 같습니다. </p><br><h2 id="주요-환경"><a href="#주요-환경" class="headerlink" title="주요 환경"></a>주요 환경</h2><br><ul><li>AWS 계정 </li><li>Python 3.6</li><li>pip</li><li>virtualenv</li><li>awsebcli</li><li>Django2.1.1 </li></ul><br><blockquote><p>Django 버전은, </p><p>Elastic Beanstalk Python 구성 버전과 호환 되어야 합니다 </p><p>Django 2.2 는, Elastic Beanstalk Python 3.6 플랫폼과는 호환되지 않으므로, </p><p>Django 2.1.1 기반으로 한 프로젝트 실습을 진행 합니다. </p></blockquote><br><a id="more"></a> <br>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-2/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>AWS Elastic Beanstalk 배포 - 1</title>
-      <link>http://djangojeng-e.github.io/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-1/</link>
-      <guid>http://djangojeng-e.github.io/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-1/</guid>
-      <pubDate>Thu, 24 Sep 2020 03:07:22 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;h2 id=&quot;AWS-Elastic-Beanstalk-로-배포하기&quot;&gt;&lt;a href=&quot;#AWS-Elastic-Beanstalk-로-배포하기&quot; class=&quot;headerlink&quot; title=&quot;AWS Elastic Beanstalk 로 배포하기&quot;&gt;&lt;/a&gt;AW
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="AWS-Elastic-Beanstalk-로-배포하기"><a href="#AWS-Elastic-Beanstalk-로-배포하기" class="headerlink" title="AWS Elastic Beanstalk 로 배포하기"></a>AWS Elastic Beanstalk 로 배포하기</h2><br><p>Django 로 프로젝트를 개발한뒤에는, 아무래도 서비스를 실제 배포하여 사용할수 있습니다. </p><p><br>수 많은 배포 방법들이 존재하지만, 배포는 프로그래밍과는 또다른 의미로 어렵습니다. </p><br><p>특히 AWS 서비스를 다루는것만 해도 굉장히 복잡하기 때문에. Django 웹개발 공부를 진행하다가도, 배포에서 막힙니다. </p><br><p>배포에 막혀 너무 힘든 나날들을 보내다가, Elastic Beanstalk 로 배포를 시도해 보려 합니다. </p><br><br><h2 id="Elastic-Beanstalk-란"><a href="#Elastic-Beanstalk-란" class="headerlink" title="Elastic Beanstalk 란?"></a>Elastic Beanstalk 란?</h2><br><blockquote><p>AWS Elastic Beanstalk 는 JAVA, .NET, PHP, node.js, Python, Ruby, GO, Docker 를 사용하여, </p><p>Apache, Nginx, Passenger, IIS 와 같은 친숙한 서버에서 개발된 웹 애플리케이션 및 서비스를 </p><p>간편하게 배포하고 조정할수 있는 서비스 입니다. </p></blockquote><br><br><h2 id="Elastic-Beanstalk-의-이점"><a href="#Elastic-Beanstalk-의-이점" class="headerlink" title="Elastic Beanstalk 의 이점"></a>Elastic Beanstalk 의 이점</h2><br><ol><li><p><strong>빠르고 간편한 시작</strong> </p><p>AWS 에 애플리케이션을 배포하는 가장 빠르면서 간단한 방법입니다. Git 을 통해 어플리케이션을 업로드 하면, Elastic Beanstalk 가 용량 프로비져닝, 로드 밸런싱, Auto Scaling, 모니터링에 대한 배포 정보를 자동으로 처리합니다. 개발자가 배포를 위한, 인프라나 리소스를 따로 구성할 필요가 없습니다. </p></li></ol><br><ol start="2"><li><p><strong>개발자 생산성</strong> </p><p>Elastic Beanstlak 는 사용자 대신 배포를 위한 인프라를 운영 및 관리 해주므로, 개발자가 서버, 데이터베이스, 로드 밸런서, 방화벽, 네트워크 등을 관리하고 구성하는데에 시간을 들이지 않고. 오롯이 코드 작성에 집중할수 있게 해줍니다.</p></li></ol><br><ol start="3"><li><p><strong>Auto Scaling</strong></p><p>자동 스케일링 설정을 사용하여, 어플리케이션의 특정 요건에 따라, 자동으로 어플리케이션을 확장 및 축소 합니다. CPU 사용률 지표를 참조하여 Auto Scaling 작업을 발생 시킵니다. 이는, 어플리케이션 비용을 최소화 하면서, 높은 워크로드나, 트래픽을 처리할수 있게 해줍니다. </p></li></ol><br><ol start="4"><li><p><strong>완벽한 리소스 제어</strong></p><p>EC2 인스턴스 유형과 같은 AWS 리소스를 어플리케이션에 가장 적합한 리소스로 자유롭게 선택할수 있습니다. 손쉽게 리소스, 인프라 요소 등을 제어하려면, Elastic Beanstalk 의 관리 기능을 사용하면 됩니다. </p></li></ol><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-1/#disqus_thread</comments>
     </item>
     
   </channel>
