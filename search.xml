@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Form API 1편 - Bound and Unbound Forms</title>
+    <url>/2020/10/14/Form-API-1%ED%8E%B8-Bound-and-Unbound-Forms/</url>
+    <content><![CDATA[<h2 id="Form-API"><a href="#Form-API" class="headerlink" title="Form API"></a>Form API</h2><br>
+
+<h3 id="Bound-and-Unbound-Forms"><a href="#Bound-and-Unbound-Forms" class="headerlink" title="Bound and Unbound Forms"></a>Bound and Unbound Forms</h3><br>
+
+<p>하나의 폼 인스턴스는 <code>bound</code> 혹은 <code>unbound</code> 로 종류가 나뉩니다. </p>
+<br>
+
+<h4 id="Bound-Form"><a href="#Bound-Form" class="headerlink" title="Bound Form"></a>Bound Form</h4><br>
+
+<p>폼이 Bound 되어있다라는 표현은, 데이터가 폼에 묶여있는 형태로. </p>
+<p>폼에 데이터가 있는 상태를 의미합니다.<br> 해당 폼 인스턴스가, 데이터를 가지고 있다면, Django 는 해당 데이터를 검증하고, 데이터와 함께 HTML 로 렌더링 할수 있게 됩니다. </p>
+<br>
+
+<h4 id="Unbound-Form"><a href="#Unbound-Form" class="headerlink" title="Unbound Form"></a>Unbound Form</h4><br>
+
+<p>만약에 폼이 unbound 되었다면, 해당 폼 인스턴스에는 데이터 검증 작업을 수행할수 없습니다 (검증할 데이터가 없기 때문입니다). 그렇지만, 비어있는 폼을 HTML 로 렌더 할수 있습니다. </p>
+<br>
+
+<br>
+
+<h2 id="폼-클래스로-폼-인스턴스-생성"><a href="#폼-클래스로-폼-인스턴스-생성" class="headerlink" title="폼 클래스로 폼 인스턴스 생성"></a>폼 클래스로 폼 인스턴스 생성</h2><br>
+
+<p>하나의 unbound  폼 (데이터가 비어있는 폼 인스턴스) 을 생성하기 위해서는, 폼 클래스를 인스턴스화 시켜주면 됩니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">f = ContactForm()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>반대로, 폼에 데이터를 묶어주는, bound 폼 인스턴스를 생성하기 위해서는, </p>
+<p><br>묶어줄 데이터를 사전 형태로 전달해주면 됩니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'subject'</span>: <span class="string">'hello'</span>,</span><br><span class="line">    <span class="string">'message'</span>: <span class="string">'Hi there'</span>,</span><br><span class="line">    <span class="string">'sender'</span>: <span class="string">'foo@example.com'</span>,</span><br><span class="line">    <span class="string">'cc_myself'</span>: <span class="literal">True</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f = ContactForm(data)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이 사전안에 keys 는 필드 이름이고, 이는 Form 클래스안의 속성들과 대응합니다. </p>
+<p><br>사전안에 있는 values 는 여러분들이 검증하려고 하는 데이터 입니다. 이들은 보통 문자열로 되어 있지만, 문자열이여만 하는 요구 조건은 없습니다. 전달될 데이터 타입은 필드 마다 다를수 있습니다. </p>
+<br>
+
+<h2 id="is-bound"><a href="#is-bound" class="headerlink" title="is_bound"></a><code>is_bound</code></h2><br>
+
+<p>만약 여러분들이 form 인스턴스가 bound 인지 unbound 인지 실행시에 구분하고 싶다면, form 의 is_bound 속성의 값을 확인 하면 됩니다. True 혹은 False 를 반환합니다. </p>
+<br>
+
+<p>shell 에서 확인해보면, </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [3]: from forms_more_on_fields.forms import ContactForm                                                                                                             </span><br><span class="line">In [4]: f = ContactForm()                                                                                                                                              </span><br><span class="line">In [5]: f.is_bound                                                                                                                                                     </span><br><span class="line">Out[5]: False</span><br><span class="line">In [6]: f = ContactForm(&#123;'subject': 'hello'&#125;)                                                                                                                          </span><br><span class="line">In [7]: f.is_bound                                                                                                                                                     </span><br><span class="line">Out[7]: True</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>폼 인스턴스에 데이터가 들어가면, is_bound 를 호출했을때, True 를 반환하고 </li>
+<li>폼 인스턴스에 데이터가 들어가지 않은 unbound 폼에 is_bound 를 호출하면, False 를 반환합니다 </li>
+</ul>
+<br>
+
+<p>비어 있는 사전을 전달할 경우, 비어 있는 데이터를 가진 bound form 이 됩니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [8]: f = ContactForm(&#123;&#125;)       # 비어있는 사전 전달                                                                                                                            </span><br><span class="line"></span><br><span class="line">In [9]: f.is_bound                                                                                                                                                     </span><br><span class="line">Out[9]: True</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>Bound Form 인스턴스를 가지고 있고, 어떻게든 데이터를 바꾸고 싶거나 혹은 unbound form 을 어떠한 데이터를 가지게 하고 싶다면, 또다른 Form 인스턴스를 생성하면 됩니다. </p>
+<br>
+
+<p>Form instance 안에 데이터를 변경하는 길은 없습니다. 한번 Form 인스턴스가 생성이 되면, 데이터를 가지고 있던 없던, 데이터는 변경이 불가능 합니다! </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Form API</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Form API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django Forms 18편 - 폼 템플릿 작업하기-6</title>
     <url>/2020/10/13/Django-Forms-18%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-6/</url>
     <content><![CDATA[<h2 id="Reusable-form-templates"><a href="#Reusable-form-templates" class="headerlink" title="Reusable form templates"></a>Reusable form templates</h2><br>
