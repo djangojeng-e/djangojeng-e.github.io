@@ -220,6 +220,141 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-2%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-2%ED%8E%B8/" class="post-title-link" itemprop="url">PEP8 Whitespace in Expressions and Statements - 2편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-05 16:26:36 / Updated at: 16:50:02" itemprop="dateCreated datePublished" datetime="2020-04-05T16:26:36+09:00">2020-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/PEP8/" itemprop="url" rel="index"><span itemprop="name">PEP8</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-2%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-2편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="수식과-구문안에서-빈공간-기타-권장-사항들"><a href="#수식과-구문안에서-빈공간-기타-권장-사항들" class="headerlink" title="수식과 구문안에서 빈공간 - 기타 권장 사항들"></a>수식과 구문안에서 빈공간 - 기타 권장 사항들</h2><br>
+
+<br>
+
+<p>수식과 구문 안에 공백들에 대한 기타 권장 사항들입니다. <br></p>
+<br>
+
+<br>
+
+<h2 id="뒤에오는-빈공간은-언제나-피해야-합니다"><a href="#뒤에오는-빈공간은-언제나-피해야-합니다" class="headerlink" title="뒤에오는 빈공간은 언제나 피해야 합니다"></a>뒤에오는 빈공간은 언제나 피해야 합니다</h2><br>
+
+<br>
+
+<p>공백들은 보이지 않기 때문에 혼란 스러울수 있습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 빈공간 후에 \ 를 사용 </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"I'm the best"</span>  \)</span><br><span class="line">print(<span class="string">"I'm the best</span></span><br><span class="line"><span class="string">      \")</span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string"># 빈공간이 계속되는 줄로 세어지지 않을때, </span></span><br><span class="line"><span class="string"># 아래 print 문에서 두번째줄은 계속되는 줄로 세어지지 않습니다. </span></span><br><span class="line"><span class="string"># 이어지는 줄이 아닌데도 괜히 사용하면, 시각적으로나 논리적으로 혼란만 초래합니다. </span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string">print("</span>I<span class="string">'m the best"</span></span><br><span class="line"><span class="string">     </span></span><br><span class="line"><span class="string">     </span></span><br><span class="line"><span class="string">)</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Binary-Operator-양쪽-사이드"><a href="#Binary-Operator-양쪽-사이드" class="headerlink" title="Binary Operator 양쪽 사이드"></a>Binary Operator 양쪽 사이드</h2><br>
+
+<br>
+
+<p>이항 연산자 양쪽 사이드에는 항상 하나의 공백을 넣어줍니다. </p>
+<p><br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-2%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-PET-PEEVES/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1447,139 +1582,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/04/PEP8-Code-Layout-Indentation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/04/PEP8-Code-Layout-Indentation/" class="post-title-link" itemprop="url">PEP8 Code Layout - Indentation</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-04 18:16:00 / Updated at: 19:06:50" itemprop="dateCreated datePublished" datetime="2020-04-04T18:16:00+09:00">2020-04-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/PEP8/" itemprop="url" rel="index"><span itemprop="name">PEP8</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/04/PEP8-Code-Layout-Indentation/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/04/PEP8-Code-Layout-Indentation/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="PEP8-Code-Layout-Indentation-들여쓰기"><a href="#PEP8-Code-Layout-Indentation-들여쓰기" class="headerlink" title="PEP8 Code Layout - Indentation (들여쓰기)"></a>PEP8 Code Layout - Indentation (들여쓰기)</h1><br>
-
-<h2 id="Indentation"><a href="#Indentation" class="headerlink" title="Indentation"></a>Indentation</h2><br>
-
-<p>파이썬에서, 들여쓰기는 문법으로 의무화 되어 있습니다. <br></p>
-<p>PEP8에서는 들여쓰기에 대한 코딩 스타일을 다루고 있습니다. </p>
-<br>
-
-<br>
-
-<blockquote>
-<p>들여쓰기는 4칸을 사용합니다.</p>
-</blockquote>
-<br>
-
-<p>Continuation lines, 즉 이어지는 줄들은 세로로 정렬이 되어야 하는데. <br></p>
-<p>1) 파이썬에서 암시적으로 이어지는 줄들을 소괄호, 중괄호, 대괄호 안에 묶거나, </p>
-<p>2) hanging indent 를 사용하여 정렬합니다. </p>
-<br>
-
-<blockquote>
-<p>hanging indent 를 직역하면, 매달려 있는 들여쓰기로. </p>
-<p>문단의 첫번째 줄을 제외한 모든 라인이 들여쓰기가 되어 있는 스타일 입니다. </p>
-</blockquote>
-<br>
-
-<p><strong>hanging indent 의 예를 들어봅니다</strong></p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/04/PEP8-Code-Layout-Indentation/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1650,7 +1652,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">167</span>
+          <span class="site-state-item-count">168</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

@@ -220,6 +220,129 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/19/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/19/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-1/" class="post-title-link" itemprop="url">Django Models 20편 - Model 상속 (Proxy models - 1)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-19 20:27:49 / Updated at: 20:40:10" itemprop="dateCreated datePublished" datetime="2020-08-19T20:27:49+09:00">2020-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/19/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/19/Django-Models-20편-Model-상속-Proxy-models-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Model-상속-Proxy-models"><a href="#Model-상속-Proxy-models" class="headerlink" title="Model 상속 (Proxy models)"></a>Model 상속 (Proxy models)</h2><br>
+
+<h3 id="Proxy-models"><a href="#Proxy-models" class="headerlink" title="Proxy models"></a>Proxy models</h3><br>
+
+<p>Multi-table 상속을 사용할때에는, 새로운 데이터베이스 테이블이 각 서브 클래스 마다 생성 됩니다. </p>
+<br>
+
+<p>이는 보통 우리가 의도하는 동작이고, 서브 클래스들은, 베이스 클래스에 존재하지 않는 추가적인 데이터 필드들을 저장하기 위한 공간이 필요합니다.<br><br></p>
+<p>하지만, 때때로 모델의 파이썬 동작을 바꾸고 싶을때가 있습니다 - 기본 메니저를 변경하거나 혹은 새로운 메서드를 추가할때 처럼 말이죠. <br><br></p>
+<p>이것이 바로 프록시 모델 상속이 존재하는 이유 입니다. 기존 모델을 위해서 새로운 proxy 를 생성하는것 입니다. </p>
+<br>
+
+
+
+<blockquote>
+<p>모델의 파이썬 동작을 바꾸고 싶을때, 기존 모델을 위한 새로운 proxy 를 생성 합니다. </p>
+<p>예) 기본 메니져 변경, 새로운 메서드 추가 등등 </p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/19/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-1/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/18/Django-Models-19%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Multi-table-inheritance-2%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1356,130 +1479,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/09/Django-Models-12%ED%8E%B8-Meta-Options/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/09/Django-Models-12%ED%8E%B8-Meta-Options/" class="post-title-link" itemprop="url">Django Models 12편 - Meta Options</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-09 11:46:31 / Updated at: 12:03:00" itemprop="dateCreated datePublished" datetime="2020-08-09T11:46:31+09:00">2020-08-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/08/09/Django-Models-12%ED%8E%B8-Meta-Options/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/09/Django-Models-12편-Meta-Options/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Models-Meta-Options"><a href="#Models-Meta-Options" class="headerlink" title="Models - Meta Options"></a>Models - Meta Options</h2><br>
-
-<blockquote>
-<p>Metadata </p>
-<p>데이터의 집합체로 다른 데이터에 대한 설명과 정보를 제공합니다 </p>
-</blockquote>
-<br>
-
-<p>모델에 metadata 를 부여할수 있습니다. 클래스 안에 Meta 클래스를 사용해서 부여할수 있습니다. </p>
-<p><br>아래 예시와 같이 모델 클래스 안에 부가적으로, Meta 클래스를 넣어서 metadata 를 넣을수 있습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ox</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    horn_length = models.IntegerField()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 아래와 같이 Ox 모델 클래스 안쪽에 Meta 클래스를 넣어서 metadata 를 부여 할수 있습니다 </span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ordering = [<span class="string">"horn_length"</span>]</span><br><span class="line">        verbose_name_plural = <span class="string">"oxen"</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>필드가 아닌 무엇이든, 모델의 메타데이터가 될수 있습니다. </p>
-<p><br>필드는, 메타 데이터가 될수 없습니. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/09/Django-Models-12%ED%8E%B8-Meta-Options/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1550,7 +1549,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">167</span>
+          <span class="site-state-item-count">168</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

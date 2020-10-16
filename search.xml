@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Form API 3편 - Dynamic Initial Values</title>
+    <url>/2020/10/16/Form-API-3%ED%8E%B8-Dynamic-Initial-Values/</url>
+    <content><![CDATA[<h2 id="Dynamic-initial-values"><a href="#Dynamic-initial-values" class="headerlink" title="Dynamic initial values"></a>Dynamic initial values</h2><br>
+
+<h3 id="Form-initial"><a href="#Form-initial" class="headerlink" title="Form.initial"></a>Form.initial</h3><br>
+
+<p>initial 을 사용하여, 실행시에 폼필드의 초기값을 지정할수 있습니다. </p>
+<p><br>예를들면, 여러분들은 현재 세션의 username 을 username 필드에 채워놓고 싶을지도 모릅니다<br></p>
+<p>이런 동작을 구현하기 위해서, initial 인자를 Form 에 써줍니다. </p>
+<br>
+
+<p>이 인자가 주어질때는, 필드명이 초기값에 매핑되는 사전 형태여야 합니다. </p>
+<br>
+
+<p>오직 여러분들이 초기값을 지정하고 싶은 필드에만 포함합니다.<br> 폼안에 모든 필드에 쓰는것은 불필요한 일입니다.<br><br></p>
+<p>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">f = ContactForm(initial=&#123;<span class="string">'subject'</span>: <span class="string">'Hi there!'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이 값들은 오직 unbound 폼에만 표시되고, 만약 특정 값이 주어지지 않을때에 fallback 값으로 사용되지 않습니다. </p>
+<br>
+
+<p>만약 필드가 initial 을 정의하고, initial 폼을 인스턴스화 할때 포함하면, 두번째가 먼저 택해집니다. 아래 예시에는, initial 이 필드에서 주어졌고, 폼 인스턴스에도 주어졌습니다. 두번째가 우선시 됩니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">from django import forms </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">class CommentForm(forms.Form):</span></span><br><span class="line"><span class="xml">	name = forms.CharField(initial='class')</span></span><br><span class="line"><span class="xml">	url = forms.URLField()</span></span><br><span class="line"><span class="xml">    comment = forms.CharField()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">In [1]: from forms_more_on_fields.forms import CommentForm                                                                                                                </span></span><br><span class="line"></span><br><span class="line"><span class="xml">In [2]: f = CommentForm(initial=&#123;'name': 'instance'&#125;, auto_id=False)                                                                                                      </span></span><br><span class="line"></span><br><span class="line"><span class="xml">In [3]: print(f)                                                                                                                                                          </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>Name:<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"instance"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>Url:<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>Comment:<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"comment"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>Initial 값이 정해져 있어도, </p>
+<p>폼의 인스턴스를 생성할때 initial 을 지정해주면, 인스턴스 생성할때 지정한 initial 값이 해당 필드에 지정이 됩니다. </p>
+</blockquote>
+<br>
+
+<h3 id="Form-get-initial-for-field-field-field-name"><a href="#Form-get-initial-for-field-field-field-name" class="headerlink" title="Form.get_initial_for_field(field, field_name)"></a><code>Form.get_initial_for_field(field, field_name)</code></h3><br>
+
+<p>get_initial_for_field() 를 사용하여, 폼 필드의 초기 데이터를 조회할수 있습니다. 이는 Form.initial 과 Field.initial 로 부터, 데이터를 조회하고, 그 순서대로 호출 가능한 초기값들을 평가합니다 .</p>
+<p><br><br></p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Form API</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Form API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Form API 2편 - 폼을 사용하여 데이터 검증하기</title>
     <url>/2020/10/15/Form-API-2%ED%8E%B8-%ED%8F%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B2%80%EC%A6%9D%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="폼을-사용하여-데이터-검증하기"><a href="#폼을-사용하여-데이터-검증하기" class="headerlink" title="폼을 사용하여 데이터 검증하기"></a>폼을 사용하여 데이터 검증하기</h2><br>
