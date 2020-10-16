@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Form API 4편 - 폼 데이터 변경사항 체크하기</title>
+    <url>/2020/10/17/Form-API-4%ED%8E%B8-%ED%8F%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Checking-which-form-data-has-been-changed"><a href="#Checking-which-form-data-has-been-changed" class="headerlink" title="Checking which form data has been changed"></a>Checking which form data has been changed</h2><br>
+
+<h3 id="폼-데이터-변경사항을-체크하기-위해서는-has-changed-메서드를-사용하면-됩니다"><a href="#폼-데이터-변경사항을-체크하기-위해서는-has-changed-메서드를-사용하면-됩니다" class="headerlink" title="폼 데이터 변경사항을 체크하기 위해서는 has_changed() 메서드를 사용하면 됩니다."></a>폼 데이터 변경사항을 체크하기 위해서는 <code>has_changed()</code> 메서드를 사용하면 됩니다.</h3><br>
+
+<p>초기값에서부터 폼 데이터가 변경 되었는지 아니었는지 확인할 필요가 있을떄 체크 합니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [2]: from forms_more_on_fields.forms import ContactForm  </span><br><span class="line"></span><br><span class="line">In [7]: data = &#123;'subject': 'hello', </span><br><span class="line">   ...:         'message': 'Hi there', </span><br><span class="line">   ...:         'sender': 'foo@example.com', </span><br><span class="line">   ...:         'cc_myself': True&#125;                                                                                 </span><br><span class="line"></span><br><span class="line">In [8]: f = ContactForm(data, initial=data)                                                                        </span><br><span class="line"></span><br><span class="line">In [9]: f.has_changed()                                                                                            </span><br><span class="line">Out[9]: False</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>폼이 제출 되었을때, 우리는 다시 폼을 만들고 오리지널 데이터를 제공하여 비교가 이루어 질수 있습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f = ContactForm(request.POST, initial=data)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f.has_changed()</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>만약, request_POST 에서 온 data 가 initial 에 있는 데이터와 다르다면, has_changed() 는 True 를 반환할겁니다. 그렇지 않다면, False 를 반환합니다. </p>
+<br>
+
+<p>이 결과는, 폼안에 있는 각 필드에, has_changed() 를 호출함으로 계산됩니다. </p>
+<br>
+
+<h3 id="Form-changed-data"><a href="#Form-changed-data" class="headerlink" title="Form.changed_data"></a>Form.changed_data</h3><br>
+
+<p>changed_data 속성은 initial 에 제공되었던 데이터와 다른 데이터들이, 폼을 통해 (보통 request.POST를 통해서) 온 데이터들과 다를때, 폼의 bound data 안에 있는 필드들의 이름을 가진 리스트를 반환합니다.  </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f = ContactForm(request.POST, initial=data)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="keyword">if</span> f.has_changed():</span></span><br><span class="line">...     print("The following fields changed: %s" % ", ".join(f.changed_data))</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f.changed_data</span></span><br><span class="line">['subject', 'message']</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Form API</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>FormAPI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Form API 3편 - Dynamic Initial Values</title>
     <url>/2020/10/16/Form-API-3%ED%8E%B8-Dynamic-Initial-Values/</url>
     <content><![CDATA[<h2 id="Dynamic-initial-values"><a href="#Dynamic-initial-values" class="headerlink" title="Dynamic initial values"></a>Dynamic initial values</h2><br>

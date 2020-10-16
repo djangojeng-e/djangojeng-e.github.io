@@ -9,8 +9,28 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Fri, 16 Oct 2020 00:22:17 GMT</pubDate>
+    <pubDate>Fri, 16 Oct 2020 23:13:11 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Form API 4편 - 폼 데이터 변경사항 체크하기</title>
+      <link>http://djangojeng-e.github.io/2020/10/17/Form-API-4%ED%8E%B8-%ED%8F%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/</link>
+      <guid>http://djangojeng-e.github.io/2020/10/17/Form-API-4%ED%8E%B8-%ED%8F%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/</guid>
+      <pubDate>Fri, 16 Oct 2020 22:47:04 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h2 id=&quot;Checking-which-form-data-has-been-changed&quot;&gt;&lt;a href=&quot;#Checking-which-form-data-has-been-changed&quot; class=&quot;headerlink&quot; title=&quot;Checking w
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Checking-which-form-data-has-been-changed"><a href="#Checking-which-form-data-has-been-changed" class="headerlink" title="Checking which form data has been changed"></a>Checking which form data has been changed</h2><br><h3 id="폼-데이터-변경사항을-체크하기-위해서는-has-changed-메서드를-사용하면-됩니다"><a href="#폼-데이터-변경사항을-체크하기-위해서는-has-changed-메서드를-사용하면-됩니다" class="headerlink" title="폼 데이터 변경사항을 체크하기 위해서는 has_changed() 메서드를 사용하면 됩니다."></a>폼 데이터 변경사항을 체크하기 위해서는 <code>has_changed()</code> 메서드를 사용하면 됩니다.</h3><br><p>초기값에서부터 폼 데이터가 변경 되었는지 아니었는지 확인할 필요가 있을떄 체크 합니다. </p><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">In [2]: from forms_more_on_fields.forms import ContactForm  </span><br><span class="line"></span><br><span class="line">In [7]: data = &#123;'subject': 'hello', </span><br><span class="line">   ...:         'message': 'Hi there', </span><br><span class="line">   ...:         'sender': 'foo@example.com', </span><br><span class="line">   ...:         'cc_myself': True&#125;                                                                                 </span><br><span class="line"></span><br><span class="line">In [8]: f = ContactForm(data, initial=data)                                                                        </span><br><span class="line"></span><br><span class="line">In [9]: f.has_changed()                                                                                            </span><br><span class="line">Out[9]: False</span><br></pre></td></tr></table></figure><br><p>폼이 제출 되었을때, 우리는 다시 폼을 만들고 오리지널 데이터를 제공하여 비교가 이루어 질수 있습니다. </p><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f = ContactForm(request.POST, initial=data)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f.has_changed()</span></span><br></pre></td></tr></table></figure><br><p>만약, request_POST 에서 온 data 가 initial 에 있는 데이터와 다르다면, has_changed() 는 True 를 반환할겁니다. 그렇지 않다면, False 를 반환합니다. </p><br><p>이 결과는, 폼안에 있는 각 필드에, has_changed() 를 호출함으로 계산됩니다. </p><br><h3 id="Form-changed-data"><a href="#Form-changed-data" class="headerlink" title="Form.changed_data"></a>Form.changed_data</h3><br><p>changed_data 속성은 initial 에 제공되었던 데이터와 다른 데이터들이, 폼을 통해 (보통 request.POST를 통해서) 온 데이터들과 다를때, 폼의 bound data 안에 있는 필드들의 이름을 가진 리스트를 반환합니다.  </p><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f = ContactForm(request.POST, initial=data)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="keyword">if</span> f.has_changed():</span></span><br><span class="line">...     print("The following fields changed: %s" % ", ".join(f.changed_data))</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f.changed_data</span></span><br><span class="line">['subject', 'message']</span><br></pre></td></tr></table></figure><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/10/17/Form-API-4%ED%8E%B8-%ED%8F%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Form API 3편 - Dynamic Initial Values</title>
@@ -574,28 +594,6 @@
       <content:encoded><![CDATA[<h2 id="GET-vs-POST-Method"><a href="#GET-vs-POST-Method" class="headerlink" title="GET vs POST Method"></a>GET vs POST Method</h2><br><blockquote><p>GET 과 POST 는 </p><p>Form 을 다룰때 쓸수 있는 유일한 HTTP Method 입니다. </p></blockquote><br><p>Django 의 로그인 폼은 POST 메서드를 사용하여 반환 되고, </p><br><p>브라우저는 폼 데이터들을 모아서, 전송을 위한 인코딩을 합니다. 인코딩을 한뒤에 서버로 보낸다음 서버에서 응답을 받습니다. </p><br><h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><br><p>POST 와 비교했을때, GET 메서드는, </p><br><blockquote><p>제출된 데이터를 문자열로 모으고, </p><p>모아진 문자열들을 URL 을 만들때 사용합니다. </p><br><p>URL 은 데이터가 전송되어야만하는 주소를 가지고 있고, </p><p>데이터 키 와 값을 가지고 있습니다. </p></blockquote><br><h2 id="GET-과-POST-의-다른-사용-목적"><a href="#GET-과-POST-의-다른-사용-목적" class="headerlink" title="GET  과 POST  의 다른 사용 목적"></a>GET  과 POST  의 다른 사용 목적</h2><br><p>시스템의 상태를 바꾸기 위해서 사용되는 요청들 같은 경우, </p><p><br>예를들어, 데이터베이스에 어떠한 변경을 만들어주는 요청들은 POST 를 사용해야 합니다. </p><br><blockquote><p>*<em>POST 를 사용해야 할때 *</em></p><p>시스템의 상태를 바꾸기 위한 요청을 받을때, </p><p>예) 데이터베이스에 변경 사항들을 만들어주는 요청을 다룰때 </p><br><p><strong>GET을 사용해야 할때</strong></p><p>GET 은 시스템의 상태에 영향을 주지 않는 요청을 처리할때만 사용되어야 합니다 </p></blockquote><br><br><h2 id="GET-의-위험성"><a href="#GET-의-위험성" class="headerlink" title="GET 의 위험성"></a>GET 의 위험성</h2><br><p>GET 메서드는, 폼에서 입력된 데이터를 받아서 URL 로 만들어 줍니다. </p><br><p>따라서, GET은 패스워드 폼 사용에는 적합하지 않습니다. 왜냐하면, 입력된 패스워드가 URL 에 보여지게 될것이기 때문입니다. 그리고, 브라우저 히스토리와 서버 로그에 순수 텍스트로 나타나게 될겁니다. </p><p><br>보안상 문제가 생기겠죠? </p><br><br><p>또한, 큰 데이터 양이나, 이미지 같은 이진수 데이터에도 적합하지 않습니다. </p><br><blockquote><p>GET 요청을 어드민 폼에 사용하는 웹 어플리케이션은 보안상 아주 위험합니다. </p><br><p>공격자들은, 폼의 요청을 조작하여 시스템의 아주 민감한 부분에 접근할수 있습니다. </p><p>Django 의 CSRF protection 같은, 다른 보호 방법과 같이 쓰여지는 POST 의 경우, 공격자들의 접근을 좀더 관리 할수 있습니다. </p></blockquote><p><br><br></p><h2 id="GET-을-사용하면-좋을때"><a href="#GET-을-사용하면-좋을때" class="headerlink" title="GET 을 사용하면 좋을때"></a>GET 을 사용하면 좋을때</h2><br><blockquote><p><strong>GET 을 사용하면 좋을때</strong></p><p>GET Method 는, 웹 검색 폼 같은것에 사용하기 적합합니다 </p><p>왜냐하면, GET 요청으로 표현되는 URL 들은 쉽게 북마크 될수도 있고, </p><p>쉽게 공유될수 있으면서, 쉽게 다시 제출될수 있습니다. </p></blockquote><br>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/10/02/Django-Forms-3%ED%8E%B8-GET-and-POST/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Django Forms 2편 - HTML FORMS</title>
-      <link>http://djangojeng-e.github.io/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/</link>
-      <guid>http://djangojeng-e.github.io/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/</guid>
-      <pubDate>Thu, 01 Oct 2020 09:25:47 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;h2 id=&quot;HTML-FORMS&quot;&gt;&lt;a href=&quot;#HTML-FORMS&quot; class=&quot;headerlink&quot; title=&quot;HTML FORMS&quot;&gt;&lt;/a&gt;HTML FORMS&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;HTML 에서 form 은 &lt;code&gt;&amp;lt;form&amp;gt
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="HTML-FORMS"><a href="#HTML-FORMS" class="headerlink" title="HTML FORMS"></a>HTML FORMS</h2><br><p>HTML 에서 form 은 <code>&lt;form&gt;</code> … <code>&lt;/form&gt;</code> 안에 있는 요소들의 집합입니다. </p><p><br>이는 방문자들이 text 를 입력하고, 옵션을 선택하고, 객체들을 관리하고 혹은 제어하게 만들어 줍니다. </p><p><br>그리고 나서, 해당 정보를 다시 서버로 보내줄수도 있습니다. </p><br><p>이러한 몇가지 폼 인터페이스 요소들은 (예, text input, 혹은 checkboxes) HTML 자체에 내장 되어 있습니다만. 다른것들은 훨씬 더 복잡합니다. 예를들면, 보통 JavaScript 와 CSS 그리고  HTML 을 사용하여 날짜선택 팝업 혹은 슬라이더, 그리고 제어를 조종하는 <code>&lt;input&gt;</code> 요소들이 그렇습니다. </p><br><br><h2 id="Form-이-지정해줘야할-2가지"><a href="#Form-이-지정해줘야할-2가지" class="headerlink" title="Form 이 지정해줘야할 2가지"></a>Form 이 지정해줘야할 2가지</h2><br><p>form 은 대부분 아래 두가지를 지정해주어야 합니다. </p><br><ol><li>where?  사용자가 입력한 데이터가 어디로 반환 되어야 하는지 </li><li>how? 어떠한 <code>HTTP Method</code> 로 데이터가 반환 되어야 하는지 </li></ol><br><p>예시를 들자면, Django Admin 의 로그인 폼은 몇가지 아래의 <code>&lt;input&gt;</code>  요소들을 가지고 있습니다. </p><br> <ol><li><p>username 을 위한  <code>type=&quot;text&quot;</code> 라는 것이고, </p></li><li><p>다른 하나는, password 를 위한 input </p></li><li><p>마지막으로, 로그인을 진행하는 버튼을 위한 type=”submit” 을 가지고 있습니다. </p></li></ol><br><p>그리고, 어드민에는 Django 가 입력값을 받은 다음에 무엇을 해야하는지 결정하기 위해, 사용자가 볼수 없는 숨겨진 텍스트 필드들도 존재합니다. </p><br><p>또한, 브라우저에 폼 데이터가 어떤 URL 로 보내져야 하는지, <code>&lt;form&gt;</code>의 action 속성에다가 URL 을 지정해 줍니다 <code>/admin/</code>. 그리고, 폼 데이터는, method 속성에 지정된 HTTP 동작을 통해서 보내집니다 (예, POST)</p><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Log in"</span>&gt;</span></span><br></pre></td></tr></table></figure><br><p>위 요소가 실행되면, 데이터는 /admin/ 에 반환됩니다. </p><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/#disqus_thread</comments>
     </item>
     
   </channel>
