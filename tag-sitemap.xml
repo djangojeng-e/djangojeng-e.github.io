@@ -3,22 +3,22 @@
 
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/FormAPI/</loc>
-        <lastmod>2020-10-16T23:13:11.381Z</lastmod>
+        <loc>http://djangojeng-e.github.io/tags/Form-API/</loc>
+        <lastmod>2020-10-18T07:54:10.880Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/Django/</loc>
-        <lastmod>2020-10-16T23:13:11.381Z</lastmod>
+        <lastmod>2020-10-18T07:54:10.880Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/Form-API/</loc>
-        <lastmod>2020-10-16T00:22:17.176Z</lastmod>
+        <loc>http://djangojeng-e.github.io/tags/FormAPI/</loc>
+        <lastmod>2020-10-16T23:13:11.381Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

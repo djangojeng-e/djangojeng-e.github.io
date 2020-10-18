@@ -1,6 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Form API 5편 -Clean 데이터에 접근하기</title>
+    <url>/2020/10/18/Form-API-5%ED%8E%B8-Clean-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EC%A0%91%EA%B7%BC%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Accessing-“clean”-data"><a href="#Accessing-“clean”-data" class="headerlink" title="Accessing “clean” data"></a>Accessing “clean” data</h2><br>
+
+<h3 id="Form-cleaned-data"><a href="#Form-cleaned-data" class="headerlink" title="Form.cleaned_data"></a>Form.cleaned_data</h3><br>
+
+<p>폼안에 각 필드들은, 데이터 검증뿐만 아니라, “cleaning” (정화) 하는 역할도 합니다. </p>
+<br>
+
+<blockquote>
+<p>cleaning </p>
+<p>유효하고 일관적인 포맷으로 정형화 시킵니다 </p>
+</blockquote>
+<br>
+
+<p>이는 아주 좋은 기능입니다. 왜냐하면, 특정 필드가 여러 방법으로 입력되고, 일관적인 아웃풋을 만들어 내기 때문입니다. </p>
+<br>
+
+<p>예를들어, DateField 는 입력값을 python 의 datetime.date 객체로 정형화 시킵니다. </p>
+<br>
+
+<p>‘1994-07-15’ 같이, 문자열 형태, datetime.date 객체 혹은 다른 포맷들이든 상관없이. 유효하기만 하면, DateField 는 언제나 datetime.date 객체로 정형화 시킵니다. </p>
+<br>
+
+<blockquote>
+<p>폼 인스턴스를 데이터와 함께 생성하고, 검증하였으면, </p>
+<p>폼의 cleaned_data 속성에 접근하여, 깔끔한 데이터에 엑세스 할수 있습니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">In [1]: data = &#123;'subject': 'hello', </span><br><span class="line">   ...:         'message': 'Hi there', </span><br><span class="line">   ...:         'sender': 'foo@example.com', </span><br><span class="line">   ...:         'cc_myself': True&#125;     </span><br><span class="line"></span><br><span class="line">In [4]: f = ContactForm(data)                                                                                                                                             </span><br><span class="line"></span><br><span class="line">In [5]: f.is_valid()                                                                                                                                                      </span><br><span class="line">Out[5]: True</span><br><span class="line"></span><br><span class="line">In [6]: f.cleaned_data                                                                                                                                                    </span><br><span class="line">Out[6]: </span><br><span class="line">&#123;'subject': 'hello',</span><br><span class="line"> 'message': 'Hi there',</span><br><span class="line"> 'sender': 'foo@example.com',</span><br><span class="line"> 'cc_myself': True&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>여기서 꼭 알아야 할 부분은, cleaned_data 는 사전형태로. 깨끗한 데이터를 가지고 있습니다. </p>
+<p><br><a id="more"></a></p>
+<p>CharField 혹은 EmailField 같은 텍스트 기반 필드들은, 언제나 입력값을 문자열로 정화 시킨다는것을 숙지해야 합니다. 우리는 인코딩 시에 이것에 대한것을 나중에 다룰겁니다. </p>
+<br>
+
+<p>만약, 여러분들의 데이터가 검증되지 않는다면, cleaned_data 사전은 오직 유효한 필드들만 가지게 됩니다. </p>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">In [7]: data &#x3D; &#123;&#39;subject&#39;: &#39;&#39;, </span><br><span class="line">   ...:         &#39;message&#39;: &#39;Hi there&#39;, </span><br><span class="line">   ...:         &#39;sender&#39;: &#39;invalid email address&#39;, </span><br><span class="line">   ...:         &#39;cc_myself&#39;: True&#125;                                                                                                                                   </span><br><span class="line"></span><br><span class="line">In [8]: f &#x3D; ContactForm(data)                                                                                                                                        </span><br><span class="line"></span><br><span class="line">In [9]: f.is_valid()                                                                                                                                                 </span><br><span class="line">Out[9]: False</span><br><span class="line"></span><br><span class="line">In [10]: f.cleaned_data                                                                                                                                              </span><br><span class="line">Out[10]: &#123;&#39;message&#39;: &#39;Hi there&#39;, &#39;cc_myself&#39;: True&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>폼을 정의할때, 추가적인 데이터를 전달한다 하더라도, </p>
+<p>cleaned_data 는 언제나 폼에 정의된 필드들에 대해서만 key 값들을 가질겁니다. </p>
+</blockquote>
+<br>
+
+<p>아래 예시에서는, ContactForm 생성자에, 여러가지 추가적인 필드를 전달하지만, cleaned_data 는 오직 폼의 필드들만 포함하는것을 확인 할수 있습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [11]: data = &#123;'subject': 'hello', </span><br><span class="line">    ...:         'message': 'Hi there', </span><br><span class="line">    ...:         'sender': 'foo@example.com', </span><br><span class="line">    ...:         'extra_field_1': 'foo', </span><br><span class="line">    ...:         'extra_field_2': 'bar', </span><br><span class="line">    ...:         'extra_field_3': 'baz'&#125;                                                                                                                             </span><br><span class="line"></span><br><span class="line">In [12]: f = ContactForm(data)                                                                                                                                       </span><br><span class="line"></span><br><span class="line">In [13]: f.is_valid()                                                                                                                                                </span><br><span class="line">Out[13]: True</span><br><span class="line"></span><br><span class="line">In [14]: f.cleaned_data                                                                                                                                              </span><br><span class="line">Out[14]: </span><br><span class="line">&#123;'subject': 'hello',</span><br><span class="line"> 'message': 'Hi there',</span><br><span class="line"> 'sender': 'foo@example.com',</span><br><span class="line"> 'cc_myself': False&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>폼이 유효할때, </p>
+<p>데이터가 어떤 옵션 필드들에 대한 값을 포함하고 있지 않더라도, </p>
+<p>cleaned_data  는 폼의 모든 필드들에 대한 key 와 value 들을 포함합니다. </p>
+</blockquote>
+<br>
+
+<p>아래 예시에서, 데이터 사전은, nick_name 필드에 대한 값을 포함하고 있지 않습니다. </p>
+<p><br>하지만, cleaned_data 는 이 필드에 대한 값을 비어 있는 값으로 포함하고 있습니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">n [1]: from forms_more_on_fields.forms import OptionalPersonForm                                                                                                    </span><br><span class="line"></span><br><span class="line">In [2]: data = &#123;'first_name': 'John', 'last_name': 'Lennon'&#125;    </span><br><span class="line"></span><br><span class="line">In [4]: f = OptionalPersonForm(data)                                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [5]: f.is_valid()                                                                                                                                                 </span><br><span class="line">Out[5]: True</span><br><span class="line"></span><br><span class="line">In [6]: f.cleaned_data                                                                                                                                               </span><br><span class="line">Out[6]: &#123;'first_name': 'John', 'last_name': 'Lennon', 'nick_name': ''&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위의 예시에서 보다싶이, nick_name 을 위한 cleaned_data 값은 빈 문자열로 지정 됩니다. 왜냐하면, nick_name 은 CharField 이고, CharField 는 빈값을 비어있는 문자열로 다루기 때문입니다. </p>
+<br>
+
+<p>각 필드 타입은, 필드의 빈 값이 무엇인지 알고 있습니다. 예를들면, DateField 는 비어있는 문자열 대신에 None 을 값으로 가집니다. </p>
+<br>
+
+<p>이 상황에 대한 각 필드의 동작에 대한 자세한 정보는, Built-in Field classes 안에 있는 ‘Empty Value’ 노트를 확인하면 됩니다. </p>
+<br>
+
+<p>여러분들은 특정 폼 필드들에 (필드명을 기반으로 한) 대한 검증작업을 실행 하기 위해서 코드를 작성합니다. 혹은, 폼 전체의 검증을 수행하기 위해서 작성합니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Form API</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Form API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Form API 4편 - 폼 데이터 변경사항 체크하기</title>
     <url>/2020/10/17/Form-API-4%ED%8E%B8-%ED%8F%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Checking-which-form-data-has-been-changed"><a href="#Checking-which-form-data-has-been-changed" class="headerlink" title="Checking which form data has been changed"></a>Checking which form data has been changed</h2><br>
