@@ -220,6 +220,136 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/" class="post-title-link" itemprop="url">TodoList 30편 - 생성된 이미지 DockerHub 에 푸쉬</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-07-24 13:36:15 / Updated at: 13:51:36" itemprop="dateCreated datePublished" datetime="2020-07-24T13:36:15+09:00">2020-07-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/24/TodoList-30편-생성된-이미지-DockerHub-에-푸쉬/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="DockerHub-에-이미지-푸쉬"><a href="#DockerHub-에-이미지-푸쉬" class="headerlink" title="DockerHub 에 이미지 푸쉬"></a>DockerHub 에 이미지 푸쉬</h2><br>
+
+<p>현재까지 진행한 순서대로 정리하면, </p>
+<br>
+
+<ol>
+<li>AWS EC2 생성 </li>
+<li>AWS RDS 생성 - PostgreSQL 적용 </li>
+<li>AWS S3 생성 및 적용 </li>
+<li>AWS S3 정적 이미지와 CSS 파일 적용 </li>
+<li>Docker 설치 </li>
+<li>Dockerfile 작성 후 이미지 생성 </li>
+<li>생성된 이미지를 DockerHub 에 push </li>
+</ol>
+<br>
+
+<h2 id="이미지-저장소"><a href="#이미지-저장소" class="headerlink" title="이미지 저장소"></a>이미지 저장소</h2><br>
+
+<p>도커는 빌드한 이미지를 서버에 배포하기 위한 파일을 도커 레지스트리, 즉, Docker registery 라는 저장소를 사용해 복사합니다. 빌드가 완료된 이미지를 레지스트리에 푸쉬 (push) 하고, 다른 서버에서 (pull) 하여 사용하는 구조로 되어 있습니다. </p>
+<br>
+
+<p>살짝, git 과 비슷한 느낌입니다. </p>
+<br>
+
+<img src="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/image1.png" class="">
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1309,133 +1439,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/06/05/TodoList-20%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%97%90-%EC%A0%91%EC%86%8D-%ED%8C%8C%EC%9D%BC-%EC%A0%84%EC%86%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/05/TodoList-20%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%97%90-%EC%A0%91%EC%86%8D-%ED%8C%8C%EC%9D%BC-%EC%A0%84%EC%86%A1/" class="post-title-link" itemprop="url">TodoList 20편 - AWS EC2 인스턴스에 접속, 파일 전송</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-06-05 08:57:57 / Updated at: 09:04:27" itemprop="dateCreated datePublished" datetime="2020-06-05T08:57:57+09:00">2020-06-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/06/05/TodoList-20%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%97%90-%EC%A0%91%EC%86%8D-%ED%8C%8C%EC%9D%BC-%EC%A0%84%EC%86%A1/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/05/TodoList-20편-AWS-EC2-인스턴스에-접속-파일-전송/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="AWS-EC2-접속-파일전송"><a href="#AWS-EC2-접속-파일전송" class="headerlink" title="AWS EC2 접속, 파일전송"></a>AWS EC2 접속, 파일전송</h2><br>
-
-<p>지난 포스팅에서, AWS EC2 인스턴스를 생성 하였으니, </p>
-<p><br>이제 해당 인스턴스에 자유롭게 접속도 하고, 작업한 프로젝트도 업로드 해보려 합니다. </p>
-<br>
-
-<p>해당 인스턴스에 접속하는 명령어는 아래와 같습니다. </p>
-<br>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh -i &lt;newtodolist.pem 이 다운로드 되있는 경로&gt; ubuntu@&lt;해당인스턴스public IP&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 에시는 아래와 같음. pem 파일의 경로를 잘 설정해주는것이 중요! </span></span><br><span class="line">ssh ~i ~/home/pemkeys/newkeys/newtodolist.pem ubuntu@12.111.87.111</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<p>해당 인스턴스에 프로젝트 폴더를 전송하여, 배포 작업을 시작할것 입니다. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/05/TodoList-20%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%97%90-%EC%A0%91%EC%86%8D-%ED%8C%8C%EC%9D%BC-%EC%A0%84%EC%86%A1/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1501,7 +1509,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">170</span>
+          <span class="site-state-item-count">171</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

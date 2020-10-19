@@ -1,6 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Form API 6편 - HTML 로 폼 출력하기</title>
+    <url>/2020/10/19/Form-API-6%ED%8E%B8-HTML-%EB%A1%9C-%ED%8F%BC-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Outputting-forms-as-HTML"><a href="#Outputting-forms-as-HTML" class="headerlink" title="Outputting forms as HTML"></a>Outputting forms as HTML</h2><br>
+
+<p>폼 객체의 두번째 작업은, 스스로 HTML 태그로 렌더를 해주는것입니다. </p>
+<br>
+
+<p>forms.py 가 아래와 같이 작성 되어 있고. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django <span class="keyword">import</span> forms </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContactForm</span><span class="params">(forms.Form)</span>:</span></span><br><span class="line">    subject = forms.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    message = forms.CharField(widget=forms.Textarea)</span><br><span class="line">    sender = forms.EmailField()</span><br><span class="line">    cc_myself = forms.BooleanField(required=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<blockquote>
+<p>shell 에서 아래와 같이 폼을 프린트 해보면, </p>
+<p>폼이 저절로 HTML 로 렌더되는것을 확인할수 있습니다</p>
+</blockquote>
+<br>
+
+
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">from classviewsforms.forms import ContactForm </span><br><span class="line"></span><br><span class="line">f = ContactForm() </span><br><span class="line"></span><br><span class="line">print(f)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<a id="more"></a>
+
+<p>만약 폼이 데이터를 가지고 있으면, HTML 로 출력 될때, HTML 태그는 데이터를 적절하게 포함하고 있습니다. </p>
+<br>
+
+<p>예를들어, 필드가 <code>&lt;input type=&quot;text&quot;&gt;</code> 라고 표시가 되어 있으면, 데이터는 value 속성에 있을것입니다. </p>
+<p><br>만약 필드가 <code>&lt;input type=&quot;checkbox&quot;&gt;</code>로 표시되어 있으면, 적절한 경우, checked 를 포함하고 있을겁니다. </p>
+<br>
+
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml">In [4]: data = &#123;'subject': 'hello', </span></span><br><span class="line"><span class="xml">   ...:         'message': 'Hi there', </span></span><br><span class="line"><span class="xml">   ...:         'sender': 'foo@example.com', </span></span><br><span class="line"><span class="xml">   ...:         'cc_myself': True&#125;                                                                </span></span><br><span class="line"></span><br><span class="line"><span class="xml">In [5]: f = ContactForm(data)                                                                     </span></span><br><span class="line"></span><br><span class="line"><span class="xml">In [6]: print(f)                                                                                  </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_subject"</span>&gt;</span>Subject:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"subject"</span> <span class="attr">value</span>=<span class="string">"hello"</span> <span class="attr">maxlength</span>=<span class="string">"100"</span> <span class="attr">required</span> <span class="attr">id</span>=<span class="string">"id_subject"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_message"</span>&gt;</span>Message:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"message"</span> <span class="attr">cols</span>=<span class="string">"40"</span> <span class="attr">rows</span>=<span class="string">"10"</span> <span class="attr">required</span> <span class="attr">id</span>=<span class="string">"id_message"</span>&gt;</span></span></span><br><span class="line"><span class="xml">Hi there<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_sender"</span>&gt;</span>Sender:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"sender"</span> <span class="attr">value</span>=<span class="string">"foo@example.com"</span> <span class="attr">required</span> <span class="attr">id</span>=<span class="string">"id_sender"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_cc_myself"</span>&gt;</span>Cc myself:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"cc_myself"</span> <span class="attr">id</span>=<span class="string">"id_cc_myself"</span> <span class="attr">checked</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이런 기본 출력 방식은, 각 필드들에 <code>&lt;tr&gt;</code> 을 가지고 있는, 그리고 두개의 컬럼으로 되어 있는 HTML 테이블이 됩니다. 아래 사항들을 짚고 넘어갑니다.  </p>
+<br>
+
+<ul>
+<li>유연성을 위해서, 폼의 기본 출력값은 <code>&lt;table&gt;&lt;/table&gt;</code> 태그를 가지고 있지 않습니다 </li>
+<li><code>&lt;form&gt;&lt;/form&gt;</code> 태그도 가지고 있지 않습니다 </li>
+<li><code>&lt;input type=&quot;submit&quot;&gt;</code> 태그도 가지고 있지 않습니다. </li>
+</ul>
+<br>
+
+<blockquote>
+<p>위에 있는 태그들이 기본 출력에 포함되지 않습니다. </p>
+<p>따라서, HTML 템플릿에 위 3개의 테그는 여러분들이 필요에 의해서 추가해 주어야 할 테그들 입니다 <br></p>
+<p>추가적으로, POST 폼을 사용하기전에 csrf_token 을 사용하는것도 잊지 않아야 합니다! </p>
+</blockquote>
+<br>
+
+<ul>
+<li>각 필드 타입은, 기본 HTML 태그를 가지고 있습니다. 예를들어 , </li>
+</ul>
+<ul>
+<li><p>CharField 는 <code>&lt;input type=&quot;text&quot;&gt;</code></p>
+</li>
+<li><p>EmailField 는 <code>&lt;input type=&quot;email&quot;&gt;</code></p>
+</li>
+<li><p>BooleanField(null=False) 는 <code>&lt;input type=&quot;checkbox&quot;&gt;</code> </p>
+</li>
+</ul>
+<pre><code>이 태그들은 기본값일 뿐입니다. 우리는 widget 을 사용하여, 어떤 HTML 을 사용할것인지 지정할수 있습니다. </code></pre><br>
+
+<ul>
+<li>각 테그를 위한 HTML 이름은, ContactForm 클래스 안 속성이름을 직접 가져옵니다 </li>
+<li>각 필드를 위한 label. 예) Subject, Message, Cc myself 들은 필드명의 언더스코어를 공백으로 전환하고, 첫번째 글자를 대문자해서 생겨납니다. 이것도 그저 기본값일 뿐입니다. 우리는 이 label 도 수동으로 지정할수 있습니다 </li>
+<li>각 텍스트 레이블은 <code>&lt;label&gt;</code> HTML 태그안에 감싸져 있습니다. 이는 필드의 id 를 가르키고 있습니다. id 는 필드명앞에 id 를 붙여서 생성됩니다. id 속성과 <code>&lt;label&gt;</code> 태그들은 기본값으로 출력값에 포함되어 있습니다만. 이 동작도 변경할수 있습니다. </li>
+<li>출력되는 HTML 은 HTML5 문법을 사용합니다. </li>
+</ul>
+<br>
+
+<p>print 를 사용하여 form 을 출력했을때, <code>&lt;table&gt;</code> 이 기본 출력 스타일 일지라도, 다른 출력 스타일들이 존재할수 있습니다. 각 스타일은 폼 객체의 메서드로 존재하고. 각 렌더링 메서드는 문자열을 반환합니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Form API</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>FormAPI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Form API 5편 -Clean 데이터에 접근하기</title>
     <url>/2020/10/18/Form-API-5%ED%8E%B8-Clean-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EC%A0%91%EA%B7%BC%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Accessing-“clean”-data"><a href="#Accessing-“clean”-data" class="headerlink" title="Accessing “clean” data"></a>Accessing “clean” data</h2><br>
