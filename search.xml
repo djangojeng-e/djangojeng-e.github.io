@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Form API 8편 - Form.as_ul()</title>
+    <url>/2020/10/20/Form-API-8%ED%8E%B8-Form-as-ul/</url>
+    <content><![CDATA[<h2 id="Form-as-ul"><a href="#Form-as-ul" class="headerlink" title="Form.as_ul()"></a>Form.as_ul()</h2><br>
+
+
+
+<p><code>as_ul()</code>은 폼을 <code>&lt;li&gt;</code> 태그로 렌더링 해줍니다. 각 <code>&lt;li&gt;</code> 태그는 하나의 필드를 포함하고 있습니다. </p>
+<p><br>이는, <code>&lt;ul&gt;</code> 혹은 <code>&lt;/ul&gt;</code> 을 포함하고 있지 않습니다. </p>
+<p><br>따라서, 여러분들은 유연하게 <code>&lt;ul&gt;</code>에 어떤 HTML 속성이든지 지정해줄수 있습니다. </p>
+<br>
+
+
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [4]: f.as_ul()                                                                                                                                                         </span><br><span class="line">Out[4]: '&lt;li&gt;&lt;label for="id_subject"&gt;Subject:&lt;/label&gt; </span><br><span class="line">&lt;input type="text" name="subject" maxlength="100" required id="id_subject"&gt;&lt;/li&gt;</span><br><span class="line">\n&lt;li&gt;&lt;label for="id_message"&gt;Message:&lt;/label&gt; </span><br><span class="line">&lt;textarea name="message" cols="40" rows="10" required id="id_message"&gt;\n</span><br><span class="line">&lt;/textarea&gt;&lt;/li&gt;\n</span><br><span class="line">&lt;li&gt;&lt;label for="id_sender"&gt;Sender:&lt;/label&gt; </span><br><span class="line">&lt;input type="email" name="sender" required id="id_sender"&gt;&lt;/li&gt;</span><br><span class="line">\n&lt;li&gt;&lt;label for="id_cc_myself"&gt;Cc myself:&lt;/label&gt;</span><br><span class="line">&lt;input type="checkbox" name="cc_myself" id="id_cc_myself"&gt;&lt;/li&gt;'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>Form API</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Form API</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Form API 7편 - HTML 로 폼 출력하기 - as_p()</title>
+    <url>/2020/10/20/Form-API-7%ED%8E%B8-HTML-%EB%A1%9C-%ED%8F%BC-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0-as-p/</url>
+    <content><![CDATA[<h2 id="Form-as-p"><a href="#Form-as-p" class="headerlink" title="Form.as_p()"></a>Form.as_p()</h2><br>
+
+<blockquote>
+<p>as_p() 는 form 을 <code>&lt;p&gt;</code> 태그들로 렌더링 해줍니다. </p>
+<p>각 <code>&lt;p&gt;</code> 태그는 하나의 필드를 가지고 있습니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">f = ContactForm() </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 폼 인스턴스를 생성 한뒤에 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> f.as_p() 를 호출하면, </span></span><br><span class="line"></span><br><span class="line">f.as_p()</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 폼의 각 필드들이 &lt;p&gt;태그로 감싸져서 렌더링 되는것을 확인할수 있습니다 </span></span><br><span class="line"></span><br><span class="line">In [2]: f = ContactForm()                                                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [3]: f.as_p()                                                                                                                                                          </span><br><span class="line">Out[3]: '&lt;p&gt;&lt;label for="id_subject"&gt;Subject:&lt;/label&gt; </span><br><span class="line">&lt;input type="text" name="subject" maxlength="100" required id="id_subject"&gt;&lt;/p&gt;</span><br><span class="line">\n&lt;p&gt;&lt;label for="id_message"&gt;Message:&lt;/label&gt; </span><br><span class="line">&lt;textarea name="message" cols="40" rows="10" required id="id_message"&gt;\n&lt;/textarea&gt;&lt;/p&gt;</span><br><span class="line">\n&lt;p&gt;&lt;label for="id_sender"&gt;Sender:&lt;/label&gt; </span><br><span class="line">&lt;input type="email" name="sender" required id="id_sender"&gt;&lt;/p&gt;</span><br><span class="line">\n&lt;p&gt;&lt;label for="id_cc_myself"&gt;Cc myself:&lt;/label&gt; </span><br><span class="line">&lt;input type="checkbox" name="cc_myself" id="id_cc_myself"&gt;&lt;/p&gt;'</span><br></pre></td></tr></table></figure>
+
+<br>]]></content>
+      <categories>
+        <category>Djang</category>
+        <category>Form API</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>Form API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Form API 6편 - HTML 로 폼 출력하기</title>
     <url>/2020/10/19/Form-API-6%ED%8E%B8-HTML-%EB%A1%9C-%ED%8F%BC-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Outputting-forms-as-HTML"><a href="#Outputting-forms-as-HTML" class="headerlink" title="Outputting forms as HTML"></a>Outputting forms as HTML</h2><br>
