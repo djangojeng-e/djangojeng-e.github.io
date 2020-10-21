@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Form API 9편 - as_table()</title>
+    <url>/2020/10/21/Form-API-9%ED%8E%B8-as-table/</url>
+    <content><![CDATA[<h2 id="HTML-로-폼-출력하기-as-table"><a href="#HTML-로-폼-출력하기-as-table" class="headerlink" title="HTML 로 폼 출력하기 - as_table()"></a>HTML 로 폼 출력하기 - <code>as_table()</code></h2><br>
+
+<h3 id="as-table"><a href="#as-table" class="headerlink" title="as_table()"></a><code>as_table()</code></h3><br>
+
+<blockquote>
+<p>마지막으로, as_table() 은 폼을 <code>&lt;table&gt;</code> HTML 로 출력합니다. </p>
+<p>이는 print 와 같습니다. </p>
+<p>사실 우리는 하나의 폼 객체를 print 할때에, 기본 백앤드 동작으로 as_table() 메서드를 호출합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [5]: f = ContactForm()                                                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [6]: f.as_table()                                                                                                                                                      </span><br><span class="line">Out[6]: '&lt;tr&gt;&lt;th&gt;&lt;label for="id_subject"&gt;Subject:&lt;/label&gt;</span><br><span class="line">&lt;/th&gt;</span><br><span class="line">&lt;td&gt;&lt;input type="text" name="subject" maxlength="100" required id="id_subject"&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;\n&lt;tr&gt;&lt;th&gt;&lt;label for="id_message"&gt;Message:&lt;/label&gt;&lt;/th&gt;</span><br><span class="line">&lt;td&gt;&lt;textarea name="message" cols="40" rows="10" required id="id_message"&gt;\n</span><br><span class="line">&lt;/textarea&gt;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">\n&lt;tr&gt;&lt;th&gt;&lt;label for="id_sender"&gt;Sender:&lt;/label&gt;&lt;/th&gt;</span><br><span class="line">&lt;td&gt;&lt;input type="email" name="sender" required id="id_sender"&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;\n&lt;tr&gt;&lt;th&gt;&lt;label for="id_cc_myself"&gt;Cc myself:&lt;/label&gt;&lt;/th&gt;</span><br><span class="line">&lt;td&gt;&lt;input type="checkbox" name="cc_myself" id="id_cc_myself"&gt;&lt;/td&gt;&lt;/tr&gt;'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>&lt;tr&gt; 과 &lt;td&gt;</code> 테그들은 생성되지만, <code>&lt;table&gt;</code>태그는 생성되지 않습니다. 이는, 사용자가 직접 추가해 주어야 합니다. </p>
+]]></content>
+      <categories>
+        <category>Django</category>
+        <category>FormAPI</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>FormAPI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Form API 8편 - Form.as_ul()</title>
     <url>/2020/10/20/Form-API-8%ED%8E%B8-Form-as-ul/</url>
     <content><![CDATA[<h2 id="Form-as-ul"><a href="#Form-as-ul" class="headerlink" title="Form.as_ul()"></a>Form.as_ul()</h2><br>
