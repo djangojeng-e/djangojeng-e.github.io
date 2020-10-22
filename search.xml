@@ -1,6 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>파이썬 라이브러리 (library) 와 모듈 (module)</title>
+    <url>/2020/10/22/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-library-%EC%99%80-%EB%AA%A8%EB%93%88-module/</url>
+    <content><![CDATA[<h2 id="Python-Library-and-Modules"><a href="#Python-Library-and-Modules" class="headerlink" title="Python Library and Modules"></a>Python Library and Modules</h2><br>
+
+<h3 id="파이썬-라이브러리-Library-와-모듈-Module"><a href="#파이썬-라이브러리-Library-와-모듈-Module" class="headerlink" title="파이썬 라이브러리 (Library) 와 모듈 (Module)"></a>파이썬 라이브러리 (Library) 와 모듈 (Module)</h3><br>
+
+<h3 id="Python-Library-and-Modules-1"><a href="#Python-Library-and-Modules-1" class="headerlink" title="Python Library and Modules"></a>Python Library and Modules</h3><br>
+
+<p>파이썬에는, 라이브러리 (Library) 혹은 모듈 (Module) 이라는것들이 존재합니다 </p>
+<br>
+
+<p>파이썬 공부한지도 제법 시간이 오래되었지만, 라이브러리와 모듈에 대해서 설명 하라고 하면 바로 대답이 나오질 않습니다.. 짧게나마 라이브러리와 모듈에 대해서 정리하고 넘어갑니다. </p>
+<br>
+
+<br>
+
+<blockquote>
+<p><strong>파이썬에서 라이브러리 (Library) 란?</strong></p>
+<br>
+
+<p>파이썬 라이브러리는 코드를 작성할 필요없이 많은 동작을 수행할수 있게 해주는 함수와 메서드의 집합입니다. 우리는, 마치 도서관 (library) 에서 책을 꺼내어 보듯이, </p>
+<br>
+
+<p>프로그래밍을 하면서, 파이썬 라이브러리를 꺼내어 사용할수 있습니다. 여러 파일로 이루어져 있을수 있고, 함수 메서드 속성들이 하나의 패키지로 모여져 있습니다. </p>
+<br>
+
+<p>어떤 파이썬 라이브러리에는, </p>
+<p>이미 우리가 수행하고자 하는 기능과 동작들이 이미 정의되어 모여져 있기 때문에, </p>
+<p>이를 가져다 쓰기만 하면 됩니다. </p>
+<br>
+
+<p>예를들면, 파이썬 이미지 라이브러리 (PIL)은, 파이썬에서 이미지 수정을 위한 파이썬 주요 라이브러리 입니다. Numpy 는 숫자 연산을 위한 강력한 라이브러리 입니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="파이썬에서-모듈-Module-란"><a href="#파이썬에서-모듈-Module-란" class="headerlink" title="파이썬에서 모듈 (Module) 란?"></a>파이썬에서 모듈 (Module) 란?</h2><br>
+
+<blockquote>
+<p><strong>파이썬에서 모듈 (Module) 이란?</strong></p>
+<br>
+
+<p>파이썬 모듈은, </p>
+<p>파이썬 객체로, 여러분들이 묶고 참조 할수 있는 속성들을 가지고 있는 파이썬 객체 입니다. </p>
+<br>
+
+<p>간단하게 이야기 해서, 모듈은 파이썬으로 이루어져 있는 하나의 파일 입니다. </p>
+<p>하나의 모듈은 함수들 클래스들 그리고 변수들을 정의할수 있습니다. </p>
+<br>
+
+<p>하나의 모듈은, 실행 가능한 코드도 포함하고 있을수 있습니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><br>
+
+<p>요약하자면, 라이브러리는, 변수나 함수 클래스등을 미리 만들어서 모아 놓은 것입니다. </p>
+<p><br>기본 파이썬에서는 없었거나, 사용하기 편한 기능의 함수와 클래스들을 제공하고, 이를 가져다가 쓸수 있게 만들어 놓은것입니다. </p>
+<br>
+
+<p><code>import</code> 를 사용하여, 가져와서 사용할수 있고. 보통 구글을 찾아보면, 정말 많은 라이브러리가 존재하는데. 각 라이브러리의 사용법 또한 정말 많이 검색이 되니, 개발자 입장에서는 언제든지 찾아서 끌어다가 사용할수 있습니다.  </p>
+<br>
+
+<p>예를들어, numpy 같은 경우, 데이터 분석 분야에서 많이 사용되는 라이브러리로, 수적 계산 작업등에 널리 사용되는 라이브러리 입니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>library</tag>
+        <tag>module</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Form API 9편 - as_table()</title>
     <url>/2020/10/21/Form-API-9%ED%8E%B8-as-table/</url>
     <content><![CDATA[<h2 id="HTML-로-폼-출력하기-as-table"><a href="#HTML-로-폼-출력하기-as-table" class="headerlink" title="HTML 로 폼 출력하기 - as_table()"></a>HTML 로 폼 출력하기 - <code>as_table()</code></h2><br>
