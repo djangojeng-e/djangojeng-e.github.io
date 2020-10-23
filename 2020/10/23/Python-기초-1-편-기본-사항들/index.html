@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"djangojeng-e.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!--자동 애드센스-->
+
+<!--자동 에드센스 end-->
+
+<meta name="google-site-verification" content="WlX9ix7sXmMXMWSZS-fiLnWpgx6T0Dz2ON3R7RcK4bA" />
+  <meta name="description" content="What is Python?  Python 이 무엇인가요?  파이썬은 오픈소스로 개발된 객체 지향 프로그래밍 언어로, 고등 레벨의 강력한 프로그래밍 언어 입니다. Guido Van Rossum 에 의해서 1990년대 초반에 개발되었고, Monty Python 을 따라서 이름 지어졌습니다.    파이썬은, 많은 unix 계열에서 실행되고, Mac 과 Wind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 기초 1 편 - 기본 사항들">
+<meta property="og:url" content="http://djangojeng-e.github.io/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/index.html">
+<meta property="og:site_name" content="장고쟁이">
+<meta property="og:description" content="What is Python?  Python 이 무엇인가요?  파이썬은 오픈소스로 개발된 객체 지향 프로그래밍 언어로, 고등 레벨의 강력한 프로그래밍 언어 입니다. Guido Van Rossum 에 의해서 1990년대 초반에 개발되었고, Monty Python 을 따라서 이름 지어졌습니다.    파이썬은, 많은 unix 계열에서 실행되고, Mac 과 Wind">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-10-23T09:57:19.000Z">
+<meta property="article:modified_time" content="2020-10-23T10:14:55.394Z">
+<meta property="article:author" content="장고쟁이">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://djangojeng-e.github.io/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Python 기초 1 편 - 기본 사항들 | 장고쟁이</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="naver-site-verification" content="b855a7ad81fb77d8cd20dc2267432ca962ba8376" />
+<link rel="alternate" href="/rss2.xml" title="장고쟁이" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+	<!--구글 애드 -->	
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9284986247336734",
+    enable_page_level_ads: true
+  });
+</script>
+
+	<!--구글 애드 종료-->
+	
+<div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">장고쟁이</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">당신은 멋쟁이, 우리는 장고쟁이~</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/djangojeng-e" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python 기초 1 편 - 기본 사항들
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-23 18:57:19 / Updated at: 19:14:55" itemprop="dateCreated datePublished" datetime="2020-10-23T18:57:19+09:00">2020-10-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/23/Python-기초-1-편-기본-사항들/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="What-is-Python"><a href="#What-is-Python" class="headerlink" title="What is Python?"></a>What is Python?</h2><br>
+
+<h3 id="Python-이-무엇인가요"><a href="#Python-이-무엇인가요" class="headerlink" title="Python 이 무엇인가요?"></a>Python 이 무엇인가요?</h3><br>
+
+<p>파이썬은 오픈소스로 개발된 객체 지향 프로그래밍 언어로, 고등 레벨의 강력한 프로그래밍 언어 입니다. Guido Van Rossum 에 의해서 1990년대 초반에 개발되었고, Monty Python 을 따라서 이름 지어졌습니다. </p>
+<br>
+
+<p>파이썬은, 많은 unix 계열에서 실행되고, Mac 과 Windows 2000 대 이후 버전에서도 실행 됩니다. </p>
+<br>
+
+<p>파이썬은, <a href="http://www.python.org" target="_blank" rel="noopener">http://www.python.org</a> 에서 다운로드 가능합니다. </p>
+<br>
+
+<h2 id="Python-프로그램은"><a href="#Python-프로그램은" class="headerlink" title="Python 프로그램은"></a>Python 프로그램은</h2><br>
+
+<p>파이썬 프로그램들은 모듈들로 이루어져 있습니다. 하나의 <code>모듈</code>은 <code>statement</code> 들을 포함하고 있고, <code>statement</code> 는 <code>expressions</code> 을 가지고 있습니다.  </p>
+<br>
+
+<p><code>Module &gt; Statements &gt; Expressions</code> </p>
+<br>
+
+<p>파이썬에서뿐만 아니라, 자주자주 나오는 컨셉인, <code>statements</code> 와 <code>expressions</code> 에 대해서 알아보자면, </p>
+<br>
+
+<blockquote>
+<p><strong>Expressions</strong></p>
+<p>수식, 연산식 </p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><strong>Statements</strong></p>
+<p>실행 가능한 (executable) 코드 조각, 무엇인가를 실행하는 코드의 조각 이라고 보면 됩니다. </p>
+</blockquote>
+<br>
+
+<p>스택오버플로우에서 검색해 보면, 아래 예시가 나옵니다 </p>
+<br>
+
+<a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x + <span class="number">2</span>   <span class="comment"># Expression </span></span><br><span class="line">x = <span class="number">1</span>   <span class="comment"># Statement </span></span><br><span class="line"></span><br><span class="line">y = x + <span class="number">1</span>  <span class="comment"># Statement </span></span><br><span class="line"></span><br><span class="line">print(y)   <span class="comment"># Statement</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위 예시를 통해서 유추해 보면, expression  은 단순히 어떠한 값을 계산하는 수식이고. 어떠한 동작도 하지 않고, 해당 값을 표현하는 코드 입니다. </p>
+<br>
+
+<p>하지만, <code>statement</code> 는 이러한 <code>expression</code> 으로 표현된 값들을 가지고, 어떠한 행동을 취하는 코드입니다. 위의 예시에서 보면,</p>
+<br>
+
+<ul>
+<li><code>x=1</code> 은, x 라는 변수에, 1 이라는 값을 할당 합니다 </li>
+<li><code>y = x + 1</code> 은, <code>x + 1</code> 로 표현된 값을, <code>y</code> 라는 변수에 할당합니다 </li>
+<li><code>print(y)</code> 는, y 의 값을 출력하는 동작을 합니다.  </li>
+</ul>
+<br>
+
+<p>따라서, 위 3개의 예시는 모두 어떠한 동작을 하는 statement 입니다. 반면에, expression 은 값을 표현하는 단위로만 사용됩니다. statement 는 여러개의 expression 을 가지고 있을수 있고, 이것들을 가지고 어떠한 작업을 수행하는데 사용합니다. </p>
+<br>
+
+<h2 id="Python-의-특징"><a href="#Python-의-특징" class="headerlink" title="Python 의 특징"></a>Python 의 특징</h2><br>
+
+<ol>
+<li>Open Source (무료)</li>
+<li>배우기 쉽다 (다른 프로그래밍 언어에 비해서 쉬울수 있다)</li>
+<li>고등 수준의 언어이다 </li>
+<li>범용성이 넓다 </li>
+<li>객체 지향 언어 </li>
+<li>상호 작용이 가능 </li>
+<li>Interpreted 언어 이다 </li>
+</ol>
+<br>
+
+<h2 id="Python-의-역사"><a href="#Python-의-역사" class="headerlink" title="Python 의 역사"></a>Python 의 역사</h2><br>
+
+<p>파이썬이라는 이름은, “Monty Python’s Flying Circus” 먼티 파이썬의 플라잉 서커스 라는, 1969년부터 1974년 까지 Monty Python 이라는 코메디 그룹에 의해서 방영된 영국 스케치 코미디 시리즈에서 따온 이름입니다 <br></p>
+<p>파이썬은 1990년대초, Guido Van Rossum 에 의해서, 네덜란드 국립 수학 컴퓨터 사이언스 리서치 기관에서 개발 되었습니다. </p>
+<br>
+
+<p>파이썬은, ABC 라는 언어의 후계자로써 만들어 졌고, 1991년도에 대중들에게 배포 되었습니다. <br></p>
+<p>시간이 흐르면서, 많은 사용자 커뮤니티들이 언어 개발에 기여를 하였음에도 불구하고, Guido 는 파이썬의 기본 작성자로 남아 있습니다.<br></p>
+<p>1991년도와 2001년도 사이에 여러번의 버전 배포가 있었고, 거의 모든 파이썬 배포판은 오픈 소스 입니다.<br></p>
+<br>
+
+<h2 id="Python-의-주-사용처"><a href="#Python-의-주-사용처" class="headerlink" title="Python 의 주 사용처"></a>Python 의 주 사용처</h2><br>
+
+<ul>
+<li>시스템 유틸리티 (시스템 어드민 도구, 커맨드 라인 프로그램들)</li>
+<li>웹 개발 </li>
+<li>GUI (Graphical User Interfaces)</li>
+<li>인터넷 스크립팅 </li>
+<li>임베디드 스크립팅 </li>
+<li>데이터베이스 엑세스 및 프로그래밍 </li>
+<li>게임 프로그래밍 </li>
+<li>빠른 프로토타이핑과 개발 </li>
+<li>프로그램 배포 </li>
+</ul>
+<br>
+
+<h2 id="Python-을-사용하는-단체들"><a href="#Python-을-사용하는-단체들" class="headerlink" title="Python 을 사용하는 단체들"></a>Python 을 사용하는 단체들</h2><br>
+
+<table>
+<thead>
+<tr>
+<th><strong>분야</strong></th>
+<th><strong>단체</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>웹개발</td>
+<td>Yahoo maps, Yahoo Group, Google, Zope Corporation, Ultraseek, Linux Weekly News, Mojam.com, Shopzilla</td>
+</tr>
+<tr>
+<td>게임</td>
+<td>Battlefield2, Crystal space, Star Trek Bridge Commander, Civilization 4, QuArk(Quake Army Knife)</td>
+</tr>
+<tr>
+<td>그래픽</td>
+<td>Industrial Light &amp; Magic, Walt Disney Feature Animation, HKS, RoboFog, Caligari Corporation, Blender 3D, Jasc Software</td>
+</tr>
+<tr>
+<td>금융</td>
+<td>Altis Investment Management, ABN AMRO Bank, Treasury Systems</td>
+</tr>
+<tr>
+<td>과학</td>
+<td>National Weather Service, Radar Remote Sensing Group, Applied Maths, Biosoft, The National Research Council of Canada, AlphaGene, Inc. NASA, etc</td>
+</tr>
+<tr>
+<td>전자 자동화 디자인</td>
+<td>Ciranova, Productivity Design Tools, Object Domain, Red Hat</td>
+</tr>
+<tr>
+<td>교육</td>
+<td>University of Califonia, Irvine, New Zealand Digital Library, IT Certification Exam preparation, School Tool</td>
+</tr>
+<tr>
+<td>비지니스 소프트웨어</td>
+<td>Raven Bear Systems Corporation, Thawte Consulting, IBM, WuBook etc</td>
+</tr>
+</tbody></table>
+<br>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/22/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-library-%EC%99%80-%EB%AA%A8%EB%93%88-module/" rel="prev" title="파이썬 라이브러리 (library) 와 모듈 (module)">
+      <i class="fa fa-chevron-left"></i> 파이썬 라이브러리 (library) 와 모듈 (module)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Python"><span class="nav-number">1.</span> <span class="nav-text">What is Python?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-이-무엇인가요"><span class="nav-number">1.1.</span> <span class="nav-text">Python 이 무엇인가요?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-프로그램은"><span class="nav-number">2.</span> <span class="nav-text">Python 프로그램은</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-의-특징"><span class="nav-number">3.</span> <span class="nav-text">Python 의 특징</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-의-역사"><span class="nav-number">4.</span> <span class="nav-text">Python 의 역사</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-의-주-사용처"><span class="nav-number">5.</span> <span class="nav-text">Python 의 주 사용처</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-을-사용하는-단체들"><span class="nav-number">6.</span> <span class="nav-text">Python 을 사용하는 단체들</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">장고쟁이</p>
+  <div class="site-description" itemprop="description">장고쟁이의 Python, Django 공부 노트</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">176</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/djangojeng-e" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;djangojeng-e" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:headfat1218@gmail.com" title="E-Mail → mailto:headfat1218@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<div>
+
+
+
+
+
+<iframe width="210" height="180" src="https://www.youtube.com/embed/GUg3b7ALPSA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
+</div>
+
+    </div>
+
+
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">장고쟁이</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://djangojeng-e.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://djangojeng-e.github.io/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/";
+    this.page.identifier = "2020/10/23/Python-기초-1-편-기본-사항들/";
+    this.page.title = "Python 기초 1 편 - 기본 사항들";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://djangojeng-e.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

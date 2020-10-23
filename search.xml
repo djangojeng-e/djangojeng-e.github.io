@@ -1,6 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 1 편 - 기본 사항들</title>
+    <url>/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/</url>
+    <content><![CDATA[<h2 id="What-is-Python"><a href="#What-is-Python" class="headerlink" title="What is Python?"></a>What is Python?</h2><br>
+
+<h3 id="Python-이-무엇인가요"><a href="#Python-이-무엇인가요" class="headerlink" title="Python 이 무엇인가요?"></a>Python 이 무엇인가요?</h3><br>
+
+<p>파이썬은 오픈소스로 개발된 객체 지향 프로그래밍 언어로, 고등 레벨의 강력한 프로그래밍 언어 입니다. Guido Van Rossum 에 의해서 1990년대 초반에 개발되었고, Monty Python 을 따라서 이름 지어졌습니다. </p>
+<br>
+
+<p>파이썬은, 많은 unix 계열에서 실행되고, Mac 과 Windows 2000 대 이후 버전에서도 실행 됩니다. </p>
+<br>
+
+<p>파이썬은, <a href="http://www.python.org" target="_blank" rel="noopener">http://www.python.org</a> 에서 다운로드 가능합니다. </p>
+<br>
+
+<h2 id="Python-프로그램은"><a href="#Python-프로그램은" class="headerlink" title="Python 프로그램은"></a>Python 프로그램은</h2><br>
+
+<p>파이썬 프로그램들은 모듈들로 이루어져 있습니다. 하나의 <code>모듈</code>은 <code>statement</code> 들을 포함하고 있고, <code>statement</code> 는 <code>expressions</code> 을 가지고 있습니다.  </p>
+<br>
+
+<p><code>Module &gt; Statements &gt; Expressions</code> </p>
+<br>
+
+<p>파이썬에서뿐만 아니라, 자주자주 나오는 컨셉인, <code>statements</code> 와 <code>expressions</code> 에 대해서 알아보자면, </p>
+<br>
+
+<blockquote>
+<p><strong>Expressions</strong></p>
+<p>수식, 연산식 </p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><strong>Statements</strong></p>
+<p>실행 가능한 (executable) 코드 조각, 무엇인가를 실행하는 코드의 조각 이라고 보면 됩니다. </p>
+</blockquote>
+<br>
+
+<p>스택오버플로우에서 검색해 보면, 아래 예시가 나옵니다 </p>
+<br>
+
+<a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x + <span class="number">2</span>   <span class="comment"># Expression </span></span><br><span class="line">x = <span class="number">1</span>   <span class="comment"># Statement </span></span><br><span class="line"></span><br><span class="line">y = x + <span class="number">1</span>  <span class="comment"># Statement </span></span><br><span class="line"></span><br><span class="line">print(y)   <span class="comment"># Statement</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위 예시를 통해서 유추해 보면, expression  은 단순히 어떠한 값을 계산하는 수식이고. 어떠한 동작도 하지 않고, 해당 값을 표현하는 코드 입니다. </p>
+<br>
+
+<p>하지만, <code>statement</code> 는 이러한 <code>expression</code> 으로 표현된 값들을 가지고, 어떠한 행동을 취하는 코드입니다. 위의 예시에서 보면,</p>
+<br>
+
+<ul>
+<li><code>x=1</code> 은, x 라는 변수에, 1 이라는 값을 할당 합니다 </li>
+<li><code>y = x + 1</code> 은, <code>x + 1</code> 로 표현된 값을, <code>y</code> 라는 변수에 할당합니다 </li>
+<li><code>print(y)</code> 는, y 의 값을 출력하는 동작을 합니다.  </li>
+</ul>
+<br>
+
+<p>따라서, 위 3개의 예시는 모두 어떠한 동작을 하는 statement 입니다. 반면에, expression 은 값을 표현하는 단위로만 사용됩니다. statement 는 여러개의 expression 을 가지고 있을수 있고, 이것들을 가지고 어떠한 작업을 수행하는데 사용합니다. </p>
+<br>
+
+<h2 id="Python-의-특징"><a href="#Python-의-특징" class="headerlink" title="Python 의 특징"></a>Python 의 특징</h2><br>
+
+<ol>
+<li>Open Source (무료)</li>
+<li>배우기 쉽다 (다른 프로그래밍 언어에 비해서 쉬울수 있다)</li>
+<li>고등 수준의 언어이다 </li>
+<li>범용성이 넓다 </li>
+<li>객체 지향 언어 </li>
+<li>상호 작용이 가능 </li>
+<li>Interpreted 언어 이다 </li>
+</ol>
+<br>
+
+<h2 id="Python-의-역사"><a href="#Python-의-역사" class="headerlink" title="Python 의 역사"></a>Python 의 역사</h2><br>
+
+<p>파이썬이라는 이름은, “Monty Python’s Flying Circus” 먼티 파이썬의 플라잉 서커스 라는, 1969년부터 1974년 까지 Monty Python 이라는 코메디 그룹에 의해서 방영된 영국 스케치 코미디 시리즈에서 따온 이름입니다 <br></p>
+<p>파이썬은 1990년대초, Guido Van Rossum 에 의해서, 네덜란드 국립 수학 컴퓨터 사이언스 리서치 기관에서 개발 되었습니다. </p>
+<br>
+
+<p>파이썬은, ABC 라는 언어의 후계자로써 만들어 졌고, 1991년도에 대중들에게 배포 되었습니다. <br></p>
+<p>시간이 흐르면서, 많은 사용자 커뮤니티들이 언어 개발에 기여를 하였음에도 불구하고, Guido 는 파이썬의 기본 작성자로 남아 있습니다.<br></p>
+<p>1991년도와 2001년도 사이에 여러번의 버전 배포가 있었고, 거의 모든 파이썬 배포판은 오픈 소스 입니다.<br></p>
+<br>
+
+<h2 id="Python-의-주-사용처"><a href="#Python-의-주-사용처" class="headerlink" title="Python 의 주 사용처"></a>Python 의 주 사용처</h2><br>
+
+<ul>
+<li>시스템 유틸리티 (시스템 어드민 도구, 커맨드 라인 프로그램들)</li>
+<li>웹 개발 </li>
+<li>GUI (Graphical User Interfaces)</li>
+<li>인터넷 스크립팅 </li>
+<li>임베디드 스크립팅 </li>
+<li>데이터베이스 엑세스 및 프로그래밍 </li>
+<li>게임 프로그래밍 </li>
+<li>빠른 프로토타이핑과 개발 </li>
+<li>프로그램 배포 </li>
+</ul>
+<br>
+
+<h2 id="Python-을-사용하는-단체들"><a href="#Python-을-사용하는-단체들" class="headerlink" title="Python 을 사용하는 단체들"></a>Python 을 사용하는 단체들</h2><br>
+
+<table>
+<thead>
+<tr>
+<th><strong>분야</strong></th>
+<th><strong>단체</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>웹개발</td>
+<td>Yahoo maps, Yahoo Group, Google, Zope Corporation, Ultraseek, Linux Weekly News, Mojam.com, Shopzilla</td>
+</tr>
+<tr>
+<td>게임</td>
+<td>Battlefield2, Crystal space, Star Trek Bridge Commander, Civilization 4, QuArk(Quake Army Knife)</td>
+</tr>
+<tr>
+<td>그래픽</td>
+<td>Industrial Light &amp; Magic, Walt Disney Feature Animation, HKS, RoboFog, Caligari Corporation, Blender 3D, Jasc Software</td>
+</tr>
+<tr>
+<td>금융</td>
+<td>Altis Investment Management, ABN AMRO Bank, Treasury Systems</td>
+</tr>
+<tr>
+<td>과학</td>
+<td>National Weather Service, Radar Remote Sensing Group, Applied Maths, Biosoft, The National Research Council of Canada, AlphaGene, Inc. NASA, etc</td>
+</tr>
+<tr>
+<td>전자 자동화 디자인</td>
+<td>Ciranova, Productivity Design Tools, Object Domain, Red Hat</td>
+</tr>
+<tr>
+<td>교육</td>
+<td>University of Califonia, Irvine, New Zealand Digital Library, IT Certification Exam preparation, School Tool</td>
+</tr>
+<tr>
+<td>비지니스 소프트웨어</td>
+<td>Raven Bear Systems Corporation, Thawte Consulting, IBM, WuBook etc</td>
+</tr>
+</tbody></table>
+<br>]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>파이썬 라이브러리 (library) 와 모듈 (module)</title>
     <url>/2020/10/22/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-library-%EC%99%80-%EB%AA%A8%EB%93%88-module/</url>
     <content><![CDATA[<h2 id="Python-Library-and-Modules"><a href="#Python-Library-and-Modules" class="headerlink" title="Python Library and Modules"></a>Python Library and Modules</h2><br>
