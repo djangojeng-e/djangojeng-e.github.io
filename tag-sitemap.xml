@@ -3,8 +3,15 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/Syntax/</loc>
+        <lastmod>2020-10-24T07:44:49.394Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/Python/</loc>
-        <lastmod>2020-10-23T10:14:55.394Z</lastmod>
+        <lastmod>2020-10-24T07:44:49.394Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
