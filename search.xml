@@ -1,6 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 3편 - print 함수</title>
+    <url>/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/</url>
+    <content><![CDATA[<h2 id="Python-print"><a href="#Python-print" class="headerlink" title="Python - print()"></a>Python - <code>print()</code></h2><br>
+
+<br>
+
+<h2 id="print-함수"><a href="#print-함수" class="headerlink" title="print 함수"></a>print 함수</h2><br>
+
+<p>print 문은 <code>print()</code> 함수로 대체 되었습니다. 키워드 인자들은, 이전 프린트문의 특수 문법들을 대체 합니다. </p>
+<br>
+
+<p>print문은 아래와 같은 방식으로 사용될수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(<span class="string">"Good Morning"</span>)</span><br><span class="line">print(<span class="string">"Good"</span>, &lt;문자열을 가지고 있는 변수&gt;)</span><br><span class="line">print(<span class="string">"Good"</span>, &lt;문자열을 가지고 있는 변수&gt;)</span><br><span class="line">print(<span class="string">"Good %s"</span> % &lt;문자열을 가지고 있는 변수&gt; )</span><br><span class="line"></span><br><span class="line"><span class="comment"># 예) </span></span><br><span class="line">a = <span class="string">'abc'</span></span><br><span class="line"><span class="comment"># a 는 abc 라는 문자열을 가지고 있는 변수 </span></span><br><span class="line">print(<span class="string">'good'</span>, a)</span><br><span class="line">print(<span class="string">'good'</span> + a)</span><br><span class="line">print(<span class="string">'good %S'</span> % a)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="문자열-포매팅"><a href="#문자열-포매팅" class="headerlink" title="문자열 포매팅"></a>문자열 포매팅</h3><br>
+
+<p>추가적으로 문자열 포매팅이 중요한데. 문자열에 출력될 변수를, <code>%</code>, <code>{}</code> 에 넣어서 출력할수도 있습니다</p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">'django_bro'</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"Hey! %s"</span>, text)</span><br><span class="line">print(<span class="string">f'Hey! <span class="subst">&#123;text&#125;</span>'</span>)</span><br><span class="line">print(<span class="string">'Hey! &#123;&#125;'</span>.format(text))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>파이썬에서 문자열은, </p>
+<p>외따옴표, 쌍따옴표, 혹은 따옴표 3개로 감싸서 문자열로 사용할수 있습니다.</p>
+<p>문자열을 표현하기 위해서 사용되는 따옴표의 종류는 어떤것을 사용해도 상관이 없습니다.  </p>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+<p>하지만, 보통 아래와 같은 방식으로 사용합니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>따옴표</th>
+<th>표현 문자열</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‘</td>
+<td>하나의 단어 혹은 하나의 문자를 선언하기 위해 사용</td>
+</tr>
+<tr>
+<td>“</td>
+<td>하나의 줄을 선언하기 위해 사용</td>
+</tr>
+<tr>
+<td>‘’’ 혹은 “””</td>
+<td>파라그래프 / 문단 / 다수의 줄을 선언하기 위해 사용</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>아래 코드들이 출력하는것은 모두 같습니다. 따옴표 사용의 차이는 없지만, 따옴표 안에 같은 따옴표가 있으면 에러가 발생 합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 외 따옴표 사용 </span></span><br><span class="line">print(<span class="string">'파이썬은 매우 간단합니다!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 쌍 따옴표 사용 </span></span><br><span class="line">print(<span class="string">"파이썬은 매우 간단합니다!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 외따옴표 3개 사용 </span></span><br><span class="line">print(<span class="string">'''파이썬은 매우 간단합니다!'''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 쌍따옴표 3개 사용 </span></span><br><span class="line">print(<span class="string">"""파이썬은 매우 간단합니다!"""</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 에러가 나는 경우, invalid syntax  </span></span><br><span class="line"><span class="comment"># 외 따옴표 안에 외 따옴표가 다시 사용되었음 </span></span><br><span class="line">print(<span class="string">'파이썬은 '</span>매우<span class="string">' 간단합니다!'</span>)   </span><br><span class="line">      </span><br><span class="line"><span class="comment"># 에러가 나는 경우2, invalid syntax</span></span><br><span class="line"><span class="comment"># 쌍따옴표 안에 쌍 따옴표가 다시 사용됨, 에러를 발생 </span></span><br><span class="line">print(<span class="string">"파이썬은 "</span>매우<span class="string">" 간단합니다!"</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="변수-사용"><a href="#변수-사용" class="headerlink" title="변수 사용"></a>변수 사용</h2><br>
+
+<p>문자열들은 변수에 할당되고, print 문은 사용될때에 호출되어 사용될수 있습니다. </p>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">str1 = <span class="string">'Wel'</span></span><br><span class="line">print(str1, <span class="string">'come'</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">str1 = <span class="string">'Welcome'</span></span><br><span class="line">str2 = <span class="string">'Python'</span></span><br><span class="line">print(str1, str2)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="String-Concatenation-문자열-합치기"><a href="#String-Concatenation-문자열-합치기" class="headerlink" title="String Concatenation (문자열 합치기)"></a>String Concatenation (문자열 합치기)</h2><br>
+
+<p>string concatenation 은 두개의 문자열을 더하는것입니다. 문자열을 <code>+</code> 를 사용해서 다해주면, 문자열 사이에 공백이 없습니다. 예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">str1 = <span class="string">'Python'</span></span><br><span class="line">str2 = <span class="string">':'</span></span><br><span class="line">print(<span class="string">'Welcome'</span> + str1 + str2)</span><br><span class="line"><span class="comment"># () 안에 있는 모든 문자열들이 합쳐져서 출력될겁니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="문자열로-사용하기"><a href="#문자열로-사용하기" class="headerlink" title="문자열로 사용하기"></a>문자열로 사용하기</h2><br>
+
+<p><code>%</code> 는 문자열을 포함하고 있는 변수를 참조할때 사용됩니다. </p>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">str1 = <span class="string">' Python'</span></span><br><span class="line">print(<span class="string">"Welcome %s"</span> % str1)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>다른 데이터 타입들도 사용할수 있습니다 </p>
+</blockquote>
+<br>
+
+
+
+<table>
+<thead>
+<tr>
+<th>문자</th>
+<th>데이터타입</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d</td>
+<td>정수</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>지수</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>실수</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>Octal 8진수</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>Hexadecimal 16진수</td>
+</tr>
+</tbody></table>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 정수를 사용하는 경우 </span></span><br><span class="line">print(<span class="string">"Actual Number = %d"</span> % <span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 지수를 사용 </span></span><br><span class="line">print(<span class="string">"Exponential equivalent of the number = %e"</span> %<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 실수를 사용 </span></span><br><span class="line">print(<span class="string">'Float of the number = %f'</span> %<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 8진수 사용 </span></span><br><span class="line">print(<span class="string">"Octal Equivalent of the number = %o"</span> %<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 16진수 사용 </span></span><br><span class="line">print(<span class="string">"Octal equivalent of the number = %x"</span> %<span class="number">15</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="다수의-변수들을-사용"><a href="#다수의-변수들을-사용" class="headerlink" title="다수의 변수들을 사용"></a>다수의 변수들을 사용</h3><br>
+
+<p>다수의 변수들을 참조할때에는 괄호가 사용됩니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">str1 = <span class="string">'World'</span></span><br><span class="line">str2 = <span class="string">':'</span></span><br><span class="line">print(<span class="string">"Python %s %s"</span> % (str1, str2))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="프린트-문의-다른-예시들"><a href="#프린트-문의-다른-예시들" class="headerlink" title="프린트 문의 다른 예시들"></a>프린트 문의 다른 예시들</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># %는 %d 타입 단어를 위해 사용된다 </span></span><br><span class="line">print(<span class="string">"Welcome to %%Python %s"</span> %<span class="string">'language'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \n 은 줄바꿈을 위해서 사용됩니다 </span></span><br><span class="line">print(<span class="string">"Sunday\nMonday\nTuesday\nWednesday\nThursday\nFriday\nSaturday"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 어떤 단어를 여러번 출력하고 싶을때 </span></span><br><span class="line">print(<span class="string">'django'</span> * <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \t 는 tab키를 위해 사용됩니다 </span></span><br><span class="line">print(<span class="string">"""</span></span><br><span class="line"><span class="string">Language:</span></span><br><span class="line"><span class="string">\t1 Python</span></span><br><span class="line"><span class="string">\t2 Java\n\t3 JavaScript"""</span>)</span><br></pre></td></tr></table></figure>
+
+<p><br><br></p>
+<h3 id="Precision-width-and-Field-width"><a href="#Precision-width-and-Field-width" class="headerlink" title="Precision width and Field width"></a>Precision width and Field width</h3><br>
+
+<p>Field Width 는 숫자 전체의 넓이 이고, precision 은 우측을 향한 넓이 입니다. </p>
+<p><br>요구 사항에 따라 이는 조정 될수 있습니다. </p>
+<br>
+
+<p>기본 precision width 는 6 으로 설정 되어 있습니다. <br></p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># precision width and field width </span></span><br><span class="line"><span class="comment"># 6 번째 소숫점 까지 반환 됩니다 </span></span><br><span class="line"><span class="comment"># 이 소숫점 자리수를 지정하기 위해서는, </span></span><br><span class="line"><span class="comment"># %(fieldwidth).(precisionwidth)f 가 사용됩니다. </span></span><br><span class="line">print(<span class="string">"%f"</span> % <span class="number">5.1234567890</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 소수점 5자리까지만 반환 하고 싶을 경우</span></span><br><span class="line">print(<span class="string">"%.5f"</span> %<span class="number">5.1234567890</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 만약 field width 가 필요 이상으로 지정되어 있을경우, </span></span><br><span class="line"><span class="comment"># 데이터 오른쪽은 특정 값쪽으로 스스로 조정 됩니다 </span></span><br><span class="line">print(<span class="string">"%9.5f"</span> %<span class="number">5.1234567890</span>)</span><br><span class="line">      </span><br><span class="line"><span class="comment"># 0 을 추가하여, padding 값을 0으로 만들수 있습니다. </span></span><br><span class="line">print(<span class="string">"%015.5f"</span> % <span class="number">5.1234567890</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 올바른 정렬을 위해, 필드 너비에 공백을 비워 두어 음수를 사용할때에 </span></span><br><span class="line"><span class="comment"># 적절한 정렬이 유지 됩니다 </span></span><br><span class="line">print(<span class="string">"% 9f"</span> % <span class="number">5.1234567890</span>)</span><br><span class="line">print(<span class="string">"% 9f"</span> % <span class="number">5.1234567890</span>)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>기초</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python 기초 2편 - Syntax</title>
     <url>/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/</url>
     <content><![CDATA[<h2 id="Python-Syntax-문법-구문"><a href="#Python-Syntax-문법-구문" class="headerlink" title="Python Syntax (문법, 구문)"></a>Python Syntax (문법, 구문)</h2><br>
