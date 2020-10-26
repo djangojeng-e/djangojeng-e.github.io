@@ -1,6 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 4편 - variables (변수)</title>
+    <url>/2020/10/26/Python-%EA%B8%B0%EC%B4%88-4%ED%8E%B8-variables-%EB%B3%80%EC%88%98/</url>
+    <content><![CDATA[<h2 id="Python-Variables"><a href="#Python-Variables" class="headerlink" title="Python - Variables"></a>Python - Variables</h2><br>
+
+<h3 id="변수와-값-Variables-and-Value"><a href="#변수와-값-Variables-and-Value" class="headerlink" title="변수와 값 (Variables and Value)"></a>변수와 값 (Variables and Value)</h3><br>
+
+<blockquote>
+<p>변수 (Variables) 는, </p>
+<p>프로그래머가 값 (Value) 을 저장할수 있는 메모리 공간 입니다. </p>
+</blockquote>
+<br>
+
+<ul>
+<li>값은, 문자열 혹은 숫자열 혹은 기타 다른것들이 될수 있습니다 예) “django”, 118, 25.45 etc </li>
+<li>변수는 처음 할당 될때 생성됩니다 </li>
+<li>변수들은 참조되기 전에 할당이 되어 있어야 합니다. 할당 되지 않아 있는 변수를 참조하려 하면, 에러가 납니다</li>
+<li>변수안에 저장된 값은, 접근이 가능 하고, 혹은 나중에 업데이트 될수 있습니다 </li>
+<li>변수의 타입 (즉, 문자열, 정수, 실수 등)들은 파이썬에 의해 지정됩니다 </li>
+<li>파이썬 인터프리터는 변수의 데이터 타입을 기준으로 메모리를 할당 합니다. </li>
+</ul>
+<br>
+
+<h2 id="파이썬-변수-이름-규칙"><a href="#파이썬-변수-이름-규칙" class="headerlink" title="파이썬 변수 이름 규칙"></a>파이썬 변수 이름 규칙</h2><br>
+
+<ul>
+<li>글자 (a-z, A-Z) 혹은 <code>_</code> 언더스코어 로 시작 할수 있습니다 </li>
+<li>다른 문자들, 글자, 숫자 혹은 언더스코어가 될수 있습니다 </li>
+<li>파이썬 변수 이름은, 숫자로 시작하지 않습니다. </li>
+<li>대문자 소문자를 구분 합니다 </li>
+<li>적절한 길이로 이루어질수 있습니다 </li>
+<li><em>변수명으로 사용될수 없는, 예약어들이 존재 합니다. 파이썬이 다른것들을 위해서 사용하는 내장 함수나 예약어들은 변수명으로 사용할수 없습니다</em></li>
+</ul>
+<br>
+
+<p>예약어의 예시는 아래와 같습니다. 모든 예약어들은 변수명으로 사용될수 없습니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>False</th>
+<th>class</th>
+<th>finally</th>
+<th>is</th>
+<th>return</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>None</td>
+<td>continue</td>
+<td>for</td>
+<td>lambda</td>
+<td>try</td>
+</tr>
+<tr>
+<td>True</td>
+<td>def</td>
+<td>from</td>
+<td>nonlocal</td>
+<td>while</td>
+</tr>
+<tr>
+<td>and</td>
+<td>del</td>
+<td>global</td>
+<td>not</td>
+<td>with</td>
+</tr>
+<tr>
+<td>as</td>
+<td>el</td>
+<td>if</td>
+<td>or</td>
+<td>yield</td>
+</tr>
+<tr>
+<td>assert</td>
+<td>else</td>
+<td>import</td>
+<td>pass</td>
+<td></td>
+</tr>
+<tr>
+<td>break</td>
+<td>except</td>
+<td>in</td>
+<td>raise</td>
+<td></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="좋은-변수명"><a href="#좋은-변수명" class="headerlink" title="좋은 변수명"></a>좋은 변수명</h2><br>
+
+<p>프로그래머가 변수명을 잘 짓는 능력은 정말정말 중요합니다. 좋은 변수명을 짓기 위해서 참고할 룰은 몇가지 있지만, 가장 근본적으로 공통된 룰은 아래와 같습니다. </p>
+<p><br><a id="more"></a></p>
+<ul>
+<li>아주 짧은 변수명보다는, 짧고 간결하지만 의미를 포함하고 있는 이름이 좋습니다 </li>
+<li>의미 있는 이름을 만들기 위해서, 너무 긴 이름을 짓는것은 좋지 않습니다 </li>
+<li>변수명을 지을때에는, 일관성 있게 지어야 합니다 </li>
+<li>특수한 경우를 위해서, 변수명 앞에, <code>_</code> 를 붙여 줍니다 </li>
+</ul>
+<br>
+
+<blockquote>
+<p>변수를 생성할때에는, 할당을 통해서 변수에 값을 할당하고, 생성할수 있습니다. </p>
+<p>예를들면, 아래와 같은 형식으로 생성합니다. </p>
+<p><code>변수명 = 수식 혹은 값</code></p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><code>=</code> 연산자는, 오른쪽에 있는 값을, 왼쪽에 있는 변수명에 할당 합니다. </p>
+<p>예를들면, </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">item = <span class="string">"computer"</span>    <span class="comment"># "computer" 라는 문자열을, item 이라는 변수에 할당 했습니다. </span></span><br><span class="line">item_qty = <span class="number">10</span>        <span class="comment"># 10 이라는 정수를, item_qty 라는 변수에 할당 했습니다. </span></span><br><span class="line">item_value = <span class="number">949.99</span>  <span class="comment"># 949.99 라는 실수를, item_value 라는 변수에 할당 했습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 위의 할당된 변수들은 할당과 동시에 생성되었습니다. </span></span><br><span class="line"><span class="comment"># 이렇게 값이 할당되고 생성된 변수들은, 아래와 같이 다른 함수를 사용하여 참조되고, 호출되어 </span></span><br><span class="line"><span class="comment"># 값이 불려와 질수 있습니다 </span></span><br><span class="line"></span><br><span class="line">print(item_qty) </span><br><span class="line">print(item_value)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>변수를 생성할때, </p>
+<p>값은 오른쪽에, 변수명은 왼쪽에 두어야 합니다. </p>
+<p>변수명은 숫자가 될수 없습니다. 그렇지 않으면, 문법 에러를 발생 시킵니다. </p>
+<p>아래 예시는, 에러가 발생 합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="number">12</span> </span><br><span class="line"><span class="number">12</span> = a</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="나쁜-변수명"><a href="#나쁜-변수명" class="headerlink" title="나쁜 변수명"></a>나쁜 변수명</h2><br>
+
+<ul>
+<li>변수가 어디에 쓰일지 추정도 할수 없게, 너무 짧은 변수명 </li>
+<li>변수가 어디에 쓰일지 추정할수 없을만큼, 너무 의미가 없는 변수명 </li>
+<li>너무 많은 의미를 부여하여, 너무 길게 지어진 변수명 </li>
+<li>기타 등등 (개인적으로, 가독성을 떨어트리는 변수명 싫습니다!)</li>
+</ul>
+<br>
+
+
+
+<br>
+
+<blockquote>
+<p>프로그래머들은, </p>
+<p>많은 시간을 좋은 변수명을 짓기 위해서 소비합니다. </p>
+<p>변수명은, 다른 프로그래머들이 보았을때에도 의미가 명확하고, 효과적인 변수명이어야 합니다. </p>
+<br>
+
+<p>이는, 다른 프로그래머들이 작성한 코드를 많이 보고 참조하거나. </p>
+<p>많은 연습이 필요한 영역으로, 본인만 이해할수 있는 변수명 보다는, 코딩을 모르는 초보들도 알기 쉬운 </p>
+<p>변수명으로 선택하는것이 좋습니다. </p>
+<br>
+
+<p>변수명을 짓는것을 잘 하면, 함수명과 클래스명을 지을때도 응용해서 잘 지을수 있습니다. </p>
+</blockquote>
+<br>
+
+<h2 id="다수-할당"><a href="#다수-할당" class="headerlink" title="다수 할당"></a>다수 할당</h2><br>
+
+<p>기본 할당문은, 하나의 변수와 하나의 값을 가지고 작동했습니다. 하지만, 다수의 변수에 하나의 값을 동시에 할당 할수도 있습니다. </p>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = y = z = <span class="number">1</span> </span><br><span class="line">print(x) </span><br><span class="line">print(y)</span><br><span class="line">print(z)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x, y, z 변수는 모두 1로 할당이 됩니다 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 아래에는, 다른 값들을, 다른 변수들에 동시에 할당해보는 예시 입니다. </span></span><br><span class="line">x, y, z = <span class="number">1</span>, <span class="number">2</span>, <span class="string">"abcd"</span> </span><br><span class="line">print(x)</span><br><span class="line">print(y)</span><br><span class="line">print(z)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>새로운 값을 변수에 할당하는것으로, 같은 변수명을 재사용 할수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = <span class="number">100</span> </span><br><span class="line">print(x) </span><br><span class="line"></span><br><span class="line"><span class="comment"># x 에 'Django' 라는 문자열을 새로운 값으로 할당 합니다 </span></span><br><span class="line">x = <span class="string">'Django'</span> </span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="변수-바꾸기"><a href="#변수-바꾸기" class="headerlink" title="변수 바꾸기"></a>변수 바꾸기</h2><br>
+
+<p>파이썬 변수값 바꾸기는 한줄로 가능하고, 이는 파이썬에서 모든 객체들에 적용됩니다. </p>
+<p><br>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = <span class="number">10</span> </span><br><span class="line">y = <span class="number">20</span> </span><br><span class="line">print(x)</span><br><span class="line">print(y)</span><br><span class="line"></span><br><span class="line">x, y = y, x  <span class="comment"># 변수의 값을 바꿉니다 </span></span><br><span class="line">print(x) </span><br><span class="line">print(y)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Local-변수와-Global-변수"><a href="#Local-변수와-Global-변수" class="headerlink" title="Local 변수와 Global 변수"></a>Local 변수와 Global 변수</h2><br>
+
+<blockquote>
+<p>Local 변수는 지역 변수라고도 하는데, </p>
+<p>특정 코드 영역안에서 사용되는 변수들입니다. </p>
+<br>
+
+<p>Global 변수는 전역 변수라고도 하는데, </p>
+<p>프로그램 전체 영역에서 사용되는 변수들입니다. </p>
+</blockquote>
+<br>
+
+<p>파이썬에서, 함수안에서만 참조되는 변수들은 암시적으로 global 변수 입니다. </p>
+<p><br>만약, 하나의 변수가 명확하게 함수안에서 값이 할당 되어 있다면, 이는 local 변수로, 함수내의 변수로 사용됩니다. 아래 예시를 통해 차이점을 알아봅니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">language1 = <span class="string">"Python"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">()</span>:</span></span><br><span class="line">    language1 = <span class="string">"PHP"</span></span><br><span class="line">    print(<span class="string">"func1 안에서 language1 = "</span>, language1)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func2</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"func2 안에서 language1 = "</span>, language1)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">func1()   <span class="comment"># 함수안에 정의된 로컬 변수,language1 의 값을 사용 </span></span><br><span class="line">func2()   <span class="comment"># 함수안에 저의된 로컬 변수가 없기 때문에, language1 이라는 global 변수를 사용</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>함수안에서, 특별한 값을 local 변수로 지정하고, 이를 global  변수로 만들수도 있습니다. global 을 변수명 앞에 붙여서 사용할수 있습니다. </p>
+<br>
+
+<p>로컬 변수 (local variables) 와 전역 변수 (global variables) 의 개념은 매우 중요합니다. 꼭 구글을 통해서 더 찾아보도록 합니다. 하지만, 현대 프로그래밍에서는, global 변수의 사용을 권장하고 있지 않습니다. </p>
+<br>
+
+<p>global 변수를 너무 많이 사용하면, global 변수의 변경사항이 프로그램 전반에 걸쳐 영향을 주기 때문입니다. <br></p>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>변수</tag>
+        <tag>variables</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python 기초 3편 - print 함수</title>
     <url>/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/</url>
     <content><![CDATA[<h2 id="Python-print"><a href="#Python-print" class="headerlink" title="Python - print()"></a>Python - <code>print()</code></h2><br>

@@ -9,8 +9,120 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Sun, 25 Oct 2020 02:00:35 GMT</pubDate>
+    <pubDate>Mon, 26 Oct 2020 08:54:08 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Python 기초 4편 - variables (변수)</title>
+      <link>http://djangojeng-e.github.io/2020/10/26/Python-%EA%B8%B0%EC%B4%88-4%ED%8E%B8-variables-%EB%B3%80%EC%88%98/</link>
+      <guid>http://djangojeng-e.github.io/2020/10/26/Python-%EA%B8%B0%EC%B4%88-4%ED%8E%B8-variables-%EB%B3%80%EC%88%98/</guid>
+      <pubDate>Mon, 26 Oct 2020 08:33:06 GMT</pubDate>
+      <description>
+      
+        &lt;h2 id=&quot;Python-Variables&quot;&gt;&lt;a href=&quot;#Python-Variables&quot; class=&quot;headerlink&quot; title=&quot;Python - Variables&quot;&gt;&lt;/a&gt;Python - Variables&lt;/h2&gt;&lt;br&gt;
+
+&lt;h3 id=&quot;변수와-값-Variables-and-Value&quot;&gt;&lt;a href=&quot;#변수와-값-Variables-and-Value&quot; class=&quot;headerlink&quot; title=&quot;변수와 값 (Variables and Value)&quot;&gt;&lt;/a&gt;변수와 값 (Variables and Value)&lt;/h3&gt;&lt;br&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;변수 (Variables) 는, &lt;/p&gt;
+&lt;p&gt;프로그래머가 값 (Value) 을 저장할수 있는 메모리 공간 입니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br&gt;
+
+&lt;ul&gt;
+&lt;li&gt;값은, 문자열 혹은 숫자열 혹은 기타 다른것들이 될수 있습니다 예) “django”, 118, 25.45 etc &lt;/li&gt;
+&lt;li&gt;변수는 처음 할당 될때 생성됩니다 &lt;/li&gt;
+&lt;li&gt;변수들은 참조되기 전에 할당이 되어 있어야 합니다. 할당 되지 않아 있는 변수를 참조하려 하면, 에러가 납니다&lt;/li&gt;
+&lt;li&gt;변수안에 저장된 값은, 접근이 가능 하고, 혹은 나중에 업데이트 될수 있습니다 &lt;/li&gt;
+&lt;li&gt;변수의 타입 (즉, 문자열, 정수, 실수 등)들은 파이썬에 의해 지정됩니다 &lt;/li&gt;
+&lt;li&gt;파이썬 인터프리터는 변수의 데이터 타입을 기준으로 메모리를 할당 합니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+
+&lt;h2 id=&quot;파이썬-변수-이름-규칙&quot;&gt;&lt;a href=&quot;#파이썬-변수-이름-규칙&quot; class=&quot;headerlink&quot; title=&quot;파이썬 변수 이름 규칙&quot;&gt;&lt;/a&gt;파이썬 변수 이름 규칙&lt;/h2&gt;&lt;br&gt;
+
+&lt;ul&gt;
+&lt;li&gt;글자 (a-z, A-Z) 혹은 &lt;code&gt;_&lt;/code&gt; 언더스코어 로 시작 할수 있습니다 &lt;/li&gt;
+&lt;li&gt;다른 문자들, 글자, 숫자 혹은 언더스코어가 될수 있습니다 &lt;/li&gt;
+&lt;li&gt;파이썬 변수 이름은, 숫자로 시작하지 않습니다. &lt;/li&gt;
+&lt;li&gt;대문자 소문자를 구분 합니다 &lt;/li&gt;
+&lt;li&gt;적절한 길이로 이루어질수 있습니다 &lt;/li&gt;
+&lt;li&gt;&lt;em&gt;변수명으로 사용될수 없는, 예약어들이 존재 합니다. 파이썬이 다른것들을 위해서 사용하는 내장 함수나 예약어들은 변수명으로 사용할수 없습니다&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+
+&lt;p&gt;예약어의 예시는 아래와 같습니다. 모든 예약어들은 변수명으로 사용될수 없습니다. &lt;/p&gt;
+&lt;br&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;False&lt;/th&gt;
+&lt;th&gt;class&lt;/th&gt;
+&lt;th&gt;finally&lt;/th&gt;
+&lt;th&gt;is&lt;/th&gt;
+&lt;th&gt;return&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;None&lt;/td&gt;
+&lt;td&gt;continue&lt;/td&gt;
+&lt;td&gt;for&lt;/td&gt;
+&lt;td&gt;lambda&lt;/td&gt;
+&lt;td&gt;try&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;def&lt;/td&gt;
+&lt;td&gt;from&lt;/td&gt;
+&lt;td&gt;nonlocal&lt;/td&gt;
+&lt;td&gt;while&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;and&lt;/td&gt;
+&lt;td&gt;del&lt;/td&gt;
+&lt;td&gt;global&lt;/td&gt;
+&lt;td&gt;not&lt;/td&gt;
+&lt;td&gt;with&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;as&lt;/td&gt;
+&lt;td&gt;el&lt;/td&gt;
+&lt;td&gt;if&lt;/td&gt;
+&lt;td&gt;or&lt;/td&gt;
+&lt;td&gt;yield&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;assert&lt;/td&gt;
+&lt;td&gt;else&lt;/td&gt;
+&lt;td&gt;import&lt;/td&gt;
+&lt;td&gt;pass&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;break&lt;/td&gt;
+&lt;td&gt;except&lt;/td&gt;
+&lt;td&gt;in&lt;/td&gt;
+&lt;td&gt;raise&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;br&gt;
+
+&lt;br&gt;
+
+&lt;h2 id=&quot;좋은-변수명&quot;&gt;&lt;a href=&quot;#좋은-변수명&quot; class=&quot;headerlink&quot; title=&quot;좋은 변수명&quot;&gt;&lt;/a&gt;좋은 변수명&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;프로그래머가 변수명을 잘 짓는 능력은 정말정말 중요합니다. 좋은 변수명을 짓기 위해서 참고할 룰은 몇가지 있지만, 가장 근본적으로 공통된 룰은 아래와 같습니다. &lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Python-Variables"><a href="#Python-Variables" class="headerlink" title="Python - Variables"></a>Python - Variables</h2><br><h3 id="변수와-값-Variables-and-Value"><a href="#변수와-값-Variables-and-Value" class="headerlink" title="변수와 값 (Variables and Value)"></a>변수와 값 (Variables and Value)</h3><br><blockquote><p>변수 (Variables) 는, </p><p>프로그래머가 값 (Value) 을 저장할수 있는 메모리 공간 입니다. </p></blockquote><br><ul><li>값은, 문자열 혹은 숫자열 혹은 기타 다른것들이 될수 있습니다 예) “django”, 118, 25.45 etc </li><li>변수는 처음 할당 될때 생성됩니다 </li><li>변수들은 참조되기 전에 할당이 되어 있어야 합니다. 할당 되지 않아 있는 변수를 참조하려 하면, 에러가 납니다</li><li>변수안에 저장된 값은, 접근이 가능 하고, 혹은 나중에 업데이트 될수 있습니다 </li><li>변수의 타입 (즉, 문자열, 정수, 실수 등)들은 파이썬에 의해 지정됩니다 </li><li>파이썬 인터프리터는 변수의 데이터 타입을 기준으로 메모리를 할당 합니다. </li></ul><br><h2 id="파이썬-변수-이름-규칙"><a href="#파이썬-변수-이름-규칙" class="headerlink" title="파이썬 변수 이름 규칙"></a>파이썬 변수 이름 규칙</h2><br><ul><li>글자 (a-z, A-Z) 혹은 <code>_</code> 언더스코어 로 시작 할수 있습니다 </li><li>다른 문자들, 글자, 숫자 혹은 언더스코어가 될수 있습니다 </li><li>파이썬 변수 이름은, 숫자로 시작하지 않습니다. </li><li>대문자 소문자를 구분 합니다 </li><li>적절한 길이로 이루어질수 있습니다 </li><li><em>변수명으로 사용될수 없는, 예약어들이 존재 합니다. 파이썬이 다른것들을 위해서 사용하는 내장 함수나 예약어들은 변수명으로 사용할수 없습니다</em></li></ul><br><p>예약어의 예시는 아래와 같습니다. 모든 예약어들은 변수명으로 사용될수 없습니다. </p><br><table><thead><tr><th>False</th><th>class</th><th>finally</th><th>is</th><th>return</th></tr></thead><tbody><tr><td>None</td><td>continue</td><td>for</td><td>lambda</td><td>try</td></tr><tr><td>True</td><td>def</td><td>from</td><td>nonlocal</td><td>while</td></tr><tr><td>and</td><td>del</td><td>global</td><td>not</td><td>with</td></tr><tr><td>as</td><td>el</td><td>if</td><td>or</td><td>yield</td></tr><tr><td>assert</td><td>else</td><td>import</td><td>pass</td><td></td></tr><tr><td>break</td><td>except</td><td>in</td><td>raise</td><td></td></tr></tbody></table><br><br><h2 id="좋은-변수명"><a href="#좋은-변수명" class="headerlink" title="좋은 변수명"></a>좋은 변수명</h2><br><p>프로그래머가 변수명을 잘 짓는 능력은 정말정말 중요합니다. 좋은 변수명을 짓기 위해서 참고할 룰은 몇가지 있지만, 가장 근본적으로 공통된 룰은 아래와 같습니다. </p><p><br><a id="more"></a></p><ul><li>아주 짧은 변수명보다는, 짧고 간결하지만 의미를 포함하고 있는 이름이 좋습니다 </li><li>의미 있는 이름을 만들기 위해서, 너무 긴 이름을 짓는것은 좋지 않습니다 </li><li>변수명을 지을때에는, 일관성 있게 지어야 합니다 </li><li>특수한 경우를 위해서, 변수명 앞에, <code>_</code> 를 붙여 줍니다 </li></ul><br><blockquote><p>변수를 생성할때에는, 할당을 통해서 변수에 값을 할당하고, 생성할수 있습니다. </p><p>예를들면, 아래와 같은 형식으로 생성합니다. </p><p><code>변수명 = 수식 혹은 값</code></p></blockquote><br><blockquote><p><code>=</code> 연산자는, 오른쪽에 있는 값을, 왼쪽에 있는 변수명에 할당 합니다. </p><p>예를들면, </p></blockquote><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">item = <span class="string">"computer"</span>    <span class="comment"># "computer" 라는 문자열을, item 이라는 변수에 할당 했습니다. </span></span><br><span class="line">item_qty = <span class="number">10</span>        <span class="comment"># 10 이라는 정수를, item_qty 라는 변수에 할당 했습니다. </span></span><br><span class="line">item_value = <span class="number">949.99</span>  <span class="comment"># 949.99 라는 실수를, item_value 라는 변수에 할당 했습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 위의 할당된 변수들은 할당과 동시에 생성되었습니다. </span></span><br><span class="line"><span class="comment"># 이렇게 값이 할당되고 생성된 변수들은, 아래와 같이 다른 함수를 사용하여 참조되고, 호출되어 </span></span><br><span class="line"><span class="comment"># 값이 불려와 질수 있습니다 </span></span><br><span class="line"></span><br><span class="line">print(item_qty) </span><br><span class="line">print(item_value)</span><br></pre></td></tr></table></figure><br><br><blockquote><p>변수를 생성할때, </p><p>값은 오른쪽에, 변수명은 왼쪽에 두어야 합니다. </p><p>변수명은 숫자가 될수 없습니다. 그렇지 않으면, 문법 에러를 발생 시킵니다. </p><p>아래 예시는, 에러가 발생 합니다. </p></blockquote><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">12</span> </span><br><span class="line"><span class="number">12</span> = a</span><br></pre></td></tr></table></figure><br><br><h2 id="나쁜-변수명"><a href="#나쁜-변수명" class="headerlink" title="나쁜 변수명"></a>나쁜 변수명</h2><br><ul><li>변수가 어디에 쓰일지 추정도 할수 없게, 너무 짧은 변수명 </li><li>변수가 어디에 쓰일지 추정할수 없을만큼, 너무 의미가 없는 변수명 </li><li>너무 많은 의미를 부여하여, 너무 길게 지어진 변수명 </li><li>기타 등등 (개인적으로, 가독성을 떨어트리는 변수명 싫습니다!)</li></ul><br><br><blockquote><p>프로그래머들은, </p><p>많은 시간을 좋은 변수명을 짓기 위해서 소비합니다. </p><p>변수명은, 다른 프로그래머들이 보았을때에도 의미가 명확하고, 효과적인 변수명이어야 합니다. </p><br><p>이는, 다른 프로그래머들이 작성한 코드를 많이 보고 참조하거나. </p><p>많은 연습이 필요한 영역으로, 본인만 이해할수 있는 변수명 보다는, 코딩을 모르는 초보들도 알기 쉬운 </p><p>변수명으로 선택하는것이 좋습니다. </p><br><p>변수명을 짓는것을 잘 하면, 함수명과 클래스명을 지을때도 응용해서 잘 지을수 있습니다. </p></blockquote><br><h2 id="다수-할당"><a href="#다수-할당" class="headerlink" title="다수 할당"></a>다수 할당</h2><br><p>기본 할당문은, 하나의 변수와 하나의 값을 가지고 작동했습니다. 하지만, 다수의 변수에 하나의 값을 동시에 할당 할수도 있습니다. </p><br><p>예를들면, </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = y = z = <span class="number">1</span> </span><br><span class="line">print(x) </span><br><span class="line">print(y)</span><br><span class="line">print(z)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x, y, z 변수는 모두 1로 할당이 됩니다 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 아래에는, 다른 값들을, 다른 변수들에 동시에 할당해보는 예시 입니다. </span></span><br><span class="line">x, y, z = <span class="number">1</span>, <span class="number">2</span>, <span class="string">"abcd"</span> </span><br><span class="line">print(x)</span><br><span class="line">print(y)</span><br><span class="line">print(z)</span><br></pre></td></tr></table></figure><br><p>새로운 값을 변수에 할당하는것으로, 같은 변수명을 재사용 할수 있습니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">100</span> </span><br><span class="line">print(x) </span><br><span class="line"></span><br><span class="line"><span class="comment"># x 에 'Django' 라는 문자열을 새로운 값으로 할당 합니다 </span></span><br><span class="line">x = <span class="string">'Django'</span> </span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure><br><h2 id="변수-바꾸기"><a href="#변수-바꾸기" class="headerlink" title="변수 바꾸기"></a>변수 바꾸기</h2><br><p>파이썬 변수값 바꾸기는 한줄로 가능하고, 이는 파이썬에서 모든 객체들에 적용됩니다. </p><p><br>예를들면, </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">10</span> </span><br><span class="line">y = <span class="number">20</span> </span><br><span class="line">print(x)</span><br><span class="line">print(y)</span><br><span class="line"></span><br><span class="line">x, y = y, x  <span class="comment"># 변수의 값을 바꿉니다 </span></span><br><span class="line">print(x) </span><br><span class="line">print(y)</span><br></pre></td></tr></table></figure><br><h2 id="Local-변수와-Global-변수"><a href="#Local-변수와-Global-변수" class="headerlink" title="Local 변수와 Global 변수"></a>Local 변수와 Global 변수</h2><br><blockquote><p>Local 변수는 지역 변수라고도 하는데, </p><p>특정 코드 영역안에서 사용되는 변수들입니다. </p><br><p>Global 변수는 전역 변수라고도 하는데, </p><p>프로그램 전체 영역에서 사용되는 변수들입니다. </p></blockquote><br><p>파이썬에서, 함수안에서만 참조되는 변수들은 암시적으로 global 변수 입니다. </p><p><br>만약, 하나의 변수가 명확하게 함수안에서 값이 할당 되어 있다면, 이는 local 변수로, 함수내의 변수로 사용됩니다. 아래 예시를 통해 차이점을 알아봅니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">language1 = <span class="string">"Python"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">()</span>:</span></span><br><span class="line">    language1 = <span class="string">"PHP"</span></span><br><span class="line">    print(<span class="string">"func1 안에서 language1 = "</span>, language1)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func2</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"func2 안에서 language1 = "</span>, language1)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">func1()   <span class="comment"># 함수안에 정의된 로컬 변수,language1 의 값을 사용 </span></span><br><span class="line">func2()   <span class="comment"># 함수안에 저의된 로컬 변수가 없기 때문에, language1 이라는 global 변수를 사용</span></span><br></pre></td></tr></table></figure><br><p>함수안에서, 특별한 값을 local 변수로 지정하고, 이를 global  변수로 만들수도 있습니다. global 을 변수명 앞에 붙여서 사용할수 있습니다. </p><br><p>로컬 변수 (local variables) 와 전역 변수 (global variables) 의 개념은 매우 중요합니다. 꼭 구글을 통해서 더 찾아보도록 합니다. 하지만, 현대 프로그래밍에서는, global 변수의 사용을 권장하고 있지 않습니다. </p><br><p>global 변수를 너무 많이 사용하면, global 변수의 변경사항이 프로그램 전반에 걸쳐 영향을 주기 때문입니다. <br></p>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/10/26/Python-%EA%B8%B0%EC%B4%88-4%ED%8E%B8-variables-%EB%B3%80%EC%88%98/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Python 기초 3편 - print 함수</title>
@@ -640,77 +752,6 @@
       <content:encoded><![CDATA[<h2 id="Working-with-form-templates"><a href="#Working-with-form-templates" class="headerlink" title="Working with form templates"></a>Working with form templates</h2><br><p>폼을 템플릿으로 가져오기 위해서 해야할 모든것은, 폼 인스턴스를 템플릿 컨텍스트에 넣어주는것입니다. </p><br><br><ol><li><p>폼인스턴스 생성</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># views.py 에서 </span></span><br><span class="line">form = NameForm()</span><br></pre></td></tr></table></figure></li><li><p>템플릿 컨텍스트에 넣기 </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> render(request, form.html, &#123;<span class="string">'form'</span>: form&#125;)</span><br></pre></td></tr></table></figure></li></ol><br><p>템플릿 컨텍스트에 넣어진 컨텍스트 즉, <code>{&#39;form&#39;: form}</code> 은, 해당 템플릿 페이지에서, 아래와 같이 사용될수 있습니다. </p><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; form &#125;&#125;</span></span><br></pre></td></tr></table></figure><br><p>이렇게 하면, 템플릿에서 적절하게 label 과 input 요소들을 렌더해줄수 있습니다. </p><br><br><h2 id="Form-rendering-options"><a href="#Form-rendering-options" class="headerlink" title="Form rendering options"></a>Form rendering options</h2><br><blockquote><p><strong>추가해야할 폼 템플릿 요소들</strong> </p><p>폼의 출력은 <code>&lt;form&gt;</code> 테그 혹은 폼의 제출 약식들을 포함하지 않는다는것을 잊지 마세요. </p><p><code>&lt;form&gt;</code> 태그와 <code>&lt;submit&gt;</code> 태그 같은것들은 여러분들이 스스로 넣어줘야 합니다. </p></blockquote><br><p>Django 에서 Form 을 템플릿에 렌더할때에, 옵션을 붙여서 폼의 출력 형태를 바꾸어 줄수 있습니다.  </p><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; form.as_table &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">tr</span>&gt;</span> 테그로 감싸진 테이블로 폼을 렌더해줍니다 </span></span><br><span class="line"><span class="template-variable">&#123;&#123; form.as_p &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">p</span>&gt;</span> 테그로 감싸진 폼을 렌더해 줍니다 </span></span><br><span class="line"><span class="template-variable">&#123;&#123; form.as_ul &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">ul</span>&gt;</span> 태그로 감싸진 폼을 렌더해 줍니다</span></span><br></pre></td></tr></table></figure><br><p>form.as_table 과 form.as_ul 같은 경우, 상위 태그인 <code>&lt;table&gt;</code> 과, <code>&lt;ul&gt;</code> 요소들을 여러분들 스스로 작성하고 감싸주어야 합니다. </p><br><br><h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><br><p>아주 간단한 폼을 템플릿에 렌더해 보면, </p><br><a id="more"></a><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"># forms.py </span></span><br><span class="line"></span><br><span class="line"><span class="xml">from django import forms </span></span><br><span class="line"></span><br><span class="line"><span class="xml">class ContactForm(forms.Form):</span></span><br><span class="line"><span class="xml">subject = forms.CharField(max_length=100)</span></span><br><span class="line"><span class="xml">message = forms.CharField(widget=forms.Textarea)</span></span><br><span class="line"><span class="xml">sender = forms.EmailField()</span></span><br><span class="line"><span class="xml">cc_mysself = forms.BooleanField(required=False)</span></span><br><span class="line"></span><br><span class="line"><span class="xml"># views.py </span></span><br><span class="line"><span class="xml">def form_render(request):</span></span><br><span class="line"><span class="xml">form = ContactForm() </span></span><br><span class="line"><span class="xml">return render(request, 'form.html', &#123;'form': form&#125;)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml"># form.html 에서 </span><span class="template-variable">&#123;&#123; form.as_p &#125;&#125;</span><span class="xml"> 로 렌더를 해보면,</span></span><br><span class="line"><span class="xml"># 아래처럼 html 태그가 생성됩니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_subject"</span>&gt;</span>Subject:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"id_subject"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"subject"</span> <span class="attr">maxlength</span>=<span class="string">"100"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_message"</span>&gt;</span>Message:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"message"</span> <span class="attr">id</span>=<span class="string">"id_message"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_sender"</span>&gt;</span>Sender:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"sender"</span> <span class="attr">id</span>=<span class="string">"id_sender"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"id_cc_myself"</span>&gt;</span>Cc myself:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"cc_myself"</span> <span class="attr">id</span>=<span class="string">"id_cc_myself"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure><br>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Django Forms 12편 - Django Form 클래스에 대해 2</title>
-      <link>http://djangojeng-e.github.io/2020/10/08/Django-Forms-12%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-2/</link>
-      <guid>http://djangojeng-e.github.io/2020/10/08/Django-Forms-12%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-2/</guid>
-      <pubDate>Thu, 08 Oct 2020 00:43:30 GMT</pubDate>
-      <description>
-      
-        &lt;h2 id=&quot;Fields-에-대해서&quot;&gt;&lt;a href=&quot;#Fields-에-대해서&quot; class=&quot;headerlink&quot; title=&quot;Fields 에 대해서&quot;&gt;&lt;/a&gt;Fields 에 대해서&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;이전 포스팅들에서 다루었었던 예시보다 좀더 유용한 폼을 한번 생각해 봅시다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;개인적인 웹사이트에 contact me 기능을 구현하는 폼을 생각해 봅시다. Contact Me 폼을 작성하기 위한 &lt;code&gt;forms.py&lt;/code&gt; 파일은 아래와 같이 작성될수 있습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; forms &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ContactForm&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(forms.Form)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    subject = forms.CharField(max_length=&lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    message = forms.CharField(widget=forms.Textarea)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    sender = forms.EmailField()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    cc_myself = forms.BooleanField(required=&lt;span class=&quot;literal&quot;&gt;False&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;br&gt;
-
-&lt;p&gt;이전 포스팅에서 들었었던 폼의 예시는, 하나의 필드만 사용했었습니다. your_ name 과 CharField 만 사용햇었습니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;하지만, 이번 경우에는, 4가지의 필드들을 가지고 있습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;strong&gt;Fields&lt;/strong&gt;&lt;/th&gt;
-&lt;th&gt;&lt;strong&gt;FieldTypes&lt;/strong&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;td&gt;subject&lt;/td&gt;
-&lt;td&gt;CharField&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;message&lt;/td&gt;
-&lt;td&gt;CharField(widget=forms.Textarea)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;sender&lt;/td&gt;
-&lt;td&gt;EmailField&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;cc_myself&lt;/td&gt;
-&lt;td&gt;BooleanField&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;h2 id=&quot;Widgets&quot;&gt;&lt;a href=&quot;#Widgets&quot; class=&quot;headerlink&quot; title=&quot;Widgets&quot;&gt;&lt;/a&gt;Widgets&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;각 폼의 필드는 그에 상응하는 Widget 클래스를 가지고 있습니다, 위의 예시에서는 widget=forms.Textarea 로 지정되어 &lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot;&amp;gt;&lt;/code&gt; 같은 HTML 폼 widget 이 될것입니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;대부분의 경우, 필드는 적당한 기본 widget 을 가지고 있을것입니다. &lt;/p&gt;
-&lt;p&gt;&lt;br&gt;예를들면, 기본값으로 CharField 는 TextInput widget 을 가질것이고, 이는 &lt;code&gt;&amp;lt;input type=&amp;quot;text&amp;quot;&amp;gt;&lt;/code&gt; 를 HTML 안에서 만들어 내줍니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;만약 &lt;code&gt;&amp;lt;textarea&amp;gt;&lt;/code&gt; 가 필요했다면, 적절한 widget 을 Form 필드를 정의할때 지정해 주면 됩니다. 우리는 이것을 message 필드를 정의할때 지정해 주었습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="Fields-에-대해서"><a href="#Fields-에-대해서" class="headerlink" title="Fields 에 대해서"></a>Fields 에 대해서</h2><br><p>이전 포스팅들에서 다루었었던 예시보다 좀더 유용한 폼을 한번 생각해 봅시다. </p><p><br>개인적인 웹사이트에 contact me 기능을 구현하는 폼을 생각해 봅시다. Contact Me 폼을 작성하기 위한 <code>forms.py</code> 파일은 아래와 같이 작성될수 있습니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django <span class="keyword">import</span> forms </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContactForm</span><span class="params">(forms.Form)</span>:</span></span><br><span class="line">    subject = forms.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    message = forms.CharField(widget=forms.Textarea)</span><br><span class="line">    sender = forms.EmailField()</span><br><span class="line">    cc_myself = forms.BooleanField(required=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure><br><p>이전 포스팅에서 들었었던 폼의 예시는, 하나의 필드만 사용했었습니다. your_ name 과 CharField 만 사용햇었습니다. </p><p><br>하지만, 이번 경우에는, 4가지의 필드들을 가지고 있습니다. </p><br><table><thead><tr><th><strong>Fields</strong></th><th><strong>FieldTypes</strong></th></tr></thead><tbody><tr><td>subject</td><td>CharField</td></tr><tr><td>message</td><td>CharField(widget=forms.Textarea)</td></tr><tr><td>sender</td><td>EmailField</td></tr><tr><td>cc_myself</td><td>BooleanField</td></tr></tbody></table><br><br><h2 id="Widgets"><a href="#Widgets" class="headerlink" title="Widgets"></a>Widgets</h2><br><p>각 폼의 필드는 그에 상응하는 Widget 클래스를 가지고 있습니다, 위의 예시에서는 widget=forms.Textarea 로 지정되어 <code>&lt;input type=&quot;text&quot;&gt;</code> 같은 HTML 폼 widget 이 될것입니다. </p><br><p>대부분의 경우, 필드는 적당한 기본 widget 을 가지고 있을것입니다. </p><p><br>예를들면, 기본값으로 CharField 는 TextInput widget 을 가질것이고, 이는 <code>&lt;input type=&quot;text&quot;&gt;</code> 를 HTML 안에서 만들어 내줍니다. </p><br><p>만약 <code>&lt;textarea&gt;</code> 가 필요했다면, 적절한 widget 을 Form 필드를 정의할때 지정해 주면 됩니다. 우리는 이것을 message 필드를 정의할때 지정해 주었습니다. </p><br><br><a id="more"></a><br><h2 id="Field-Data"><a href="#Field-Data" class="headerlink" title="Field Data"></a>Field Data</h2><br><p>어떤 데이터이든 폼과 함께 제출되었고, <code>is_valid()</code> 함수를 호출하여 성공적으로 검증되었으면 (is_valid() 가 True 를 반환했을때),  </p><p><br>검증된 폼 데이터는 <code>form.cleaned_data</code> 에 사전 형태로 있을것입니다. 이 데이터는 여러분들을 위해 python 데이터 타입으로 좋게 전환되어 있습니다.  </p><br><blockquote><p><strong>NOTE</strong></p><p>우리는 여전히 검증되지 않은 데이터들을, request.POST 를 사용하여 </p><p>직접 엑세스 할수 있습니다. 하지만, 검증된 데이터를 다루는것이 더 좋습니다. </p></blockquote><br><p>위에 있는 contact form 예시에서, cc_myself 는 불리언 값이 될것 입니다. 비슷하게도, IntegerField 와 FloatField  같은 필드들은, Python 이 값을 int 와 Float 으로 전환 합니다. </p><br><h2 id="Form-데이터-처리하기"><a href="#Form-데이터-처리하기" class="headerlink" title="Form 데이터 처리하기"></a>Form 데이터 처리하기</h2><br><p>폼에서 제출된 데이터가, is_valid() 함수를 사용하여 검증이 된 데이터라고 할때, 아래 예시에서는 어떻게 폼에서 받은 데이터를 뷰에서 다룰수 있는지 간단하게 보여줍니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> form.is_valid():</span><br><span class="line">    subject = form.cleaned_data[<span class="string">'subject'</span>]</span><br><span class="line">    message = form.cleaned_data[<span class="string">'message'</span>]</span><br><span class="line">    sender = form.cleaned_data[<span class="string">'sender'</span>]</span><br><span class="line">    cc_myself = form.cleaned_data[<span class="string">'cc_myself'</span>]</span><br><span class="line">    </span><br><span class="line">    recipients = [<span class="string">'info@example.com'</span>]</span><br><span class="line">    <span class="keyword">if</span> cc_myself:</span><br><span class="line">        recipients.append(sender)</span><br><span class="line">        </span><br><span class="line">    send_mail(subject, message, sender, recipients)</span><br><span class="line">    <span class="keyword">return</span> HttpResponseRedirect(<span class="string">'/thanks/'</span>)</span><br></pre></td></tr></table></figure><br><p>기본적으로, form.is_valid() 가 True 이면, 각 필드들에 입력된 데이터들은, <code>form.cleaned_data[&#39;subject&#39;]</code> 같은 형식에 담아져 있습니다. 이는, 검증된 폼 데이터가 form.cleaned_data  에 사전 형태로 저장되어 있기 때문입니다. </p><br><p>이 예시에서, send_mail 에 대한 구현은 다루지 않습니다. 이 send_mail 을 더 알고 싶으면, Django 에서 이메일 보내기를 더 알아야 합니다. </p><p>Sending Email 문서를 참조하면 되는데, 처음엔 무슨 소리인지 이해가지 않을겁니다. </p><br><p>몇가지 필드 타입들은 추가적인 처리가 필요할수 있습니다. 예를들면, 폼을 사용하여 업로드된 파일들은 좀 다르게 다루어질 필요가 있습니다. <br></p><p>이런 파일들은 (request.POST 보다는 request.FILES 로 조회될수 있습니다)</p><br><p>어떻게 업로드된 파일들을 다루는지에 대해서는, binding uploaded files to a form 문서를 확인하시면 됩니다. </p>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/10/08/Django-Forms-12%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-2/#disqus_thread</comments>
     </item>
     
   </channel>
