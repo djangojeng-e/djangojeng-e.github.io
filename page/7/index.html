@@ -220,6 +220,127 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/" class="post-title-link" itemprop="url">Django Models 6편 - Fields (verbose field names)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-02 21:22:43 / Updated at: 21:43:07" itemprop="dateCreated datePublished" datetime="2020-08-02T21:22:43+09:00">2020-08-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/02/Django-Models-6편-Fields-verbose-field-names/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Models-Fields-verbose-field-names"><a href="#Models-Fields-verbose-field-names" class="headerlink" title="Models - Fields (verbose field names)"></a>Models - Fields (verbose field names)</h2><br>
+
+<p><code>ForeignKey</code>, <code>ManyToManyField</code> 그리고 <code>OneToOneField</code> 들을 제외한, 각 필드 타입은 선택적으로 첫번째 위치인자로, <code>verbose name</code> 을 받습니다. </p>
+<br>
+
+<p><code>verbose name</code> 이 주어지지 않았을때는, Django 는 자동으로 field 의 속성명의 언더스코어를 공백으로 전환하여 verbose name 을 생성합니다. </p>
+<br>
+
+<blockquote>
+<p>verbose name 은 </p>
+<p>사용자가 사용하는 자세한 이름을 의미합니다 </p>
+</blockquote>
+<br>
+
+<p><code>verbose name</code> 을 지정하지 않으면, 어드민에 표시되는 이름이 이상하다는것을 느낄수 있을겁니다. </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/02/Django-Models-5%ED%8E%B8-Fields-Automatic-primary-key-fields/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1314,138 +1435,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/" class="post-title-link" itemprop="url">TodoList 29편 - Dockerfile 작성후 이미지 생성</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-07-21 21:40:17 / Updated at: 22:07:15" itemprop="dateCreated datePublished" datetime="2020-07-21T21:40:17+09:00">2020-07-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/21/TodoList-29편-Dockerfile-작성후-이미지-생성/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Dockerfile-작성"><a href="#Dockerfile-작성" class="headerlink" title="Dockerfile 작성"></a>Dockerfile 작성</h2><br>
-
-<p>배포를 위해 현재까지 진행한 단계는, 아래와 같습니다. </p>
-<p><br>각 단계마다 매우 꼬이고 있어서, 순서를 좀 정리 해봅니다.<br><br></p>
-<ol>
-<li>AWS EC2 생성 </li>
-<li>AWS RDS 생성 - PostgreSQL 을 Django 프로젝트에 적용 </li>
-<li>AWS S3 생성 및 Django 프로젝트에 적용 </li>
-<li>AWS S3 정적 이미지와 CSS 파일 적용 </li>
-<li>Docker 설치 </li>
-<li>Dockerfile 작성 후 이미지 생성 </li>
-<li>DockerHub Push </li>
-</ol>
-<br>
-
-<blockquote>
-<p><strong>Dockerfile 이란?</strong></p>
-<p>Dockerfile 은 Docker 이미지를 생성하기 위해 필요한 명령어를 가지고 있는 파일로, </p>
-<p>이 파일이 있는 디렉토리에서, Docker 이미지를 만들수 있습니다. </p>
-<p>Dockerfile 에 나열되어 있는 명령어들을 자동으로 실행하여, 이미지를 빌드할때 해당 이미지에 필요한 </p>
-<p>파일과 설정값들을 정할수 있습니다. </p>
-<br>
-
-<p>확장자 없이도 동작하고, </p>
-<p><code>RUN</code>, <code>COPY</code>, <code>WORKDIR</code> 과 같은, Dockerfile 언어로 작성할수 있습니다. </p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1516,7 +1505,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-count">180</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1529,7 +1518,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">129</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

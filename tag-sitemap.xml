@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EB%25B6%2588%25EB%25A6%25AC%25EC%2596%25B8/</loc>
+        <lastmod>2020-10-27T01:25:59.300Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EC%2588%25AB%25EC%259E%2590/</loc>
+        <lastmod>2020-10-27T01:25:59.300Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EB%25AC%25B8%25EC%259E%2590%25EC%2597%25B4/</loc>
+        <lastmod>2020-10-27T01:25:59.300Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/variables/</loc>
         <lastmod>2020-10-26T08:54:08.358Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -641,13 +662,6 @@
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/%25EB%2594%25B0%25EC%2598%25B4%25ED%2591%259C/</loc>
-        <lastmod>2020-04-05T05:25:24.399Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/%25EB%25AC%25B8%25EC%259E%2590%25EC%2597%25B4/</loc>
         <lastmod>2020-04-05T05:25:24.399Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

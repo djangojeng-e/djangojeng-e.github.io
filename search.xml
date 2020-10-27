@@ -1,6 +1,386 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 5편 - Data Type (숫자, 문자열, 불리언)</title>
+    <url>/2020/10/27/Python-%EA%B8%B0%EC%B4%88-5%ED%8E%B8-Data-Type-%EC%88%AB%EC%9E%90-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B6%88%EB%A6%AC%EC%96%B8/</url>
+    <content><![CDATA[<h2 id="Data-Type"><a href="#Data-Type" class="headerlink" title="Data Type"></a>Data Type</h2><br>
+
+<blockquote>
+<p><strong>데이터 타입</strong></p>
+<p>데이터 타입은, 값의 종류와 어떤식으로 값이 사용될지에 대해 결정합니다. </p>
+<p>파이썬에 모든 데이터 값들은, 연관되어 있는 객체 클래스로 캡슐화 됩니다. </p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>파이썬에서 모든것은 객체 입니다. </p>
+<p>각 객체는 하나의 정체성을 가지고, 하나의 타입을 가지고, 하나의 값을 가집니다. </p>
+</blockquote>
+<br>
+
+<p>c++ 나 Java 같은 다른 객체 지향 언어처럼, 파이썬에도 몇가지 데이터 타입이 내장되어 있습니다. </p>
+<p>C언어나, Java 로 작성된 확장 모듈을 사용하면, 추가 데이터 타입을 정의할수 있습니다. </p>
+<br>
+
+<p>파이썬에서 변수의 타입을 정하기 위해서는, <code>type()</code> 함수를 사용할수 있습니다. 객체의 값은 바뀔수도 이습니다. </p>
+<br>
+
+<h3 id="mutable-vs-immutable"><a href="#mutable-vs-immutable" class="headerlink" title="mutable vs immutable"></a>mutable vs immutable</h3><br>
+
+<blockquote>
+<p><strong>mutable (가변) 객체</strong></p>
+<p>값이 바뀔수 있는 객체들을, mutable (가변) 객체라고 부르고, </p>
+<br>
+
+<p><strong>immutable (불변) 객체</strong></p>
+<p>값이 바뀔수 없는 객체들을 immutable (불가변) 객체라고 부릅니다. </p>
+</blockquote>
+<br>
+
+
+
+<br>
+
+<h2 id="파이썬-데이터-종류"><a href="#파이썬-데이터-종류" class="headerlink" title="파이썬 데이터 종류"></a>파이썬 데이터 종류</h2><br>
+
+<p>파이썬에는, 아래와 같은 데이터 종류들이 존재합니다. <br></p>
+<br>
+
+<ol>
+<li>숫자형 (Numbers)</li>
+<li>불리언 (Boolean)</li>
+<li>문자열 (string)</li>
+<li>튜플 (Tuple)</li>
+<li>리스트 (List)</li>
+<li>집합 (Sets)</li>
+<li>사전 (Dictionary)</li>
+<li>None </li>
+</ol>
+<br>
+
+<a id="more"></a>
+
+<p>﻿</p>
+<table>
+<thead>
+<tr>
+<th><strong>데이터 타입</strong></th>
+<th><strong>비고</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>숫자형 (Numbers)</td>
+<td>숫자로 생성된 객체로, immutable 합니다.3가지 수의 타입이 존재합니다.1. 정수 (integer)2. 실수 (float)3. 복소수 (complex)</td>
+</tr>
+<tr>
+<td>불리언 (Boolean)</td>
+<td>파이썬에서 가장 간단한 내장 타입으로, True 와 False 를 표현합니다.</td>
+</tr>
+<tr>
+<td>문자열 (string)</td>
+<td>파이썬에서, 문자열 객체는 왼쪽에서부터 오른쪽으로 방향으로 순서가 있는 객체 입니다. 이를, sequence 라고 표현합니다.문자열은, ‘ 혹은 “ 으로 감싸지는 데이터 입니다.문자열은 immutable 합니다</td>
+</tr>
+<tr>
+<td>튜플 (Tuples)</td>
+<td>튜플은 () 안에 , 로 분리된 값들 입니다튜플은 immutable 하고, 여러 데이터 타입을 가지고 있을수 있습니다.</td>
+</tr>
+<tr>
+<td>리스트 (Lists)</td>
+<td>리스트는 [] 안에 , 로 분리된 값들 입니다.아무런 원소도 가지고 있지 않은 리스트를 빈 리스트라고 부릅니다.리스트는 mutable 합니다</td>
+</tr>
+<tr>
+<td>집합 (Sets)</td>
+<td>집합은 순서가 없는 고유한 원소들의 집합입니다.기본 사용은, 교집합, 합집합, 차집합, 합집합 같은 집합 이론을 다루거나,혹은, 중복된 것들을 없애기 위해 사용할수 있습니다.</td>
+</tr>
+<tr>
+<td>사전 (Dictionaries)</td>
+<td>파이썬 사전은, 리스트같이 순서가 없는 객체들의 집합의 컨테이너 입니다.객체는 {} 로 감싸져 있고. key : value 형태로, 한 쌍으로 존재합니다.각 객체 혹은 값은, key 값으로 접근이 가능하고, key 값들은 사전안에서 고유합니다. key 가 인덱싱을 할때 사용되므로, 이 key 는 immutable 타입이여야 합니다 (문자열, 숫자 혹은 튜플).</td>
+</tr>
+<tr>
+<td>None</td>
+<td>하나의 값을 가지고 있는 타입으로, 내장 예약어 None 으로 접근이 가능합니다. 값이 없는것을 여러 상황에서 강조하기 위해서 사용됩니다.</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="Numbers-숫자"><a href="#Numbers-숫자" class="headerlink" title="Numbers (숫자)"></a>Numbers (숫자)</h2><br>
+
+<p>숫자 데이터 타입은, 숫자로 생성됩니다. 숫자형 객체들은 immutable 합니다. </p>
+<p><br>immutable 객체는 값과 함께 생성되었을때에, 값은 바뀔수 없다는것을 의미합니다. </p>
+<br>
+
+<p>파이썬에는, 3가지 다른 형태의 숫자형이 존재합니다. </p>
+<br>
+
+<ol>
+<li>integers (정수) - 분수 부분이 존재하지 않는, 음수와 양수 입니다 </li>
+<li>floating point (실수) - 분수 부분이 존재하는 음수와 양수로, 분수 부분은 소숫점으로 나타납니다 </li>
+<li>complex (복소수)</li>
+</ol>
+<br>
+
+<h3 id="정수에-대한-예시"><a href="#정수에-대한-예시" class="headerlink" title="정수에 대한 예시"></a>정수에 대한 예시</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 숫자형, 정수, integers </span></span><br><span class="line">a = <span class="number">1218</span></span><br><span class="line"></span><br><span class="line">print(type(a))</span><br><span class="line"></span><br><span class="line">b = <span class="number">-4212</span></span><br><span class="line">print(type(b))</span><br><span class="line"></span><br><span class="line">c = <span class="number">0</span></span><br><span class="line">print(type(c))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="실수에-대한-예시"><a href="#실수에-대한-예시" class="headerlink" title="실수에 대한 예시"></a>실수에 대한 예시</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 숫자형, 실수, float </span></span><br><span class="line"></span><br><span class="line">g = <span class="number">1.05</span> </span><br><span class="line">print(type(g))</span><br><span class="line"></span><br><span class="line">h = <span class="number">-11.23</span> </span><br><span class="line">print(type(h))</span><br><span class="line"></span><br><span class="line">i = <span class="number">-0.34</span> </span><br><span class="line"></span><br><span class="line">print(i)</span><br><span class="line">print(type(i))</span><br><span class="line"></span><br><span class="line">j = <span class="number">2.12e-10</span></span><br><span class="line"></span><br><span class="line">print(j)</span><br><span class="line">print(type(j))</span><br><span class="line"></span><br><span class="line">k = <span class="number">5E220</span></span><br><span class="line">print(k)</span><br><span class="line">print(type(k))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="정수와-실수-숫자-데이터의-연산"><a href="#정수와-실수-숫자-데이터의-연산" class="headerlink" title="정수와 실수 숫자 데이터의 연산"></a>정수와 실수 숫자 데이터의 연산</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 숫자형 데이터의 연산 예시 </span></span><br><span class="line"><span class="comment"># 실수와 정수 </span></span><br><span class="line"></span><br><span class="line">x = <span class="number">8</span> </span><br><span class="line">y = <span class="number">7</span> </span><br><span class="line"></span><br><span class="line">print(x + y)</span><br><span class="line">print(x - y)</span><br><span class="line">print(x / y)</span><br><span class="line">print(x * y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 지수 exponentials </span></span><br><span class="line">x = <span class="number">4</span> ** <span class="number">3</span> </span><br><span class="line">y = <span class="number">3</span> ** <span class="number">4</span> </span><br><span class="line">print(x)</span><br><span class="line">print(y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나누기 division </span></span><br><span class="line"><span class="comment"># // </span></span><br><span class="line">print(<span class="number">12</span> / <span class="number">3</span>)</span><br><span class="line">print(<span class="number">64</span> // <span class="number">4</span>)</span><br><span class="line">print(<span class="number">15</span> // <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나머지값 remainder </span></span><br><span class="line"><span class="comment"># % </span></span><br><span class="line">print(<span class="number">15</span>%<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="복소수-Complex-Number"><a href="#복소수-Complex-Number" class="headerlink" title="복소수 (Complex Number)"></a>복소수 (Complex Number)</h3><br>
+
+<p>수학적으로, 하나의 복소수 (주로 공학에서 사용되는 수)는 하나의 숫자가 A + Bi 의 형태로 되어 있고, A 는 real 파트, Bi 는 imaginery 파트를 의미 합니다.<br><br></p>
+<blockquote>
+<p>파이썬은 이런 복소수들에 대한 것도 지원합니다 </p>
+<p>아래 두가지 형태를 사용하거나, </p>
+<ul>
+<li>(real + imagJ)</li>
+<li>(real + imagj)</li>
+</ul>
+<p>혹은, 내장 함수인, complex(x, y) 를 사용하여 지정할수 있습니다 </p>
+</blockquote>
+<br>
+
+<p>복소수의 예시 </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 복소수 complex </span></span><br><span class="line"></span><br><span class="line">x = complex(<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">print(type(x))</span><br><span class="line"></span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">z = <span class="number">1</span> + <span class="number">2j</span> </span><br><span class="line">print(z)</span><br><span class="line">print(type(z))</span><br><span class="line"></span><br><span class="line">z = <span class="number">1</span> + <span class="number">3J</span> </span><br><span class="line">print(z)</span><br><span class="line">print(type(z))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="Boolean-bool"><a href="#Boolean-bool" class="headerlink" title="Boolean (bool)"></a>Boolean (bool)</h3><br>
+
+<p>파이썬에서 가장 간단한 내장 타입으로, True 와 False (참과 거짓) 을 표현하는 데이터 형식입니다. 불리언의 예시는 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = <span class="literal">True</span> </span><br><span class="line">print(type(x))</span><br><span class="line"></span><br><span class="line">y = <span class="literal">False</span></span><br><span class="line">print(type(y))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="Strings-문자열"><a href="#Strings-문자열" class="headerlink" title="Strings (문자열)"></a>Strings (문자열)</h3><br>
+
+<p>파이썬에서 문자열 객체는 하나의 sequence, 왼쪽에서부터 오른쪽 방향으로 순서가 있는 문자들입니다. </p>
+<p>‘’ 혹은, “” 으로 감싸지는 문자 데이터이고, immutable 합니다. </p>
+<br>
+
+<p>문자열을 선언하는것은 굉장히 간단합니다. 아래 예시를 들어봅니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># "" 쌍따옴표로 감싸진 문자열 txt </span></span><br><span class="line">txt1 = <span class="string">"Django"</span></span><br><span class="line">print(txt1)</span><br><span class="line">print(type(txt1))</span><br><span class="line"></span><br><span class="line"><span class="comment"># '' 외따옴표로 감싸진 문자열 txt </span></span><br><span class="line">txt1 = <span class="string">'Django'</span></span><br><span class="line">print(txt1)</span><br><span class="line">print(type(txt1))</span><br><span class="line"></span><br><span class="line"><span class="comment"># '''''' 혹은 """""" 로 감싸진 문자열 </span></span><br><span class="line"><span class="comment"># ' 3개 혹은 " 3개를 사용해서 감싸면, 다수의 줄을 가지는 문자열을 선언할수 있다. </span></span><br><span class="line">txt1 = <span class="string">'''Django'''</span></span><br><span class="line">print(txt1)</span><br><span class="line">print(type(txt1))</span><br><span class="line"></span><br><span class="line">txt1 = <span class="string">"""Django"""</span></span><br><span class="line">print(txt1)</span><br><span class="line">print(type(txt1))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>예시에서 볼수 있듯이, ‘’, “”, “”””””, ‘’’’’’ 는 모두 같은 효과를 냅니다. </p>
+<br>
+
+<p>또한, ‘,”‘ 혼용은 에러를 일으킵니다. 아래에는, 따옴표를 잘못 사용하여 나타나는 에러의 예시들입니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># " 로 시작하여, ' 로 끝납니다. </span></span><br><span class="line"><span class="comment"># 이는 에러를 발생 시킵니다. </span></span><br><span class="line"></span><br><span class="line">txt = <span class="string">"Django' </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># "</span><span class="string">" 안에 또다른 "</span> 를 가질수 없습니다 </span><br><span class="line"><span class="comment"># 이는 에러를 일으킵니다. </span></span><br><span class="line">txt = <span class="string">"Django day"</span>s great<span class="string">"</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># '' 안에 또다른 '' 를 가질수 없습니다 </span></span><br><span class="line"><span class="string"># 이는 에러를 일으킵니다. </span></span><br><span class="line"><span class="string">txt = 'Django day's great'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># "</span><span class="string">" 안에 따옴표를 사용하려면 ' 를 사용하여 중복사용을 피해야 합니다. </span></span><br><span class="line"><span class="string">txt = "</span>Django<span class="string">'s day is great!"</span></span><br><span class="line"><span class="string">print(txt)</span></span><br><span class="line"><span class="string">print(type(txt))</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="문자열에서-특수-문자들"><a href="#문자열에서-특수-문자들" class="headerlink" title="문자열에서 특수 문자들"></a>문자열에서 특수 문자들</h4><br>
+
+<blockquote>
+<p>백슬레쉬 문자를 사용하여, 특수 문자를 사용할수도 있습니다. </p>
+</blockquote>
+<br>
+
+<p>﻿</p>
+<ol>
+<li><p><code>\n</code> - 새로운줄</p>
+</li>
+<li><p><code>\t</code> - 탭</p>
+</li>
+<li><p><code>\\</code> - 백슬레쉬</p>
+</li>
+<li><p><code>\&#39;</code> - 외따옴표</p>
+</li>
+<li><p><code>\&quot;</code> - 쌍따옴표</p>
+</li>
+</ol>
+<p>﻿</p>
+<br>
+
+<h4 id="문자열-인덱싱과-문자열-요소들"><a href="#문자열-인덱싱과-문자열-요소들" class="headerlink" title="문자열 인덱싱과 문자열 요소들"></a>문자열 인덱싱과 문자열 요소들</h4><br>
+
+<p>문자열은, 문자들의 배열이고, 하나의 배열 요소는 인덱싱을 사용하여 접근 가능합니다. </p>
+<br>
+
+<blockquote>
+<p>인덱스는 왼쪽에서 0 으로부터 시작하고 </p>
+<p>오른쪽에서 -1 으로부터 시작합니다 </p>
+</blockquote>
+<br>
+
+<p><code>text = &quot;Django&quot;</code> 라는 문자열이 있다고 가정하고, 이 문자열의 인덱스 번호들은 아래와 같이 표현될수 있습니다. </p>
+<br>
+
+<p>﻿</p>
+<table>
+<thead>
+<tr>
+<th><strong>문자</strong></th>
+<th>D</th>
+<th>j</th>
+<th>a</th>
+<th>n</th>
+<th>g</th>
+<th>o</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>인덱스(왼쪽)</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>인덱스(오른쪽)</td>
+<td>-6</td>
+<td>-5</td>
+<td>-4</td>
+<td>-3</td>
+<td>-2</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+<p>﻿</p>
+<br>
+
+<p>위 테이블을 가지고 예시를 들어보면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 인덱싱 값을 사용하여, 문자열의 요소들을 접근할수 있습니다. </span></span><br><span class="line"></span><br><span class="line">text = <span class="string">'Django'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 왼쪽에서부터 시작했을경우 </span></span><br><span class="line">print(text[<span class="number">0</span>])</span><br><span class="line">print(text[<span class="number">1</span>])</span><br><span class="line">print(text[<span class="number">2</span>])</span><br><span class="line">print(text[<span class="number">3</span>])</span><br><span class="line">print(text[<span class="number">4</span>])</span><br><span class="line">print(text[<span class="number">5</span>])</span><br><span class="line">print()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 오른쪽에서부터 시작할경우 </span></span><br><span class="line">print(text[<span class="number">-1</span>])</span><br><span class="line">print(text[<span class="number">-2</span>])</span><br><span class="line">print(text[<span class="number">-3</span>])</span><br><span class="line">print(text[<span class="number">-4</span>])</span><br><span class="line">print(text[<span class="number">-5</span>])</span><br><span class="line">print(text[<span class="number">-6</span>])</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>하지만, 인덱스 값을 벗어나서 접근하려 하면, 에러가 발생 합니다! </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 에러가 발생하는 케이스 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -7 번째 인덱스는 존재하지 않으므로, 에러를 발생 시킵니다 </span></span><br><span class="line">text = <span class="string">"Django"</span></span><br><span class="line">print(text[<span class="number">-7</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6 번째 이후의 인덱스는 존재하지 않으므로, 에러를 발생 시킵니다 </span></span><br><span class="line">text = <span class="string">"Django"</span></span><br><span class="line">print(text[<span class="number">6</span>])</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h4 id="문자열은-immutable-불변"><a href="#문자열은-immutable-불변" class="headerlink" title="문자열은 immutable (불변)"></a>문자열은 immutable (불변)</h4><br>
+
+<blockquote>
+<p>문자열들은 immutable 합니다 </p>
+<p>문자열의 요소들의 값은 변경될수 없습니다. 문자열 값들은 변경이 불가능 합니다 </p>
+</blockquote>
+<br>
+
+<p>예시를 들자면, 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 문자열이 한번 생성되면, 문자열의 문자의 값은 바꿀수가 없습니다.</span></span><br><span class="line"><span class="comment"># immutable </span></span><br><span class="line"></span><br><span class="line">text = <span class="string">"Django"</span></span><br><span class="line">text[<span class="number">0</span>]</span><br><span class="line">text[<span class="number">0</span>] = <span class="string">"Z"</span></span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-35</span><span class="number">-4320</span>dce556f8&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">      <span class="number">1</span> text = <span class="string">"Django"</span></span><br><span class="line">      <span class="number">2</span> text[<span class="number">0</span>]</span><br><span class="line">----&gt; 3 text[0] = "Z"</span><br><span class="line"></span><br><span class="line">TypeError: <span class="string">'str'</span> object does <span class="keyword">not</span> support item assignment</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="문자열에서-in-연산자"><a href="#문자열에서-in-연산자" class="headerlink" title="문자열에서 in 연산자"></a>문자열에서 <code>in</code> 연산자</h4><br>
+
+<p>in 연산자는, 해당 문자가, 문자열 안에 존재하는지 확인할수 있게 해줍니다. 이 연산자는, 결과값으로 불리언 값을 반환합니다 (True 혹은 False)</p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">'Django'</span></span><br><span class="line">is_z_in = <span class="string">'z'</span> <span class="keyword">in</span> text </span><br><span class="line">print(is_z_in)        <span class="comment"># 'z' 는 Django 안에 존재하지 않으므로, False 를 반환</span></span><br><span class="line"></span><br><span class="line">is_D_in = <span class="string">'D'</span> <span class="keyword">in</span> text</span><br><span class="line">print(is_D_in)        <span class="comment"># 'D' 는 Django 안에 존재하므로, True 를 반환  </span></span><br><span class="line"></span><br><span class="line">is_word_in = <span class="string">'jango'</span> <span class="keyword">in</span> text </span><br><span class="line">print(is_word_in)    <span class="comment"># 'jango'는 Django 안에 존재하므로, True 를 반환</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="문자열-슬라이싱"><a href="#문자열-슬라이싱" class="headerlink" title="문자열 슬라이싱"></a>문자열 슬라이싱</h4><br>
+
+<p>문자열로부터 문자들을, 빼고 잘라내는것을 슬라이싱 이라고 부릅니다. 두개의 인덱스 번호가 <code>:</code> 으로 분리가 되어져 사용됩니다. </p>
+<br>
+
+<blockquote>
+<p>슬라이스 2:5 가 의미 하는 바는, </p>
+<p>문자열의 2번째, 3번째, 4번째 요소를 잘라내는 것입니다 (5번째는 포함되지 않습니다)</p>
+</blockquote>
+<br>
+
+<p>﻿</p>
+<table>
+<thead>
+<tr>
+<th><strong>문자</strong></th>
+<th>D</th>
+<th>j</th>
+<th>a</th>
+<th>n</th>
+<th>g</th>
+<th>o</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>인덱스(왼쪽)</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>인덱스(오른쪽)</td>
+<td>-6</td>
+<td>-5</td>
+<td>-4</td>
+<td>-3</td>
+<td>-2</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>문자열 슬라이싱 예시는 아래와 같습니다. <br></p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">"Django"</span></span><br><span class="line"></span><br><span class="line">print(text[<span class="number">0</span>:<span class="number">3</span>]) <span class="comment"># 0, 1, 2 인덱스에 해당하는 문자들을 출력</span></span><br><span class="line">print(text[<span class="number">2</span>:<span class="number">5</span>]) <span class="comment"># 2, 3, 4 인덱스에 해당하는 문자들을 출력 </span></span><br><span class="line"></span><br><span class="line">print(text[<span class="number">-4</span>:<span class="number">-1</span>])  <span class="comment"># -4, -3, -2 인덱스에 해당하는 문자들을 출력 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># text[-4:-1] 는 -1에서 1을 뺀 -2 인덱스까지 잘라냅니다</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="형태-변환"><a href="#형태-변환" class="headerlink" title="형태 변환"></a>형태 변환</h4><br>
+
+<p>데이터 타입의 형태 변환은 가능합니다. 예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 문자열을 실수로 전환 </span></span><br><span class="line">print(float(<span class="string">"4.3"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 문자열을 정수로 변환 </span></span><br><span class="line">print(int(<span class="string">"1218"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 실수를 정수로 변환 </span></span><br><span class="line">print(int(<span class="number">12.184</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># boolean 을 숫자로 표현, true 는 1, false 는 0 을 갖습니다. </span></span><br><span class="line">print(int(<span class="literal">True</span>))</span><br><span class="line">print(int(<span class="literal">False</span>))</span><br><span class="line">print(float(<span class="literal">True</span>))</span><br><span class="line">print(float(<span class="literal">False</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># boolean 을 문자로 표현 </span></span><br><span class="line">print(str(<span class="literal">True</span>))</span><br><span class="line">print(str(<span class="literal">False</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 숫자, 문자, 실수를 불리언으로 표현 </span></span><br><span class="line"><span class="comment"># 값이 있으면 True, 0 이거나 없으면 False 를 반환 </span></span><br><span class="line">print(bool())</span><br><span class="line">print(bool(<span class="number">0</span>))</span><br><span class="line">print(bool(<span class="string">'Hello world'</span>))</span><br><span class="line">print(bool(<span class="number">12.18</span>))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>문자열</tag>
+        <tag>숫자</tag>
+        <tag>불리언</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python 기초 4편 - variables (변수)</title>
     <url>/2020/10/26/Python-%EA%B8%B0%EC%B4%88-4%ED%8E%B8-variables-%EB%B3%80%EC%88%98/</url>
     <content><![CDATA[<h2 id="Python-Variables"><a href="#Python-Variables" class="headerlink" title="Python - Variables"></a>Python - Variables</h2><br>
