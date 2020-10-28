@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Python 기초 6편 - Data Type (튜플, 리스트, 사전, None)</title>
-    <url>/2020/10/28/Python-%EA%B8%B0%EC%B4%88-6%ED%8E%B8-Data-Type-%ED%8A%9C%ED%94%8C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%82%AC%EC%A0%84-None/</url>
+    <title>Python-기초-6편-Data-Type-튜플-리스트-사전</title>
+    <url>/2020/10/28/Python-%EA%B8%B0%EC%B4%88-6%ED%8E%B8-Data-Type-%ED%8A%9C%ED%94%8C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%82%AC%EC%A0%84/</url>
     <content><![CDATA[<h2 id="Python-Data-Type"><a href="#Python-Data-Type" class="headerlink" title="Python Data Type"></a>Python Data Type</h2><br>
 
 <p>데이터 타입 </p>
@@ -309,7 +309,6 @@
         <tag>tuple</tag>
         <tag>list</tag>
         <tag>dictionary</tag>
-        <tag>None</tag>
       </tags>
   </entry>
   <entry>
