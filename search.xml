@@ -1,6 +1,318 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 6편 - Data Type (튜플, 리스트, 사전, None)</title>
+    <url>/2020/10/28/Python-%EA%B8%B0%EC%B4%88-6%ED%8E%B8-Data-Type-%ED%8A%9C%ED%94%8C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%82%AC%EC%A0%84-None/</url>
+    <content><![CDATA[<h2 id="Python-Data-Type"><a href="#Python-Data-Type" class="headerlink" title="Python Data Type"></a>Python Data Type</h2><br>
+
+<p>데이터 타입 </p>
+<br>
+
+<p>데이터 타입은, 값의 종류를 결정하고, 어떤식으로 값이 사용될지에 대해 결정합니다. 파이썬에 모든 데이터 값들은, 연관되어 있는 객체 클래스로 캡슐화 됩니다. </p>
+<br>
+
+<p>파이썬 데이터 타입들은, 아래와 같은 종류들이 존재합니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>데이터 타입</strong></th>
+<th><strong>비고</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>숫자형 (Numbers)</td>
+<td>숫자로 생성된 객체로, immutable 합니다. 3가지 수의 타입이 존재합니다. 1. 정수 (integer)2. 실수 (float)3. 복소수 (complex)</td>
+</tr>
+<tr>
+<td>불리언 (Boolean)</td>
+<td>파이썬에서 가장 간단한 내장 타입으로, True 와 False 를 표현합니다.</td>
+</tr>
+<tr>
+<td>문자열 (string)</td>
+<td>파이썬에서, 문자열 객체는 왼쪽에서부터 오른쪽으로 방향으로 순서가 있는 객체 입니다. 이를, sequence 라고 표현합니다. 문자열은, ‘ 혹은 “ 으로 감싸지는 데이터 입니다. 문자열은 immutable 합니다</td>
+</tr>
+<tr>
+<td>튜플 (Tuples)</td>
+<td>튜플은 () 안에 , 로 분리된 값들 입니다튜플은 immutable 하고, 여러 데이터 타입을 가지고 있을수 있습니다.</td>
+</tr>
+<tr>
+<td>리스트 (Lists)</td>
+<td>리스트는 [] 안에 , 로 분리된 값들 입니다. 아무런 원소도 가지고 있지 않은 리스트를 빈 리스트라고 부릅니다. 리스트는 mutable 합니다</td>
+</tr>
+<tr>
+<td>집합 (Sets)</td>
+<td>집합은 순서가 없는 고유한 원소들의 집합입니다. 기본 사용은, 교집합, 합집합, 차집합, 합집합 같은 집합 이론을 다루거나, 혹은, 중복된 것들을 없애기 위해 사용할수 있습니다.</td>
+</tr>
+<tr>
+<td>사전 (Dictionaries)</td>
+<td>파이썬 사전은, 리스트같이 순서가 없는 객체들의 집합의 컨테이너 입니다. 객체는 {} 로 감싸져 있고. key : value 형태로, 한 쌍으로 존재합니다. 각 객체 혹은 값은, key 값으로 접근이 가능하고, key 값들은 사전안에서 고유합니다. key 가 인덱싱을 할때 사용되므로, 이 key 는 immutable 타입이여야 합니다 (문자열, 숫자 혹은 튜플).</td>
+</tr>
+<tr>
+<td>None</td>
+<td>하나의 값을 가지고 있는 타입으로, 내장 예약어 None 으로 접근이 가능합니다. 값이 없는것을 여러 상황에서 강조하기 위해서 사용됩니다.</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>지난 포스팅에서는, 문자열까지 알아보았고. </p>
+<p><br>이번 포스팅에서는, 튜플, 리스트, 집합, 사전, None 까지 알아봅니다 </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<h2 id="Tuples-튜플"><a href="#Tuples-튜플" class="headerlink" title="Tuples (튜플)"></a>Tuples (튜플)</h2><br>
+
+<p>튜플은,  <code>,</code> 로 분리된 값 (항목 혹은 요소)를 <code>()</code> 안에 가지고 있는 자료형 입니다.</p>
+<p>튜플은 immutable 합니다. (한번 생성되면, 그 안의 값을 바꿀수가 없습니다.)<br> 그리고, 튜플은, 여러 데이터 타입을 가질수 있습니다. </p>
+<br>
+
+<h3 id="튜플-생성하기"><a href="#튜플-생성하기" class="headerlink" title="튜플 생성하기"></a>튜플 생성하기</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 튜플 생성하기 </span></span><br><span class="line"><span class="comment"># 정수, 실수, 문자열을 가진 튜플을 생성 </span></span><br><span class="line"><span class="comment"># () 안에 데이터를 , 로 분리하고 변수에 할당하면 생성됩니다. </span></span><br><span class="line"></span><br><span class="line">tup = (<span class="number">0</span>, <span class="number">-1</span>, <span class="number">12</span>, <span class="number">2123.44</span>, <span class="number">100</span>, <span class="string">'Django'</span>)</span><br><span class="line">print(tup)</span><br><span class="line">print(type(tup))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 문자열 3개, 숫자 1개로 이루어진 튜플 생성 </span></span><br><span class="line"></span><br><span class="line">tup2 = (<span class="string">'python'</span>, <span class="string">'Django'</span>, <span class="number">200</span>, <span class="string">'GoLang'</span>)</span><br><span class="line">print(tup2)</span><br><span class="line">print(type(tup2))</span><br><span class="line"></span><br><span class="line"><span class="comment"># () 를 사용하지 않고 생성하는 방법 </span></span><br><span class="line">tup3 = <span class="string">"Django"</span>, <span class="string">"Python"</span>, <span class="string">"JavaScript"</span></span><br><span class="line">print(tup3)</span><br><span class="line">print(type(tup3))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 비어있는 튜플을 생성하기 </span></span><br><span class="line">empty_tup = () </span><br><span class="line">print(empty_tup)</span><br><span class="line">print(type(empty_tup))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1개의 데이터만 가진 튜플 생성하기 </span></span><br><span class="line">single_tup = (<span class="number">100</span>)</span><br><span class="line">print(single_tup)</span><br><span class="line">print(type(single_tup))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 값이 한개일때, 요소의 끝에 , 를 붙여줘야 1개의 값을 가진 튜플이 생성됩니다. </span></span><br><span class="line">single_tup = (<span class="number">100</span>,)</span><br><span class="line">print(single_tup)</span><br><span class="line">print(type(single_tup))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="튜플-인덱싱-하기"><a href="#튜플-인덱싱-하기" class="headerlink" title="튜플 인덱싱 하기"></a>튜플 인덱싱 하기</h3><br>
+
+<p>문자열이랑 비슷하게도, 튜플 요소들도 인덱스를 통해 접근할수 있습니다. 예를들면, <code>tup=(&#39;d&#39;, &#39;j&#39;, &#39;a&#39;, &#39;n&#39;, &#39;g&#39;, &#39;o&#39;)</code> 라는 튜플을 생성하였을때 생성되는 인덱스는 아래와 같습니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>데이터</strong></th>
+<th>D</th>
+<th>j</th>
+<th>a</th>
+<th>n</th>
+<th>g</th>
+<th>o</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>인덱스(왼쪽)</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>인덱스(오른쪽)</td>
+<td>-6</td>
+<td>-5</td>
+<td>-4</td>
+<td>-3</td>
+<td>-2</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>이러한 인덱스를 통해서, 각 요소에 접근을 해보기 위해, 아래 예시를 참조합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tup = (<span class="string">'d'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'n'</span>, <span class="string">'g'</span>, <span class="string">'o'</span>)</span><br><span class="line"></span><br><span class="line">print(tup[<span class="number">0</span>])</span><br><span class="line">print(tup[<span class="number">1</span>])</span><br><span class="line">print(tup[<span class="number">2</span>])</span><br><span class="line">print(tup[<span class="number">3</span>])</span><br><span class="line">print(tup[<span class="number">4</span>])</span><br><span class="line">print(tup[<span class="number">5</span>])</span><br><span class="line"></span><br><span class="line">print()</span><br><span class="line"></span><br><span class="line">print(tup[<span class="number">-1</span>])</span><br><span class="line">print(tup[<span class="number">-2</span>])</span><br><span class="line">print(tup[<span class="number">-3</span>])</span><br><span class="line">print(tup[<span class="number">-4</span>])</span><br><span class="line">print(tup[<span class="number">-5</span>])</span><br><span class="line">print(tup[<span class="number">-6</span>])</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>Tuple 은 immutable 합니다. </p>
+<p>튜플 안에 항목이나 요소들의 값은 바뀌거나 수정될수 없습니다. </p>
+</blockquote>
+<br>
+
+<p>튜플 안에 있는 값을 바꾸려고 하면, 아래와 같이 에러가 납니다.</p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># tuple 은 immutable 합니다. </span></span><br><span class="line"><span class="comment"># 값을 바꿀수 없습니다. 값을 바꾸려 하면, 에러가 납니다. </span></span><br><span class="line"></span><br><span class="line">tup = (<span class="string">'d'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'n'</span>, <span class="string">'g'</span>, <span class="string">'o'</span>)</span><br><span class="line">tup[<span class="number">1</span>] = <span class="string">'b'</span></span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-13</span><span class="number">-253</span>c803b15bb&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">      <span class="number">3</span> </span><br><span class="line">      <span class="number">4</span> tup = (<span class="string">'d'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'n'</span>, <span class="string">'g'</span>, <span class="string">'o'</span>)</span><br><span class="line">----&gt; 5 tup[1] = 'b'</span><br><span class="line"></span><br><span class="line">TypeError: <span class="string">'tuple'</span> object does <span class="keyword">not</span> support item assignment</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>또한, 인덱스 범위를 넘어가는 요소를 접근하려 하면, index error 가 발생 합니다. </p>
+<br>
+
+<h3 id="튜플-슬라이싱-하기"><a href="#튜플-슬라이싱-하기" class="headerlink" title="튜플 슬라이싱 하기"></a>튜플 슬라이싱 하기</h3><br>
+
+<p>문자열과 같은 시퀀스와 비슷하게, 튜플도 슬라이스가 가능합니다. </p>
+<br>
+
+<p>튜플을 슬라이싱 하면, 새로운 튜플을 생성하지만, 기존 값을 변경하지는 않습니다. </p>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 튜플 슬라이싱 하기 </span></span><br><span class="line"></span><br><span class="line">tup = (<span class="string">'d'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'n'</span>, <span class="string">'g'</span>, <span class="string">'o'</span>)</span><br><span class="line"></span><br><span class="line">print(tup[<span class="number">0</span>:<span class="number">3</span>])</span><br><span class="line">print(tup[<span class="number">2</span>:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="튜플에서-같은-연산자-사용하기"><a href="#튜플에서-같은-연산자-사용하기" class="headerlink" title="튜플에서 +, * 같은 연산자 사용하기"></a>튜플에서 <code>+</code>, <code>*</code> 같은 연산자 사용하기</h3><br>
+
+<p><code>+</code> 연산자를 사용하여, 튜플들을 합친, 새로운 튜플을 생성하고, <code>*</code> 연산자를 사용하여, 하나의 튜플을 반복할수 있습니다. 예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># +, * 연산자 사용하기 </span></span><br><span class="line"></span><br><span class="line">tup = (<span class="string">'d'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'n'</span>, <span class="string">'g'</span>, <span class="string">'o'</span>)</span><br><span class="line"></span><br><span class="line">tup1 = (<span class="string">'p'</span>, <span class="string">'y'</span>, <span class="string">'t'</span>, <span class="string">'h'</span>, <span class="string">'o'</span>, <span class="string">'n'</span>)</span><br><span class="line"></span><br><span class="line">add_tuples = tup + tup1  <span class="comment"># tup 과 tup1 을 합친 새로운 튜플을 생성합니다. </span></span><br><span class="line">print(add_tuples)</span><br><span class="line"></span><br><span class="line"><span class="comment"># tup 을 *을 사용하여 반복합니다 </span></span><br><span class="line">print(tup * <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Lists-리스트"><a href="#Lists-리스트" class="headerlink" title="Lists (리스트)"></a>Lists (리스트)</h2><br>
+
+<p>리스트는, <code>,</code> 로 분리된 값을 <code>[]</code> 안에 가지고 있는 자료형 입니다. 튜플과 비슷하게, 리스트 안의 요소들은 같은 데이터 타입을 가질 필요는 없습니다. </p>
+<br>
+
+<h3 id="리스트-생성하기"><a href="#리스트-생성하기" class="headerlink" title="리스트 생성하기"></a>리스트 생성하기</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 리스트 생성하기 </span></span><br><span class="line"><span class="comment"># , 로 분리된 값들을 [] 안에 넣어주면 생성됩니다. </span></span><br><span class="line">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">list2 = [<span class="string">'django'</span>, <span class="string">'python'</span>, <span class="string">'javascript'</span>, <span class="string">'GoLang'</span>]</span><br><span class="line">list3 = [<span class="number">12</span>, <span class="string">'developer'</span>, <span class="number">32.33</span>]</span><br><span class="line"></span><br><span class="line">print(list1)</span><br><span class="line">print(list2)</span><br><span class="line">print(list3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 비어 있는 리스트를 생성</span></span><br><span class="line"><span class="comment"># [] 안에 아무 값도 넣어주지 않으면 비어있는 리스트가 생성됩니다 </span></span><br><span class="line">empty_list = []</span><br><span class="line">print(empty_list)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="리스트-인덱싱-하기"><a href="#리스트-인덱싱-하기" class="headerlink" title="리스트 인덱싱 하기"></a>리스트 인덱싱 하기</h3><br>
+
+<p>문자열과 비슷하게, 리스트도 순회 가능한, 그리고 인덱싱이 가능한 자료형입니다. 리스트 인덱스도 왼쪽에서 오른쪽으로 갈때 0으로부터 시작하고, 오른쪽에서 왼쪽으로 갈때는, -1 로 시작합니다. </p>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+<p><code>list1 = [&#39;d&#39;, &#39;j&#39;, &#39;a&#39;, &#39;n&#39;, &#39;g&#39;, &#39;o&#39;]</code> 라는 리스트를 생성하였을때에 인덱스는 아래와 같습니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>데이터</strong></th>
+<th>D</th>
+<th>j</th>
+<th>a</th>
+<th>n</th>
+<th>g</th>
+<th>o</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>인덱스(왼쪽)</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>인덱스(오른쪽)</td>
+<td>-6</td>
+<td>-5</td>
+<td>-4</td>
+<td>-3</td>
+<td>-2</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 리스트 슬라이싱 하기 </span></span><br><span class="line"></span><br><span class="line">list1 = [<span class="string">'d'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'n'</span>, <span class="string">'g'</span>, <span class="string">'o'</span>]</span><br><span class="line">print(list1[<span class="number">0</span>])</span><br><span class="line">print(list1[<span class="number">1</span>])</span><br><span class="line">print(list1[<span class="number">2</span>])</span><br><span class="line">print(list1[<span class="number">3</span>])</span><br><span class="line">print(list1[<span class="number">4</span>])</span><br><span class="line">print(list1[<span class="number">5</span>])</span><br><span class="line">print()</span><br><span class="line">print(list1[<span class="number">-1</span>])</span><br><span class="line">print(list1[<span class="number">-2</span>])</span><br><span class="line">print(list1[<span class="number">-3</span>])</span><br><span class="line">print(list1[<span class="number">-4</span>])</span><br><span class="line">print(list1[<span class="number">-5</span>])</span><br><span class="line">print(list1[<span class="number">-6</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 문자열이나 튜플과 비슷하게, 인덱스값을 벗어난 요소를 접근하려 하면 </span></span><br><span class="line"><span class="comment"># 에러가 발생합니다. </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(list1[<span class="number">6</span>])</span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">IndexError                                Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-22</span><span class="number">-3034</span>fc2e792a&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 print(list1[6])</span><br><span class="line"></span><br><span class="line">IndexError: list index out of range</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="리스트-슬라이싱-하기"><a href="#리스트-슬라이싱-하기" class="headerlink" title="리스트 슬라이싱 하기"></a>리스트 슬라이싱 하기</h3><br>
+
+<p>다른 시퀀스형 자료와 비슷하게, 리스트도 슬라이싱이 가능합니다. 튜플이나 문자열을 슬라이싱 하는 방법과 같다고 볼수 있습니다. 예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 리스트 슬라이싱 </span></span><br><span class="line"></span><br><span class="line">list1 = [<span class="string">'d'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'n'</span>, <span class="string">'g'</span>, <span class="string">'o'</span>]</span><br><span class="line">print(list1[<span class="number">0</span>:<span class="number">3</span>])</span><br><span class="line">print(list1[<span class="number">2</span>:<span class="number">5</span>])</span><br><span class="line">print(list1[<span class="number">1</span>:<span class="number">-2</span>])</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>리스트는 튜플과 다르게,  mutable 객체 입니다! </p>
+<p>리스트는 생성후에, 값을 변경할수 있습니다. </p>
+</blockquote>
+<br>
+
+<h3 id="리스트의-값-바꿔보기"><a href="#리스트의-값-바꿔보기" class="headerlink" title="리스트의 값 바꿔보기"></a>리스트의 값 바꿔보기</h3><br>
+
+<p>리스트의 값을 바꿔보는 예시는 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 리스트는 mutable 합니다 </span></span><br><span class="line"></span><br><span class="line">list1 = [<span class="string">'d'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'n'</span>, <span class="string">'g'</span>, <span class="string">'o'</span>]</span><br><span class="line"></span><br><span class="line">list1[<span class="number">1</span>] = <span class="string">'b'</span> <span class="comment"># 인덱스 1에 해당하는 값을 'b'로 바꿈 </span></span><br><span class="line">print(list1)</span><br><span class="line"></span><br><span class="line">list1[<span class="number">5</span>] = <span class="string">'u'</span> <span class="comment"># 인덱스 5에 해당하는 값을 'u' 로 바꿈 </span></span><br><span class="line"></span><br><span class="line">print(list1)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="리스트에-와-연산자-사용하기"><a href="#리스트에-와-연산자-사용하기" class="headerlink" title="리스트에 + 와 * 연산자 사용하기"></a>리스트에 <code>+</code> 와 <code>*</code> 연산자 사용하기</h3><br>
+
+<p>두개의 리스트를 합친 새로운 리스트를 생성하는 <code>+</code> 연산자와, 하나의 리스트를 여러번 반복하는 <code>*</code>를 사용할수 있습니다. 예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list1 = [<span class="string">'d'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'n'</span>, <span class="string">'g'</span>, <span class="string">'o'</span>]</span><br><span class="line">list2 = [<span class="number">12</span>, <span class="string">'developer'</span>, <span class="number">32.33</span>]</span><br><span class="line">list3 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">list_sum = list1 + list2 <span class="comment"># + 연산자를 사용하여, list1 과 list2 를 합친 새로운 리스트를 생성 </span></span><br><span class="line">print(list_sum)</span><br><span class="line"></span><br><span class="line"><span class="comment"># * 연산자를 사용하여, list3 을 4번 반복 </span></span><br><span class="line">print(list3 * <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Sets-집합"><a href="#Sets-집합" class="headerlink" title="Sets (집합)"></a>Sets (집합)</h2><br>
+
+<p>집합은, 순서가 없는 고유한 요소들의 집합입니다. 기본 사용은 보통, 수학에서 이야기하는 집합 이론 (합집합, 교집합, 차집합, 합집합 같은 수학적 연산) 들을 다룰때 사용합니다.<br></p>
+<p>혹은, 중복된 요소들을 제거할때에도 사용됩니다. </p>
+<br>
+
+<p>예시를 들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 중복된 값을 가진 리스트를 생성 </span></span><br><span class="line">a = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>]</span><br><span class="line">b = [<span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">s1 = set(a)  <span class="comment"># a를 집합으로 선언 </span></span><br><span class="line">s2 = set(b)  <span class="comment"># b를 집합으로 선언 </span></span><br><span class="line"></span><br><span class="line">print(s1)</span><br><span class="line">print(s2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 차집합 </span></span><br><span class="line">print(s1 - s2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># s1 혹은 s2 에 있는 숫자들 </span></span><br><span class="line">print(s1 | s2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># s1 그리고 s2 에 있는 숫자들 </span></span><br><span class="line">print(s1 &amp; s2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># s1 과 s2 에 있지만, 양쪽에 없는 숫자들 </span></span><br><span class="line">print(s1 ^ s2)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Dictionaries-사전"><a href="#Dictionaries-사전" class="headerlink" title="Dictionaries (사전)"></a>Dictionaries (사전)</h2><br>
+
+<p>파이썬 사전은 순서가 없는 객체들의 집합을 <code>{}</code> 안에 가지고 있는 자료형입니다. </p>
+<p><br>특이한 점은, 사전 안에는, key:value 형태로, 값들이 한쌍으로 이루어져 있다는 점입니다. </p>
+<br>
+
+<p>이 key 값들은 고유해야 하고,사전을 인덱싱 할때에는, 이 key 값들이 사용됩니다. 간단한 사전을 만들어서 예시를 들어보면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 사전 생성하기 </span></span><br><span class="line"><span class="comment"># &#123;&#125; 안에, key:value 형태로 이루어진 자료를 , 로 구분하여 넣어주면 생성됩니다. </span></span><br><span class="line">web_framework = &#123;<span class="string">'python'</span>: <span class="string">'django'</span>, <span class="string">'Java'</span>: <span class="string">'spring'</span>, <span class="string">'JavaScript'</span>: <span class="string">'nodejs'</span>&#125;</span><br><span class="line">print(web_framework)</span><br><span class="line">print(type(web_framework))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 사전의 데이터를 key 값을 사용해서 접근하기 </span></span><br><span class="line"></span><br><span class="line">print(web_framework[<span class="string">'python'</span>])</span><br><span class="line">print(web_framework[<span class="string">'Java'</span>])</span><br><span class="line">print(web_framework[<span class="string">'JavaScript'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 사전에 데이터를 추가하기 </span></span><br><span class="line">web_framework[<span class="string">'php'</span>] = <span class="string">'Laravel'</span></span><br><span class="line"></span><br><span class="line">print(web_framework)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 사전에 데이터를 삭제하기 </span></span><br><span class="line"><span class="keyword">del</span> web_framework[<span class="string">'php'</span>]</span><br><span class="line"></span><br><span class="line">print(web_framework)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="None"><a href="#None" class="headerlink" title="None"></a>None</h2><br>
+
+<p>이 데이터 형태는 오직 하나의 값만 가지고 있습니다. </p>
+<p><br>내장되어 있는 이름 None 을 통해서 값에 접근할수 있습니다. None 은 여러 상황에서, 값이 없다는것을 강조하기 위해 사용 됩니다. 예를들면, 아무것도 반환하지 않는 함수에서 반환 됩니다. </p>
+<br>
+
+<p>None 의 불리언 값은 False 를 가집니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># None </span></span><br><span class="line"></span><br><span class="line">print(<span class="literal">None</span>)</span><br><span class="line">print(type(<span class="literal">None</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 아무값도 반환하지 않는 함수는 None 을 반환합니다. </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line">print(fun())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># None 의 불리언값은 False 입니다. </span></span><br><span class="line">print(bool(<span class="literal">None</span>))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>tuple</tag>
+        <tag>list</tag>
+        <tag>dictionary</tag>
+        <tag>None</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python 기초 5편 - Data Type (숫자, 문자열, 불리언)</title>
     <url>/2020/10/27/Python-%EA%B8%B0%EC%B4%88-5%ED%8E%B8-Data-Type-%EC%88%AB%EC%9E%90-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B6%88%EB%A6%AC%EC%96%B8/</url>
     <content><![CDATA[<h2 id="Data-Type"><a href="#Data-Type" class="headerlink" title="Data Type"></a>Data Type</h2><br>
@@ -162,7 +474,7 @@
 
 <br>
 
-<h3 id="Boolean-bool"><a href="#Boolean-bool" class="headerlink" title="Boolean (bool)"></a>Boolean (bool)</h3><br>
+<h2 id="Boolean-bool"><a href="#Boolean-bool" class="headerlink" title="Boolean (bool)"></a>Boolean (bool)</h2><br>
 
 <p>파이썬에서 가장 간단한 내장 타입으로, True 와 False (참과 거짓) 을 표현하는 데이터 형식입니다. 불리언의 예시는 아래와 같습니다. </p>
 <br>
@@ -171,7 +483,7 @@
 
 <br>
 
-<h3 id="Strings-문자열"><a href="#Strings-문자열" class="headerlink" title="Strings (문자열)"></a>Strings (문자열)</h3><br>
+<h2 id="Strings-문자열"><a href="#Strings-문자열" class="headerlink" title="Strings (문자열)"></a>Strings (문자열)</h2><br>
 
 <p>파이썬에서 문자열 객체는 하나의 sequence, 왼쪽에서부터 오른쪽 방향으로 순서가 있는 문자들입니다. </p>
 <p>‘’ 혹은, “” 으로 감싸지는 문자 데이터이고, immutable 합니다. </p>

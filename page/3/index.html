@@ -220,6 +220,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/10/Django-Forms-14%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/10/Django-Forms-14%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-2/" class="post-title-link" itemprop="url">Django Forms 14편 - 폼 템플릿 작업하기-2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-10 17:35:42 / Updated at: 17:48:55" itemprop="dateCreated datePublished" datetime="2020-10-10T17:35:42+09:00">2020-10-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/10/Django-Forms-14%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-2/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/10/Django-Forms-14편-폼-템플릿-작업하기-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Rendering-Fields-Manually"><a href="#Rendering-Fields-Manually" class="headerlink" title="Rendering Fields Manually"></a>Rendering Fields Manually</h2><br>
+
+<p>Django 가 forms.py 에 작성된 폼들을 템플릿에 자동으로 풀어놓게 하고 싶지 않으면, 수동으로 작업하는 방법도 있습니다. </p>
+<br>
+
+<p>각 필드들은, form.(폼필드명) 의 형태로, 해당폼의 속성으로 존재합니다. 그리고, Django 템플릿안에서 적절하게 사용하여 렌더 될수 있습니다. </p>
+<p>예시를 들자면, 이전 포스팅에서 작성한 forms.py 와 views.py 를 기반으로 해서 예를 듭니다. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># forms.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django <span class="keyword">import</span> forms </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContactForm</span><span class="params">(forms.Form)</span>:</span></span><br><span class="line">	subject = forms.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">	message = forms.CharField(widget=forms.Textarea)</span><br><span class="line">	sender = forms.EmailField()</span><br><span class="line">	cc_mysself = forms.BooleanField(required=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># views.py </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">form_render</span><span class="params">(request)</span>:</span></span><br><span class="line">	form = ContactForm() </span><br><span class="line">	<span class="keyword">return</span> render(request, <span class="string">'form.html'</span>, &#123;<span class="string">'form'</span>: form&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>form.html 파일에 렌더를 수동으로 해주려면, 아래와 같이 작성해주면 됩니다. </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/10/Django-Forms-14%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-2/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1487,128 +1605,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/02/Django-Forms-4%ED%8E%B8-Form-%EC%97%90-%EB%8C%80%ED%95%9C-Django-%EC%9D%98-%EC%97%AD%ED%95%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/02/Django-Forms-4%ED%8E%B8-Form-%EC%97%90-%EB%8C%80%ED%95%9C-Django-%EC%9D%98-%EC%97%AD%ED%95%A0/" class="post-title-link" itemprop="url">Django Forms 4편 - Form 에 대한 Django 의 역할</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-02 14:08:20 / Updated at: 14:12:13" itemprop="dateCreated datePublished" datetime="2020-10-02T14:08:20+09:00">2020-10-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/02/Django-Forms-4%ED%8E%B8-Form-%EC%97%90-%EB%8C%80%ED%95%9C-Django-%EC%9D%98-%EC%97%AD%ED%95%A0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/02/Django-Forms-4편-Form-에-대한-Django-의-역할/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Django’s-role-in-forms"><a href="#Django’s-role-in-forms" class="headerlink" title="Django’s role in forms"></a>Django’s role in forms</h2><br>
-
-<p>폼을 다루는것은 복잡한 일입니다. </p>
-<br>
-
-<p>Django 의 어드민을 생각해보면, </p>
-<br>
-
-<p>서로 다른 종류의 데이터들의 많은 항목들이 폼안에 출력되도록 준비 되어야 하고, </p>
-<p><br>HTML 로 렌더링 되어야하고, 편리한 인터페이스를 사용해서 편집되어야 하고, 서버로 반환되어야 하고, 유효성 검사와 정리가 되어야 하고, 그리고 나서도 추후 처리를 위해 저장 혹은 전달 되어야 합니다. </p>
-<br>
-
-<p>Django 의 form 기능은, 이 복잡한 일의 상당한 부분들을 간소화 시키고 자동화 시킵니다. </p>
-<br>
-
-<p>또한, Django 에서 폼은 대부분의 프로그래머들이 자신들이 코드를 작성한것만큼 안전하게 작동합니다. </p>
-<br>
-
-<h2 id="Django-Form-이-다루는-영역"><a href="#Django-Form-이-다루는-영역" class="headerlink" title="Django Form 이 다루는 영역"></a>Django Form 이 다루는 영역</h2><br>
-
-<ol>
-<li>데이터를 준비하고 재구조화 하여, 렌더할 준비 </li>
-<li>데이터를 위한 HTML 폼을 생성 </li>
-<li>클라이언트가 제출한 폼들과 데이터를 받는 부분 </li>
-<li>받은 데이터를 처리 </li>
-</ol>
-<br>
-
-<p>이 모든것들을 수동으로 수행하는 코드를 작성하는것도 가능하지만, </p>
-<p><br>django 는 여러분들을 위해 모든것들을 처리할 수 있습니다. </p>
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1674,7 +1675,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">180</span>
+          <span class="site-state-item-count">181</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1687,7 +1688,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-count">135</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

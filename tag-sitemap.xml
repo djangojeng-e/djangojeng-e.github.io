@@ -3,22 +3,50 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/None/</loc>
+        <lastmod>2020-10-28T02:45:01.407Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/dictionary/</loc>
+        <lastmod>2020-10-28T02:45:01.407Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/list/</loc>
+        <lastmod>2020-10-28T02:45:01.407Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/tuple/</loc>
+        <lastmod>2020-10-28T02:45:01.407Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/%25EB%25B6%2588%25EB%25A6%25AC%25EC%2596%25B8/</loc>
-        <lastmod>2020-10-27T01:25:59.300Z</lastmod>
+        <lastmod>2020-10-28T02:22:16.973Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/%25EC%2588%25AB%25EC%259E%2590/</loc>
-        <lastmod>2020-10-27T01:25:59.300Z</lastmod>
+        <lastmod>2020-10-28T02:22:16.973Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/%25EB%25AC%25B8%25EC%259E%2590%25EC%2597%25B4/</loc>
-        <lastmod>2020-10-27T01:25:59.300Z</lastmod>
+        <lastmod>2020-10-28T02:22:16.973Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

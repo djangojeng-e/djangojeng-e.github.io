@@ -220,6 +220,146 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/10/Writing-your-first-Django-app-part-7-5%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/10/Writing-your-first-Django-app-part-7-5%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part 7 - 5편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-05-10 01:39:10 / Updated at: 01:45:14" itemprop="dateCreated datePublished" datetime="2020-05-10T01:39:10+09:00">2020-05-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/05/10/Writing-your-first-Django-app-part-7-5%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/10/Writing-your-first-Django-app-part-7-5편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="admin-인덱스-페이지-꾸미기"><a href="#admin-인덱스-페이지-꾸미기" class="headerlink" title="admin 인덱스 페이지 꾸미기"></a>admin 인덱스 페이지 꾸미기</h2><br>
+
+<p>이전 포스팅과 비슷하게, Django 의 admin 인덱스 페이지를 고치고 싶어질지 모릅니다.</p>
+<br>
+
+<p>기본값으로, 인덱스 페이지에는, admin 어플리케이션과 함께 </p>
+<p><br>INSTALLED_APPS 에 등록된 모든 앱들을 출력합니다. </p>
+<p><br>레이아웃에 큰 변화를 주고 싶어질지도 모릅니다. 인덱스 페이지는 아마 가장 중요한 어드민 페이지중에 하나일것이고, </p>
+<p><br>사용하기 쉬어야 합니다. </p>
+<br>
+
+<blockquote>
+<p>수정해야할 템플릿은, admin/index.html 입니다.</p>
+<p>admin/base_site.html 파일과 같은 방식으로, </p>
+<p>프로젝트 폴더내에, templates/admin 으로 복사해 옵니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> dhkang  ~/.pyenv/versions/3.7.4/envs/django-tutorial/lib/python3.7/site-packages/django/contrib/admin/templates/admin   master  </span><br><span class="line">cp index.html ~/django_tutorial/mysite/templates/admin</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>이 파일을 수정하면, app_list 라는 템플릿 변수를 사용하는것을 볼수 있습니다.</p>
+<p><br>이 변수는 설치된 모든 Django app 을 포함하고 있습니다. 이것을 사용하기 보다는, 객체 특화된 어드민 페이지를 하드코드된 링크들을 사용해서 어드민 페이지를 꾸밀수 있습니다. </p>
+<br>
+
+<br>
+
+<h2 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h2><br>
+
+<br>
+
+<p>초심자를 위한 튜토리얼은 여기서 끝입니다.</p>
+<br>
+
+<p>python 패키지와 어떻게 이 polls 앱을 재사용 가능한 앱으로 만들지에 대해서 배우고 싶다면, </p>
+<p><br>심화과정 튜토리얼 : 재사용가능한 앱 만들기를 보시면 됩니다. </p>
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>첫번째 Django 앱 만들기 기본 튜토리얼이 끝났습니다. </p>
+<p>첫번째 튜토리얼인데도 아직도 이해가 안가는 부분이 많습니다. </p>
+<br>
+
+<p>다시 한번 또 리뷰하면서 보면, 더 이해가 많아지겠죠;;; 당분간 reusable app 만들기는 건들지 않고. <br></p>
+<p>실력이 더 쌓이면 건들 생각입니다. </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/09/Writing-your-first-Django-app-part-7-4%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1282,130 +1422,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/05/02/Writing-your-first-Django-app-part5-3%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/02/Writing-your-first-Django-app-part5-3%ED%8E%B8/" class="post-title-link" itemprop="url">Writing your first Django app, part5 - 3편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-05-02 15:59:18 / Updated at: 16:27:49" itemprop="dateCreated datePublished" datetime="2020-05-02T15:59:18+09:00">2020-05-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/05/02/Writing-your-first-Django-app-part5-3%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/02/Writing-your-first-Django-app-part5-3편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="첫번째-테스트-작성하기"><a href="#첫번째-테스트-작성하기" class="headerlink" title="첫번째 테스트 작성하기"></a>첫번째 테스트 작성하기</h2><br>
-
-<h3 id="버그찾기"><a href="#버그찾기" class="headerlink" title="버그찾기"></a>버그찾기</h3><br>
-
-<p>운좋게도, polls 어플리케이션에는 고쳐야할 작은 버그가 있습니다. </p>
-<p><br>Question.was_publishd_recently() 메서드는, Question 이 어제 이전에 발행되었거나, Question 의 pub_date 필드가 미래일일 경우에 True 를 반환합니다. </p>
-<br>
-
-<p>쉘을 통해성 버그를 확인하고 확실하게 찾아냅시다. shell 을 사용해서 날짜가 미래의 날짜로 지정된 질문의 메서드를 확인 합니다. </p>
-<br>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell_plus</span><br></pre></td></tr></table></figure>
-
-<p><br><br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/02/Writing-your-first-Django-app-part5-3%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1471,7 +1492,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">180</span>
+          <span class="site-state-item-count">181</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1484,7 +1505,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-count">135</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
