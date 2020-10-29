@@ -1,6 +1,357 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 7편 - Operators (연산자)</title>
+    <url>/2020/10/29/Python-%EA%B8%B0%EC%B4%88-7%ED%8E%B8-Operators-%EC%97%B0%EC%82%B0%EC%9E%90/</url>
+    <content><![CDATA[<h2 id="Python-기초-연산자-Operators"><a href="#Python-기초-연산자-Operators" class="headerlink" title="Python 기초 - 연산자 (Operators)"></a>Python 기초 - 연산자 (Operators)</h2><br>
+
+
+
+<br>
+
+<h3 id="Operators-and-Opernands-연산자와-피연산자"><a href="#Operators-and-Opernands-연산자와-피연산자" class="headerlink" title="Operators and Opernands (연산자와 피연산자)"></a>Operators and Opernands (연산자와 피연산자)</h3><br>
+
+<p>컴퓨터 프로그래밍 언어에서 연산자 (operators) 들은 특별한 기호들로, 계산 조건 매칭 등을 표현합니다. </p>
+<p><br>연산자 (operators) 들이 사용하는 값들은 피연산자 (opernands)  라고 불리웁니다. </p>
+<br>
+
+
+
+<blockquote>
+<p>c = a + b 에서, </p>
+<p>연산자는 +, 피 연산자들은 a 와 b 입니다. </p>
+</blockquote>
+<br>
+
+<p>파이썬은 아래 연산자들을 지원합니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>연산자명</strong></th>
+<th><strong>연산</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Operators commands</td>
+<td>연산자 명령</td>
+</tr>
+<tr>
+<td>Arithmetic Operators</td>
+<td>산수 연산자</td>
+</tr>
+<tr>
+<td>Comparison Operators</td>
+<td>비교 연산자</td>
+</tr>
+<tr>
+<td>Logical Operators</td>
+<td>논리 연산자</td>
+</tr>
+<tr>
+<td>Assignment Operators</td>
+<td>할당 연산자</td>
+</tr>
+<tr>
+<td>Bitwise Operators</td>
+<td>비트 단위 연산자</td>
+</tr>
+</tbody></table>
+<br>
+
+<a id="more"></a>
+
+<h2 id="Operator-Commands"><a href="#Operator-Commands" class="headerlink" title="Operator : Commands"></a>Operator : Commands</h2><br>
+
+<p>연산자의 기능들을 제공하는 함수들의 모듈입니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Operator: commands </span></span><br><span class="line"><span class="comment"># Operator 명령어들 예시는 아래와 같습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> add, sub, mul, truediv, floordiv, mod</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> eq, ne, lt, gt, ge </span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> and_, or_, not_ </span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> itemgetter, attrgetter, methodcaller</span><br><span class="line"><span class="keyword">import</span> operator <span class="keyword">as</span> op</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Arithmetic-Operators-산수-연산자"><a href="#Arithmetic-Operators-산수-연산자" class="headerlink" title="Arithmetic Operators (산수 연산자)"></a>Arithmetic Operators (산수 연산자)</h2><br>
+
+<table>
+<thead>
+<tr>
+<th><strong>연산자</strong></th>
+<th><strong>이름</strong></th>
+<th><strong>예시</strong></th>
+<th><strong>결과</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>더하기</td>
+<td>x + y</td>
+<td>x 와 y 의 합계</td>
+</tr>
+<tr>
+<td>-</td>
+<td>빼기</td>
+<td>x - y</td>
+<td>x 와 y 의 차이</td>
+</tr>
+<tr>
+<td>*</td>
+<td>곱하기</td>
+<td>x * y</td>
+<td>x 와 y 의 곱셈</td>
+</tr>
+<tr>
+<td>/</td>
+<td>나누기</td>
+<td>x / y</td>
+<td>x 와 y 의 나눗셈의 몫</td>
+</tr>
+<tr>
+<td>%</td>
+<td>나머지 구하기</td>
+<td>x % y</td>
+<td>x 를 y 로 나누고 남은 나머지의 값</td>
+</tr>
+<tr>
+<td>**</td>
+<td>지수연산</td>
+<td>x ** y</td>
+<td>x 의 y 승</td>
+</tr>
+<tr>
+<td>//</td>
+<td>몫 구하기</td>
+<td>x // y</td>
+<td>x 를 y 로 나누어 나온 몫의 소숫점을 제외한 값</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>산술 연산자의 예시를 들어보면, 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Arithmetic Operators </span></span><br><span class="line"><span class="comment"># 산술 연산자 </span></span><br><span class="line">x = <span class="number">14</span> </span><br><span class="line">y = <span class="number">5</span> </span><br><span class="line"></span><br><span class="line">print(x + y)   <span class="comment"># 합계 </span></span><br><span class="line">print(x - y)   <span class="comment"># 뺄셈 </span></span><br><span class="line">print(x * y)   <span class="comment"># 곱셈 </span></span><br><span class="line">print(x / y)   <span class="comment"># 나누기 </span></span><br><span class="line">print(x % y)   <span class="comment"># 나누기 이후에 나머지 값 </span></span><br><span class="line">print(x ** y)  <span class="comment"># x의 y 승 </span></span><br><span class="line">print(x // y)  <span class="comment"># 나누어서 나온 몫의 소숫점을 제외한 부분</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Comparison-Operators-비교-연산자"><a href="#Comparison-Operators-비교-연산자" class="headerlink" title="Comparison Operators (비교 연산자)"></a>Comparison Operators (비교 연산자)</h2><br>
+
+<table>
+<thead>
+<tr>
+<th><strong>연산자</strong></th>
+<th><strong>이름</strong></th>
+<th><strong>예시</strong></th>
+<th><strong>결과</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>==</td>
+<td>Equal</td>
+<td>x == y</td>
+<td>x 가 정확히 y 와 같을때 True</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>Not Equal</td>
+<td>x != y</td>
+<td>x 가 y 와 같지 않을때 True</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>Greater than</td>
+<td>x &gt; y</td>
+<td>x 가 y 보다 큰 값일때 True</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>Less than</td>
+<td>x &lt; y</td>
+<td>x 가 y 보다 작은값일때 True</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>Greater than or equal to</td>
+<td>x &gt;= y</td>
+<td>x 가 y 보다 크거나 같을때 True</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>Less than or equal to</td>
+<td>x &lt;= y</td>
+<td>x 가 y 보다 작거나 같을때 True</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>예시를 들면, 아래와 같습니다. 연산의 결과값이 나오게 될겁니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Comparison Operators </span></span><br><span class="line"><span class="comment"># 비교 연산자 </span></span><br><span class="line">x = <span class="number">12</span> </span><br><span class="line">y = <span class="number">18</span> </span><br><span class="line"></span><br><span class="line">print(x == y)</span><br><span class="line">print(x != y)</span><br><span class="line">print(x &gt; y)</span><br><span class="line">print(x &lt; y)</span><br><span class="line">print(x &gt;= y)</span><br><span class="line">print(x &lt;= y)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Logical-Operators-논리-연산자"><a href="#Logical-Operators-논리-연산자" class="headerlink" title="Logical Operators (논리 연산자)"></a>Logical Operators (논리 연산자)</h2><br>
+
+<table>
+<thead>
+<tr>
+<th><strong>연산자</strong></th>
+<th><strong>예시</strong></th>
+<th><strong>결과</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>and</td>
+<td>(x and y)</td>
+<td>x 와 y 둘다 True 이면, True</td>
+</tr>
+<tr>
+<td>or</td>
+<td>(x or y)</td>
+<td>x 와 y 둘중에 하나가 True 이면, True</td>
+</tr>
+<tr>
+<td>not</td>
+<td>(x not y)</td>
+<td>만약 조건이 True 라면, not 연산자는 False 로 만듭니다.</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>예를들면, 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Logical Operators </span></span><br><span class="line">x = <span class="number">12</span> </span><br><span class="line">y = <span class="number">18</span> </span><br><span class="line"></span><br><span class="line">print(x &gt; <span class="number">10</span> <span class="keyword">and</span> y &gt; <span class="number">10</span>)</span><br><span class="line">print(x &gt; <span class="number">14</span> <span class="keyword">or</span> y &gt; <span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># x, y 둘다 10보다 커서, 조건은 충족되어 True 여야 하나, not 이 붙어서 False 를 반환합니다. </span></span><br><span class="line"></span><br><span class="line">print(<span class="keyword">not</span>(x &gt; <span class="number">10</span> <span class="keyword">and</span> y &gt; <span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Assignment-Operators-할당-연산자"><a href="#Assignment-Operators-할당-연산자" class="headerlink" title="Assignment Operators (할당 연산자)"></a>Assignment Operators (할당 연산자)</h2><br>
+
+
+
+<table>
+<thead>
+<tr>
+<th><strong>연산자</strong></th>
+<th><strong>줄임</strong></th>
+<th><strong>표현식</strong></th>
+<th><strong>비고</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+=</td>
+<td>x += y</td>
+<td>x = x + y</td>
+<td>x 와 y 두값을 더하고, 더한값을 왼쪽의 x 에 할당</td>
+</tr>
+<tr>
+<td>-=</td>
+<td>x -= y</td>
+<td>x = x - y</td>
+<td>x 와 y 두값을 빼고, 뺀값을 왼쪽의 x 에 할당</td>
+</tr>
+<tr>
+<td>*=</td>
+<td>x *= y</td>
+<td>x = x * y</td>
+<td>x 와 y 두값을 곱하고, 곱한값을 왼쪽의 x 에 할당</td>
+</tr>
+<tr>
+<td>/=</td>
+<td>x /= y</td>
+<td>x = x / y</td>
+<td>x 를 y 로 나누고, 나눈값을, 왼쪽의 x 에 할당</td>
+</tr>
+<tr>
+<td>%=</td>
+<td>x %= y</td>
+<td>x = x % y</td>
+<td>x 를 y 로 나눈 나머지값을, 왼쪽의 x 에 할당</td>
+</tr>
+<tr>
+<td>**=</td>
+<td>x **= y</td>
+<td>x = x ** y</td>
+<td>x 를 y 승만큼 곱한다음, 왼쪽의 x 에 할당</td>
+</tr>
+<tr>
+<td>//=</td>
+<td>x //= y</td>
+<td>x = x // y</td>
+<td>x 를 y 로 나눈 몫(소수점 제외)을, 왼졲에 x 에 할당</td>
+</tr>
+</tbody></table>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Assignment Operators </span></span><br><span class="line"><span class="comment"># 할당 연산자</span></span><br><span class="line"><span class="comment"># 할당 연산을 할때마다, x 에 새로운 값이 할당되어 집니다. </span></span><br><span class="line"></span><br><span class="line">x = <span class="number">12</span> </span><br><span class="line">y = <span class="number">18</span> </span><br><span class="line"></span><br><span class="line">x += y</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x -= y</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x *= y</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x /= y</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x %= y</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x **= y</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x //= y</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Bitwise-Operators-비트-연산자"><a href="#Bitwise-Operators-비트-연산자" class="headerlink" title="Bitwise Operators (비트 연산자)"></a>Bitwise Operators (비트 연산자)</h2><br>
+
+<p>비트 연산은 별로 다룰일이 없기때문에, operators 만 보고 넘어갑니다. </p>
+<br>
+
+
+
+<table>
+<thead>
+<tr>
+<th>연산자</th>
+<th>줄임</th>
+<th>표현식</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>And</td>
+<td>x &amp; y</td>
+<td></td>
+</tr>
+<tr>
+<td>|</td>
+<td>Or</td>
+<td>x | y</td>
+<td></td>
+</tr>
+<tr>
+<td>^</td>
+<td>Xor</td>
+<td>x ^ y</td>
+<td></td>
+</tr>
+<tr>
+<td>~</td>
+<td>Not</td>
+<td>~x</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>Shift Left</td>
+<td>x &lt;&lt; y</td>
+<td></td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>Shift right</td>
+<td>x &gt;&gt; y</td>
+<td></td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>연산자</tag>
+        <tag>operators</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python-기초-6편-Data-Type-튜플-리스트-사전</title>
     <url>/2020/10/28/Python-%EA%B8%B0%EC%B4%88-6%ED%8E%B8-Data-Type-%ED%8A%9C%ED%94%8C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%82%AC%EC%A0%84/</url>
     <content><![CDATA[<h2 id="Python-Data-Type"><a href="#Python-Data-Type" class="headerlink" title="Python Data Type"></a>Python Data Type</h2><br>

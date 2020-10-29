@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/operators/</loc>
+        <lastmod>2020-10-29T03:04:53.875Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EC%2597%25B0%25EC%2582%25B0%25EC%259E%2590/</loc>
+        <lastmod>2020-10-29T03:04:53.875Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/dictionary/</loc>
         <lastmod>2020-10-28T07:30:45.376Z</lastmod>
         <changefreq>weekly</changefreq>
