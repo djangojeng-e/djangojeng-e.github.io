@@ -1,6 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 8편 - if elif else</title>
+    <url>/2020/10/30/Python-%EA%B8%B0%EC%B4%88-8%ED%8E%B8-if-elif-else/</url>
+    <content><![CDATA[<h2 id="Python-기초-if-elif-else"><a href="#Python-기초-if-elif-else" class="headerlink" title="Python 기초 - if, elif, else"></a>Python 기초 - if, elif, else</h2><br>
+
+<blockquote>
+<p><code>if</code>, <code>elif</code>, <code>else</code></p>
+<p>if, elif, else 문은 조건적으로 구문 혹은 코드블럭을 실행 시킬때 사용됩니다. </p>
+<p>조건들은, True 혹은 False 가 될수 있고, 해당 조건이 True 일때 하나의 코드 블럭을 실행 시킵니다. </p>
+<p>조건이 False 라면, 코드 블럭을 실행 시키지 않거나, 다른 코드들을 실행 시킬수 있습니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+<h2 id="if-문"><a href="#if-문" class="headerlink" title="if 문"></a>if 문</h2><br>
+
+<p>파이썬에서 if 문은 다른 프로그래밍 언어에서 존재하는 if 와 같습니다. </p>
+<p><br>if 는 논리적 수식의 값을 바탕으로 하는 조건에 따라서, 구문의 조각들을 실행 시킵니다. 논리적 연산을 통해 나오는 조건의 값은 보통 True 혹은 False 이고, 이 값에 따라서, 코드 블럭을 실행 시킵니다. </p>
+<br>
+
+<p>if 문의 일반 형태는 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> expression:</span><br><span class="line">    statement_1 </span><br><span class="line">    statement_2 </span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위의 예시에서, expression 은 조건을 지정하는 수식으로, 불리언식을 기반으로 합니다. </p>
+<p><br>불리언식이 평가되고, true 혹은 fasle 값을 만들어 낼때, 수식이 true 인경우 들여쓰기된 모든 구문들이 실행 됩니다. 이 구문을 블럭이라고 부릅니다. </p>
+<br>
+
+<h2 id="if-else-문"><a href="#if-else-문" class="headerlink" title="if ..else 문"></a>if ..else 문</h2><br>
+
+<p>파이썬에서 if.. else 문은, 두개의 블럭들을 가지고 있습니다. </p>
+<p><br>하나는 if 문 을 따르고, 하나는 else 문 을 따릅니다. 아래 문법 구조를 참조합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> expression:</span><br><span class="line">    statement_1</span><br><span class="line">    statement_2 </span><br><span class="line">    ... </span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    statement_3</span><br><span class="line">    statement_4</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위의 상황에서, 만약 expression 이 True 로 평가되면, if 문 안에 있는 코드 블럭들이 실행되고. </p>
+<p><br>expression 이 false 로 평가되면, else 문 안에 있는 코드 블럭들이 실행됩니다. </p>
+<br>
+
+<p>아래 예시를 참조해 봅시다. 프로그램은 ‘값은 10 입니다’ 라는 두번째 문장을 실행 시킵니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="number">10</span> </span><br><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>):</span><br><span class="line">    print(<span class="string">'값은 10보다 큽니다'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'값은 10입니다'</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="if-elif-else-문"><a href="#if-elif-else-문" class="headerlink" title="if elif ..else 문"></a>if elif ..else 문</h2><br>
+
+<p>때때로, 조건이 몇가지 있는 상황들이 발생합니다. 이런 상황을 다루기 위해서, 파이썬에서는 elif 문을 if 문과 else 문 사이에 추가하여, 조건을 추가하는것을 허용합니다. </p>
+<br>
+
+<p>아래 예시를 들어봅니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">b = <span class="number">1</span> + <span class="number">2j</span> </span><br><span class="line"><span class="keyword">if</span> (type(b) == int):</span><br><span class="line">    print(<span class="string">"b 는 정수 입니다"</span>)</span><br><span class="line"><span class="keyword">elif</span> (type(b) == float):</span><br><span class="line">    print(<span class="string">"b 는 실수 입니다"</span>)</span><br><span class="line"><span class="keyword">elif</span> (type(b) == complex):</span><br><span class="line">    print(<span class="string">"b 는 복소수 입니다"</span>)</span><br><span class="line"><span class="keyword">elif</span> (type(b) == bool):</span><br><span class="line">    print(<span class="string">"b 는 불리언 입니다"</span>)</span><br><span class="line"><span class="keyword">elif</span> (type(b) == str):</span><br><span class="line">    print(<span class="string">"b 는 문자열 입니다"</span>)</span><br><span class="line"><span class="keyword">elif</span> (type(b) == tuple):</span><br><span class="line">    print(<span class="string">"b 는 튜플 입니다"</span>)</span><br><span class="line"><span class="keyword">elif</span> (type(b) == dict):</span><br><span class="line">    print(<span class="string">"b 는 사전 입니다"</span>)</span><br><span class="line"><span class="keyword">elif</span> (type(b) == list):</span><br><span class="line">    print(<span class="string">"b 는 리스트 입니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"b 의 타입은 모르는 타입입니다"</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>복소수인 b 라는, 복소수가 다른 데이터 형태 인지 아닌지에 대한 조건에 따라서, 문자열을 출력합니다. elif 를 통해서 많은 조건들을 추가하였습니다. </p>
+<br>
+
+<h2 id="if-else-문의-중첩"><a href="#if-else-문의-중첩" class="headerlink" title="if ..else 문의 중첩"></a>if ..else 문의 중첩</h2><br>
+
+<p>보통의 경우, if-else 문의 중첩은 우리가 하나 이상의 조건을 확인하고 싶을때 사용됩니다. </p>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">age = <span class="number">35</span></span><br><span class="line"><span class="keyword">if</span> (age &gt;= <span class="number">11</span>):</span><br><span class="line">    print(<span class="string">"놀이기구에 탈수 있는 나이 입니다"</span>)</span><br><span class="line">    <span class="keyword">if</span> (age &lt;= <span class="number">20</span> <span class="keyword">or</span> age &gt;= <span class="number">60</span>):</span><br><span class="line">        print(<span class="string">"청소년과 노약자의 사용료는 12,000원 입니다"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"일반 사용료는 18,000원 입니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"11세 미만인 나이이므로, 놀이기구 사용을 할수 없습니다"</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>테스트해볼 조건 안에, 또다시 테스트해볼 조건이 있는것으로. 위 예시에서는, 나이가 11세 이상인 조건을 전제로, 조건을 하나 더 추가하였습니다. </p>
+<br>
+
+<p>20세 이하 혹은 60세 이상 청소년 혹은 노약자에는 사용료를 받습니다. </p>
+<br>
+
+<p>그 외의 나이대에 속하는 사용자는, 18000 원으로 일반 가격을 지불해야 합니다. </p>
+<br>
+
+<p>11세가 되지 않는다면, 11세 미만이므로, 놀이기구를 사용할수 없다는 메시지가 출력됩니다. </p>
+<br>
+
+<h2 id="if-else-문의-사용"><a href="#if-else-문의-사용" class="headerlink" title="if ..else 문의 사용"></a>if ..else 문의 사용</h2><br>
+
+<h3 id="if-문-안에-연산자-사용하기"><a href="#if-문-안에-연산자-사용하기" class="headerlink" title="if 문 안에 연산자 사용하기"></a>if 문 안에 연산자 사용하기</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># if 문 안에 and 연산자 사용하기 </span></span><br><span class="line">x = <span class="literal">False</span> </span><br><span class="line">y = <span class="literal">True</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># x 와 y 둘다 True 일때, x and y 는 True 로 평가됩니다. </span></span><br><span class="line"><span class="keyword">if</span> (x <span class="keyword">and</span> y):</span><br><span class="line">    print(<span class="string">'x 와 y 둘다 True 입니다'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'x 는 False 혹은 y 가 False 입니다. 그렇지 않다면 x 와 y 둘다 False 입니다'</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="in-연산자를-if-문에-사용하기"><a href="#in-연산자를-if-문에-사용하기" class="headerlink" title="in 연산자를 if 문에 사용하기"></a>in 연산자를 if 문에 사용하기</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># in 연산자를 if 문에 사용하기 </span></span><br><span class="line"><span class="comment"># 문자열 생성 </span></span><br><span class="line">s = <span class="string">'Django'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 리스트 생성 </span></span><br><span class="line">frameworks = [<span class="string">'Django'</span>, <span class="string">'Flask'</span>, <span class="string">'Tornado'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># s 가 frameworks 안에 있는지 in 연산자를 사용하여 확인할수 있습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> s <span class="keyword">in</span> frameworks:</span><br><span class="line">    print(s + <span class="string">' Framework'</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 혹은, if 문을 or 연산자를 사용하여 사용할수도 있습니다. </span></span><br><span class="line"><span class="keyword">if</span> s == <span class="string">'Django'</span> <span class="keyword">or</span> s == <span class="string">'Flask'</span> <span class="keyword">or</span> s == <span class="string">'Tornado'</span>:</span><br><span class="line">    print(s + <span class="string">' Framework'</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="if-else-를-한줄로-작성하기"><a href="#if-else-를-한줄로-작성하기" class="headerlink" title="if-else 를 한줄로 작성하기"></a>if-else 를 한줄로 작성하기</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># if-else 를 한줄로 작성하기 </span></span><br><span class="line"><span class="comment"># 정수를 하나 생성하기 </span></span><br><span class="line">n = <span class="number">150</span> </span><br><span class="line">print(n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># n 이 500 보다 크면, n 은 7로 곱해집니다 </span></span><br><span class="line"><span class="comment"># 그렇지 않다면, 7 로 나누어집니다. </span></span><br><span class="line">result = n * <span class="number">7</span> <span class="keyword">if</span> n &gt; <span class="number">500</span> <span class="keyword">else</span> n / <span class="number">7</span></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="not-연산자를-사용한-if-문"><a href="#not-연산자를-사용한-if-문" class="headerlink" title="not 연산자를 사용한 if 문"></a>not 연산자를 사용한 if 문</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># not 을 사용하여 논리 값을 반대로 바꿀수 있습니다. </span></span><br><span class="line"><span class="comment"># 정수를 하나 생성하기 </span></span><br><span class="line">x = <span class="number">20</span> </span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># not 연산자는, 조건값을 반대로 만듭니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> x == <span class="number">50</span>:   <span class="comment"># x == 50 은 False 를 만들지만, 앞에 not 이 붙어 있기 때문에, if 는 True 가 됩니다 </span></span><br><span class="line">    print(<span class="string">"값은 50과 다릅니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"x의 값은 50과 같습니다"</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>if</tag>
+        <tag>elif</tag>
+        <tag>else</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python 기초 7편 - Operators (연산자)</title>
     <url>/2020/10/29/Python-%EA%B8%B0%EC%B4%88-7%ED%8E%B8-Operators-%EC%97%B0%EC%82%B0%EC%9E%90/</url>
     <content><![CDATA[<h2 id="Python-기초-연산자-Operators"><a href="#Python-기초-연산자-Operators" class="headerlink" title="Python 기초 - 연산자 (Operators)"></a>Python 기초 - 연산자 (Operators)</h2><br>

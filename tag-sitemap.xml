@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/else/</loc>
+        <lastmod>2020-10-30T00:03:53.136Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/elif/</loc>
+        <lastmod>2020-10-30T00:03:53.136Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/if/</loc>
+        <lastmod>2020-10-30T00:03:53.136Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/operators/</loc>
         <lastmod>2020-10-29T03:04:53.875Z</lastmod>
         <changefreq>weekly</changefreq>
