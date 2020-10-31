@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/For/</loc>
+        <lastmod>2020-10-31T07:27:19.442Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/else/</loc>
         <lastmod>2020-10-30T00:03:53.136Z</lastmod>
         <changefreq>weekly</changefreq>
