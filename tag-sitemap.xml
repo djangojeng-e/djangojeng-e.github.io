@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/while/</loc>
+        <lastmod>2020-11-01T02:16:01.917Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/For/</loc>
         <lastmod>2020-10-31T07:27:19.442Z</lastmod>
         <changefreq>weekly</changefreq>
