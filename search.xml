@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 11편 - break, continue문</title>
+    <url>/2020/11/02/Python-%EA%B8%B0%EC%B4%88-11%ED%8E%B8-break-continue%EB%AC%B8/</url>
+    <content><![CDATA[<h2 id="Python-기초-break-continue"><a href="#Python-기초-break-continue" class="headerlink" title="Python 기초 - break, continue"></a>Python 기초 - break, continue</h2><br>
+
+<p><strong>break 문</strong></p>
+<br>
+
+<p>break 문은 for 혹은 while 반복문을 빠져나가기 위해 사용됩니다. </p>
+<p><br>break 문의 목적은, 반복문의 실행을 바로 멈추고, 프로그램의 흐름이 반복문 이후로 넘어가게 하는것입니다. </p>
+<br>
+
+<blockquote>
+<p>for 반복문 혹은 while 반복문 안에서, </p>
+<p>break 코드를 만나면, 해당 반복문은 바로 종료가 됩니다. </p>
+</blockquote>
+<br>
+
+<h3 id="for-반복문에서-break-의-예시"><a href="#for-반복문에서-break-의-예시" class="headerlink" title="for 반복문에서 break 의 예시"></a>for 반복문에서 break 의 예시</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># for loop 안의 break 문 </span></span><br><span class="line">numbers = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)</span><br><span class="line">num_sum = <span class="number">0</span> </span><br><span class="line">count = <span class="number">0</span> </span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> numbers:</span><br><span class="line">    num_sum = num_sum + x </span><br><span class="line">    count = count + <span class="number">1</span> </span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">5</span>:</span><br><span class="line">        <span class="keyword">break</span> </span><br><span class="line">        </span><br><span class="line">print(<span class="string">'처음 &#123;&#125;번째 숫자의 합계는, &#123;&#125; 입니다.'</span>.format(count, num_sum))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="while-반복문에서-break-의-예시"><a href="#while-반복문에서-break-의-예시" class="headerlink" title="while 반복문에서 break 의 예시"></a>while 반복문에서 break 의 예시</h3><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># while loop 안의 break 문 </span></span><br><span class="line">num_sum = <span class="number">0</span> </span><br><span class="line">count = <span class="number">0</span> </span><br><span class="line"><span class="keyword">while</span>(count &lt; <span class="number">10</span>):</span><br><span class="line">	num_sum = num_sum + count </span><br><span class="line">    count = count + <span class="number">1</span> </span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">5</span>:</span><br><span class="line">        <span class="keyword">break</span> </span><br><span class="line">print(<span class="string">'처음 &#123;&#125; 번째 숫자의 합계는 &#123;&#125; 입니다'</span>.format(count, num_sum))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="continue-문"><a href="#continue-문" class="headerlink" title="continue 문"></a>continue 문</h3><br>
+
+<p>continue 문은 while 혹은 for 반복문 안에서, 남아있는 구문들을 실행시키지 않고. 반복문의 위로 올라가게 해줍니다. 예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># continue 문 </span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">7</span>):</span><br><span class="line">    <span class="keyword">if</span> (x==<span class="number">3</span> <span class="keyword">or</span> x==<span class="number">6</span>):</span><br><span class="line">        <span class="keyword">continue</span> </span><br><span class="line">        <span class="comment"># x 가 3 혹은 6이면, continue 문 밑에 있는 print(x) 를 실행시키지 않고, </span></span><br><span class="line">        <span class="comment"># 넘어가게 된다. </span></span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>break</tag>
+        <tag>continue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python 기초 10편 - While 반복문</title>
     <url>/2020/11/01/Python-%EA%B8%B0%EC%B4%88-10%ED%8E%B8-While-%EB%B0%98%EB%B3%B5%EB%AC%B8/</url>
     <content><![CDATA[<h2 id="Python-기초-while문"><a href="#Python-기초-while문" class="headerlink" title="Python 기초 - while문"></a>Python 기초 - while문</h2><br>
