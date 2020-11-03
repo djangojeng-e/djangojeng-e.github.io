@@ -220,6 +220,207 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/03/Python-%EA%B8%B0%EC%B4%88-12%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/03/Python-%EA%B8%B0%EC%B4%88-12%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-1/" class="post-title-link" itemprop="url">Python 기초 12편 - Regular Expression (정규표현식 1)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-03 17:30:09 / Updated at: 17:35:01" itemprop="dateCreated datePublished" datetime="2020-11-03T17:30:09+09:00">2020-11-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/03/Python-%EA%B8%B0%EC%B4%88-12%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/03/Python-기초-12편-Regular-Expression-정규표현식-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h2><br>
+
+
+
+<blockquote>
+<p><strong>정규표현식이란?</strong> </p>
+<p>특정 문자열이 주어진 표현식과 매치가 되는지 확인해 줍니다. </p>
+<p>특정 텍스트에서 검색할 문자열 혹은 패턴을 나타내는 기호 및 문자 입니다. </p>
+</blockquote>
+<br>
+
+<p>정규 표현식을 사용하면, 정규 표현식에 쓰여진 문자나 패턴이 검색할 문자열 안에 있는지 없는지 확인 할수 있습니다.  </p>
+<br>
+
+<h2 id="re-내장-모듈"><a href="#re-내장-모듈" class="headerlink" title="re 내장 모듈"></a>re 내장 모듈</h2><br>
+
+<p>정규 표현식을 사용하기 위해서는,  re 라는 내장 모듈을 불러와주고, 사용해주면 됩니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><strong>re 모듈의 함수들을 정리하면 아래와 같습니다.</strong></p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>함수</strong></th>
+<th><strong>동작 함수동작</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>re.findall</td>
+<td>지정된 문자열과 매칭되는 부분을 리스트로 반환합니다</td>
+</tr>
+<tr>
+<td>re.search</td>
+<td>문자열 안에 매치가 있으면, 메치 객체를 반환합니다</td>
+</tr>
+<tr>
+<td>re.split</td>
+<td>각 매치에서 일치할때마다 분열된 문자열 리스트를 반환합니다</td>
+</tr>
+<tr>
+<td>re.sub</td>
+<td>문자열과 매치되는 하나 혹은 여러개의 것들을 교체 합니다</td>
+</tr>
+</tbody></table>
+<br>
+
+<p>정규 표현식은 아무리 여러번 봐도, 쉽게 머리에 들어오지 않고. 매번 까먹기만 하기 때문에. </p>
+<p><br>특별히 더더더욱이 많은 공부를 해야하는것 같습니다. W3School 예시를 따라하면서 정리합니다. </p>
+<br>
+
+<h3 id="Metacharacters-특수문자"><a href="#Metacharacters-특수문자" class="headerlink" title="Metacharacters (특수문자)"></a>Metacharacters (특수문자)</h3><br>
+
+<table>
+<thead>
+<tr>
+<th><strong>문자</strong></th>
+<th><strong>비고</strong></th>
+<th><strong>예시</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[]</td>
+<td>문자의 집합</td>
+<td>“[a-m]”</td>
+</tr>
+<tr>
+<td>\</td>
+<td>특정 순서를 표시</td>
+<td>“\d”</td>
+</tr>
+<tr>
+<td>.</td>
+<td>새줄의 문자를 제외한, 아무 문자</td>
+<td>‘he..o”</td>
+</tr>
+<tr>
+<td>^</td>
+<td>으로 시작</td>
+<td>“^hello”</td>
+</tr>
+<tr>
+<td>$</td>
+<td>으로 끝</td>
+<td>“world$”</td>
+</tr>
+<tr>
+<td>*</td>
+<td>0번 혹은 그 이상 발생</td>
+<td>“aix*”</td>
+</tr>
+<tr>
+<td>+</td>
+<td>1번 혹은 그 이상 발생</td>
+<td>“aix+”</td>
+</tr>
+<tr>
+<td>{}</td>
+<td>지정된 숫자만큼 발생</td>
+<td>“al{2}”</td>
+</tr>
+<tr>
+<td>|</td>
+<td>양쪽 혹은</td>
+<td>“falls|stays”</td>
+</tr>
+</tbody></table>
+<hr>
+<br>
+
+<p>정규표현식은 매우 중요한 토픽으로, 다음 포스팅부터 예시를 좀 찾아보면서 정리해 보려 합니다. </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/02/Python-%EA%B8%B0%EC%B4%88-11%ED%8E%B8-break-continue%EB%AC%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1626,153 +1827,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/" class="post-title-link" itemprop="url">Python 기초 2편 - Syntax</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-24 16:28:14 / Updated at: 16:44:49" itemprop="dateCreated datePublished" datetime="2020-10-24T16:28:14+09:00">2020-10-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/24/Python-기초-2편-Syntax/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Python-Syntax-문법-구문"><a href="#Python-Syntax-문법-구문" class="headerlink" title="Python Syntax (문법, 구문)"></a>Python Syntax (문법, 구문)</h2><br>
-
-<blockquote>
-<p>파이썬 프로그램은, parser 로 읽어집니다 </p>
-<p>파이썬은 매우 읽기 편한 언어가 되기 위해서 디자인 되었습니다. </p>
-<p>파이썬 프로그래밍 언어의 문법은, 어떻게 파이썬 프로그래밍이 작성되어야 할지에 대한 규칙을 다룹니다 </p>
-</blockquote>
-<br>
-
-<br>
-
-<h2 id="Python-Line-Structure-줄구조"><a href="#Python-Line-Structure-줄구조" class="headerlink" title="Python Line Structure (줄구조)"></a>Python Line Structure (줄구조)</h2><br>
-
-<p>파이썬 프로그램은 여러개의 논리적 줄들로 나누어져 있고, 각 논리적 줄은, NEWLINE 토큰에 의해서 종료 됩니다. </p>
-<p><br>논리적 줄은, 하나 혹은 그 이상의 줄들로 부터 생성 됩니다. </p>
-<br>
-
-<p>하나의 줄은, 공백, 탭, 주석같은 formfeed 로 이루어질수 있고, 비어있는 줄은 인터프리터가 무시합니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span> </span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'이 세줄은 물리적 / 논리적 줄들 입니다.'</span>)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<h2 id="파이썬에서-주석-comments"><a href="#파이썬에서-주석-comments" class="headerlink" title="파이썬에서 주석 (comments)"></a>파이썬에서 주석 (comments)</h2><br>
-
-<p>파이썬에서 주석은, 문자열로 치지 않는 # 으로 시작하고, 물리적으로 한줄의 끝에서 끝납니다. </p>
-<p><br># 뒤의 모든 케릭터들은 주석의 부분이고, 파이썬 인터프리터는 이들을 실행하지 않고 무시합니다. </p>
-<br>
-
-<br>
-
-<p>아래 예시를 들어봅니다. 참고로, 파이썬에서 다수의 줄 혹은 블럭으로 된 주석은 존재하지 않습니다. </p>
-<br>
-
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span> </span><br><span class="line"><span class="comment"># x 의 초기값은 1 입니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">	print(<span class="string">'두번째 줄은 주석입니다'</span>)   <span class="comment"># 문자열을 출력합니다 (이것도 주석입니다!)</span></span><br></pre></td></tr></table></figure>
-
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1843,7 +1897,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">186</span>
+          <span class="site-state-item-count">187</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1856,7 +1910,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">143</span>
+        <span class="site-state-item-count">144</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

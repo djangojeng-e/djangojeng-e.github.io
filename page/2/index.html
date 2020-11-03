@@ -220,6 +220,153 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/" class="post-title-link" itemprop="url">Python 기초 2편 - Syntax</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-24 16:28:14 / Updated at: 16:44:49" itemprop="dateCreated datePublished" datetime="2020-10-24T16:28:14+09:00">2020-10-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/24/Python-기초-2편-Syntax/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Python-Syntax-문법-구문"><a href="#Python-Syntax-문법-구문" class="headerlink" title="Python Syntax (문법, 구문)"></a>Python Syntax (문법, 구문)</h2><br>
+
+<blockquote>
+<p>파이썬 프로그램은, parser 로 읽어집니다 </p>
+<p>파이썬은 매우 읽기 편한 언어가 되기 위해서 디자인 되었습니다. </p>
+<p>파이썬 프로그래밍 언어의 문법은, 어떻게 파이썬 프로그래밍이 작성되어야 할지에 대한 규칙을 다룹니다 </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="Python-Line-Structure-줄구조"><a href="#Python-Line-Structure-줄구조" class="headerlink" title="Python Line Structure (줄구조)"></a>Python Line Structure (줄구조)</h2><br>
+
+<p>파이썬 프로그램은 여러개의 논리적 줄들로 나누어져 있고, 각 논리적 줄은, NEWLINE 토큰에 의해서 종료 됩니다. </p>
+<p><br>논리적 줄은, 하나 혹은 그 이상의 줄들로 부터 생성 됩니다. </p>
+<br>
+
+<p>하나의 줄은, 공백, 탭, 주석같은 formfeed 로 이루어질수 있고, 비어있는 줄은 인터프리터가 무시합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span> </span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'이 세줄은 물리적 / 논리적 줄들 입니다.'</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="파이썬에서-주석-comments"><a href="#파이썬에서-주석-comments" class="headerlink" title="파이썬에서 주석 (comments)"></a>파이썬에서 주석 (comments)</h2><br>
+
+<p>파이썬에서 주석은, 문자열로 치지 않는 # 으로 시작하고, 물리적으로 한줄의 끝에서 끝납니다. </p>
+<p><br># 뒤의 모든 케릭터들은 주석의 부분이고, 파이썬 인터프리터는 이들을 실행하지 않고 무시합니다. </p>
+<br>
+
+<br>
+
+<p>아래 예시를 들어봅니다. 참고로, 파이썬에서 다수의 줄 혹은 블럭으로 된 주석은 존재하지 않습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span> </span><br><span class="line"><span class="comment"># x 의 초기값은 1 입니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">	print(<span class="string">'두번째 줄은 주석입니다'</span>)   <span class="comment"># 문자열을 출력합니다 (이것도 주석입니다!)</span></span><br></pre></td></tr></table></figure>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1329,138 +1476,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/15/Form-API-2%ED%8E%B8-%ED%8F%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B2%80%EC%A6%9D%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/15/Form-API-2%ED%8E%B8-%ED%8F%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B2%80%EC%A6%9D%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">Form API 2편 - 폼을 사용하여 데이터 검증하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-15 14:29:29 / Updated at: 15:19:07" itemprop="dateCreated datePublished" datetime="2020-10-15T14:29:29+09:00">2020-10-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Form-API/" itemprop="url" rel="index"><span itemprop="name">Form API</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/15/Form-API-2%ED%8E%B8-%ED%8F%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B2%80%EC%A6%9D%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/15/Form-API-2편-폼을-사용하여-데이터-검증하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="폼을-사용하여-데이터-검증하기"><a href="#폼을-사용하여-데이터-검증하기" class="headerlink" title="폼을 사용하여 데이터 검증하기"></a>폼을 사용하여 데이터 검증하기</h2><br>
-
-<h3 id="Form-clean"><a href="#Form-clean" class="headerlink" title="Form.clean()"></a><code>Form.clean()</code></h3><br>
-
-<p>서로 의존되어 있는 필드들을 위한 커스텀 검증을 추가해야 할때는, 폼에 clean() 메서드를 써주면 됩니다. </p>
-<br>
-
-<h3 id="Form-is-valid"><a href="#Form-is-valid" class="headerlink" title="Form.is_valid()"></a><code>Form.is_valid()</code></h3><br>
-
-<p>폼 객체의 기본 과제는, 데이터를 검증하는것입니다. </p>
-<br>
-
-<p>Bound 폼 인스턴스를 가지고, <code>is_valid()</code> 메서드를 호출하여 유효성 검증을 실행하고, 데이터가 유효했었는지 아닌지에 대한 불리언값을 반환합니다. </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">In [1]: data = &#123;'subject': 'hello', </span><br><span class="line">   ...:         'message': 'Hi there',  </span><br><span class="line">   ...:         'sender': 'foo@example.com', </span><br><span class="line">   ...:         'cc_myself': True&#125;                                                                                                                                        </span><br><span class="line"></span><br><span class="line">In [2]: from forms_more_on_fields.forms import ContactForm                                                                                                                </span><br><span class="line"></span><br><span class="line">In [3]: f = ContactForm(data)                                                                                                                                             </span><br><span class="line"></span><br><span class="line">In [4]: f.is_valid()                                                                                                                                                      </span><br><span class="line">Out[4]: True</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>유효하지 않은 데이터로도 시도해보기 위해서, 아래 예시에는 subject  필드가 비어있습니다 (모든 필드들이 채워져야 하는 폼이므로, 이것은 에러 입니다). 게다가, 아래 예시에서, sender 는 유효한 이메일 주소가 아니게 입력 된 폼입니다. </p>
-<br>
-
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [5]: data = &#123;'subject': '', </span><br><span class="line">   ...:         'message': 'Hi there', </span><br><span class="line">   ...:         'sender': 'invalid email address', </span><br><span class="line">   ...:         'cc_myself': True&#125;                                                                                                                                     </span><br><span class="line"></span><br><span class="line">In [6]: f = ContactForm(data)                                                                                                                                          </span><br><span class="line"></span><br><span class="line">In [7]: f.is_valid()                                                                                                                                                   </span><br><span class="line">Out[7]: False</span><br></pre></td></tr></table></figure>
-
-<p><br><br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/15/Form-API-2%ED%8E%B8-%ED%8F%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B2%80%EC%A6%9D%ED%95%98%EA%B8%B0/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1531,7 +1546,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">186</span>
+          <span class="site-state-item-count">187</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1544,7 +1559,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">143</span>
+        <span class="site-state-item-count">144</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
