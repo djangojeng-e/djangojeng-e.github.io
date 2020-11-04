@@ -220,6 +220,144 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/08/Django-Forms-11%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/08/Django-Forms-11%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-1/" class="post-title-link" itemprop="url">Django Forms 11편 - Django Form 클래스에 대해 1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-08 07:14:51 / Updated at: 07:22:07" itemprop="dateCreated datePublished" datetime="2020-10-08T07:14:51+09:00">2020-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/08/Django-Forms-11%ED%8E%B8-Django-Form-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-%EB%8C%80%ED%95%B4-1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/08/Django-Forms-11편-Django-Form-클래스에-대해-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Django-Form-Classes"><a href="#Django-Form-Classes" class="headerlink" title="Django Form Classes"></a>Django Form Classes</h2><br>
+
+<h3 id="More-about-Django-Form-Classes"><a href="#More-about-Django-Form-Classes" class="headerlink" title="More about Django Form Classes"></a>More about Django Form Classes</h3><br>
+
+<blockquote>
+<p><strong>모든 폼 클래스들은</strong></p>
+<p>django.forms.Form 혹은 django.forms.ModelForm 클래스 둘중 하나의 </p>
+<p>서브 클래스들로 생성 됩니다. </p>
+</blockquote>
+<br>
+
+<p>ModelForm 은 Form.Form 그리고 ModelForm 의 서브클래스로. 사실상 공통 기능들을 BaseForm 클래스로부터 상속 받는다고 생각하면 됩니다. </p>
+<br>
+
+<br>
+
+<blockquote>
+<p><strong>Models and Forms</strong></p>
+<p>여러분드르이 폼이 직접적으로 Django 모델을 추가하거나 수정하는데에 쓰인다면, </p>
+<p>ModelForm 이 시간과 노력 그리고 코드의 양을 줄이는데에 크게 기여할수 있습니다. </p>
+<p>왜냐하면, ModelForm 은 Model 클래스로부터 적절한 필드들과 속성들을 가지고 폼을 생성해 주기 때문입니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h3 id="Bound-and-Unbound-Form-instances"><a href="#Bound-and-Unbound-Form-instances" class="headerlink" title="Bound and Unbound Form instances"></a>Bound and Unbound Form instances</h3><br>
+
+<p><strong>Bound 된 폼과, unbound 된 폼 사이의 차이점을 알아둡시다</strong></p>
+<br>
+
+<blockquote>
+<p><strong>Unbound Form</strong></p>
+<p>폼과 관련된 데이터를 가지고 있지 않은 폼을 의미 합니다. </p>
+<p>사용자에게 폼이 렌더 되었을때, 해당 폼은 비어 있거나, 기본값들을 가지고 있을것입니다. </p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><strong>Bound Form</strong></p>
+<p>제출된 데이터를 가지고 있습니다. </p>
+<p>따라서, 데이터가 유효한지 얘기하기 위해서 사용될수 있습니다. </p>
+<p>만약, 유효하지 않은 bound form 이 렌더 된다면, 해당 폼은 인라인으로 에러 메시지들을 포함하여 사용자에게 어떤 데이터를 고쳐야 하는지 얘기해줄수 있습니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<h3 id="is-bound-속성"><a href="#is-bound-속성" class="headerlink" title="is_bound 속성"></a><code>is_bound</code> 속성</h3><br>
+
+<p>form 의 <code>is_bound</code> 속성은 해당 폼이 데이터를 가지고 있는지 없는지 확인해 줄수 있습니다. </p>
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/07/Django-Forms-10%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1443,121 +1581,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">Django Forms 1편 - FORM 으로 작업하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-01 18:17:28 / Updated at: 18:24:52" itemprop="dateCreated datePublished" datetime="2020-10-01T18:17:28+09:00">2020-10-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/01/Django-Forms-1편-FORM-으로-작업하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Working-with-Forms"><a href="#Working-with-Forms" class="headerlink" title="Working with Forms"></a>Working with Forms</h2><br>
-
-<p>Django 의 Form에 대해 공식문서를 읽으면서 내용을 정리합니다.  </p>
-<br>
-
-<blockquote>
-<p>Django 공식문서에서 Form 부분은, </p>
-<p>web forms 에 대한 기본과, Django 에서 어떻게 Form 들이 다루어 지는지 소개합니다. </p>
-<br>
-
-<p>특정 부분에 대한 좀 더 자세한 디테일을 위해서는, </p>
-<p><code>The Forms API</code>, <code>Form Fields</code> 그리고 <code>Form and field validation</code> 문서들을 보면 자세히 알수 있습니다. </p>
-</blockquote>
-<br>
-
-<p>여러분들의 웹사이트와 어플리케이션이 단순히 컨텐츠만 발행하고, 방문자들한테서 input 을 받는 사이트가 아니라면, 여러분들은 form 에 대해 이해하고 사용할 필요가 없습니다. </p>
-<br>
-
-<p>하지만, 그 반대라면, 여러분들의 웹사이트와 어플리케이션은, 단순히 컨텐츠만 발행할 뿐만 아니라, 방문자들한테서 input 을 받고, 받은 input 을 기반으로 어떠한 작업을 실행해야 할지 모릅니다. </p>
-<br>
-
-<p>이러한 경우에는, form 에 대해서 이해하고 잘 사용할 필요가 있습니다. </p>
-<br>
-
-<p>Django 는 다양한 도구들과 라이브러리를 제공하여, 당신이 form 을 만들고 사이트 방문자로부터 값을 입력 받을수 있게 도와줍니다. </p>
-<br>
-
-<p>거기에, 입력값을 처리하고 값에 반응하는 작업을 할수도 있습니다. </p>
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1628,7 +1651,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">187</span>
+          <span class="site-state-item-count">188</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

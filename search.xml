@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 13편 - Regular Expression (정규표현식 2)</title>
+    <url>/2020/11/04/Python-%EA%B8%B0%EC%B4%88-13%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-2/</url>
+    <content><![CDATA[<h2 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h2><br>
+
+<p>정규표현식은, 긴 텍스트에서 검색할 문자열 혹은 패턴을 나타내는 기호 및 문자입니다. </p>
+<p><br>정규표현식에 지정된 문자열들이 검색할 문자열에서 매치가 되는지 확인이 가능합니다.<br><br></p>
+<p>이전 포스팅에서, re 모듈은 <code>findall</code>, <code>search</code>, <code>split</code>, <code>sub</code> 같은 함수들을 가지고 있다는것을 알았고, 몇가지 특정 의미를 가진 문자들 metacharacter  에 대해서 알아보았습니다. </p>
+<br>
+
+<p>*<em>지난 포스팅에 이어서,  special sequences 특정 순서에 대해서 알아봅니다. *</em></p>
+<br>
+
+<blockquote>
+<p>Special sequence 는 \ 뒤에 문자 하나를 붙여서 지정합니다. </p>
+<p>아래 테이블로 정리 해봅니다. </p>
+</blockquote>
+<br>
+
+
+
+<table>
+<thead>
+<tr>
+<th><strong>문자</strong></th>
+<th><strong>비고</strong></th>
+<th><strong>예시</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\A</td>
+<td>지정된 문자가, 문자열의 앞에 오면 매치를 반환 합니다.</td>
+<td>“\AThe”</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>지정된 문자가, 문자열의 단어의 앞부분 혹은 뒷부분에 있으면, 매치를 반환합니다</td>
+<td>r”\bain”r”ain\b”</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>지정된 문자가 문자열안에 있지만, 단어의 앞부분 혹은 뒷부분에 없을 경우에 매치를 반환합니다.</td>
+<td>r”\Bain”r”\ain\B”</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>문자열이 숫자를 포함하면 (0-9) 를 가지고 있으면, 매치를 반환합니다</td>
+<td>“\d”</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>문자열이 숫자를 포함하지 않으면, 매치를 반환</td>
+<td>“\D”</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>문자열이 빈공간을 가지고 있으면, 매치를 반환</td>
+<td>“\s”</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>문자열이 빈공간을 가지고 있지 않으면, 매치를 반환</td>
+<td>“\S”</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>문자열이 아무 문자 (a - Z, 0-9, _)나 가지고 있을경우, 매치를 반환</td>
+<td>“\w”</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>문자열이, 아무 문자(a-Z, 0-9, _)를 가지고 있지 않을 경우, 매치를 반환</td>
+<td>“\W”</td>
+</tr>
+<tr>
+<td>\Z</td>
+<td>문자열의 끝에 지정된 문자가 있으면 매치를 리턴</td>
+<td>“Spain\Z”</td>
+</tr>
+</tbody></table>
+<hr>
+<br>
+
+
+
+<br>
+
+<a id="more"></a>
+
+<br>
+
+
+
+<h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># \A 지정된 문자가 문자열의 앞에 오면, 매치를 반환합니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 문자열이 "The" 라는 문자열로 시작하는지 확인 </span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"\AThe"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \b 지정된 문자가, 단어의 시작에 있는지 확인 합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">r"\bain"</span>, txt)</span><br><span class="line"></span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \b 지정된 문자가, 단어의 끝에 있는지 확인 합니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt =<span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">r"ain\b"</span>, txt)</span><br><span class="line"></span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \B 지정된 문자 "ain" 이 존재하지만, 단어의 앞에 오지 않는경우를 체크 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">r"\Bain"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \B 지정된 문자 "ain"이 존재하지만, 단어의 끝에 오지 않는것을 확인합니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">r"ain\B"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \d 문자열이 숫자를 가지고 있는지 확인 합니다 (0-9) </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"\d"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \D 숫자가 아닌 모든 문자의 매치들을 리턴합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"\D"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \s 각 빈공간들의 매치들을 리턴합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"\s"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \S 빈공간이 아닌 모든 문자들에 대한 모든 매치를 리턴합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"\S"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \w 모든 문자 (a - Z, 0-9, _) 가 존재하는 지 확인하고, 모든 매치들을 반환합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"\w"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \W 모든 문자 (a - Z, 0-9, _) 가 아닌것이 존재하는 지 확인하고, 모든 매치들을 반환합니다</span></span><br><span class="line"><span class="comment"># 아래 예시는 빈공간이 (a-Z, 0-9 혹은 _) 가 아닌것입니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"\W"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># \Z 문자열이 "Spain" 으로 끝나는지 확인 합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"Spain\Z"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x:</span><br><span class="line">    print(<span class="string">"매치가 있습니다"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"매치가 없습니다"</span>)</span><br></pre></td></tr></table></figure>
+
+<br>]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>정규표현식</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python 기초 12편 - Regular Expression (정규표현식 1)</title>
     <url>/2020/11/03/Python-%EA%B8%B0%EC%B4%88-12%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-1/</url>
     <content><![CDATA[<h2 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h2><br>
