@@ -220,6 +220,174 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/06/Python-%EA%B8%B0%EC%B4%88-15%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/06/Python-%EA%B8%B0%EC%B4%88-15%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-4/" class="post-title-link" itemprop="url">Python 기초 15편 - Regular Expression (정규표현식 4)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-06 20:31:24 / Updated at: 20:47:13" itemprop="dateCreated datePublished" datetime="2020-11-06T20:31:24+09:00">2020-11-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/06/Python-%EA%B8%B0%EC%B4%88-15%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/06/Python-기초-15편-Regular-Expression-정규표현식-4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h2><br>
+
+<h2 id="findall"><a href="#findall" class="headerlink" title="findall()"></a><code>findall()</code></h2><br>
+
+<blockquote>
+<p><code>findall()</code> 함수는, 매칭되는 문자열을 포함하고 있는 리스트를 반환합니다. </p>
+<p>리스트는 매치가 발견된 순서로 되어 있고, 매치오디는것이 없으면, 비어 있는 리스트가 반환됩니다. </p>
+</blockquote>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># finall() 함수 </span></span><br><span class="line"><span class="comment"># 문자열안에 "portugal" 이라는 문자가 있는지 확인 합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.findall(<span class="string">"Portugal"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"Spain"</span>, txt)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="search"><a href="#search" class="headerlink" title="search()"></a><code>search()</code></h2><br>
+
+<blockquote>
+<p><code>search()</code> 함수는, </p>
+<p>매칭되는 문자열들을 찾고, 매칭이되면 매칭 객체를 반환합니다 </p>
+<p>매칭되는게 여러개 있을경우, 첫번째 매칭되는것만 반환됩니다. </p>
+</blockquote>
+<br>
+
+<p>예를들어, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># search() 함수 </span></span><br><span class="line"><span class="comment"># \s 를 사용하여, 문자열 안에 공백을 찾습니다. </span></span><br><span class="line"><span class="comment"># search() 는 match object 를 반환합니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.search(<span class="string">"\s"</span>, txt)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"첫번째 공백이 자리하고 있는 위치는.."</span>,  x.start())</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>매칭되는게 없으면, None 이 반환됩니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># search() 매칭되는게 없으면, None 을 반환합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.search(<span class="string">"Portugal"</span>, txt)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="split"><a href="#split" class="headerlink" title="split()"></a><code>split()</code></h2><br>
+
+<blockquote>
+<p><code>split()</code> 함수는, </p>
+<p>매칭이 될때마다 분리된 문자열을 리스트에 담아서 반환합니다. </p>
+</blockquote>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># split()</span></span><br><span class="line"><span class="comment"># 문자열은 각 공백마다 분리되어 리스트에 담아줍니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.split(<span class="string">"\s"</span>, txt)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>maxsplit</code> 파라미터를 사용하여, 몇번이나 일어날지 지정할수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># split() 파라미터 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.split(<span class="string">"\s"</span>, txt, <span class="number">1</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.split(<span class="string">"\s"</span>, txt, <span class="number">2</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.split(<span class="string">"\s"</span>, txt, <span class="number">3</span>)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="split-1"><a href="#split-1" class="headerlink" title="split()"></a><code>split()</code></h2><br>
+
+<blockquote>
+<p><code>sub()</code> 함수는, 매칭되는것을 선택된 문자로 바꾸어 줍니다 </p>
+</blockquote>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sub() 함수 </span></span><br><span class="line"><span class="comment"># 각 빈공간을, 숫자 "9" 으로 바꾸어 줍니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.sub(<span class="string">"\s"</span>, <span class="string">"9"</span>, txt)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>count 파라미터를 사용하여, 몇개를 교체할지에 대해 제어할수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.sub(<span class="string">"\s"</span>, <span class="string">"9"</span>, txt, <span class="number">1</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.sub(<span class="string">"\s"</span>, <span class="string">"9"</span>, txt, <span class="number">2</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.sub(<span class="string">"\s"</span>, <span class="string">"9"</span>, txt, <span class="number">3</span>)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/05/Python-%EA%B8%B0%EC%B4%88-14%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1655,171 +1823,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/27/Python-%EA%B8%B0%EC%B4%88-5%ED%8E%B8-Data-Type-%EC%88%AB%EC%9E%90-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B6%88%EB%A6%AC%EC%96%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/27/Python-%EA%B8%B0%EC%B4%88-5%ED%8E%B8-Data-Type-%EC%88%AB%EC%9E%90-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B6%88%EB%A6%AC%EC%96%B8/" class="post-title-link" itemprop="url">Python 기초 5편 - Data Type (숫자, 문자열, 불리언)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-10-27 09:50:59" itemprop="dateCreated datePublished" datetime="2020-10-27T09:50:59+09:00">2020-10-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-10-28 11:22:16" itemprop="dateModified" datetime="2020-10-28T11:22:16+09:00">2020-10-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/27/Python-%EA%B8%B0%EC%B4%88-5%ED%8E%B8-Data-Type-%EC%88%AB%EC%9E%90-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B6%88%EB%A6%AC%EC%96%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/27/Python-기초-5편-Data-Type-숫자-문자열-불리언/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Data-Type"><a href="#Data-Type" class="headerlink" title="Data Type"></a>Data Type</h2><br>
-
-<blockquote>
-<p><strong>데이터 타입</strong></p>
-<p>데이터 타입은, 값의 종류와 어떤식으로 값이 사용될지에 대해 결정합니다. </p>
-<p>파이썬에 모든 데이터 값들은, 연관되어 있는 객체 클래스로 캡슐화 됩니다. </p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>파이썬에서 모든것은 객체 입니다. </p>
-<p>각 객체는 하나의 정체성을 가지고, 하나의 타입을 가지고, 하나의 값을 가집니다. </p>
-</blockquote>
-<br>
-
-<p>c++ 나 Java 같은 다른 객체 지향 언어처럼, 파이썬에도 몇가지 데이터 타입이 내장되어 있습니다. </p>
-<p>C언어나, Java 로 작성된 확장 모듈을 사용하면, 추가 데이터 타입을 정의할수 있습니다. </p>
-<br>
-
-<p>파이썬에서 변수의 타입을 정하기 위해서는, <code>type()</code> 함수를 사용할수 있습니다. 객체의 값은 바뀔수도 이습니다. </p>
-<br>
-
-<h3 id="mutable-vs-immutable"><a href="#mutable-vs-immutable" class="headerlink" title="mutable vs immutable"></a>mutable vs immutable</h3><br>
-
-<blockquote>
-<p><strong>mutable (가변) 객체</strong></p>
-<p>값이 바뀔수 있는 객체들을, mutable (가변) 객체라고 부르고, </p>
-<br>
-
-<p><strong>immutable (불변) 객체</strong></p>
-<p>값이 바뀔수 없는 객체들을 immutable (불가변) 객체라고 부릅니다. </p>
-</blockquote>
-<br>
-
-
-
-<br>
-
-<h2 id="파이썬-데이터-종류"><a href="#파이썬-데이터-종류" class="headerlink" title="파이썬 데이터 종류"></a>파이썬 데이터 종류</h2><br>
-
-<p>파이썬에는, 아래와 같은 데이터 종류들이 존재합니다. <br></p>
-<br>
-
-<ol>
-<li>숫자형 (Numbers)</li>
-<li>불리언 (Boolean)</li>
-<li>문자열 (string)</li>
-<li>튜플 (Tuple)</li>
-<li>리스트 (List)</li>
-<li>집합 (Sets)</li>
-<li>사전 (Dictionary)</li>
-<li>None </li>
-</ol>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/27/Python-%EA%B8%B0%EC%B4%88-5%ED%8E%B8-Data-Type-%EC%88%AB%EC%9E%90-%EB%AC%B8%EC%9E%90%EC%97%B4-%EB%B6%88%EB%A6%AC%EC%96%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1890,7 +1893,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">189</span>
+          <span class="site-state-item-count">190</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

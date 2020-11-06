@@ -220,6 +220,145 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/18/Form-API-5%ED%8E%B8-Clean-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EC%A0%91%EA%B7%BC%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/18/Form-API-5%ED%8E%B8-Clean-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EC%A0%91%EA%B7%BC%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">Form API 5편 -Clean 데이터에 접근하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-18 16:42:52 / Updated at: 16:54:10" itemprop="dateCreated datePublished" datetime="2020-10-18T16:42:52+09:00">2020-10-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Form-API/" itemprop="url" rel="index"><span itemprop="name">Form API</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/18/Form-API-5%ED%8E%B8-Clean-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EC%A0%91%EA%B7%BC%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/18/Form-API-5편-Clean-데이터에-접근하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Accessing-“clean”-data"><a href="#Accessing-“clean”-data" class="headerlink" title="Accessing “clean” data"></a>Accessing “clean” data</h2><br>
+
+<h3 id="Form-cleaned-data"><a href="#Form-cleaned-data" class="headerlink" title="Form.cleaned_data"></a>Form.cleaned_data</h3><br>
+
+<p>폼안에 각 필드들은, 데이터 검증뿐만 아니라, “cleaning” (정화) 하는 역할도 합니다. </p>
+<br>
+
+<blockquote>
+<p>cleaning </p>
+<p>유효하고 일관적인 포맷으로 정형화 시킵니다 </p>
+</blockquote>
+<br>
+
+<p>이는 아주 좋은 기능입니다. 왜냐하면, 특정 필드가 여러 방법으로 입력되고, 일관적인 아웃풋을 만들어 내기 때문입니다. </p>
+<br>
+
+<p>예를들어, DateField 는 입력값을 python 의 datetime.date 객체로 정형화 시킵니다. </p>
+<br>
+
+<p>‘1994-07-15’ 같이, 문자열 형태, datetime.date 객체 혹은 다른 포맷들이든 상관없이. 유효하기만 하면, DateField 는 언제나 datetime.date 객체로 정형화 시킵니다. </p>
+<br>
+
+<blockquote>
+<p>폼 인스턴스를 데이터와 함께 생성하고, 검증하였으면, </p>
+<p>폼의 cleaned_data 속성에 접근하여, 깔끔한 데이터에 엑세스 할수 있습니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">In [1]: data = &#123;'subject': 'hello', </span><br><span class="line">   ...:         'message': 'Hi there', </span><br><span class="line">   ...:         'sender': 'foo@example.com', </span><br><span class="line">   ...:         'cc_myself': True&#125;     </span><br><span class="line"></span><br><span class="line">In [4]: f = ContactForm(data)                                                                                                                                             </span><br><span class="line"></span><br><span class="line">In [5]: f.is_valid()                                                                                                                                                      </span><br><span class="line">Out[5]: True</span><br><span class="line"></span><br><span class="line">In [6]: f.cleaned_data                                                                                                                                                    </span><br><span class="line">Out[6]: </span><br><span class="line">&#123;'subject': 'hello',</span><br><span class="line"> 'message': 'Hi there',</span><br><span class="line"> 'sender': 'foo@example.com',</span><br><span class="line"> 'cc_myself': True&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>여기서 꼭 알아야 할 부분은, cleaned_data 는 사전형태로. 깨끗한 데이터를 가지고 있습니다. </p>
+<p><br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/18/Form-API-5%ED%8E%B8-Clean-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EC%A0%91%EA%B7%BC%ED%95%98%EA%B8%B0/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/17/Form-API-4%ED%8E%B8-%ED%8F%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1314,172 +1453,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/" class="post-title-link" itemprop="url">Django Forms 13편 - 폼 템플릿 작업하기-1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-09 08:06:52 / Updated at: 08:24:46" itemprop="dateCreated datePublished" datetime="2020-10-09T08:06:52+09:00">2020-10-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/09/Django-Forms-13편-폼-템플릿-작업하기-1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Working-with-form-templates"><a href="#Working-with-form-templates" class="headerlink" title="Working with form templates"></a>Working with form templates</h2><br>
-
-<p>폼을 템플릿으로 가져오기 위해서 해야할 모든것은, 폼 인스턴스를 템플릿 컨텍스트에 넣어주는것입니다. </p>
-<br>
-
-<br>
-
-
-
-<ol>
-<li><p>폼인스턴스 생성</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># views.py 에서 </span></span><br><span class="line">form = NameForm()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>템플릿 컨텍스트에 넣기 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> render(request, form.html, &#123;<span class="string">'form'</span>: form&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<br>
-
-<p>템플릿 컨텍스트에 넣어진 컨텍스트 즉, <code>{&#39;form&#39;: form}</code> 은, 해당 템플릿 페이지에서, 아래와 같이 사용될수 있습니다. </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; form &#125;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>이렇게 하면, 템플릿에서 적절하게 label 과 input 요소들을 렌더해줄수 있습니다. </p>
-<br>
-
-<br>
-
-<h2 id="Form-rendering-options"><a href="#Form-rendering-options" class="headerlink" title="Form rendering options"></a>Form rendering options</h2><br>
-
-<blockquote>
-<p><strong>추가해야할 폼 템플릿 요소들</strong> </p>
-<p>폼의 출력은 <code>&lt;form&gt;</code> 테그 혹은 폼의 제출 약식들을 포함하지 않는다는것을 잊지 마세요. </p>
-<p><code>&lt;form&gt;</code> 태그와 <code>&lt;submit&gt;</code> 태그 같은것들은 여러분들이 스스로 넣어줘야 합니다. </p>
-</blockquote>
-<br>
-
-<p>Django 에서 Form 을 템플릿에 렌더할때에, 옵션을 붙여서 폼의 출력 형태를 바꾸어 줄수 있습니다.  </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; form.as_table &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">tr</span>&gt;</span> 테그로 감싸진 테이블로 폼을 렌더해줍니다 </span></span><br><span class="line"><span class="template-variable">&#123;&#123; form.as_p &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">p</span>&gt;</span> 테그로 감싸진 폼을 렌더해 줍니다 </span></span><br><span class="line"><span class="template-variable">&#123;&#123; form.as_ul &#125;&#125;</span><span class="xml"> <span class="tag">&lt;<span class="name">ul</span>&gt;</span> 태그로 감싸진 폼을 렌더해 줍니다</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>form.as_table 과 form.as_ul 같은 경우, 상위 태그인 <code>&lt;table&gt;</code> 과, <code>&lt;ul&gt;</code> 요소들을 여러분들 스스로 작성하고 감싸주어야 합니다. </p>
-<br>
-
-
-
-<br>
-
-<h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><br>
-
-<p>아주 간단한 폼을 템플릿에 렌더해 보면, </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/09/Django-Forms-13%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-1/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1550,7 +1523,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">189</span>
+          <span class="site-state-item-count">190</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
