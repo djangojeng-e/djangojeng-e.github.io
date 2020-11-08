@@ -220,6 +220,134 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/03/Django-Models-8%ED%8E%B8-Relationships-Many-to-many/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/03/Django-Models-8%ED%8E%B8-Relationships-Many-to-many/" class="post-title-link" itemprop="url">Django Models 8편 - Relationships (Many-to-many) A</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-03 18:29:15 / Updated at: 18:53:37" itemprop="dateCreated datePublished" datetime="2020-08-03T18:29:15+09:00">2020-08-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/03/Django-Models-8%ED%8E%B8-Relationships-Many-to-many/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/03/Django-Models-8편-Relationships-Many-to-many/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Many-to-many-Relationships"><a href="#Many-to-many-Relationships" class="headerlink" title="Many-to-many Relationships"></a>Many-to-many Relationships</h2><br>
+
+<p>many-to-many 관계를 정의하기 위해서는, ManyToManyField 를 사용해 주면 됩니다. </p>
+<p><br>다른 Field 타입을 사용하는것과 비슷하게 사용합니다. 클래스 속성에 포함해주는 방식으로 사용하면 됩니다. </p>
+<br>
+
+<p>ManyToManyField 는 위치 인자를 필요로 합니다. </p>
+<br>
+
+<blockquote>
+<p>관계된 모델을 </p>
+<p>ManyToManyField 의 위치인자로 넣어주어야 합니다 </p>
+</blockquote>
+<br>
+
+<p>예를들면, 하나의 피자가 다수의 토핑 객체를 가진다면, </p>
+<p><br>- 토핑은 다수의 피자에 있을수 있고, 각 피자는 다수의 토핑들을 가질수 있습니다. </p>
+<p>이러한 관계는 아래의 형태로 표현될수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Topping</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ... </span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pizza</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ... </span></span><br><span class="line">    <span class="comment"># toppings = models.ManyToManyField(Topping)</span></span><br></pre></td></tr></table></figure>
+
+<p><br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/03/Django-Models-8%ED%8E%B8-Relationships-Many-to-many/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/03/Django-Models-7%ED%8E%B8-Relationships-Many-to-one/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1308,137 +1436,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/27/TodoList-31%ED%8E%B8-Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/27/TodoList-31%ED%8E%B8-Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC/" class="post-title-link" itemprop="url">TodoList 31편 - Docker를 이용하여 EC2에 배포</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-07-27 20:06:46 / Updated at: 20:21:09" itemprop="dateCreated datePublished" datetime="2020-07-27T20:06:46+09:00">2020-07-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/07/27/TodoList-31%ED%8E%B8-Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/27/TodoList-31편-Docker를-이용하여-EC2에-배포/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>현재까지 배포를 위해 진행한 순서는, </p>
-<ol>
-<li>AWS EC2 생성 </li>
-<li>AWS RDS 생성 - PostgreSQL 적용 </li>
-<li>AWS S3 생성 및 적용 </li>
-<li>AWS S3 정적 이미지와 CSS파일 적용 </li>
-<li>Docker 설치 </li>
-<li>Dockerfile 작성후 이미지 생성 </li>
-<li>생성된 이미지를 DockerHub 에 Push </li>
-<li>Docker 를 이용하여 EC2 배포하기 </li>
-</ol>
-<br>
-
-<br>
-
-<p>지난 포스팅에서, 로컬에서 생성한 Docker 를 실행하여, 서버가 잘 작동하는것을 확인 하였습니다. <br></p>
-<p>이제 EC2 에다가, 생성하였던 Docker 를 이용하여, 서버를 실행 시켜 보는 작업을 진행합니다. </p>
-<br>
-
-<br>
-
-<blockquote>
-<p>EC2에 배포를 하려면, </p>
-<p>EC2에 접속하여, EC2 터미널에서 생성한 Docker 를 실행시키면 됩니다. </p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/27/TodoList-31%ED%8E%B8-Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1509,7 +1506,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">191</span>
+          <span class="site-state-item-count">192</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1522,7 +1519,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">146</span>
+        <span class="site-state-item-count">147</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
