@@ -220,6 +220,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/01/Python-%EA%B8%B0%EC%B4%88-10%ED%8E%B8-While-%EB%B0%98%EB%B3%B5%EB%AC%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/01/Python-%EA%B8%B0%EC%B4%88-10%ED%8E%B8-While-%EB%B0%98%EB%B3%B5%EB%AC%B8/" class="post-title-link" itemprop="url">Python 기초 10편 - While 반복문</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-01 11:07:26 / Updated at: 11:16:01" itemprop="dateCreated datePublished" datetime="2020-11-01T11:07:26+09:00">2020-11-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/01/Python-%EA%B8%B0%EC%B4%88-10%ED%8E%B8-While-%EB%B0%98%EB%B3%B5%EB%AC%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/01/Python-기초-10편-While-반복문/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Python-기초-while문"><a href="#Python-기초-while문" class="headerlink" title="Python 기초 - while문"></a>Python 기초 - while문</h2><br>
+
+<h3 id="While-반복문"><a href="#While-반복문" class="headerlink" title="While 반복문"></a>While 반복문</h3><br>
+
+<p>반복문들은 반복적으로 프로그램 구문의 코드 블럭들을 실행 시키기 위해 사용됩니다. </p>
+<p><br>파이썬에서 기본 반복문 구조는 while 반복문 입니다. </p>
+<br>
+
+<p>아래는 while 문의 문법 구조 입니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (expression):</span><br><span class="line">    statement_1 </span><br><span class="line">    statement_2</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>위 while 문의 기본 문법에서 보다시피, </p>
+<p>while 문은, while(expression): 부분에 expression 이 True 가 되는동안, </p>
+<p>statement_1 과 statement_2 를 실행 합니다. </p>
+<br>
+
+<p>expression 부분이 false 가 되지 않는한, 반복문은 코드 실행을 멈추지 않습니다!</p>
+<p>이렇게 실행을 멈추지 않는 반복을 무한 루프라고 부릅니다. </p>
+</blockquote>
+<br>
+
+<p>expression 안에 있는 조건은, 각 반복이 시작될때마다 확인이 되고, 이 조건이 False 가 되면, while 반복이 끝나고, 더이상 코드가 실행되지 않습니다. </p>
+<br>
+
+<p>아래 예시는, x 가 &lt; 5 인 동안에, x 를 출력합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># x 가 5 보다 작을동안 </span></span><br><span class="line"><span class="comment"># x 를 출력 </span></span><br><span class="line"></span><br><span class="line">x = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (x &lt; <span class="number">5</span>):</span><br><span class="line">    print(x)</span><br><span class="line">    x = x + <span class="number">1</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 아래는 아무것도 실행 되지 않습니다. </span></span><br><span class="line"><span class="comment"># 반복문이 시작될때부터, 조건이 False 가 됩니다 </span></span><br><span class="line"><span class="comment"># 10 은 5보다 크지 않습니다. </span></span><br><span class="line"></span><br><span class="line">x = <span class="number">10</span> </span><br><span class="line"><span class="keyword">while</span>(x &lt; <span class="number">5</span>):</span><br><span class="line">    print(x)</span><br><span class="line">    x = x + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="while-과-else-문"><a href="#while-과-else-문" class="headerlink" title="while 과 else 문"></a>while 과 else 문</h3><br>
+
+<p>while 과 if 문 사이에는 구조적으로 비슷한점이 존재합니다. </p>
+<p><br>둘다 조건이 true 일때 실행되는 코드 블럭들을 가지고 있고, 차이점이라고 하면, if 문에서는 코드 블럭이 한번만  실행되지만, while 문에 있는 코드 블럭은 반복적으로 실행된다는 차이점이 존재합니다. </p>
+<br>
+
+<p>문법은 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (expression):</span><br><span class="line">    statement_1</span><br><span class="line">    statement_2</span><br><span class="line">    ....</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    statement_3</span><br><span class="line">    statement_4</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>while 반복문은 반복적으로 조건을 테스트 하고, 조건이 True 이면, 첫번째 코드 블럭을 조건이 true 인 동안에 반복적으로 실행 시킵니다. </p>
+<br>
+
+<blockquote>
+<p>else 밑에 있는 코드블럭들은, </p>
+<p>조건이 False 가 될때에만 실행됩니다. </p>
+</blockquote>
+<br>
+
+<p>예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># while... else </span></span><br><span class="line"></span><br><span class="line">x = <span class="number">0</span> </span><br><span class="line">s = <span class="number">0</span> </span><br><span class="line"><span class="keyword">while</span> (x &lt; <span class="number">10</span>):</span><br><span class="line">    s = s + x </span><br><span class="line">    x = x + <span class="number">1</span> </span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"첫번째 9숫자의 합은 : "</span>, s)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="if-else-break-와-사용되는-while-반복문의-예시"><a href="#if-else-break-와-사용되는-while-반복문의-예시" class="headerlink" title="if-else, break 와 사용되는 while 반복문의 예시"></a>if-else, break 와 사용되는 while 반복문의 예시</h4><br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if-else 그리고 break 문을 사용한 while 반복문 </span></span><br><span class="line">x = <span class="number">1</span></span><br><span class="line">s = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> (x &lt; <span class="number">10</span>):</span><br><span class="line">    s = s + x</span><br><span class="line">    x = x + <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">5</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'첫번째 9숫자의 합은 : '</span>, s)</span><br><span class="line">print(<span class="string">' 첫번째 '</span>, x, <span class="string">'의 합은 : '</span>, s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 여기서는 else 가 실행되지 않습니다 </span></span><br><span class="line"><span class="comment"># while 반복문이, x 값이 5가 될때 종료되었기 때문에, </span></span><br><span class="line"><span class="comment"># while 문에 붙어 있는 else 밑의 코드는 실행되지 않고, while 문을 빠져나갑니다. </span></span><br><span class="line"><span class="comment"># 따라서, while 문 밖에 있는 print 함수가 실행됩니다.</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/31/Python-%EA%B8%B0%EC%B4%88-9%ED%8E%B8-for-%EB%B0%98%EB%B3%B5%EB%AC%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1639,158 +1795,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/22/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-library-%EC%99%80-%EB%AA%A8%EB%93%88-module/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/22/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-library-%EC%99%80-%EB%AA%A8%EB%93%88-module/" class="post-title-link" itemprop="url">파이썬 라이브러리 (library) 와 모듈 (module)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-22 08:49:35 / Updated at: 09:03:31" itemprop="dateCreated datePublished" datetime="2020-10-22T08:49:35+09:00">2020-10-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/22/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-library-%EC%99%80-%EB%AA%A8%EB%93%88-module/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/22/파이썬-라이브러리-library-와-모듈-module/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Python-Library-and-Modules"><a href="#Python-Library-and-Modules" class="headerlink" title="Python Library and Modules"></a>Python Library and Modules</h2><br>
-
-<h3 id="파이썬-라이브러리-Library-와-모듈-Module"><a href="#파이썬-라이브러리-Library-와-모듈-Module" class="headerlink" title="파이썬 라이브러리 (Library) 와 모듈 (Module)"></a>파이썬 라이브러리 (Library) 와 모듈 (Module)</h3><br>
-
-<h3 id="Python-Library-and-Modules-1"><a href="#Python-Library-and-Modules-1" class="headerlink" title="Python Library and Modules"></a>Python Library and Modules</h3><br>
-
-<p>파이썬에는, 라이브러리 (Library) 혹은 모듈 (Module) 이라는것들이 존재합니다 </p>
-<br>
-
-<p>파이썬 공부한지도 제법 시간이 오래되었지만, 라이브러리와 모듈에 대해서 설명 하라고 하면 바로 대답이 나오질 않습니다.. 짧게나마 라이브러리와 모듈에 대해서 정리하고 넘어갑니다. </p>
-<br>
-
-<br>
-
-<blockquote>
-<p><strong>파이썬에서 라이브러리 (Library) 란?</strong></p>
-<br>
-
-<p>파이썬 라이브러리는 코드를 작성할 필요없이 많은 동작을 수행할수 있게 해주는 함수와 메서드의 집합입니다. 우리는, 마치 도서관 (library) 에서 책을 꺼내어 보듯이, </p>
-<br>
-
-<p>프로그래밍을 하면서, 파이썬 라이브러리를 꺼내어 사용할수 있습니다. 여러 파일로 이루어져 있을수 있고, 함수 메서드 속성들이 하나의 패키지로 모여져 있습니다. </p>
-<br>
-
-<p>어떤 파이썬 라이브러리에는, </p>
-<p>이미 우리가 수행하고자 하는 기능과 동작들이 이미 정의되어 모여져 있기 때문에, </p>
-<p>이를 가져다 쓰기만 하면 됩니다. </p>
-<br>
-
-<p>예를들면, 파이썬 이미지 라이브러리 (PIL)은, 파이썬에서 이미지 수정을 위한 파이썬 주요 라이브러리 입니다. Numpy 는 숫자 연산을 위한 강력한 라이브러리 입니다. </p>
-</blockquote>
-<br>
-
-<br>
-
-<h2 id="파이썬에서-모듈-Module-란"><a href="#파이썬에서-모듈-Module-란" class="headerlink" title="파이썬에서 모듈 (Module) 란?"></a>파이썬에서 모듈 (Module) 란?</h2><br>
-
-<blockquote>
-<p><strong>파이썬에서 모듈 (Module) 이란?</strong></p>
-<br>
-
-<p>파이썬 모듈은, </p>
-<p>파이썬 객체로, 여러분들이 묶고 참조 할수 있는 속성들을 가지고 있는 파이썬 객체 입니다. </p>
-<br>
-
-<p>간단하게 이야기 해서, 모듈은 파이썬으로 이루어져 있는 하나의 파일 입니다. </p>
-<p>하나의 모듈은 함수들 클래스들 그리고 변수들을 정의할수 있습니다. </p>
-<br>
-
-<p>하나의 모듈은, 실행 가능한 코드도 포함하고 있을수 있습니다. </p>
-</blockquote>
-<br>
-
-<br>
-
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><br>
-
-<p>요약하자면, 라이브러리는, 변수나 함수 클래스등을 미리 만들어서 모아 놓은 것입니다. </p>
-<p><br>기본 파이썬에서는 없었거나, 사용하기 편한 기능의 함수와 클래스들을 제공하고, 이를 가져다가 쓸수 있게 만들어 놓은것입니다. </p>
-<br>
-
-<p><code>import</code> 를 사용하여, 가져와서 사용할수 있고. 보통 구글을 찾아보면, 정말 많은 라이브러리가 존재하는데. 각 라이브러리의 사용법 또한 정말 많이 검색이 되니, 개발자 입장에서는 언제든지 찾아서 끌어다가 사용할수 있습니다.  </p>
-<br>
-
-<p>예를들어, numpy 같은 경우, 데이터 분석 분야에서 많이 사용되는 라이브러리로, 수적 계산 작업등에 널리 사용되는 라이브러리 입니다. </p>
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1861,7 +1865,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">194</span>
+          <span class="site-state-item-count">195</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1874,7 +1878,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">148</span>
+        <span class="site-state-item-count">149</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

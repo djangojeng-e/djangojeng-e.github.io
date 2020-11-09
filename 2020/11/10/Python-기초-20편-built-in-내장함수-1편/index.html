@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"djangojeng-e.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!--자동 애드센스-->
+
+<!--자동 에드센스 end-->
+
+<meta name="google-site-verification" content="WlX9ix7sXmMXMWSZS-fiLnWpgx6T0Dz2ON3R7RcK4bA" />
+  <meta name="description" content="Python Builtins - 1  파이썬 인터프리터는 언제나 사용 가능한 몇가지 함수들과 타입들이 내장되어 있습니다.       함수명 내용    abs() abs() 함수는 주어진 숫자의 절대값을 가지기 위해 사용됩니다   all() all() 함수는 모든 순회가능한 객체의 모든 요소들이 True 인지 False 인지 테스트 합니다   any() an">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 기초 20편 - built in 내장함수 1편">
+<meta property="og:url" content="http://djangojeng-e.github.io/2020/11/10/Python-%EA%B8%B0%EC%B4%88-20%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-1%ED%8E%B8/index.html">
+<meta property="og:site_name" content="장고쟁이">
+<meta property="og:description" content="Python Builtins - 1  파이썬 인터프리터는 언제나 사용 가능한 몇가지 함수들과 타입들이 내장되어 있습니다.       함수명 내용    abs() abs() 함수는 주어진 숫자의 절대값을 가지기 위해 사용됩니다   all() all() 함수는 모든 순회가능한 객체의 모든 요소들이 True 인지 False 인지 테스트 합니다   any() an">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-11-09T23:27:45.000Z">
+<meta property="article:modified_time" content="2020-11-09T23:46:20.531Z">
+<meta property="article:author" content="장고쟁이">
+<meta property="article:tag" content="내장함수">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://djangojeng-e.github.io/2020/11/10/Python-%EA%B8%B0%EC%B4%88-20%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-1%ED%8E%B8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Python 기초 20편 - built in 내장함수 1편 | 장고쟁이</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="naver-site-verification" content="b855a7ad81fb77d8cd20dc2267432ca962ba8376" />
+<link rel="alternate" href="/rss2.xml" title="장고쟁이" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+	<!--구글 애드 -->	
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9284986247336734",
+    enable_page_level_ads: true
+  });
+</script>
+
+	<!--구글 애드 종료-->
+	
+<div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">장고쟁이</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">당신은 멋쟁이, 우리는 장고쟁이~</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/djangojeng-e" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/10/Python-%EA%B8%B0%EC%B4%88-20%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-1%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python 기초 20편 - built in 내장함수 1편
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-10 08:27:45 / Updated at: 08:46:20" itemprop="dateCreated datePublished" datetime="2020-11-10T08:27:45+09:00">2020-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/10/Python-%EA%B8%B0%EC%B4%88-20%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-1%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/10/Python-기초-20편-built-in-내장함수-1편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Python-Builtins-1"><a href="#Python-Builtins-1" class="headerlink" title="Python Builtins - 1"></a>Python Builtins - 1</h2><br>
+
+<p>파이썬 인터프리터는 언제나 사용 가능한 몇가지 함수들과 타입들이 내장되어 있습니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>함수명</strong></th>
+<th><strong>내용</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>abs()</td>
+<td>abs() 함수는 주어진 숫자의 절대값을 가지기 위해 사용됩니다</td>
+</tr>
+<tr>
+<td>all()</td>
+<td>all() 함수는 모든 순회가능한 객체의 모든 요소들이 True 인지 False 인지 테스트 합니다</td>
+</tr>
+<tr>
+<td>any()</td>
+<td>any() 함수는, 순회가능한 객체의 어떤 요소라도 True 인지 확인합니다. 순회가능 객체가 비어 있을 경우, False 를 리턴합니다</td>
+</tr>
+<tr>
+<td>ascii()</td>
+<td>ascii() 함수는 객체의 출력가능한 형식을 포함하고 있는 문자열을 반환 합니다</td>
+</tr>
+<tr>
+<td>bin()</td>
+<td>bin() 함수는 정수를 이진수 문자열로 전환해줍니다. 결과값은 유효한 파이썬 수식입니다.</td>
+</tr>
+<tr>
+<td>bool()</td>
+<td>bool() 함수는 하나의 값을 Boolean 으로 전환해줍니다</td>
+</tr>
+<tr>
+<td>bytearray()</td>
+<td>bytearray() 함수는, bytearray 객체를 얻을때 사용합니다</td>
+</tr>
+<tr>
+<td>bytes()</td>
+<td>bytes() 함수는, 새로운 ‘bytes’ 객체를 가질때 사용합니다</td>
+</tr>
+<tr>
+<td>callable()</td>
+<td>callable() 함수는, 객체 인자가 호출 가능한지를 확인합니다. 객체 인자가 호출 가능하면, True, 호출가능하지 않으면, False 를 리턴합니다.</td>
+</tr>
+<tr>
+<td>chr()</td>
+<td>chr() 함수는 유니코드 코드포인트가 정수인 문자를 문자열로 표시해서 반환합니다</td>
+</tr>
+<tr>
+<td>classmethod()</td>
+<td>classmethod() 함수는 하나의 메서드를 클래스 메서드로 전환해 줍니다.</td>
+</tr>
+<tr>
+<td>compile()</td>
+<td>compile() 함수는 소스를 코드로 컴파일 할때 사용됩니다.</td>
+</tr>
+<tr>
+<td>complex()</td>
+<td>complex() 함수는 복소수를 생성하거나, 문자열 혹은 숫자를 복소수로 전환하기 위해 사용됩니다.</td>
+</tr>
+<tr>
+<td>delattr()</td>
+<td>delattr() 함수는 지정된 객체로부터 특정 속성을 지우는데 사용됩니다</td>
+</tr>
+<tr>
+<td>dict()</td>
+<td>dict() 함수는 새로운 사전을 생성할때 사용됩니다</td>
+</tr>
+<tr>
+<td>dir()</td>
+<td>dir() 함수는 지정된 객체의 모든 속성들과 메서드들을 반환합니다. 값이 없더라도, 내장된 함수나 클래스들도 dir()을 사용하면 해당 객체들의 모든 속성과 메서드들을 알아볼수 있습니다.</td>
+</tr>
+<tr>
+<td>divmod()</td>
+<td>divmod() 함수는 복소수가 아닌 두개의 숫자를 인자로 받고,  나누기를 실행할때, 몫과 나머지로 구성된 한쌍의 숫자를 반환합니다</td>
+</tr>
+<tr>
+<td>enumerate()</td>
+<td>enumerate() 함수는 하나의 enumerate 객체를 반환합니다. 순회가능 객체는 반드시 순서가 있는 시퀀스형이여야만 하며, 이터레이터 혹은 이터레이션을 지원하는 어떠한 객체여야만 합니다</td>
+</tr>
+<tr>
+<td>eval()</td>
+<td>eval() 함수는, 지정된 수식을 평가하기 위해 사용됩니다. 만약 수식이 맞는 형식의 파이썬 문이면, 실행이 됩니다</td>
+</tr>
+<tr>
+<td>exec()</td>
+<td>exec() 함수는 지정된 파이썬 코드를 실행 시키기 위해 사용됩니다. 객체는 문자열 혹은 코드 객체로 되어야만 합니다</td>
+</tr>
+</tbody></table>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># abs() </span></span><br><span class="line"><span class="comment"># 주어진 숫자의 절대값 (양수) 를 구함 </span></span><br><span class="line"></span><br><span class="line">number = <span class="number">-55</span> </span><br><span class="line">print(abs(number))</span><br><span class="line"></span><br><span class="line"><span class="comment"># all() </span></span><br><span class="line"><span class="comment"># 주어진 순회가능 객체의 모든 요소들이 True 인지 테스트 합니다 </span></span><br><span class="line"></span><br><span class="line">test_list = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">print(all(test_list))</span><br><span class="line"></span><br><span class="line">test_list2 = [<span class="number">-1</span>, <span class="number">-2</span>, <span class="number">-3</span>, <span class="number">-4</span>]</span><br><span class="line">print(all(test_list2))</span><br><span class="line"></span><br><span class="line"><span class="comment"># any() </span></span><br><span class="line"><span class="comment"># 주어진 순회가능 객체의 어떤 요소라도 True 인지 확인 합니다 </span></span><br><span class="line"><span class="comment"># 순회가능 객체가 비어있을 경우, False 를 반환합니다 </span></span><br><span class="line"></span><br><span class="line">test_list = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1 이 True 가 되므로, True 를 리턴 </span></span><br><span class="line">print(any(test_list))</span><br><span class="line"></span><br><span class="line">test_list = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 비어 있는 리스트를 테스트하므로, False 를 리턴 </span></span><br><span class="line">print(any(test_list))</span><br><span class="line"></span><br><span class="line"><span class="comment"># ascii()</span></span><br><span class="line"><span class="comment"># 객체를 출력 가능한 형태의 문자열로 리턴 </span></span><br><span class="line"></span><br><span class="line">text = <span class="string">"text printable format"</span></span><br><span class="line">print(ascii(text))</span><br><span class="line"></span><br><span class="line"><span class="comment"># ascii 문자가 아닌것을, ascii 형태로 리턴합니다 </span></span><br><span class="line"></span><br><span class="line">print(ascii(<span class="string">"$"</span>))</span><br><span class="line">print(ascii(<span class="string">"[]"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># bin()</span></span><br><span class="line"><span class="comment"># 정수를 이진수 문자열로 전환해 줍니다 </span></span><br><span class="line"></span><br><span class="line">number = <span class="number">5</span> </span><br><span class="line">print(bin(number))</span><br><span class="line"></span><br><span class="line"><span class="comment"># bool() </span></span><br><span class="line"><span class="comment"># 하나의 값을 Boolean 값으로 전환해 줍니다 </span></span><br><span class="line"></span><br><span class="line">a = <span class="number">1218</span> </span><br><span class="line">b = <span class="string">'Django'</span></span><br><span class="line">c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">d = (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">e = &#123;<span class="string">'django'</span>, <span class="string">'framework'</span>&#125;</span><br><span class="line">f = []</span><br><span class="line"></span><br><span class="line">print(bool(a))</span><br><span class="line">print(bool(b))</span><br><span class="line">print(bool(c))</span><br><span class="line">print(bool(d))</span><br><span class="line">print(bool(e))</span><br><span class="line">print(bool(f))</span><br><span class="line"></span><br><span class="line"><span class="comment"># callable()</span></span><br><span class="line"><span class="comment"># 호출 가능한 객체인지 아닌지 확인 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">callable_function</span><span class="params">()</span>:</span></span><br><span class="line">    x = <span class="number">3</span> </span><br><span class="line">    y = <span class="number">5</span> </span><br><span class="line">    z = x + y </span><br><span class="line">    <span class="keyword">return</span> z </span><br><span class="line"></span><br><span class="line">x = <span class="number">3</span> </span><br><span class="line">y = <span class="number">5</span> </span><br><span class="line">z = x + y </span><br><span class="line"></span><br><span class="line">call = callable_function </span><br><span class="line"></span><br><span class="line">print(callable(call))</span><br><span class="line">print(callable(z))</span><br><span class="line"></span><br><span class="line"><span class="comment"># chr() </span></span><br><span class="line"><span class="comment"># 정수로 된 유니코드 코드포인트 문자를, 일반 문자열 형태로 반환해 줍니다 </span></span><br><span class="line"></span><br><span class="line">str = <span class="string">""</span></span><br><span class="line">series = [<span class="number">84</span>, <span class="number">85</span>, <span class="number">84</span>, <span class="number">79</span>, <span class="number">82</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">76</span>, <span class="number">83</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(series)):</span><br><span class="line">    char = chr(serires[i])</span><br><span class="line">    str = str + char </span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line">print(str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># classmethod()</span></span><br><span class="line"><span class="comment"># 하나의 메서드를 클래스 메서드로 전환 시켜 줍니다 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    age = <span class="number">25</span> </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printAge</span><span class="params">(cls)</span>:</span></span><br><span class="line">        print(<span class="string">"The age is"</span>, cls.age)</span><br><span class="line">        </span><br><span class="line"><span class="comment"># printAge 클래스 메서드 생성하기 </span></span><br><span class="line">Person.printAge = classmethod(Person.printAge)</span><br><span class="line"></span><br><span class="line">Person.PrintAge()</span><br><span class="line"></span><br><span class="line"><span class="comment"># compile()</span></span><br><span class="line"><span class="comment"># 소스를 코드로 만들어 줍니다 </span></span><br><span class="line"></span><br><span class="line">x = compile(<span class="string">'print(55)'</span>, <span class="string">'print("test")'</span>)</span><br><span class="line">exec(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># complex()</span></span><br><span class="line"><span class="comment"># 복소수를 생성 혹은 숫자를 복소수로 전환해 줄때 사용합니다 </span></span><br><span class="line">a = <span class="number">15</span> </span><br><span class="line"></span><br><span class="line">print(complex(a))</span><br><span class="line"></span><br><span class="line"><span class="comment"># delattr()</span></span><br><span class="line"><span class="comment"># 특정 객체에서, 특정 속성을 삭제하는데 사용합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    name = <span class="string">"Djangojeng-e"</span></span><br><span class="line">    age = <span class="number">36</span> </span><br><span class="line">    country = <span class="string">"Australia"</span></span><br><span class="line">    </span><br><span class="line">print(dir(Person))</span><br><span class="line"></span><br><span class="line">delattr(Person, <span class="string">'age'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># delattr 이후로 age 속성이 Person 객에처서 없어진것을 확인할수 있습니다 .</span></span><br><span class="line">print(dir(Person))</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict() </span></span><br><span class="line"><span class="comment"># 새로운 사진을 생성하기 위해 사용됩니다 </span></span><br><span class="line"></span><br><span class="line">dictionary = &#123;</span><br><span class="line">    <span class="string">'django'</span>: <span class="string">'framework'</span>,</span><br><span class="line">    <span class="string">'language'</span>: <span class="string">'python'</span>,</span><br><span class="line">    <span class="string">'difficulty'</span>: <span class="string">'difficult'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dict_copy = dict(dictionary)</span><br><span class="line">print(dict_copy)</span><br><span class="line"></span><br><span class="line"><span class="comment"># dir()</span></span><br><span class="line"><span class="comment"># 객체의 모든 속성과 메서드들을 알수 있습니다 </span></span><br><span class="line"></span><br><span class="line">print(dir(<span class="keyword">print</span>)) 	<span class="comment"># print 에 있는 모든 메서드와 속성들 </span></span><br><span class="line">print(dir(list))	<span class="comment"># list 에 있는 모든 메서드와 속성들 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># divmod() </span></span><br><span class="line"><span class="comment"># 복소수가 아닌 두개의 숫자를 인자로 받고, </span></span><br><span class="line"><span class="comment"># 정수 나누기를 하여, 몫과 나머지로 이루어진 한쌍의 숫자를 반환합니다 </span></span><br><span class="line"></span><br><span class="line">print(divmod(<span class="number">5</span>, <span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># enumerate()</span></span><br><span class="line"><span class="comment"># 객체의 순서를 카운트한것을 반환합니다 </span></span><br><span class="line"></span><br><span class="line">x = (<span class="string">'python'</span>, <span class="string">'django'</span>, <span class="string">'pyramid'</span>)</span><br><span class="line">y = enumerate(x)</span><br><span class="line">print(list(y))</span><br><span class="line"></span><br><span class="line">x = &#123;<span class="string">'djangojeng-e'</span>: <span class="string">'멋쟁이'</span>, <span class="string">'python'</span>: <span class="string">'programming'</span>, <span class="string">'django'</span>: <span class="string">'framework'</span>&#125;</span><br><span class="line">y = enumerate(x)</span><br><span class="line"></span><br><span class="line">print(list(y))</span><br><span class="line"></span><br><span class="line"><span class="comment"># eval()</span></span><br><span class="line"><span class="comment"># 지정된 수식을 평가하기 위해 사용됩니다 </span></span><br><span class="line"></span><br><span class="line">x = <span class="string">'print(55)'</span></span><br><span class="line">eval(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># exec() </span></span><br><span class="line"></span><br><span class="line">x = <span class="string">'name = "djangojeng-e"\nprint(name)'</span></span><br><span class="line">exec(x)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98/" rel="tag"># 내장함수</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/09/Python-%EA%B8%B0%EC%B4%88-19%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%84%A0%EC%96%B8/" rel="prev" title="Python 기초 19편 - 파이썬 클래스 선언">
+      <i class="fa fa-chevron-left"></i> Python 기초 19편 - 파이썬 클래스 선언
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-Builtins-1"><span class="nav-number">1.</span> <span class="nav-text">Python Builtins - 1</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">장고쟁이</p>
+  <div class="site-description" itemprop="description">장고쟁이의 Python, Django 공부 노트</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">195</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">149</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/djangojeng-e" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;djangojeng-e" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:headfat1218@gmail.com" title="E-Mail → mailto:headfat1218@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<div>
+
+
+
+
+
+<iframe width="210" height="180" src="https://www.youtube.com/embed/GUg3b7ALPSA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
+</div>
+
+    </div>
+
+
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">장고쟁이</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://djangojeng-e.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://djangojeng-e.github.io/2020/11/10/Python-%EA%B8%B0%EC%B4%88-20%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-1%ED%8E%B8/";
+    this.page.identifier = "2020/11/10/Python-기초-20편-built-in-내장함수-1편/";
+    this.page.title = "Python 기초 20편 - built in 내장함수 1편";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://djangojeng-e.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>

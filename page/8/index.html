@@ -220,6 +220,145 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/06/Django-Models-9%ED%8E%B8-One-to-One/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/06/Django-Models-9%ED%8E%B8-One-to-One/" class="post-title-link" itemprop="url">Django Models 9편 - One-to-One</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-06 17:29:30 / Updated at: 18:10:36" itemprop="dateCreated datePublished" datetime="2020-08-06T17:29:30+09:00">2020-08-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/06/Django-Models-9%ED%8E%B8-One-to-One/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/06/Django-Models-9편-One-to-One/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Models-Relationships-One-to-One"><a href="#Models-Relationships-One-to-One" class="headerlink" title="Models - Relationships (One-to-One)"></a>Models - Relationships (One-to-One)</h2><br>
+
+<h3 id="one-to-one-relationships"><a href="#one-to-one-relationships" class="headerlink" title="one-to-one relationships"></a>one-to-one relationships</h3><br>
+
+<p>one-to-one 관계, 즉 1대 1 관계를 정의하기 위해서는, </p>
+<p><br><code>OneToOneField</code>를 사용해 줍니다. 다른 필드 타입을 사용하는것과 비슷하게, 모델 클래스 안에 클래스 속성으로 정의해 줍니다. </p>
+<br>
+
+<p>OneToOneField 는 위치 인자를 필요로 합니다. </p>
+<br>
+
+<blockquote>
+<p>OneToOneField 는 연결된 모델 클래스를, 필수 위치 인자로 받습니다 </p>
+</blockquote>
+<br>
+
+<p>예를들어, “places” 라는 데이터베이스를 만들고 있었는데,  <code>address</code> 나 <code>phone number</code> 같이 매우 보편적인 것들을 데이터베이스에 만드려고 하는 상황이 올지 모릅니다. </p>
+<br>
+
+<p>places 라는 장소위에 restaurant 이라는 데이터베이스를 만들고 싶으면, Place 를 만들때 포함하였던 </p>
+<br>
+
+<blockquote>
+<p>데이터베이스 필드들을 Restaurant 모델에 반복하여 생성해 주기 보다는, </p>
+<p>Restaurant 이 OneToOneField 를 Place 에 갖게 하면 됩니다. </p>
+</blockquote>
+<br>
+
+<p>이게 무슨 이야기냐면,,, 하나의 장소 (Place)는 <code>address</code> 나 <code>phone number</code> 같은 보편적인 정보를 가지고 있을지 모릅니다. 그런데 만약, 하나의 장소 위에 식당 (restaurant) 을 만들고 싶다면? </p>
+<br>
+
+<p>restaurant 모델을 만들어 줄때에 <code>address</code> 나 <code>phone number</code> 같은 보편적인 필드들을 다시 정의하지 않고,</p>
+<p><br>Restaurant 이 OneToOneField 를 사용하여 Place 모델과 연결되면 됩니다.  </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/06/Django-Models-9%ED%8E%B8-One-to-One/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/05/Django-Models-8%ED%8E%B8-Many-to-many-%EC%98%88%EC%8B%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1374,127 +1513,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/" class="post-title-link" itemprop="url">Django Models 1편 - Quick Example</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-07-30 20:39:34 / Updated at: 22:15:54" itemprop="dateCreated datePublished" datetime="2020-07-30T20:39:34+09:00">2020-07-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/30/Django-Models-1편-Quick-Example/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Models-Quick-example"><a href="#Models-Quick-example" class="headerlink" title="Models - Quick example"></a>Models - Quick example</h2><br>
-
-<p>Django 공식문서에 나와있는, models 에 대한 부분을 둘러봅니다. </p>
-<p><br>공식 문서에는 완벽한 번역본이 존재하지 않고, 설명이 너무 불충분해서, 초반에 공부할때에 많은 어려움이 있었습니다. </p>
-<p>물론,, 지금도 쉽지는 않지만.. 어쨋든, Django models 에 대한 포스팅을 시작합니다. </p>
-<br>
-
-<br>
-
-<blockquote>
-<p><strong>Models (모델)</strong> </p>
-<p>모델은 당신의 데이터에 대한 정보를 가지고 있고, 당신의 데이터에 대한 정의를 내리는 하나의 소스 입니다.</p>
-<p>모델은 당신에게 필요하고 저장하고자 하는 필드들과 동작들에 대한 정보를 포함하고 있습니다</p>
-<p>각 모델들은, 보통 하나의 데이터 베이스 테이블로 매핑 됩니다.﻿</p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/30/Django-Models-1%ED%8E%B8-Quick-Example/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1565,7 +1583,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">194</span>
+          <span class="site-state-item-count">195</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1578,7 +1596,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">148</span>
+        <span class="site-state-item-count">149</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
