@@ -220,6 +220,218 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/08/PEP8-Programming-Recommendations-3%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/08/PEP8-Programming-Recommendations-3%ED%8E%B8/" class="post-title-link" itemprop="url">PEP8 Programming Recommendations - 3편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-08 21:53:13 / Updated at: 22:19:49" itemprop="dateCreated datePublished" datetime="2020-04-08T21:53:13+09:00">2020-04-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/PEP8/" itemprop="url" rel="index"><span itemprop="name">PEP8</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/04/08/PEP8-Programming-Recommendations-3%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/08/PEP8-Programming-Recommendations-3편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="프로그래밍-권장사항들-3편"><a href="#프로그래밍-권장사항들-3편" class="headerlink" title="프로그래밍 권장사항들 - 3편"></a>프로그래밍 권장사항들 - 3편</h2><br>
+
+<blockquote>
+<p>운영체체 에러를 잡아낼때에는, </p>
+<p>파이썬 3.3 이후에서 소개된 명시적인 예외 상화관계를 사용합니다 <br></p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="모든-try-except구문"><a href="#모든-try-except구문" class="headerlink" title="모든 try/except구문"></a>모든 <code>try/except</code>구문</h2><br>
+
+<p>모든 <code>try/except</code>절에 대해 <code>try</code> 절을 필요한 최소의 코드 양으로 사용 제한을 합니다. 버그가 가려지는걸 피할수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    value = collection[key]</span><br><span class="line"><span class="keyword">except</span> KeyError:</span><br><span class="line">    <span class="keyword">return</span> key_not_found(key)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> handle_value(value)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 너무 광범위함 </span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">handle_value(collection[key])</span><br><span class="line"><span class="keyword">except</span> KeyError:</span><br><span class="line">    <span class="comment"># Will also catch KeyError raised by handle_value()</span></span><br><span class="line">    <span class="keyword">return</span> key_not_found(key)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="특정-코드-섹션에-로컬-자원"><a href="#특정-코드-섹션에-로컬-자원" class="headerlink" title="특정 코드 섹션에 로컬 자원"></a>특정 코드 섹션에 로컬 자원</h2><br>
+
+<p>자원이 특정 코드 섹션에 대해 로컬로 있을때에는 <code>with</code>문을 사용하여, 사용후 빠르고 안정적으로 정리되도록 합니다. <code>try/finally</code> 구문도 허용됩니다. </p>
+<br>
+
+
+
+<h2 id="Context-Manager"><a href="#Context-Manager" class="headerlink" title="Context Manager"></a>Context Manager</h2><br>
+
+<p>자원을 확보하거나 해제 하는것이 아닌 경우의 컨텍스트 메니져는 분리된 함수 혹은 메써드를 통해서 호출 되어야 합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">with</span> conn.begin_transaction():</span><br><span class="line">    do_stuff_in_transaction(conn)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">with</span> conn:</span><br><span class="line">    do_stuff_in_trnasaction(conn)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>후의 예시는, <code>__enter__</code> 및 <code>__exit__</code> 메서드가 트랜셕션 후 연결을 닫는 것 이외의 작업을 수행하고 있음을 나타내는 정보를 제공하지 않습니다. </p>
+<p><br><br></p>
+<p>이 경우에는 명시적인게 중요합니다. <br></p>
+<br>
+
+
+
+<h2 id="리턴-구문안에서는-일관성이-있어야-합니다"><a href="#리턴-구문안에서는-일관성이-있어야-합니다" class="headerlink" title="리턴 구문안에서는 일관성이 있어야 합니다"></a>리턴 구문안에서는 일관성이 있어야 합니다</h2><br>
+
+<br>
+
+<p>함수안에 모든 리턴 구문은 수식을 반환해야 합니다. 만약 어떤 리턴 구문이 수식을 반환할때. 어떠한 값이 없는 리턴 구문은 명시적으로, <code>return None</code> 이라고 해주어야 합니다. </p>
+<br>
+
+<p>그리고, 명시적인 리턴 구문은 함수의 마지막에 존재해야 합니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> math.sqrt(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span> </span><br><span class="line">    <span class="keyword">return</span> math.sqrt(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> math.sqrt(x)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    <span class="keyword">return</span> math.sqrt(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="문자열-모듈보다는-문자열-메써드-사용"><a href="#문자열-모듈보다는-문자열-메써드-사용" class="headerlink" title="문자열 모듈보다는 문자열 메써드 사용"></a>문자열 모듈보다는 문자열 메써드 사용</h2><br>
+
+<p>문자열 메써드는 언제나 빠르고, 유니코드 문자와 함께 같은 API 를 공유합니다.</p>
+<br>
+
+<br>
+
+<h2 id="startswith-와-endwith"><a href="#startswith-와-endwith" class="headerlink" title="startswith() 와  endwith()"></a><code>startswith()</code> 와  <code>endwith()</code></h2><br>
+
+<br>
+
+<p>접두사와 접미사를 확인하기 위해서는, 문자열 슬라이싱 보다 <code>startswith()</code>와 <code>endwith()</code> 를 사용합니다. </p>
+<p><br><code>startswith()</code>와 <code>endswith()</code>가 더 깔끔하고 에러가 적습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 좋은예 </span><br><span class="line">if foo.startswith(&#39;bar&#39;):</span><br><span class="line"></span><br><span class="line"># 나쁜예 </span><br><span class="line">if foo[:3] &#x3D;&#x3D; &#39;bar&#39;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="객체-타입-비교는-isinstance-사용"><a href="#객체-타입-비교는-isinstance-사용" class="headerlink" title="객체 타입 비교는 isinstance() 사용"></a>객체 타입 비교는 <code>isinstance()</code> 사용</h2><br>
+
+<br>
+
+<p>객체 타입 비교를 할때는, 직접 타입 비교를 하기 보다는 <code>isinstance()</code>를 사용합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">if</span> isinstance(obj, int);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">if</span> type(obj) <span class="keyword">is</span> type(<span class="number">1</span>):</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>객체가 문자열인지 아닌지 확인할때에는, 그것이 유니코드 문자열일수도 있다는것을 염두해 두세요. <br></p>
+<p>파이썬2 에서는, <code>str</code>과 <code>unicode</code>는 같은 베이스 클래스, <code>basestring</code>을 가지고 있습니다. <br><br></p>
+<p>따라서, 아래와 같이 쓸수 있습니다. <br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python2 </span></span><br><span class="line"><span class="keyword">if</span> isinstance(obj, basestring)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<p>파이썬3 에서는, <code>unicode</code>와 <code>basestring</code>은 존재하지 않습니다. <code>str</code>만 존재하고</p>
+<p><code>bytes</code>객체는 더이상 문자열 종류가 아닙니다.  <br></p>
+<br>
+
+<h2 id="시퀀스들-문자열-리스트-튜플-빈-시퀀스는-False-를-반환합니다"><a href="#시퀀스들-문자열-리스트-튜플-빈-시퀀스는-False-를-반환합니다" class="headerlink" title="시퀀스들(문자열, 리스트, 튜플) 빈 시퀀스는 False 를 반환합니다"></a>시퀀스들(문자열, 리스트, 튜플) 빈 시퀀스는 False 를 반환합니다</h2><br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 좋은예 </span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> seq:</span><br><span class="line"><span class="keyword">if</span> seq:</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 나쁜예 </span></span><br><span class="line"><span class="keyword">if</span> len(seq):</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> len(seq):</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
+
+<br>
+
+<p>프로그래밍 권장 사항들이 꽤 많네요. </p>
+<p><br>나머지 권장 사항들은 다음 포스팅에 이어서 쓰겠습니다. </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/08/PEP8-Programming-Recommendations-2%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1397,152 +1609,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-PET-PEEVES/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-PET-PEEVES/" class="post-title-link" itemprop="url">PEP8 Whitespace in Expressions and Statements - PET PEEVES</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-04-05 15:53:57 / Updated at: 16:24:34" itemprop="dateCreated datePublished" datetime="2020-04-05T15:53:57+09:00">2020-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/PEP8/" itemprop="url" rel="index"><span itemprop="name">PEP8</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-PET-PEEVES/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-PET-PEEVES/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><br><br></p>
-<h2 id="수식과-구문안에서-빈공간"><a href="#수식과-구문안에서-빈공간" class="headerlink" title="수식과 구문안에서 빈공간"></a>수식과 구문안에서 빈공간</h2><br>
-
-<br>
-
-<p>이번토픽은 PEP8에서 다루는 공백에 대한 포스트입니다. </p>
-<br>
-
-<br>
-
-<p>포스팅을 시작하기 전에, 프로그래밍언어 안에서 쓰이는 <code>expressions</code> 이라는 단어와 <code>Statements</code>에 대한 뜻을 먼저 알고 시작하겠습니다. </p>
-<br>
-
-<h2 id="Expressions-와-Statements"><a href="#Expressions-와-Statements" class="headerlink" title="Expressions 와 Statements"></a>Expressions 와 Statements</h2><br>
-
-<p>영어에서는 <code>expressions</code>은 표현, <code>statements</code>는 진술서 라는 의미로 쓰이는게 많은데. </p>
-<p><br><br></p>
-<p><strong>프로그래밍 세계에서 의미하는 바는 조금 다른것 같아. 아래와 같이 요약합니다.</strong></p>
-<br>
-
-<br>
-
-<blockquote>
-<p><strong>Expressions</strong></p>
-<p>수식, 연산식 </p>
-<p>예) 1 + 1 = 0 혹은 a = 3 </p>
-</blockquote>
-<br>
-
-<br>
-
-<blockquote>
-<p><strong>Statements</strong></p>
-<p>실행 가능한 (executable) 코드 조각. </p>
-<p>보통 여러개의 expressions 로 이루어져 있습니다. <br></p>
-</blockquote>
-<br>
-
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 함수안에 실행 가능한 구문이 Statements 입니다. </span></span><br><span class="line"><span class="comment"># 여러개의 Expressions 로 이루어져 있는걸 확인 할수 있습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addition</span><span class="params">()</span>:</span></span><br><span class="line">    a = <span class="number">1</span> </span><br><span class="line">    b = <span class="number">2</span> </span><br><span class="line">    <span class="keyword">return</span> a + b</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/05/PEP8-Whitespace-in-Expressions-and-Statements-PET-PEEVES/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1613,7 +1679,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

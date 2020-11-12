@@ -1,6 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 기초 22편 - built in 내장함수 3편</title>
+    <url>/2020/11/12/Python-%EA%B8%B0%EC%B4%88-22%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-3%ED%8E%B8/</url>
+    <content><![CDATA[<h2 id="Python-Builins-3"><a href="#Python-Builins-3" class="headerlink" title="Python Builins - 3"></a>Python Builins - 3</h2><br>
+
+<p>파이썬 인터프리터는 언제나 사용가능한 몇가지 함수들과 타입들이 내장되어 있습니다. </p>
+<br>
+
+
+
+<table>
+<thead>
+<tr>
+<th><strong>함수명</strong></th>
+<th><strong>내용</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>min()</td>
+<td>min() 함수는, 순회가능한 객체의 요소들중에서 가장 작은 값을 찾는데 사용됩니다</td>
+</tr>
+<tr>
+<td>next()</td>
+<td>next() 함수는, iterator 안에서 다음 요소를 얻을때 사용합니다</td>
+</tr>
+<tr>
+<td>object()</td>
+<td>object() 함수는 비어있는 객체를 생성하기 위해 사용됩니다</td>
+</tr>
+<tr>
+<td>oct()</td>
+<td>oct() 함수는 정수를 octal string 으로 전환하기 위해 사용됩니다</td>
+</tr>
+<tr>
+<td>ord()</td>
+<td>ord()  함수는 해당 문자에 해당하는 유니코드를 정수로 얻을때 사용됩니다</td>
+</tr>
+<tr>
+<td>pow()</td>
+<td>pow() 함수는, x의값에 y 제곱을 해줍니다. pow(x, y), y 는 제곱의 숫자 입니다</td>
+</tr>
+<tr>
+<td>print()</td>
+<td>print() 함수는, 객체를 text stream file 로 출력하기 위해 사용합니다</td>
+</tr>
+<tr>
+<td>property()</td>
+<td>property() 함수는 property 속성을 반환합니다</td>
+</tr>
+<tr>
+<td>range()</td>
+<td>range() 함수는 숫자들의 시퀀스를 얻기 위해 사용합니다. 기본값으로 0 부터 시작하고 1씩 증가합니다</td>
+</tr>
+<tr>
+<td>repr()</td>
+<td>repr() 함수는 객체의 출력 가능 형태를 포함하고 있는 문자열을 반환합니다</td>
+</tr>
+<tr>
+<td>reversed()</td>
+<td>reversed() 함수는 reverse 이터레이터를 얻기위해 사용됩니다. 거꾸로된 이터레이터 객체를 반환합니다</td>
+</tr>
+<tr>
+<td>round()</td>
+<td>round() 함수는 반올림한 부동소수점을 반환합니다</td>
+</tr>
+<tr>
+<td>set()</td>
+<td>set() 함수는 집합 객체를 생성하기 위해 사용합니다</td>
+</tr>
+<tr>
+<td>setattr()</td>
+<td>setattr() 함수는 특정 객체의 특정 속성값을 지정하기 위해 사용됩니다</td>
+</tr>
+<tr>
+<td>slice()</td>
+<td>slice() 함수는 지정된 인덱스값을 표현하는 슬라이스 객체를 반환합니다</td>
+</tr>
+<tr>
+<td>sorted()</td>
+<td>sorted() 함수는 순회가능한 객체의 요소들을 정렬하여 새로운 정렬된 리스트로 반환합니다</td>
+</tr>
+<tr>
+<td>sum()</td>
+<td>sum() 함수는 순회가능 객체의 모든 요소들의 합계를 구하는데 사용합니다</td>
+</tr>
+<tr>
+<td>tuple()</td>
+<td>tuple() 함수는 tuple 을 생성하기 위해 사용합니다.</td>
+</tr>
+<tr>
+<td>type()</td>
+<td>type() 함수는 객체의 타입을 얻기 위해 사용합니다</td>
+</tr>
+<tr>
+<td>vars()</td>
+<td>vars() 함수는 주어진 객체의 <strong>dict</strong> 속성을 얻기 위해 사용됩니다</td>
+</tr>
+<tr>
+<td>zip()</td>
+<td>zip() 함수는 순회가능 객체들을 합쳐줍니다</td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+
+
+<a id="more"></a>
+
+
+
+<br>
+
+
+
+<h2 id="예시"><a href="#예시" class="headerlink" title="예시"></a>예시</h2><br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># min() </span></span><br><span class="line"><span class="comment"># 순회 가능 객체의 값들중, 가장 작은 값을 찾습니다 </span></span><br><span class="line"></span><br><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">x = min(mylist)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># next()</span></span><br><span class="line"><span class="comment"># iterator 안에서, 다음 요소를 얻을때 사용 </span></span><br><span class="line"></span><br><span class="line">mylist = iter([<span class="string">'Django'</span>, <span class="string">'python'</span>, <span class="string">'flask'</span>, <span class="string">'javascript'</span>])</span><br><span class="line"></span><br><span class="line">x = next(mylist)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = next(mylist)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = next(mylist)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># object()</span></span><br><span class="line"><span class="comment"># 비어있는 객체를 생성 </span></span><br><span class="line"></span><br><span class="line">x = object()</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># oct()</span></span><br><span class="line"><span class="comment"># 정수를 octal string 으로 전환해 줍니다 </span></span><br><span class="line"></span><br><span class="line">number = <span class="number">5</span> </span><br><span class="line"></span><br><span class="line">x = oct(number)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># open()</span></span><br><span class="line"><span class="comment"># 파일을 열고, 파일 객체로 반환합니다 </span></span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'python_basic_builtin.ipynb'</span>, <span class="string">'r'</span>)</span><br><span class="line">print(f.read())</span><br><span class="line"></span><br><span class="line"><span class="comment"># ord()</span></span><br><span class="line"><span class="comment"># ord() 함수는 해당문자의 유니코드를 표시하는 정수를 얻을때 사용됩니다 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 'd' 라는 문자에 해당하는 유니코드를 정수로 반환 </span></span><br><span class="line"></span><br><span class="line">x = ord(<span class="string">'d'</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 'z' 라는 문자에 해당하는 유니코드를 정수로 반환 </span></span><br><span class="line"></span><br><span class="line">y = ord(<span class="string">'z'</span>)</span><br><span class="line">print(y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># pow()</span></span><br><span class="line"><span class="comment"># x의 값에 y의 제곱을 해줄때 사용합니다 </span></span><br><span class="line"></span><br><span class="line">x = pow(<span class="number">4</span>, <span class="number">3</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = pow(<span class="number">5</span>, <span class="number">3</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># (3번빼 인자) 가 있을대는, modulus 를 구합니다</span></span><br><span class="line"></span><br><span class="line">x = pow(<span class="number">5</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = pow(<span class="number">5</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print()</span></span><br><span class="line"><span class="comment"># 객체를 출력 </span></span><br><span class="line"></span><br><span class="line">x = <span class="string">'djangojenge'</span></span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># sep 을 사용하여, 객체간의 구분자를 둘수 있습니다 </span></span><br><span class="line">print(<span class="string">'hello'</span>, x, sep=<span class="string">"---&gt;"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># property()</span></span><br><span class="line"><span class="comment"># property 속성을 리턴 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self._name = name </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'getting name'</span>)</span><br><span class="line">        <span class="keyword">return</span> self._name </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_name</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        print(<span class="string">'setting name to '</span>, value)</span><br><span class="line">        self._name = value </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">del_name</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'Deleting Name'</span>)</span><br><span class="line">        <span class="keyword">del</span> self._name</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># get_name, set_name 을 사용하기 위한 프로퍼티를 지정합니다 </span></span><br><span class="line">    <span class="comment"># del_name method </span></span><br><span class="line">    </span><br><span class="line">    name = property(get_name, set_name, del_name, <span class="string">'Name property'</span>)</span><br><span class="line">    </span><br><span class="line">p = Person(<span class="string">'djangojenge'</span>)</span><br><span class="line">print(p.name)</span><br><span class="line"></span><br><span class="line">p.name = <span class="string">"Flaskjen-e"</span></span><br><span class="line">print(p.name)</span><br><span class="line"></span><br><span class="line"><span class="keyword">del</span> p.name </span><br><span class="line"></span><br><span class="line">print(p.name)</span><br><span class="line"></span><br><span class="line"><span class="comment"># range()</span></span><br><span class="line"><span class="comment"># 숫자형 시퀀스를 생성할때 사용합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">9</span>):</span><br><span class="line">    print(i)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># repr()</span></span><br><span class="line"><span class="comment"># repr() 함수는, 객체의 출력 가능한 형태를 가진 문자열을 반환합니다 </span></span><br><span class="line"></span><br><span class="line">var = <span class="string">'foo'</span></span><br><span class="line"></span><br><span class="line">print(repr(var))</span><br><span class="line"></span><br><span class="line">b = <span class="number">8</span> </span><br><span class="line">print(repr(b))</span><br><span class="line"></span><br><span class="line"><span class="comment"># reversed()</span></span><br><span class="line"><span class="comment"># 거꾸로된 (reversed) 된 iterator 객체를 반환합니다 </span></span><br><span class="line"></span><br><span class="line">normal_list = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>]</span><br><span class="line">reversed_list = reversed(normal_list)</span><br><span class="line"></span><br><span class="line">print(normal_list)</span><br><span class="line">print(reversed_list)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> reversed_list:</span><br><span class="line">    print(x)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># round()</span></span><br><span class="line"><span class="comment"># 부동 소수점의 반올림 값을 반환 </span></span><br><span class="line"></span><br><span class="line">x = <span class="number">1218.55</span> </span><br><span class="line">y = round(x, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">print(y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># set()</span></span><br><span class="line"><span class="comment"># 집합 객체를 생성하기 위해 사용 </span></span><br><span class="line"></span><br><span class="line">my_list = [<span class="string">'python'</span>, <span class="string">'javascript'</span>, <span class="string">'golang'</span>]</span><br><span class="line">my_set = set(my_list) </span><br><span class="line">print(my_set)</span><br><span class="line"></span><br><span class="line"><span class="comment"># setattr()</span></span><br><span class="line"><span class="comment"># 객체의 특정 속성값을 지정히가 위해 사용됩니다 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    name = <span class="string">'Djangojeng-e'</span></span><br><span class="line">    age = <span class="number">36</span> </span><br><span class="line">    country = <span class="string">'Australia'</span></span><br><span class="line">    </span><br><span class="line">print(getattr(Person, <span class="string">'country'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Person 객체의 'country' 속성을 South Korea 로 바꿈 </span></span><br><span class="line">setattr(Person, <span class="string">'country'</span>, <span class="string">'South Korea'</span>)</span><br><span class="line">print(getattr(Person, <span class="string">'country'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># slice() </span></span><br><span class="line"><span class="comment"># 인덱스 값에 따른 객체의 slice 객체를 반환합니다 </span></span><br><span class="line"></span><br><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">x = slice(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">print(my_list[x])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 튜플을 생성하고, slice 객체를 생성하는데 </span></span><br><span class="line"><span class="comment"># 시작은 0, 끝은 8, 3단계씩 건너뛰면서 slice 를 합니다 </span></span><br><span class="line"></span><br><span class="line">a = (<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>)</span><br><span class="line">x = slice(<span class="number">0</span>, <span class="number">8</span>, <span class="number">3</span>)</span><br><span class="line">print(a[x])</span><br><span class="line"></span><br><span class="line"><span class="comment"># sorted()</span></span><br><span class="line"><span class="comment"># 새로운 정렬된 리스트를 반환 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">x = sorted(a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># str()</span></span><br><span class="line"><span class="comment"># 지정된 값을 문자열로 바꾸어주는데 사용됩니다 </span></span><br><span class="line"></span><br><span class="line">a = <span class="number">12345678</span></span><br><span class="line">print(type(a))</span><br><span class="line"></span><br><span class="line">a_string = str(a)</span><br><span class="line">print(type(a_string))</span><br><span class="line"></span><br><span class="line"><span class="comment"># sum()</span></span><br><span class="line"><span class="comment"># 순회가능 객체의 모든 요소들의 합계를 구하는데 사용 </span></span><br><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ,<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">print(sum(my_list))</span><br><span class="line"></span><br><span class="line"><span class="comment"># tuple()</span></span><br><span class="line"></span><br><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]</span><br><span class="line">my_tuple = tuple(my_list)</span><br><span class="line"></span><br><span class="line">print(my_list)</span><br><span class="line">print(my_tuple)</span><br><span class="line"></span><br><span class="line">print(type(my_list))</span><br><span class="line">print(type(my_tuple))</span><br><span class="line"></span><br><span class="line"><span class="comment"># type()</span></span><br><span class="line"><span class="comment"># 객체의 타입을 얻기위해 사용됩니다 </span></span><br><span class="line"></span><br><span class="line">a = <span class="string">"djangojeng-e"</span></span><br><span class="line">b = <span class="number">123456</span></span><br><span class="line">c = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">d = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">print(type(a))</span><br><span class="line">print(type(b))</span><br><span class="line">print(type(c))</span><br><span class="line">print(type(d))</span><br><span class="line"></span><br><span class="line"><span class="comment"># vars()</span></span><br><span class="line"><span class="comment"># 객체의 __dict__ 속성을 반환합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    name = <span class="string">"Djangojeng-e"</span></span><br><span class="line">    age = <span class="number">36</span> </span><br><span class="line">    country = <span class="string">"Australia"</span></span><br><span class="line">    </span><br><span class="line">x = vars(Person)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># zip()</span></span><br><span class="line"><span class="comment"># 객체들을 합쳐줍니다 </span></span><br><span class="line"></span><br><span class="line">a = (<span class="string">'djangojeng-e'</span>, <span class="string">'Python'</span>, <span class="string">'Flask'</span>)</span><br><span class="line">b = (<span class="string">'JavaScript'</span>, <span class="string">'Golang'</span>)</span><br><span class="line"></span><br><span class="line">x = zip(a, b)</span><br><span class="line">x = list(x)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = tuple(x)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>기초</category>
+      </categories>
+      <tags>
+        <tag>내장함수</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python 기초 21편 - built in 내장함수 2편</title>
     <url>/2020/11/11/Python-%EA%B8%B0%EC%B4%88-21%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-2%ED%8E%B8/</url>
     <content><![CDATA[<h2 id="Python-Builtins-2"><a href="#Python-Builtins-2" class="headerlink" title="Python Builtins - 2"></a>Python Builtins - 2</h2><br>
