@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/object-oriented/</loc>
+        <lastmod>2020-11-13T03:09:15.551Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/%25EA%25B0%259D%25EC%25B2%25B4%25EC%25A7%2580%25ED%2596%25A5%25ED%2594%2584%25EB%25A1%259C%25EA%25B7%25B8%25EB%259E%2598%25EB%25B0%258D/</loc>
+        <lastmod>2020-11-13T03:09:15.551Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/%25EB%2582%25B4%25EC%259E%25A5%25ED%2595%25A8%25EC%2588%2598/</loc>
         <lastmod>2020-11-12T12:22:20.697Z</lastmod>
         <changefreq>weekly</changefreq>

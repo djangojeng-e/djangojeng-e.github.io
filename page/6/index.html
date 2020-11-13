@@ -220,6 +220,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">Django Forms 1편 - FORM 으로 작업하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-01 18:17:28 / Updated at: 18:24:52" itemprop="dateCreated datePublished" datetime="2020-10-01T18:17:28+09:00">2020-10-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/01/Django-Forms-1편-FORM-으로-작업하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Working-with-Forms"><a href="#Working-with-Forms" class="headerlink" title="Working with Forms"></a>Working with Forms</h2><br>
+
+<p>Django 의 Form에 대해 공식문서를 읽으면서 내용을 정리합니다.  </p>
+<br>
+
+<blockquote>
+<p>Django 공식문서에서 Form 부분은, </p>
+<p>web forms 에 대한 기본과, Django 에서 어떻게 Form 들이 다루어 지는지 소개합니다. </p>
+<br>
+
+<p>특정 부분에 대한 좀 더 자세한 디테일을 위해서는, </p>
+<p><code>The Forms API</code>, <code>Form Fields</code> 그리고 <code>Form and field validation</code> 문서들을 보면 자세히 알수 있습니다. </p>
+</blockquote>
+<br>
+
+<p>여러분들의 웹사이트와 어플리케이션이 단순히 컨텐츠만 발행하고, 방문자들한테서 input 을 받는 사이트가 아니라면, 여러분들은 form 에 대해 이해하고 사용할 필요가 없습니다. </p>
+<br>
+
+<p>하지만, 그 반대라면, 여러분들의 웹사이트와 어플리케이션은, 단순히 컨텐츠만 발행할 뿐만 아니라, 방문자들한테서 input 을 받고, 받은 input 을 기반으로 어떠한 작업을 실행해야 할지 모릅니다. </p>
+<br>
+
+<p>이러한 경우에는, form 에 대해서 이해하고 잘 사용할 필요가 있습니다. </p>
+<br>
+
+<p>Django 는 다양한 도구들과 라이브러리를 제공하여, 당신이 form 을 만들고 사이트 방문자로부터 값을 입력 받을수 있게 도와줍니다. </p>
+<br>
+
+<p>거기에, 입력값을 처리하고 값에 반응하는 작업을 할수도 있습니다. </p>
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1386,129 +1501,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/19/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/19/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-1/" class="post-title-link" itemprop="url">Django Models 20편 - Model 상속 (Proxy models - 1)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-19 20:27:49 / Updated at: 20:40:10" itemprop="dateCreated datePublished" datetime="2020-08-19T20:27:49+09:00">2020-08-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/08/19/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-1/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/19/Django-Models-20편-Model-상속-Proxy-models-1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Model-상속-Proxy-models"><a href="#Model-상속-Proxy-models" class="headerlink" title="Model 상속 (Proxy models)"></a>Model 상속 (Proxy models)</h2><br>
-
-<h3 id="Proxy-models"><a href="#Proxy-models" class="headerlink" title="Proxy models"></a>Proxy models</h3><br>
-
-<p>Multi-table 상속을 사용할때에는, 새로운 데이터베이스 테이블이 각 서브 클래스 마다 생성 됩니다. </p>
-<br>
-
-<p>이는 보통 우리가 의도하는 동작이고, 서브 클래스들은, 베이스 클래스에 존재하지 않는 추가적인 데이터 필드들을 저장하기 위한 공간이 필요합니다.<br><br></p>
-<p>하지만, 때때로 모델의 파이썬 동작을 바꾸고 싶을때가 있습니다 - 기본 메니저를 변경하거나 혹은 새로운 메서드를 추가할때 처럼 말이죠. <br><br></p>
-<p>이것이 바로 프록시 모델 상속이 존재하는 이유 입니다. 기존 모델을 위해서 새로운 proxy 를 생성하는것 입니다. </p>
-<br>
-
-
-
-<blockquote>
-<p>모델의 파이썬 동작을 바꾸고 싶을때, 기존 모델을 위한 새로운 proxy 를 생성 합니다. </p>
-<p>예) 기본 메니져 변경, 새로운 메서드 추가 등등 </p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/19/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-1/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1579,7 +1571,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">198</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1592,7 +1584,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">149</span>
+        <span class="site-state-item-count">151</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

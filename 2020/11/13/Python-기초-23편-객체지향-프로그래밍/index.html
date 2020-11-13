@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"djangojeng-e.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <script data-ad-client="ca-pub-9284986247336734" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!--자동 애드센스-->
+
+<!--자동 에드센스 end-->
+
+<meta name="google-site-verification" content="WlX9ix7sXmMXMWSZS-fiLnWpgx6T0Dz2ON3R7RcK4bA" />
+  <meta name="description" content="객체지향 프로그래밍 (Object-Oriented Programming)  객체 지향 프로그래밍 (OOP) 는 프로그램 설계 방법론이자 개념의 일종으로. 특징은 다음과 같습니다.     프로그램을 수많은 ‘객체’ 라는 기본 단위로 나누고, 이 객체들의 상호작용으로 서술하는 방식으로.    객체 - 하나의 역할을 수행하는 메소드와 변수(데이터)의 묶음으로 봅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 기초 23편 - 객체지향 프로그래밍">
+<meta property="og:url" content="http://djangojeng-e.github.io/2020/11/13/Python-%EA%B8%B0%EC%B4%88-23%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/index.html">
+<meta property="og:site_name" content="장고쟁이">
+<meta property="og:description" content="객체지향 프로그래밍 (Object-Oriented Programming)  객체 지향 프로그래밍 (OOP) 는 프로그램 설계 방법론이자 개념의 일종으로. 특징은 다음과 같습니다.     프로그램을 수많은 ‘객체’ 라는 기본 단위로 나누고, 이 객체들의 상호작용으로 서술하는 방식으로.    객체 - 하나의 역할을 수행하는 메소드와 변수(데이터)의 묶음으로 봅">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-11-13T02:53:49.000Z">
+<meta property="article:modified_time" content="2020-11-13T03:09:15.551Z">
+<meta property="article:author" content="장고쟁이">
+<meta property="article:tag" content="객체지향프로그래밍">
+<meta property="article:tag" content="object-oriented">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://djangojeng-e.github.io/2020/11/13/Python-%EA%B8%B0%EC%B4%88-23%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Python 기초 23편 - 객체지향 프로그래밍 | 장고쟁이</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <meta name="naver-site-verification" content="b855a7ad81fb77d8cd20dc2267432ca962ba8376" />
+<link rel="alternate" href="/rss2.xml" title="장고쟁이" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+	<!--구글 애드 -->	
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9284986247336734",
+    enable_page_level_ads: true
+  });
+</script>
+
+	<!--구글 애드 종료-->
+	
+<div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">장고쟁이</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">당신은 멋쟁이, 우리는 장고쟁이~</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/djangojeng-e" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/13/Python-%EA%B8%B0%EC%B4%88-23%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python 기초 23편 - 객체지향 프로그래밍
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-13 11:53:49 / Updated at: 12:09:15" itemprop="dateCreated datePublished" datetime="2020-11-13T11:53:49+09:00">2020-11-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/13/Python-%EA%B8%B0%EC%B4%88-23%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/13/Python-기초-23편-객체지향-프로그래밍/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="객체지향-프로그래밍-Object-Oriented-Programming"><a href="#객체지향-프로그래밍-Object-Oriented-Programming" class="headerlink" title="객체지향 프로그래밍 (Object-Oriented Programming)"></a>객체지향 프로그래밍 (Object-Oriented Programming)</h2><br>
+
+<p>객체 지향 프로그래밍 (OOP) 는 프로그램 설계 방법론이자 개념의 일종으로. 특징은 다음과 같습니다. </p>
+<br>
+
+<blockquote>
+<p>프로그램을 수많은 ‘객체’ 라는 기본 단위로 나누고, 이 객체들의 상호작용으로 서술하는 방식으로. </p>
+<br>
+
+<p>객체 - 하나의 역할을 수행하는 메소드와 변수(데이터)의 묶음으로 봅니다. </p>
+<p>즉, 개념적으로, <code>객체 = 메소드 + 변수 (데이터)</code> 형태를 가집니다. </p>
+</blockquote>
+<br>
+
+<p>파이썬에서는 모든것이 객체로, 파이썬은 객체지향 언어의 대표적인 언어중 하나입니다. </p>
+<br>
+
+<h2 id="절차적-프로그래밍"><a href="#절차적-프로그래밍" class="headerlink" title="절차적 프로그래밍"></a>절차적 프로그래밍</h2><br>
+
+<p>초기에 나온 프로그래밍 방식은, 절차 지향 혹은 절차적 프로그래밍으로. 명시된 순서대로 입력을 처리한다음, 결과를 내어주는 식으로 프로그램이 짜여 졌었습니다. </p>
+<br>
+
+<p>프로그램을 명령어들의 모음으로 인식하는것이 지배적이었으며. 프로그램의 기능에 더 치중하였고. </p>
+<p><br>어떤 데이터를 취급할지에 대한 고민은 상대적으로 적게 하였습니다. </p>
+<br>
+
+<p>이 절차적 프로그래밍의 단점은 시간이 지나면서 부각되어 오기 시작하였는데.. 특히, 프로그램이 복잡해지면 질수록 드러나는 대표적인 단점은 아래와 같습니다. </p>
+<br>
+
+<ol>
+<li>프로그램이 복잡해 지면, 너무 많은 절차와 명령어들로 인해서 코드가 엉망이 될수가 있다 </li>
+<li>코드가 엉망이 되면, 유지보수가 힘들어 진다 </li>
+<li>프로그램 흐름을 파악하기가 힘들어 진다 </li>
+<li>네임스페이스 (이름공간) 구분이 어려워 진다 </li>
+<li>중복된 코드를 사용하게 될수 있다 </li>
+<li>함수를 통해 구조화는 가능하지만, 이는 데이터를 구조화 시킬수는 없다 </li>
+</ol>
+<br>
+
+<p>이러한 단점들을 보안하기 위해서 나타난것이 바로 객체 지향 프로그래밍으로. 객체라는 작은 단위들로 쪼갠다음, 이 객체들을 조합하여 큰 문제도 해결할수 있는 방식으로 생각하여 만들어 졌습니다. </p>
+<br>
+
+<p>만들어진 객체는, 작은 문제들을 효과적으로 그리고 확실하게 해결할수 있는 단위들로. 한번 잘 만들어지면. 재사용할수 있다는점이 가장 큰 장점 입니다. </p>
+<br>
+
+<h2 id="주요-특징"><a href="#주요-특징" class="headerlink" title="주요 특징"></a>주요 특징</h2><br>
+
+<h3 id="1-Encapulation-캡슐화"><a href="#1-Encapulation-캡슐화" class="headerlink" title="1. Encapulation (캡슐화)"></a>1. Encapulation (캡슐화)</h3><br>
+
+<p>변수와 함수를 하나의 단위로 묶는것을 의미. 데이터의 번들링으로. 보통 객체 지향 프로그래밍을 지원하는 언어들에서 class 라는 형태로 제공됩니다. </p>
+<br>
+
+<p>해당 클래스에 대한 인스턴스를 생성하고, 클래스에 포함된 변수와 메서드에 쉽게 접근할수 있습니다. </p>
+<br>
+
+<p>파이썬에서도, class 를 통해 인스턴스를 생성하고, 해당 클래스에 포함된 변수와 메서드에 접근할수 있습니다. </p>
+<br>
+
+<h3 id="2-inheritance-상속"><a href="#2-inheritance-상속" class="headerlink" title="2. inheritance (상속)"></a>2. inheritance (상속)</h3><br>
+
+<p>상속은 자식 클래스가 부모 클래스의 특성과 기능을 물려받는 것을 의미합니다. </p>
+<br>
+
+<p>자식 클래스에서, 부모에게서 물려받은 기능을 약간 수정하여 다시 정의할수 있는데. 이를 <code>override</code>, <code>overriding</code> 이라고 부릅니다. </p>
+<br>
+
+<h2 id="장점과-단점"><a href="#장점과-단점" class="headerlink" title="장점과 단점"></a>장점과 단점</h2><br>
+
+<h3 id="장점"><a href="#장점" class="headerlink" title="장점"></a>장점</h3><br>
+
+<ul>
+<li>아주 복잡한 프로그램일 경우, 절차 지향 프로그래밍 보다는 상대적으로 코드가 간결할수 있습니다 </li>
+<li>상속 개념을 너무 남발하는 경우가 아니고, 간결하고 명확하게 코드를 작성할 경우, 유지 보수가 용이해 질수 있습니다 </li>
+<li>네임스페이스 (이름공간) 구분이 용이해 질수 있습니다 </li>
+<li>코드의 재사용성을 높이고, 중복된 코드를 피할수 있습니다 </li>
+</ul>
+<br>
+
+<h3 id="단점"><a href="#단점" class="headerlink" title="단점"></a>단점</h3><br>
+
+<ul>
+<li>데이터 클래스의 상속이라는 개념은 뛰어나지만, 복잡한 특성을 지니게 해줍니다. 코드의 난이도가 어려워지는 함정이 존재합니다. 다중 상속을 할 경우, 코드 흐름을 파악하기 어려워지고, 복잡한 상속은 코드 분석을 매우 어렵게 합니다 </li>
+<li>캡슐화와 객체 구조 설계로 인해서 프로그램 성능이 하락할수 있습니다. 객체들간 상호 작용을 하기 위한 호출, 계산식 중간에 포인터 연산들이 더 들어가야 하고, 상호 작용을 위해서 어느 객체의 함수인지 지정해야 하기 때문에, 절차적 프로그래밍 보다는 프로그램이 무거워 질수 있습니다 </li>
+<li>이해하기가 어렵습니다. 특히 프로그래밍을 처음 접하는 상황에서는, 클래스와 객체 등, OOP 개념 이해조차 하기 힘듭니다. 클래스를 보통 붕어빵 틀로 설명을 하는데.. 학습을 어느정도 해도 이해하기 힘든 개념으로, 많은 프로그래머를 지향하는 사람들이 부딪히는 난관이 될수 있습니다. </li>
+</ul>
+<br>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" rel="tag"># 객체지향프로그래밍</a>
+              <a href="/tags/object-oriented/" rel="tag"># object-oriented</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/12/Python-%EA%B8%B0%EC%B4%88-22%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-3%ED%8E%B8/" rel="prev" title="Python 기초 22편 - built in 내장함수 3편">
+      <i class="fa fa-chevron-left"></i> Python 기초 22편 - built in 내장함수 3편
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#객체지향-프로그래밍-Object-Oriented-Programming"><span class="nav-number">1.</span> <span class="nav-text">객체지향 프로그래밍 (Object-Oriented Programming)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#절차적-프로그래밍"><span class="nav-number">2.</span> <span class="nav-text">절차적 프로그래밍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#주요-특징"><span class="nav-number">3.</span> <span class="nav-text">주요 특징</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Encapulation-캡슐화"><span class="nav-number">3.1.</span> <span class="nav-text">1. Encapulation (캡슐화)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-inheritance-상속"><span class="nav-number">3.2.</span> <span class="nav-text">2. inheritance (상속)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#장점과-단점"><span class="nav-number">4.</span> <span class="nav-text">장점과 단점</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#장점"><span class="nav-number">4.1.</span> <span class="nav-text">장점</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#단점"><span class="nav-number">4.2.</span> <span class="nav-text">단점</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">장고쟁이</p>
+  <div class="site-description" itemprop="description">장고쟁이의 Python, Django 공부 노트</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">151</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/djangojeng-e" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;djangojeng-e" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:headfat1218@gmail.com" title="E-Mail → mailto:headfat1218@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+<div>
+
+
+
+
+
+<iframe width="210" height="180" src="https://www.youtube.com/embed/GUg3b7ALPSA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
+</div>
+
+    </div>
+
+
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">장고쟁이</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://djangojeng-e.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://djangojeng-e.github.io/2020/11/13/Python-%EA%B8%B0%EC%B4%88-23%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/";
+    this.page.identifier = "2020/11/13/Python-기초-23편-객체지향-프로그래밍/";
+    this.page.title = "Python 기초 23편 - 객체지향 프로그래밍";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://djangojeng-e.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>
