@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>http://djangojeng-e.github.io/tags/RESTFRAMEWORK/</loc>
+        <lastmod>2020-11-14T00:29:22.196Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/API/</loc>
+        <lastmod>2020-11-14T00:29:22.196Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/DRF/</loc>
+        <lastmod>2020-11-14T00:29:22.196Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/tags/object-oriented/</loc>
         <lastmod>2020-11-13T03:09:15.551Z</lastmod>
         <changefreq>weekly</changefreq>

@@ -220,6 +220,144 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/" class="post-title-link" itemprop="url">Django Forms 2편 - HTML FORMS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-01 18:25:47 / Updated at: 18:35:03" itemprop="dateCreated datePublished" datetime="2020-10-01T18:25:47+09:00">2020-10-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/01/Django-Forms-2%ED%8E%B8-HTML-FORMS/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/01/Django-Forms-2편-HTML-FORMS/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="HTML-FORMS"><a href="#HTML-FORMS" class="headerlink" title="HTML FORMS"></a>HTML FORMS</h2><br>
+
+<p>HTML 에서 form 은 <code>&lt;form&gt;</code> … <code>&lt;/form&gt;</code> 안에 있는 요소들의 집합입니다. </p>
+<p><br>이는 방문자들이 text 를 입력하고, 옵션을 선택하고, 객체들을 관리하고 혹은 제어하게 만들어 줍니다. </p>
+<p><br>그리고 나서, 해당 정보를 다시 서버로 보내줄수도 있습니다. </p>
+<br>
+
+<p>이러한 몇가지 폼 인터페이스 요소들은 (예, text input, 혹은 checkboxes) HTML 자체에 내장 되어 있습니다만. 다른것들은 훨씬 더 복잡합니다. 예를들면, 보통 JavaScript 와 CSS 그리고  HTML 을 사용하여 날짜선택 팝업 혹은 슬라이더, 그리고 제어를 조종하는 <code>&lt;input&gt;</code> 요소들이 그렇습니다. </p>
+<br>
+
+<br>
+
+<h2 id="Form-이-지정해줘야할-2가지"><a href="#Form-이-지정해줘야할-2가지" class="headerlink" title="Form 이 지정해줘야할 2가지"></a>Form 이 지정해줘야할 2가지</h2><br>
+
+<p>form 은 대부분 아래 두가지를 지정해주어야 합니다. </p>
+<br>
+
+
+
+<ol>
+<li>where?  사용자가 입력한 데이터가 어디로 반환 되어야 하는지 </li>
+<li>how? 어떠한 <code>HTTP Method</code> 로 데이터가 반환 되어야 하는지 </li>
+</ol>
+<br>
+
+<p>예시를 들자면, Django Admin 의 로그인 폼은 몇가지 아래의 <code>&lt;input&gt;</code>  요소들을 가지고 있습니다. </p>
+<br> 
+
+<ol>
+<li><p>username 을 위한  <code>type=&quot;text&quot;</code> 라는 것이고, </p>
+</li>
+<li><p>다른 하나는, password 를 위한 input </p>
+</li>
+<li><p>마지막으로, 로그인을 진행하는 버튼을 위한 type=”submit” 을 가지고 있습니다. </p>
+</li>
+</ol>
+<br>
+
+<p>그리고, 어드민에는 Django 가 입력값을 받은 다음에 무엇을 해야하는지 결정하기 위해, 사용자가 볼수 없는 숨겨진 텍스트 필드들도 존재합니다. </p>
+<br>
+
+<p>또한, 브라우저에 폼 데이터가 어떤 URL 로 보내져야 하는지, <code>&lt;form&gt;</code>의 action 속성에다가 URL 을 지정해 줍니다 <code>/admin/</code>. 그리고, 폼 데이터는, method 속성에 지정된 HTTP 동작을 통해서 보내집니다 (예, POST)</p>
+<br>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Log in"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위 요소가 실행되면, 데이터는 /admin/ 에 반환됩니다. </p>
+<br>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/01/Django-Forms-1%ED%8E%B8-FORM-%EC%9C%BC%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1350,157 +1488,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/20/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/20/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-2/" class="post-title-link" itemprop="url">Django Models 20편 - Model 상속 (Proxy models - 2)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-20 14:33:02 / Updated at: 14:41:57" itemprop="dateCreated datePublished" datetime="2020-08-20T14:33:02+09:00">2020-08-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/08/20/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-2/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/20/Django-Models-20편-Model-상속-Proxy-models-2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Model-Inheritance-proxy-models-2"><a href="#Model-Inheritance-proxy-models-2" class="headerlink" title="Model Inheritance proxy models - 2"></a>Model Inheritance proxy models - 2</h2><br>
-
-<h3 id="Base-class-restrictions"><a href="#Base-class-restrictions" class="headerlink" title="Base class restrictions"></a>Base class restrictions</h3><br>
-
-<p>프록시 모델은 하나의 모델 클래스 (abstract 가 아닌것)을 상속 받아야 합니다 </p>
-<p><br>하지만, 다중의 모델 (abstract 가 아닌것)들을 상속 받을수 없습니다. </p>
-<blockquote>
-<p>프록시 모델은, 다른 데이터 베이스 테이블들에 존재하는 행(row) 들끼리 연결을 지원하지 않습니다. </p>
-</blockquote>
-<br>
-
-<p>프록시 모델은 abstract 모델이 어떤 모델 필드도 정의하지 않는다는 전제하에, 여러개의 abstract 모델 클래스들을 상속 받을수 있습니다. </p>
-<br>
-
-<p>프록시 모델은 또한, 공통된 부모 클래스 (단, abstract 클래스가 아니여야 함)를 공유한다는 전제하에, 몇개라도 프록시 모델들을 상속 받을수 있습니다. </p>
-<br>
-
-<h3 id="Proxy-model-managers"><a href="#Proxy-model-managers" class="headerlink" title="Proxy model managers"></a>Proxy model managers</h3><br>
-
-<p>프록시 모델에 어떤 model manager 도 지정하지 않는다면, 부모 모델의 manager 를 상속 받습니다. </p>
-<br>
-
-<p>만약 프록시 모델에 manager 를 정의 한다면, 정의된 manager 가 기본값이 됩니다. </p>
-<p><br>물론, 어떤 manager 든지 부모 클래스에 정의된 manager 도 여전히 사용 가능합니다. </p>
-<br>
-
-<p>이전 포스팅에서 진행한 예시에 이어서, Person 모델의 쿼리에서 사용되는 기본 manager 를 바꿀수 있습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewManager</span><span class="params">(models.Manager)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPerson</span><span class="params">(Person)</span>:</span></span><br><span class="line">    objects = NewManager()</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        proxy = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>만약 새로운 manager 를 기존에 존재하는 기본값을 바꾸지 않고 프록시에 추가하고 싶으면, custom manager 문서에 나와 있는 기술들을 사용해서 바꿀수 있습니다. </p>
-<br>
-
-<p>새로운 manager 를 가지고 있는 클래스를 생성하고, 기본 베이스 클래스 뒤에, 생성한 클래스를 상속 시켜 주면 됩니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 새로운 Manager 를 위한 Abstract 클래스를 생성해줍니다.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExtraManagers</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    secondary = NewManager() </span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        abstract = <span class="literal">True</span> </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPerson</span><span class="params">(Person, ExtraManagers)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        proxy = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<h3 id="프록시-상속과-관리되지않은-모델의-차이점"><a href="#프록시-상속과-관리되지않은-모델의-차이점" class="headerlink" title="프록시 상속과 관리되지않은 모델의 차이점"></a>프록시 상속과 관리되지않은 모델의 차이점</h3><br>
-
-<p>프록시 모델 상속은 Meta 클래스에 managed 속성을 사용한, 관리되지 않은 모델을 생성하는것과 비슷해 보일지 모릅니다. </p>
-<br>
-
-<p>조심스럽게 Meta.db_table 을 설정하여, 기존에 존재하는 모델의 그림자 같은 관리되지 않은 모델을 생성할수 있고, 파이썬 메서드도 추가할수 있습니다. </p>
-<br>
-
-<p>하지만, 그것은 매우 반복적이고 깨지기 쉬운 구조 입니다. 수정할때 마다, 모든 복사본들을 동기화 해야 하기 때문입니다. </p>
-<br>
-
-<p>한편으로는, 프록시 모델들은 정확하게 프록싱 하는 기존 모델의 동작 처럼 동작하게 만들어 졌습니다. 프록시 모델은 언제나 부모 모델과 동기화 되어 있습니다 (직접 필드와 메니져들을 부모에게서 상속 받기 때문).</p>
-<br>
-
-<p>보통 법칙들은 </p>
-<ol>
-<li>기존 모델 혹은 데이터베이스를 미러링 하고, 모든 오리지널 데이터베이스 테이블 열들을 원하지 않을때, Meta.mangled=False 를 사용해 줍니다. 이 옵션은 데이터베이스 뷰들을 모델링 할때와 Django 로 제어되지 않는 테이블들을에 유용합니다. </li>
-</ol>
-<ol start="2">
-<li>만약 모델의 파이썬 동작만 바꾸고 싶은데, 같은 필드들을 오리지널과 같이 유지하고 싶을때, Meta.proxy=True 로 설정해 줍니다. 이 설정은, 데이터가 저장될때, 프록시 모델이 정확한 오리지널 모델 저장구조의 복사본이 됩니다.  <br></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1571,20 +1558,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">151</span>
+        <span class="site-state-item-count">154</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
