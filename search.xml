@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 2편 - Serialization 모델 생성</title>
+    <url>/2020/11/15/DRF-Tutorial-2%ED%8E%B8-Serialization-%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1/</url>
+    <content><![CDATA[<h2 id="Serialization-모델-생성"><a href="#Serialization-모델-생성" class="headerlink" title="Serialization 모델 생성"></a>Serialization 모델 생성</h2><br>
+
+<h3 id="Creating-a-model-to-work-with-작업할-모델-생성하기"><a href="#Creating-a-model-to-work-with-작업할-모델-생성하기" class="headerlink" title="Creating a model to work with (작업할 모델 생성하기)"></a>Creating a model to work with (작업할 모델 생성하기)</h3><br>
+
+<p>이번 튜토리얼의 목적을 위해서, 코드 스니펫을 저장하는 간단한 snippet 모델을 생성하는걸로 시작하겠습니다.</p>
+<br>
+
+<p><code>snippet/models.py</code> 파일에서, 아래와 같이 모델을 작성해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"><span class="keyword">from</span> pygments.lexers <span class="keyword">import</span> get_all_lexers </span><br><span class="line"><span class="keyword">from</span> pygments.styles <span class="keyword">import</span> get_all_styles </span><br><span class="line"></span><br><span class="line">LEXERS = [item <span class="keyword">for</span> item <span class="keyword">in</span> get_all_lexers() <span class="keyword">if</span> item[<span class="number">1</span>]]</span><br><span class="line">LANGUAGE_CHOICES = sorted([item[<span class="number">1</span>][<span class="number">0</span>], item[<span class="number">0</span>] <span class="keyword">for</span> item <span class="keyword">in</span> LEXERS])</span><br><span class="line">STYLE_CHOICES = sorted([(item, item) <span class="keyword">for</span> item <span class="keyword">in</span> get_all_styles()])</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Snippet</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    created = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">100</span>, blank=<span class="literal">True</span>, default=<span class="string">''</span>)</span><br><span class="line">    code = models.TextField()</span><br><span class="line">    linenos = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    language = models.CharField(choices=LANGUAGE_CHOICES, default=<span class="string">'python'</span>, 					max_length=<span class="number">100</span>)</span><br><span class="line">    style = models.CharField(choices=STYLE_CHOICES, default=<span class="string">'friendly'</span>, 						max_length=<span class="number">100</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ordering = [<span class="string">'created'</span>]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>get_all_lexers 는 순회 가능한 LEXER 들의 정보를 가지고 있고 </p>
+<p>get_all_styles 는 순회 가능한 style 들의 정보를 가지고 있습니다. </p>
+<br>
+
+<p>이 두개를 List Comprehension 을 통해, For 문으로 리스트를 만들어 줍니다 </p>
+</blockquote>
+<br>
+
+<p>모델을 생성해 주었으니, snippet 모델에 대한 첫번재 migrations 을 생성해 줍니다 </p>
+<p><br>그리고 나서, 처음으로 데이터베이스와 동기화를 시켜줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python manage.py makemigrations </span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 1편 - Serialization 소개 및 초기설정</title>
     <url>/2020/11/14/DRF-Tutorial-1%ED%8E%B8-Serialization-%EC%86%8C%EA%B0%9C-%EB%B0%8F-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/</url>
     <content><![CDATA[<h2 id="Django-REST-Framework"><a href="#Django-REST-Framework" class="headerlink" title="Django REST Framework"></a>Django REST Framework</h2><br>
