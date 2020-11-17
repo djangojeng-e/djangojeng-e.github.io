@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 4편 - Serializer로 작업하기</title>
+    <url>/2020/11/17/DRF-Tutorial-4%ED%8E%B8-Serializer%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Serializer-로-작업하기"><a href="#Serializer-로-작업하기" class="headerlink" title="Serializer 로 작업하기"></a>Serializer 로 작업하기</h2><br>
+
+<h3 id="Working-with-Serializers-serializer-로-작업하기"><a href="#Working-with-Serializers-serializer-로-작업하기" class="headerlink" title="Working with Serializers (serializer 로 작업하기)"></a>Working with Serializers (serializer 로 작업하기)</h3><br>
+
+<p>더 진행 하기 전에, Serializer 클래스를 사용하는데에 친숙해져야 합니다. 연습을 하기 위해서, 아래 명령어를 실행하여 Django shell 에 접속해 봅니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python manage.py shell</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="인스턴스-생성"><a href="#인스턴스-생성" class="headerlink" title="인스턴스 생성"></a>인스턴스 생성</h4><br>
+
+<p>몇가지 모듈을 불러와 놓고, 우리가 사용해볼 몇가지 코드 snippet 을 생성해 봅시다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer </span><br><span class="line"><span class="keyword">from</span> rest_framework.renderers <span class="keyword">import</span> JSONRenderer </span><br><span class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParser </span><br><span class="line"></span><br><span class="line">snippet = Snippet(code=<span class="string">'foo = "bar"\n'</span>)</span><br><span class="line">snippet.save() </span><br><span class="line"></span><br><span class="line">snippet = Snippet(code=<span class="string">'print("hello, world")\n'</span>)</span><br><span class="line">snippet.save()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이제 우리는 가지고 놀수 있는 몇가지 snippet 인스턴스들을 가지고 있습니다. 이 인스턴스중 하나를 serializing 하는것을 둘러봅니다 </p>
+<br>
+
+<h4 id="인스턴스-serializing"><a href="#인스턴스-serializing" class="headerlink" title="인스턴스 serializing"></a>인스턴스 serializing</h4><br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> serializers.py 에 작성된 SnippetSerializer 클래스를 불러오고 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> snippet 인스턴스를 인자로 넣어준다. </span></span><br><span class="line"></span><br><span class="line">In [11]: serializer = SnippetSerializer(snippet)                                                                                                                          </span><br><span class="line"></span><br><span class="line">In [12]: serializer.data                                                                                                                                                  </span><br><span class="line">Out[12]: &#123;'id': 2, 'title': '', 'code': 'print("hello, world")\n', 'linenos': False, 'language': 'python', 'style': 'friendly'&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>여기서 우리는, 모델 인스턴스를 Python 의 기본 데이터 유형으로 전환하였습니다. </p>
+<br>
+
+<blockquote>
+<p><code>serialization (직렬화)</code> 프로세스를 끝내기 위해서, 데이터를 json 으로 렌더해줍니다 </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [13]: content = JSONRenderer().render(serializer.data)                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [14]: content                                                                                                                                                          </span><br><span class="line">Out[14]: b'&#123;"id":2,"title":"","code":"print(\\"hello, world\\")\\n","linenos":false,"language":"python","style":"friendly"&#125;'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Deserializing-하기"><a href="#Deserializing-하기" class="headerlink" title="Deserializing 하기"></a>Deserializing 하기</h4><br>
+
+<p><code>deserialization</code> 도 비슷합니다. json 으로 렌더되었던 content 를, <code>BytesIO</code> 로 전환한후에 stream 에 담아줍니다. 이 stream 을 <code>parse</code>   하여, Python 기본 데이터 유형으로 바꿔줍니다.  </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [15]: import io                                                                                                                                                        </span><br><span class="line"></span><br><span class="line">In [16]: stream = io.BytesIO(content)                                                                                                                                     </span><br><span class="line"></span><br><span class="line">In [17]: data = JSONParser().parse(stream)                                                                                                                                </span><br><span class="line"></span><br><span class="line">In [18]: data                                                                                                                                                             </span><br><span class="line">Out[18]: </span><br><span class="line">&#123;'id': 2,</span><br><span class="line"> 'title': '',</span><br><span class="line"> 'code': 'print("hello, world")\n',</span><br><span class="line"> 'linenos': False,</span><br><span class="line"> 'language': 'python',</span><br><span class="line"> 'style': 'friendly'&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>그리고 난 후에, 파이썬 기본 데이터 유형을 완벽하게 채워진 객체 인스턴스로 복원 합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">19</span>]: serializer = SnippetSerializer(data=data)                                                                                                                        </span><br><span class="line"></span><br><span class="line">In [<span class="number">20</span>]: serializer.is_valid()                                                                                                                                            </span><br><span class="line">Out[<span class="number">20</span>]: <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: serializer.validated_data                                                                                                                                        </span><br><span class="line">Out[<span class="number">21</span>]: </span><br><span class="line">OrderedDict([(<span class="string">'title'</span>, <span class="string">''</span>),</span><br><span class="line">             (<span class="string">'code'</span>, <span class="string">'print("hello, world")'</span>),</span><br><span class="line">             (<span class="string">'linenos'</span>, <span class="literal">False</span>),</span><br><span class="line">             (<span class="string">'language'</span>, <span class="string">'python'</span>),</span><br><span class="line">             (<span class="string">'style'</span>, <span class="string">'friendly'</span>)])</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: serializer.save()                                                                                                                                                </span><br><span class="line">Out[<span class="number">22</span>]: &lt;Snippet: Snippet object (<span class="number">3</span>)&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>Django 에서 form class 와 form 인스턴스를 가지고 작업하는것과, </p>
+<p>비슷한 점이 많다는것을 눈치 채야 합니다. </p>
+<br>
+
+<p>공통된 부분은, serializer 를 사용하는 views 를 작성할때 더욱 명확해 질것 입니다. </p>
+</blockquote>
+<br>
+
+<p>또한, 모델 인스턴스들 대신에, 쿼리셋들도 직렬화 할수 있습니다. 그렇게 하기 위해서는, 간단하게 <code>many=true</code> 플래그를, serializer 인자에 넣어줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">In [23]: serializer = SnippetSerializer(Snippet.objects.all(), many=True)                                                                                                 </span><br><span class="line"></span><br><span class="line">In [24]: serializer.data                                                                                                                                                  </span><br><span class="line">Out[24]: [OrderedDict([('id', 1), ('title', ''), ('code', 'foo = "bar"\n'), ('linenos', False), ('language', 'python'), ('style', 'friendly')]), OrderedDict([('id', 2), ('title', ''), ('code', 'print("hello, world")\n'), ('linenos', False), ('language', 'python'), ('style', 'friendly')]), OrderedDict([('id', 3), ('title', ''), ('code', 'print("hello, world")'), ('linenos', False), ('language', 'python'), ('style', 'friendly')])]</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 3편 - Serializer class 생성</title>
     <url>/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/</url>
     <content><![CDATA[<h2 id="Serializer-Class-생성"><a href="#Serializer-Class-생성" class="headerlink" title="Serializer Class 생성"></a>Serializer Class 생성</h2><br>

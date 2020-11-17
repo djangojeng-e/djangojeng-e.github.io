@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/11/17/DRF-Tutorial-4%ED%8E%B8-Serializer%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/</loc>
+        <lastmod>2020-11-17T00:21:58.690Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/</loc>
         <lastmod>2020-11-16T06:19:07.672Z</lastmod>
         <changefreq>weekly</changefreq>

@@ -220,6 +220,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/17/DRF-Tutorial-4%ED%8E%B8-Serializer%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/17/DRF-Tutorial-4%ED%8E%B8-Serializer%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF Tutorial 4편 - Serializer로 작업하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-17 09:06:30 / Updated at: 09:21:58" itemprop="dateCreated datePublished" datetime="2020-11-17T09:06:30+09:00">2020-11-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/17/DRF-Tutorial-4%ED%8E%B8-Serializer%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/17/DRF-Tutorial-4편-Serializer로-작업하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Serializer-로-작업하기"><a href="#Serializer-로-작업하기" class="headerlink" title="Serializer 로 작업하기"></a>Serializer 로 작업하기</h2><br>
+
+<h3 id="Working-with-Serializers-serializer-로-작업하기"><a href="#Working-with-Serializers-serializer-로-작업하기" class="headerlink" title="Working with Serializers (serializer 로 작업하기)"></a>Working with Serializers (serializer 로 작업하기)</h3><br>
+
+<p>더 진행 하기 전에, Serializer 클래스를 사용하는데에 친숙해져야 합니다. 연습을 하기 위해서, 아래 명령어를 실행하여 Django shell 에 접속해 봅니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="인스턴스-생성"><a href="#인스턴스-생성" class="headerlink" title="인스턴스 생성"></a>인스턴스 생성</h4><br>
+
+<p>몇가지 모듈을 불러와 놓고, 우리가 사용해볼 몇가지 코드 snippet 을 생성해 봅시다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer </span><br><span class="line"><span class="keyword">from</span> rest_framework.renderers <span class="keyword">import</span> JSONRenderer </span><br><span class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParser </span><br><span class="line"></span><br><span class="line">snippet = Snippet(code=<span class="string">'foo = "bar"\n'</span>)</span><br><span class="line">snippet.save() </span><br><span class="line"></span><br><span class="line">snippet = Snippet(code=<span class="string">'print("hello, world")\n'</span>)</span><br><span class="line">snippet.save()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이제 우리는 가지고 놀수 있는 몇가지 snippet 인스턴스들을 가지고 있습니다. 이 인스턴스중 하나를 serializing 하는것을 둘러봅니다 </p>
+<br>
+
+<h4 id="인스턴스-serializing"><a href="#인스턴스-serializing" class="headerlink" title="인스턴스 serializing"></a>인스턴스 serializing</h4><br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> serializers.py 에 작성된 SnippetSerializer 클래스를 불러오고 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> snippet 인스턴스를 인자로 넣어준다. </span></span><br><span class="line"></span><br><span class="line">In [11]: serializer = SnippetSerializer(snippet)                                                                                                                          </span><br><span class="line"></span><br><span class="line">In [12]: serializer.data                                                                                                                                                  </span><br><span class="line">Out[12]: &#123;'id': 2, 'title': '', 'code': 'print("hello, world")\n', 'linenos': False, 'language': 'python', 'style': 'friendly'&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>여기서 우리는, 모델 인스턴스를 Python 의 기본 데이터 유형으로 전환하였습니다. </p>
+<br>
+
+<blockquote>
+<p><code>serialization (직렬화)</code> 프로세스를 끝내기 위해서, 데이터를 json 으로 렌더해줍니다 </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [13]: content = JSONRenderer().render(serializer.data)                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [14]: content                                                                                                                                                          </span><br><span class="line">Out[14]: b'&#123;"id":2,"title":"","code":"print(\\"hello, world\\")\\n","linenos":false,"language":"python","style":"friendly"&#125;'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="Deserializing-하기"><a href="#Deserializing-하기" class="headerlink" title="Deserializing 하기"></a>Deserializing 하기</h4><br>
+
+<p><code>deserialization</code> 도 비슷합니다. json 으로 렌더되었던 content 를, <code>BytesIO</code> 로 전환한후에 stream 에 담아줍니다. 이 stream 을 <code>parse</code>   하여, Python 기본 데이터 유형으로 바꿔줍니다.  </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">In [15]: import io                                                                                                                                                        </span><br><span class="line"></span><br><span class="line">In [16]: stream = io.BytesIO(content)                                                                                                                                     </span><br><span class="line"></span><br><span class="line">In [17]: data = JSONParser().parse(stream)                                                                                                                                </span><br><span class="line"></span><br><span class="line">In [18]: data                                                                                                                                                             </span><br><span class="line">Out[18]: </span><br><span class="line">&#123;'id': 2,</span><br><span class="line"> 'title': '',</span><br><span class="line"> 'code': 'print("hello, world")\n',</span><br><span class="line"> 'linenos': False,</span><br><span class="line"> 'language': 'python',</span><br><span class="line"> 'style': 'friendly'&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>그리고 난 후에, 파이썬 기본 데이터 유형을 완벽하게 채워진 객체 인스턴스로 복원 합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">19</span>]: serializer = SnippetSerializer(data=data)                                                                                                                        </span><br><span class="line"></span><br><span class="line">In [<span class="number">20</span>]: serializer.is_valid()                                                                                                                                            </span><br><span class="line">Out[<span class="number">20</span>]: <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: serializer.validated_data                                                                                                                                        </span><br><span class="line">Out[<span class="number">21</span>]: </span><br><span class="line">OrderedDict([(<span class="string">'title'</span>, <span class="string">''</span>),</span><br><span class="line">             (<span class="string">'code'</span>, <span class="string">'print("hello, world")'</span>),</span><br><span class="line">             (<span class="string">'linenos'</span>, <span class="literal">False</span>),</span><br><span class="line">             (<span class="string">'language'</span>, <span class="string">'python'</span>),</span><br><span class="line">             (<span class="string">'style'</span>, <span class="string">'friendly'</span>)])</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: serializer.save()                                                                                                                                                </span><br><span class="line">Out[<span class="number">22</span>]: &lt;Snippet: Snippet object (<span class="number">3</span>)&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>Django 에서 form class 와 form 인스턴스를 가지고 작업하는것과, </p>
+<p>비슷한 점이 많다는것을 눈치 채야 합니다. </p>
+<br>
+
+<p>공통된 부분은, serializer 를 사용하는 views 를 작성할때 더욱 명확해 질것 입니다. </p>
+</blockquote>
+<br>
+
+<p>또한, 모델 인스턴스들 대신에, 쿼리셋들도 직렬화 할수 있습니다. 그렇게 하기 위해서는, 간단하게 <code>many=true</code> 플래그를, serializer 인자에 넣어줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [23]: serializer = SnippetSerializer(Snippet.objects.all(), many=True)                                                                                                 </span><br><span class="line"></span><br><span class="line">In [24]: serializer.data                                                                                                                                                  </span><br><span class="line">Out[24]: [OrderedDict([('id', 1), ('title', ''), ('code', 'foo = "bar"\n'), ('linenos', False), ('language', 'python'), ('style', 'friendly')]), OrderedDict([('id', 2), ('title', ''), ('code', 'print("hello, world")\n'), ('linenos', False), ('language', 'python'), ('style', 'friendly')]), OrderedDict([('id', 3), ('title', ''), ('code', 'print("hello, world")'), ('linenos', False), ('language', 'python'), ('style', 'friendly')])]</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1745,212 +1901,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/08/Python-%EA%B8%B0%EC%B4%88-17%ED%8E%B8-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%ED%95%A8%EC%88%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/08/Python-%EA%B8%B0%EC%B4%88-17%ED%8E%B8-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%ED%95%A8%EC%88%98/" class="post-title-link" itemprop="url">Python 기초 17편 - 사용자 정의 함수</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-08 09:20:34 / Updated at: 09:50:20" itemprop="dateCreated datePublished" datetime="2020-11-08T09:20:34+09:00">2020-11-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/08/Python-%EA%B8%B0%EC%B4%88-17%ED%8E%B8-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%ED%95%A8%EC%88%98/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/08/Python-기초-17편-사용자-정의-함수/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="User-defined-functions"><a href="#User-defined-functions" class="headerlink" title="User defined functions"></a>User defined functions</h2><br>
-
-<blockquote>
-<p><strong>소개글</strong></p>
-<br>
-
-<p>모든 프로그램 언어와 스크립트 언어들에서, 함수는 프로그램 문장 블럭으로</p>
-<p>프로그램 안에서 반복적으로 사용될수 있는것입니다. </p>
-<br>
-
-<p>함수는 코드 블럭을 다시 재사용할수 있게 만들어서, 프로그래머들의 시간을 낭비하지 않게 해줍니다 </p>
-<br>
-
-<p>파이썬에서 함수의 개념은 다른 언어들과 동일합니다. </p>
-<p>파이썬에는 미리 정의가 되어 있는, built in 함수, 즉 내장되어 있는 함수가 존재하고. 혹은, 사용자가 필요에 의해 정의를 한 사용자 정의 함수가 존재할수 있습니다. </p>
-</blockquote>
-<br>
-
-<h2 id="파이썬에서-함수-정의"><a href="#파이썬에서-함수-정의" class="headerlink" title="파이썬에서 함수 정의"></a>파이썬에서 함수 정의</h2><br>
-
-<ol>
-<li><code>def</code>로 시작하고, def 다음에 함수이름을 적어주면 선언됩니다</li>
-<li>함수는 <code>def &lt;함수명&gt; () :</code> 형태로, 괄호안에 input 으로 쓰여질 인자들을 정의할수 있고, <code>:</code> 으로 끝납니다 </li>
-<li>함수명에 인자를 정의해 주면, 다음줄부터 코드 문장을 쓸수 있고, 이 코드 문장들은 들여쓰기가 되어 있어야 합니다. </li>
-</ol>
-<br>
-
-<p>간단한 함수를 예로 들어보면, 아래와 같습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 사용자 정의 함수 </span></span><br><span class="line"><span class="comment"># average_number 는 함수명 </span></span><br><span class="line"><span class="comment"># x, y 는 함수에 input 으로 쓰여질 인자들 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">average_number</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    print(<span class="string">"x 와 y 의 평균은 &#123;&#125; 입니다"</span>.format((x + y) / <span class="number">2</span>))</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 정의된 함수를 호출 x 값엔 4를, y 값에는 6을 넣어줍니다 </span></span><br><span class="line">average_number(<span class="number">4</span>, <span class="number">6</span>)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="함수를-호출하는-방법"><a href="#함수를-호출하는-방법" class="headerlink" title="함수를 호출하는 방법"></a>함수를 호출하는 방법</h2><br>
-
-<p>다른 프로그래밍 언어들과 비슷하게, 함수를 호출하는 방법은, 함수명을 쓰고 <code>()</code> 안에 파라미터를 넣어주어 호출합니다. 위의 예시에서 <code>average_number(4 ,6)</code> 은 average_number 라는 함수를 호출하고, 파라미터로, 4, 6 을 넣어줍니다  </p>
-<br>
-
-<p><strong>함수 호출 예시</strong></p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 함수 호출 예시 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_three_times</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"이것은 파이썬 기초 입니다"</span>)</span><br><span class="line">    print(<span class="string">"이것은 파이썬 기초 입니다"</span>)</span><br><span class="line">    print(<span class="string">"이것은 파이썬 기초 입니다"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 위의 정의된 함수를 호출 </span></span><br><span class="line"><span class="comment"># 함수는 인자를 가지지 않고, print 문을 3번 실행 합니다 </span></span><br><span class="line"></span><br><span class="line">print_three_times()</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="함수에서-return-문"><a href="#함수에서-return-문" class="headerlink" title="함수에서 return 문"></a>함수에서 return 문</h2><br>
-
-<p>파이썬에서 return 문은 함수로부터 값을 반환하기 위해 사용됩니다. 수식과 인자가 없이 실행된 함수에 return 문은 None 을 반환합니다. </p>
-<br>
-
-<p>예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nsquare</span><span class="params">(x, y)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> (x * x + <span class="number">2</span>*x*y + y*y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># return 뒤의 수식 의 값을 함수의 값으로 반환합니다 </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"2와 3의 합계의 제곱은 : &#123;&#125;"</span>.format(nsquare(<span class="number">2</span>, <span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="기본-인자-값"><a href="#기본-인자-값" class="headerlink" title="기본 인자 값"></a>기본 인자 값</h2><br>
-
-<p>함수의 파라미터 리스트에서 우리는, 하나 혹은 그 이상의 인자들에 대해 기본값을 지정할수 있습니다. </p>
-<p>기본값은, <code>인자1 = 값</code> 의 형태로 작성될수 있습니다. </p>
-<br>
-
-<p>우리는 어떤 인자가 기본값을 가지게 될지에 대해서 선택하여 지정할수 있습니다. </p>
-<br>
-
-<p>예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># y 는 2라는 값을 기본값으로 지정됩니다 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nsquare</span><span class="params">(x, y = <span class="number">2</span>)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x*x + <span class="number">2</span>*x*y + y*y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># y값에 대한 파라미터가 전달되지 않는다 하더라도 </span></span><br><span class="line"><span class="comment"># y 는 기본값인 2를 가지고 함수를 실행하고 </span></span><br><span class="line"><span class="comment"># 그에 맞는 값을 반환합니다 </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"2와 3의 합계의 제곱은 : &#123;&#125;"</span>.format(nsquare(<span class="number">2</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># y 값에 대한 파라미터가 4로 전달이 되면, </span></span><br><span class="line"><span class="comment"># y 는 전달된 4라는 값을 가지고 함수를 실행하고 </span></span><br><span class="line"><span class="comment"># 값을 반환합니다 </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"2 와 4의 합계의 제곱은 : &#123;&#125;"</span>.format(nsquare(<span class="number">2</span>,<span class="number">4</span>)))</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="키워드-인자"><a href="#키워드-인자" class="headerlink" title="키워드 인자"></a>키워드 인자</h2><br>
-
-<p>우리는 어떻게 기본 인자값들을 지정하는지 배웠습니다만. </p>
-<p>함수는 키워드 인자들을 사용하여 호출될수도 있습니다. </p>
-<br>
-
-<blockquote>
-<p><strong>키워드 인자란?</strong> </p>
-<p><code>변수명 = 값</code> 형태로 되어 있는 인자들을, 키워드 인자라고 부릅니다. </p>
-</blockquote>
-<br>
-
-<p>함수에 전달된 모든 키워드 인자들은, 함수가 받는 인자들중 하나와 꼭 매치가 되어야 합니다. </p>
-<br>
-
-<p>아래 예시에서, 함수가 호출될때마다, 함수로 전달되는 인자들중 꼭 한가지는 함수가 받는 인자들중 하나와 매치가 됩니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 키워드 인자 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">marks</span><span class="params">(english, math=<span class="number">85</span>, science=<span class="number">80</span>)</span>:</span></span><br><span class="line">    print(<span class="string">"Marks in : English is - "</span>, english, <span class="string">"Math -"</span>, math, <span class="string">"Science -"</span>, science)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># english parameter 는 71의 값을 갖고, math 는 77 그리고 science 는 기본값인 80을 갖습니다 </span></span><br><span class="line">marks(<span class="number">71</span>, <span class="number">77</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># english parameter 는 65 의 값을 갖고, math 는 기본값인 85, 그리고 science 는 74로 전달 됩니다 </span></span><br><span class="line">marks(<span class="number">65</span>, science=<span class="number">74</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 순서가 바뀌긴 했지만, 상관없이 정확히 매칭만 된다면, </span></span><br><span class="line"><span class="comment"># english  는 75의 값을, math 는 90의 값을, science 는 70의 값을 갖게 됩니다 </span></span><br><span class="line">marks(science=<span class="number">70</span>, math=<span class="number">90</span>, english=<span class="number">75</span>)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="Arbitrary-Argument-Lists"><a href="#Arbitrary-Argument-Lists" class="headerlink" title="Arbitrary Argument Lists"></a>Arbitrary Argument Lists</h2><br>
-
-<p>arbitrary argument, 즉 임의의 인자 리스트는, 인자들을 함수에 전달하는 다른 방법중 하나 입니다. </p>
-<p><br>함수의 body 안에서, 이 인자들은 튜플로 감싸져 있고. 이는 <code>*args</code> 생성자를 사용하여 정의 됩니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Arbitrary Argument List </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(*numbers)</span>:</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> numbers:</span><br><span class="line">        s += n </span><br><span class="line">    <span class="keyword">return</span> s </span><br><span class="line"></span><br><span class="line"><span class="comment"># *numbers 로 임의의 인자가 지정되었기 때문에 </span></span><br><span class="line"><span class="comment"># 인자가 몇개가 들어가든 상관 없습니다 </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'1부터 4까지의 합은 &#123;&#125;'</span>.format(sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)))</span><br><span class="line">print(<span class="string">'1부터 10까지의 합은 &#123;&#125;'</span>.format(sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># *args 에는 여러 인자들이 들어갈수 있고, </span></span><br><span class="line"><span class="comment"># 함수 내부에는 tuple 로 감싸져서 사용됩니다 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">arbitrary_arguments</span><span class="params">(*args)</span>:</span></span><br><span class="line">    print(type(args))</span><br><span class="line">    </span><br><span class="line">arbitrary_arguments(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="Lambda-함수"><a href="#Lambda-함수" class="headerlink" title="Lambda 함수"></a>Lambda 함수</h2><br>
-
-<p>파이썬에서, 작은 익명의 함수들 (이름이 지어지지 않은) lambda 키워드를 생성하여 사용될수 있습니다. </p>
-<br>
-
-<p>lambda  형태의 함수들은, 다른 함수의 인자로써 사용될수도 있습니다 </p>
-<br>
-
-<p>예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lambda forms </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">average</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x + y) / <span class="number">2</span> </span><br><span class="line">print(average(<span class="number">4</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 위 함수를 lambda 를 사용하여 정의해 본다면, </span></span><br><span class="line">print((<span class="keyword">lambda</span> x, y: (x+ y)/<span class="number">2</span>)(<span class="number">4</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 또다른 lambda  의 예시 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiply_two</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x * y </span><br><span class="line"></span><br><span class="line">print(multiply_two(<span class="number">5</span>, <span class="number">5</span>))</span><br><span class="line"><span class="comment"># 위 함수를 lambda 를 사용하여 정의하면, </span></span><br><span class="line">print((<span class="keyword">lambda</span> x, y: x * y)(<span class="number">5</span>,<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -2021,7 +1971,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">201</span>
+          <span class="site-state-item-count">202</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
