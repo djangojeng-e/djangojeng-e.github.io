@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 5편 - ModelSerializers 사용하기</title>
+    <url>/2020/11/18/DRF-Tutorial-5%ED%8E%B8-ModelSerializers-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="ModelSerializer-사용하기"><a href="#ModelSerializer-사용하기" class="headerlink" title="ModelSerializer 사용하기"></a>ModelSerializer 사용하기</h2><br>
+
+<p>우리의 SnippetSerializer 클래스는 Snippet 모델에 있는 많은 정보를 복제하며 사용하고 있습니다. </p>
+<br>
+
+<p>Django 가 Form 클래스와 ModelForm 클래스를 제공하는 같은 방식으로, </p>
+<br>
+
+<blockquote>
+<p>REST FRAMEWORK 은 </p>
+<p>Serializer 클래스들과 ModelSerializer 클래스들을 가지고 있습니다. </p>
+</blockquote>
+<br>
+
+<p>우리의 Serializer 를 <code>ModelSerializer</code> 를 사용하여, 리펙토링 해봅시다. </p>
+<p><br><code>snippets/serializers.py</code> 파일을 열고, <code>SnippetSerializer</code> 클래스를 아래와 같이 고쳐줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Snippet</span><br><span class="line">        field = [<span class="string">'id'</span>, <span class="string">'title'</span>, <span class="string">'code'</span>, <span class="string">'linnos'</span>, <span class="string">'language'</span>, <span class="string">'style'</span>]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>serializers 가 좋은 점중 하나는, serializer 인스턴스 안에 모든 필드들을 검사할수 있다는 점입니다. 이는, representation 을 프린트 해보면 됩니다. Django shell 을 <code>python manage.py shell</code> 을 실행하여 열고, 아래 코드들을 실행 시켜 보세요. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer                                                                                                                </span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: serializer = SnippetSerializer()                                                                                                                                  </span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: print(repr(serializer))                                                                                                                                           </span><br><span class="line">SnippetSerializer():</span><br><span class="line">    id = IntegerField(label=<span class="string">'ID'</span>, read_only=<span class="literal">True</span>)</span><br><span class="line">    title = CharField(allow_blank=<span class="literal">True</span>, max_length=<span class="number">100</span>, required=<span class="literal">False</span>)</span><br><span class="line">    code = CharField(style=&#123;<span class="string">'base_template'</span>: <span class="string">'textarea.html'</span>&#125;)</span><br><span class="line">    linenos = BooleanField(required=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>ModelSerializer 클래스는 특별하고 마법같은 일은 하지 않습니다. </p>
+<p>그저 Serializer 클래스들을 줄여주는 숏컷일 뿐이라는것을 기억하는것이 좋습니다. </p>
+<p>아래 일들만 살짝 줄여줄뿐, 또다른 특별한 메서드는 아닙니다. </p>
+<ul>
+<li>자동으로 지정된 필드</li>
+<li><code>create()</code> 그리고 <code>update()</code> 메서드의 간단한 기본 구현 가능 </li>
+</ul>
+</blockquote>
+<br>
+
+
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 4편 - Serializer로 작업하기</title>
     <url>/2020/11/17/DRF-Tutorial-4%ED%8E%B8-Serializer%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Serializer-로-작업하기"><a href="#Serializer-로-작업하기" class="headerlink" title="Serializer 로 작업하기"></a>Serializer 로 작업하기</h2><br>

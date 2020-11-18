@@ -220,6 +220,108 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/20/Form-API-8%ED%8E%B8-Form-as-ul/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/20/Form-API-8%ED%8E%B8-Form-as-ul/" class="post-title-link" itemprop="url">Form API 8편 - Form.as_ul()</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-20 08:46:19 / Updated at: 08:49:15" itemprop="dateCreated datePublished" datetime="2020-10-20T08:46:19+09:00">2020-10-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Form-API/" itemprop="url" rel="index"><span itemprop="name">Form API</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/20/Form-API-8%ED%8E%B8-Form-as-ul/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/20/Form-API-8편-Form-as-ul/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Form-as-ul"><a href="#Form-as-ul" class="headerlink" title="Form.as_ul()"></a>Form.as_ul()</h2><br>
+
+
+
+<p><code>as_ul()</code>은 폼을 <code>&lt;li&gt;</code> 태그로 렌더링 해줍니다. 각 <code>&lt;li&gt;</code> 태그는 하나의 필드를 포함하고 있습니다. </p>
+<p><br>이는, <code>&lt;ul&gt;</code> 혹은 <code>&lt;/ul&gt;</code> 을 포함하고 있지 않습니다. </p>
+<p><br>따라서, 여러분들은 유연하게 <code>&lt;ul&gt;</code>에 어떤 HTML 속성이든지 지정해줄수 있습니다. </p>
+<br>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">In [4]: f.as_ul()                                                                                                                                                         </span><br><span class="line">Out[4]: '&lt;li&gt;&lt;label for="id_subject"&gt;Subject:&lt;/label&gt; </span><br><span class="line">&lt;input type="text" name="subject" maxlength="100" required id="id_subject"&gt;&lt;/li&gt;</span><br><span class="line">\n&lt;li&gt;&lt;label for="id_message"&gt;Message:&lt;/label&gt; </span><br><span class="line">&lt;textarea name="message" cols="40" rows="10" required id="id_message"&gt;\n</span><br><span class="line">&lt;/textarea&gt;&lt;/li&gt;\n</span><br><span class="line">&lt;li&gt;&lt;label for="id_sender"&gt;Sender:&lt;/label&gt; </span><br><span class="line">&lt;input type="email" name="sender" required id="id_sender"&gt;&lt;/li&gt;</span><br><span class="line">\n&lt;li&gt;&lt;label for="id_cc_myself"&gt;Cc myself:&lt;/label&gt;</span><br><span class="line">&lt;input type="checkbox" name="cc_myself" id="id_cc_myself"&gt;&lt;/li&gt;'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/20/Form-API-7%ED%8E%B8-HTML-%EB%A1%9C-%ED%8F%BC-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0-as-p/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1339,113 +1441,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/12/Django-Forms-16%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/12/Django-Forms-16%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-4/" class="post-title-link" itemprop="url">Django Forms 16편 - 폼 템플릿 작업하기-4</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-12 10:14:01 / Updated at: 10:26:23" itemprop="dateCreated datePublished" datetime="2020-10-12T10:14:01+09:00">2020-10-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/12/Django-Forms-16%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-4/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/12/Django-Forms-16편-폼-템플릿-작업하기-4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Looping-over-the-form’s-fields"><a href="#Looping-over-the-form’s-fields" class="headerlink" title="Looping over the form’s fields"></a>Looping over the form’s fields</h2><br>
-
-<p>만약 여러분들이 각 폼 필드들을 위해 같은 HTML 테그들을 사용하고 있다면, 반복되는 코드들을 줄일수 있습니다 </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"># 반복문을 사용하여 반복되는 코드를 줄일수 있습니다 </span></span><br><span class="line"><span class="xml"># </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> %&#125;</span><span class="xml"> </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># 예시 </span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> field <span class="keyword">in</span> form %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fieldwrapper"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123; field.errors &#125;&#125;</span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123; field.lable_tag &#125;&#125;</span><span class="xml"> </span><span class="template-variable">&#123;&#123; field &#125;&#125;</span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> field.help_text %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"help"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123; field.help_text|<span class="name">safe</span> &#125;&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>반복문이 실행될때마다, 각 필드에서 사용할수 유용한 속성들이 존재 합니다. </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field &#125;&#125;</span><span class="xml"> 가 포함하고 있는 유용한 속성들은 </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field.lable &#125;&#125;</span><span class="xml"> 필드의 레이블을 표시합니다. 예) Email Address </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field.label_tag &#125;&#125;</span></span><br><span class="line"><span class="xml"># 필드의 label 이 적절한 HTML <span class="tag">&lt;<span class="name">label</span>&gt;</span> 태그로 감싸집니다. 이는 form 의 label_suffix 를 포함합니다. 예를들면, labe_suffix 의 기본값은 콜론입니다. </span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">"id_email"</span>&gt;</span>Email address:<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field.id_for_label &#125;&#125;</span></span><br><span class="line"><span class="xml"># 이 필드를 위해 사용될 ID (위 예시에서는 id_email). </span></span><br><span class="line"><span class="xml"># 만약 여러분들이 label 을 수동으로 만들고 있다면, 이것을 label_tag 대신에 사용할수 있습니다 </span></span><br><span class="line"><span class="xml"># 이것또한 유용하게 사용될수 있습니다. </span></span><br><span class="line"><span class="xml"># 예를들면, 여러분들이 인라인 JavaScript 를 가지고 있고, 필드의 ID 를 하드코딩 하는것을 피하고 </span></span><br><span class="line"><span class="xml"># 싶을때처럼 말이죠 </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field.value &#125;&#125;</span></span><br><span class="line"><span class="xml"># 필드의 값 예) someone@example.com </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field.html_name &#125;&#125;</span></span><br><span class="line"><span class="xml"># 인풋 요소의 이름 필드에 사용될 필드의 이름, 설정 되어 있다면, 폼의 접두사를 고려합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field.help_text &#125;&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="xml"># 필드와 관련된 hep text </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field.errors  &#125;&#125;</span></span><br><span class="line"><span class="xml"># 필드에 해당하는 유효성 혹은 검증 에러를 가지고 있는 <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class-</span>"<span class="attr">errorlist</span>"&gt;</span>를 출력합니다 </span></span><br><span class="line"><span class="xml"># 에러의 모습을 </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> error <span class="keyword">in</span> field.errors %&#125;</span><span class="xml"> 반복문을 사용하여, 커스터마이즈 할수 있습니다. </span></span><br><span class="line"><span class="xml"># 이 경우에는, 반복문안에 각 객체들은 에러 메시지를 포함하고 있는 문자열이 됩니다. </span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field.is_hidden &#125;&#125;</span></span><br><span class="line"><span class="xml"># 만약 필드가 숨겨진 필드라면 True 를 반환하고, 숨겨져 잇지 않다면 False 를 반환합니다 </span></span><br><span class="line"><span class="xml"># 이것은 특출나게 템플릿 변수로써 유용하지 않습니다. 하지만 아래 예시같이 조건적인 테스트에서는</span></span><br><span class="line"><span class="xml"># 유용할수 있습니다 </span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> field.is_hidden %&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="xml"> </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; field.field &#125;&#125;</span></span><br><span class="line"><span class="xml"># 폼 클래스로부터 필드 인스턴스로 BoundField 로 감싸집니다. </span></span><br><span class="line"><span class="xml"># Field 속성들을 엑세스하기 위해 사용합니다. 예) </span><span class="template-variable">&#123;&#123;char_field.field.max_length&#125;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1516,7 +1511,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">202</span>
+          <span class="site-state-item-count">203</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

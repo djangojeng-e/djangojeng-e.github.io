@@ -220,6 +220,133 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/18/DRF-Tutorial-5%ED%8E%B8-ModelSerializers-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/18/DRF-Tutorial-5%ED%8E%B8-ModelSerializers-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF Tutorial 5편 - ModelSerializers 사용하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-18 08:55:10 / Updated at: 09:05:05" itemprop="dateCreated datePublished" datetime="2020-11-18T08:55:10+09:00">2020-11-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/18/DRF-Tutorial-5%ED%8E%B8-ModelSerializers-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/18/DRF-Tutorial-5편-ModelSerializers-사용하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="ModelSerializer-사용하기"><a href="#ModelSerializer-사용하기" class="headerlink" title="ModelSerializer 사용하기"></a>ModelSerializer 사용하기</h2><br>
+
+<p>우리의 SnippetSerializer 클래스는 Snippet 모델에 있는 많은 정보를 복제하며 사용하고 있습니다. </p>
+<br>
+
+<p>Django 가 Form 클래스와 ModelForm 클래스를 제공하는 같은 방식으로, </p>
+<br>
+
+<blockquote>
+<p>REST FRAMEWORK 은 </p>
+<p>Serializer 클래스들과 ModelSerializer 클래스들을 가지고 있습니다. </p>
+</blockquote>
+<br>
+
+<p>우리의 Serializer 를 <code>ModelSerializer</code> 를 사용하여, 리펙토링 해봅시다. </p>
+<p><br><code>snippets/serializers.py</code> 파일을 열고, <code>SnippetSerializer</code> 클래스를 아래와 같이 고쳐줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Snippet</span><br><span class="line">        field = [<span class="string">'id'</span>, <span class="string">'title'</span>, <span class="string">'code'</span>, <span class="string">'linnos'</span>, <span class="string">'language'</span>, <span class="string">'style'</span>]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>serializers 가 좋은 점중 하나는, serializer 인스턴스 안에 모든 필드들을 검사할수 있다는 점입니다. 이는, representation 을 프린트 해보면 됩니다. Django shell 을 <code>python manage.py shell</code> 을 실행하여 열고, 아래 코드들을 실행 시켜 보세요. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer                                                                                                                </span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: serializer = SnippetSerializer()                                                                                                                                  </span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: print(repr(serializer))                                                                                                                                           </span><br><span class="line">SnippetSerializer():</span><br><span class="line">    id = IntegerField(label=<span class="string">'ID'</span>, read_only=<span class="literal">True</span>)</span><br><span class="line">    title = CharField(allow_blank=<span class="literal">True</span>, max_length=<span class="number">100</span>, required=<span class="literal">False</span>)</span><br><span class="line">    code = CharField(style=&#123;<span class="string">'base_template'</span>: <span class="string">'textarea.html'</span>&#125;)</span><br><span class="line">    linenos = BooleanField(required=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>ModelSerializer 클래스는 특별하고 마법같은 일은 하지 않습니다. </p>
+<p>그저 Serializer 클래스들을 줄여주는 숏컷일 뿐이라는것을 기억하는것이 좋습니다. </p>
+<p>아래 일들만 살짝 줄여줄뿐, 또다른 특별한 메서드는 아닙니다. </p>
+<ul>
+<li>자동으로 지정된 필드</li>
+<li><code>create()</code> 그리고 <code>update()</code> 메서드의 간단한 기본 구현 가능 </li>
+</ul>
+</blockquote>
+<br>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/17/DRF-Tutorial-4%ED%8E%B8-Serializer%EB%A1%9C-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1731,176 +1858,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/09/Python-%EA%B8%B0%EC%B4%88-18%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/09/Python-%EA%B8%B0%EC%B4%88-18%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4/" class="post-title-link" itemprop="url">Python 기초 18편 - 파이썬 클래스</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-09 12:08:36 / Updated at: 12:44:01" itemprop="dateCreated datePublished" datetime="2020-11-09T12:08:36+09:00">2020-11-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/09/Python-%EA%B8%B0%EC%B4%88-18%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/09/Python-기초-18편-파이썬-클래스/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Python-Class"><a href="#Python-Class" class="headerlink" title="Python Class"></a>Python Class</h2><br>
-
-<p><strong>소개글</strong></p>
-<br>
-
-<p>객체 지향 프로그래밍의 기본 아이디어는 데이터와 연관된 순서들 (메서드)을 데이터에 작용하는 하나의 단위로 묶는것입니다. 이 하나로 묶인 단위를 객체라고 부릅니다. </p>
-<br>
-
-<blockquote>
-<p>파이썬은 객체 지향 프로그래밍 언어 입니다. </p>
-<p>파이썬에 모든것은 객체 입니다, </p>
-</blockquote>
-<br>
-
-<p>우리는 이미 몇가지 파이썬 객체들을 가지고 작업한 적이 있습니다. </p>
-<br>
-
-<p>예를들면, </p>
-<br>
-
-<ul>
-<li>문자열 </li>
-<li>리스트 </li>
-</ul>
-<br>
-
-<p>이렇게 파이썬에서 기본으로 제공하는 기능들도 파이썬 객체 입니다. </p>
-<br>
-
-<p>파이썬에서는, 객체를 선언하고, <code>type()</code>  함수를 사용하여, 객체의 타입을 확인할수 있습니다. </p>
-<br>
-
-
-
-<br>
-
-<p>또한, <code>dir()</code> 함수를 사용하여, 해당 객체에서 사용할수 있는 속성들을 확인해 볼수 있습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 두개의 객체를 생성하고, type 확인 하기 </span></span><br><span class="line"><span class="comment"># type() 함수를 사용하여 확인할수 있습니다. </span></span><br><span class="line"></span><br><span class="line">string1 = <span class="string">"안녕하세요"</span></span><br><span class="line">print(type(string1))</span><br><span class="line">print(dir(string1))</span><br><span class="line"></span><br><span class="line">number_list = [<span class="number">1</span>, <span class="number">133</span>, <span class="number">12.5</span>]</span><br><span class="line">print(type(number_list))</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>파이썬에서는, 파이썬 객체의 속성들을 <code>dir()</code> 을 사용하여 확인 해보고, 사용도 해볼수 있습니다. </p>
-<p><br>아래 예시에서는, <code>lower()</code> 와 <code>upper()</code> 메서드들을 사용해 보았습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dir 로 확인해 보았을때, </span></span><br><span class="line"><span class="comment"># upper() 와 lower() 메서드가 있는것을 확인할수 있는데 </span></span><br><span class="line"><span class="comment"># .upper() 와 .lower() 를 사용하여, 객체를 소문자 대문자를 지정하여 출력할수 있습니다. </span></span><br><span class="line"></span><br><span class="line">string2 = <span class="string">"hello world"</span></span><br><span class="line">print(type(string2))</span><br><span class="line">print(dir(string2))</span><br><span class="line">print()</span><br><span class="line">print(string2.lower())</span><br><span class="line">print(string2.upper())</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>클래스에 대해서 더 알아보기 이전에, 아래 사항들을 잘 숙지하고 있어야 이해하기가 쉽습니다. </p>
-<br>
-
-<ul>
-<li>로컬 변수 </li>
-<li>글로벌 변수 </li>
-<li>global 문 </li>
-<li>nonlocal 문 </li>
-<li>namespace </li>
-<li>scope 규칙 </li>
-</ul>
-<br>
-
-<h2 id="Class-를-이해하기-위해-알아야할-사항들"><a href="#Class-를-이해하기-위해-알아야할-사항들" class="headerlink" title="Class 를 이해하기 위해 알아야할 사항들"></a>Class 를 이해하기 위해 알아야할 사항들</h2><br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/09/Python-%EA%B8%B0%EC%B4%88-18%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1971,7 +1928,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">202</span>
+          <span class="site-state-item-count">203</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
