@@ -220,6 +220,142 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/19/DRF-Tutorial-6%ED%8E%B8-Serializer-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-Django-%EB%B7%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/19/DRF-Tutorial-6%ED%8E%B8-Serializer-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-Django-%EB%B7%B0/" class="post-title-link" itemprop="url">DRF Tutorial 6편 - Serializer 를 사용하는 Django 뷰</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-19 18:39:31 / Updated at: 19:01:09" itemprop="dateCreated datePublished" datetime="2020-11-19T18:39:31+09:00">2020-11-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/19/DRF-Tutorial-6%ED%8E%B8-Serializer-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-Django-%EB%B7%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/19/DRF-Tutorial-6편-Serializer-를-사용하는-Django-뷰/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Serializer-를-사용하는-Django-Views-사용하기"><a href="#Serializer-를-사용하는-Django-Views-사용하기" class="headerlink" title="Serializer 를 사용하는 Django Views 사용하기"></a>Serializer 를 사용하는 Django Views 사용하기</h2><br>
+
+<p>우리의 Serializer 클래스를 사용하는 몇가지 API 뷰들을 어떻게 작성하는지 봅시다. </p>
+<p><br>현재까지 우리는, REST framework 의 그 어떤 다른 기능도 사용하지 않을것입니다. 우리는 그저 일반 Django views 와 같은 views 만 작성해 볼겁니다. </p>
+<br>
+
+<p><code>snippets/views.py</code> 파일을 열고, 아래 내용을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, JsonResponse </span><br><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt </span><br><span class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParser </span><br><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>우리 API 의 기본은, </p>
+<p>존재하는 모든 snippets 들을 리스팅 하거나, 혹은 새로운 snippet  을 생성하는것입니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@csrf_exempt </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">snippet_list</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    List all code snippets, or create a new snippet. </span></span><br><span class="line"><span class="string">    존재하는 모든 스니펫들을 나열하거나, 혹은 새러운 스니펫을 생성합니다. </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">"GET"</span>:</span><br><span class="line">        snippets = Snippet.objects.all()</span><br><span class="line">        serializer = SnippetSerializer(snippets, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.data, safe=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">elif</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        data = JSONParser().parse(request)</span><br><span class="line">        serializer = SnippetSerializer(data=data)</span><br><span class="line">        <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">            serializer.save()</span><br><span class="line">            <span class="keyword">return</span> JsonResponse(serializer.data, status=<span class="number">201</span>)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.errors, status=<span class="number">400</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>우리는 이 views 에 클라이언트로부터 CRSF token 이 없는 POST 방식이 가능해야 하기 때문에,</p>
+<p>해당 view 에 csrf_exempt 를 표시해 줍니다. </p>
+</blockquote>
+<br>
+
+<p>이것은 보통 원하지 않는 방식이고, REST framework view 는 사실 좀 더 이것보다 민감한것도 사용하기도 합니다. 어쨋거나, 지금은 우리의 목적을 수행 할것입니다. </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/19/DRF-Tutorial-6%ED%8E%B8-Serializer-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-Django-%EB%B7%B0/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/18/DRF-Tutorial-5%ED%8E%B8-ModelSerializers-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1649,215 +1785,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/09/Python-%EA%B8%B0%EC%B4%88-19%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%84%A0%EC%96%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/09/Python-%EA%B8%B0%EC%B4%88-19%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%84%A0%EC%96%B8/" class="post-title-link" itemprop="url">Python 기초 19편 - 파이썬 클래스 선언</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-09 12:55:23 / Updated at: 13:22:53" itemprop="dateCreated datePublished" datetime="2020-11-09T12:55:23+09:00">2020-11-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/09/Python-%EA%B8%B0%EC%B4%88-19%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%84%A0%EC%96%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/09/Python-기초-19편-파이썬-클래스-선언/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Python-클래스-정의"><a href="#Python-클래스-정의" class="headerlink" title="Python 클래스 정의"></a>Python 클래스 정의</h2><br>
-
-<p><strong>객체 지향 프로그래밍에서 클래스와 객체들은 주요 특징입니다</strong></p>
-<p>*<em>객체지향 프로그래밍의 꽃 이라고 할수 있습니다 *</em></p>
-<br>
-
-<blockquote>
-<p>하나의 클래스는 새로운 데이터 타입과 객체들을, </p>
-<p>클래스안에 정의된 것들을 따르는 클래스의 인스턴스들로 생성합니다.<br><br></p>
-<p>새로 생성된 클래스의 인스턴스는, 클래스에 정의되어 있는 속성들을 가지고 있습니다. </p>
-</blockquote>
-<br>
-
-<p>클래스안에 있는 문장들은 함수 정의, 데이터, 혹은 다른 기능을 하는 문장이 될수 있습니다. </p>
-<br>
-
-<p>어떠한 클래스가 정의되었을때, 클래스 내부는 하나의 새로운 namespace(이름공간) 이고, 이는 local scope 로 사용됩니다. </p>
-<br>
-
-<h2 id="클래스-생성하기"><a href="#클래스-생성하기" class="headerlink" title="클래스 생성하기"></a>클래스 생성하기</h2><br>
-
-<p>클래스를 생성하는 방법은 간단합니다. <code>class</code> 키워드를 사용하여 정의하고, 클래스 내부의 문장들은 들여스기 해서 생성됩니다. 예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스 생성하기 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>:</span></span><br><span class="line">    student_class = <span class="string">'1'</span></span><br><span class="line">    student_number = <span class="number">108801</span></span><br><span class="line">    student_name = <span class="string">'Djangojeng-e'</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>위의 예시에서 생성된 클래스는 Student 라는 이름을 가지고, 클래스 내부에 3개의 변수들을 가지고 있습니다. </p>
-<p>student_class, student_number 그리고 student_name 입니다. </p>
-<br>
-
-<h3 id="클래스-객체들"><a href="#클래스-객체들" class="headerlink" title="클래스 객체들"></a>클래스 객체들</h3><br>
-
-<p>클래스 객체들은 두가지 종류의 동작을 지원합니다. </p>
-<br>
-
-<ol>
-<li>attribute references (속성 참조)</li>
-<li>instantiation (인스턴스화)</li>
-</ol>
-<br>
-
-<p>속성 참조는, 표준 문법을 사용합니다. 예를들면, objects.name 형태의 문법을 사용하여, object 라는 객체의 name 속성에 접근할수 있습니다. </p>
-<br>
-
-<p>예시를 들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스에서 attribute reference (속성 참조)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>:</span></span><br><span class="line">    name = <span class="string">"Djangojeng-e"</span></span><br><span class="line">    student_class = <span class="string">'1반'</span></span><br><span class="line">    student_number = <span class="number">306108801</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># Student.name 을 사용하여, Student 객체의 name 속성을 접근합니다 </span></span><br><span class="line">print(Student.name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Student.student_class 를 사용하여, Student 객체의 student_class 속성을 접근합니다 </span></span><br><span class="line">print(Student.student_class)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Student.student_number 를 사용하여, student_number 속성을 접근합니다 </span></span><br><span class="line">print(Student.student_number)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="init-메서드"><a href="#init-메서드" class="headerlink" title="__init__ 메서드"></a><code>__init__</code> 메서드</h3><br>
-
-<p>파이썬에서는, 특별하게 중요한 파이썬 메서드들이 존재합니다. 클래스는, <code>__init__</code> 이라고 불리는 특별한 메서드를 정의할수 있습니다. </p>
-<br>
-
-<blockquote>
-<p><code>__init__</code> 메서드는, </p>
-<p>초기화 작업을 해주고, 클래스를 위한 생성자로써 동작 합니다. </p>
-<p>다른 함수 혹은 메서드와 비슷하게도, <code>__init__</code> 도 몇가지 갯수의 인자들을 받을수 있습니다 </p>
-<br>
-
-<p><code>__init__</code> 메서드는, 클래스의 객체가 인스턴스화 되자마자 실행되고, 클래스의 인스턴스화는 자동으로 <code>__init__()</code> 을 새롭게 생성되는 클래스 인스턴스를 위해 실행합니다. </p>
-</blockquote>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스 인스턴스화 그리고 __init__ 메서드 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Student 라는 클래스를 정의 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, student_class, student_number)</span>:</span> </span><br><span class="line">        self.name = name </span><br><span class="line">        self.student_class = student_class </span><br><span class="line">        self.student_number = student_number </span><br><span class="line">        </span><br><span class="line">s = Student(<span class="string">'Djangojeng-e'</span>, <span class="string">'1반'</span>, <span class="number">306108801</span>) 	<span class="comment"># Student 클래스의 인스턴스를 생성 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Student 클래스의 인스턴스인 s 가 실행되자 마자, </span></span><br><span class="line"><span class="comment"># def __init__ 이 실행되어, name, student_class, student_number 값들을 자동으로 할당합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 따라서, 아래와 같이, 인스턴스 생성후에, 해당 인스턴스 속성값으로, 할당된 값들에 접근할수 있습니다 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># s.name 을 사용하여, name 에 접근 </span></span><br><span class="line">print(s.name)</span><br><span class="line"></span><br><span class="line"><span class="comment"># s.student_class 를 사용하여, student_class 접근 </span></span><br><span class="line">print(s.student_class)</span><br><span class="line"></span><br><span class="line"><span class="comment"># s.student_number 를 사용하여, student_number 를 접근 </span></span><br><span class="line">print(s.student_number)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="inheritance-상속"><a href="#inheritance-상속" class="headerlink" title="inheritance (상속)"></a>inheritance (상속)</h3><br>
-
-<p>상속의 개념은, 객체지향 프로그래밍에서 코드의 재사용성에 중요한 영향을 미칩니다. </p>
-<br>
-
-<p>상속은, 새로운 클래스를 생성할때, 기존에 존재하고 있는 클래스를 기반으로 생성할수 있게 해줍니다. </p>
-<p>기존에 존재하고 있는 클래스를 상속받는 새로운 클래스는, 기존 클래스의 모든 속성과 메서드들을 상속 받습니다. </p>
-<br>
-
-<p>다른 객체 지향 프로그래밍 언어들과 비슷하게도, 파이썬은 부모 클래스와 다른 다수의 클래스들을 상속받는것을 허용합니다. 다중 상속의 개념으로, 단일 상속과 다중 상속의 문법 예시는 아래와 같습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 단일상속, 다중상속 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseClass</span>:</span></span><br><span class="line">    base_class = <span class="string">"기본 클래스"</span></span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OtherClass</span>:</span></span><br><span class="line">    other_class = <span class="string">'다른 클래스'</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 단일 클래스 상속 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleInheritance</span><span class="params">(BaseClass)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line">single = SingleInhertiance  <span class="comment"># 단일 클래스 상속 인스턴스 생성 </span></span><br><span class="line">print(single.base_class) 	<span class="comment"># BaseClass 에 있는 변수값을 접근할수 있습니다 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 다수의 클래스를 상속받는 클래스를 생성 (다중상속) </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MultipleInheritance</span><span class="params">(BaseClass, OtherClass)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line">multiple = MultipleInheritance 	<span class="comment"># 다중상속 클래스 생성 </span></span><br><span class="line"></span><br><span class="line">print(multiple.base_class) 		<span class="comment"># BaseClass 의 base_class 값을 출력합니다 </span></span><br><span class="line">print(multiple.other_class)		<span class="comment"># OtherClass 의 other_class 값을 출력합니다</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="클래스-예시"><a href="#클래스-예시" class="headerlink" title="클래스 예시"></a>클래스 예시</h3><br>
-
-<ol>
-<li><p>공장에서, 생산직원과 사무직원들은 모두 공통된 속성들을 가지고 있습니다. </p>
-<ul>
-<li><p>모든 직원들은 - name, designation, age 같은 정보들을 가지고 있습니다 </p>
-</li>
-<li><p>회사직원 (CompanyStaff) 라고 부를수 있는 클래스를 하나 생성할수 있습니다 </p>
-<p>CompanyStaff 클래스를 생성해 줍니다. </p>
-</li>
-</ul>
-</li>
-<li><p>이런 공통된 사항들을 떠나서, 생산직과 사무직은 다른 수당 구조를 가지고 있습니다 </p>
-<ul>
-<li><p>FactoryStaff(생산사원) 은 야근 혹은 추가 근무 수당을 받고 </p>
-</li>
-<li><p>OfficeStaff (사무직)은 출장비 수당을 받을수 있습니다 </p>
-<p>FactoryStaff 클래스와 OfficeStaff 클래스를 생성해 줍니다. </p>
-</li>
-</ul>
-</li>
-<li><p>FactoryStaff 클래스와 OfficeStaff 클래스는, ComapnyStaff 클래스를 상속받을수 있습니다. </p>
-</li>
-</ol>
-<p>​    <br></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스 예시 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CompanyStaff</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, designation, age)</span>:</span></span><br><span class="line">        self.name = name </span><br><span class="line">        self.designation = designation </span><br><span class="line">        self.age = age </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(self)</span>:</span></span><br><span class="line">		print(<span class="string">f'Name : <span class="subst">&#123;self.name&#125;</span> \n Designation : <span class="subst">&#123;self.designation&#125;</span> \n Age : 				<span class="subst">&#123;self.age&#125;</span>'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FactoryStaff</span><span class="params">(CompanyStaff)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, designation, age, overtime_allowance)</span>:</span></span><br><span class="line">        CompanyStaff.__init__(self, name, designation, age)</span><br><span class="line">        self.overtime_allow = overtime_allowance</span><br><span class="line">        CompanyStaff.detail(self)</span><br><span class="line">        print(<span class="string">'추가 근무 수당 : '</span>, self.overtime_allow)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OfficeStaff</span><span class="params">(CompanyStaff)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, designation, age, travel_allowance)</span>:</span></span><br><span class="line">        CompanyStaff.__init__(self, name, designation, age)</span><br><span class="line">        self.travel_allow = travel_allowance</span><br><span class="line">        CompanyStaff.detail(self)</span><br><span class="line">        print(<span class="string">'출장근무 수당 : '</span>, self.travel_allow)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>위와 같이 생성된 클래스를 테스트 해봅니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 생산직원 인스턴스 생성 </span></span><br><span class="line">FactoryStaff(<span class="string">'주호영'</span>, <span class="string">'전기공'</span>, <span class="number">39</span>, <span class="number">20000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 사무직원 인스턴스 생성 </span></span><br><span class="line">OfficeStaff(<span class="string">'이성경'</span>, <span class="string">'마케팅'</span>, <span class="number">30</span>, <span class="number">50000</span>)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1928,7 +1855,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">203</span>
+          <span class="site-state-item-count">204</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

@@ -220,6 +220,215 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/09/Python-%EA%B8%B0%EC%B4%88-19%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%84%A0%EC%96%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/09/Python-%EA%B8%B0%EC%B4%88-19%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%84%A0%EC%96%B8/" class="post-title-link" itemprop="url">Python 기초 19편 - 파이썬 클래스 선언</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-09 12:55:23 / Updated at: 13:22:53" itemprop="dateCreated datePublished" datetime="2020-11-09T12:55:23+09:00">2020-11-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/09/Python-%EA%B8%B0%EC%B4%88-19%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%84%A0%EC%96%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/09/Python-기초-19편-파이썬-클래스-선언/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Python-클래스-정의"><a href="#Python-클래스-정의" class="headerlink" title="Python 클래스 정의"></a>Python 클래스 정의</h2><br>
+
+<p><strong>객체 지향 프로그래밍에서 클래스와 객체들은 주요 특징입니다</strong></p>
+<p>*<em>객체지향 프로그래밍의 꽃 이라고 할수 있습니다 *</em></p>
+<br>
+
+<blockquote>
+<p>하나의 클래스는 새로운 데이터 타입과 객체들을, </p>
+<p>클래스안에 정의된 것들을 따르는 클래스의 인스턴스들로 생성합니다.<br><br></p>
+<p>새로 생성된 클래스의 인스턴스는, 클래스에 정의되어 있는 속성들을 가지고 있습니다. </p>
+</blockquote>
+<br>
+
+<p>클래스안에 있는 문장들은 함수 정의, 데이터, 혹은 다른 기능을 하는 문장이 될수 있습니다. </p>
+<br>
+
+<p>어떠한 클래스가 정의되었을때, 클래스 내부는 하나의 새로운 namespace(이름공간) 이고, 이는 local scope 로 사용됩니다. </p>
+<br>
+
+<h2 id="클래스-생성하기"><a href="#클래스-생성하기" class="headerlink" title="클래스 생성하기"></a>클래스 생성하기</h2><br>
+
+<p>클래스를 생성하는 방법은 간단합니다. <code>class</code> 키워드를 사용하여 정의하고, 클래스 내부의 문장들은 들여스기 해서 생성됩니다. 예를들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스 생성하기 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>:</span></span><br><span class="line">    student_class = <span class="string">'1'</span></span><br><span class="line">    student_number = <span class="number">108801</span></span><br><span class="line">    student_name = <span class="string">'Djangojeng-e'</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위의 예시에서 생성된 클래스는 Student 라는 이름을 가지고, 클래스 내부에 3개의 변수들을 가지고 있습니다. </p>
+<p>student_class, student_number 그리고 student_name 입니다. </p>
+<br>
+
+<h3 id="클래스-객체들"><a href="#클래스-객체들" class="headerlink" title="클래스 객체들"></a>클래스 객체들</h3><br>
+
+<p>클래스 객체들은 두가지 종류의 동작을 지원합니다. </p>
+<br>
+
+<ol>
+<li>attribute references (속성 참조)</li>
+<li>instantiation (인스턴스화)</li>
+</ol>
+<br>
+
+<p>속성 참조는, 표준 문법을 사용합니다. 예를들면, objects.name 형태의 문법을 사용하여, object 라는 객체의 name 속성에 접근할수 있습니다. </p>
+<br>
+
+<p>예시를 들면, </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스에서 attribute reference (속성 참조)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>:</span></span><br><span class="line">    name = <span class="string">"Djangojeng-e"</span></span><br><span class="line">    student_class = <span class="string">'1반'</span></span><br><span class="line">    student_number = <span class="number">306108801</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># Student.name 을 사용하여, Student 객체의 name 속성을 접근합니다 </span></span><br><span class="line">print(Student.name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Student.student_class 를 사용하여, Student 객체의 student_class 속성을 접근합니다 </span></span><br><span class="line">print(Student.student_class)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Student.student_number 를 사용하여, student_number 속성을 접근합니다 </span></span><br><span class="line">print(Student.student_number)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="init-메서드"><a href="#init-메서드" class="headerlink" title="__init__ 메서드"></a><code>__init__</code> 메서드</h3><br>
+
+<p>파이썬에서는, 특별하게 중요한 파이썬 메서드들이 존재합니다. 클래스는, <code>__init__</code> 이라고 불리는 특별한 메서드를 정의할수 있습니다. </p>
+<br>
+
+<blockquote>
+<p><code>__init__</code> 메서드는, </p>
+<p>초기화 작업을 해주고, 클래스를 위한 생성자로써 동작 합니다. </p>
+<p>다른 함수 혹은 메서드와 비슷하게도, <code>__init__</code> 도 몇가지 갯수의 인자들을 받을수 있습니다 </p>
+<br>
+
+<p><code>__init__</code> 메서드는, 클래스의 객체가 인스턴스화 되자마자 실행되고, 클래스의 인스턴스화는 자동으로 <code>__init__()</code> 을 새롭게 생성되는 클래스 인스턴스를 위해 실행합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스 인스턴스화 그리고 __init__ 메서드 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Student 라는 클래스를 정의 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, student_class, student_number)</span>:</span> </span><br><span class="line">        self.name = name </span><br><span class="line">        self.student_class = student_class </span><br><span class="line">        self.student_number = student_number </span><br><span class="line">        </span><br><span class="line">s = Student(<span class="string">'Djangojeng-e'</span>, <span class="string">'1반'</span>, <span class="number">306108801</span>) 	<span class="comment"># Student 클래스의 인스턴스를 생성 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Student 클래스의 인스턴스인 s 가 실행되자 마자, </span></span><br><span class="line"><span class="comment"># def __init__ 이 실행되어, name, student_class, student_number 값들을 자동으로 할당합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 따라서, 아래와 같이, 인스턴스 생성후에, 해당 인스턴스 속성값으로, 할당된 값들에 접근할수 있습니다 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># s.name 을 사용하여, name 에 접근 </span></span><br><span class="line">print(s.name)</span><br><span class="line"></span><br><span class="line"><span class="comment"># s.student_class 를 사용하여, student_class 접근 </span></span><br><span class="line">print(s.student_class)</span><br><span class="line"></span><br><span class="line"><span class="comment"># s.student_number 를 사용하여, student_number 를 접근 </span></span><br><span class="line">print(s.student_number)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="inheritance-상속"><a href="#inheritance-상속" class="headerlink" title="inheritance (상속)"></a>inheritance (상속)</h3><br>
+
+<p>상속의 개념은, 객체지향 프로그래밍에서 코드의 재사용성에 중요한 영향을 미칩니다. </p>
+<br>
+
+<p>상속은, 새로운 클래스를 생성할때, 기존에 존재하고 있는 클래스를 기반으로 생성할수 있게 해줍니다. </p>
+<p>기존에 존재하고 있는 클래스를 상속받는 새로운 클래스는, 기존 클래스의 모든 속성과 메서드들을 상속 받습니다. </p>
+<br>
+
+<p>다른 객체 지향 프로그래밍 언어들과 비슷하게도, 파이썬은 부모 클래스와 다른 다수의 클래스들을 상속받는것을 허용합니다. 다중 상속의 개념으로, 단일 상속과 다중 상속의 문법 예시는 아래와 같습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 단일상속, 다중상속 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseClass</span>:</span></span><br><span class="line">    base_class = <span class="string">"기본 클래스"</span></span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OtherClass</span>:</span></span><br><span class="line">    other_class = <span class="string">'다른 클래스'</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 단일 클래스 상속 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleInheritance</span><span class="params">(BaseClass)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line">single = SingleInhertiance  <span class="comment"># 단일 클래스 상속 인스턴스 생성 </span></span><br><span class="line">print(single.base_class) 	<span class="comment"># BaseClass 에 있는 변수값을 접근할수 있습니다 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 다수의 클래스를 상속받는 클래스를 생성 (다중상속) </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MultipleInheritance</span><span class="params">(BaseClass, OtherClass)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span> </span><br><span class="line"></span><br><span class="line">multiple = MultipleInheritance 	<span class="comment"># 다중상속 클래스 생성 </span></span><br><span class="line"></span><br><span class="line">print(multiple.base_class) 		<span class="comment"># BaseClass 의 base_class 값을 출력합니다 </span></span><br><span class="line">print(multiple.other_class)		<span class="comment"># OtherClass 의 other_class 값을 출력합니다</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="클래스-예시"><a href="#클래스-예시" class="headerlink" title="클래스 예시"></a>클래스 예시</h3><br>
+
+<ol>
+<li><p>공장에서, 생산직원과 사무직원들은 모두 공통된 속성들을 가지고 있습니다. </p>
+<ul>
+<li><p>모든 직원들은 - name, designation, age 같은 정보들을 가지고 있습니다 </p>
+</li>
+<li><p>회사직원 (CompanyStaff) 라고 부를수 있는 클래스를 하나 생성할수 있습니다 </p>
+<p>CompanyStaff 클래스를 생성해 줍니다. </p>
+</li>
+</ul>
+</li>
+<li><p>이런 공통된 사항들을 떠나서, 생산직과 사무직은 다른 수당 구조를 가지고 있습니다 </p>
+<ul>
+<li><p>FactoryStaff(생산사원) 은 야근 혹은 추가 근무 수당을 받고 </p>
+</li>
+<li><p>OfficeStaff (사무직)은 출장비 수당을 받을수 있습니다 </p>
+<p>FactoryStaff 클래스와 OfficeStaff 클래스를 생성해 줍니다. </p>
+</li>
+</ul>
+</li>
+<li><p>FactoryStaff 클래스와 OfficeStaff 클래스는, ComapnyStaff 클래스를 상속받을수 있습니다. </p>
+</li>
+</ol>
+<p>​    <br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 클래스 예시 </span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CompanyStaff</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, designation, age)</span>:</span></span><br><span class="line">        self.name = name </span><br><span class="line">        self.designation = designation </span><br><span class="line">        self.age = age </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(self)</span>:</span></span><br><span class="line">		print(<span class="string">f'Name : <span class="subst">&#123;self.name&#125;</span> \n Designation : <span class="subst">&#123;self.designation&#125;</span> \n Age : 				<span class="subst">&#123;self.age&#125;</span>'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FactoryStaff</span><span class="params">(CompanyStaff)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, designation, age, overtime_allowance)</span>:</span></span><br><span class="line">        CompanyStaff.__init__(self, name, designation, age)</span><br><span class="line">        self.overtime_allow = overtime_allowance</span><br><span class="line">        CompanyStaff.detail(self)</span><br><span class="line">        print(<span class="string">'추가 근무 수당 : '</span>, self.overtime_allow)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OfficeStaff</span><span class="params">(CompanyStaff)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, designation, age, travel_allowance)</span>:</span></span><br><span class="line">        CompanyStaff.__init__(self, name, designation, age)</span><br><span class="line">        self.travel_allow = travel_allowance</span><br><span class="line">        CompanyStaff.detail(self)</span><br><span class="line">        print(<span class="string">'출장근무 수당 : '</span>, self.travel_allow)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위와 같이 생성된 클래스를 테스트 해봅니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 생산직원 인스턴스 생성 </span></span><br><span class="line">FactoryStaff(<span class="string">'주호영'</span>, <span class="string">'전기공'</span>, <span class="number">39</span>, <span class="number">20000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 사무직원 인스턴스 생성 </span></span><br><span class="line">OfficeStaff(<span class="string">'이성경'</span>, <span class="string">'마케팅'</span>, <span class="number">30</span>, <span class="number">50000</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/09/Python-%EA%B8%B0%EC%B4%88-18%ED%8E%B8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%81%B4%EB%9E%98%EC%8A%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1713,199 +1922,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/31/Python-%EA%B8%B0%EC%B4%88-9%ED%8E%B8-for-%EB%B0%98%EB%B3%B5%EB%AC%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/31/Python-%EA%B8%B0%EC%B4%88-9%ED%8E%B8-for-%EB%B0%98%EB%B3%B5%EB%AC%B8/" class="post-title-link" itemprop="url">Python 기초 9편 - for 반복문</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-31 16:16:51 / Updated at: 16:27:19" itemprop="dateCreated datePublished" datetime="2020-10-31T16:16:51+09:00">2020-10-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/31/Python-%EA%B8%B0%EC%B4%88-9%ED%8E%B8-for-%EB%B0%98%EB%B3%B5%EB%AC%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/31/Python-기초-9편-for-반복문/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="For-반복문"><a href="#For-반복문" class="headerlink" title="For 반복문"></a>For 반복문</h2><br>
-
-<p>대부분의 다른 프로그래밍 언어들과 비슷하게, 파이썬도 for 반복문을 가지고 있습니다. </p>
-<br>
-
-<p>하지만, C 혹은, Pascal 같은 언어들과는 조금 차이점이 존재합니다. </p>
-<br>
-
-<p>파이썬에서 for 반복문은, 리스트, 문자열, 튜플 등과 같이 순서가 있는 자료들의 요소들을 순회할때 사용됩니다. </p>
-<p><br>또한, for 반복문은 range() 내장 함수를 사용하여, 다른 컨테이너로부터 요소들을 접근하기 위해 사용되기도 합니다. </p>
-<br>
-
-<p>기본 구조는 아래와 같습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 변수명 <span class="keyword">in</span> sequence형자료: </span><br><span class="line">    statement1 </span><br><span class="line">    statement2 </span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>Parameter </p>
-<br>
-
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>변수명</td>
-<td>for 반복문을 순회할때마다, 새로운값을 가지는 변수명을 가르킵니다</td>
-</tr>
-<tr>
-<td>sequence</td>
-<td>리스트, 문자열, 튜플 등과 같이 순서가 있는 자료형</td>
-</tr>
-<tr>
-<td>statement1 statement2</td>
-<td>순회중 각 요소마다, 실행할 코드 블럭들</td>
-</tr>
-</tbody></table>
-<br>
-
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># for 반복문 예시 </span></span><br><span class="line">color_list = [<span class="string">'Red'</span>, <span class="string">'Blue'</span>, <span class="string">'Green'</span>, <span class="string">'Black'</span>]</span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> color_list:</span><br><span class="line">    print(c)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>위의 예시에서 color_list 는 sequence 형 (즉, 순서가 존재하는, 순회 가능한) 자료로, 몇가지 색깔 이름을 가지고 있는 리스트 입니다. </p>
-<br>
-
-<blockquote>
-<p>for 반복문이 실행되면, 아래와 같은 작업을 실행합니다 </p>
-</blockquote>
-<br>
-
-<ol>
-<li><p>첫번째 요소인 ‘Red’ 가 변수명 c 에 할당이 됩니다. 그리고, print(c) 를 실행 하여, ‘Red’를 출력합니다. </p>
-</li>
-<li><p>두번째 요소인 ‘Blue’가 변수명 c 에 할당이 됩니다. 그리고 print(c) 를 실행 하여, ‘Blue’ 를 출력합니다. </p>
-</li>
-<li><p>세번째 요소인 ‘Green’이 변수명 c 에 할당이 됩니다. 그리고 print(c) 를 실행하여, ‘Green’을 출력합니다. </p>
-</li>
-<li><p>네번째 요소인 ‘Black’’이 변수명 c에 할당이 됩니다. 그리고 print(c)를 실행하여, ‘Black’을 출력합니다.  </p>
-</li>
-</ol>
-<br>
-
-<h2 id="for-반복문과-range-함수"><a href="#for-반복문과-range-함수" class="headerlink" title="for 반복문과 range() 함수"></a>for 반복문과 range() 함수</h2><br>
-
-<p><code>range()</code> 함수는 연속적인 정수들의 리스트를 반환합니다. <code>range()</code> 함수는, 한개, 두개 혹은 3개의 파라미터를 가지고 있고. 이중 마지막 파라미터 2개는 옵션입니다. for loop 에 꽤나 보편적으로 사용되는 함수 입니다. </p>
-<br>
-
-<p>예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># range(4) 는 0 부터 4 이전의 숫자로 된 리스트를 반환합니다. </span></span><br><span class="line"><span class="comment"># 따라서, 아래 코드는 for a in [0, 1, 2, 3]: 과 같은 효과를 가집니다. </span></span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">    print(a)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]:</span><br><span class="line">    print(a)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="comment"># range 의 시작지점과 끝 지점을 정할수 있습니다 </span></span><br><span class="line">print(<span class="string">"range의 시작지점과 끝 지점을 정할수 있습니다"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 아래 range 는, 2 부터 시작하고, 7의 바로 이전 숫자인 6에서 끝납니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> range(<span class="number">2</span>, <span class="number">7</span>):</span><br><span class="line">    print(a)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"파라미터의 마지막값을 지정합니다"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 기본값으로, 시작지점부터 끝지점까지 1씩 증가하는 요소들을 리스트에 넣어 리스트를 반환하지만, </span></span><br><span class="line"><span class="comment"># 파라미터의 마지막값을 지정하여, 지정한 숫자만큼 증가하는 요소들을 리스트에 넣어 생성할수 있습니다. </span></span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> range(<span class="number">2</span>, <span class="number">19</span>, <span class="number">5</span>):</span><br><span class="line">    print(a)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<h2 id="tuple-list-dictionary-순회"><a href="#tuple-list-dictionary-순회" class="headerlink" title="tuple, list, dictionary 순회"></a>tuple, list, dictionary 순회</h2><br>
-
-<p>for 반복문은 sequence 가 존재하는 자료인, tuple, list, dictionary 들을 순회하여 반복작업을 수행 할수 있습니다. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/31/Python-%EA%B8%B0%EC%B4%88-9%ED%8E%B8-for-%EB%B0%98%EB%B3%B5%EB%AC%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1976,7 +1992,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">203</span>
+          <span class="site-state-item-count">204</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

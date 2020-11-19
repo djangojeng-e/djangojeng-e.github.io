@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 6편 - Serializer 를 사용하는 Django 뷰</title>
+    <url>/2020/11/19/DRF-Tutorial-6%ED%8E%B8-Serializer-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-Django-%EB%B7%B0/</url>
+    <content><![CDATA[<h2 id="Serializer-를-사용하는-Django-Views-사용하기"><a href="#Serializer-를-사용하는-Django-Views-사용하기" class="headerlink" title="Serializer 를 사용하는 Django Views 사용하기"></a>Serializer 를 사용하는 Django Views 사용하기</h2><br>
+
+<p>우리의 Serializer 클래스를 사용하는 몇가지 API 뷰들을 어떻게 작성하는지 봅시다. </p>
+<p><br>현재까지 우리는, REST framework 의 그 어떤 다른 기능도 사용하지 않을것입니다. 우리는 그저 일반 Django views 와 같은 views 만 작성해 볼겁니다. </p>
+<br>
+
+<p><code>snippets/views.py</code> 파일을 열고, 아래 내용을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, JsonResponse </span><br><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt </span><br><span class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParser </span><br><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>우리 API 의 기본은, </p>
+<p>존재하는 모든 snippets 들을 리스팅 하거나, 혹은 새로운 snippet  을 생성하는것입니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@csrf_exempt </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">snippet_list</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    List all code snippets, or create a new snippet. </span></span><br><span class="line"><span class="string">    존재하는 모든 스니펫들을 나열하거나, 혹은 새러운 스니펫을 생성합니다. </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">"GET"</span>:</span><br><span class="line">        snippets = Snippet.objects.all()</span><br><span class="line">        serializer = SnippetSerializer(snippets, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.data, safe=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">elif</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        data = JSONParser().parse(request)</span><br><span class="line">        serializer = SnippetSerializer(data=data)</span><br><span class="line">        <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">            serializer.save()</span><br><span class="line">            <span class="keyword">return</span> JsonResponse(serializer.data, status=<span class="number">201</span>)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.errors, status=<span class="number">400</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>우리는 이 views 에 클라이언트로부터 CRSF token 이 없는 POST 방식이 가능해야 하기 때문에,</p>
+<p>해당 view 에 csrf_exempt 를 표시해 줍니다. </p>
+</blockquote>
+<br>
+
+<p>이것은 보통 원하지 않는 방식이고, REST framework view 는 사실 좀 더 이것보다 민감한것도 사용하기도 합니다. 어쨋거나, 지금은 우리의 목적을 수행 할것입니다. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<h2 id="Snippet-에-해당하는-view"><a href="#Snippet-에-해당하는-view" class="headerlink" title="Snippet 에 해당하는 view"></a>Snippet 에 해당하는 view</h2><br>
+
+<p>또한, 우리는 각 snippet 에 해당하는 view 도 필요할것입니다. </p>
+<br>
+
+<p>이 view 는 snipept 을 조회, 업데이트 혹은 삭제 할때 쓸수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@csrf_exempt </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">snippet_detail</span><span class="params">(request, pk)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Retrieve, update or delete a code snippet </span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        snippet = Snippet.objects.get(pk=pk)</span><br><span class="line">    <span class="keyword">except</span> Snippet.DoesNotExist:</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(status=<span class="number">404</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        serializer = SnippetSerializer(snippet)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.data)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">elif</span> request.method == <span class="string">'PUT'</span>:</span><br><span class="line">        data = JSONParser().parse(request)</span><br><span class="line">        serializer = SnippetSerializer(snippet, data=data)</span><br><span class="line">        <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">            serializer.save()</span><br><span class="line">            <span class="keyword">return</span> JsonResponse(serailzier.data)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.errors, status=<span class="number">400</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">elif</span> request.method == <span class="string">'DELETE'</span>:</span><br><span class="line">        snippet.delete()</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(status=<span class="number">204</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<h2 id="urls-py"><a href="#urls-py" class="headerlink" title="urls.py"></a>urls.py</h2><br>
+
+<p>마지막으로, 이 view 들을 urls 에 묶어줘야 합니다. <code>snippets/urls.py</code> 파일을 생성합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path </span><br><span class="line"><span class="keyword">from</span> snippets <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'snippets/'</span>, views.snippet_list),</span><br><span class="line">    path(<span class="string">'snippets/&lt;int:pk&gt;/'</span>, views.snippet_detail),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>우리는 root urlconf 에도 설정을 해주어야 합니다. </p>
+<p><br><code>tutorial/urls.py</code> 파일안에, 우리의 snippet app의 URL 을 포함시켜 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">''</span>, incldue(<span class="string">'snippets.urls'</span>))</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>현재, 몇가지 사항들에 대해서는, 완벽하게 처리하고 있지는 않기는 합니다.  </p>
+<br>
+
+<p>만약 우리가 망가진 json을 보내거나, 요청이 view 가 다룰수 없는 메서드로 만들어져 있으면, 우리는 500 “server error” 응답을 받을것입니다. </p>
+<br>
+
+<p>그렇지만, 일단 이것은 우리가 원하는 목적 안에서는 잘 작동할것 입니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 5편 - ModelSerializers 사용하기</title>
     <url>/2020/11/18/DRF-Tutorial-5%ED%8E%B8-ModelSerializers-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="ModelSerializer-사용하기"><a href="#ModelSerializer-사용하기" class="headerlink" title="ModelSerializer 사용하기"></a>ModelSerializer 사용하기</h2><br>
