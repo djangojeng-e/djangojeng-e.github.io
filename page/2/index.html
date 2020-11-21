@@ -220,6 +220,205 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/11/Python-%EA%B8%B0%EC%B4%88-21%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-2%ED%8E%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/11/Python-%EA%B8%B0%EC%B4%88-21%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-2%ED%8E%B8/" class="post-title-link" itemprop="url">Python 기초 21편 - built in 내장함수 2편</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-11 20:20:12 / Updated at: 20:37:22" itemprop="dateCreated datePublished" datetime="2020-11-11T20:20:12+09:00">2020-11-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/11/Python-%EA%B8%B0%EC%B4%88-21%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-2%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/11/Python-기초-21편-built-in-내장함수-2편/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Python-Builtins-2"><a href="#Python-Builtins-2" class="headerlink" title="Python Builtins - 2"></a>Python Builtins - 2</h2><br>
+
+<p>파이썬 인터프리터는 언제나 사용가능한 몇가지 함수들과 타입들이 내장되어 있습니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th><strong>함수명</strong></th>
+<th><strong>내용</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>filter()</td>
+<td>filter() 함수는 함수가 True 를 반환하는 순회가능 객체의 요소들로부터, 순회가능 객체를 만듭니다.</td>
+</tr>
+<tr>
+<td>float()</td>
+<td>float() 함수는 지정된 값을 부동 소수점 숫자로 전환해줍니다</td>
+</tr>
+<tr>
+<td>format()</td>
+<td>foramt() 함수는 지정된 값을 특정 format 으로 지정할때 사용됩니다.</td>
+</tr>
+<tr>
+<td>frozenset()</td>
+<td>frozenset() 함수는 새로운 frozenset 객체를 반환합니다, 옵션으로 순회가능 객체로부터 요소들을 받아옵니다</td>
+</tr>
+<tr>
+<td>getattr()</td>
+<td>getattr() 함수는 명명된 객체의 속성의 값을 반환합니다, 이름은 문자열이여만 합니다.</td>
+</tr>
+<tr>
+<td>globals()</td>
+<td>globals() 함수는 현재 global symbol table 을 표현하는 딕셔너리를 반환합니다.</td>
+</tr>
+<tr>
+<td>hash()</td>
+<td>hash() 함수는 객체의 hash 값을 반환합니다</td>
+</tr>
+<tr>
+<td>help()</td>
+<td>help() 함수는 내장된 help(도움말) 시스템을 실행시키기 위해 사용됩니다</td>
+</tr>
+<tr>
+<td>id()</td>
+<td>id() 함수는 객체의 정체성을 얻기위해 사용합니다</td>
+</tr>
+<tr>
+<td>input()</td>
+<td>input() 함수는 사용자 입력값을 허용합니다.</td>
+</tr>
+<tr>
+<td>int()</td>
+<td>int() 함수는 지정된 값을 정수로 바꾸어 줍니다</td>
+</tr>
+<tr>
+<td>isinstance()</td>
+<td>isinstance() 함수는 객체 인자가 클래스정보 인자의 인스턴스일때 true 를 반환합니다.혹은, 서브클래스일 경우에 true 를 반환합니다</td>
+</tr>
+<tr>
+<td>issubclass()</td>
+<td>issubclass() 함수는 지정된 객체가, 특정객체의 서브클래스라면 True 를 반환합니다, 그렇지 않으면 False 를 반환합니다.</td>
+</tr>
+<tr>
+<td>iter()</td>
+<td>iter() 함수는 하나의 iterator 객체를 반환합니다</td>
+</tr>
+<tr>
+<td>len()</td>
+<td>len() 함수는, 객체의 길이를 얻을때 사용됩니다</td>
+</tr>
+<tr>
+<td>list()</td>
+<td>list() 함수는, 리스트 객체를 생성하기 위해 사용됩니다</td>
+</tr>
+<tr>
+<td>locals()</td>
+<td>locals() 함수는 local symbol table 을 사전형태로 얻기위해 사용됩니다.</td>
+</tr>
+<tr>
+<td>map()</td>
+<td>map() 함수는 지정된 함수를 순회가능한 객체의 각 요소에 실행시킵니다.</td>
+</tr>
+<tr>
+<td>max()</td>
+<td>max() 함수는 순회가능 객체의 요소들중 가장 큰 값을 찾는데 사용됩니다.</td>
+</tr>
+<tr>
+<td>memoryview()</td>
+<td>memoryview() 함수는 특정객체로부터 메모리뷰 객체를 얻을때 사용됩니다.</td>
+</tr>
+</tbody></table>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/11/Python-%EA%B8%B0%EC%B4%88-21%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-2%ED%8E%B8/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/10/Python-%EA%B8%B0%EC%B4%88-20%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-1%ED%8E%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1844,127 +2043,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/02/Python-%EA%B8%B0%EC%B4%88-11%ED%8E%B8-break-continue%EB%AC%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/02/Python-%EA%B8%B0%EC%B4%88-11%ED%8E%B8-break-continue%EB%AC%B8/" class="post-title-link" itemprop="url">Python 기초 11편 - break, continue문</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-02 08:29:45 / Updated at: 08:36:28" itemprop="dateCreated datePublished" datetime="2020-11-02T08:29:45+09:00">2020-11-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/02/Python-%EA%B8%B0%EC%B4%88-11%ED%8E%B8-break-continue%EB%AC%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/02/Python-기초-11편-break-continue문/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Python-기초-break-continue"><a href="#Python-기초-break-continue" class="headerlink" title="Python 기초 - break, continue"></a>Python 기초 - break, continue</h2><br>
-
-<p><strong>break 문</strong></p>
-<br>
-
-<p>break 문은 for 혹은 while 반복문을 빠져나가기 위해 사용됩니다. </p>
-<p><br>break 문의 목적은, 반복문의 실행을 바로 멈추고, 프로그램의 흐름이 반복문 이후로 넘어가게 하는것입니다. </p>
-<br>
-
-<blockquote>
-<p>for 반복문 혹은 while 반복문 안에서, </p>
-<p>break 코드를 만나면, 해당 반복문은 바로 종료가 됩니다. </p>
-</blockquote>
-<br>
-
-<h3 id="for-반복문에서-break-의-예시"><a href="#for-반복문에서-break-의-예시" class="headerlink" title="for 반복문에서 break 의 예시"></a>for 반복문에서 break 의 예시</h3><br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># for loop 안의 break 문 </span></span><br><span class="line">numbers = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)</span><br><span class="line">num_sum = <span class="number">0</span> </span><br><span class="line">count = <span class="number">0</span> </span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> numbers:</span><br><span class="line">    num_sum = num_sum + x </span><br><span class="line">    count = count + <span class="number">1</span> </span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">5</span>:</span><br><span class="line">        <span class="keyword">break</span> </span><br><span class="line">        </span><br><span class="line">print(<span class="string">'처음 &#123;&#125;번째 숫자의 합계는, &#123;&#125; 입니다.'</span>.format(count, num_sum))</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="while-반복문에서-break-의-예시"><a href="#while-반복문에서-break-의-예시" class="headerlink" title="while 반복문에서 break 의 예시"></a>while 반복문에서 break 의 예시</h3><br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># while loop 안의 break 문 </span></span><br><span class="line">num_sum = <span class="number">0</span> </span><br><span class="line">count = <span class="number">0</span> </span><br><span class="line"><span class="keyword">while</span>(count &lt; <span class="number">10</span>):</span><br><span class="line">	num_sum = num_sum + count </span><br><span class="line">    count = count + <span class="number">1</span> </span><br><span class="line">    <span class="keyword">if</span> count == <span class="number">5</span>:</span><br><span class="line">        <span class="keyword">break</span> </span><br><span class="line">print(<span class="string">'처음 &#123;&#125; 번째 숫자의 합계는 &#123;&#125; 입니다'</span>.format(count, num_sum))</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="continue-문"><a href="#continue-문" class="headerlink" title="continue 문"></a>continue 문</h3><br>
-
-<p>continue 문은 while 혹은 for 반복문 안에서, 남아있는 구문들을 실행시키지 않고. 반복문의 위로 올라가게 해줍니다. 예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># continue 문 </span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">7</span>):</span><br><span class="line">    <span class="keyword">if</span> (x==<span class="number">3</span> <span class="keyword">or</span> x==<span class="number">6</span>):</span><br><span class="line">        <span class="keyword">continue</span> </span><br><span class="line">        <span class="comment"># x 가 3 혹은 6이면, continue 문 밑에 있는 print(x) 를 실행시키지 않고, </span></span><br><span class="line">        <span class="comment"># 넘어가게 된다. </span></span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -2035,7 +2113,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">205</span>
+          <span class="site-state-item-count">206</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

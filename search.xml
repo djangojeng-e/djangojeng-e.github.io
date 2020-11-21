@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 8편 - DRF Tutorial 8편 - 요청과 응답</title>
+    <url>/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/</url>
+    <content><![CDATA[<br>
+
+<h2 id="Requests-and-Responses"><a href="#Requests-and-Responses" class="headerlink" title="Requests and Responses"></a>Requests and Responses</h2><br>
+
+<blockquote>
+<p>이제부터 우리는,</p>
+<p>진짜로 REST framework 의 주요 사항들을 볼것입니다. </p>
+<p>몇가지 필수 사항들을 소개해 봅시다. </p>
+</blockquote>
+<br>
+
+<h2 id="Request-objects"><a href="#Request-objects" class="headerlink" title="Request objects"></a>Request objects</h2><br>
+
+<p>REST Framework 은 일반 HttpResponse 를 확장하는 Request 객체를 소개하고, </p>
+<p>조금 더 유연한 파싱을 제공합니다. Request 객체의 주요 기능은,  <code>request.data</code> 속성이고, </p>
+<br>
+
+<p>이것은, request.POST 와 비슷하지만, Web API 를 작업할때 좀 더 유용합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">request.POST </span><br><span class="line"><span class="comment"># only handles form data. Only works for 'POST' method</span></span><br><span class="line"><span class="comment"># 폼 데이터만 다루고, 오로지 POST 메서드에만 동작합니다. </span></span><br><span class="line"></span><br><span class="line">request.data</span><br><span class="line"><span class="comment"># 임의의 데이터를 다룰수 있고, </span></span><br><span class="line"><span class="comment"># 'POST', 'PUT' 그리고 'PATCH' 메서드들을 위해 동작합니다</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Response-objects"><a href="#Response-objects" class="headerlink" title="Response objects"></a>Response objects</h2><br>
+
+<p>REST Framework 은 Response 객체도 가지고 있습니다.</p>
+<p><br>이것은, TemplateResponse 의 종류로, 렌더되지 않은 컨텐트와 content negotiation 을 사용하여, </p>
+<br>
+
+<p>클라이언트에게 반환할 적절한 컨텐트 종류를 결정합니다. </p>
+<br>
+
+<blockquote>
+<p><strong>Content Negotiation</strong></p>
+<p>동일한 URI 에서 리소스의 서로 다른 버전을 수행하기 위해 사용되는 메커니즘으로,</p>
+<p>사용자 에이전트가 사용자에게 제일 잘 맞는것이 무엇인지를 명시할수 있습니다. </p>
+<p>예) 문서의 언어, 이미지, 포맷 혹은 콘텐츠 인코딩에 있어서 어떤것이 적절할지를 정함.</p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> Response(data)</span><br><span class="line"><span class="comment"># Renders to content type as requested by the client </span></span><br><span class="line"><span class="comment"># 클라이언트가 요청한 content 종류를 렌더해줌</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 7편 - Web API 에 첫번째 시도 테스트</title>
     <url>/2020/11/20/DRF-Tutorial-7%ED%8E%B8-Web-API-%EC%97%90-%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%8B%9C%EB%8F%84-%ED%85%8C%EC%8A%A4%ED%8A%B8/</url>
     <content><![CDATA[<h2 id="WEB-API-에-첫번째-테스트"><a href="#WEB-API-에-첫번째-테스트" class="headerlink" title="WEB API 에 첫번째 테스트"></a>WEB API 에 첫번째 테스트</h2><br>
