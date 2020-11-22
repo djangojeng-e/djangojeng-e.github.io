@@ -220,6 +220,492 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/26/Python-%EA%B8%B0%EC%B4%88-4%ED%8E%B8-variables-%EB%B3%80%EC%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/26/Python-%EA%B8%B0%EC%B4%88-4%ED%8E%B8-variables-%EB%B3%80%EC%88%98/" class="post-title-link" itemprop="url">Python 기초 4편 - variables (변수)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-26 17:33:06 / Updated at: 17:54:08" itemprop="dateCreated datePublished" datetime="2020-10-26T17:33:06+09:00">2020-10-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/26/Python-%EA%B8%B0%EC%B4%88-4%ED%8E%B8-variables-%EB%B3%80%EC%88%98/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/26/Python-기초-4편-variables-변수/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Python-Variables"><a href="#Python-Variables" class="headerlink" title="Python - Variables"></a>Python - Variables</h2><br>
+
+<h3 id="변수와-값-Variables-and-Value"><a href="#변수와-값-Variables-and-Value" class="headerlink" title="변수와 값 (Variables and Value)"></a>변수와 값 (Variables and Value)</h3><br>
+
+<blockquote>
+<p>변수 (Variables) 는, </p>
+<p>프로그래머가 값 (Value) 을 저장할수 있는 메모리 공간 입니다. </p>
+</blockquote>
+<br>
+
+<ul>
+<li>값은, 문자열 혹은 숫자열 혹은 기타 다른것들이 될수 있습니다 예) “django”, 118, 25.45 etc </li>
+<li>변수는 처음 할당 될때 생성됩니다 </li>
+<li>변수들은 참조되기 전에 할당이 되어 있어야 합니다. 할당 되지 않아 있는 변수를 참조하려 하면, 에러가 납니다</li>
+<li>변수안에 저장된 값은, 접근이 가능 하고, 혹은 나중에 업데이트 될수 있습니다 </li>
+<li>변수의 타입 (즉, 문자열, 정수, 실수 등)들은 파이썬에 의해 지정됩니다 </li>
+<li>파이썬 인터프리터는 변수의 데이터 타입을 기준으로 메모리를 할당 합니다. </li>
+</ul>
+<br>
+
+<h2 id="파이썬-변수-이름-규칙"><a href="#파이썬-변수-이름-규칙" class="headerlink" title="파이썬 변수 이름 규칙"></a>파이썬 변수 이름 규칙</h2><br>
+
+<ul>
+<li>글자 (a-z, A-Z) 혹은 <code>_</code> 언더스코어 로 시작 할수 있습니다 </li>
+<li>다른 문자들, 글자, 숫자 혹은 언더스코어가 될수 있습니다 </li>
+<li>파이썬 변수 이름은, 숫자로 시작하지 않습니다. </li>
+<li>대문자 소문자를 구분 합니다 </li>
+<li>적절한 길이로 이루어질수 있습니다 </li>
+<li><em>변수명으로 사용될수 없는, 예약어들이 존재 합니다. 파이썬이 다른것들을 위해서 사용하는 내장 함수나 예약어들은 변수명으로 사용할수 없습니다</em></li>
+</ul>
+<br>
+
+<p>예약어의 예시는 아래와 같습니다. 모든 예약어들은 변수명으로 사용될수 없습니다. </p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>False</th>
+<th>class</th>
+<th>finally</th>
+<th>is</th>
+<th>return</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>None</td>
+<td>continue</td>
+<td>for</td>
+<td>lambda</td>
+<td>try</td>
+</tr>
+<tr>
+<td>True</td>
+<td>def</td>
+<td>from</td>
+<td>nonlocal</td>
+<td>while</td>
+</tr>
+<tr>
+<td>and</td>
+<td>del</td>
+<td>global</td>
+<td>not</td>
+<td>with</td>
+</tr>
+<tr>
+<td>as</td>
+<td>el</td>
+<td>if</td>
+<td>or</td>
+<td>yield</td>
+</tr>
+<tr>
+<td>assert</td>
+<td>else</td>
+<td>import</td>
+<td>pass</td>
+<td></td>
+</tr>
+<tr>
+<td>break</td>
+<td>except</td>
+<td>in</td>
+<td>raise</td>
+<td></td>
+</tr>
+</tbody></table>
+<br>
+
+<br>
+
+<h2 id="좋은-변수명"><a href="#좋은-변수명" class="headerlink" title="좋은 변수명"></a>좋은 변수명</h2><br>
+
+<p>프로그래머가 변수명을 잘 짓는 능력은 정말정말 중요합니다. 좋은 변수명을 짓기 위해서 참고할 룰은 몇가지 있지만, 가장 근본적으로 공통된 룰은 아래와 같습니다. </p>
+<p><br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/26/Python-%EA%B8%B0%EC%B4%88-4%ED%8E%B8-variables-%EB%B3%80%EC%88%98/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/" class="post-title-link" itemprop="url">Python 기초 3편 - print 함수</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-25 10:21:55 / Updated at: 11:00:35" itemprop="dateCreated datePublished" datetime="2020-10-25T10:21:55+09:00">2020-10-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/25/Python-기초-3편-print-함수/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Python-print"><a href="#Python-print" class="headerlink" title="Python - print()"></a>Python - <code>print()</code></h2><br>
+
+<br>
+
+<h2 id="print-함수"><a href="#print-함수" class="headerlink" title="print 함수"></a>print 함수</h2><br>
+
+<p>print 문은 <code>print()</code> 함수로 대체 되었습니다. 키워드 인자들은, 이전 프린트문의 특수 문법들을 대체 합니다. </p>
+<br>
+
+<p>print문은 아래와 같은 방식으로 사용될수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Good Morning"</span>)</span><br><span class="line">print(<span class="string">"Good"</span>, &lt;문자열을 가지고 있는 변수&gt;)</span><br><span class="line">print(<span class="string">"Good"</span>, &lt;문자열을 가지고 있는 변수&gt;)</span><br><span class="line">print(<span class="string">"Good %s"</span> % &lt;문자열을 가지고 있는 변수&gt; )</span><br><span class="line"></span><br><span class="line"><span class="comment"># 예) </span></span><br><span class="line">a = <span class="string">'abc'</span></span><br><span class="line"><span class="comment"># a 는 abc 라는 문자열을 가지고 있는 변수 </span></span><br><span class="line">print(<span class="string">'good'</span>, a)</span><br><span class="line">print(<span class="string">'good'</span> + a)</span><br><span class="line">print(<span class="string">'good %S'</span> % a)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="문자열-포매팅"><a href="#문자열-포매팅" class="headerlink" title="문자열 포매팅"></a>문자열 포매팅</h3><br>
+
+<p>추가적으로 문자열 포매팅이 중요한데. 문자열에 출력될 변수를, <code>%</code>, <code>{}</code> 에 넣어서 출력할수도 있습니다</p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">'django_bro'</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"Hey! %s"</span>, text)</span><br><span class="line">print(<span class="string">f'Hey! <span class="subst">&#123;text&#125;</span>'</span>)</span><br><span class="line">print(<span class="string">'Hey! &#123;&#125;'</span>.format(text))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>파이썬에서 문자열은, </p>
+<p>외따옴표, 쌍따옴표, 혹은 따옴표 3개로 감싸서 문자열로 사용할수 있습니다.</p>
+<p>문자열을 표현하기 위해서 사용되는 따옴표의 종류는 어떤것을 사용해도 상관이 없습니다.  </p>
+</blockquote>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/" class="post-title-link" itemprop="url">Python 기초 2편 - Syntax</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-24 16:28:14 / Updated at: 16:44:49" itemprop="dateCreated datePublished" datetime="2020-10-24T16:28:14+09:00">2020-10-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/24/Python-기초-2편-Syntax/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Python-Syntax-문법-구문"><a href="#Python-Syntax-문법-구문" class="headerlink" title="Python Syntax (문법, 구문)"></a>Python Syntax (문법, 구문)</h2><br>
+
+<blockquote>
+<p>파이썬 프로그램은, parser 로 읽어집니다 </p>
+<p>파이썬은 매우 읽기 편한 언어가 되기 위해서 디자인 되었습니다. </p>
+<p>파이썬 프로그래밍 언어의 문법은, 어떻게 파이썬 프로그래밍이 작성되어야 할지에 대한 규칙을 다룹니다 </p>
+</blockquote>
+<br>
+
+<br>
+
+<h2 id="Python-Line-Structure-줄구조"><a href="#Python-Line-Structure-줄구조" class="headerlink" title="Python Line Structure (줄구조)"></a>Python Line Structure (줄구조)</h2><br>
+
+<p>파이썬 프로그램은 여러개의 논리적 줄들로 나누어져 있고, 각 논리적 줄은, NEWLINE 토큰에 의해서 종료 됩니다. </p>
+<p><br>논리적 줄은, 하나 혹은 그 이상의 줄들로 부터 생성 됩니다. </p>
+<br>
+
+<p>하나의 줄은, 공백, 탭, 주석같은 formfeed 로 이루어질수 있고, 비어있는 줄은 인터프리터가 무시합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span> </span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'이 세줄은 물리적 / 논리적 줄들 입니다.'</span>)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="파이썬에서-주석-comments"><a href="#파이썬에서-주석-comments" class="headerlink" title="파이썬에서 주석 (comments)"></a>파이썬에서 주석 (comments)</h2><br>
+
+<p>파이썬에서 주석은, 문자열로 치지 않는 # 으로 시작하고, 물리적으로 한줄의 끝에서 끝납니다. </p>
+<p><br># 뒤의 모든 케릭터들은 주석의 부분이고, 파이썬 인터프리터는 이들을 실행하지 않고 무시합니다. </p>
+<br>
+
+<br>
+
+<p>아래 예시를 들어봅니다. 참고로, 파이썬에서 다수의 줄 혹은 블럭으로 된 주석은 존재하지 않습니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span> </span><br><span class="line"><span class="comment"># x 의 초기값은 1 입니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">	print(<span class="string">'두번째 줄은 주석입니다'</span>)   <span class="comment"># 문자열을 출력합니다 (이것도 주석입니다!)</span></span><br></pre></td></tr></table></figure>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1084,383 +1570,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/17/Form-API-4%ED%8E%B8-%ED%8F%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/17/Form-API-4%ED%8E%B8-%ED%8F%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">Form API 4편 - 폼 데이터 변경사항 체크하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-17 07:47:04 / Updated at: 08:13:11" itemprop="dateCreated datePublished" datetime="2020-10-17T07:47:04+09:00">2020-10-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Form-API/" itemprop="url" rel="index"><span itemprop="name">Form API</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/17/Form-API-4%ED%8E%B8-%ED%8F%BC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/17/Form-API-4편-폼-데이터-변경사항-체크하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Checking-which-form-data-has-been-changed"><a href="#Checking-which-form-data-has-been-changed" class="headerlink" title="Checking which form data has been changed"></a>Checking which form data has been changed</h2><br>
-
-<h3 id="폼-데이터-변경사항을-체크하기-위해서는-has-changed-메서드를-사용하면-됩니다"><a href="#폼-데이터-변경사항을-체크하기-위해서는-has-changed-메서드를-사용하면-됩니다" class="headerlink" title="폼 데이터 변경사항을 체크하기 위해서는 has_changed() 메서드를 사용하면 됩니다."></a>폼 데이터 변경사항을 체크하기 위해서는 <code>has_changed()</code> 메서드를 사용하면 됩니다.</h3><br>
-
-<p>초기값에서부터 폼 데이터가 변경 되었는지 아니었는지 확인할 필요가 있을떄 체크 합니다. </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">In [2]: from forms_more_on_fields.forms import ContactForm  </span><br><span class="line"></span><br><span class="line">In [7]: data = &#123;'subject': 'hello', </span><br><span class="line">   ...:         'message': 'Hi there', </span><br><span class="line">   ...:         'sender': 'foo@example.com', </span><br><span class="line">   ...:         'cc_myself': True&#125;                                                                                 </span><br><span class="line"></span><br><span class="line">In [8]: f = ContactForm(data, initial=data)                                                                        </span><br><span class="line"></span><br><span class="line">In [9]: f.has_changed()                                                                                            </span><br><span class="line">Out[9]: False</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>폼이 제출 되었을때, 우리는 다시 폼을 만들고 오리지널 데이터를 제공하여 비교가 이루어 질수 있습니다. </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f = ContactForm(request.POST, initial=data)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f.has_changed()</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>만약, request_POST 에서 온 data 가 initial 에 있는 데이터와 다르다면, has_changed() 는 True 를 반환할겁니다. 그렇지 않다면, False 를 반환합니다. </p>
-<br>
-
-<p>이 결과는, 폼안에 있는 각 필드에, has_changed() 를 호출함으로 계산됩니다. </p>
-<br>
-
-<h3 id="Form-changed-data"><a href="#Form-changed-data" class="headerlink" title="Form.changed_data"></a>Form.changed_data</h3><br>
-
-<p>changed_data 속성은 initial 에 제공되었던 데이터와 다른 데이터들이, 폼을 통해 (보통 request.POST를 통해서) 온 데이터들과 다를때, 폼의 bound data 안에 있는 필드들의 이름을 가진 리스트를 반환합니다.  </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f = ContactForm(request.POST, initial=data)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="keyword">if</span> f.has_changed():</span></span><br><span class="line">...     print("The following fields changed: %s" % ", ".join(f.changed_data))</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; f.changed_data</span></span><br><span class="line">['subject', 'message']</span><br></pre></td></tr></table></figure>
-
-<br>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/16/Form-API-3%ED%8E%B8-Dynamic-Initial-Values/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/16/Form-API-3%ED%8E%B8-Dynamic-Initial-Values/" class="post-title-link" itemprop="url">Form API 3편 - Dynamic Initial Values</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-16 09:13:51 / Updated at: 09:22:17" itemprop="dateCreated datePublished" datetime="2020-10-16T09:13:51+09:00">2020-10-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Form-API/" itemprop="url" rel="index"><span itemprop="name">Form API</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/16/Form-API-3%ED%8E%B8-Dynamic-Initial-Values/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/16/Form-API-3편-Dynamic-Initial-Values/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Dynamic-initial-values"><a href="#Dynamic-initial-values" class="headerlink" title="Dynamic initial values"></a>Dynamic initial values</h2><br>
-
-<h3 id="Form-initial"><a href="#Form-initial" class="headerlink" title="Form.initial"></a>Form.initial</h3><br>
-
-<p>initial 을 사용하여, 실행시에 폼필드의 초기값을 지정할수 있습니다. </p>
-<p><br>예를들면, 여러분들은 현재 세션의 username 을 username 필드에 채워놓고 싶을지도 모릅니다<br></p>
-<p>이런 동작을 구현하기 위해서, initial 인자를 Form 에 써줍니다. </p>
-<br>
-
-<p>이 인자가 주어질때는, 필드명이 초기값에 매핑되는 사전 형태여야 합니다. </p>
-<br>
-
-<p>오직 여러분들이 초기값을 지정하고 싶은 필드에만 포함합니다.<br> 폼안에 모든 필드에 쓰는것은 불필요한 일입니다.<br><br></p>
-<p>예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = ContactForm(initial=&#123;<span class="string">'subject'</span>: <span class="string">'Hi there!'</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>이 값들은 오직 unbound 폼에만 표시되고, 만약 특정 값이 주어지지 않을때에 fallback 값으로 사용되지 않습니다. </p>
-<br>
-
-<p>만약 필드가 initial 을 정의하고, initial 폼을 인스턴스화 할때 포함하면, 두번째가 먼저 택해집니다. 아래 예시에는, initial 이 필드에서 주어졌고, 폼 인스턴스에도 주어졌습니다. 두번째가 우선시 됩니다. </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">from django import forms </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">class CommentForm(forms.Form):</span></span><br><span class="line"><span class="xml">	name = forms.CharField(initial='class')</span></span><br><span class="line"><span class="xml">	url = forms.URLField()</span></span><br><span class="line"><span class="xml">    comment = forms.CharField()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">In [1]: from forms_more_on_fields.forms import CommentForm                                                                                                                </span></span><br><span class="line"></span><br><span class="line"><span class="xml">In [2]: f = CommentForm(initial=&#123;'name': 'instance'&#125;, auto_id=False)                                                                                                      </span></span><br><span class="line"></span><br><span class="line"><span class="xml">In [3]: print(f)                                                                                                                                                          </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>Name:<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"instance"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>Url:<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>Comment:<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"comment"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<blockquote>
-<p>Initial 값이 정해져 있어도, </p>
-<p>폼의 인스턴스를 생성할때 initial 을 지정해주면, 인스턴스 생성할때 지정한 initial 값이 해당 필드에 지정이 됩니다. </p>
-</blockquote>
-<br>
-
-<h3 id="Form-get-initial-for-field-field-field-name"><a href="#Form-get-initial-for-field-field-field-name" class="headerlink" title="Form.get_initial_for_field(field, field_name)"></a><code>Form.get_initial_for_field(field, field_name)</code></h3><br>
-
-<p>get_initial_for_field() 를 사용하여, 폼 필드의 초기 데이터를 조회할수 있습니다. 이는 Form.initial 과 Field.initial 로 부터, 데이터를 조회하고, 그 순서대로 호출 가능한 초기값들을 평가합니다 .</p>
-<p><br><br></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/15/Form-API-2%ED%8E%B8-%ED%8F%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B2%80%EC%A6%9D%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/15/Form-API-2%ED%8E%B8-%ED%8F%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B2%80%EC%A6%9D%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">Form API 2편 - 폼을 사용하여 데이터 검증하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-15 14:29:29 / Updated at: 15:19:07" itemprop="dateCreated datePublished" datetime="2020-10-15T14:29:29+09:00">2020-10-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Form-API/" itemprop="url" rel="index"><span itemprop="name">Form API</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/15/Form-API-2%ED%8E%B8-%ED%8F%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B2%80%EC%A6%9D%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/15/Form-API-2편-폼을-사용하여-데이터-검증하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="폼을-사용하여-데이터-검증하기"><a href="#폼을-사용하여-데이터-검증하기" class="headerlink" title="폼을 사용하여 데이터 검증하기"></a>폼을 사용하여 데이터 검증하기</h2><br>
-
-<h3 id="Form-clean"><a href="#Form-clean" class="headerlink" title="Form.clean()"></a><code>Form.clean()</code></h3><br>
-
-<p>서로 의존되어 있는 필드들을 위한 커스텀 검증을 추가해야 할때는, 폼에 clean() 메서드를 써주면 됩니다. </p>
-<br>
-
-<h3 id="Form-is-valid"><a href="#Form-is-valid" class="headerlink" title="Form.is_valid()"></a><code>Form.is_valid()</code></h3><br>
-
-<p>폼 객체의 기본 과제는, 데이터를 검증하는것입니다. </p>
-<br>
-
-<p>Bound 폼 인스턴스를 가지고, <code>is_valid()</code> 메서드를 호출하여 유효성 검증을 실행하고, 데이터가 유효했었는지 아닌지에 대한 불리언값을 반환합니다. </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">In [1]: data = &#123;'subject': 'hello', </span><br><span class="line">   ...:         'message': 'Hi there',  </span><br><span class="line">   ...:         'sender': 'foo@example.com', </span><br><span class="line">   ...:         'cc_myself': True&#125;                                                                                                                                        </span><br><span class="line"></span><br><span class="line">In [2]: from forms_more_on_fields.forms import ContactForm                                                                                                                </span><br><span class="line"></span><br><span class="line">In [3]: f = ContactForm(data)                                                                                                                                             </span><br><span class="line"></span><br><span class="line">In [4]: f.is_valid()                                                                                                                                                      </span><br><span class="line">Out[4]: True</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>유효하지 않은 데이터로도 시도해보기 위해서, 아래 예시에는 subject  필드가 비어있습니다 (모든 필드들이 채워져야 하는 폼이므로, 이것은 에러 입니다). 게다가, 아래 예시에서, sender 는 유효한 이메일 주소가 아니게 입력 된 폼입니다. </p>
-<br>
-
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [5]: data = &#123;'subject': '', </span><br><span class="line">   ...:         'message': 'Hi there', </span><br><span class="line">   ...:         'sender': 'invalid email address', </span><br><span class="line">   ...:         'cc_myself': True&#125;                                                                                                                                     </span><br><span class="line"></span><br><span class="line">In [6]: f = ContactForm(data)                                                                                                                                          </span><br><span class="line"></span><br><span class="line">In [7]: f.is_valid()                                                                                                                                                   </span><br><span class="line">Out[7]: False</span><br></pre></td></tr></table></figure>
-
-<p><br><br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/15/Form-API-2%ED%8E%B8-%ED%8F%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B2%80%EC%A6%9D%ED%95%98%EA%B8%B0/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1531,7 +1640,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">206</span>
+          <span class="site-state-item-count">209</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1544,7 +1653,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">154</span>
+        <span class="site-state-item-count">155</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

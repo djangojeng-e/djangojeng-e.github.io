@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/11/22/DRF-Tutorial-11%ED%8E%B8-Pulling-it-all-together/</loc>
+        <lastmod>2020-11-22T00:27:19.335Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/2020/11/22/DRF-Tutorial-10%ED%8E%B8-API-View-%EA%B0%90%EC%8B%B8%EC%A3%BC%EA%B8%B0/</loc>
+        <lastmod>2020-11-22T00:14:49.187Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/2020/11/22/DRF-Tutorial-9%ED%8E%B8-%EC%83%81%ED%83%9C%EC%BD%94%EB%93%9C/</loc>
+        <lastmod>2020-11-22T00:11:07.933Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/</loc>
         <lastmod>2020-11-21T05:59:19.464Z</lastmod>
         <changefreq>weekly</changefreq>
