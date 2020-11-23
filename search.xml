@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 12편 - URL에 Suffix 추가하기</title>
+    <url>/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Adding-optional-format-suffixes-to-our-URLs"><a href="#Adding-optional-format-suffixes-to-our-URLs" class="headerlink" title="Adding optional format suffixes to our URLs"></a>Adding optional format suffixes to our URLs</h2><br>
+
+<p>우리의 응답들이 더이상 하나의 컨텐트 유형에 묶여 있지 않는다는 사실의 장점을 이용하기 위해서, 우리의 API endpoints 에 추가 접미사 포맷을 추가해 줍니다. </p>
+<br>
+
+<p>format suffixes 를 사용하면, 명시적으로 주어진 포맷을 참조하게 하는 URL 을 가질수 있고, 우리의 API 가 <code>http://example.com/api/items/4</code>.json  같은 URL 들을 다룰수 있다는것을 의미 해줍니다. </p>
+<br>
+
+<blockquote>
+<p>format 키워드 인자들을, 두 views 에 추가해주면서 시작해줍니다. </p>
+<p><code>snippets/views.py</code> 파일을 열고, </p>
+<br>
+
+<p><code>snippet_list</code> 와 <code>snippet_detail</code> 에 format 키워드 인자들을 추가해줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">snippet_list</span><span class="params">(request, format=None)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">snippet_detail</span><span class="params">(request, format=None)</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="urls-py-파일을-업데이트-해주기"><a href="#urls-py-파일을-업데이트-해주기" class="headerlink" title="urls.py 파일을 업데이트 해주기"></a>urls.py 파일을 업데이트 해주기</h2><br>
+
+<p>이제, <code>snippets/urls.py</code> 파일을 조금 업데이트 해줍니다. <code>format_suffix_patterns</code> 를 기존에 존재하고 있던 URLs 에 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path </span><br><span class="line"><span class="keyword">from</span> rest_framework.urlpatterns <span class="keyword">import</span> format_suffix_patterns </span><br><span class="line"><span class="keyword">from</span> snippets <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'snippets/'</span>, views.snippet_list),</span><br><span class="line">    path(<span class="string">'snippets/&lt;int:pk&gt;'</span>, views.snippet_detail),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">urlpatterns = format_suffix_patterns(urlpatterns)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>우리는, 이 추가적인 url patterns 들을 꼭 추가해줄 필요는 없지만, 추가해줌으로써 특정 포맷을 참조하는 간단하고 깔끔한 방법을 가질수 있습니다. </p>
+<br>]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 11편 - Pulling it all together</title>
     <url>/2020/11/22/DRF-Tutorial-11%ED%8E%B8-Pulling-it-all-together/</url>
     <content><![CDATA[<h2 id="Pulling-it-all-together"><a href="#Pulling-it-all-together" class="headerlink" title="Pulling it all together"></a>Pulling it all together</h2><br>

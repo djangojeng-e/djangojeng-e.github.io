@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</loc>
+        <lastmod>2020-11-23T10:39:18.043Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/11/22/DRF-Tutorial-11%ED%8E%B8-Pulling-it-all-together/</loc>
         <lastmod>2020-11-22T00:27:19.335Z</lastmod>
         <changefreq>weekly</changefreq>

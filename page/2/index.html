@@ -220,6 +220,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/15/DRF-Tutorial-2%ED%8E%B8-Serialization-%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/15/DRF-Tutorial-2%ED%8E%B8-Serialization-%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1/" class="post-title-link" itemprop="url">DRF Tutorial 2편 - Serialization 모델 생성</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-15 09:22:32 / Updated at: 09:31:13" itemprop="dateCreated datePublished" datetime="2020-11-15T09:22:32+09:00">2020-11-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/15/DRF-Tutorial-2%ED%8E%B8-Serialization-%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/15/DRF-Tutorial-2편-Serialization-모델-생성/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Serialization-모델-생성"><a href="#Serialization-모델-생성" class="headerlink" title="Serialization 모델 생성"></a>Serialization 모델 생성</h2><br>
+
+<h3 id="Creating-a-model-to-work-with-작업할-모델-생성하기"><a href="#Creating-a-model-to-work-with-작업할-모델-생성하기" class="headerlink" title="Creating a model to work with (작업할 모델 생성하기)"></a>Creating a model to work with (작업할 모델 생성하기)</h3><br>
+
+<p>이번 튜토리얼의 목적을 위해서, 코드 스니펫을 저장하는 간단한 snippet 모델을 생성하는걸로 시작하겠습니다.</p>
+<br>
+
+<p><code>snippet/models.py</code> 파일에서, 아래와 같이 모델을 작성해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"><span class="keyword">from</span> pygments.lexers <span class="keyword">import</span> get_all_lexers </span><br><span class="line"><span class="keyword">from</span> pygments.styles <span class="keyword">import</span> get_all_styles </span><br><span class="line"></span><br><span class="line">LEXERS = [item <span class="keyword">for</span> item <span class="keyword">in</span> get_all_lexers() <span class="keyword">if</span> item[<span class="number">1</span>]]</span><br><span class="line">LANGUAGE_CHOICES = sorted([item[<span class="number">1</span>][<span class="number">0</span>], item[<span class="number">0</span>] <span class="keyword">for</span> item <span class="keyword">in</span> LEXERS])</span><br><span class="line">STYLE_CHOICES = sorted([(item, item) <span class="keyword">for</span> item <span class="keyword">in</span> get_all_styles()])</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Snippet</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    created = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">100</span>, blank=<span class="literal">True</span>, default=<span class="string">''</span>)</span><br><span class="line">    code = models.TextField()</span><br><span class="line">    linenos = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    language = models.CharField(choices=LANGUAGE_CHOICES, default=<span class="string">'python'</span>, 					max_length=<span class="number">100</span>)</span><br><span class="line">    style = models.CharField(choices=STYLE_CHOICES, default=<span class="string">'friendly'</span>, 						max_length=<span class="number">100</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ordering = [<span class="string">'created'</span>]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>get_all_lexers 는 순회 가능한 LEXER 들의 정보를 가지고 있고 </p>
+<p>get_all_styles 는 순회 가능한 style 들의 정보를 가지고 있습니다. </p>
+<br>
+
+<p>이 두개를 List Comprehension 을 통해, For 문으로 리스트를 만들어 줍니다 </p>
+</blockquote>
+<br>
+
+<p>모델을 생성해 주었으니, snippet 모델에 대한 첫번재 migrations 을 생성해 줍니다 </p>
+<p><br>그리고 나서, 처음으로 데이터베이스와 동기화를 시켜줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations </span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/14/DRF-Tutorial-1%ED%8E%B8-Serialization-%EC%86%8C%EA%B0%9C-%EB%B0%8F-%EC%B4%88%EA%B8%B0%EC%84%A4%EC%A0%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1848,174 +1966,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/06/Python-%EA%B8%B0%EC%B4%88-15%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/06/Python-%EA%B8%B0%EC%B4%88-15%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-4/" class="post-title-link" itemprop="url">Python 기초 15편 - Regular Expression (정규표현식 4)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-06 20:31:24 / Updated at: 20:47:13" itemprop="dateCreated datePublished" datetime="2020-11-06T20:31:24+09:00">2020-11-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/06/Python-%EA%B8%B0%EC%B4%88-15%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-4/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/06/Python-기초-15편-Regular-Expression-정규표현식-4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h2><br>
-
-<h2 id="findall"><a href="#findall" class="headerlink" title="findall()"></a><code>findall()</code></h2><br>
-
-<blockquote>
-<p><code>findall()</code> 함수는, 매칭되는 문자열을 포함하고 있는 리스트를 반환합니다. </p>
-<p>리스트는 매치가 발견된 순서로 되어 있고, 매치오디는것이 없으면, 비어 있는 리스트가 반환됩니다. </p>
-</blockquote>
-<br>
-
-<p>예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># finall() 함수 </span></span><br><span class="line"><span class="comment"># 문자열안에 "portugal" 이라는 문자가 있는지 확인 합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.findall(<span class="string">"Portugal"</span>, txt)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.findall(<span class="string">"Spain"</span>, txt)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="search"><a href="#search" class="headerlink" title="search()"></a><code>search()</code></h2><br>
-
-<blockquote>
-<p><code>search()</code> 함수는, </p>
-<p>매칭되는 문자열들을 찾고, 매칭이되면 매칭 객체를 반환합니다 </p>
-<p>매칭되는게 여러개 있을경우, 첫번째 매칭되는것만 반환됩니다. </p>
-</blockquote>
-<br>
-
-<p>예를들어, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># search() 함수 </span></span><br><span class="line"><span class="comment"># \s 를 사용하여, 문자열 안에 공백을 찾습니다. </span></span><br><span class="line"><span class="comment"># search() 는 match object 를 반환합니다. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.search(<span class="string">"\s"</span>, txt)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"첫번째 공백이 자리하고 있는 위치는.."</span>,  x.start())</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>매칭되는게 없으면, None 이 반환됩니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># search() 매칭되는게 없으면, None 을 반환합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.search(<span class="string">"Portugal"</span>, txt)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="split"><a href="#split" class="headerlink" title="split()"></a><code>split()</code></h2><br>
-
-<blockquote>
-<p><code>split()</code> 함수는, </p>
-<p>매칭이 될때마다 분리된 문자열을 리스트에 담아서 반환합니다. </p>
-</blockquote>
-<br>
-
-<p>예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># split()</span></span><br><span class="line"><span class="comment"># 문자열은 각 공백마다 분리되어 리스트에 담아줍니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.split(<span class="string">"\s"</span>, txt)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p><code>maxsplit</code> 파라미터를 사용하여, 몇번이나 일어날지 지정할수 있습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># split() 파라미터 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.split(<span class="string">"\s"</span>, txt, <span class="number">1</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.split(<span class="string">"\s"</span>, txt, <span class="number">2</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.split(<span class="string">"\s"</span>, txt, <span class="number">3</span>)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="split-1"><a href="#split-1" class="headerlink" title="split()"></a><code>split()</code></h2><br>
-
-<blockquote>
-<p><code>sub()</code> 함수는, 매칭되는것을 선택된 문자로 바꾸어 줍니다 </p>
-</blockquote>
-<br>
-
-<p>예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sub() 함수 </span></span><br><span class="line"><span class="comment"># 각 빈공간을, 숫자 "9" 으로 바꾸어 줍니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.sub(<span class="string">"\s"</span>, <span class="string">"9"</span>, txt)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>count 파라미터를 사용하여, 몇개를 교체할지에 대해 제어할수 있습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re </span><br><span class="line"></span><br><span class="line">txt = <span class="string">"The rain in Spain"</span></span><br><span class="line">x = re.sub(<span class="string">"\s"</span>, <span class="string">"9"</span>, txt, <span class="number">1</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.sub(<span class="string">"\s"</span>, <span class="string">"9"</span>, txt, <span class="number">2</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x = re.sub(<span class="string">"\s"</span>, <span class="string">"9"</span>, txt, <span class="number">3</span>)</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -2086,7 +2036,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">209</span>
+          <span class="site-state-item-count">210</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

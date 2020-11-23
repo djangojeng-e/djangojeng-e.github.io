@@ -220,6 +220,128 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/" class="post-title-link" itemprop="url">Django Models 14편 - Model Methods</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-11 16:49:40 / Updated at: 17:10:48" itemprop="dateCreated datePublished" datetime="2020-08-11T16:49:40+09:00">2020-08-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/11/Django-Models-14편-Model-Methods/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Model-Methods"><a href="#Model-Methods" class="headerlink" title="Model Methods"></a>Model Methods</h2><br>
+
+<p>모델 클래스에는,  사용자 정의 메서드를 추가할수 있습니다. (row-level, 즉, 줄 단위)</p>
+<p><br>Manager 메서드 (objects) 는, table 전체에 적용되고. 모델 메서드들은, 특정한 모델 인스턴스에 적용됩니다.  </p>
+<br>
+
+<p>해당 모델의 인스턴스에 대해서, 특별한 비지니스 로직을 동작하고 싶을때에, 이런 모델 메서드를 사용해서. 하나의 모델에 모아놓고 사용할수 있습니다. </p>
+<br>
+
+<p>아래 예시에는, 몇가지 사용자 정의 메서드가 정의되어 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    first_name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    last_name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    birth_date = models.DateField()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">baby_boomer_status</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># "Returns the person's baby-boomer status. "</span></span><br><span class="line">        <span class="comment"># 해당 사람이, baby_boomer 세대인지 아닌지 판단합니다. </span></span><br><span class="line">        <span class="keyword">import</span> datetime </span><br><span class="line">        <span class="keyword">if</span> self.birth_date &lt; datetime.datetime(<span class="number">1945</span>, <span class="number">8</span>, <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Pre-boomer"</span></span><br><span class="line">        <span class="keyword">elif</span> self.birth_date &lt; datetime.datetime(<span class="number">1965</span>, <span class="number">1</span>, <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Baby boomer"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Post-boomer"</span></span><br><span class="line">        </span><br><span class="line"><span class="meta">    @property </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">full_name</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># "Returns the person's full name"</span></span><br><span class="line">        <span class="comment"># 해당 사람의 이름을 리턴합니다 </span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'%s %s'</span> % (self.first_name, self.last_name)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/10/Django-Models-13%ED%8E%B8-Model-Attributes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1433,127 +1555,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/" class="post-title-link" itemprop="url">Django Models 6편 - Fields (verbose field names)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-02 21:22:43 / Updated at: 21:43:07" itemprop="dateCreated datePublished" datetime="2020-08-02T21:22:43+09:00">2020-08-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/02/Django-Models-6편-Fields-verbose-field-names/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Models-Fields-verbose-field-names"><a href="#Models-Fields-verbose-field-names" class="headerlink" title="Models - Fields (verbose field names)"></a>Models - Fields (verbose field names)</h2><br>
-
-<p><code>ForeignKey</code>, <code>ManyToManyField</code> 그리고 <code>OneToOneField</code> 들을 제외한, 각 필드 타입은 선택적으로 첫번째 위치인자로, <code>verbose name</code> 을 받습니다. </p>
-<br>
-
-<p><code>verbose name</code> 이 주어지지 않았을때는, Django 는 자동으로 field 의 속성명의 언더스코어를 공백으로 전환하여 verbose name 을 생성합니다. </p>
-<br>
-
-<blockquote>
-<p>verbose name 은 </p>
-<p>사용자가 사용하는 자세한 이름을 의미합니다 </p>
-</blockquote>
-<br>
-
-<p><code>verbose name</code> 을 지정하지 않으면, 어드민에 표시되는 이름이 이상하다는것을 느낄수 있을겁니다. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1624,7 +1625,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">209</span>
+          <span class="site-state-item-count">210</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
