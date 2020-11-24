@@ -1,6 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 13편 - 어떻게 보일까요?</title>
+    <url>/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/</url>
+    <content><![CDATA[<h2 id="How’s-it-looking"><a href="#How’s-it-looking" class="headerlink" title="How’s it looking?"></a>How’s it looking?</h2><br>
+
+<p>더 나아가서, API 를 커맨드라인에서 테스트 해볼수 있습니다. </p>
+<p><br>우리는, 유효하지 않은 요청을 보냈을때 발생하는 몇가지 더 좋은 에러들을 다루기도 하였지만, 모든것은 비슷하게 작동합니다. </p>
+<br>
+
+<p>이전처럼, 모든 snippets 의 리스트를 얻을수 있습니다. </p>
+<br>
+
+<p>서버를 실행하고, 새로운 터미널 창을 열어서, 아래 커맨드를 실행해 줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>아래와 같은 리스트가 나옵니다. </p>
+<br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image1.png" class="">
+
+<br>
+
+<h2 id="응답의-포맷"><a href="#응답의-포맷" class="headerlink" title="응답의 포맷"></a>응답의 포맷</h2><br>
+
+<blockquote>
+<p>우리가 다시 받는 응답의 포멧을 제어할수도 있습니다. </p>
+<p>Accept 헤더를 사용합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets/ Accept:application/json    # JSON 요청 </span><br><span class="line">http http://127.0.0.1:8000/snippets/ Accept:text/html           # HTML 요청</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><br>
+
+<p>json 요청 </p>
+<br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image2.png" class="">
+
+<br>
+
+<h3 id="HTML-요청"><a href="#HTML-요청" class="headerlink" title="HTML 요청"></a>HTML 요청</h3><br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image3.png" class="">
+
+<br>
+
+<p>혹은, 포맷 접미사를 붙여서 사용합니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets.json  # JSON suffix </span><br><span class="line">http http://127.0.0.1:8000/snippets.api   # browsable API siffuix</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="요청의-포맷-제어"><a href="#요청의-포맷-제어" class="headerlink" title="요청의 포맷 제어"></a>요청의 포맷 제어</h3><br>
+
+<blockquote>
+<p>비슷한 방식으로, 우리는 우리가 보내는 요청의 포맷을 제어할수 있습니다 </p>
+<p>content-type-header 를 사용해서, 요청의 포맷을 제어합니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image4.png" class="">
+
+<br>
+
+<p>만약 <code>--debug</code> 스위치를 위의 http 요청에 추가한다면, 요청 타입을 요청의 헤더 안에서 볼수 있습니다. </p>
+<p><br>이제, API 를 웹 브라우저에서 열어봅니다 <code>http://127.0.0.1:8000/snippets/</code></p>
+<br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image5.png" class="">
+
+<br>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 12편 - URL에 Suffix 추가하기</title>
     <url>/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Adding-optional-format-suffixes-to-our-URLs"><a href="#Adding-optional-format-suffixes-to-our-URLs" class="headerlink" title="Adding optional format suffixes to our URLs"></a>Adding optional format suffixes to our URLs</h2><br>
