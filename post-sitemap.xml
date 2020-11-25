@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/11/25/DRF-Tutorial-14%ED%8E%B8-Browsability/</loc>
+        <lastmod>2020-11-25T09:57:45.352Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/</loc>
         <lastmod>2020-11-24T07:16:07.853Z</lastmod>
         <changefreq>weekly</changefreq>
