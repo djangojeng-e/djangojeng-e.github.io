@@ -220,6 +220,137 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/28/TodoList-32%ED%8E%B8-dockerignore-%ED%8C%8C%EC%9D%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/28/TodoList-32%ED%8E%B8-dockerignore-%ED%8C%8C%EC%9D%BC/" class="post-title-link" itemprop="url">TodoList 32편 - .dockerignore 파일</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-07-28 14:29:32 / Updated at: 14:57:31" itemprop="dateCreated datePublished" datetime="2020-07-28T14:29:32+09:00">2020-07-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/07/28/TodoList-32%ED%8E%B8-dockerignore-%ED%8C%8C%EC%9D%BC/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/28/TodoList-32편-dockerignore-파일/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="dockerignore-파일"><a href="#dockerignore-파일" class="headerlink" title="dockerignore 파일"></a>dockerignore 파일</h2><br>
+
+<p>현재까지 배포를 위해 진행한 스텝입니다 </p>
+<br>
+
+<ol>
+<li>AWS EC2 생성 </li>
+<li>AWS RDS 생성 - PostgreSQL 적용 </li>
+<li>AWS S3 생성 및 적용 </li>
+<li>AWS S3 정적 이미지와 CSS 파일 적용 </li>
+<li>Docker 설치 </li>
+<li>Dockerfile 작성 후 이미지 생성 </li>
+<li>생성된 이미지를 DockerHub 에 Push </li>
+<li>Docker 를 이용하여 EC2 에 배포하기 (.dockerigrnoe파일) </li>
+</ol>
+<br>
+
+<p>지난 포스팅까지, Docker 를 이용하여, EC2 에 배포하는것 까지 진행 하였고. <br></p>
+<p>EC2 에 잘 배포가 되는것까지 확인 하였습니다. </p>
+<br>
+
+<blockquote>
+<p>하지만, Docker 를 사용하여, </p>
+<p>EC2 에 배포할때에, .dockerignore 파일에 대해서 </p>
+<p>신경 써야 한다는 점을 잊지 말아야 합니다 </p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/28/TodoList-32%ED%8E%B8-dockerignore-%ED%8C%8C%EC%9D%BC/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/27/TodoList-31%ED%8E%B8-Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-EC2%EC%97%90-%EB%B0%B0%ED%8F%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1325,134 +1456,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">TodoList 22편 - AWS RDS 생성하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-06-09 19:39:19 / Updated at: 19:49:40" itemprop="dateCreated datePublished" datetime="2020-06-09T19:39:19+09:00">2020-06-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/09/TodoList-22편-AWS-RDS-생성하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="AWS-RDS-생성하기"><a href="#AWS-RDS-생성하기" class="headerlink" title="AWS RDS 생성하기"></a>AWS RDS 생성하기</h2><br>
-
-<p>지난 포스팅에서는, 진행한건 아래와 같습니다. </p>
-<br>
-
-<ol>
-<li>AWS EC2 생성</li>
-<li>EC2 인스턴스에 프로젝트 폴더 업로드 </li>
-<li>EC2 인스턴스 안에서 서버 실행 </li>
-<li>브라우저로 EC2 접속 </li>
-<li>프로젝트 동작 확인  </li>
-</ol>
-<br>
-
-<p>하지만, 문제가 하나 있었습니다. </p>
-<br>
-
-<blockquote>
-<p>static 파일을 읽어오지 못해서, 이미지와 CSS 적용이 되질 않았었습니다. </p>
-<p>일단 이 부분에 대해서는, 나중에 찾아가면서 해결해 보도록 하고, </p>
-<p>데이터 베이스를 기본 데이터베이스인 Sqlite3 대신에, 다른 DB 를 적용 해 보려 합니다. </p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/09/TodoList-22%ED%8E%B8-AWS-RDS-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1523,7 +1526,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">212</span>
+          <span class="site-state-item-count">213</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
