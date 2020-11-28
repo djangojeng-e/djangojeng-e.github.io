@@ -220,6 +220,141 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-3/" class="post-title-link" itemprop="url">AWS Elastic Beanstalk 배포 - 3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-09-24 12:27:58 / Updated at: 12:48:53" itemprop="dateCreated datePublished" datetime="2020-09-24T12:27:58+09:00">2020-09-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AWS/Elastic-Beanstalk/" itemprop="url" rel="index"><span itemprop="name">Elastic Beanstalk</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-3/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/09/24/AWS-Elastic-Beanstalk-배포-3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="배포전-환경설정"><a href="#배포전-환경설정" class="headerlink" title="배포전 환경설정"></a>배포전 환경설정</h2><br>
+
+<p>Elastic Beanstalk 에 Django 애플리케이션을 배포하기 위해서 필요한 환경 설정들이 몇가지 있습니다. </p>
+<p><br>배포 작업을 진행하기 전에, 로컬 컴퓨터에서 배포를 위한 설정들을 하나씩 해주고. </p>
+<p><br>Django 어플리케이션을 Elastic Beanstalk 에 배포하도록 할겁니다. </p>
+<br>
+
+<h2 id="AWS-Elastic-Beanstalk-주요-환경"><a href="#AWS-Elastic-Beanstalk-주요-환경" class="headerlink" title="AWS Elastic Beanstalk 주요 환경"></a>AWS Elastic Beanstalk 주요 환경</h2><br>
+
+<ul>
+<li>AWS 계정 </li>
+<li>Python 3.6</li>
+<li>pip </li>
+<li>virtualenv</li>
+<li>awsebcli </li>
+<li>Django 2.1.1 </li>
+</ul>
+<br>
+
+<blockquote>
+<p>Django 버전은, </p>
+<p>Elastic Beanstalk Python 구성 버전과 호환 되어야 합니다 </p>
+<p>Django 2.2 는 Elastic Beanstalk Python 3.6 플랫폼과 호환되지 않으므로 </p>
+<p>Django2.1.1 을 기반으로 한 프로젝트 실습을 진행 합니다. </p>
+</blockquote>
+<br>
+
+<br>
+
+<p><strong>파이썬 3.6 가상환경 생성 부터 진행해 봅니다 (ubuntu18.04)</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-3/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1374,153 +1509,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/15/Django-Models-17%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Abstract-Base-Class-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/15/Django-Models-17%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Abstract-Base-Class-2/" class="post-title-link" itemprop="url">Django Models 17편 - Model 상속 (Abstract Base Class) 2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-15 14:40:39 / Updated at: 14:53:52" itemprop="dateCreated datePublished" datetime="2020-08-15T14:40:39+09:00">2020-08-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/08/15/Django-Models-17%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Abstract-Base-Class-2/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/15/Django-Models-17편-Model-상속-Abstract-Base-Class-2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Meta-Inheritance"><a href="#Meta-Inheritance" class="headerlink" title="Meta Inheritance"></a>Meta Inheritance</h2><br>
-
-<p><code>abstract base class</code>가 생성될때에, django 는 base class 안에 선언된 Meta 클래스를 속성으로 만들어 줍니다. 만약 하나의 자식 클래스안에, 해당 자식 클래스를 위한 Meta class 가 정의되어 있지 않다면, 부모의 Meta 를 상속 받을것 입니다. </p>
-<br>
-
-<blockquote>
-<p>만약 자식 클래스가, 부모의 Meta 클래스를 확장하고 싶다면, </p>
-<p>자식  클래스는, 부모의 Meta 클래스를 자식 클래스 내에 있는 Meta 에서 상속 받으면 됩니다. </p>
-</blockquote>
-<br>
-
-<p>코드 예시를 들자면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommonInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line">    age = models.PositiveIntegerField()</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        abstract = <span class="literal">True</span> </span><br><span class="line">        ordering = [<span class="string">'name'</span>]</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(CommonInfo)</span>:</span></span><br><span class="line">    home_group = models.CharField(max_length=<span class="number">5</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span><span class="params">(CommonInfo.Meta)</span>:</span></span><br><span class="line">        db_table = <span class="string">'student_info'</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>Django 는 기본적으로, abstract base 클래스의 Meta class 에 대한 조정사항을 가집니다. Meta 속성을 설치하기 이전에, abstract=False 로 지정합니다. </p>
-<br>
-
-<p>이것이 의미하는바는, <br></p>
-<p>abstract 클래스의 자녀들은 자동으로 그리고 스스로는 abstract 클래스가 되지 않는다는것을 의미합니다.</p>
-<br>
-
-<p>물론, 다른 abstract 클래스를 상속받는 Abstract 클래스를 만드는것도 가능합니다. </p>
-<p>단지 만들때마다, 명시적으로, abstract=True 를 지정해주는것만이 필요할 뿐입니다. </p>
-<br>
-
-<p>어떠한 속성들은 Abstract base class 의 Meta 안에 포함되는것이 이상해 보일때가 있습니다. </p>
-<p><br>예를들면, db_table 을 포함한다면, 모든 자식 클래스들이 같은 데이터베이스 테이블을 사용하게 된다는 의미가 됩니다. 이렇게 설정하면, 매우 일이 이상해 집니다. </p>
-<br>
-
-<h2 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h2><br>
-
-<p>자식 클래스에 있는 Meta Class 도 부모 클래스에 있는 Meta 클래스를 상속 받을수 있습니다. </p>
-<br>
-
-<p>연습도 해볼겸, 인스턴스 생성후, 속성값들을 확인해 봅니다. </p>
-<br>
-
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">In</span> [<span class="number">1</span>]: colin = Student.objects.create(name=<span class="string">"Colin Firth"</span>, age=<span class="number">60</span>, home_group=<span class="string">"king"</span>)                                                                                     </span><br><span class="line"></span><br><span class="line"><span class="keyword">In</span> [<span class="number">2</span>]: colin.Meta                                                                                                                                                        </span><br><span class="line">Out[<span class="number">2</span>]: abstractbaseclasses.models.CommonInfo.Meta</span><br><span class="line"></span><br><span class="line"><span class="keyword">In</span> [<span class="number">4</span>]: colin.name                                                                                                                                                        </span><br><span class="line">Out[<span class="number">4</span>]: <span class="string">'Colin Firth'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">In</span> [<span class="number">5</span>]: colin.age                                                                                                                                                         </span><br><span class="line">Out[<span class="number">5</span>]: <span class="number">60</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>Student class 안에 Meta 클래스에 db_table 이 데이터베이스 테이블 명이 된것을 확인할수 있습니다. </p>
-<br>
-
-<p>CommonInfo 클래스 안에 존재하는 Meta 클래스에, 이 db_table 속성을 넣어두면, </p>
-<p>CommonInfo 클래스를 상속하는 모든 자식 클래스들의 데이터베이스 테이블명이 모두 하나로 동일하게 될겁니다. 그렇게 되면, 조금 이상한 일이 될겁니다. </p>
-<br>
-
-
-
-<br>
-
-<br>
-
-<br>
-
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1591,7 +1579,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">213</span>
+          <span class="site-state-item-count">214</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1604,7 +1592,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">155</span>
+        <span class="site-state-item-count">156</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
