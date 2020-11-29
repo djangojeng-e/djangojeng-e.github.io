@@ -3,21 +3,21 @@
 
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/mixins/</loc>
-        <lastmod>2020-11-28T07:00:48.639Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://djangojeng-e.github.io/tags/API/</loc>
-        <lastmod>2020-11-28T07:00:48.639Z</lastmod>
+        <lastmod>2020-11-29T03:17:46.221Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/DRF/</loc>
+        <lastmod>2020-11-29T03:17:46.221Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/mixins/</loc>
         <lastmod>2020-11-28T07:00:48.639Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 17편 - generic 클래스뷰 사용하기</title>
+    <url>/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Generic-클래스뷰-사용하기"><a href="#Generic-클래스뷰-사용하기" class="headerlink" title="Generic 클래스뷰 사용하기"></a>Generic 클래스뷰 사용하기</h2><br>
+
+<p>mixin 클래스들을 사용하여서 우리의 뷰들은 그전보다 조금은 적은 양의 코드를 사용하도록 작성했었습니다. 하지만, 한단계 더 줄일수 있습니다. </p>
+<br>
+
+<p><code>REST FRAMEWORK</code> 은 이미 mixin 되어 있는 <code>generic</code> 뷰들을 제공하여, 우리가 우리의 <code>views.py</code> 를 조금 더 줄이는데 사용할수 있게 해줍니다. </p>
+<br>
+
+<p><code>snippets/views.py</code> 파일을 아래와 같이 수정해 줄수 있습니다. 조금 더 적은 양의 코드가 사용됩니다! </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> generics </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetList</span><span class="params">(generics.ListCreateAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    serializer_class = SnippetSerializer </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetDetail</span><span class="params">(generics.RetrieveUpdateDestroyAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    seriazlizer_class = SnippetSerializer</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>와~ 엄청나게 간결해 집니다. 다음 튜토리얼에서는, API 에 대한 인증과 권한에 대해서 둘러볼것입니다. </p>
+<br>]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 16편 - mixins 사용하기</title>
     <url>/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Mixins-사용하기"><a href="#Mixins-사용하기" class="headerlink" title="Mixins 사용하기"></a>Mixins 사용하기</h2><br>
