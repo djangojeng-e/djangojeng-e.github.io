@@ -220,6 +220,248 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/30/DRF-Tutorial-19%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%97%90-%EC%A0%95%EB%B3%B4-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/30/DRF-Tutorial-19%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%97%90-%EC%A0%95%EB%B3%B4-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF Tutorial 19편 - 모델에 정보 추가하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-30 17:44:54 / Updated at: 17:56:03" itemprop="dateCreated datePublished" datetime="2020-11-30T17:44:54+09:00">2020-11-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/30/DRF-Tutorial-19%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%97%90-%EC%A0%95%EB%B3%B4-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/30/DRF-Tutorial-19편-모델에-정보-추가하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Adding-information-to-our-model"><a href="#Adding-information-to-our-model" class="headerlink" title="Adding information to our model"></a>Adding information to our model</h2><br>
+
+<p>우리는, 우리의 Snippet 모델 클래스에, 몇가지 수정사항을 만들겁니다. </p>
+<br>
+
+<p>우선, 몇가지 필드들을 추가 합시다. 추가할 필드중 하나는, 누가 코드 스니펫을 생성했는가를 표시하기 위해서 사용될것입니다. 또다른 필드는, 하이라이트 된 코드의 HTML 을 저장하는데에 쓰입니다. </p>
+<br>
+
+<ol>
+<li>스니펫 생성자 owner 필드 </li>
+<li>하이라이트 된 코드의 HTML 텍스트 </li>
+</ol>
+<br>
+
+<p>아래 두가지 필드들을 <code>snippets/models.py</code> 에 있는 Snippet 모델에 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">owner = models.ForeignKey(<span class="string">'auth.User'</span>, related_name=<span class="string">'snippets'</span>, 		 on_delete=models.CASCADE)</span><br><span class="line">highlighted = models.TextField()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>모델이 저장될때, 또한가지 확실시 해야 하는것은, 코드를 하이라이트 해주는 라이브러리인 <code>pygments</code> 를 사용하여 highlighted 필드를 채워주는것입니다. </p>
+<br>
+
+<p>몇가지 불러오기를 해줄 필요가 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pygments.lexers <span class="keyword">import</span> get_lexer_by_name </span><br><span class="line"><span class="keyword">from</span> pygments.formatters.html <span class="keyword">import</span> HtmlFormatter </span><br><span class="line"><span class="keyword">from</span> pygments <span class="keyword">import</span> highlight</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>그리고 이제, 우리는 <code>.save()</code> 메서드를 우리의 모델 클래스에 추가해줄수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self, *args, **kwargs)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Use the 'pygments' library to create a highlighted HTML representation of the 	  code snippet.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    lexer = get_lexer_by_name(self.language)</span><br><span class="line">    linenos = <span class="string">'table'</span> <span class="keyword">if</span> self.linenos <span class="keyword">else</span> <span class="literal">False</span> </span><br><span class="line">    options = &#123;<span class="string">'title'</span>: self.title&#125; <span class="keyword">if</span> self.title <span class="keyword">else</span> &#123;&#125;</span><br><span class="line">    formatter = HtmlFormatter(style=self.style, linenos=linenos, full=<span class="literal">True</span>, 	 **options)</span><br><span class="line">    self.highlighted = highlight(self.code, lexer, formatter)</span><br><span class="line">    super(Snippet, self).save(*args, **kwargs)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이것이 모두 완료가 되면, 우리는 우리의 데이터베이스 테이블들을 업데이트 해줄 필요가 있을것입니다. </p>
+<br>
+
+<p>이를 해주기 위해서, 일번적으로 우리는 database migration 을 생성해 줍니다. 하지만, 이번 튜토리얼의 목적을 위해, database 를 삭제하고 다시 시작합시다. </p>
+<br>
+
+<p>터미널에서 아래 명령어를 실행 합니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm -f db.sqlite3 </span><br><span class="line">rm -f snipepts/migrations </span><br><span class="line">python manage.py makemigraitons snippets </span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>또한 여러분들은 API 테스팅 사용을 위한, 여러명의 다른 사용자들을 생성하고 싶을지 모릅니다. </p>
+<br>
+
+<p>이를 위해 가장 빠른 방법은 <code>createsuperuser</code> 커맨드를 사용하는것입니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/30/DRF-Tutorial-18%ED%8E%B8-%EC%9D%B8%EC%A6%9D%EA%B3%BC-%EA%B6%8C%ED%95%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/30/DRF-Tutorial-18%ED%8E%B8-%EC%9D%B8%EC%A6%9D%EA%B3%BC-%EA%B6%8C%ED%95%9C/" class="post-title-link" itemprop="url">DRF Tutorial 18편 - 인증과 권한</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-30 17:41:15 / Updated at: 17:44:03" itemprop="dateCreated datePublished" datetime="2020-11-30T17:41:15+09:00">2020-11-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/30/DRF-Tutorial-18%ED%8E%B8-%EC%9D%B8%EC%A6%9D%EA%B3%BC-%EA%B6%8C%ED%95%9C/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/30/DRF-Tutorial-18편-인증과-권한/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Authentication-amp-Permissions"><a href="#Authentication-amp-Permissions" class="headerlink" title="Authentication &amp; Permissions"></a>Authentication &amp; Permissions</h2><br>
+
+<p>현재 우리의 API 는 누가 code snippets  을 수정을 하든 삭제를 하든지 어떠한 제약도 가지고 있지 않습니다. 우리는 아래의 사항들에 대해 확실시 하기 위해, 조금더 고도의 동작을 만들어 놓고싶습니다. </p>
+<br>
+
+<ul>
+<li>코드 스니펫들은 언제나 생성자와 연관되어야함 </li>
+<li>오직 인증된 사용자들만 스니펫을 생성할수 있음 </li>
+<li>오직 스니펫을 생성한 생성자만, 스니펫을 업데이트 혹은 삭제할수 있음 </li>
+<li>인증 되지 않은 사용자들은 읽기전용 엑세스만 가져야만 함 </li>
+</ul>
+<br>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1170,232 +1412,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/22/DRF-Tutorial-9%ED%8E%B8-%EC%83%81%ED%83%9C%EC%BD%94%EB%93%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/22/DRF-Tutorial-9%ED%8E%B8-%EC%83%81%ED%83%9C%EC%BD%94%EB%93%9C/" class="post-title-link" itemprop="url">DRF Tutorial 9편 - 상태코드</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-22 09:08:12 / Updated at: 09:11:07" itemprop="dateCreated datePublished" datetime="2020-11-22T09:08:12+09:00">2020-11-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/22/DRF-Tutorial-9%ED%8E%B8-%EC%83%81%ED%83%9C%EC%BD%94%EB%93%9C/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/22/DRF-Tutorial-9편-상태코드/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Status-Codes"><a href="#Status-Codes" class="headerlink" title="Status Codes"></a>Status Codes</h2><br>
-
-<p><code>HTTP</code> 요청에대한 상태를 표시하는 상태 코드들이 존재합니다. 숫자로된 HTTP 상태 코드들을 당신의 view 에서 사용하는것은, 언제나 명확하게 읽혀지지 않습니다. 그리고, 만약 당신이 틀린 에러 코드를 갖게되더라도, 알아채기 쉽지 않습니다. </p>
-<br>
-
-<p>따라서, REST framework 은 조금 더 명확한 식별자들을 각 상태 코드에 부여합니다. status 모듈안에 있는, <code>HTTP_400_BAD_REQUEST</code> 같이 말이죠. </p>
-<br>
-
-<p>숫자로 된 식별자들을 사용하는것보다, 이러한 RESTFramework 에서 제공하는 좀 더 명시적인 식별자들을 사용하는것이 더 좋은 생각이 될것 입니다. </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/" class="post-title-link" itemprop="url">DRF Tutorial 8편 - DRF Tutorial 8편 - 요청과 응답</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-21 14:44:19 / Updated at: 14:59:19" itemprop="dateCreated datePublished" datetime="2020-11-21T14:44:19+09:00">2020-11-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/21/DRF-Tutorial-8편-DRF-Tutorial-8편-요청과-응답/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <br>
-
-<h2 id="Requests-and-Responses"><a href="#Requests-and-Responses" class="headerlink" title="Requests and Responses"></a>Requests and Responses</h2><br>
-
-<blockquote>
-<p>이제부터 우리는,</p>
-<p>진짜로 REST framework 의 주요 사항들을 볼것입니다. </p>
-<p>몇가지 필수 사항들을 소개해 봅시다. </p>
-</blockquote>
-<br>
-
-<h2 id="Request-objects"><a href="#Request-objects" class="headerlink" title="Request objects"></a>Request objects</h2><br>
-
-<p>REST Framework 은 일반 HttpResponse 를 확장하는 Request 객체를 소개하고, </p>
-<p>조금 더 유연한 파싱을 제공합니다. Request 객체의 주요 기능은,  <code>request.data</code> 속성이고, </p>
-<br>
-
-<p>이것은, request.POST 와 비슷하지만, Web API 를 작업할때 좀 더 유용합니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">request.POST </span><br><span class="line"><span class="comment"># only handles form data. Only works for 'POST' method</span></span><br><span class="line"><span class="comment"># 폼 데이터만 다루고, 오로지 POST 메서드에만 동작합니다. </span></span><br><span class="line"></span><br><span class="line">request.data</span><br><span class="line"><span class="comment"># 임의의 데이터를 다룰수 있고, </span></span><br><span class="line"><span class="comment"># 'POST', 'PUT' 그리고 'PATCH' 메서드들을 위해 동작합니다</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="Response-objects"><a href="#Response-objects" class="headerlink" title="Response objects"></a>Response objects</h2><br>
-
-<p>REST Framework 은 Response 객체도 가지고 있습니다.</p>
-<p><br>이것은, TemplateResponse 의 종류로, 렌더되지 않은 컨텐트와 content negotiation 을 사용하여, </p>
-<br>
-
-<p>클라이언트에게 반환할 적절한 컨텐트 종류를 결정합니다. </p>
-<br>
-
-<blockquote>
-<p><strong>Content Negotiation</strong></p>
-<p>동일한 URI 에서 리소스의 서로 다른 버전을 수행하기 위해 사용되는 메커니즘으로,</p>
-<p>사용자 에이전트가 사용자에게 제일 잘 맞는것이 무엇인지를 명시할수 있습니다. </p>
-<p>예) 문서의 언어, 이미지, 포맷 혹은 콘텐츠 인코딩에 있어서 어떤것이 적절할지를 정함.</p>
-</blockquote>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> Response(data)</span><br><span class="line"><span class="comment"># Renders to content type as requested by the client </span></span><br><span class="line"><span class="comment"># 클라이언트가 요청한 content 종류를 렌더해줌</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1466,7 +1482,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">215</span>
+          <span class="site-state-item-count">217</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

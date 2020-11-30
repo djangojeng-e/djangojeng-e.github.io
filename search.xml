@@ -1,6 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 19편 - 모델에 정보 추가하기</title>
+    <url>/2020/11/30/DRF-Tutorial-19%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%97%90-%EC%A0%95%EB%B3%B4-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Adding-information-to-our-model"><a href="#Adding-information-to-our-model" class="headerlink" title="Adding information to our model"></a>Adding information to our model</h2><br>
+
+<p>우리는, 우리의 Snippet 모델 클래스에, 몇가지 수정사항을 만들겁니다. </p>
+<br>
+
+<p>우선, 몇가지 필드들을 추가 합시다. 추가할 필드중 하나는, 누가 코드 스니펫을 생성했는가를 표시하기 위해서 사용될것입니다. 또다른 필드는, 하이라이트 된 코드의 HTML 을 저장하는데에 쓰입니다. </p>
+<br>
+
+<ol>
+<li>스니펫 생성자 owner 필드 </li>
+<li>하이라이트 된 코드의 HTML 텍스트 </li>
+</ol>
+<br>
+
+<p>아래 두가지 필드들을 <code>snippets/models.py</code> 에 있는 Snippet 모델에 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">owner = models.ForeignKey(<span class="string">'auth.User'</span>, related_name=<span class="string">'snippets'</span>, 		 on_delete=models.CASCADE)</span><br><span class="line">highlighted = models.TextField()</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>모델이 저장될때, 또한가지 확실시 해야 하는것은, 코드를 하이라이트 해주는 라이브러리인 <code>pygments</code> 를 사용하여 highlighted 필드를 채워주는것입니다. </p>
+<br>
+
+<p>몇가지 불러오기를 해줄 필요가 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pygments.lexers <span class="keyword">import</span> get_lexer_by_name </span><br><span class="line"><span class="keyword">from</span> pygments.formatters.html <span class="keyword">import</span> HtmlFormatter </span><br><span class="line"><span class="keyword">from</span> pygments <span class="keyword">import</span> highlight</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>그리고 이제, 우리는 <code>.save()</code> 메서드를 우리의 모델 클래스에 추가해줄수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self, *args, **kwargs)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Use the 'pygments' library to create a highlighted HTML representation of the 	  code snippet.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    lexer = get_lexer_by_name(self.language)</span><br><span class="line">    linenos = <span class="string">'table'</span> <span class="keyword">if</span> self.linenos <span class="keyword">else</span> <span class="literal">False</span> </span><br><span class="line">    options = &#123;<span class="string">'title'</span>: self.title&#125; <span class="keyword">if</span> self.title <span class="keyword">else</span> &#123;&#125;</span><br><span class="line">    formatter = HtmlFormatter(style=self.style, linenos=linenos, full=<span class="literal">True</span>, 	 **options)</span><br><span class="line">    self.highlighted = highlight(self.code, lexer, formatter)</span><br><span class="line">    super(Snippet, self).save(*args, **kwargs)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이것이 모두 완료가 되면, 우리는 우리의 데이터베이스 테이블들을 업데이트 해줄 필요가 있을것입니다. </p>
+<br>
+
+<p>이를 해주기 위해서, 일번적으로 우리는 database migration 을 생성해 줍니다. 하지만, 이번 튜토리얼의 목적을 위해, database 를 삭제하고 다시 시작합시다. </p>
+<br>
+
+<p>터미널에서 아래 명령어를 실행 합니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm -f db.sqlite3 </span><br><span class="line">rm -f snipepts/migrations </span><br><span class="line">python manage.py makemigraitons snippets </span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>또한 여러분들은 API 테스팅 사용을 위한, 여러명의 다른 사용자들을 생성하고 싶을지 모릅니다. </p>
+<br>
+
+<p>이를 위해 가장 빠른 방법은 <code>createsuperuser</code> 커맨드를 사용하는것입니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br></pre></td></tr></table></figure>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DRF Tutorial 18편 - 인증과 권한</title>
+    <url>/2020/11/30/DRF-Tutorial-18%ED%8E%B8-%EC%9D%B8%EC%A6%9D%EA%B3%BC-%EA%B6%8C%ED%95%9C/</url>
+    <content><![CDATA[<h2 id="Authentication-amp-Permissions"><a href="#Authentication-amp-Permissions" class="headerlink" title="Authentication &amp; Permissions"></a>Authentication &amp; Permissions</h2><br>
+
+<p>현재 우리의 API 는 누가 code snippets  을 수정을 하든 삭제를 하든지 어떠한 제약도 가지고 있지 않습니다. 우리는 아래의 사항들에 대해 확실시 하기 위해, 조금더 고도의 동작을 만들어 놓고싶습니다. </p>
+<br>
+
+<ul>
+<li>코드 스니펫들은 언제나 생성자와 연관되어야함 </li>
+<li>오직 인증된 사용자들만 스니펫을 생성할수 있음 </li>
+<li>오직 스니펫을 생성한 생성자만, 스니펫을 업데이트 혹은 삭제할수 있음 </li>
+<li>인증 되지 않은 사용자들은 읽기전용 엑세스만 가져야만 함 </li>
+</ul>
+<br>]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 17편 - generic 클래스뷰 사용하기</title>
     <url>/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Generic-클래스뷰-사용하기"><a href="#Generic-클래스뷰-사용하기" class="headerlink" title="Generic 클래스뷰 사용하기"></a>Generic 클래스뷰 사용하기</h2><br>
