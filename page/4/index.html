@@ -220,6 +220,194 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/04/Python-%EA%B8%B0%EC%B4%88-13%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/04/Python-%EA%B8%B0%EC%B4%88-13%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-2/" class="post-title-link" itemprop="url">Python 기초 13편 - Regular Expression (정규표현식 2)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-04 20:20:59 / Updated at: 20:28:39" itemprop="dateCreated datePublished" datetime="2020-11-04T20:20:59+09:00">2020-11-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/04/Python-%EA%B8%B0%EC%B4%88-13%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-2/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/04/Python-기초-13편-Regular-Expression-정규표현식-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h2><br>
+
+<p>정규표현식은, 긴 텍스트에서 검색할 문자열 혹은 패턴을 나타내는 기호 및 문자입니다. </p>
+<p><br>정규표현식에 지정된 문자열들이 검색할 문자열에서 매치가 되는지 확인이 가능합니다.<br><br></p>
+<p>이전 포스팅에서, re 모듈은 <code>findall</code>, <code>search</code>, <code>split</code>, <code>sub</code> 같은 함수들을 가지고 있다는것을 알았고, 몇가지 특정 의미를 가진 문자들 metacharacter  에 대해서 알아보았습니다. </p>
+<br>
+
+<p>*<em>지난 포스팅에 이어서,  special sequences 특정 순서에 대해서 알아봅니다. *</em></p>
+<br>
+
+<blockquote>
+<p>Special sequence 는 \ 뒤에 문자 하나를 붙여서 지정합니다. </p>
+<p>아래 테이블로 정리 해봅니다. </p>
+</blockquote>
+<br>
+
+
+
+<table>
+<thead>
+<tr>
+<th><strong>문자</strong></th>
+<th><strong>비고</strong></th>
+<th><strong>예시</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\A</td>
+<td>지정된 문자가, 문자열의 앞에 오면 매치를 반환 합니다.</td>
+<td>“\AThe”</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>지정된 문자가, 문자열의 단어의 앞부분 혹은 뒷부분에 있으면, 매치를 반환합니다</td>
+<td>r”\bain”r”ain\b”</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>지정된 문자가 문자열안에 있지만, 단어의 앞부분 혹은 뒷부분에 없을 경우에 매치를 반환합니다.</td>
+<td>r”\Bain”r”\ain\B”</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>문자열이 숫자를 포함하면 (0-9) 를 가지고 있으면, 매치를 반환합니다</td>
+<td>“\d”</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>문자열이 숫자를 포함하지 않으면, 매치를 반환</td>
+<td>“\D”</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>문자열이 빈공간을 가지고 있으면, 매치를 반환</td>
+<td>“\s”</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>문자열이 빈공간을 가지고 있지 않으면, 매치를 반환</td>
+<td>“\S”</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>문자열이 아무 문자 (a - Z, 0-9, _)나 가지고 있을경우, 매치를 반환</td>
+<td>“\w”</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>문자열이, 아무 문자(a-Z, 0-9, _)를 가지고 있지 않을 경우, 매치를 반환</td>
+<td>“\W”</td>
+</tr>
+<tr>
+<td>\Z</td>
+<td>문자열의 끝에 지정된 문자가 있으면 매치를 리턴</td>
+<td>“Spain\Z”</td>
+</tr>
+</tbody></table>
+<hr>
+<br>
+
+
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/04/Python-%EA%B8%B0%EC%B4%88-13%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-2/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/03/Python-%EA%B8%B0%EC%B4%88-12%ED%8E%B8-Regular-Expression-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1689,144 +1877,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/" class="post-title-link" itemprop="url">Python 기초 3편 - print 함수</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-25 10:21:55 / Updated at: 11:00:35" itemprop="dateCreated datePublished" datetime="2020-10-25T10:21:55+09:00">2020-10-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/25/Python-기초-3편-print-함수/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Python-print"><a href="#Python-print" class="headerlink" title="Python - print()"></a>Python - <code>print()</code></h2><br>
-
-<br>
-
-<h2 id="print-함수"><a href="#print-함수" class="headerlink" title="print 함수"></a>print 함수</h2><br>
-
-<p>print 문은 <code>print()</code> 함수로 대체 되었습니다. 키워드 인자들은, 이전 프린트문의 특수 문법들을 대체 합니다. </p>
-<br>
-
-<p>print문은 아래와 같은 방식으로 사용될수 있습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Good Morning"</span>)</span><br><span class="line">print(<span class="string">"Good"</span>, &lt;문자열을 가지고 있는 변수&gt;)</span><br><span class="line">print(<span class="string">"Good"</span>, &lt;문자열을 가지고 있는 변수&gt;)</span><br><span class="line">print(<span class="string">"Good %s"</span> % &lt;문자열을 가지고 있는 변수&gt; )</span><br><span class="line"></span><br><span class="line"><span class="comment"># 예) </span></span><br><span class="line">a = <span class="string">'abc'</span></span><br><span class="line"><span class="comment"># a 는 abc 라는 문자열을 가지고 있는 변수 </span></span><br><span class="line">print(<span class="string">'good'</span>, a)</span><br><span class="line">print(<span class="string">'good'</span> + a)</span><br><span class="line">print(<span class="string">'good %S'</span> % a)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h3 id="문자열-포매팅"><a href="#문자열-포매팅" class="headerlink" title="문자열 포매팅"></a>문자열 포매팅</h3><br>
-
-<p>추가적으로 문자열 포매팅이 중요한데. 문자열에 출력될 변수를, <code>%</code>, <code>{}</code> 에 넣어서 출력할수도 있습니다</p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">'django_bro'</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"Hey! %s"</span>, text)</span><br><span class="line">print(<span class="string">f'Hey! <span class="subst">&#123;text&#125;</span>'</span>)</span><br><span class="line">print(<span class="string">'Hey! &#123;&#125;'</span>.format(text))</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<blockquote>
-<p>파이썬에서 문자열은, </p>
-<p>외따옴표, 쌍따옴표, 혹은 따옴표 3개로 감싸서 문자열로 사용할수 있습니다.</p>
-<p>문자열을 표현하기 위해서 사용되는 따옴표의 종류는 어떤것을 사용해도 상관이 없습니다.  </p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1897,7 +1947,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">217</span>
+          <span class="site-state-item-count">218</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

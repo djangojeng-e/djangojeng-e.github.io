@@ -220,6 +220,144 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/" class="post-title-link" itemprop="url">Python 기초 3편 - print 함수</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-25 10:21:55 / Updated at: 11:00:35" itemprop="dateCreated datePublished" datetime="2020-10-25T10:21:55+09:00">2020-10-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/25/Python-기초-3편-print-함수/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Python-print"><a href="#Python-print" class="headerlink" title="Python - print()"></a>Python - <code>print()</code></h2><br>
+
+<br>
+
+<h2 id="print-함수"><a href="#print-함수" class="headerlink" title="print 함수"></a>print 함수</h2><br>
+
+<p>print 문은 <code>print()</code> 함수로 대체 되었습니다. 키워드 인자들은, 이전 프린트문의 특수 문법들을 대체 합니다. </p>
+<br>
+
+<p>print문은 아래와 같은 방식으로 사용될수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Good Morning"</span>)</span><br><span class="line">print(<span class="string">"Good"</span>, &lt;문자열을 가지고 있는 변수&gt;)</span><br><span class="line">print(<span class="string">"Good"</span>, &lt;문자열을 가지고 있는 변수&gt;)</span><br><span class="line">print(<span class="string">"Good %s"</span> % &lt;문자열을 가지고 있는 변수&gt; )</span><br><span class="line"></span><br><span class="line"><span class="comment"># 예) </span></span><br><span class="line">a = <span class="string">'abc'</span></span><br><span class="line"><span class="comment"># a 는 abc 라는 문자열을 가지고 있는 변수 </span></span><br><span class="line">print(<span class="string">'good'</span>, a)</span><br><span class="line">print(<span class="string">'good'</span> + a)</span><br><span class="line">print(<span class="string">'good %S'</span> % a)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="문자열-포매팅"><a href="#문자열-포매팅" class="headerlink" title="문자열 포매팅"></a>문자열 포매팅</h3><br>
+
+<p>추가적으로 문자열 포매팅이 중요한데. 문자열에 출력될 변수를, <code>%</code>, <code>{}</code> 에 넣어서 출력할수도 있습니다</p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">'django_bro'</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"Hey! %s"</span>, text)</span><br><span class="line">print(<span class="string">f'Hey! <span class="subst">&#123;text&#125;</span>'</span>)</span><br><span class="line">print(<span class="string">'Hey! &#123;&#125;'</span>.format(text))</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<blockquote>
+<p>파이썬에서 문자열은, </p>
+<p>외따옴표, 쌍따옴표, 혹은 따옴표 3개로 감싸서 문자열로 사용할수 있습니다.</p>
+<p>문자열을 표현하기 위해서 사용되는 따옴표의 종류는 어떤것을 사용해도 상관이 없습니다.  </p>
+</blockquote>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/25/Python-%EA%B8%B0%EC%B4%88-3%ED%8E%B8-print-%ED%95%A8%EC%88%98/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/24/Python-%EA%B8%B0%EC%B4%88-2%ED%8E%B8-Syntax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1351,131 +1489,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/16/Form-API-3%ED%8E%B8-Dynamic-Initial-Values/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/16/Form-API-3%ED%8E%B8-Dynamic-Initial-Values/" class="post-title-link" itemprop="url">Form API 3편 - Dynamic Initial Values</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-16 09:13:51 / Updated at: 09:22:17" itemprop="dateCreated datePublished" datetime="2020-10-16T09:13:51+09:00">2020-10-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Form-API/" itemprop="url" rel="index"><span itemprop="name">Form API</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/16/Form-API-3%ED%8E%B8-Dynamic-Initial-Values/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/16/Form-API-3편-Dynamic-Initial-Values/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Dynamic-initial-values"><a href="#Dynamic-initial-values" class="headerlink" title="Dynamic initial values"></a>Dynamic initial values</h2><br>
-
-<h3 id="Form-initial"><a href="#Form-initial" class="headerlink" title="Form.initial"></a>Form.initial</h3><br>
-
-<p>initial 을 사용하여, 실행시에 폼필드의 초기값을 지정할수 있습니다. </p>
-<p><br>예를들면, 여러분들은 현재 세션의 username 을 username 필드에 채워놓고 싶을지도 모릅니다<br></p>
-<p>이런 동작을 구현하기 위해서, initial 인자를 Form 에 써줍니다. </p>
-<br>
-
-<p>이 인자가 주어질때는, 필드명이 초기값에 매핑되는 사전 형태여야 합니다. </p>
-<br>
-
-<p>오직 여러분들이 초기값을 지정하고 싶은 필드에만 포함합니다.<br> 폼안에 모든 필드에 쓰는것은 불필요한 일입니다.<br><br></p>
-<p>예를들면, </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = ContactForm(initial=&#123;<span class="string">'subject'</span>: <span class="string">'Hi there!'</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>이 값들은 오직 unbound 폼에만 표시되고, 만약 특정 값이 주어지지 않을때에 fallback 값으로 사용되지 않습니다. </p>
-<br>
-
-<p>만약 필드가 initial 을 정의하고, initial 폼을 인스턴스화 할때 포함하면, 두번째가 먼저 택해집니다. 아래 예시에는, initial 이 필드에서 주어졌고, 폼 인스턴스에도 주어졌습니다. 두번째가 우선시 됩니다. </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">from django import forms </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">class CommentForm(forms.Form):</span></span><br><span class="line"><span class="xml">	name = forms.CharField(initial='class')</span></span><br><span class="line"><span class="xml">	url = forms.URLField()</span></span><br><span class="line"><span class="xml">    comment = forms.CharField()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="xml">In [1]: from forms_more_on_fields.forms import CommentForm                                                                                                                </span></span><br><span class="line"></span><br><span class="line"><span class="xml">In [2]: f = CommentForm(initial=&#123;'name': 'instance'&#125;, auto_id=False)                                                                                                      </span></span><br><span class="line"></span><br><span class="line"><span class="xml">In [3]: print(f)                                                                                                                                                          </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>Name:<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"instance"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>Url:<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>Comment:<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"comment"</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<blockquote>
-<p>Initial 값이 정해져 있어도, </p>
-<p>폼의 인스턴스를 생성할때 initial 을 지정해주면, 인스턴스 생성할때 지정한 initial 값이 해당 필드에 지정이 됩니다. </p>
-</blockquote>
-<br>
-
-<h3 id="Form-get-initial-for-field-field-field-name"><a href="#Form-get-initial-for-field-field-field-name" class="headerlink" title="Form.get_initial_for_field(field, field_name)"></a><code>Form.get_initial_for_field(field, field_name)</code></h3><br>
-
-<p>get_initial_for_field() 를 사용하여, 폼 필드의 초기 데이터를 조회할수 있습니다. 이는 Form.initial 과 Field.initial 로 부터, 데이터를 조회하고, 그 순서대로 호출 가능한 초기값들을 평가합니다 .</p>
-<p><br><br></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1546,7 +1559,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">217</span>
+          <span class="site-state-item-count">218</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

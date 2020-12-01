@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF Tutorial 20편 - 유저모델을 위한 엔드포인트 추가하기</title>
+    <url>/2020/12/01/DRF-Tutorial-20%ED%8E%B8-%EC%9C%A0%EC%A0%80%EB%AA%A8%EB%8D%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%97%94%EB%93%9C%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Adding-information-to-our-model"><a href="#Adding-information-to-our-model" class="headerlink" title="Adding information to our model"></a>Adding information to our model</h2><br>
+
+<blockquote>
+<p><strong>Endpoint 란?</strong></p>
+<p>어떠한 소프트웨어나 제품의 최종목적지인 사용자를 가리킴 </p>
+<p>사전적 의미로는, 연결의 한쪽 끝에 있는 엔티티 (주체)</p>
+</blockquote>
+<br>
+
+<p>이제 우리는 작업을 같이 할 몇몇의 사용자가 있습니다. 우리의 API 에 이 사용자들이 표시되게 하는것이 나을것 같습니다. 새로운 serializer 를 생성하는것은 쉽습니다. <code>snippets/serializers.py</code> 파일안에, 아래 내용을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserSerializer</span><span class="params">(serializer.ModelSerializer)</span>:</span></span><br><span class="line">    snippets = serializers.PrimaryKeyRelatedField(many=<span class="literal">True</span>, queryset=Snippet.objects.all())</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = User</span><br><span class="line">        fields = [<span class="string">'id'</span>, <span class="string">'username'</span>, <span class="string">'snippets'</span>]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><strong>Snippets 들은 User 모델에서 역방향 관계에 있기 때문에</strong> <code>ModelSerializer</code> 클래스를 사용할때에 기본값으로 포함되어 있지 않을것입니다. 따라서, 우리는 명시적으로, 필드를 추가해 주어야 합니다. </p>
+<br>
+
+<blockquote>
+<p>Snippet Class 에 ForiegnKey 를 사용하여 User 모델에 연결되어 있기 때문에, </p>
+<br>
+
+<p>하나의 Snippet 객체에서 연결되어 있는 User 객체를 조회할때는 순방향 (Forward) 라고 하고, </p>
+<p>하나의 User 객체에서, 연결되어 있는 Snippet 객체를 조회할때는, 역방향 (Backward or Reverse) 라고 합니다. 따라서, snippets 는 User 모델에서 역방향 관계에 있습니다. </p>
+</blockquote>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<p>또한 우리는 몇가지 views 를 views.py 파일에 추가해 줄것입니다. 읽기 전용 형태로 사용자들에게 표시되게 하고 싶습니다. 따라서 <code>ListAPIView</code> 와 <code>RetrieveView</code> 제너릭 클래스기반 뷰를 사용할것입니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserList</span><span class="params">(generics.ListAPIView)</span>:</span></span><br><span class="line">    queryset = User.objects.all()</span><br><span class="line">    serializer_class = UserSerializer </span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserDetail</span><span class="params">(generics.RetireveAPIView)</span>:</span></span><br><span class="line">    queryset = User.objects.all()</span><br><span class="line">    serialzier_class = UserSerializer</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p><code>views.py</code> 파일에서 <code>UserSerializer</code> 클래스를 불러오는것을 잊지 말아야 합니다! </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> UserSerializer</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>마지막으로, 우리는 이 뷰들을 API 안에 추가해줄 필요가 있습니다. <code>URLConf</code> 에서 참조하도록 합시다.</p>
+<br>
+
+<p><code>snippets/urls.py</code> 파일에 아래 패턴들을 추가해줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">path(<span class="string">'users/'</span>, views.UserList.as_view()), </span><br><span class="line">path(<span class="string">'users/&lt;int:pk&gt;/'</span>, views.UserDetail.as_view()),</span><br></pre></td></tr></table></figure>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 19편 - 모델에 정보 추가하기</title>
     <url>/2020/11/30/DRF-Tutorial-19%ED%8E%B8-%EB%AA%A8%EB%8D%B8%EC%97%90-%EC%A0%95%EB%B3%B4-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Adding-information-to-our-model"><a href="#Adding-information-to-our-model" class="headerlink" title="Adding information to our model"></a>Adding information to our model</h2><br>
