@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-22편- Serializer 업데이트 해주기</title>
+    <url>/2020/12/02/DRF-Tutorial-22%ED%8E%B8-Serializer-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-%ED%95%B4%EC%A3%BC%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Serializer-업데이트-해주기"><a href="#Serializer-업데이트-해주기" class="headerlink" title="Serializer 업데이트 해주기"></a>Serializer 업데이트 해주기</h2><br>
+
+<p>이제 snippets 는 해당 snippets 를 생성한 user 와 연계되어 있습니다. </p>
+<br>
+
+<p><code>snippets/serializers.py</code> 에 <code>SnippetSerializer</code> 를 업데이트 하여, 이를 반영하도록 해줍니다. </p>
+<br>
+
+<p>아래 코드를, <code>snippets/serializers.py</code> 파일에 추가 해줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    owner = serializers.ReadOnlyField(source=<span class="string">'owner.username'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Snippet </span><br><span class="line">        fields = [<span class="string">'id'</span>, <span class="string">'title'</span>, <span class="string">'code'</span>, <span class="string">'linenos'</span>, <span class="string">'language'</span>, <span class="string">'style'</span>, <span class="string">'owner'</span>]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>owner 를 Meta 클래스안에 fields 리스트에 확실하게 추가해 주는걸 잊지 않습니다. </p>
+</blockquote>
+<br>
+
+<p>이 필드는 꽤나 재미있는 일을 합니다. source 인자는 어떤 속성이 필드를 채우기 위해 사용되는지 제어합니다. 그리고, 직렬화된 인스턴스에 속성을 가르킬수도 있습니다. </p>
+<br>
+
+<p>또한, 위에 보이는데로, <code>owner.username</code> 같이 점을 찍은 표현 (dot-notation) 을 인자로 받아서, django 의 템플릿 언어와 같이 주어진 속성들을 파악 합니다. </p>
+<br>
+
+<p>우리가 추가한 필드는 타이핑이 되지 않는 ReadOnlyField 클래스로, CharField, BooleanField 등과 같은 다른 타이핑된 필드들과는 대조됩니다. 타이핑 되지 않은 ReadOnlyField 는 언제나 읽기 전용이고, 직렬화된 표현으로 사용될것 입니다. </p>
+<br>
+
+<p>하지만, 이것들이 역직렬화되었을때는, 모델 인스턴스들을 업데이트 할때 사용되지 않을것입니다. 우리는, <code>CharField(read_only=True)</code> 도 이곳에 사용할수도 있었습니다. </p>
+<br>]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DRF Tutorial 21편 - Snippets 와 User 를 연계하기</title>
+    <url>/2020/12/02/DRF-Tutorial-21%ED%8E%B8-Snippets-%EC%99%80-User-%EB%A5%BC-%EC%97%B0%EA%B3%84%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Associating-Snippets-with-Users"><a href="#Associating-Snippets-with-Users" class="headerlink" title="Associating Snippets with Users"></a>Associating Snippets with Users</h2><br>
+
+<p>지금 우리가 코드 스니펫을 생성했다면, 스니펫을 생성한 사용자와 스니펫 인스턴스가 연계되는길은 없습니다. 사용자는 직렬화된 형태를 전달받지 않습니다. 하지만, 들어오는 요청의 속성으로 있습니다. </p>
+<br>
+
+<p>이것을 해결하기 위해, snippet 뷰에 <code>.perform_create()</code> 메서드를 오버라이딩 해줍니다. 이는, 어떻게 인스턴스 저장이 관리되고, 들어오는 요청 혹은 요청된 URL 안에 숨겨져 있는 정보를 다룰수 있게 해줍니다. </p>
+<br>
+
+<p>SnippetList 뷰 클래스에, 아래 메서드를 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetList</span><span class="params">(generics.ListCreateAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    serializer_class = SnippetSerializer </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform_create</span><span class="params">(self, serializer)</span>:</span></span><br><span class="line">        serializer.save(owner=self.request.user)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>우리의 serializer 의 create() 메서드는, 이제 추가적인 owner필드를 요청으로부터 유효한 데이터와 함께 전달 받습니다. </p>
+<br>]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF Tutorial 20편 - 유저모델을 위한 엔드포인트 추가하기</title>
     <url>/2020/12/01/DRF-Tutorial-20%ED%8E%B8-%EC%9C%A0%EC%A0%80%EB%AA%A8%EB%8D%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%97%94%EB%93%9C%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Adding-information-to-our-model"><a href="#Adding-information-to-our-model" class="headerlink" title="Adding information to our model"></a>Adding information to our model</h2><br>

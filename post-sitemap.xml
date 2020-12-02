@@ -8,6 +8,22 @@
     </url>
 
     <url>
+        <loc>http://djangojeng-e.github.io/2020/12/02/DRF-Tutorial-22%ED%8E%B8-Serializer-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-%ED%95%B4%EC%A3%BC%EA%B8%B0/</loc>
+        <lastmod>2020-12-02T08:34:15.532Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/2020/12/02/DRF-Tutorial-21%ED%8E%B8-Snippets-%EC%99%80-User-%EB%A5%BC-%EC%97%B0%EA%B3%84%ED%95%98%EA%B8%B0/</loc>
+        <lastmod>2020-12-02T08:27:21.890Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://djangojeng-e.github.io/2020/12/01/DRF-Tutorial-20%ED%8E%B8-%EC%9C%A0%EC%A0%80%EB%AA%A8%EB%8D%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%97%94%EB%93%9C%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</loc>
         <lastmod>2020-12-01T09:20:02.448Z</lastmod>
         <changefreq>weekly</changefreq>
