@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-23편- 뷰에 필요한 권한 추가하기</title>
+    <url>/2020/12/03/DRF-Tutorial-23%ED%8E%B8-%EB%B7%B0%EC%97%90-%ED%95%84%EC%9A%94%ED%95%9C-%EA%B6%8C%ED%95%9C-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Adding-required-permissions-to-views"><a href="#Adding-required-permissions-to-views" class="headerlink" title="Adding required permissions to views"></a>Adding required permissions to views</h2><br>
+
+<p>이제 코드 스니펫들은 사용자와 연결이 되어 있습니다. </p>
+<br>
+
+<p>우리는 오직 인증된 사용자들만 스니펫들을 생성하고, 업데이트 하고 삭제할수 있게 만들고 싶습니다. </p>
+<br>
+
+<p>REST FRAMEWORK 은 우리가 사용할수 있는 몇가지 권한 클래스들을 가지고 있습니다. 이를 사용하여, 해당 뷰를 누가 접근할수 있는지에 대한 제약을 줄수 있습니다. </p>
+<br>
+
+<p>이번 경우에, <code>IsAuthenticatedOrReadOnly</code> 를 볼수 있습니다. 이 클래스는, 오직 인증이된 요청들만 읽고-쓸수 있는 접근을 할수 있게 해줍니다. 그리고, 인증이 되지 않은 요청들은 오직 읽기전용 접근만 허용됩니다. </p>
+<br>
+
+<blockquote>
+<p><strong>IsAuthenticatedOrReadOnly</strong></p>
+<p>오직 인증된 요청들만 읽고-쓸수 있는 접근을 가능하게 해줍니다. </p>
+<p>인증이 되지 않은 요청들은 오직 읽기전용 접근만 허용됩니다.</p>
+</blockquote>
+<br>
+
+<p><code>snippets/views.py</code> 파일에, 아래와 같이 <code>permissions</code> 를 불러와 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> permissions</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>그리고 나서, <code>snippets/views.py</code>  파일 안에 있는 <code>SnippetList</code> 와 <code>SnippetDetail</code> 클래스들에 아래 속성을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">permission_class = [permissions.IsAuthenticatedOrReadOnly]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-22편- Serializer 업데이트 해주기</title>
     <url>/2020/12/02/DRF-Tutorial-22%ED%8E%B8-Serializer-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-%ED%95%B4%EC%A3%BC%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Serializer-업데이트-해주기"><a href="#Serializer-업데이트-해주기" class="headerlink" title="Serializer 업데이트 해주기"></a>Serializer 업데이트 해주기</h2><br>

@@ -220,6 +220,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/03/Django-Models-7%ED%8E%B8-Relationships-Many-to-one/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/03/Django-Models-7%ED%8E%B8-Relationships-Many-to-one/" class="post-title-link" itemprop="url">Django Models 7편 - Relationships (Many-to-one)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-03 16:07:49 / Updated at: 16:27:42" itemprop="dateCreated datePublished" datetime="2020-08-03T16:07:49+09:00">2020-08-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/03/Django-Models-7%ED%8E%B8-Relationships-Many-to-one/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/03/Django-Models-7편-Relationships-Many-to-one/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Models-Relationships-Many-to-one"><a href="#Models-Relationships-Many-to-one" class="headerlink" title="Models - Relationships (Many-to-one)"></a>Models - Relationships (Many-to-one)</h2><br>
+
+<br>
+
+<p>확실히, 관계형 데이터베이스의 장점은, 테이블들끼리 관계를 생성하는데에서 옵니다. </p>
+<br>
+
+<blockquote>
+<p><strong>관계형 데이터베이스란?</strong></p>
+<p>데이터베이스계의 주류로, </p>
+<p>데이터를 로우 (Row:행, 줄) 과 컬럼 (Column: 열, 칸) 이라는 일종의 표 형태로 저장하고, </p>
+<p>데이터의 종속성은 관계 (Relation) 으로 표현한다. </p>
+<p>한 테이블에 있는 모든 로우는 같은 길이의 컬럼을 가지고 있으며, 이 컬럼의 구조와 데이터의 관계가 테이블 스키마 (Schema) 로 사전 정의 된다.</p>
+</blockquote>
+<br>
+
+<br>
+
+<p>Django 는 가장 공통적인 relational database 3가지를 지원합니다. </p>
+<br>
+
+<ul>
+<li><p>many-to-one (1:M, 1 대 다수)</p>
+</li>
+<li><p>many-to-many (M:M, 다수 대 다수)</p>
+</li>
+<li><p>one-to-one (1:1, 일 대 일 )</p>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/03/Django-Models-7%ED%8E%B8-Relationships-Many-to-one/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/02/Django-Models-6%ED%8E%B8-Fields-verbose-field-names/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1305,141 +1439,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/" class="post-title-link" itemprop="url">TodoList 30편 - 생성된 이미지 DockerHub 에 푸쉬</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-07-24 13:36:15 / Updated at: 13:51:36" itemprop="dateCreated datePublished" datetime="2020-07-24T13:36:15+09:00">2020-07-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/24/TodoList-30편-생성된-이미지-DockerHub-에-푸쉬/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="DockerHub-에-이미지-푸쉬"><a href="#DockerHub-에-이미지-푸쉬" class="headerlink" title="DockerHub 에 이미지 푸쉬"></a>DockerHub 에 이미지 푸쉬</h2><br>
-
-<p>현재까지 진행한 순서대로 정리하면, </p>
-<br>
-
-<ol>
-<li>AWS EC2 생성 </li>
-<li>AWS RDS 생성 - PostgreSQL 적용 </li>
-<li>AWS S3 생성 및 적용 </li>
-<li>AWS S3 정적 이미지와 CSS 파일 적용 </li>
-<li>Docker 설치 </li>
-<li>Dockerfile 작성 후 이미지 생성 </li>
-<li>생성된 이미지를 DockerHub 에 push </li>
-</ol>
-<br>
-
-<h2 id="이미지-저장소"><a href="#이미지-저장소" class="headerlink" title="이미지 저장소"></a>이미지 저장소</h2><br>
-
-<p>도커는 빌드한 이미지를 서버에 배포하기 위한 파일을 도커 레지스트리, 즉, Docker registery 라는 저장소를 사용해 복사합니다. 빌드가 완료된 이미지를 레지스트리에 푸쉬 (push) 하고, 다른 서버에서 (pull) 하여 사용하는 구조로 되어 있습니다. </p>
-<br>
-
-<p>살짝, git 과 비슷한 느낌입니다. </p>
-<br>
-
-<img src="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/image1.png" class="">
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/24/TodoList-30%ED%8E%B8-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-DockerHub-%EC%97%90-%ED%91%B8%EC%89%AC/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1505,7 +1509,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">220</span>
+          <span class="site-state-item-count">221</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
