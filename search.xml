@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-24편- 브라우저블 API 에 로그인 추가하기</title>
+    <url>/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Adding-login-to-the-browsable-API"><a href="#Adding-login-to-the-browsable-API" class="headerlink" title="Adding login to the browsable API"></a>Adding login to the browsable API</h2><br>
+
+<p>지금 브러우저를 열어서 브라우저로 API 로 접근을 해보면, 더이상 새로운 코드 스니펫을 생성할수 없다는것을 발견할수 있습니다. </p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image1.png" class="">
+
+<br>
+
+<p>새로운 코드 스니펫을 생성하기 위해서는, 사용자로써 로그인을 해야 합니다. </p>
+<br>
+
+<p>브라우저로 API 를 사용하기 위해서, 로그인 뷰를 추가해 줄수 있습니다. </p>
+<p>이는, 프로젝트 레벨의 URLConf 를 수정함으로써 해줄수 있습니다. urls.py 파일을 아래와 같이 수정해 줍니다. </p>
+<br>
+
+<p><code>snippets/urls.py</code> 파일말고, 프로젝트 urls.py 파일을 아래와 같이 수정해 줍시다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include</span><br><span class="line"></span><br><span class="line">urlpatterns += [</span><br><span class="line">	path(<span class="string">'api-auth/'</span>, include(<span class="string">'rest_framework.urls'</span>)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>api-auth/ 부분은 우리가 사용하고 싶은 어떤 URL 이름을 써도 괜찮습니다</p>
+<br>
+
+<p>이제 브라우저를 다시 열고 새로고침을 하면, login 링크가 페이지의 오른쪽 상단에 볼수 있을겁니다.</p>
+<br>
+
+<p>여러분들이 이전에 생성한 사용자 디테일로 로그인을 하면, 다시 코드 스니펫을 생성할수 있을것입니다. </p>
+<br>
+
+<p>*<em>화면 오른쪽 상단에 Login 링크 확인 *</em></p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image2.png" class="">
+
+<br>
+
+<p><strong>이전 포스팅에서 생성한 사용자로 로그인 진행</strong></p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image3.png" class="">
+
+<br>
+
+<p><strong>로그인 진행후 화면에는, 새로운 코드를 생성할수 있는 필드가 나옵니다</strong></p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image4.png" class="">
+
+
+
+<br>
+
+<p>몇가지 코드 스니펫들을 생성하였으면 <code>/users/</code> 앤드포인트로 이동하고, </p>
+<p><br>각 사용자에 연결된 snippet id 의 리스트가 표시되는것을 확인할수 있습니다. 각 사용자의 snippets 필드 안에 있습니다.</p>
+<br>
+
+<p>아래는, 사용자 1 의 디테일 </p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image5.png" class="">
+
+<br>
+
+<p>사용자 2의 디테일</p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image6.png" class="">
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>API</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-23편- 뷰에 필요한 권한 추가하기</title>
     <url>/2020/12/03/DRF-Tutorial-23%ED%8E%B8-%EB%B7%B0%EC%97%90-%ED%95%84%EC%9A%94%ED%95%9C-%EA%B6%8C%ED%95%9C-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Adding-required-permissions-to-views"><a href="#Adding-required-permissions-to-views" class="headerlink" title="Adding required permissions to views"></a>Adding required permissions to views</h2><br>

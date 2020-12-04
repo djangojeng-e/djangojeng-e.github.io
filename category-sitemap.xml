@@ -8,14 +8,21 @@
     </url>
 
     <url>
-        <loc>http://djangojeng-e.github.io/categories/REST-FRAMEWORK/DRF/</loc>
-        <lastmod>2020-12-03T08:47:53.963Z</lastmod>
+        <loc>http://djangojeng-e.github.io/categories/REST-FRAMEWORK/API/</loc>
+        <lastmod>2020-12-04T10:32:05.552Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://djangojeng-e.github.io/categories/REST-FRAMEWORK/</loc>
+        <lastmod>2020-12-04T10:32:05.552Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/categories/REST-FRAMEWORK/DRF/</loc>
         <lastmod>2020-12-03T08:47:53.963Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

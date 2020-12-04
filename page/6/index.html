@@ -220,6 +220,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/20/Form-API-7%ED%8E%B8-HTML-%EB%A1%9C-%ED%8F%BC-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0-as-p/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/20/Form-API-7%ED%8E%B8-HTML-%EB%A1%9C-%ED%8F%BC-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0-as-p/" class="post-title-link" itemprop="url">Form API 7편 - HTML 로 폼 출력하기 - as_p()</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-10-20 08:40:40" itemprop="dateCreated datePublished" datetime="2020-10-20T08:40:40+09:00">2020-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-10-22 09:05:53" itemprop="dateModified" datetime="2020-10-22T09:05:53+09:00">2020-10-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/FormAPI/" itemprop="url" rel="index"><span itemprop="name">FormAPI</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/20/Form-API-7%ED%8E%B8-HTML-%EB%A1%9C-%ED%8F%BC-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0-as-p/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/20/Form-API-7편-HTML-로-폼-출력하기-as-p/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Form-as-p"><a href="#Form-as-p" class="headerlink" title="Form.as_p()"></a>Form.as_p()</h2><br>
+
+<blockquote>
+<p>as_p() 는 form 을 <code>&lt;p&gt;</code> 태그들로 렌더링 해줍니다. </p>
+<p>각 <code>&lt;p&gt;</code> 태그는 하나의 필드를 가지고 있습니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">f = ContactForm() </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 폼 인스턴스를 생성 한뒤에 </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> f.as_p() 를 호출하면, </span></span><br><span class="line"></span><br><span class="line">f.as_p()</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 폼의 각 필드들이 &lt;p&gt;태그로 감싸져서 렌더링 되는것을 확인할수 있습니다 </span></span><br><span class="line"></span><br><span class="line">In [2]: f = ContactForm()                                                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [3]: f.as_p()                                                                                                                                                          </span><br><span class="line">Out[3]: '&lt;p&gt;&lt;label for="id_subject"&gt;Subject:&lt;/label&gt; </span><br><span class="line">&lt;input type="text" name="subject" maxlength="100" required id="id_subject"&gt;&lt;/p&gt;</span><br><span class="line">\n&lt;p&gt;&lt;label for="id_message"&gt;Message:&lt;/label&gt; </span><br><span class="line">&lt;textarea name="message" cols="40" rows="10" required id="id_message"&gt;\n&lt;/textarea&gt;&lt;/p&gt;</span><br><span class="line">\n&lt;p&gt;&lt;label for="id_sender"&gt;Sender:&lt;/label&gt; </span><br><span class="line">&lt;input type="email" name="sender" required id="id_sender"&gt;&lt;/p&gt;</span><br><span class="line">\n&lt;p&gt;&lt;label for="id_cc_myself"&gt;Cc myself:&lt;/label&gt; </span><br><span class="line">&lt;input type="checkbox" name="cc_myself" id="id_cc_myself"&gt;&lt;/p&gt;'</span><br></pre></td></tr></table></figure>
+
+<br>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/19/Form-API-6%ED%8E%B8-HTML-%EB%A1%9C-%ED%8F%BC-%EC%B6%9C%EB%A0%A5%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1345,126 +1446,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/11/Django-Forms-15%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/11/Django-Forms-15%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-3/" class="post-title-link" itemprop="url">Django Forms 15편 - 폼 템플릿 작업하기-3</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-11 18:13:40 / Updated at: 18:22:30" itemprop="dateCreated datePublished" datetime="2020-10-11T18:13:40+09:00">2020-10-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/11/Django-Forms-15%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-3/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/11/Django-Forms-15편-폼-템플릿-작업하기-3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Rendering-form-error-messages"><a href="#Rendering-form-error-messages" class="headerlink" title="Rendering form error messages"></a>Rendering form error messages</h2><br>
-
-<p>폼에 에러 메시지들을 출력해줄수 있습니다. 하지만, 물론 이 부분은 유연한 추가 작업일 뿐입니다. </p>
-<br>
-
-<p>현재까지 우리는, 폼 에러들을 어떻게 출력해주어야 하는지에 대해 걱정하지 않아도 되었었습니다. </p>
-<p><br>이번 예시에서 우리는, 각 필드에서 발생하는 에러와 폼 전체에서 발생하는 에러에 대해서 어떻게 관리 해야 하는지에 대해서 다룹니다. </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; form.non_field_errors &#125;&#125;</span><span class="xml"> 가 폼의 가장 상단에 위치하고, 템플릿은 각 필드에 error 들을 조회 한다는것을 숙지 합니다 </span></span><br><span class="line"></span><br><span class="line"><span class="xml"># </span><span class="template-variable">&#123;&#123; form.필드명.errors &#125;&#125;</span><span class="xml"> 를 사용하면, 폼 에러의 리스트를 출력해 줍니다. 이는 순서가 정해지지 않은 unordered list 로 렌더 됩니다 </span></span><br><span class="line"><span class="xml">아래와 같이 보여질수 있습니다. </span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"errorlist"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Sender is required.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>해당 리스트는 errorlist  의 CSS 클래스를 가지고, 모양을 스타일링 할수 있게 해줍니다. 만약, 여러분들이 조금 더 출력 된 에러들을 커스터마이즈 하고 싶다면, 반복문을 사용하여 이를 꾸며줄수 있습니다. </p>
-<br>
-
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> form.subject.errors %&#125;</span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">ol</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> error <span class="keyword">in</span> form.subject.errors %&#125;</span></span><br><span class="line"><span class="xml">        	<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span></span><span class="template-variable">&#123;&#123; error|<span class="name">escape</span> &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml">        </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<p>필드 에러가 아닌것 (그리고 혹은, form.as_p) 를 사용하여, 폼의 상단에 렌더된 숨겨진 필드 에러들은 추가적인 nonfield 클래스와 함께 렌더가 됩니다. </p>
-<p><br>이는, 특히 필드 특화된 에러들과의 구분을 도와줍니다.  예를들면, </p>
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"errorlist nonfield"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Generic Validation error<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>The Forms API 를 확인하면, 에러들과, 스타일링 그리고 템플릿 안에서의 폼 속성들에 대한 것들을 확인 할수 있습니다. </p>
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1535,14 +1516,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">221</span>
+          <span class="site-state-item-count">222</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
