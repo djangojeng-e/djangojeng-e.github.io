@@ -220,6 +220,125 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/26/DRF-Tutorial-15%ED%8E%B8-%ED%81%B4%EB%9E%98%EC%8A%A4-%EA%B8%B0%EB%B0%98-%EB%B7%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/26/DRF-Tutorial-15%ED%8E%B8-%ED%81%B4%EB%9E%98%EC%8A%A4-%EA%B8%B0%EB%B0%98-%EB%B7%B0/" class="post-title-link" itemprop="url">DRF Tutorial 15편 - 클래스 기반 뷰</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-26 18:29:28 / Updated at: 18:43:48" itemprop="dateCreated datePublished" datetime="2020-11-26T18:29:28+09:00">2020-11-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/26/DRF-Tutorial-15%ED%8E%B8-%ED%81%B4%EB%9E%98%EC%8A%A4-%EA%B8%B0%EB%B0%98-%EB%B7%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/26/DRF-Tutorial-15편-클래스-기반-뷰/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Class-based-view"><a href="#Class-based-view" class="headerlink" title="Class based view"></a>Class based view</h2><br>
+
+<p>우리는 우리의 API 뷰들을 함수 기반 대신에 클래스 기반 뷰들을 이용하여 작성할수도 있습니다. </p>
+<br>
+
+<p>우리는 이것은 공통된 기능들을 재사용하고, 반복적이지 않게 하는 강력한 패턴으로 볼수 있습니다. 코드를 DRY 하게 해줄수 있습니다 (DRY 는 Don’t Repeat Yourself 의 약자).</p>
+<br>
+
+<h2 id="Rewriting-our-API-using-class-based-views"><a href="#Rewriting-our-API-using-class-based-views" class="headerlink" title="Rewriting our API using class-based views"></a>Rewriting our API using class-based views</h2><br>
+
+<p>우리의 기존 뷰를 클래스 기반 뷰로 다시 작성하는것부터 시작을 할것 입니다. </p>
+<br>
+
+<p>이 모든것은 <code>snippets/views.py</code> 를 조금씩 리팩토링 해주면서 진행 합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippet.serializers <span class="keyword">import</span> SnippetSerializer </span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> Http404</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView </span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> status </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetList</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    List all snippets, or create a new snippet.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, format=None)</span>:</span></span><br><span class="line">        snippets = Snippet.objects.all()</span><br><span class="line">        serializer = SnippetSerializer(snippets, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(serializer.data)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request, format=None)</span>:</span></span><br><span class="line">        serializer = SnippetSerializer(data=request.data)</span><br><span class="line">        <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">            serializer.save()</span><br><span class="line">            <span class="keyword">return</span> Response(serializer.data, status=status.HTTP_201_CREATED)</span><br><span class="line">        <span class="keyword">return</span> Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>여기까지 아주 좋습니다. 이전과 꽤 비슷해 보입니다만, 우리는 다른 HTTP 메서드들을 사이에 두고 구분을 짓고 있습니다. 우리는, 우리의 인스턴스 뷰도 업데이트 해줄 것입니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetDetail</span><span class="params">(APIView)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Retrieve, update or delete a snippet instance.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_object</span><span class="params">(self, pk)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> Snippet.objects.get(pk=pk)</span><br><span class="line">        <span class="keyword">except</span> Snippet.DoesNotExist:</span><br><span class="line">            <span class="keyword">raise</span> Http404</span><br><span class="line">            </span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, pk, format=None)</span>:</span></span><br><span class="line">        snippet = self.get_object(pk)</span><br><span class="line">        serializer = SnippetSerializer(snippet)</span><br><span class="line">        <span class="keyword">return</span> Response(serializer.data)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span><span class="params">(self, request, pk, format=None)</span>:</span></span><br><span class="line">        snippet = self.get_object(pk)</span><br><span class="line">        serializer = SnippetSerializer(snippet, data=request.data)</span><br><span class="line">        <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">            serializer.save()</span><br><span class="line">            <span class="keyword">return</span> Response(serializer.data)</span><br><span class="line">        <span class="keyword">return</span> Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(self, request, pk, format=None)</span>:</span></span><br><span class="line">        snippet = self.get_object(pk)</span><br><span class="line">        snippet.delete()</span><br><span class="line">        <span class="keyword">return</span> Response(status=status.HTTP_204_NO_CONTENT)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>여기까지도 좋아 보입니다. 다시 한번, 코드는 여전히 함수 기반 뷰와 꽤나 비슷합니다. <code>snippets/urls.py</code> 또한 클래스 기반 뷰를 사용하기 위해서, 살짝 리펙터를 해줘야 합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path </span><br><span class="line"><span class="keyword">from</span> rest_framework.urlpatterns <span class="keyword">import</span> format_suffix_patterns </span><br><span class="line"><span class="keyword">from</span> snippets <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'snippets/'</span>, views.SnippetList.as_view()),</span><br><span class="line">    path(<span class="string">'snippets/&lt;int:pk&gt;/'</span>, views.SnippetDetail.as_views()),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">urlpatterns = format_suffix_patterns(urlpatterns)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/25/DRF-Tutorial-14%ED%8E%B8-Browsability/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1332,133 +1451,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/18/DRF-Tutorial-5%ED%8E%B8-ModelSerializers-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/18/DRF-Tutorial-5%ED%8E%B8-ModelSerializers-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF Tutorial 5편 - ModelSerializers 사용하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-18 08:55:10 / Updated at: 09:05:05" itemprop="dateCreated datePublished" datetime="2020-11-18T08:55:10+09:00">2020-11-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/18/DRF-Tutorial-5%ED%8E%B8-ModelSerializers-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/18/DRF-Tutorial-5편-ModelSerializers-사용하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="ModelSerializer-사용하기"><a href="#ModelSerializer-사용하기" class="headerlink" title="ModelSerializer 사용하기"></a>ModelSerializer 사용하기</h2><br>
-
-<p>우리의 SnippetSerializer 클래스는 Snippet 모델에 있는 많은 정보를 복제하며 사용하고 있습니다. </p>
-<br>
-
-<p>Django 가 Form 클래스와 ModelForm 클래스를 제공하는 같은 방식으로, </p>
-<br>
-
-<blockquote>
-<p>REST FRAMEWORK 은 </p>
-<p>Serializer 클래스들과 ModelSerializer 클래스들을 가지고 있습니다. </p>
-</blockquote>
-<br>
-
-<p>우리의 Serializer 를 <code>ModelSerializer</code> 를 사용하여, 리펙토링 해봅시다. </p>
-<p><br><code>snippets/serializers.py</code> 파일을 열고, <code>SnippetSerializer</code> 클래스를 아래와 같이 고쳐줍니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Snippet</span><br><span class="line">        field = [<span class="string">'id'</span>, <span class="string">'title'</span>, <span class="string">'code'</span>, <span class="string">'linnos'</span>, <span class="string">'language'</span>, <span class="string">'style'</span>]</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>serializers 가 좋은 점중 하나는, serializer 인스턴스 안에 모든 필드들을 검사할수 있다는 점입니다. 이는, representation 을 프린트 해보면 됩니다. Django shell 을 <code>python manage.py shell</code> 을 실행하여 열고, 아래 코드들을 실행 시켜 보세요. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer                                                                                                                </span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: serializer = SnippetSerializer()                                                                                                                                  </span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: print(repr(serializer))                                                                                                                                           </span><br><span class="line">SnippetSerializer():</span><br><span class="line">    id = IntegerField(label=<span class="string">'ID'</span>, read_only=<span class="literal">True</span>)</span><br><span class="line">    title = CharField(allow_blank=<span class="literal">True</span>, max_length=<span class="number">100</span>, required=<span class="literal">False</span>)</span><br><span class="line">    code = CharField(style=&#123;<span class="string">'base_template'</span>: <span class="string">'textarea.html'</span>&#125;)</span><br><span class="line">    linenos = BooleanField(required=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<blockquote>
-<p>ModelSerializer 클래스는 특별하고 마법같은 일은 하지 않습니다. </p>
-<p>그저 Serializer 클래스들을 줄여주는 숏컷일 뿐이라는것을 기억하는것이 좋습니다. </p>
-<p>아래 일들만 살짝 줄여줄뿐, 또다른 특별한 메서드는 아닙니다. </p>
-<ul>
-<li>자동으로 지정된 필드</li>
-<li><code>create()</code> 그리고 <code>update()</code> 메서드의 간단한 기본 구현 가능 </li>
-</ul>
-</blockquote>
-<br>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1529,7 +1521,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">222</span>
+          <span class="site-state-item-count">223</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

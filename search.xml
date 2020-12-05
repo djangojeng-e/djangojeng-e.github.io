@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-25편- 객체단에서의 권한</title>
+    <url>/2020/12/05/DRF-Tutorial-25%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EB%8B%A8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B6%8C%ED%95%9C/</url>
+    <content><![CDATA[<h2 id="Object-Level-Permissions"><a href="#Object-Level-Permissions" class="headerlink" title="Object Level Permissions"></a>Object Level Permissions</h2><br>
+
+<p>실제로 우리는, 모든 코드 스니펫들이 누구에게나 보여지지만 오직 해당 스니펫을 생성한 사용자만 업데이트 혹은 삭제를 할수 있게 만들고 싶습니다. </p>
+<br>
+
+<p>이것을 하기 위해서는, 커스텀 권한을 생성할 필요가 있습니다. </p>
+<br>
+
+<p><code>permissions.py</code> 라는 파일을, snippet 앱 안에 생성해 줍니다. <code>snippets/permissions.py</code> 파일에, 아래 내용을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> permissions </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IsOwnerOrReadOnly</span><span class="params">(permissions.BasePermission)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Custom permission to only allow owners of an object to edit it </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">has_object_permissions</span><span class="params">(self, request, view, obj)</span>:</span></span><br><span class="line">        <span class="comment"># Read permissions are allowed to any request </span></span><br><span class="line">        <span class="comment"># 읽기 권한은 어떤 요청에도 허용됨 </span></span><br><span class="line">        <span class="comment"># So we'll always allow GET, HEAD or OPTIONS requests </span></span><br><span class="line">        <span class="comment"># 따라서, 우리는 언제나 GET, HEAD 혹은 OPTIONS 요청들을 허용함 </span></span><br><span class="line">        <span class="keyword">if</span> request.method <span class="keyword">in</span> permissions.SAFE_METHODS:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span> </span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Write permissions are only allowed to the owner of the snippet </span></span><br><span class="line">        <span class="comment"># 해당 snippet 의 owner 만 작성 권한이 허용됨 </span></span><br><span class="line">        <span class="keyword">return</span> obj.owner == request.user</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이제 이 커스텀 권한을 우리의 스니펫 인스턴스 앤드포인트에 추가해줍니다. SnippetDetail 뷰 클래스 안에 있는 permission_classes 속성에 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">permission_classes = [permissions.IsAuthenticatedOrReadOnly,</span><br><span class="line">					  IsOwnerOrReadOnly]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>우리가 작성한 <code>IsOwnerOrReadOnly</code> 클래스를 가져오는것을 까먹으면 안됩니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.permissions <span class="keyword">import</span> IsOwnerOrReadOnly</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>이제, 브라우저를 다시 열어보면, 코드 스니펫을 생성한 사용자가 로그인 하였을때, <code>DELETE</code> 와 <code>PUT</code> 액션들이 스니펫 인스턴스의 앤드포인트에만 나타나는것을 확인 할수 있습니다. </p>
+<br>
+
+<img src="/2020/12/05/DRF-Tutorial-25%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EB%8B%A8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B6%8C%ED%95%9C/image1.png" class="">
+
+<br>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-24편- 브라우저블 API 에 로그인 추가하기</title>
     <url>/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Adding-login-to-the-browsable-API"><a href="#Adding-login-to-the-browsable-API" class="headerlink" title="Adding login to the browsable API"></a>Adding login to the browsable API</h2><br>
