@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-26편- API로 인증하기</title>
+    <url>/2020/12/06/DRF-Tutorial-26%ED%8E%B8-API%EB%A1%9C-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Authenticating-with-the-API"><a href="#Authenticating-with-the-API" class="headerlink" title="Authenticating with the API"></a>Authenticating with the API</h2><br>
+
+<p>우리는 이제 API 에 몇가지 권한 설정들을 가지고 있기 때문에, </p>
+<p>우리가 어떠한 스니펫을 수정하고 싶을때에 우리의 요청들을 인증할 필요가 있습니다. </p>
+<br>
+
+<p>우리는 그 어떠한 authentication 클래스들을 설정해 주지 않았고, 그렇기 때문에 현재는 SessionAuthentication 과 BasicAuthentication 같은 기본값들만 적용 되어 있는 상태 입니다. </p>
+<br>
+
+<p>웹브라우저를 통해서 API 와 상호 작용할때에, 우리는 로그인 할수 있고. 브라우저 세션은 해당 요청들에 대한 필요한 인증 기능을 제공합니다. </p>
+<br>
+
+<p>하지만, 만약 우리가 API 를 프로그래밍적으로 이용할때에는, 명시적으로 인증서를 각 요청마다 제공해줘야 합니다. </p>
+<br>
+
+<p><strong>만약, 터미널에서 인증 없이 snippet 을 생성하고자 한다면 에러가 날것입니다</strong></p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">http POST http://127.0.0.1:8000/snippets/ code="print(123)"</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "detail": "Authentication credentials were not provided."</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>그렇지만, 사용자의 username 과 password 를 포함한 요청을 보내면, 성공적인 결과를 얻을수 있습니다.</p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">http -a admin:password123 POST http://127.0.0.1:8000/snippets/ code="print(789)"</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "id": 1,</span><br><span class="line">    "owner": "admin",</span><br><span class="line">    "title": "foo",</span><br><span class="line">    "code": "print(789)",</span><br><span class="line">    "linenos": false,</span><br><span class="line">    "language": "python",</span><br><span class="line">    "style": "friendly"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>정리</p>
+</blockquote>
+<br>
+
+<p>이제 우리는, 우리의 웹 API 에 추가로 사용자들의 앤드포인트들에 그리고 그들이 생성한 코드 스니펫에 대한 적당한 권한 설정들을 가지고 있습니다. </p>
+<br>
+
+<p>Part5 에서는, 어떻게 모든것들이 묶여서 하이라이트된 코드 스니펫들을 HTML endpoint 로 생성할수 있고, 우리의 API 시스템내에 존재하는 관계들을 하이퍼링크들을 사용하여 우리의 API 의 단결성을 향상시킬수 있는지 알아볼겁니다. </p>
+<br>]]></content>
+      <categories>
+        <category>RES FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-25편- 객체단에서의 권한</title>
     <url>/2020/12/05/DRF-Tutorial-25%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EB%8B%A8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B6%8C%ED%95%9C/</url>
     <content><![CDATA[<h2 id="Object-Level-Permissions"><a href="#Object-Level-Permissions" class="headerlink" title="Object Level Permissions"></a>Object Level Permissions</h2><br>

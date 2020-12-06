@@ -220,6 +220,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF Tutorial 16편 - mixins 사용하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-28 15:44:50 / Updated at: 16:00:48" itemprop="dateCreated datePublished" datetime="2020-11-28T15:44:50+09:00">2020-11-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/28/DRF-Tutorial-16편-mixins-사용하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Mixins-사용하기"><a href="#Mixins-사용하기" class="headerlink" title="Mixins 사용하기"></a>Mixins 사용하기</h2><br>
+
+<p>클래스 기반 뷰를 사용하는것의 이점중 하나는, 어떠한 동작에 대해서 재사용할수 있는 코드를 작성할수 있다는 점입니다. </p>
+<br>
+
+<p>우리가 API 를 위해 이제까지 사용하고 있었던 <code>create/retrieve/update/delete</code> 동작들은, 일반 Django 에서 우리가 생성하는 모델이 뒷받침 해주는 API View 들 안에서도 굉장히 비슷하게 사용될수 있습니다. </p>
+<br>
+
+<p>이런 비슷한 동작들은, REST FRAMEWORK 의 mixin 클래스에 구현 되어 있습니다. </p>
+<br>
+
+<blockquote>
+<p><strong>Mixins</strong></p>
+<br>
+
+<p>객체 지향 프로그램 언어들 안에서, </p>
+<p>mixin  은 메서드들을 포함하고 있는 하나의 클래스로, 메서드들은 다른 클래스들에 의해서 사용되는데, </p>
+<p>다른 클래스가 mixin 에 있는 메서드를 사용하기 위해서, mixin class 가 해당 클래스의 부모 클래스가 될 필요는 없습니다. </p>
+<br>
+
+<p>때때로, Mixins 들은 상속 개념보다는, 포함된다는 개념으로 묘사되곤 합니다. </p>
+</blockquote>
+<br>
+
+<p>예를들면, mixin 클래스안에 있는 메서드를 다른 클래스가 사용을 하는데, 보통은 상속을 받아서 사용하지만, mixin 클래스는 굳이, mixins 클래스 안에 있는 매서드를 다른 클래스가 사용한다해도, mixin 클래스가 다른 클래스의 부모 클래스가 될 필요는 없습니다. </p>
+<br>
+
+<p>어떻게 mixin 클래스를 사용해서 뷰를 작성할수 있는지 둘러봅시다. <code>snippets/views.py</code> 파일을 다시 봅니다.</p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/26/DRF-Tutorial-15%ED%8E%B8-%ED%81%B4%EB%9E%98%EC%8A%A4-%EA%B8%B0%EB%B0%98-%EB%B7%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1315,142 +1449,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/19/DRF-Tutorial-6%ED%8E%B8-Serializer-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-Django-%EB%B7%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/19/DRF-Tutorial-6%ED%8E%B8-Serializer-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-Django-%EB%B7%B0/" class="post-title-link" itemprop="url">DRF Tutorial 6편 - Serializer 를 사용하는 Django 뷰</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-19 18:39:31 / Updated at: 19:01:09" itemprop="dateCreated datePublished" datetime="2020-11-19T18:39:31+09:00">2020-11-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/19/DRF-Tutorial-6%ED%8E%B8-Serializer-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-Django-%EB%B7%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/19/DRF-Tutorial-6편-Serializer-를-사용하는-Django-뷰/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Serializer-를-사용하는-Django-Views-사용하기"><a href="#Serializer-를-사용하는-Django-Views-사용하기" class="headerlink" title="Serializer 를 사용하는 Django Views 사용하기"></a>Serializer 를 사용하는 Django Views 사용하기</h2><br>
-
-<p>우리의 Serializer 클래스를 사용하는 몇가지 API 뷰들을 어떻게 작성하는지 봅시다. </p>
-<p><br>현재까지 우리는, REST framework 의 그 어떤 다른 기능도 사용하지 않을것입니다. 우리는 그저 일반 Django views 와 같은 views 만 작성해 볼겁니다. </p>
-<br>
-
-<p><code>snippets/views.py</code> 파일을 열고, 아래 내용을 추가해 줍니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, JsonResponse </span><br><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt </span><br><span class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParser </span><br><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<blockquote>
-<p>우리 API 의 기본은, </p>
-<p>존재하는 모든 snippets 들을 리스팅 하거나, 혹은 새로운 snippet  을 생성하는것입니다. </p>
-</blockquote>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@csrf_exempt </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">snippet_list</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    List all code snippets, or create a new snippet. </span></span><br><span class="line"><span class="string">    존재하는 모든 스니펫들을 나열하거나, 혹은 새러운 스니펫을 생성합니다. </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">"GET"</span>:</span><br><span class="line">        snippets = Snippet.objects.all()</span><br><span class="line">        serializer = SnippetSerializer(snippets, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.data, safe=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">elif</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        data = JSONParser().parse(request)</span><br><span class="line">        serializer = SnippetSerializer(data=data)</span><br><span class="line">        <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">            serializer.save()</span><br><span class="line">            <span class="keyword">return</span> JsonResponse(serializer.data, status=<span class="number">201</span>)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(serializer.errors, status=<span class="number">400</span>)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<blockquote>
-<p>우리는 이 views 에 클라이언트로부터 CRSF token 이 없는 POST 방식이 가능해야 하기 때문에,</p>
-<p>해당 view 에 csrf_exempt 를 표시해 줍니다. </p>
-</blockquote>
-<br>
-
-<p>이것은 보통 원하지 않는 방식이고, REST framework view 는 사실 좀 더 이것보다 민감한것도 사용하기도 합니다. 어쨋거나, 지금은 우리의 목적을 수행 할것입니다. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/19/DRF-Tutorial-6%ED%8E%B8-Serializer-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-Django-%EB%B7%B0/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1521,14 +1519,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-count">224</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">

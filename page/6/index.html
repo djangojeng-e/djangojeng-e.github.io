@@ -220,6 +220,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/21/Form-API-9%ED%8E%B8-as-table/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/21/Form-API-9%ED%8E%B8-as-table/" class="post-title-link" itemprop="url">Form API 9편 - as_table()</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-21 13:44:27 / Updated at: 13:48:35" itemprop="dateCreated datePublished" datetime="2020-10-21T13:44:27+09:00">2020-10-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/FormAPI/" itemprop="url" rel="index"><span itemprop="name">FormAPI</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/21/Form-API-9%ED%8E%B8-as-table/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/21/Form-API-9편-as-table/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="HTML-로-폼-출력하기-as-table"><a href="#HTML-로-폼-출력하기-as-table" class="headerlink" title="HTML 로 폼 출력하기 - as_table()"></a>HTML 로 폼 출력하기 - <code>as_table()</code></h2><br>
+
+<h3 id="as-table"><a href="#as-table" class="headerlink" title="as_table()"></a><code>as_table()</code></h3><br>
+
+<blockquote>
+<p>마지막으로, as_table() 은 폼을 <code>&lt;table&gt;</code> HTML 로 출력합니다. </p>
+<p>이는 print 와 같습니다. </p>
+<p>사실 우리는 하나의 폼 객체를 print 할때에, 기본 백앤드 동작으로 as_table() 메서드를 호출합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">In [5]: f = ContactForm()                                                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [6]: f.as_table()                                                                                                                                                      </span><br><span class="line">Out[6]: '&lt;tr&gt;&lt;th&gt;&lt;label for="id_subject"&gt;Subject:&lt;/label&gt;</span><br><span class="line">&lt;/th&gt;</span><br><span class="line">&lt;td&gt;&lt;input type="text" name="subject" maxlength="100" required id="id_subject"&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;\n&lt;tr&gt;&lt;th&gt;&lt;label for="id_message"&gt;Message:&lt;/label&gt;&lt;/th&gt;</span><br><span class="line">&lt;td&gt;&lt;textarea name="message" cols="40" rows="10" required id="id_message"&gt;\n</span><br><span class="line">&lt;/textarea&gt;&lt;/td&gt;&lt;/tr&gt;</span><br><span class="line">\n&lt;tr&gt;&lt;th&gt;&lt;label for="id_sender"&gt;Sender:&lt;/label&gt;&lt;/th&gt;</span><br><span class="line">&lt;td&gt;&lt;input type="email" name="sender" required id="id_sender"&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;\n&lt;tr&gt;&lt;th&gt;&lt;label for="id_cc_myself"&gt;Cc myself:&lt;/label&gt;&lt;/th&gt;</span><br><span class="line">&lt;td&gt;&lt;input type="checkbox" name="cc_myself" id="id_cc_myself"&gt;&lt;/td&gt;&lt;/tr&gt;'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>&lt;tr&gt; 과 &lt;td&gt;</code> 테그들은 생성되지만, <code>&lt;table&gt;</code>태그는 생성되지 않습니다. 이는, 사용자가 직접 추가해 주어야 합니다. </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/20/Form-API-8%ED%8E%B8-Form-as-ul/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1330,117 +1431,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/13/Django-Forms-17%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/13/Django-Forms-17%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-5/" class="post-title-link" itemprop="url">Django Forms 17편 - 폼 템플릿 작업하기-5</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-13 13:42:49 / Updated at: 13:47:06" itemprop="dateCreated datePublished" datetime="2020-10-13T13:42:49+09:00">2020-10-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/13/Django-Forms-17%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-5/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/13/Django-Forms-17편-폼-템플릿-작업하기-5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Looping-over-hidden-and-visible-fields"><a href="#Looping-over-hidden-and-visible-fields" class="headerlink" title="Looping over hidden and visible fields"></a>Looping over hidden and visible fields</h2><br>
-
-<p>만약 여러분들이 수동으로 폼을 템플릿안에서 레이아웃을 잡는 작업을 하고 있다면, Django 의 기본 폼 레이아웃과는 반대되게, <code>&lt;input type=&quot;hidden&quot;&gt;</code> 을 사용하여, 숨김처리가 되지 않은 필드들과 다르게 사용할수 있습니다. </p>
-<br>
-
-<p>예를들면, 숨겨진 필드들은 아무것도 출력하지 않기 때문에, 에러 메시지들을 해당 필드 옆에 출력 한다는것은 사용자들에게 혼란을 일으킬수 있을것입니다. 따라서, 이런 필드들의 에러들은 다른 방식으로 다루어 져야 합니다. </p>
-<br>
-
-<p>Django 는 숨겨진 필드와 노출된 필드들을 따로 반복할수 있게 해줍니다. </p>
-<br>
-
-<p>바로, hidden_fields() 와 visible_fields()</p>
- <br>
-
-<p>아래 예시를 참고합니다. </p>
-<br>
-
-<br>
-
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#123;# Include the hidden fields #&#125;</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> hidden <span class="keyword">in</span> form.hidden_fields %&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="template-variable">&#123;&#123; hidden &#125;&#125;</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="comment">&#123;# Include the visible fields #&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> field <span class="keyword">in</span> form.visible_fields %&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fieldWrapper"</span>&gt;</span></span></span><br><span class="line"><span class="xml">         </span><span class="template-variable">&#123;&#123; field.errors &#125;&#125;</span></span><br><span class="line"><span class="xml">         </span><span class="template-variable">&#123;&#123; field.label_tag &#125;&#125;</span><span class="xml">  </span><span class="template-variable">&#123;&#123; field &#125;&#125;</span></span><br><span class="line"><span class="xml">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>위의 예시는, 숨겨진 필드들 안에 있는 어떤 에러도 다루지 않습니다. 보통은, 숨겨진 필드안에 있는 에러는 폼 변조를 의미할수 있습니다. 보통 폼 동작은 폼을 바꾸지 않습니다. </p>
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1511,14 +1501,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-count">224</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">

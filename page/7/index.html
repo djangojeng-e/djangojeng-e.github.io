@@ -220,6 +220,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/13/Django-Forms-17%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/13/Django-Forms-17%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-5/" class="post-title-link" itemprop="url">Django Forms 17편 - 폼 템플릿 작업하기-5</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-13 13:42:49 / Updated at: 13:47:06" itemprop="dateCreated datePublished" datetime="2020-10-13T13:42:49+09:00">2020-10-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/13/Django-Forms-17%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-5/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/13/Django-Forms-17편-폼-템플릿-작업하기-5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Looping-over-hidden-and-visible-fields"><a href="#Looping-over-hidden-and-visible-fields" class="headerlink" title="Looping over hidden and visible fields"></a>Looping over hidden and visible fields</h2><br>
+
+<p>만약 여러분들이 수동으로 폼을 템플릿안에서 레이아웃을 잡는 작업을 하고 있다면, Django 의 기본 폼 레이아웃과는 반대되게, <code>&lt;input type=&quot;hidden&quot;&gt;</code> 을 사용하여, 숨김처리가 되지 않은 필드들과 다르게 사용할수 있습니다. </p>
+<br>
+
+<p>예를들면, 숨겨진 필드들은 아무것도 출력하지 않기 때문에, 에러 메시지들을 해당 필드 옆에 출력 한다는것은 사용자들에게 혼란을 일으킬수 있을것입니다. 따라서, 이런 필드들의 에러들은 다른 방식으로 다루어 져야 합니다. </p>
+<br>
+
+<p>Django 는 숨겨진 필드와 노출된 필드들을 따로 반복할수 있게 해줍니다. </p>
+<br>
+
+<p>바로, hidden_fields() 와 visible_fields()</p>
+ <br>
+
+<p>아래 예시를 참고합니다. </p>
+<br>
+
+<br>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#123;# Include the hidden fields #&#125;</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> hidden <span class="keyword">in</span> form.hidden_fields %&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="template-variable">&#123;&#123; hidden &#125;&#125;</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="comment">&#123;# Include the visible fields #&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> field <span class="keyword">in</span> form.visible_fields %&#125;</span><span class="xml"> </span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fieldWrapper"</span>&gt;</span></span></span><br><span class="line"><span class="xml">         </span><span class="template-variable">&#123;&#123; field.errors &#125;&#125;</span></span><br><span class="line"><span class="xml">         </span><span class="template-variable">&#123;&#123; field.label_tag &#125;&#125;</span><span class="xml">  </span><span class="template-variable">&#123;&#123; field &#125;&#125;</span></span><br><span class="line"><span class="xml">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위의 예시는, 숨겨진 필드들 안에 있는 어떤 에러도 다루지 않습니다. 보통은, 숨겨진 필드안에 있는 에러는 폼 변조를 의미할수 있습니다. 보통 폼 동작은 폼을 바꾸지 않습니다. </p>
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/12/Django-Forms-16%ED%8E%B8-%ED%8F%BC-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1428,141 +1539,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/05/Django-Forms-7%ED%8E%B8-%ED%95%84%EC%9A%94%ED%95%9C-%EC%9E%91%EC%97%85%EB%93%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/05/Django-Forms-7%ED%8E%B8-%ED%95%84%EC%9A%94%ED%95%9C-%EC%9E%91%EC%97%85%EB%93%A4/" class="post-title-link" itemprop="url">Django Forms 7편 - 필요한 작업들</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-05 11:07:39 / Updated at: 11:17:37" itemprop="dateCreated datePublished" datetime="2020-10-05T11:07:39+09:00">2020-10-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/05/Django-Forms-7%ED%8E%B8-%ED%95%84%EC%9A%94%ED%95%9C-%EC%9E%91%EC%97%85%EB%93%A4/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/05/Django-Forms-7편-필요한-작업들/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="The-work-that-needs-to-be-done"><a href="#The-work-that-needs-to-be-done" class="headerlink" title="The work that needs to be done"></a>The work that needs to be done</h2><br>
-
-<p>여러분들이 사용자의 이름을 얻기위해 필요한 간단한 폼을, 웹사이트에 생성하고 싶다고 가정해 봅시다. </p>
-<p>여러분들은 아마 아래와 같은 코드를, 여러분들의 템플릿 안에 필요로 할것 입니다. </p>
-<br>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/your-name/"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"your_name"</span>&gt;</span>Your name: <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"your_name"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"your_name"</span> <span class="attr">value</span>=<span class="string">"&#123;&#123; current_name &#125;&#125;"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">values</span>=<span class="string">"OK"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>위의 간단한 폼을 잠시 둘러보자면, </p>
-<br>
-
-<ol>
-<li>브라우저에게 POST 메서드를 사용하여, 폼 데이터를 <code>/your-name/URL</code>  에 반환하라고 얘기합니다 </li>
-<li><code>Your name</code> 으로 레이블 되고, <code>OK</code> 가 쓰여진 버튼을 출력합니다 </li>
-<li>만약에 template 에 전달된 context 에 <code>current_name</code>  이라는 변수를 가지고 있다면, <code>your_name</code> 필드를 미리 채우는데에 사용될것입니다. </li>
-</ol>
-<br>
-
-<p>위의 HTML 폼을 가지고 있는 템플릿을 렌더해줄 뷰가 필요할것 입니다. 그리고, 그 뷰는 current_name 필드를 적절하게 제공해줄수 있습니다.  </p>
-<br>
-
-<h2 id="폼이-제출될때"><a href="#폼이-제출될때" class="headerlink" title="폼이 제출될때"></a>폼이 제출될때</h2><br>
-
-<p>폼이 제출 될때에는, 폼 데이터를 가지고 있는 POST 요청이 서버에 보내집니다. </p>
-<br>
-
-<p>요청이 보내졌을때에, <code>/your-name/</code> URL 과 상응하는 뷰도 필요할것입니다. 이 뷰는 적절한 키/값 페어들을 요청안에서 찾을것이고, 그것들을 처리해줄것 입니다. </p>
-<br>
-
-<h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><br>
-
-<p>위의 예시는, 매우매우 간단한 폼입니다. 실전에서는, 하나의 폼이 10개 혹은 100개의 필드들을 가질수도 있고, 많은것들이 미리 채워져야 할 필요가 있을수 있습니다. </p>
-<br>
-
-<p>그렇지 않으면, 사용자가 몇번의 수정-제출 을 통해 폼의 동작이 결정될수 있습니다. </p>
-<br>
-
-<p>우리는 브라우저에서 어떠한 유효성 검사가 필요할지도 모릅니다. 심지어 폼이 제출되기 전에도 말이죠. </p>
-<br>
-
-<p>사용자들이 날짜를 달력에서 선택하는것 같이 아주 복잡한 필드들을 사용하길 원할지도 모릅니다. </p>
-<br>
-
-<p>일단, Django 가 이런것들을 위해 기본 작업을 하게 하는것이 훨씬 쉬운 길이 될수 있습니다. (직접 모든것을 구현하려면, 힘듭니다;)</p>
-<br>
-
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1633,14 +1609,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-count">224</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">

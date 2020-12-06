@@ -220,6 +220,129 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/06/DRF-Tutorial-26%ED%8E%B8-API%EB%A1%9C-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/06/DRF-Tutorial-26%ED%8E%B8-API%EB%A1%9C-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF-Tutorial-26편- API로 인증하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-12-06 18:00:09 / Updated at: 18:05:34" itemprop="dateCreated datePublished" datetime="2020-12-06T18:00:09+09:00">2020-12-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RES-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">RES FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RES-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/12/06/DRF-Tutorial-26%ED%8E%B8-API%EB%A1%9C-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/06/DRF-Tutorial-26편-API로-인증하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Authenticating-with-the-API"><a href="#Authenticating-with-the-API" class="headerlink" title="Authenticating with the API"></a>Authenticating with the API</h2><br>
+
+<p>우리는 이제 API 에 몇가지 권한 설정들을 가지고 있기 때문에, </p>
+<p>우리가 어떠한 스니펫을 수정하고 싶을때에 우리의 요청들을 인증할 필요가 있습니다. </p>
+<br>
+
+<p>우리는 그 어떠한 authentication 클래스들을 설정해 주지 않았고, 그렇기 때문에 현재는 SessionAuthentication 과 BasicAuthentication 같은 기본값들만 적용 되어 있는 상태 입니다. </p>
+<br>
+
+<p>웹브라우저를 통해서 API 와 상호 작용할때에, 우리는 로그인 할수 있고. 브라우저 세션은 해당 요청들에 대한 필요한 인증 기능을 제공합니다. </p>
+<br>
+
+<p>하지만, 만약 우리가 API 를 프로그래밍적으로 이용할때에는, 명시적으로 인증서를 각 요청마다 제공해줘야 합니다. </p>
+<br>
+
+<p><strong>만약, 터미널에서 인증 없이 snippet 을 생성하고자 한다면 에러가 날것입니다</strong></p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http POST http://127.0.0.1:8000/snippets/ code="print(123)"</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "detail": "Authentication credentials were not provided."</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>그렇지만, 사용자의 username 과 password 를 포함한 요청을 보내면, 성공적인 결과를 얻을수 있습니다.</p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http -a admin:password123 POST http://127.0.0.1:8000/snippets/ code="print(789)"</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "id": 1,</span><br><span class="line">    "owner": "admin",</span><br><span class="line">    "title": "foo",</span><br><span class="line">    "code": "print(789)",</span><br><span class="line">    "linenos": false,</span><br><span class="line">    "language": "python",</span><br><span class="line">    "style": "friendly"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>정리</p>
+</blockquote>
+<br>
+
+<p>이제 우리는, 우리의 웹 API 에 추가로 사용자들의 앤드포인트들에 그리고 그들이 생성한 코드 스니펫에 대한 적당한 권한 설정들을 가지고 있습니다. </p>
+<br>
+
+<p>Part5 에서는, 어떻게 모든것들이 묶여서 하이라이트된 코드 스니펫들을 HTML endpoint 로 생성할수 있고, 우리의 API 시스템내에 존재하는 관계들을 하이퍼링크들을 사용하여 우리의 API 의 단결성을 향상시킬수 있는지 알아볼겁니다. </p>
+<br>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/05/DRF-Tutorial-25%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EB%8B%A8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B6%8C%ED%95%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1304,140 +1427,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF Tutorial 16편 - mixins 사용하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-28 15:44:50 / Updated at: 16:00:48" itemprop="dateCreated datePublished" datetime="2020-11-28T15:44:50+09:00">2020-11-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/28/DRF-Tutorial-16편-mixins-사용하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Mixins-사용하기"><a href="#Mixins-사용하기" class="headerlink" title="Mixins 사용하기"></a>Mixins 사용하기</h2><br>
-
-<p>클래스 기반 뷰를 사용하는것의 이점중 하나는, 어떠한 동작에 대해서 재사용할수 있는 코드를 작성할수 있다는 점입니다. </p>
-<br>
-
-<p>우리가 API 를 위해 이제까지 사용하고 있었던 <code>create/retrieve/update/delete</code> 동작들은, 일반 Django 에서 우리가 생성하는 모델이 뒷받침 해주는 API View 들 안에서도 굉장히 비슷하게 사용될수 있습니다. </p>
-<br>
-
-<p>이런 비슷한 동작들은, REST FRAMEWORK 의 mixin 클래스에 구현 되어 있습니다. </p>
-<br>
-
-<blockquote>
-<p><strong>Mixins</strong></p>
-<br>
-
-<p>객체 지향 프로그램 언어들 안에서, </p>
-<p>mixin  은 메서드들을 포함하고 있는 하나의 클래스로, 메서드들은 다른 클래스들에 의해서 사용되는데, </p>
-<p>다른 클래스가 mixin 에 있는 메서드를 사용하기 위해서, mixin class 가 해당 클래스의 부모 클래스가 될 필요는 없습니다. </p>
-<br>
-
-<p>때때로, Mixins 들은 상속 개념보다는, 포함된다는 개념으로 묘사되곤 합니다. </p>
-</blockquote>
-<br>
-
-<p>예를들면, mixin 클래스안에 있는 메서드를 다른 클래스가 사용을 하는데, 보통은 상속을 받아서 사용하지만, mixin 클래스는 굳이, mixins 클래스 안에 있는 매서드를 다른 클래스가 사용한다해도, mixin 클래스가 다른 클래스의 부모 클래스가 될 필요는 없습니다. </p>
-<br>
-
-<p>어떻게 mixin 클래스를 사용해서 뷰를 작성할수 있는지 둘러봅시다. <code>snippets/views.py</code> 파일을 다시 봅니다.</p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1508,14 +1497,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">223</span>
+          <span class="site-state-item-count">224</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
