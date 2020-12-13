@@ -220,6 +220,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF Tutorial 17편 - generic 클래스뷰 사용하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-29 12:13:17 / Updated at: 12:17:46" itemprop="dateCreated datePublished" datetime="2020-11-29T12:13:17+09:00">2020-11-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/29/DRF-Tutorial-17편-generic-클래스뷰-사용하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Generic-클래스뷰-사용하기"><a href="#Generic-클래스뷰-사용하기" class="headerlink" title="Generic 클래스뷰 사용하기"></a>Generic 클래스뷰 사용하기</h2><br>
+
+<p>mixin 클래스들을 사용하여서 우리의 뷰들은 그전보다 조금은 적은 양의 코드를 사용하도록 작성했었습니다. 하지만, 한단계 더 줄일수 있습니다. </p>
+<br>
+
+<p><code>REST FRAMEWORK</code> 은 이미 mixin 되어 있는 <code>generic</code> 뷰들을 제공하여, 우리가 우리의 <code>views.py</code> 를 조금 더 줄이는데 사용할수 있게 해줍니다. </p>
+<br>
+
+<p><code>snippets/views.py</code> 파일을 아래와 같이 수정해 줄수 있습니다. 조금 더 적은 양의 코드가 사용됩니다! </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> generics </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetList</span><span class="params">(generics.ListCreateAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    serializer_class = SnippetSerializer </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetDetail</span><span class="params">(generics.RetrieveUpdateDestroyAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    seriazlizer_class = SnippetSerializer</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>와~ 엄청나게 간결해 집니다. 다음 튜토리얼에서는, API 에 대한 인증과 권한에 대해서 둘러볼것입니다. </p>
+<br>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1295,160 +1396,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/20/DRF-Tutorial-7%ED%8E%B8-Web-API-%EC%97%90-%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%8B%9C%EB%8F%84-%ED%85%8C%EC%8A%A4%ED%8A%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/20/DRF-Tutorial-7%ED%8E%B8-Web-API-%EC%97%90-%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%8B%9C%EB%8F%84-%ED%85%8C%EC%8A%A4%ED%8A%B8/" class="post-title-link" itemprop="url">DRF Tutorial 7편 - Web API 에 첫번째 시도 테스트</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-20 08:30:53 / Updated at: 08:39:01" itemprop="dateCreated datePublished" datetime="2020-11-20T08:30:53+09:00">2020-11-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/20/DRF-Tutorial-7%ED%8E%B8-Web-API-%EC%97%90-%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%8B%9C%EB%8F%84-%ED%85%8C%EC%8A%A4%ED%8A%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/20/DRF-Tutorial-7편-Web-API-에-첫번째-시도-테스트/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="WEB-API-에-첫번째-테스트"><a href="#WEB-API-에-첫번째-테스트" class="headerlink" title="WEB API 에 첫번째 테스트"></a>WEB API 에 첫번째 테스트</h2><br>
-
-<p>샘플 서버를 시작하고, snippets 을 확인해 볼수 있습니다. </p>
-<br>
-
-<h3 id="Django-개발-서버-구동"><a href="#Django-개발-서버-구동" class="headerlink" title="Django 개발 서버 구동"></a>Django 개발 서버 구동</h3><br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>서버를 실행하고, 다른 터미널에서 서버를 테스트 해볼수 있습니다. </p>
-<br>
-
-<h3 id="Httpie-설치-및-사용"><a href="#Httpie-설치-및-사용" class="headerlink" title="Httpie 설치 및 사용"></a>Httpie 설치 및 사용</h3><br>
-
-<p>우리는, 우리가 작성한 API  를 curl  혹은 httpie 를 사용하여 테스트 할수 있습니다. </p>
-<br>
-
-<blockquote>
-<p>Httpie 는 </p>
-<p>파이썬으로 작성된, user-friendly 한 http client 입니다 </p>
-</blockquote>
-<br>
-
-<p>아래 명령어를 터미널에서 실행하여, httpie 를 설치해 줍니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install httpie</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>터미널을 열어서, 서버를 실행 시키고, 다른 터미널을 열어서 아래 명령어를 실행합니다. </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets/</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>아래와 같이, 이제까지 생성한 snippets 이 조회가 됩니다. </p>
-<br>
-
-<img src="/2020/11/20/DRF-Tutorial-7%ED%8E%B8-Web-API-%EC%97%90-%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%8B%9C%EB%8F%84-%ED%85%8C%EC%8A%A4%ED%8A%B8/image1.png" class="">
-
-<br>
-
-<p>혹은, 특정 snippet 을 id 를 참조하여 얻을수 있습니다. </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets/2</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<img src="/2020/11/20/DRF-Tutorial-7%ED%8E%B8-Web-API-%EC%97%90-%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%8B%9C%EB%8F%84-%ED%85%8C%EC%8A%A4%ED%8A%B8/image2.png" class="">
-
-<br>
-
-<h3 id="브라우저로-확인하기"><a href="#브라우저로-확인하기" class="headerlink" title="브라우저로 확인하기"></a>브라우저로 확인하기</h3><br>
-
-<p>위의 방식은 터미널에서 http 방식으로 해당 API 에 접근하여 Json 을 얻었지만. </p>
-<p><br>위의 URL 을 브라우저에서 접속해도, 같은 json 이 표시되는것을 확인할수 있습니다. </p>
-<br>
-
-<img src="/2020/11/20/DRF-Tutorial-7%ED%8E%B8-Web-API-%EC%97%90-%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%8B%9C%EB%8F%84-%ED%85%8C%EC%8A%A4%ED%8A%B8/image3.png" class="">
-
-
-
-<img src="/2020/11/20/DRF-Tutorial-7%ED%8E%B8-Web-API-%EC%97%90-%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%8B%9C%EB%8F%84-%ED%85%8C%EC%8A%A4%ED%8A%B8/image4.png" class="">
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1519,7 +1466,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">224</span>
+          <span class="site-state-item-count">225</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
