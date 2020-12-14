@@ -9,8 +9,28 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Sun, 13 Dec 2020 06:25:30 GMT</pubDate>
+    <pubDate>Mon, 14 Dec 2020 07:56:26 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>DRF-Tutorial-28편- 관계와 하이퍼링크된 APIs</title>
+      <link>http://djangojeng-e.github.io/2020/12/14/DRF-Tutorial-28%ED%8E%B8-%EA%B4%80%EA%B3%84%EC%99%80-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC%EB%90%9C-APIs/</link>
+      <guid>http://djangojeng-e.github.io/2020/12/14/DRF-Tutorial-28%ED%8E%B8-%EA%B4%80%EA%B3%84%EC%99%80-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC%EB%90%9C-APIs/</guid>
+      <pubDate>Mon, 14 Dec 2020 07:51:33 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h2 id=&quot;Relationships-amp-Hyperlinked-APIs&quot;&gt;&lt;a href=&quot;#Relationships-amp-Hyperlinked-APIs&quot; class=&quot;headerlink&quot; title=&quot;Relationships &amp;amp; Hype
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Relationships-amp-Hyperlinked-APIs"><a href="#Relationships-amp-Hyperlinked-APIs" class="headerlink" title="Relationships &amp; Hyperlinked APIs"></a>Relationships &amp; Hyperlinked APIs</h2><br><p>현재 우리의 API 안에 있는 관계들은 primary key 를 사용하여 표현되어 있습니다. </p><br><p>이번 튜토리얼에서 우리는 우리의 API 의 결속력을 찾기 쉽게 향상 시킬겁니다. 이는 관계들을 하이퍼링크로 잇는 것을 사용하여 이룰수 있습니다. </p><br><h2 id="Creating-an-endpoint-for-the-root-of-our-API"><a href="#Creating-an-endpoint-for-the-root-of-our-API" class="headerlink" title="Creating an endpoint for the root of our API"></a>Creating an endpoint for the root of our API</h2><br><p>지금 현재 우리는 snippets 와 users 에 앤드포인트들을 가지고 있습니다. 하지만, 우리는 우리의 API 에 하나의 진입점을 가지고 있지 않습니다. 하나를 생성하기 위해, 우리는 일반 함수형 뷰와 @api_view 데코레이터를 사용할것 입니다. </p><br><p><code>snippets/views.py</code> 파일을 열고, 아래 내용을 추가해 줍니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.decorators <span class="keyword">import</span> api_view </span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.reverse <span class="keyword">import</span> reverse </span><br><span class="line"></span><br><span class="line"><span class="meta">@api_view(['GET'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">api_root</span><span class="params">(request, format=None)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> Response(&#123;</span><br><span class="line">        <span class="string">'users'</span>: reverse(<span class="string">'user-list'</span>m request=request, format=format),</span><br><span class="line">        <span class="string">'snippets'</span>: reverse(<span class="string">'snippet-list'</span>, request=request, format=format)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure><br><p>여기에서 두가지를 알고 넘어가야 합니다. </p><br><ol><li>우리는 REST FRMAEWORK 의 reverse 함수를 사용하여, 완벽한 URL 을 반환합니다 </li><li>URL 패턴들은 쉬운 이름으로 정의가 되고, 나중에 snippets/urls.py 에 선언될것 입니다. </li></ol><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/12/14/DRF-Tutorial-28%ED%8E%B8-%EA%B4%80%EA%B3%84%EC%99%80-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC%EB%90%9C-APIs/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>DRF-Tutorial-27편- 브라우저블 API에 로그인 추가하기</title>
@@ -451,28 +471,6 @@
       <content:encoded><![CDATA[<h2 id="Status-Codes"><a href="#Status-Codes" class="headerlink" title="Status Codes"></a>Status Codes</h2><br><p><code>HTTP</code> 요청에대한 상태를 표시하는 상태 코드들이 존재합니다. 숫자로된 HTTP 상태 코드들을 당신의 view 에서 사용하는것은, 언제나 명확하게 읽혀지지 않습니다. 그리고, 만약 당신이 틀린 에러 코드를 갖게되더라도, 알아채기 쉽지 않습니다. </p><br><p>따라서, REST framework 은 조금 더 명확한 식별자들을 각 상태 코드에 부여합니다. status 모듈안에 있는, <code>HTTP_400_BAD_REQUEST</code> 같이 말이죠. </p><br><p>숫자로 된 식별자들을 사용하는것보다, 이러한 RESTFramework 에서 제공하는 좀 더 명시적인 식별자들을 사용하는것이 더 좋은 생각이 될것 입니다. </p>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/11/22/DRF-Tutorial-9%ED%8E%B8-%EC%83%81%ED%83%9C%EC%BD%94%EB%93%9C/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>DRF Tutorial 8편 - DRF Tutorial 8편 - 요청과 응답</title>
-      <link>http://djangojeng-e.github.io/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/</link>
-      <guid>http://djangojeng-e.github.io/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/</guid>
-      <pubDate>Sat, 21 Nov 2020 05:44:19 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;br&gt;
-
-&lt;h2 id=&quot;Requests-and-Responses&quot;&gt;&lt;a href=&quot;#Requests-and-Responses&quot; class=&quot;headerlink&quot; title=&quot;Requests and Responses&quot;&gt;&lt;/a&gt;Requests and R
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<br><h2 id="Requests-and-Responses"><a href="#Requests-and-Responses" class="headerlink" title="Requests and Responses"></a>Requests and Responses</h2><br><blockquote><p>이제부터 우리는,</p><p>진짜로 REST framework 의 주요 사항들을 볼것입니다. </p><p>몇가지 필수 사항들을 소개해 봅시다. </p></blockquote><br><h2 id="Request-objects"><a href="#Request-objects" class="headerlink" title="Request objects"></a>Request objects</h2><br><p>REST Framework 은 일반 HttpResponse 를 확장하는 Request 객체를 소개하고, </p><p>조금 더 유연한 파싱을 제공합니다. Request 객체의 주요 기능은,  <code>request.data</code> 속성이고, </p><br><p>이것은, request.POST 와 비슷하지만, Web API 를 작업할때 좀 더 유용합니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">request.POST </span><br><span class="line"><span class="comment"># only handles form data. Only works for 'POST' method</span></span><br><span class="line"><span class="comment"># 폼 데이터만 다루고, 오로지 POST 메서드에만 동작합니다. </span></span><br><span class="line"></span><br><span class="line">request.data</span><br><span class="line"><span class="comment"># 임의의 데이터를 다룰수 있고, </span></span><br><span class="line"><span class="comment"># 'POST', 'PUT' 그리고 'PATCH' 메서드들을 위해 동작합니다</span></span><br></pre></td></tr></table></figure><br><h2 id="Response-objects"><a href="#Response-objects" class="headerlink" title="Response objects"></a>Response objects</h2><br><p>REST Framework 은 Response 객체도 가지고 있습니다.</p><p><br>이것은, TemplateResponse 의 종류로, 렌더되지 않은 컨텐트와 content negotiation 을 사용하여, </p><br><p>클라이언트에게 반환할 적절한 컨텐트 종류를 결정합니다. </p><br><blockquote><p><strong>Content Negotiation</strong></p><p>동일한 URI 에서 리소스의 서로 다른 버전을 수행하기 위해 사용되는 메커니즘으로,</p><p>사용자 에이전트가 사용자에게 제일 잘 맞는것이 무엇인지를 명시할수 있습니다. </p><p>예) 문서의 언어, 이미지, 포맷 혹은 콘텐츠 인코딩에 있어서 어떤것이 적절할지를 정함.</p></blockquote><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> Response(data)</span><br><span class="line"><span class="comment"># Renders to content type as requested by the client </span></span><br><span class="line"><span class="comment"># 클라이언트가 요청한 content 종류를 렌더해줌</span></span><br></pre></td></tr></table></figure><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/#disqus_thread</comments>
     </item>
     
   </channel>

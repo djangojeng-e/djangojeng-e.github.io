@@ -220,6 +220,156 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/06/Django-Forms-9%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/06/Django-Forms-9%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-2/" class="post-title-link" itemprop="url">Django Forms 9편 - Django 에서 폼만들기 2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-06 10:24:02 / Updated at: 10:41:18" itemprop="dateCreated datePublished" datetime="2020-10-06T10:24:02+09:00">2020-10-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/06/Django-Forms-9%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-2/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/06/Django-Forms-9편-Django-에서-폼만들기-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="The-View"><a href="#The-View" class="headerlink" title="The View"></a>The View</h2><br>
+
+<p>Django 웹사이트로 다시 전송된 폼 데이터는 뷰가 처리 합니다. </p>
+<p><br>보편적으로, 폼을 발행했던 뷰가 처리합니다. 이는, 같은 로직들을 재사용하게 해줍니다. </p>
+<br>
+
+<blockquote>
+<p>폼을 다루기 위해서는, </p>
+<p>뷰에서 폼을 발행하려고 하는 URL 을 위해 폼을 인스턴스화 시켜주어야 합니다. </p>
+</blockquote>
+<br>
+
+<p>Django 에서 폼을 다루려면, 폼을 출력할 URL 을 생각해놓고, 폼을 발행하기 전에, 폼을 인스턴스화 시켜주어야 한다는 이야기 입니다. </p>
+<br>
+
+<br>
+
+<h2 id="폼-인스턴스화-시켜주기"><a href="#폼-인스턴스화-시켜주기" class="headerlink" title="폼 인스턴스화 시켜주기"></a>폼 인스턴스화 시켜주기</h2><br>
+
+<br>
+
+<p>Django 프로젝트에서, buildingaform 이라는 앱을 따로 생성해주고 <br></p>
+<p>buildingaform 앱 안의 구조가 아래와 같다고 가정해 봅시다. </p>
+<br>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── admin.py</span><br><span class="line">├── apps.py</span><br><span class="line">├── forms.py      <span class="comment"># 이전 포스팅에서 작성한 forms.py 파일 </span></span><br><span class="line">├── __init__.py</span><br><span class="line">├── migrations</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">├── models.py</span><br><span class="line">├── tests.py</span><br><span class="line">└── views.py     <span class="comment"># 전달된 폼데이터를 처리 혹은 폼을 인스턴스화</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>forms.py</code>  파일이 생성되있는것을 확인할수 있고. <code>views.py</code> 가 전달된 폼 데이터를 처리 하거나, 폼을 인스턴스화 합니다. </p>
+<br>
+
+<blockquote>
+<p><code>views.py</code> 파일을 간단하게 살펴보자면, </p>
+</blockquote>
+<br>
+
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponseRedirect </span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render </span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .forms <span class="keyword">import</span> NameForm </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">"POST"</span>: </span><br><span class="line">        <span class="comment"># 요청이, POST 라면, form 인스턴스를 아래와 같이 생성해줍니다.</span></span><br><span class="line">        form = NameForm(request.POST)</span><br><span class="line">        <span class="comment"># 유효한 데이터인지 검사하기 위해, is_valid 메서드를 사용해 줍니다. </span></span><br><span class="line">        <span class="keyword">if</span> form.is_valid():</span><br><span class="line">            <span class="comment"># form.cleaned_data 안에 있는 데이터를 요구사항에 맞게 처리할 로직을 작성합니다 </span></span><br><span class="line">            <span class="comment"># ..</span></span><br><span class="line">            <span class="comment"># 새로운 URL 로 리다이렉트 시켜줍니다 </span></span><br><span class="line">            <span class="keyword">return</span> HttpResponseRedirect(<span class="string">'/thanks/'</span>)</span><br><span class="line">    <span class="comment"># 만약, GET 이나 다른 method 의 요청을 받으면, 비어있는 폼을 생성합니다 </span></span><br><span class="line">    <span class="keyword">else</span>: </span><br><span class="line">        form = NameForm()</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'name.html'</span>, &#123;<span class="string">'form'</span>: form&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="Views-py-에서-폼을-처리하는-포인트"><a href="#Views-py-에서-폼을-처리하는-포인트" class="headerlink" title="Views.py 에서 폼을 처리하는 포인트"></a>Views.py 에서 폼을 처리하는 포인트</h2><br>
+
+<ul>
+<li><p><strong>GET 요청으로 이 뷰에 요청이 들어오면</strong> </p>
+<p>해당 뷰는 비어있는 폼 인스턴스를 생성하고, 폼이 렌더될 템플릿 컨텍스트에 넣어놓습니다. 이것은, 우리가 처음 폼이 존재하는 URL 에 방문하였을때 예상할수 있는 일입니다. 비어있는 폼 인스턴스를 생성하였기 때문에, 비어있는 폼이 화면에 출력 됩니다. <br></p>
+</li>
+<li><p><strong>POST 요청으로 사용자가 폼을 제출 하면</strong>  </p>
+<p>해당 뷰는, 또다시 폼 인스턴스를 생성하는데, 요청으로부터 들어온 데이터를 채워줍니다 <code>form=NameForm(request.POST)</code>. 이를 두고, 데이터를 폼에 묶어준다고 표현합니다. <br></p>
+</li>
+<li><p><strong><code>is_valid()</code> 메서드를 호출 합니다</strong> </p>
+<p> <code>is_valid()</code> 를 호출하였을때, True 가 반환되지 않는다면 (즉 False 가 반환될때), 폼과 함께 템플릿으로 다시 돌아갑니다. 이렇게 다시 폼이 출력되는 화면으로 돌아갈때에는, 비어 있는 폼이 아닐수 있습니다. 이전에 제출된 데이터로 채워져 있을것입니다. 따라서, 이전에 제출된 데이터들을 요구사항에 따라 수정 혹은 고쳐줄수 있습니다.  <br></p>
+</li>
+<li><p><strong>만약 <code>is_valid()</code> 가 True 라면</strong> </p>
+<p>유효한 Form data  들을 <code>cleaned_data</code> 속성에서 찾을수 있을것입니다. 이 <code>cleaned_data</code> 속성 안에 드렁있는 데이터를 사용하여, 데이터베이스를 업데이트 하거나, 혹은 다른 처리과정을 HTTP redirect 를 하기전에 수행할수 있습니다.<br></p>
+</li>
+</ul>
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/05/Django-Forms-8%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1419,123 +1569,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-5/" class="post-title-link" itemprop="url">AWS Elastic Beanstalk 배포 - 5</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-09-24 13:02:30 / Updated at: 13:16:21" itemprop="dateCreated datePublished" datetime="2020-09-24T13:02:30+09:00">2020-09-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/AWS/Elastic-Beanstalk/" itemprop="url" rel="index"><span itemprop="name">Elastic Beanstalk</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-5/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/09/24/AWS-Elastic-Beanstalk-배포-5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Elastic-Beanstalk-를-위한-설정"><a href="#Elastic-Beanstalk-를-위한-설정" class="headerlink" title="Elastic Beanstalk 를 위한 설정"></a>Elastic Beanstalk 를 위한 설정</h2><br>
-
-<p>지난 포스팅까지, django2.1.1 기반의 django 프로젝트를 하나 생성해 주었습니다. </p>
-<p><br>아무것도 수행하지 않는 어플리케이션이지만, 이 간단한 어플리케이션을 Elastic Beanstalk 에 배포하기 위해서는, 아래와 같은 몇가지 설정들을 해주어야 합니다. </p>
-<p><br><br></p>
-<ol>
-<li>requirements.txt 파일 생성 </li>
-<li>.ebextensions 폴더 생성후, 그 안에 django.config 파일 작성  </li>
-</ol>
-<br>
-
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-5/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1606,7 +1639,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">225</span>
+          <span class="site-state-item-count">226</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
