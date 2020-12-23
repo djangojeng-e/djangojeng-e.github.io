@@ -4,7 +4,7 @@
 
     <sitemap>
         <loc>http://djangojeng-e.github.io/post-sitemap.xml</loc>
-        <lastmod>2020-12-15T07:32:35.461Z</lastmod>
+        <lastmod>2020-12-23T06:42:21.713Z</lastmod>
     </sitemap>
 
     <sitemap>
@@ -14,12 +14,12 @@
 
     <sitemap>
         <loc>http://djangojeng-e.github.io/category-sitemap.xml</loc>
-        <lastmod>2020-12-15T07:32:35.461Z</lastmod>
+        <lastmod>2020-12-23T06:42:21.713Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://djangojeng-e.github.io/tag-sitemap.xml</loc>
-        <lastmod>2020-12-15T07:32:35.461Z</lastmod>
+        <lastmod>2020-12-23T06:42:21.713Z</lastmod>
     </sitemap>
 
 </sitemapindex>

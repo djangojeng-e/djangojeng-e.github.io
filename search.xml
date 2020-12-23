@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-30편- API를 하이퍼링크 해주기</title>
+    <url>/2020/12/23/DRF-Tutorial-30%ED%8E%B8-API%EB%A5%BC-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC-%ED%95%B4%EC%A3%BC%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Hyperlinking-our-API"><a href="#Hyperlinking-our-API" class="headerlink" title="Hyperlinking our API"></a>Hyperlinking our API</h2><br>
+
+<p>각 요소들의 관계를 다루는것은 우리의 웹 API 디자인에서 조금 더 어려운 부분입니다. </p>
+<br>
+
+<p>관계를 표현하기 위해서 선택할수 있는 여러가지 다른 방법들이 존재합니다.</p>
+<br>
+
+<ul>
+<li>primary key 사용하기 </li>
+<li>entities 간 하이퍼링크 해주기 </li>
+<li>고유한 slug 필드를 관계된 entity 에 사용해주기 </li>
+<li>관계된 entity 의 기본 문자열 표현 사용하기 </li>
+<li>부모 표현 안에 관계된 entity 네스팅 해주기 </li>
+<li>기타 다른 사용자 정의 표현 </li>
+</ul>
+<br>
+
+<p>REST Frmaework 은 이 모든 스타일들을 지원합니다. 그리고, 순방향 혹은 역방향 관계들에 적용할수 있습니다. 혹은, generic foreign key 와 같은 커스텀 메니저에도 적용될수 있습니다. </p>
+<br>
+
+<p>이번에 우리는, entity 간에 하이퍼링크를 해주는 스타일을 사용해 볼겁니다. </p>
+<br>
+
+<p>이를 하기 위해서는, 기존에 존재하던 <code>ModelSerializer</code> 대신에, 우리의 serializer 를 수정하여 <code>HyperlinkedModelSerializer</code> 를 확장해야 합니다. </p>
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<blockquote>
+<p><code>HyperlinkedModelSerializer</code> 는 <code>ModelSerializer</code> 와 차이점이 있습니다. </p>
+<br>
+
+<ol>
+<li>기본값으로 id 필드를 포함하지 않습니다 </li>
+<li>HyperlinkedIdentityfield 를 사용하여, url 필드를 포함합니다 </li>
+<li>관계들은 <code>HyperlinkedRelatedField</code> 를 <code>PrimaryKeyRelatedFiedl</code> 대신 사용합니다. </li>
+</ol>
+</blockquote>
+<br>
+
+<p>우리는 이미 쉽게 존재하는 serializers 를 재작성하여 hyperlinking 을 사용하도록 만들수 있습니다. </p>
+<br>
+
+<p><code>snippets/serializer.py</code> 파일을 열고, 아래를 추가해줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span><span class="params">(serializers.HyperlinkedModelSerializer)</span>:</span></span><br><span class="line">    owner = serializers.ReadOnlyFied(source=<span class="string">'owner.username'</span>)</span><br><span class="line">    highlight = serializers.HyperlinkedIdentityField(view_name=<span class="string">'snippet-highlight'</span>, format=<span class="string">'html'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Snippet</span><br><span class="line">        fields = [<span class="string">'url'</span>, <span class="string">'id'</span>, <span class="string">'highlight'</span>, <span class="string">'owner'</span>, <span class="string">'title'</span>, </span><br><span class="line">                <span class="string">'code'</span>, <span class="string">'linenos'</span>, <span class="string">'language'</span>, <span class="string">'style'</span>]</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserSerializer</span><span class="params">(serializers.HyperlinkedModelSerializer)</span>:</span></span><br><span class="line">    snippets = serializers.HyperlinkedRelatedField(many=<span class="literal">True</span>, view_name=<span class="string">'snippet-	detail'</span>, read_only=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = User</span><br><span class="line">        fields = [<span class="string">'url'</span>, <span class="string">'id'</span>, <span class="string">'username'</span>, <span class="string">'snippets'</span>]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>우리가 새로운 highlight 필드를 추가했다는것을 알고 있어야 합니다. 이필드는 snippet-detail 대신에 snippet-highlight URL 패턴을 가르키는것을 제외하고는, url 필드와 같은 타입의 필드 입니다. </p>
+<br>
+
+<p>우리는 <code>.json</code> 같은, 접미사 url 을 포함하였기 때문에, highlight 필드에 접미사로된 하이퍼링크들은 <code>.html</code> 접미사를 사용하도록 명시해 줍니다. </p>
+<br>]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-29편- 하이라이트된 스니펫에 앤드포인트 생성</title>
     <url>/2020/12/15/DRF-Tutorial-29%ED%8E%B8-%ED%95%98%EC%9D%B4%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%90%9C-%EC%8A%A4%EB%8B%88%ED%8E%AB%EC%97%90-%EC%95%A4%EB%93%9C%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%83%9D%EC%84%B1/</url>
     <content><![CDATA[<h2 id="Creating-an-endpoint-for-the-highlighted-snippets"><a href="#Creating-an-endpoint-for-the-highlighted-snippets" class="headerlink" title="Creating an endpoint for the highlighted snippets"></a>Creating an endpoint for the highlighted snippets</h2><br>
