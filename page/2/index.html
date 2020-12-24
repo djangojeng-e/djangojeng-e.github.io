@@ -220,6 +220,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/02/DRF-Tutorial-22%ED%8E%B8-Serializer-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-%ED%95%B4%EC%A3%BC%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/02/DRF-Tutorial-22%ED%8E%B8-Serializer-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-%ED%95%B4%EC%A3%BC%EA%B8%B0/" class="post-title-link" itemprop="url">DRF-Tutorial-22편- Serializer 업데이트 해주기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-12-02 17:28:18 / Updated at: 17:34:15" itemprop="dateCreated datePublished" datetime="2020-12-02T17:28:18+09:00">2020-12-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/12/02/DRF-Tutorial-22%ED%8E%B8-Serializer-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-%ED%95%B4%EC%A3%BC%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/02/DRF-Tutorial-22편-Serializer-업데이트-해주기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Serializer-업데이트-해주기"><a href="#Serializer-업데이트-해주기" class="headerlink" title="Serializer 업데이트 해주기"></a>Serializer 업데이트 해주기</h2><br>
+
+<p>이제 snippets 는 해당 snippets 를 생성한 user 와 연계되어 있습니다. </p>
+<br>
+
+<p><code>snippets/serializers.py</code> 에 <code>SnippetSerializer</code> 를 업데이트 하여, 이를 반영하도록 해줍니다. </p>
+<br>
+
+<p>아래 코드를, <code>snippets/serializers.py</code> 파일에 추가 해줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    owner = serializers.ReadOnlyField(source=<span class="string">'owner.username'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Snippet </span><br><span class="line">        fields = [<span class="string">'id'</span>, <span class="string">'title'</span>, <span class="string">'code'</span>, <span class="string">'linenos'</span>, <span class="string">'language'</span>, <span class="string">'style'</span>, <span class="string">'owner'</span>]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<blockquote>
+<p>owner 를 Meta 클래스안에 fields 리스트에 확실하게 추가해 주는걸 잊지 않습니다. </p>
+</blockquote>
+<br>
+
+<p>이 필드는 꽤나 재미있는 일을 합니다. source 인자는 어떤 속성이 필드를 채우기 위해 사용되는지 제어합니다. 그리고, 직렬화된 인스턴스에 속성을 가르킬수도 있습니다. </p>
+<br>
+
+<p>또한, 위에 보이는데로, <code>owner.username</code> 같이 점을 찍은 표현 (dot-notation) 을 인자로 받아서, django 의 템플릿 언어와 같이 주어진 속성들을 파악 합니다. </p>
+<br>
+
+<p>우리가 추가한 필드는 타이핑이 되지 않는 ReadOnlyField 클래스로, CharField, BooleanField 등과 같은 다른 타이핑된 필드들과는 대조됩니다. 타이핑 되지 않은 ReadOnlyField 는 언제나 읽기 전용이고, 직렬화된 표현으로 사용될것 입니다. </p>
+<br>
+
+<p>하지만, 이것들이 역직렬화되었을때는, 모델 인스턴스들을 업데이트 할때 사용되지 않을것입니다. 우리는, <code>CharField(read_only=True)</code> 도 이곳에 사용할수도 있었습니다. </p>
+<br>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/02/DRF-Tutorial-21%ED%8E%B8-Snippets-%EC%99%80-User-%EB%A5%BC-%EC%97%B0%EA%B3%84%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1313,122 +1428,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF Tutorial 12편 - URL에 Suffix 추가하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-23 19:32:11 / Updated at: 19:39:18" itemprop="dateCreated datePublished" datetime="2020-11-23T19:32:11+09:00">2020-11-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/23/DRF-Tutorial-12편-URL에-Suffix-추가하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Adding-optional-format-suffixes-to-our-URLs"><a href="#Adding-optional-format-suffixes-to-our-URLs" class="headerlink" title="Adding optional format suffixes to our URLs"></a>Adding optional format suffixes to our URLs</h2><br>
-
-<p>우리의 응답들이 더이상 하나의 컨텐트 유형에 묶여 있지 않는다는 사실의 장점을 이용하기 위해서, 우리의 API endpoints 에 추가 접미사 포맷을 추가해 줍니다. </p>
-<br>
-
-<p>format suffixes 를 사용하면, 명시적으로 주어진 포맷을 참조하게 하는 URL 을 가질수 있고, 우리의 API 가 <code>http://example.com/api/items/4</code>.json  같은 URL 들을 다룰수 있다는것을 의미 해줍니다. </p>
-<br>
-
-<blockquote>
-<p>format 키워드 인자들을, 두 views 에 추가해주면서 시작해줍니다. </p>
-<p><code>snippets/views.py</code> 파일을 열고, </p>
-<br>
-
-<p><code>snippet_list</code> 와 <code>snippet_detail</code> 에 format 키워드 인자들을 추가해줍니다. </p>
-</blockquote>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">snippet_list</span><span class="params">(request, format=None)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">snippet_detail</span><span class="params">(request, format=None)</span></span></span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="urls-py-파일을-업데이트-해주기"><a href="#urls-py-파일을-업데이트-해주기" class="headerlink" title="urls.py 파일을 업데이트 해주기"></a>urls.py 파일을 업데이트 해주기</h2><br>
-
-<p>이제, <code>snippets/urls.py</code> 파일을 조금 업데이트 해줍니다. <code>format_suffix_patterns</code> 를 기존에 존재하고 있던 URLs 에 추가해 줍니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path </span><br><span class="line"><span class="keyword">from</span> rest_framework.urlpatterns <span class="keyword">import</span> format_suffix_patterns </span><br><span class="line"><span class="keyword">from</span> snippets <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'snippets/'</span>, views.snippet_list),</span><br><span class="line">    path(<span class="string">'snippets/&lt;int:pk&gt;'</span>, views.snippet_detail),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">urlpatterns = format_suffix_patterns(urlpatterns)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>우리는, 이 추가적인 url patterns 들을 꼭 추가해줄 필요는 없지만, 추가해줌으로써 특정 포맷을 참조하는 간단하고 깔끔한 방법을 가질수 있습니다. </p>
-<br>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1499,7 +1498,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

@@ -220,6 +220,122 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF Tutorial 12편 - URL에 Suffix 추가하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-23 19:32:11 / Updated at: 19:39:18" itemprop="dateCreated datePublished" datetime="2020-11-23T19:32:11+09:00">2020-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/23/DRF-Tutorial-12편-URL에-Suffix-추가하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Adding-optional-format-suffixes-to-our-URLs"><a href="#Adding-optional-format-suffixes-to-our-URLs" class="headerlink" title="Adding optional format suffixes to our URLs"></a>Adding optional format suffixes to our URLs</h2><br>
+
+<p>우리의 응답들이 더이상 하나의 컨텐트 유형에 묶여 있지 않는다는 사실의 장점을 이용하기 위해서, 우리의 API endpoints 에 추가 접미사 포맷을 추가해 줍니다. </p>
+<br>
+
+<p>format suffixes 를 사용하면, 명시적으로 주어진 포맷을 참조하게 하는 URL 을 가질수 있고, 우리의 API 가 <code>http://example.com/api/items/4</code>.json  같은 URL 들을 다룰수 있다는것을 의미 해줍니다. </p>
+<br>
+
+<blockquote>
+<p>format 키워드 인자들을, 두 views 에 추가해주면서 시작해줍니다. </p>
+<p><code>snippets/views.py</code> 파일을 열고, </p>
+<br>
+
+<p><code>snippet_list</code> 와 <code>snippet_detail</code> 에 format 키워드 인자들을 추가해줍니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">snippet_list</span><span class="params">(request, format=None)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">snippet_detail</span><span class="params">(request, format=None)</span></span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="urls-py-파일을-업데이트-해주기"><a href="#urls-py-파일을-업데이트-해주기" class="headerlink" title="urls.py 파일을 업데이트 해주기"></a>urls.py 파일을 업데이트 해주기</h2><br>
+
+<p>이제, <code>snippets/urls.py</code> 파일을 조금 업데이트 해줍니다. <code>format_suffix_patterns</code> 를 기존에 존재하고 있던 URLs 에 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path </span><br><span class="line"><span class="keyword">from</span> rest_framework.urlpatterns <span class="keyword">import</span> format_suffix_patterns </span><br><span class="line"><span class="keyword">from</span> snippets <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'snippets/'</span>, views.snippet_list),</span><br><span class="line">    path(<span class="string">'snippets/&lt;int:pk&gt;'</span>, views.snippet_detail),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">urlpatterns = format_suffix_patterns(urlpatterns)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>우리는, 이 추가적인 url patterns 들을 꼭 추가해줄 필요는 없지만, 추가해줌으로써 특정 포맷을 참조하는 간단하고 깔끔한 방법을 가질수 있습니다. </p>
+<br>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/22/DRF-Tutorial-11%ED%8E%B8-Pulling-it-all-together/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1359,124 +1475,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/15/DRF-Tutorial-2%ED%8E%B8-Serialization-%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/15/DRF-Tutorial-2%ED%8E%B8-Serialization-%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1/" class="post-title-link" itemprop="url">DRF Tutorial 2편 - Serialization 모델 생성</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-15 09:22:32 / Updated at: 09:31:13" itemprop="dateCreated datePublished" datetime="2020-11-15T09:22:32+09:00">2020-11-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/15/DRF-Tutorial-2%ED%8E%B8-Serialization-%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/15/DRF-Tutorial-2편-Serialization-모델-생성/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Serialization-모델-생성"><a href="#Serialization-모델-생성" class="headerlink" title="Serialization 모델 생성"></a>Serialization 모델 생성</h2><br>
-
-<h3 id="Creating-a-model-to-work-with-작업할-모델-생성하기"><a href="#Creating-a-model-to-work-with-작업할-모델-생성하기" class="headerlink" title="Creating a model to work with (작업할 모델 생성하기)"></a>Creating a model to work with (작업할 모델 생성하기)</h3><br>
-
-<p>이번 튜토리얼의 목적을 위해서, 코드 스니펫을 저장하는 간단한 snippet 모델을 생성하는걸로 시작하겠습니다.</p>
-<br>
-
-<p><code>snippet/models.py</code> 파일에서, 아래와 같이 모델을 작성해 줍니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"><span class="keyword">from</span> pygments.lexers <span class="keyword">import</span> get_all_lexers </span><br><span class="line"><span class="keyword">from</span> pygments.styles <span class="keyword">import</span> get_all_styles </span><br><span class="line"></span><br><span class="line">LEXERS = [item <span class="keyword">for</span> item <span class="keyword">in</span> get_all_lexers() <span class="keyword">if</span> item[<span class="number">1</span>]]</span><br><span class="line">LANGUAGE_CHOICES = sorted([item[<span class="number">1</span>][<span class="number">0</span>], item[<span class="number">0</span>] <span class="keyword">for</span> item <span class="keyword">in</span> LEXERS])</span><br><span class="line">STYLE_CHOICES = sorted([(item, item) <span class="keyword">for</span> item <span class="keyword">in</span> get_all_styles()])</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Snippet</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    created = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">100</span>, blank=<span class="literal">True</span>, default=<span class="string">''</span>)</span><br><span class="line">    code = models.TextField()</span><br><span class="line">    linenos = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line">    language = models.CharField(choices=LANGUAGE_CHOICES, default=<span class="string">'python'</span>, 					max_length=<span class="number">100</span>)</span><br><span class="line">    style = models.CharField(choices=STYLE_CHOICES, default=<span class="string">'friendly'</span>, 						max_length=<span class="number">100</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        ordering = [<span class="string">'created'</span>]</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<blockquote>
-<p>get_all_lexers 는 순회 가능한 LEXER 들의 정보를 가지고 있고 </p>
-<p>get_all_styles 는 순회 가능한 style 들의 정보를 가지고 있습니다. </p>
-<br>
-
-<p>이 두개를 List Comprehension 을 통해, For 문으로 리스트를 만들어 줍니다 </p>
-</blockquote>
-<br>
-
-<p>모델을 생성해 주었으니, snippet 모델에 대한 첫번재 migrations 을 생성해 줍니다 </p>
-<p><br>그리고 나서, 처음으로 데이터베이스와 동기화를 시켜줍니다. </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations </span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
-
-<br>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1547,7 +1545,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

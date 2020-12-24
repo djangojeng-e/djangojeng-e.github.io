@@ -220,6 +220,138 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/" class="post-title-link" itemprop="url">TodoList 29편 - Dockerfile 작성후 이미지 생성</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-07-21 21:40:17 / Updated at: 22:07:15" itemprop="dateCreated datePublished" datetime="2020-07-21T21:40:17+09:00">2020-07-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/21/TodoList-29편-Dockerfile-작성후-이미지-생성/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Dockerfile-작성"><a href="#Dockerfile-작성" class="headerlink" title="Dockerfile 작성"></a>Dockerfile 작성</h2><br>
+
+<p>배포를 위해 현재까지 진행한 단계는, 아래와 같습니다. </p>
+<p><br>각 단계마다 매우 꼬이고 있어서, 순서를 좀 정리 해봅니다.<br><br></p>
+<ol>
+<li>AWS EC2 생성 </li>
+<li>AWS RDS 생성 - PostgreSQL 을 Django 프로젝트에 적용 </li>
+<li>AWS S3 생성 및 Django 프로젝트에 적용 </li>
+<li>AWS S3 정적 이미지와 CSS 파일 적용 </li>
+<li>Docker 설치 </li>
+<li>Dockerfile 작성 후 이미지 생성 </li>
+<li>DockerHub Push </li>
+</ol>
+<br>
+
+<blockquote>
+<p><strong>Dockerfile 이란?</strong></p>
+<p>Dockerfile 은 Docker 이미지를 생성하기 위해 필요한 명령어를 가지고 있는 파일로, </p>
+<p>이 파일이 있는 디렉토리에서, Docker 이미지를 만들수 있습니다. </p>
+<p>Dockerfile 에 나열되어 있는 명령어들을 자동으로 실행하여, 이미지를 빌드할때 해당 이미지에 필요한 </p>
+<p>파일과 설정값들을 정할수 있습니다. </p>
+<br>
+
+<p>확장자 없이도 동작하고, </p>
+<p><code>RUN</code>, <code>COPY</code>, <code>WORKDIR</code> 과 같은, Dockerfile 언어로 작성할수 있습니다. </p>
+</blockquote>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/21/TodoList-29%ED%8E%B8-Dockerfile-%EC%9E%91%EC%84%B1%ED%9B%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/07/07/TodoList-28%ED%8E%B8-Docker-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%83%9D%EC%84%B1-%EC%97%B0%EC%8A%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1299,119 +1431,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/06/04/TodoList-19%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/04/TodoList-19%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">TodoList 19편 - AWS EC2 인스턴스 생성하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-06-04 20:14:49 / Updated at: 20:31:02" itemprop="dateCreated datePublished" datetime="2020-06-04T20:14:49+09:00">2020-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/" itemprop="url" rel="index"><span itemprop="name">미니프로젝트</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/06/04/TodoList-19%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/04/TodoList-19편-AWS-EC2-인스턴스-생성하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="AWS-EC2-인스턴스-생성"><a href="#AWS-EC2-인스턴스-생성" class="headerlink" title="AWS EC2 인스턴스 생성"></a>AWS EC2 인스턴스 생성</h2><br>
-
-<p><strong>AWS (AMAZON WEB SERVICES)</strong></p>
-<br>
-
-<p>투두리스트가 완전되었다고 가정하고, AWS 서버에 올려서 배포하는 작업을 시작해 보려 합니다. </p>
-<p><br>EC2 인스턴스를 하나 생성해서, 사용해 보려 합니다. </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/04/TodoList-19%ED%8E%B8-AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1482,7 +1501,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

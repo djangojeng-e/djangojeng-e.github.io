@@ -220,6 +220,125 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/" class="post-title-link" itemprop="url">Django Models 21편 - Multiple Inheritance</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-21 14:32:16 / Updated at: 14:46:54" itemprop="dateCreated datePublished" datetime="2020-08-21T14:32:16+09:00">2020-08-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/21/Django-Models-21편-Multiple-Inheritance/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Multiple-Inheritance"><a href="#Multiple-Inheritance" class="headerlink" title="Multiple Inheritance"></a>Multiple Inheritance</h2><br>
+
+<p>파이썬에서 서브클래스를 받는것과 같이, DJango 모델은 다수의 부모 모델들을 상속 받는게 가능합니다. </p>
+<p><br>하지만, 파이썬에서 일반적으로 이름짓는 방식들이 이 Django 모델 클래스에 적용된다는점을 염두해 두고 있어야 합니다 (예, 예약어들은 클래스명으로 사용할수 없음)</p>
+<br>
+
+<p>특정 이름, (예, Meta) 가 나타나는 첫번째 기본 클래스가 사용 될것입니다. 예를들면, 이것의 의미는 만약 다수의 부모 클래스들이 Meta 클래스를 하나씩 가지고 있는다면, 오직 첫번째 것만 사용이 되고, 나머지들은 무시 됩니다. </p>
+<br>
+
+<p>보편적으로 우리는, 다수의 부모 클래스로부터 상속 받을 필요가 없는 경우가 많습니다. 주 사용처는, “mix-in” 클래스들을 사용할때 유용하다는 점입니다. 특정 추가 필드를 추가하거나 “mix-in” 을 상속받는 모든 클래스에 메서드를 추가할때 유용합니다. </p>
+<br>
+
+<p>당신의 상속 구조를 가능한한 최대로 간단하고 명료하게 유지하도록 노력해야 합니다. 그래야, 특정 정보가 어디서 왔는지 알아내기 위해 고생할 필요가 없어집니다. </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/21/Django-Models-21%ED%8E%B8-Multiple-Inheritance/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/20/Django-Models-20%ED%8E%B8-Model-%EC%83%81%EC%86%8D-Proxy-models-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1386,128 +1505,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/" class="post-title-link" itemprop="url">Django Models 14편 - Model Methods</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-11 16:49:40 / Updated at: 17:10:48" itemprop="dateCreated datePublished" datetime="2020-08-11T16:49:40+09:00">2020-08-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/11/Django-Models-14편-Model-Methods/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Model-Methods"><a href="#Model-Methods" class="headerlink" title="Model Methods"></a>Model Methods</h2><br>
-
-<p>모델 클래스에는,  사용자 정의 메서드를 추가할수 있습니다. (row-level, 즉, 줄 단위)</p>
-<p><br>Manager 메서드 (objects) 는, table 전체에 적용되고. 모델 메서드들은, 특정한 모델 인스턴스에 적용됩니다.  </p>
-<br>
-
-<p>해당 모델의 인스턴스에 대해서, 특별한 비지니스 로직을 동작하고 싶을때에, 이런 모델 메서드를 사용해서. 하나의 모델에 모아놓고 사용할수 있습니다. </p>
-<br>
-
-<p>아래 예시에는, 몇가지 사용자 정의 메서드가 정의되어 있습니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    first_name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    last_name = models.CharField(max_length=<span class="number">50</span>)</span><br><span class="line">    birth_date = models.DateField()</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">baby_boomer_status</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># "Returns the person's baby-boomer status. "</span></span><br><span class="line">        <span class="comment"># 해당 사람이, baby_boomer 세대인지 아닌지 판단합니다. </span></span><br><span class="line">        <span class="keyword">import</span> datetime </span><br><span class="line">        <span class="keyword">if</span> self.birth_date &lt; datetime.datetime(<span class="number">1945</span>, <span class="number">8</span>, <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Pre-boomer"</span></span><br><span class="line">        <span class="keyword">elif</span> self.birth_date &lt; datetime.datetime(<span class="number">1965</span>, <span class="number">1</span>, <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Baby boomer"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Post-boomer"</span></span><br><span class="line">        </span><br><span class="line"><span class="meta">    @property </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">full_name</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># "Returns the person's full name"</span></span><br><span class="line">        <span class="comment"># 해당 사람의 이름을 리턴합니다 </span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'%s %s'</span> % (self.first_name, self.last_name)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/11/Django-Models-14%ED%8E%B8-Model-Methods/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1578,7 +1575,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">229</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
