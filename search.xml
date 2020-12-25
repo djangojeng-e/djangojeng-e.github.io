@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-33편- ViewSets를 사용하기 위해 코드 다시 짜기</title>
+    <url>/2020/12/26/DRF-Tutorial-33%ED%8E%B8-ViewSets%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%B4-%EC%BD%94%EB%93%9C-%EB%8B%A4%EC%8B%9C-%EC%A7%9C%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Refactoring-to-use-ViewSets"><a href="#Refactoring-to-use-ViewSets" class="headerlink" title="Refactoring to use ViewSets"></a>Refactoring to use ViewSets</h2><br>
+
+<p>현재 views 를 viewsets 를 사용하기 위해서, 코드를 다시 refactor 해봅시다. </p>
+<br>
+
+<p>우선, 우리의 UserList 와 UserDetail 뷰들을 하나의 UserViewSet 으로 리펙터 해줍니다. 우리는 이 두개의 뷰들을 삭제하고, 하나의 클래스로 대체할수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> viewsets </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserViewSet</span><span class="params">(viewsets.ReadOnlyModelViewSet)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    This viewset automatically provides 'list' and 'detail' actions</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    queryset = User.objects.all()</span><br><span class="line">    serailizer_class = UserSerializer</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>우리는 여기에 <code>ReadOnlyModelViewSet</code> 클래스를 사용하여, 자동으로 기본동작인 read-only 를 주었습니다. </p>
+<br>
+
+<p>우리는 여전히 queryset 과 serializer_class 속성들을 우리가 일반 뷰들을 사용할때처럼 정확하게 명시해 주었습니다. 하지만, 우리는 더이상 같은 정보를 두개의 별도 클래스들에 주지 않아도 됩니다.</p>
+<br>
+
+<h2 id="SnippetList-SnippetDetail-SnippetHighlight"><a href="#SnippetList-SnippetDetail-SnippetHighlight" class="headerlink" title="SnippetList, SnippetDetail, SnippetHighlight"></a>SnippetList, SnippetDetail, SnippetHighlight</h2><br>
+
+<p>다음은, 우리는 <code>SnippetList</code>, <code>SnippetDetail</code> 그리고 <code>SnippetHighlight</code> 뷰 클래스들을 교체 해줄겁니다. 우리는 이 세개의 뷰들을 삭제하고, 하나의 클래스로 대체해줍니다.<br></p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.decorators <span class="keyword">import</span> action </span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetViewSet</span><span class="params">(viewsets.ModelViewSet)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    This viewset automatically provides 'list', 'create', 'retrieve', 'update' and 'destroy' actions</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Additionally, we also provide an extra 'hihghlight' action.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    serializer_class = SnippetSerializer</span><br><span class="line">    permission_classes = [permissions.IsAuthenticateOrReadOnly, IsOwnerOrReadOnly]</span><br><span class="line"><span class="meta">    @action(detail=True, rendere_classes[renderers.StaticHTMLRenderer])</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">highlight</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        snippet = self.get_objects()</span><br><span class="line">        <span class="keyword">return</span> Response(snippet.highlighted)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform_create</span><span class="params">(self, serializer)</span>:</span></span><br><span class="line">        serializer.save(owner=self.request.user)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>이번에 우리는 <code>ModelViewSet</code> 클래스를 사용해서, 완벽하게 기본 읽기와 작성 동작들을 설정해주었습니다. </p>
+<br>
+
+<p>또한 <code>@action</code> 데코레이터를 사용하여, highlight 라는 커스텀 엑션을 생성해 주었다는것도 숙지해야 합니다. 이 데코레이터는 <code>create/update/delete</code> 스타일에 맞지 않는 커스텀 앤드포인트들을 추가할때 사용됩니다. </p>
+<br>
+
+<p><code>@action</code> 데코레이터를 사용하는 커스텀 엑션들은 기본적으로 GET 요청들에 반응합니다. </p>
+<br>
+
+<p>만일 우리가 POST 요청에 반응하는 엑션을 원한다면, 우리는  methods 인자를 사용할수 있습니다. </p>
+<br>
+
+<p>커스텀 엑션의 URL 들은 기본적으로, 해당 메서드 이름에 따라 결정됩니다. 만약, 우리가 URL 이 생성되는 방식을 바꾸고 싶으면, url_path 를 데코레이터의 키워드 인자로 포함할수 있습니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-32편- ViewSets &amp; Routers</title>
     <url>/2020/12/25/DRF-Tutorial-32%ED%8E%B8-ViewSets-Routers/</url>
     <content><![CDATA[<h2 id="ViewSets-amp-Routers"><a href="#ViewSets-amp-Routers" class="headerlink" title="ViewSets &amp; Routers"></a>ViewSets &amp; Routers</h2><br>

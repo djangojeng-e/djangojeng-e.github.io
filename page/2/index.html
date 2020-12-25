@@ -220,6 +220,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF-Tutorial-24편- 브라우저블 API 에 로그인 추가하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-12-04 16:19:35 / Updated at: 19:32:05" itemprop="dateCreated datePublished" datetime="2020-12-04T16:19:35+09:00">2020-12-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/API/" itemprop="url" rel="index"><span itemprop="name">API</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/04/DRF-Tutorial-24편-브라우저블-API-에-로그인-추가하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Adding-login-to-the-browsable-API"><a href="#Adding-login-to-the-browsable-API" class="headerlink" title="Adding login to the browsable API"></a>Adding login to the browsable API</h2><br>
+
+<p>지금 브러우저를 열어서 브라우저로 API 로 접근을 해보면, 더이상 새로운 코드 스니펫을 생성할수 없다는것을 발견할수 있습니다. </p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image1.png" class="">
+
+<br>
+
+<p>새로운 코드 스니펫을 생성하기 위해서는, 사용자로써 로그인을 해야 합니다. </p>
+<br>
+
+<p>브라우저로 API 를 사용하기 위해서, 로그인 뷰를 추가해 줄수 있습니다. </p>
+<p>이는, 프로젝트 레벨의 URLConf 를 수정함으로써 해줄수 있습니다. urls.py 파일을 아래와 같이 수정해 줍니다. </p>
+<br>
+
+<p><code>snippets/urls.py</code> 파일말고, 프로젝트 urls.py 파일을 아래와 같이 수정해 줍시다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include</span><br><span class="line"></span><br><span class="line">urlpatterns += [</span><br><span class="line">	path(<span class="string">'api-auth/'</span>, include(<span class="string">'rest_framework.urls'</span>)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>api-auth/ 부분은 우리가 사용하고 싶은 어떤 URL 이름을 써도 괜찮습니다</p>
+<br>
+
+<p>이제 브라우저를 다시 열고 새로고침을 하면, login 링크가 페이지의 오른쪽 상단에 볼수 있을겁니다.</p>
+<br>
+
+<p>여러분들이 이전에 생성한 사용자 디테일로 로그인을 하면, 다시 코드 스니펫을 생성할수 있을것입니다. </p>
+<br>
+
+<p>*<em>화면 오른쪽 상단에 Login 링크 확인 *</em></p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image2.png" class="">
+
+<br>
+
+<p><strong>이전 포스팅에서 생성한 사용자로 로그인 진행</strong></p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image3.png" class="">
+
+<br>
+
+<p><strong>로그인 진행후 화면에는, 새로운 코드를 생성할수 있는 필드가 나옵니다</strong></p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image4.png" class="">
+
+
+
+<br>
+
+<p>몇가지 코드 스니펫들을 생성하였으면 <code>/users/</code> 앤드포인트로 이동하고, </p>
+<p><br>각 사용자에 연결된 snippet id 의 리스트가 표시되는것을 확인할수 있습니다. 각 사용자의 snippets 필드 안에 있습니다.</p>
+<br>
+
+<p>아래는, 사용자 1 의 디테일 </p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image5.png" class="">
+
+<br>
+
+<p>사용자 2의 디테일</p>
+<br>
+
+<img src="/2020/12/04/DRF-Tutorial-24%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API-%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/image6.png" class="">
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/03/DRF-Tutorial-23%ED%8E%B8-%EB%B7%B0%EC%97%90-%ED%95%84%EC%9A%94%ED%95%9C-%EA%B6%8C%ED%95%9C-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1280,110 +1436,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/25/DRF-Tutorial-14%ED%8E%B8-Browsability/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/25/DRF-Tutorial-14%ED%8E%B8-Browsability/" class="post-title-link" itemprop="url">DRF Tutorial 14편 - Browsability</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-25 18:54:51 / Updated at: 18:57:45" itemprop="dateCreated datePublished" datetime="2020-11-25T18:54:51+09:00">2020-11-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/25/DRF-Tutorial-14%ED%8E%B8-Browsability/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/25/DRF-Tutorial-14편-Browsability/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Browsability"><a href="#Browsability" class="headerlink" title="Browsability"></a>Browsability</h2><br>
-
-<p>API 는 클라이언트 요청에 따라서 응답 컨텐츠 유형을 선택하기 때문에, 웹브라우저에서 해당 리소스가 요청 되었을때. 기본값으로 HTML 형식으로 표현된 리소스를 반환합니다. </p>
-<br>
-
-<p>웹 브라우저로 볼수 있는 API 를 갖는다는것은, 사용하는데에 많은 이점이 됩니다. 그리고, API 를 개발하고 사용하는것을 쉽게 만들어 줍니다. </p>
-<br>
-
-<p>또한, 당신의 API 를 작업하고 싶은 다른 개발자들의 진입 장벽을 낮춰 줍니다. </p>
-<br>
-
-<p>browable 토픽 문서를 보면, browsable API 기능에 대한 더 많은 정보와 어떻게 커스터마이즈를 할수 있는지 볼수 있습니다. </p>
-<br>
-
-<h2 id="What’s-Next"><a href="#What’s-Next" class="headerlink" title="What’s Next?"></a>What’s Next?</h2><br>
-
-<p>다음 토픽부터는, 클래스 기반 뷰를 사용하기 시작할겁니다. 어떻게 generic view 들이 우리가 써야하는 코드의 양을 줄여주는지 확인 할수 있습니다. </p>
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1454,7 +1506,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">231</span>
+          <span class="site-state-item-count">232</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
