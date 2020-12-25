@@ -220,6 +220,170 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/" class="post-title-link" itemprop="url">DRF Tutorial 13편 - 어떻게 보일까요?</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-24 16:07:56 / Updated at: 16:16:07" itemprop="dateCreated datePublished" datetime="2020-11-24T16:07:56+09:00">2020-11-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/24/DRF-Tutorial-13편-어떻게-보일까요/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="How’s-it-looking"><a href="#How’s-it-looking" class="headerlink" title="How’s it looking?"></a>How’s it looking?</h2><br>
+
+<p>더 나아가서, API 를 커맨드라인에서 테스트 해볼수 있습니다. </p>
+<p><br>우리는, 유효하지 않은 요청을 보냈을때 발생하는 몇가지 더 좋은 에러들을 다루기도 하였지만, 모든것은 비슷하게 작동합니다. </p>
+<br>
+
+<p>이전처럼, 모든 snippets 의 리스트를 얻을수 있습니다. </p>
+<br>
+
+<p>서버를 실행하고, 새로운 터미널 창을 열어서, 아래 커맨드를 실행해 줍니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>아래와 같은 리스트가 나옵니다. </p>
+<br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image1.png" class="">
+
+<br>
+
+<h2 id="응답의-포맷"><a href="#응답의-포맷" class="headerlink" title="응답의 포맷"></a>응답의 포맷</h2><br>
+
+<blockquote>
+<p>우리가 다시 받는 응답의 포멧을 제어할수도 있습니다. </p>
+<p>Accept 헤더를 사용합니다. </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets/ Accept:application/json    # JSON 요청 </span><br><span class="line">http http://127.0.0.1:8000/snippets/ Accept:text/html           # HTML 요청</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><br>
+
+<p>json 요청 </p>
+<br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image2.png" class="">
+
+<br>
+
+<h3 id="HTML-요청"><a href="#HTML-요청" class="headerlink" title="HTML 요청"></a>HTML 요청</h3><br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image3.png" class="">
+
+<br>
+
+<p>혹은, 포맷 접미사를 붙여서 사용합니다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http http://127.0.0.1:8000/snippets.json  # JSON suffix </span><br><span class="line">http http://127.0.0.1:8000/snippets.api   # browsable API siffuix</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h3 id="요청의-포맷-제어"><a href="#요청의-포맷-제어" class="headerlink" title="요청의 포맷 제어"></a>요청의 포맷 제어</h3><br>
+
+<blockquote>
+<p>비슷한 방식으로, 우리는 우리가 보내는 요청의 포맷을 제어할수 있습니다 </p>
+<p>content-type-header 를 사용해서, 요청의 포맷을 제어합니다. </p>
+</blockquote>
+<br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image4.png" class="">
+
+<br>
+
+<p>만약 <code>--debug</code> 스위치를 위의 http 요청에 추가한다면, 요청 타입을 요청의 헤더 안에서 볼수 있습니다. </p>
+<p><br>이제, API 를 웹 브라우저에서 열어봅니다 <code>http://127.0.0.1:8000/snippets/</code></p>
+<br>
+
+<img src="/2020/11/24/DRF-Tutorial-13%ED%8E%B8-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%B3%B4%EC%9D%BC%EA%B9%8C%EC%9A%94/image5.png" class="">
+
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/23/DRF-Tutorial-12%ED%8E%B8-URL%EC%97%90-Suffix-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1347,139 +1511,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/" class="post-title-link" itemprop="url">DRF Tutorial 3편 - Serializer class 생성</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-16 15:04:29 / Updated at: 15:19:07" itemprop="dateCreated datePublished" datetime="2020-11-16T15:04:29+09:00">2020-11-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/16/DRF-Tutorial-3편-Serializer-class-생성/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Serializer-Class-생성"><a href="#Serializer-Class-생성" class="headerlink" title="Serializer Class 생성"></a>Serializer Class 생성</h2><br>
-
-<h3 id="Creating-a-Serializer-Class"><a href="#Creating-a-Serializer-Class" class="headerlink" title="Creating a Serializer Class"></a>Creating a Serializer Class</h3><br>
-
-<p>우리의 web API 를 시작하기 위해서 첫번째로 필요한것은, <code>serializing</code> 그리고 <code>deserializing</code> 하여 snippet 인스턴스들을 json 같은 형태로 재구성 하는 방법을 제공해야 합니다. </p>
-<br>
-
-<blockquote>
-<p><strong>Serialization 이란?</strong></p>
-<p>직렬화, 또는 시리얼라이제이션 (serialization) 은, </p>
-<p>컴퓨터 과학의 데이터 스토리지 문맥에서, 데이터 구조나 객체 상태를 다른 컴퓨터 환경에 저장하고, </p>
-<p>나중에 재구성할수 있는 포맷으로 변환하는 과정입니다. </p>
-<br>
-
-<p>반대로, 일련의 바이트로부터, 데이터 구조를 추출하는 일은 역직렬화 또는 디시리얼라이제이션 (deserialization) 이라고 합니다. </p>
-</blockquote>
-<br>
-
-<p>우리는 이것을 Django 의 forms 와 비슷하게 작동하는 serializer 클래스를 선언하여 작업할수 있습니다. </p>
-<br>
-
-<p><code>snippet/serializers.py</code> 파일을 생성하고, 아래 내용을 추가해 줍니다.  </p>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1545,7 +1581,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">231</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

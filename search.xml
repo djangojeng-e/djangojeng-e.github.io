@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-32편- ViewSets &amp; Routers</title>
+    <url>/2020/12/25/DRF-Tutorial-32%ED%8E%B8-ViewSets-Routers/</url>
+    <content><![CDATA[<h2 id="ViewSets-amp-Routers"><a href="#ViewSets-amp-Routers" class="headerlink" title="ViewSets &amp; Routers"></a>ViewSets &amp; Routers</h2><br>
+
+<p>REST FRAMEWORK 는 ViewSets 를 다루기 위한 추상화된것을 포함하고 있습니다. </p>
+<br>
+
+<p>이는, 개발자들에게 API 의 상태와 상호작용들을 모델링하는데에 집중할수 있게 해주고. URL 빌드업이 자동으로 이루어지게 해줍니다. </p>
+<br>
+
+<p>ViewSet 클래스들은, View 클래스들과 거의 같습니다. </p>
+<br>
+
+<p>get 혹은, put 같은 메서드 대신에, read 혹은 update 같은 동작을 제공한다는점만 제외하고 말이죠. </p>
+<br>
+
+<p>하나의 ViewSet클래스는 메서드 핸들러에 마지막 순간에 bound 됩니다. </p>
+<br>
+
+<p>보통, Router 를 사용하여, set of views 로 인스턴스화 되었을때, bound 됩니다. </p>
+<br>
+
+<p>Router 클래스는, URL conf 를 정의하는데에 있는 복잡함을 다루어 줍니다. </p>
+<br>]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-31편- API 브라우징</title>
     <url>/2020/12/24/DRF-Tutorial-31%ED%8E%B8-API-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A7%95/</url>
     <content><![CDATA[<h2 id="Browsing-the-API"><a href="#Browsing-the-API" class="headerlink" title="Browsing the API"></a>Browsing the API</h2><br>

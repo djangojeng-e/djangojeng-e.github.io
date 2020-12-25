@@ -220,6 +220,134 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/" class="post-title-link" itemprop="url">DRF Tutorial 3편 - Serializer class 생성</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-16 15:04:29 / Updated at: 15:19:07" itemprop="dateCreated datePublished" datetime="2020-11-16T15:04:29+09:00">2020-11-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/16/DRF-Tutorial-3편-Serializer-class-생성/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Serializer-Class-생성"><a href="#Serializer-Class-생성" class="headerlink" title="Serializer Class 생성"></a>Serializer Class 생성</h2><br>
+
+<h3 id="Creating-a-Serializer-Class"><a href="#Creating-a-Serializer-Class" class="headerlink" title="Creating a Serializer Class"></a>Creating a Serializer Class</h3><br>
+
+<p>우리의 web API 를 시작하기 위해서 첫번째로 필요한것은, <code>serializing</code> 그리고 <code>deserializing</code> 하여 snippet 인스턴스들을 json 같은 형태로 재구성 하는 방법을 제공해야 합니다. </p>
+<br>
+
+<blockquote>
+<p><strong>Serialization 이란?</strong></p>
+<p>직렬화, 또는 시리얼라이제이션 (serialization) 은, </p>
+<p>컴퓨터 과학의 데이터 스토리지 문맥에서, 데이터 구조나 객체 상태를 다른 컴퓨터 환경에 저장하고, </p>
+<p>나중에 재구성할수 있는 포맷으로 변환하는 과정입니다. </p>
+<br>
+
+<p>반대로, 일련의 바이트로부터, 데이터 구조를 추출하는 일은 역직렬화 또는 디시리얼라이제이션 (deserialization) 이라고 합니다. </p>
+</blockquote>
+<br>
+
+<p>우리는 이것을 Django 의 forms 와 비슷하게 작동하는 serializer 클래스를 선언하여 작업할수 있습니다. </p>
+<br>
+
+<p><code>snippet/serializers.py</code> 파일을 생성하고, 아래 내용을 추가해 줍니다.  </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/16/DRF-Tutorial-3%ED%8E%B8-Serializer-class-%EC%83%9D%EC%84%B1/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/15/DRF-Tutorial-2%ED%8E%B8-Serialization-%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1823,154 +1951,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/07/Python-%EA%B8%B0%EC%B4%88-16%ED%8E%B8-Date-and-Time/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/07/Python-%EA%B8%B0%EC%B4%88-16%ED%8E%B8-Date-and-Time/" class="post-title-link" itemprop="url">Python 기초 16편 - Date and Time</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-07 13:05:42 / Updated at: 13:26:46" itemprop="dateCreated datePublished" datetime="2020-11-07T13:05:42+09:00">2020-11-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/07/Python-%EA%B8%B0%EC%B4%88-16%ED%8E%B8-Date-and-Time/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/07/Python-기초-16편-Date-and-Time/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Python-기초-Date-and-Time"><a href="#Python-기초-Date-and-Time" class="headerlink" title="Python 기초 - Date and Time"></a>Python 기초 - Date and Time</h2><br>
-
-<h3 id="날짜와-시간"><a href="#날짜와-시간" class="headerlink" title="날짜와 시간"></a>날짜와 시간</h3><br>
-
-<p><code>datetime</code> 모듈은 날짜와 시간들을 간단한 혹은 복잡한 방법으로 다룰수 있게 해주는 클래스들을 제공합니다. </p>
-<br>
-
-<blockquote>
-<p>Datetime 모듈은 세가지 기본 객체 타입들을 가지고 있습니다. </p>
-<br>
-
-<p>1) date</p>
-<p>2) time</p>
-<p>3) datetime</p>
-</blockquote>
-<br>
-
-<h4 id="date"><a href="#date" class="headerlink" title="date"></a>date</h4><br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Date (날짜)를 두룰때 </span></span><br><span class="line"><span class="comment"># datetime.date.today() 오늘 날짜를 갖습니다 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime </span><br><span class="line">today = datetime.date.today()</span><br><span class="line">print(<span class="string">f'오늘 날짜는 <span class="subst">&#123;today&#125;</span> 입니다'</span>)</span><br><span class="line"></span><br><span class="line">new_year = datetime.date(<span class="number">2021</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">print(<span class="string">f'올해 신년 날짜는 <span class="subst">&#123;new_year&#125;</span> 입니다'</span>)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<h4 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h4><br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Time (시간) 을 다룰때</span></span><br><span class="line"><span class="comment"># datetime.time() 은 시간을 갖습니다 </span></span><br><span class="line"><span class="keyword">import</span> datetime </span><br><span class="line"><span class="comment"># time 객체 </span></span><br><span class="line">noon = datetime.time(<span class="number">12</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">print(noon)</span><br><span class="line"></span><br><span class="line">three_pm = datetime.time(<span class="number">15</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">print(three_pm)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<br>
-
-<h4 id="datetime"><a href="#datetime" class="headerlink" title="datetime"></a>datetime</h4><br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># time 을 다룰때, date 와 time 둘의 값을 가진 객체를 가질수 있습니다 </span></span><br><span class="line"><span class="comment"># Datetime 객체 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime </span><br><span class="line">now = datetime.datetime.now() </span><br><span class="line"></span><br><span class="line">print(now)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime </span><br><span class="line"></span><br><span class="line"><span class="comment"># 특정 datetime </span></span><br><span class="line"></span><br><span class="line">my_birthday = datetime.datetime(<span class="number">2000</span>, <span class="number">12</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">28</span>, <span class="number">0</span>)</span><br><span class="line">print(my_birthday)</span><br></pre></td></tr></table></figure>
-
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/07/Python-%EA%B8%B0%EC%B4%88-16%ED%8E%B8-Date-and-Time/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -2036,7 +2021,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">231</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
