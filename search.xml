@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-34편- URLs에 명시적으로 ViewSets 묶어주기</title>
+    <url>/2020/12/28/DRF-Tutorial-34%ED%8E%B8-URLs%EC%97%90-%EB%AA%85%EC%8B%9C%EC%A0%81%EC%9C%BC%EB%A1%9C-ViewSets-%EB%AC%B6%EC%96%B4%EC%A3%BC%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Binding-ViewSets-to-URLs-explicitly"><a href="#Binding-ViewSets-to-URLs-explicitly" class="headerlink" title="Binding ViewSets to URLs explicitly"></a>Binding ViewSets to URLs explicitly</h2><br>
+
+<p>handler 메서드들은 URL Conf 를 정의할때에만 동작들에 묶여집니다. </p>
+<br>
+
+<p>무슨일이 일어나는지 보기 위해, 명시적으로 ViewSets 로 부터, View 의 세트를 생성해 줍니다. </p>
+<br>
+
+<p><code>snippets/urls.py</code> 파일안에, 우리의 ViewSet 클래스들을 묶어줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.views <span class="keyword">import</span> SnippetViewSet, UserViewSet, api_root </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> renderers </span><br><span class="line"></span><br><span class="line">snippet_list = SnippetViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>: <span class="string">'list'</span>,</span><br><span class="line">    <span class="string">'post'</span>: <span class="string">'create'</span></span><br><span class="line">&#125;)</span><br><span class="line">snippet_detail = SnippetViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>:<span class="string">' retrieve'</span>,</span><br><span class="line">    <span class="string">'put'</span>: <span class="string">'update'</span>,</span><br><span class="line">    <span class="string">'patch'</span>: <span class="string">'partial_update'</span>,</span><br><span class="line">    <span class="string">'delete'</span>: <span class="string">'destroy'</span></span><br><span class="line">&#125;)</span><br><span class="line">snippet_highlight = SnippetViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>: <span class="string">'highlight'</span></span><br><span class="line">&#125;, renderer_classes=[renderers.StaticHTMLRenderer])</span><br><span class="line"></span><br><span class="line">user_list = UserViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>: <span class="string">'list'</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">user_detail = UserViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>: <span class="string">'retrieve'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>우리가 어떻게 다수의 뷰들을 각 ViewSet 클래스로부터 생성하고 있는지 알아야 합니다. </p>
+<br>
+
+<p>http메서드들을 각 뷰에 요구되는 엑션들을 묶어주는식으로 이 작업을 하고 있다는것을 인지하고 있어야 합니다. </p>
+<br>
+
+
+
+<p>이제 우리는 우리의 리소스들을 뷰들에 묶어주었습니다. 우리는 이전처럼, 뷰들을 URL Conf 와 함께 등록 해줄수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">urlpatterns = format_suffix_patterns([</span><br><span class="line">    path(<span class="string">''</span>, api_root),</span><br><span class="line">    path(<span class="string">'snippets/'</span>, snippet_list, name=<span class="string">'snippet_list'</span>),</span><br><span class="line">    path(<span class="string">'snippets/&lt;int:pk&gt;/'</span>, snippet_detail, name=<span class="string">'snippet-detail'</span>),</span><br><span class="line">    path(<span class="string">'snippets/&lt;int:pk&gt;/higlight'</span>, snippet_highlight, name=<span class="string">'snippet-highlight'</span>),</span><br><span class="line">    path(<span class="string">'users/'</span>, user_list, name=<span class="string">'user-list'</span>), </span><br><span class="line">    path(<span class="string">'users/&lt;int:pk&gt;/'</span>, user_detail, name=<span class="string">'user-detail'</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<br>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-33편- ViewSets를 사용하기 위해 코드 다시 짜기</title>
     <url>/2020/12/26/DRF-Tutorial-33%ED%8E%B8-ViewSets%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%B4-%EC%BD%94%EB%93%9C-%EB%8B%A4%EC%8B%9C-%EC%A7%9C%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Refactoring-to-use-ViewSets"><a href="#Refactoring-to-use-ViewSets" class="headerlink" title="Refactoring to use ViewSets"></a>Refactoring to use ViewSets</h2><br>

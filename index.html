@@ -220,6 +220,121 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/28/DRF-Tutorial-34%ED%8E%B8-URLs%EC%97%90-%EB%AA%85%EC%8B%9C%EC%A0%81%EC%9C%BC%EB%A1%9C-ViewSets-%EB%AC%B6%EC%96%B4%EC%A3%BC%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/28/DRF-Tutorial-34%ED%8E%B8-URLs%EC%97%90-%EB%AA%85%EC%8B%9C%EC%A0%81%EC%9C%BC%EB%A1%9C-ViewSets-%EB%AC%B6%EC%96%B4%EC%A3%BC%EA%B8%B0/" class="post-title-link" itemprop="url">DRF-Tutorial-34편- URLs에 명시적으로 ViewSets 묶어주기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-12-28 09:48:54 / Updated at: 09:57:10" itemprop="dateCreated datePublished" datetime="2020-12-28T09:48:54+09:00">2020-12-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/12/28/DRF-Tutorial-34%ED%8E%B8-URLs%EC%97%90-%EB%AA%85%EC%8B%9C%EC%A0%81%EC%9C%BC%EB%A1%9C-ViewSets-%EB%AC%B6%EC%96%B4%EC%A3%BC%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/28/DRF-Tutorial-34편-URLs에-명시적으로-ViewSets-묶어주기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Binding-ViewSets-to-URLs-explicitly"><a href="#Binding-ViewSets-to-URLs-explicitly" class="headerlink" title="Binding ViewSets to URLs explicitly"></a>Binding ViewSets to URLs explicitly</h2><br>
+
+<p>handler 메서드들은 URL Conf 를 정의할때에만 동작들에 묶여집니다. </p>
+<br>
+
+<p>무슨일이 일어나는지 보기 위해, 명시적으로 ViewSets 로 부터, View 의 세트를 생성해 줍니다. </p>
+<br>
+
+<p><code>snippets/urls.py</code> 파일안에, 우리의 ViewSet 클래스들을 묶어줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.views <span class="keyword">import</span> SnippetViewSet, UserViewSet, api_root </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> renderers </span><br><span class="line"></span><br><span class="line">snippet_list = SnippetViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>: <span class="string">'list'</span>,</span><br><span class="line">    <span class="string">'post'</span>: <span class="string">'create'</span></span><br><span class="line">&#125;)</span><br><span class="line">snippet_detail = SnippetViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>:<span class="string">' retrieve'</span>,</span><br><span class="line">    <span class="string">'put'</span>: <span class="string">'update'</span>,</span><br><span class="line">    <span class="string">'patch'</span>: <span class="string">'partial_update'</span>,</span><br><span class="line">    <span class="string">'delete'</span>: <span class="string">'destroy'</span></span><br><span class="line">&#125;)</span><br><span class="line">snippet_highlight = SnippetViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>: <span class="string">'highlight'</span></span><br><span class="line">&#125;, renderer_classes=[renderers.StaticHTMLRenderer])</span><br><span class="line"></span><br><span class="line">user_list = UserViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>: <span class="string">'list'</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">user_detail = UserViewSet.as_view(&#123;</span><br><span class="line">    <span class="string">'get'</span>: <span class="string">'retrieve'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>우리가 어떻게 다수의 뷰들을 각 ViewSet 클래스로부터 생성하고 있는지 알아야 합니다. </p>
+<br>
+
+<p>http메서드들을 각 뷰에 요구되는 엑션들을 묶어주는식으로 이 작업을 하고 있다는것을 인지하고 있어야 합니다. </p>
+<br>
+
+
+
+<p>이제 우리는 우리의 리소스들을 뷰들에 묶어주었습니다. 우리는 이전처럼, 뷰들을 URL Conf 와 함께 등록 해줄수 있습니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = format_suffix_patterns([</span><br><span class="line">    path(<span class="string">''</span>, api_root),</span><br><span class="line">    path(<span class="string">'snippets/'</span>, snippet_list, name=<span class="string">'snippet_list'</span>),</span><br><span class="line">    path(<span class="string">'snippets/&lt;int:pk&gt;/'</span>, snippet_detail, name=<span class="string">'snippet-detail'</span>),</span><br><span class="line">    path(<span class="string">'snippets/&lt;int:pk&gt;/higlight'</span>, snippet_highlight, name=<span class="string">'snippet-highlight'</span>),</span><br><span class="line">    path(<span class="string">'users/'</span>, user_list, name=<span class="string">'user-list'</span>), </span><br><span class="line">    path(<span class="string">'users/&lt;int:pk&gt;/'</span>, user_detail, name=<span class="string">'user-detail'</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/26/DRF-Tutorial-33%ED%8E%B8-ViewSets%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%B4-%EC%BD%94%EB%93%9C-%EB%8B%A4%EC%8B%9C-%EC%A7%9C%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1289,127 +1404,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/05/DRF-Tutorial-25%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EB%8B%A8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B6%8C%ED%95%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/05/DRF-Tutorial-25%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EB%8B%A8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B6%8C%ED%95%9C/" class="post-title-link" itemprop="url">DRF-Tutorial-25편- 객체단에서의 권한</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-12-05 14:02:32 / Updated at: 14:11:53" itemprop="dateCreated datePublished" datetime="2020-12-05T14:02:32+09:00">2020-12-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/12/05/DRF-Tutorial-25%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EB%8B%A8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B6%8C%ED%95%9C/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/05/DRF-Tutorial-25편-객체단에서의-권한/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Object-Level-Permissions"><a href="#Object-Level-Permissions" class="headerlink" title="Object Level Permissions"></a>Object Level Permissions</h2><br>
-
-<p>실제로 우리는, 모든 코드 스니펫들이 누구에게나 보여지지만 오직 해당 스니펫을 생성한 사용자만 업데이트 혹은 삭제를 할수 있게 만들고 싶습니다. </p>
-<br>
-
-<p>이것을 하기 위해서는, 커스텀 권한을 생성할 필요가 있습니다. </p>
-<br>
-
-<p><code>permissions.py</code> 라는 파일을, snippet 앱 안에 생성해 줍니다. <code>snippets/permissions.py</code> 파일에, 아래 내용을 추가해 줍니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> permissions </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IsOwnerOrReadOnly</span><span class="params">(permissions.BasePermission)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Custom permission to only allow owners of an object to edit it </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">has_object_permissions</span><span class="params">(self, request, view, obj)</span>:</span></span><br><span class="line">        <span class="comment"># Read permissions are allowed to any request </span></span><br><span class="line">        <span class="comment"># 읽기 권한은 어떤 요청에도 허용됨 </span></span><br><span class="line">        <span class="comment"># So we'll always allow GET, HEAD or OPTIONS requests </span></span><br><span class="line">        <span class="comment"># 따라서, 우리는 언제나 GET, HEAD 혹은 OPTIONS 요청들을 허용함 </span></span><br><span class="line">        <span class="keyword">if</span> request.method <span class="keyword">in</span> permissions.SAFE_METHODS:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span> </span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Write permissions are only allowed to the owner of the snippet </span></span><br><span class="line">        <span class="comment"># 해당 snippet 의 owner 만 작성 권한이 허용됨 </span></span><br><span class="line">        <span class="keyword">return</span> obj.owner == request.user</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>이제 이 커스텀 권한을 우리의 스니펫 인스턴스 앤드포인트에 추가해줍니다. SnippetDetail 뷰 클래스 안에 있는 permission_classes 속성에 추가해 줍니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">permission_classes = [permissions.IsAuthenticatedOrReadOnly,</span><br><span class="line">					  IsOwnerOrReadOnly]</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>우리가 작성한 <code>IsOwnerOrReadOnly</code> 클래스를 가져오는것을 까먹으면 안됩니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.permissions <span class="keyword">import</span> IsOwnerOrReadOnly</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>이제, 브라우저를 다시 열어보면, 코드 스니펫을 생성한 사용자가 로그인 하였을때, <code>DELETE</code> 와 <code>PUT</code> 액션들이 스니펫 인스턴스의 앤드포인트에만 나타나는것을 확인 할수 있습니다. </p>
-<br>
-
-<img src="/2020/12/05/DRF-Tutorial-25%ED%8E%B8-%EA%B0%9D%EC%B2%B4%EB%8B%A8%EC%97%90%EC%84%9C%EC%9D%98-%EA%B6%8C%ED%95%9C/image1.png" class="">
-
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1480,7 +1474,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">232</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
