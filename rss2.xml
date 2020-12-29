@@ -9,8 +9,30 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Mon, 28 Dec 2020 00:57:10 GMT</pubDate>
+    <pubDate>Tue, 29 Dec 2020 06:34:31 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>DRF-Tutorial-35편- Router 사용하기</title>
+      <link>http://djangojeng-e.github.io/2020/12/29/DRF-Tutorial-35%ED%8E%B8-Router-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</link>
+      <guid>http://djangojeng-e.github.io/2020/12/29/DRF-Tutorial-35%ED%8E%B8-Router-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</guid>
+      <pubDate>Tue, 29 Dec 2020 06:16:18 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h2 id=&quot;Using-Routers&quot;&gt;&lt;a href=&quot;#Using-Routers&quot; class=&quot;headerlink&quot; title=&quot;Using Routers&quot;&gt;&lt;/a&gt;Using Routers&lt;/h2&gt;&lt;br&gt;
+
+&lt;p&gt;우리는 View 클래스들 대신에 Vi
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Using-Routers"><a href="#Using-Routers" class="headerlink" title="Using Routers"></a>Using Routers</h2><br><p>우리는 View 클래스들 대신에 ViewSet 클래스들을 사용하고 있기 때문에, 우리는 사실 우리 스스로 URL Conf 를 딪인해줄 필요가 없습니다. <br></p><br><p>관례적으로, 리소스들을 views 와 urls 에 묶어주는것은 Router 를 사용함으로써 자동으로 다루어 지게 할수 있습니다. 우리가 해야할것은, 적절한 뷰 세트들을 router 에 등록해 주는것입니다. </p><br><p>snippets/urls.py 파일을 아래와 같이 수정해 줍시다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include </span><br><span class="line"><span class="keyword">from</span> rest_framework.routers <span class="keyword">import</span> DefaultRouter </span><br><span class="line"><span class="keyword">from</span> snippets <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line"><span class="comment"># create a router and register our viewsets with it </span></span><br><span class="line"></span><br><span class="line">router = DefaultRouter()</span><br><span class="line">router.register(<span class="string">r'snippets'</span>, views.SnippetViewSet)</span><br><span class="line">router.register(<span class="string">r'users'</span>, views.UserViewSet)</span><br><span class="line"></span><br><span class="line"><span class="comment"># The API URLs are now determined automatically by the router </span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">''</span>, include(router.urls)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure><br><p>뷰셋들을 라우터와 등록해주는것은 urlpattern 을 제공해주는것과 비슷합니다. </p><br><p>우리는 두개의 인자를 포함해 줍니다 - 뷰를 위한 URL prefix 와 뷰셋 그자체. </p><br><p>우리가 사용하는 DefaultRour 클래스는 자동으로 API root 뷰를 생성해줍니다. 따라서, 우리는 api_root 메서드를 우리 view 모듈에서 지워줄수 있습니다. </p><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/12/29/DRF-Tutorial-35%ED%8E%B8-Router-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>DRF-Tutorial-34편- URLs에 명시적으로 ViewSets 묶어주기</title>
@@ -457,51 +479,6 @@
       <content:encoded><![CDATA[<h2 id="Generic-클래스뷰-사용하기"><a href="#Generic-클래스뷰-사용하기" class="headerlink" title="Generic 클래스뷰 사용하기"></a>Generic 클래스뷰 사용하기</h2><br><p>mixin 클래스들을 사용하여서 우리의 뷰들은 그전보다 조금은 적은 양의 코드를 사용하도록 작성했었습니다. 하지만, 한단계 더 줄일수 있습니다. </p><br><p><code>REST FRAMEWORK</code> 은 이미 mixin 되어 있는 <code>generic</code> 뷰들을 제공하여, 우리가 우리의 <code>views.py</code> 를 조금 더 줄이는데 사용할수 있게 해줍니다. </p><br><p><code>snippets/views.py</code> 파일을 아래와 같이 수정해 줄수 있습니다. 조금 더 적은 양의 코드가 사용됩니다! </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> generics </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetList</span><span class="params">(generics.ListCreateAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    serializer_class = SnippetSerializer </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetDetail</span><span class="params">(generics.RetrieveUpdateDestroyAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    seriazlizer_class = SnippetSerializer</span><br></pre></td></tr></table></figure><br><p>와~ 엄청나게 간결해 집니다. 다음 튜토리얼에서는, API 에 대한 인증과 권한에 대해서 둘러볼것입니다. </p><br>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>DRF Tutorial 16편 - mixins 사용하기</title>
-      <link>http://djangojeng-e.github.io/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</link>
-      <guid>http://djangojeng-e.github.io/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</guid>
-      <pubDate>Sat, 28 Nov 2020 06:44:50 GMT</pubDate>
-      <description>
-      
-        &lt;h2 id=&quot;Mixins-사용하기&quot;&gt;&lt;a href=&quot;#Mixins-사용하기&quot; class=&quot;headerlink&quot; title=&quot;Mixins 사용하기&quot;&gt;&lt;/a&gt;Mixins 사용하기&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;클래스 기반 뷰를 사용하는것의 이점중 하나는, 어떠한 동작에 대해서 재사용할수 있는 코드를 작성할수 있다는 점입니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;우리가 API 를 위해 이제까지 사용하고 있었던 &lt;code&gt;create/retrieve/update/delete&lt;/code&gt; 동작들은, 일반 Django 에서 우리가 생성하는 모델이 뒷받침 해주는 API View 들 안에서도 굉장히 비슷하게 사용될수 있습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;이런 비슷한 동작들은, REST FRAMEWORK 의 mixin 클래스에 구현 되어 있습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Mixins&lt;/strong&gt;&lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;객체 지향 프로그램 언어들 안에서, &lt;/p&gt;
-&lt;p&gt;mixin  은 메서드들을 포함하고 있는 하나의 클래스로, 메서드들은 다른 클래스들에 의해서 사용되는데, &lt;/p&gt;
-&lt;p&gt;다른 클래스가 mixin 에 있는 메서드를 사용하기 위해서, mixin class 가 해당 클래스의 부모 클래스가 될 필요는 없습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;때때로, Mixins 들은 상속 개념보다는, 포함된다는 개념으로 묘사되곤 합니다. &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;br&gt;
-
-&lt;p&gt;예를들면, mixin 클래스안에 있는 메서드를 다른 클래스가 사용을 하는데, 보통은 상속을 받아서 사용하지만, mixin 클래스는 굳이, mixins 클래스 안에 있는 매서드를 다른 클래스가 사용한다해도, mixin 클래스가 다른 클래스의 부모 클래스가 될 필요는 없습니다. &lt;/p&gt;
-&lt;br&gt;
-
-&lt;p&gt;어떻게 mixin 클래스를 사용해서 뷰를 작성할수 있는지 둘러봅시다. &lt;code&gt;snippets/views.py&lt;/code&gt; 파일을 다시 봅니다.&lt;/p&gt;
-&lt;br&gt;
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="Mixins-사용하기"><a href="#Mixins-사용하기" class="headerlink" title="Mixins 사용하기"></a>Mixins 사용하기</h2><br><p>클래스 기반 뷰를 사용하는것의 이점중 하나는, 어떠한 동작에 대해서 재사용할수 있는 코드를 작성할수 있다는 점입니다. </p><br><p>우리가 API 를 위해 이제까지 사용하고 있었던 <code>create/retrieve/update/delete</code> 동작들은, 일반 Django 에서 우리가 생성하는 모델이 뒷받침 해주는 API View 들 안에서도 굉장히 비슷하게 사용될수 있습니다. </p><br><p>이런 비슷한 동작들은, REST FRAMEWORK 의 mixin 클래스에 구현 되어 있습니다. </p><br><blockquote><p><strong>Mixins</strong></p><br><p>객체 지향 프로그램 언어들 안에서, </p><p>mixin  은 메서드들을 포함하고 있는 하나의 클래스로, 메서드들은 다른 클래스들에 의해서 사용되는데, </p><p>다른 클래스가 mixin 에 있는 메서드를 사용하기 위해서, mixin class 가 해당 클래스의 부모 클래스가 될 필요는 없습니다. </p><br><p>때때로, Mixins 들은 상속 개념보다는, 포함된다는 개념으로 묘사되곤 합니다. </p></blockquote><br><p>예를들면, mixin 클래스안에 있는 메서드를 다른 클래스가 사용을 하는데, 보통은 상속을 받아서 사용하지만, mixin 클래스는 굳이, mixins 클래스 안에 있는 매서드를 다른 클래스가 사용한다해도, mixin 클래스가 다른 클래스의 부모 클래스가 될 필요는 없습니다. </p><br><p>어떻게 mixin 클래스를 사용해서 뷰를 작성할수 있는지 둘러봅시다. <code>snippets/views.py</code> 파일을 다시 봅니다.</p><br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet</span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> mixins </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> generics </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetList</span><span class="params">(mixins.ListModelMixin, mixins.CreateModeMixin,generics.GenericAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    serializer_class = SnippetSerializer </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.lisst(request,*args, **kwargs)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.create(request, *args, **kwargs)</span><br></pre></td></tr></table></figure><br><p>잠시 어떤일이 일어났는지 확인해 보고 갑니다. </p><br><p>우리는 <code>GenericAPIView</code> 그리고, <code>ListModelMixin</code> 과 <code>CreateModelMixin</code> 을 추가하여 우리의 뷰를 재구성 해보았습니다 (이 세가지는 모두, SnippetList 클래스가 상속 받습니다) </p><br><p>기본 클래스는 코어 기능을 제공하고, mixin 클래스들은, <code>list()</code> 와 <code>create()</code> 액션들을 제공합니다. </p><p><br>따라서 우리는, 명시적으로 <code>get</code> 과 <code>post</code> 메서드들을 적절한 액션들에 묶어둘수 있습니다. </p><br><p><code>get</code> 은 <code>list()</code>에, <code>post</code> 는 <code>create()</code> 에 묶어 두는것을 확인 할수 있습니다. 현재까지는 충분히 간단합니다. </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetDetail</span><span class="params">(mixins.RetrieveModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.UpdateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.DestroyModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   generics.GenericAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    serializer_class = SnippetSerializer</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.retrieve(request, *args, **kwargs)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.update(request, *args, **kwargs)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.destroy(request, *args, **kwargs)</span><br></pre></td></tr></table></figure><br><p>꽤나 비슷합니다. 다시한번, 우리는 GenericAPIView 클래스를 사용하여, 코어 기능을 제공하고, 거기에 mixin 들을 추가하여, <code>.retrieve()</code>, <code>.update()</code> 그리고 <code>.destroy()</code> 기능 액션들을 제공합니다. </p><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/11/28/DRF-Tutorial-16%ED%8E%B8-mixins-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread</comments>
     </item>
     
   </channel>

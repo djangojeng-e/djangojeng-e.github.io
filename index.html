@@ -220,6 +220,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/29/DRF-Tutorial-35%ED%8E%B8-Router-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/29/DRF-Tutorial-35%ED%8E%B8-Router-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF-Tutorial-35편- Router 사용하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-12-29 15:16:18 / Updated at: 15:34:31" itemprop="dateCreated datePublished" datetime="2020-12-29T15:16:18+09:00">2020-12-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/12/29/DRF-Tutorial-35%ED%8E%B8-Router-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/29/DRF-Tutorial-35편-Router-사용하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Using-Routers"><a href="#Using-Routers" class="headerlink" title="Using Routers"></a>Using Routers</h2><br>
+
+<p>우리는 View 클래스들 대신에 ViewSet 클래스들을 사용하고 있기 때문에, 우리는 사실 우리 스스로 URL Conf 를 딪인해줄 필요가 없습니다. <br></p>
+<br>
+
+<p>관례적으로, 리소스들을 views 와 urls 에 묶어주는것은 Router 를 사용함으로써 자동으로 다루어 지게 할수 있습니다. 우리가 해야할것은, 적절한 뷰 세트들을 router 에 등록해 주는것입니다. </p>
+<br>
+
+<p>snippets/urls.py 파일을 아래와 같이 수정해 줍시다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include </span><br><span class="line"><span class="keyword">from</span> rest_framework.routers <span class="keyword">import</span> DefaultRouter </span><br><span class="line"><span class="keyword">from</span> snippets <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line"><span class="comment"># create a router and register our viewsets with it </span></span><br><span class="line"></span><br><span class="line">router = DefaultRouter()</span><br><span class="line">router.register(<span class="string">r'snippets'</span>, views.SnippetViewSet)</span><br><span class="line">router.register(<span class="string">r'users'</span>, views.UserViewSet)</span><br><span class="line"></span><br><span class="line"><span class="comment"># The API URLs are now determined automatically by the router </span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">''</span>, include(router.urls)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>뷰셋들을 라우터와 등록해주는것은 urlpattern 을 제공해주는것과 비슷합니다. </p>
+<br>
+
+<p>우리는 두개의 인자를 포함해 줍니다 - 뷰를 위한 URL prefix 와 뷰셋 그자체. </p>
+<br>
+
+<p>우리가 사용하는 DefaultRour 클래스는 자동으로 API root 뷰를 생성해줍니다. 따라서, 우리는 api_root 메서드를 우리 view 모듈에서 지워줄수 있습니다. </p>
+<br>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/28/DRF-Tutorial-34%ED%8E%B8-URLs%EC%97%90-%EB%AA%85%EC%8B%9C%EC%A0%81%EC%9C%BC%EB%A1%9C-ViewSets-%EB%AC%B6%EC%96%B4%EC%A3%BC%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1281,129 +1388,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/06/DRF-Tutorial-26%ED%8E%B8-API%EB%A1%9C-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/06/DRF-Tutorial-26%ED%8E%B8-API%EB%A1%9C-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">DRF-Tutorial-26편- API로 인증하기</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-12-06 18:00:09 / Updated at: 18:05:34" itemprop="dateCreated datePublished" datetime="2020-12-06T18:00:09+09:00">2020-12-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RES-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">RES FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RES-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/12/06/DRF-Tutorial-26%ED%8E%B8-API%EB%A1%9C-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/06/DRF-Tutorial-26편-API로-인증하기/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Authenticating-with-the-API"><a href="#Authenticating-with-the-API" class="headerlink" title="Authenticating with the API"></a>Authenticating with the API</h2><br>
-
-<p>우리는 이제 API 에 몇가지 권한 설정들을 가지고 있기 때문에, </p>
-<p>우리가 어떠한 스니펫을 수정하고 싶을때에 우리의 요청들을 인증할 필요가 있습니다. </p>
-<br>
-
-<p>우리는 그 어떠한 authentication 클래스들을 설정해 주지 않았고, 그렇기 때문에 현재는 SessionAuthentication 과 BasicAuthentication 같은 기본값들만 적용 되어 있는 상태 입니다. </p>
-<br>
-
-<p>웹브라우저를 통해서 API 와 상호 작용할때에, 우리는 로그인 할수 있고. 브라우저 세션은 해당 요청들에 대한 필요한 인증 기능을 제공합니다. </p>
-<br>
-
-<p>하지만, 만약 우리가 API 를 프로그래밍적으로 이용할때에는, 명시적으로 인증서를 각 요청마다 제공해줘야 합니다. </p>
-<br>
-
-<p><strong>만약, 터미널에서 인증 없이 snippet 을 생성하고자 한다면 에러가 날것입니다</strong></p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http POST http://127.0.0.1:8000/snippets/ code="print(123)"</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "detail": "Authentication credentials were not provided."</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>그렇지만, 사용자의 username 과 password 를 포함한 요청을 보내면, 성공적인 결과를 얻을수 있습니다.</p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http -a admin:password123 POST http://127.0.0.1:8000/snippets/ code="print(789)"</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "id": 1,</span><br><span class="line">    "owner": "admin",</span><br><span class="line">    "title": "foo",</span><br><span class="line">    "code": "print(789)",</span><br><span class="line">    "linenos": false,</span><br><span class="line">    "language": "python",</span><br><span class="line">    "style": "friendly"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<blockquote>
-<p>정리</p>
-</blockquote>
-<br>
-
-<p>이제 우리는, 우리의 웹 API 에 추가로 사용자들의 앤드포인트들에 그리고 그들이 생성한 코드 스니펫에 대한 적당한 권한 설정들을 가지고 있습니다. </p>
-<br>
-
-<p>Part5 에서는, 어떻게 모든것들이 묶여서 하이라이트된 코드 스니펫들을 HTML endpoint 로 생성할수 있고, 우리의 API 시스템내에 존재하는 관계들을 하이퍼링크들을 사용하여 우리의 API 의 단결성을 향상시킬수 있는지 알아볼겁니다. </p>
-<br>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1474,7 +1458,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">234</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

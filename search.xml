@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-35편- Router 사용하기</title>
+    <url>/2020/12/29/DRF-Tutorial-35%ED%8E%B8-Router-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
+    <content><![CDATA[<h2 id="Using-Routers"><a href="#Using-Routers" class="headerlink" title="Using Routers"></a>Using Routers</h2><br>
+
+<p>우리는 View 클래스들 대신에 ViewSet 클래스들을 사용하고 있기 때문에, 우리는 사실 우리 스스로 URL Conf 를 딪인해줄 필요가 없습니다. <br></p>
+<br>
+
+<p>관례적으로, 리소스들을 views 와 urls 에 묶어주는것은 Router 를 사용함으로써 자동으로 다루어 지게 할수 있습니다. 우리가 해야할것은, 적절한 뷰 세트들을 router 에 등록해 주는것입니다. </p>
+<br>
+
+<p>snippets/urls.py 파일을 아래와 같이 수정해 줍시다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include </span><br><span class="line"><span class="keyword">from</span> rest_framework.routers <span class="keyword">import</span> DefaultRouter </span><br><span class="line"><span class="keyword">from</span> snippets <span class="keyword">import</span> views </span><br><span class="line"></span><br><span class="line"><span class="comment"># create a router and register our viewsets with it </span></span><br><span class="line"></span><br><span class="line">router = DefaultRouter()</span><br><span class="line">router.register(<span class="string">r'snippets'</span>, views.SnippetViewSet)</span><br><span class="line">router.register(<span class="string">r'users'</span>, views.UserViewSet)</span><br><span class="line"></span><br><span class="line"><span class="comment"># The API URLs are now determined automatically by the router </span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">''</span>, include(router.urls)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>뷰셋들을 라우터와 등록해주는것은 urlpattern 을 제공해주는것과 비슷합니다. </p>
+<br>
+
+<p>우리는 두개의 인자를 포함해 줍니다 - 뷰를 위한 URL prefix 와 뷰셋 그자체. </p>
+<br>
+
+<p>우리가 사용하는 DefaultRour 클래스는 자동으로 API root 뷰를 생성해줍니다. 따라서, 우리는 api_root 메서드를 우리 view 모듈에서 지워줄수 있습니다. </p>
+<br>]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-34편- URLs에 명시적으로 ViewSets 묶어주기</title>
     <url>/2020/12/28/DRF-Tutorial-34%ED%8E%B8-URLs%EC%97%90-%EB%AA%85%EC%8B%9C%EC%A0%81%EC%9C%BC%EB%A1%9C-ViewSets-%EB%AC%B6%EC%96%B4%EC%A3%BC%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Binding-ViewSets-to-URLs-explicitly"><a href="#Binding-ViewSets-to-URLs-explicitly" class="headerlink" title="Binding ViewSets to URLs explicitly"></a>Binding ViewSets to URLs explicitly</h2><br>
