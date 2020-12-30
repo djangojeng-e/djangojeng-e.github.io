@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DRF-Tutorial-36편- view vs viewsets</title>
+    <url>/2020/12/30/DRF-Tutorial-36%ED%8E%B8-view-vs-viewsets/</url>
+    <content><![CDATA[<h2 id="Trade-offs-between-views-vs-viewsets"><a href="#Trade-offs-between-views-vs-viewsets" class="headerlink" title="Trade-offs between views vs viewsets"></a>Trade-offs between views vs viewsets</h2><br>
+
+<p>viewsets 를 사용하는것은 매우 유용할수 있습니다. </p>
+<br>
+
+<p>viewsets 는 여러분의 API 에 결쳐있는 URL 이름들이 일관성을 가지게 해주고, 작성해야 하는 코드를 최소화 해줍니다. </p>
+<br>
+
+<p>그리고 작동과 표시를 해주는것을 좀 더 단단하게 해줍니다. </p>
+<br>
+
+<p>하지만, 이는 언제나 맞는 접근방식이라는 뜻은 아닙니다. 클래스기반 뷰를 사용하는것과 함수 기반 뷰를 사용할때의 장단점을 비교해보는것과 비슷합니다. </p>
+<br>
+
+<p>viewsets 를 사용하는것으로, 개별적으로 views 를 만드는것보다 덜 명시적입니다. </p>
+<br>
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>DRF</category>
+      </categories>
+      <tags>
+        <tag>DRF</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-35편- Router 사용하기</title>
     <url>/2020/12/29/DRF-Tutorial-35%ED%8E%B8-Router-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</url>
     <content><![CDATA[<h2 id="Using-Routers"><a href="#Using-Routers" class="headerlink" title="Using Routers"></a>Using Routers</h2><br>

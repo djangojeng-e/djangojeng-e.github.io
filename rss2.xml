@@ -9,8 +9,28 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>장고쟁이의 Python, Django 공부 노트</description>
-    <pubDate>Tue, 29 Dec 2020 06:34:31 GMT</pubDate>
+    <pubDate>Wed, 30 Dec 2020 08:31:27 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>DRF-Tutorial-36편- view vs viewsets</title>
+      <link>http://djangojeng-e.github.io/2020/12/30/DRF-Tutorial-36%ED%8E%B8-view-vs-viewsets/</link>
+      <guid>http://djangojeng-e.github.io/2020/12/30/DRF-Tutorial-36%ED%8E%B8-view-vs-viewsets/</guid>
+      <pubDate>Wed, 30 Dec 2020 08:28:50 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;h2 id=&quot;Trade-offs-between-views-vs-viewsets&quot;&gt;&lt;a href=&quot;#Trade-offs-between-views-vs-viewsets&quot; class=&quot;headerlink&quot; title=&quot;Trade-offs between v
+        
+      
+      </description>
+      
+      
+      <content:encoded><![CDATA[<h2 id="Trade-offs-between-views-vs-viewsets"><a href="#Trade-offs-between-views-vs-viewsets" class="headerlink" title="Trade-offs between views vs viewsets"></a>Trade-offs between views vs viewsets</h2><br><p>viewsets 를 사용하는것은 매우 유용할수 있습니다. </p><br><p>viewsets 는 여러분의 API 에 결쳐있는 URL 이름들이 일관성을 가지게 해주고, 작성해야 하는 코드를 최소화 해줍니다. </p><br><p>그리고 작동과 표시를 해주는것을 좀 더 단단하게 해줍니다. </p><br><p>하지만, 이는 언제나 맞는 접근방식이라는 뜻은 아닙니다. 클래스기반 뷰를 사용하는것과 함수 기반 뷰를 사용할때의 장단점을 비교해보는것과 비슷합니다. </p><br><p>viewsets 를 사용하는것으로, 개별적으로 views 를 만드는것보다 덜 명시적입니다. </p><br>]]></content:encoded>
+      
+      <comments>http://djangojeng-e.github.io/2020/12/30/DRF-Tutorial-36%ED%8E%B8-view-vs-viewsets/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>DRF-Tutorial-35편- Router 사용하기</title>
@@ -457,28 +477,6 @@
       <content:encoded><![CDATA[<h2 id="Authentication-amp-Permissions"><a href="#Authentication-amp-Permissions" class="headerlink" title="Authentication &amp; Permissions"></a>Authentication &amp; Permissions</h2><br><p>현재 우리의 API 는 누가 code snippets  을 수정을 하든 삭제를 하든지 어떠한 제약도 가지고 있지 않습니다. 우리는 아래의 사항들에 대해 확실시 하기 위해, 조금더 고도의 동작을 만들어 놓고싶습니다. </p><br><ul><li>코드 스니펫들은 언제나 생성자와 연관되어야함 </li><li>오직 인증된 사용자들만 스니펫을 생성할수 있음 </li><li>오직 스니펫을 생성한 생성자만, 스니펫을 업데이트 혹은 삭제할수 있음 </li><li>인증 되지 않은 사용자들은 읽기전용 엑세스만 가져야만 함 </li></ul><br>]]></content:encoded>
       
       <comments>http://djangojeng-e.github.io/2020/11/30/DRF-Tutorial-18%ED%8E%B8-%EC%9D%B8%EC%A6%9D%EA%B3%BC-%EA%B6%8C%ED%95%9C/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>DRF Tutorial 17편 - generic 클래스뷰 사용하기</title>
-      <link>http://djangojeng-e.github.io/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</link>
-      <guid>http://djangojeng-e.github.io/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/</guid>
-      <pubDate>Sun, 29 Nov 2020 03:13:17 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;h2 id=&quot;Generic-클래스뷰-사용하기&quot;&gt;&lt;a href=&quot;#Generic-클래스뷰-사용하기&quot; class=&quot;headerlink&quot; title=&quot;Generic 클래스뷰 사용하기&quot;&gt;&lt;/a&gt;Generic 클래스뷰 사용하기&lt;/h2&gt;&lt;br&gt;
-
-&lt;p&gt;mixi
-        
-      
-      </description>
-      
-      
-      <content:encoded><![CDATA[<h2 id="Generic-클래스뷰-사용하기"><a href="#Generic-클래스뷰-사용하기" class="headerlink" title="Generic 클래스뷰 사용하기"></a>Generic 클래스뷰 사용하기</h2><br><p>mixin 클래스들을 사용하여서 우리의 뷰들은 그전보다 조금은 적은 양의 코드를 사용하도록 작성했었습니다. 하지만, 한단계 더 줄일수 있습니다. </p><br><p><code>REST FRAMEWORK</code> 은 이미 mixin 되어 있는 <code>generic</code> 뷰들을 제공하여, 우리가 우리의 <code>views.py</code> 를 조금 더 줄이는데 사용할수 있게 해줍니다. </p><br><p><code>snippets/views.py</code> 파일을 아래와 같이 수정해 줄수 있습니다. 조금 더 적은 양의 코드가 사용됩니다! </p><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> snippets.models <span class="keyword">import</span> Snippet </span><br><span class="line"><span class="keyword">from</span> snippets.serializers <span class="keyword">import</span> SnippetSerializer </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> generics </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetList</span><span class="params">(generics.ListCreateAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    serializer_class = SnippetSerializer </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnippetDetail</span><span class="params">(generics.RetrieveUpdateDestroyAPIView)</span>:</span></span><br><span class="line">    queryset = Snippet.objects.all()</span><br><span class="line">    seriazlizer_class = SnippetSerializer</span><br></pre></td></tr></table></figure><br><p>와~ 엄청나게 간결해 집니다. 다음 튜토리얼에서는, API 에 대한 인증과 권한에 대해서 둘러볼것입니다. </p><br>]]></content:encoded>
-      
-      <comments>http://djangojeng-e.github.io/2020/11/29/DRF-Tutorial-17%ED%8E%B8-generic-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B7%B0-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/#disqus_thread</comments>
     </item>
     
   </channel>
