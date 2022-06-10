@@ -220,6 +220,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/14/DRF-Tutorial-28%ED%8E%B8-%EA%B4%80%EA%B3%84%EC%99%80-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC%EB%90%9C-APIs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/14/DRF-Tutorial-28%ED%8E%B8-%EA%B4%80%EA%B3%84%EC%99%80-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC%EB%90%9C-APIs/" class="post-title-link" itemprop="url">DRF-Tutorial-28편- 관계와 하이퍼링크된 APIs</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-12-14 16:51:33 / Updated at: 16:56:26" itemprop="dateCreated datePublished" datetime="2020-12-14T16:51:33+09:00">2020-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/12/14/DRF-Tutorial-28%ED%8E%B8-%EA%B4%80%EA%B3%84%EC%99%80-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC%EB%90%9C-APIs/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/14/DRF-Tutorial-28편-관계와-하이퍼링크된-APIs/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Relationships-amp-Hyperlinked-APIs"><a href="#Relationships-amp-Hyperlinked-APIs" class="headerlink" title="Relationships &amp; Hyperlinked APIs"></a>Relationships &amp; Hyperlinked APIs</h2><br>
+
+<p>현재 우리의 API 안에 있는 관계들은 primary key 를 사용하여 표현되어 있습니다. </p>
+<br>
+
+<p>이번 튜토리얼에서 우리는 우리의 API 의 결속력을 찾기 쉽게 향상 시킬겁니다. 이는 관계들을 하이퍼링크로 잇는 것을 사용하여 이룰수 있습니다. </p>
+<br>
+
+<h2 id="Creating-an-endpoint-for-the-root-of-our-API"><a href="#Creating-an-endpoint-for-the-root-of-our-API" class="headerlink" title="Creating an endpoint for the root of our API"></a>Creating an endpoint for the root of our API</h2><br>
+
+<p>지금 현재 우리는 snippets 와 users 에 앤드포인트들을 가지고 있습니다. 하지만, 우리는 우리의 API 에 하나의 진입점을 가지고 있지 않습니다. 하나를 생성하기 위해, 우리는 일반 함수형 뷰와 @api_view 데코레이터를 사용할것 입니다. </p>
+<br>
+
+<p><code>snippets/views.py</code> 파일을 열고, 아래 내용을 추가해 줍니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.decorators <span class="keyword">import</span> api_view </span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.reverse <span class="keyword">import</span> reverse </span><br><span class="line"></span><br><span class="line"><span class="meta">@api_view(['GET'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">api_root</span><span class="params">(request, format=None)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> Response(&#123;</span><br><span class="line">        <span class="string">'users'</span>: reverse(<span class="string">'user-list'</span>m request=request, format=format),</span><br><span class="line">        <span class="string">'snippets'</span>: reverse(<span class="string">'snippet-list'</span>, request=request, format=format)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>여기에서 두가지를 알고 넘어가야 합니다. </p>
+<br>
+
+<ol>
+<li>우리는 REST FRMAEWORK 의 reverse 함수를 사용하여, 완벽한 URL 을 반환합니다 </li>
+<li>URL 패턴들은 쉬운 이름으로 정의가 되고, 나중에 snippets/urls.py 에 선언될것 입니다. </li>
+</ol>
+<br>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/13/DRF-Tutorial-27%ED%8E%B8-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B8%94-API%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1392,102 +1506,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/30/DRF-Tutorial-18%ED%8E%B8-%EC%9D%B8%EC%A6%9D%EA%B3%BC-%EA%B6%8C%ED%95%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/30/DRF-Tutorial-18%ED%8E%B8-%EC%9D%B8%EC%A6%9D%EA%B3%BC-%EA%B6%8C%ED%95%9C/" class="post-title-link" itemprop="url">DRF Tutorial 18편 - 인증과 권한</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-30 17:41:15 / Updated at: 17:44:03" itemprop="dateCreated datePublished" datetime="2020-11-30T17:41:15+09:00">2020-11-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/30/DRF-Tutorial-18%ED%8E%B8-%EC%9D%B8%EC%A6%9D%EA%B3%BC-%EA%B6%8C%ED%95%9C/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/30/DRF-Tutorial-18편-인증과-권한/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Authentication-amp-Permissions"><a href="#Authentication-amp-Permissions" class="headerlink" title="Authentication &amp; Permissions"></a>Authentication &amp; Permissions</h2><br>
-
-<p>현재 우리의 API 는 누가 code snippets  을 수정을 하든 삭제를 하든지 어떠한 제약도 가지고 있지 않습니다. 우리는 아래의 사항들에 대해 확실시 하기 위해, 조금더 고도의 동작을 만들어 놓고싶습니다. </p>
-<br>
-
-<ul>
-<li>코드 스니펫들은 언제나 생성자와 연관되어야함 </li>
-<li>오직 인증된 사용자들만 스니펫을 생성할수 있음 </li>
-<li>오직 스니펫을 생성한 생성자만, 스니펫을 업데이트 혹은 삭제할수 있음 </li>
-<li>인증 되지 않은 사용자들은 읽기전용 엑세스만 가져야만 함 </li>
-</ul>
-<br>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1558,7 +1576,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1571,7 +1589,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">156</span>
+        <span class="site-state-item-count">157</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

@@ -220,6 +220,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/" class="post-title-link" itemprop="url">Python 기초 1 편 - 기본 사항들</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-23 18:57:19 / Updated at: 19:14:55" itemprop="dateCreated datePublished" datetime="2020-10-23T18:57:19+09:00">2020-10-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/23/Python-기초-1-편-기본-사항들/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="What-is-Python"><a href="#What-is-Python" class="headerlink" title="What is Python?"></a>What is Python?</h2><br>
+
+<h3 id="Python-이-무엇인가요"><a href="#Python-이-무엇인가요" class="headerlink" title="Python 이 무엇인가요?"></a>Python 이 무엇인가요?</h3><br>
+
+<p>파이썬은 오픈소스로 개발된 객체 지향 프로그래밍 언어로, 고등 레벨의 강력한 프로그래밍 언어 입니다. Guido Van Rossum 에 의해서 1990년대 초반에 개발되었고, Monty Python 을 따라서 이름 지어졌습니다. </p>
+<br>
+
+<p>파이썬은, 많은 unix 계열에서 실행되고, Mac 과 Windows 2000 대 이후 버전에서도 실행 됩니다. </p>
+<br>
+
+<p>파이썬은, <a href="http://www.python.org" target="_blank" rel="noopener">http://www.python.org</a> 에서 다운로드 가능합니다. </p>
+<br>
+
+<h2 id="Python-프로그램은"><a href="#Python-프로그램은" class="headerlink" title="Python 프로그램은"></a>Python 프로그램은</h2><br>
+
+<p>파이썬 프로그램들은 모듈들로 이루어져 있습니다. 하나의 <code>모듈</code>은 <code>statement</code> 들을 포함하고 있고, <code>statement</code> 는 <code>expressions</code> 을 가지고 있습니다.  </p>
+<br>
+
+<p><code>Module &gt; Statements &gt; Expressions</code> </p>
+<br>
+
+<p>파이썬에서뿐만 아니라, 자주자주 나오는 컨셉인, <code>statements</code> 와 <code>expressions</code> 에 대해서 알아보자면, </p>
+<br>
+
+<blockquote>
+<p><strong>Expressions</strong></p>
+<p>수식, 연산식 </p>
+</blockquote>
+<br>
+
+<blockquote>
+<p><strong>Statements</strong></p>
+<p>실행 가능한 (executable) 코드 조각, 무엇인가를 실행하는 코드의 조각 이라고 보면 됩니다. </p>
+</blockquote>
+<br>
+
+<p>스택오버플로우에서 검색해 보면, 아래 예시가 나옵니다 </p>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/23/Python-%EA%B8%B0%EC%B4%88-1-%ED%8E%B8-%EA%B8%B0%EB%B3%B8-%EC%82%AC%ED%95%AD%EB%93%A4/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/22/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-library-%EC%99%80-%EB%AA%A8%EB%93%88-module/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1318,165 +1461,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/14/Form-API-1%ED%8E%B8-Bound-and-Unbound-Forms/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/14/Form-API-1%ED%8E%B8-Bound-and-Unbound-Forms/" class="post-title-link" itemprop="url">Form API 1편 - Bound and Unbound Forms</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-10-14 19:34:09 / Updated at: 19:45:48" itemprop="dateCreated datePublished" datetime="2020-10-14T19:34:09+09:00">2020-10-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/Form-API/" itemprop="url" rel="index"><span itemprop="name">Form API</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/14/Form-API-1%ED%8E%B8-Bound-and-Unbound-Forms/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/14/Form-API-1편-Bound-and-Unbound-Forms/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Form-API"><a href="#Form-API" class="headerlink" title="Form API"></a>Form API</h2><br>
-
-<h3 id="Bound-and-Unbound-Forms"><a href="#Bound-and-Unbound-Forms" class="headerlink" title="Bound and Unbound Forms"></a>Bound and Unbound Forms</h3><br>
-
-<p>하나의 폼 인스턴스는 <code>bound</code> 혹은 <code>unbound</code> 로 종류가 나뉩니다. </p>
-<br>
-
-<h4 id="Bound-Form"><a href="#Bound-Form" class="headerlink" title="Bound Form"></a>Bound Form</h4><br>
-
-<p>폼이 Bound 되어있다라는 표현은, 데이터가 폼에 묶여있는 형태로. </p>
-<p>폼에 데이터가 있는 상태를 의미합니다.<br> 해당 폼 인스턴스가, 데이터를 가지고 있다면, Django 는 해당 데이터를 검증하고, 데이터와 함께 HTML 로 렌더링 할수 있게 됩니다. </p>
-<br>
-
-<h4 id="Unbound-Form"><a href="#Unbound-Form" class="headerlink" title="Unbound Form"></a>Unbound Form</h4><br>
-
-<p>만약에 폼이 unbound 되었다면, 해당 폼 인스턴스에는 데이터 검증 작업을 수행할수 없습니다 (검증할 데이터가 없기 때문입니다). 그렇지만, 비어있는 폼을 HTML 로 렌더 할수 있습니다. </p>
-<br>
-
-<br>
-
-<h2 id="폼-클래스로-폼-인스턴스-생성"><a href="#폼-클래스로-폼-인스턴스-생성" class="headerlink" title="폼 클래스로 폼 인스턴스 생성"></a>폼 클래스로 폼 인스턴스 생성</h2><br>
-
-<p>하나의 unbound  폼 (데이터가 비어있는 폼 인스턴스) 을 생성하기 위해서는, 폼 클래스를 인스턴스화 시켜주면 됩니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = ContactForm()</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>반대로, 폼에 데이터를 묶어주는, bound 폼 인스턴스를 생성하기 위해서는, </p>
-<p><br>묶어줄 데이터를 사전 형태로 전달해주면 됩니다. </p>
-<br>
-
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'subject'</span>: <span class="string">'hello'</span>,</span><br><span class="line">    <span class="string">'message'</span>: <span class="string">'Hi there'</span>,</span><br><span class="line">    <span class="string">'sender'</span>: <span class="string">'foo@example.com'</span>,</span><br><span class="line">    <span class="string">'cc_myself'</span>: <span class="literal">True</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f = ContactForm(data)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>이 사전안에 keys 는 필드 이름이고, 이는 Form 클래스안의 속성들과 대응합니다. </p>
-<p><br>사전안에 있는 values 는 여러분들이 검증하려고 하는 데이터 입니다. 이들은 보통 문자열로 되어 있지만, 문자열이여만 하는 요구 조건은 없습니다. 전달될 데이터 타입은 필드 마다 다를수 있습니다. </p>
-<br>
-
-<h2 id="is-bound"><a href="#is-bound" class="headerlink" title="is_bound"></a><code>is_bound</code></h2><br>
-
-<p>만약 여러분들이 form 인스턴스가 bound 인지 unbound 인지 실행시에 구분하고 싶다면, form 의 is_bound 속성의 값을 확인 하면 됩니다. True 혹은 False 를 반환합니다. </p>
-<br>
-
-<p>shell 에서 확인해보면, </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [3]: from forms_more_on_fields.forms import ContactForm                                                                                                             </span><br><span class="line">In [4]: f = ContactForm()                                                                                                                                              </span><br><span class="line">In [5]: f.is_bound                                                                                                                                                     </span><br><span class="line">Out[5]: False</span><br><span class="line">In [6]: f = ContactForm(&#123;'subject': 'hello'&#125;)                                                                                                                          </span><br><span class="line">In [7]: f.is_bound                                                                                                                                                     </span><br><span class="line">Out[7]: True</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<ul>
-<li>폼 인스턴스에 데이터가 들어가면, is_bound 를 호출했을때, True 를 반환하고 </li>
-<li>폼 인스턴스에 데이터가 들어가지 않은 unbound 폼에 is_bound 를 호출하면, False 를 반환합니다 </li>
-</ul>
-<br>
-
-<p>비어 있는 사전을 전달할 경우, 비어 있는 데이터를 가진 bound form 이 됩니다. </p>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [8]: f = ContactForm(&#123;&#125;)       # 비어있는 사전 전달                                                                                                                            </span><br><span class="line"></span><br><span class="line">In [9]: f.is_bound                                                                                                                                                     </span><br><span class="line">Out[9]: True</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>Bound Form 인스턴스를 가지고 있고, 어떻게든 데이터를 바꾸고 싶거나 혹은 unbound form 을 어떠한 데이터를 가지게 하고 싶다면, 또다른 Form 인스턴스를 생성하면 됩니다. </p>
-<br>
-
-<p>Form instance 안에 데이터를 변경하는 길은 없습니다. 한번 Form 인스턴스가 생성이 되면, 데이터를 가지고 있던 없던, 데이터는 변경이 불가능 합니다! </p>
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1547,7 +1531,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1560,7 +1544,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">156</span>
+        <span class="site-state-item-count">157</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

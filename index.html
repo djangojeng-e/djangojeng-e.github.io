@@ -220,6 +220,211 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2022/06/10/Django-API-Fundamentals/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/10/Django-API-Fundamentals/" class="post-title-link" itemprop="url">Django API Fundamentals</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2022-06-10 20:53:32 / Updated at: 21:27:17" itemprop="dateCreated datePublished" datetime="2022-06-10T20:53:32+09:00">2022-06-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/API/" itemprop="url" rel="index"><span itemprop="name">API</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/06/10/Django-API-Fundamentals/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/06/10/Django-API-Fundamentals/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Fundamental-Terms"><a href="#Fundamental-Terms" class="headerlink" title="Fundamental Terms"></a>Fundamental Terms</h1><br>
+
+
+
+<p>Django API 공부를 시작하기 전에, 알아야 할 기본적인 terminology 를 정리해 보았다. </p>
+<p>API 공부를 시작하기전에는 잘 몰랐던 단어들과 컨셉을 다시 정리해 본다. </p>
+<br>
+
+
+
+<h2 id="1-HTTP-VERBS"><a href="#1-HTTP-VERBS" class="headerlink" title="1. HTTP VERBS"></a>1. HTTP VERBS</h2><br>
+
+
+
+<p>HTTP 프로토콜은 <code>요청 방법</code> 이라는것이 존재한다. 각 요청은 <code>request method</code> 라는 요청 방법을 가지고 있어서, 요청 방법에 따라 CRUD 연산이 가능하다. </p>
+<p>CRUD 는 웹개발에서 너무 기본적인 텀이지만, Create, Read, Update, Delete 의 앞 글자들을 따서 만들어진 단어라고 볼수 있다. </p>
+<br>
+
+
+
+<p>가장 흔한 4개의 요청 방법은, 아래와 같다. </p>
+<br>
+
+
+
+<ol>
+<li>POST </li>
+<li>GET</li>
+<li>PUT</li>
+<li>DELETE </li>
+</ol>
+<br>
+
+
+
+<p>이 요청 방법들을 <code>HTTP Verbs</code> 라고 부르는데, 영어 단어 verbs 는 동사라는 뜻을 가지고 있고. HTTP 가 가진 동사 (포스트 하다, 겟 하다, 풋 하다, 딜리트 하다, ~~하다 라는 동사) 라고 해서 <code>HTTP Verbs</code> 라고 불리우는것 같다. </p>
+<br>
+
+
+
+<p>보통 이 동사들은, 각각의 CRUD 동작과 매칭이 되는데. 각 동작들이 어떤 HTTP VERB 들과 매칭이 되는지 테이블로 정리해 보았다.  </p>
+<p><br><br></p>
+<table>
+<thead>
+<tr>
+<th>CRUD (Create, Read, Update, Delete)</th>
+<th>HTTP Verbs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Create (생성)</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Read (읽기)</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Update (갱신)</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Delete (삭제)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Endpoints"><a href="#Endpoints" class="headerlink" title="Endpoints"></a>Endpoints</h2><br>
+
+
+
+<p>REST FRAMEWORK 튜토리얼을 따라했었을때, 몰랐던 단어가 바로 이 <code>endpoints</code> 였다. </p>
+<br>
+
+
+
+<blockquote>
+<p>Endpoints 가 무엇인지 이해하려면, URL 부터 알아야 한다. </p>
+</blockquote>
+<br>
+
+
+
+<p>거의 모든 웹페이지는 HTML, CSS, JavaScript 혹은 다른 element 와 함께 구성이 되어 있고. 해당 웹페이지를 위한 URL 이 존재한다. </p>
+<p>예를들면, <code>mysite.com.au/page/1</code> 이라는 URL 주소가 존재할때, 해당 URL 을 브라우저 주소창에 입력하면 웹페이지가 화면에 출력이 된다. </p>
+<br>
+
+<br>
+
+
+
+<p><code>웹 API</code>도 같은 개념인데, 예를들어 <code>mysite.com.au/page/api/1</code> 이라는 특정 API를 호출하는 URL이 존재한다고 가정했을때. </p>
+<p>이 URL을 호출했을 경우, 보통의 웹페이지가 화면에 출력되는 대신에, <code>API endpoints</code> 가 생성된다.   </p>
+<br>
+
+
+
+
+
+<blockquote>
+<p><code>mysite.com/page/api/1</code> </p>
+<p>이라는 URL 을 호출하면, API endpoints 를 생성한다.</p>
+<p>하나의 <code>endpoint</code> 는 보통 JSON 포맷으로 된 데이터와 동작 가능한 <code>HTTP verbs</code> 정보를 가지고 있다.  </p>
+</blockquote>
+<br>
+
+
+
+
+
+<p>간단한 투두 리스트를 위한 <code>mytodolist.com</code> 이라는 사이트가 있다고 가정했을때. 아래와 같은 <code>api endpoints</code>를 만들어 볼수 있다. </p>
+<ol>
+<li><code>https://mytodolist.com/api/list</code> - 모든 투두리스트의 정보를 반환 </li>
+<li><code>https://mytodolist.com/api/detail/1</code> - 투두리스트중 id 값이 1 인 투두리스트의 디테일을 반환</li>
+</ol>
+<br> 
+
+<p>위의 두가지 endpoint 는 모두 GET 요청으로, 두가지 모두 정보만 조회하는 개념이지만, 요청 방법을 POST, PUT, DELETE 로 만든다면, 생성, 수정, 삭제 도 가능하다. </p>
+<p><strong>URL 을 가지고 화면에 웹페이지를 보여주는것 대신에, 특정 데이터들을 생성, 조회, 갱신, 삭제 같은 동작을 행할수 있다.</strong> </p>
+<br> 
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/30/DRF-Tutorial-36%ED%8E%B8-view-vs-viewsets/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1214,120 +1419,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/14/DRF-Tutorial-28%ED%8E%B8-%EA%B4%80%EA%B3%84%EC%99%80-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC%EB%90%9C-APIs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/14/DRF-Tutorial-28%ED%8E%B8-%EA%B4%80%EA%B3%84%EC%99%80-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC%EB%90%9C-APIs/" class="post-title-link" itemprop="url">DRF-Tutorial-28편- 관계와 하이퍼링크된 APIs</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-12-14 16:51:33 / Updated at: 16:56:26" itemprop="dateCreated datePublished" datetime="2020-12-14T16:51:33+09:00">2020-12-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/12/14/DRF-Tutorial-28%ED%8E%B8-%EA%B4%80%EA%B3%84%EC%99%80-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC%EB%90%9C-APIs/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/14/DRF-Tutorial-28편-관계와-하이퍼링크된-APIs/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Relationships-amp-Hyperlinked-APIs"><a href="#Relationships-amp-Hyperlinked-APIs" class="headerlink" title="Relationships &amp; Hyperlinked APIs"></a>Relationships &amp; Hyperlinked APIs</h2><br>
-
-<p>현재 우리의 API 안에 있는 관계들은 primary key 를 사용하여 표현되어 있습니다. </p>
-<br>
-
-<p>이번 튜토리얼에서 우리는 우리의 API 의 결속력을 찾기 쉽게 향상 시킬겁니다. 이는 관계들을 하이퍼링크로 잇는 것을 사용하여 이룰수 있습니다. </p>
-<br>
-
-<h2 id="Creating-an-endpoint-for-the-root-of-our-API"><a href="#Creating-an-endpoint-for-the-root-of-our-API" class="headerlink" title="Creating an endpoint for the root of our API"></a>Creating an endpoint for the root of our API</h2><br>
-
-<p>지금 현재 우리는 snippets 와 users 에 앤드포인트들을 가지고 있습니다. 하지만, 우리는 우리의 API 에 하나의 진입점을 가지고 있지 않습니다. 하나를 생성하기 위해, 우리는 일반 함수형 뷰와 @api_view 데코레이터를 사용할것 입니다. </p>
-<br>
-
-<p><code>snippets/views.py</code> 파일을 열고, 아래 내용을 추가해 줍니다. </p>
-<br>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.decorators <span class="keyword">import</span> api_view </span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.reverse <span class="keyword">import</span> reverse </span><br><span class="line"></span><br><span class="line"><span class="meta">@api_view(['GET'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">api_root</span><span class="params">(request, format=None)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> Response(&#123;</span><br><span class="line">        <span class="string">'users'</span>: reverse(<span class="string">'user-list'</span>m request=request, format=format),</span><br><span class="line">        <span class="string">'snippets'</span>: reverse(<span class="string">'snippet-list'</span>, request=request, format=format)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>여기에서 두가지를 알고 넘어가야 합니다. </p>
-<br>
-
-<ol>
-<li>우리는 REST FRMAEWORK 의 reverse 함수를 사용하여, 완벽한 URL 을 반환합니다 </li>
-<li>URL 패턴들은 쉬운 이름으로 정의가 되고, 나중에 snippets/urls.py 에 선언될것 입니다. </li>
-</ol>
-<br>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1398,7 +1489,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1411,7 +1502,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">156</span>
+        <span class="site-state-item-count">157</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

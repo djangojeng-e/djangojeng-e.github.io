@@ -1,6 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django API Fundamentals</title>
+    <url>/2022/06/10/Django-API-Fundamentals/</url>
+    <content><![CDATA[<h1 id="Fundamental-Terms"><a href="#Fundamental-Terms" class="headerlink" title="Fundamental Terms"></a>Fundamental Terms</h1><br>
+
+
+
+<p>Django API 공부를 시작하기 전에, 알아야 할 기본적인 terminology 를 정리해 보았다. </p>
+<p>API 공부를 시작하기전에는 잘 몰랐던 단어들과 컨셉을 다시 정리해 본다. </p>
+<br>
+
+
+
+<h2 id="1-HTTP-VERBS"><a href="#1-HTTP-VERBS" class="headerlink" title="1. HTTP VERBS"></a>1. HTTP VERBS</h2><br>
+
+
+
+<p>HTTP 프로토콜은 <code>요청 방법</code> 이라는것이 존재한다. 각 요청은 <code>request method</code> 라는 요청 방법을 가지고 있어서, 요청 방법에 따라 CRUD 연산이 가능하다. </p>
+<p>CRUD 는 웹개발에서 너무 기본적인 텀이지만, Create, Read, Update, Delete 의 앞 글자들을 따서 만들어진 단어라고 볼수 있다. </p>
+<br>
+
+
+
+<p>가장 흔한 4개의 요청 방법은, 아래와 같다. </p>
+<br>
+
+
+
+<ol>
+<li>POST </li>
+<li>GET</li>
+<li>PUT</li>
+<li>DELETE </li>
+</ol>
+<br>
+
+
+
+<p>이 요청 방법들을 <code>HTTP Verbs</code> 라고 부르는데, 영어 단어 verbs 는 동사라는 뜻을 가지고 있고. HTTP 가 가진 동사 (포스트 하다, 겟 하다, 풋 하다, 딜리트 하다, ~~하다 라는 동사) 라고 해서 <code>HTTP Verbs</code> 라고 불리우는것 같다. </p>
+<br>
+
+
+
+<p>보통 이 동사들은, 각각의 CRUD 동작과 매칭이 되는데. 각 동작들이 어떤 HTTP VERB 들과 매칭이 되는지 테이블로 정리해 보았다.  </p>
+<p><br><br></p>
+<table>
+<thead>
+<tr>
+<th>CRUD (Create, Read, Update, Delete)</th>
+<th>HTTP Verbs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Create (생성)</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Read (읽기)</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Update (갱신)</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Delete (삭제)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Endpoints"><a href="#Endpoints" class="headerlink" title="Endpoints"></a>Endpoints</h2><br>
+
+
+
+<p>REST FRAMEWORK 튜토리얼을 따라했었을때, 몰랐던 단어가 바로 이 <code>endpoints</code> 였다. </p>
+<br>
+
+
+
+<blockquote>
+<p>Endpoints 가 무엇인지 이해하려면, URL 부터 알아야 한다. </p>
+</blockquote>
+<br>
+
+
+
+<p>거의 모든 웹페이지는 HTML, CSS, JavaScript 혹은 다른 element 와 함께 구성이 되어 있고. 해당 웹페이지를 위한 URL 이 존재한다. </p>
+<p>예를들면, <code>mysite.com.au/page/1</code> 이라는 URL 주소가 존재할때, 해당 URL 을 브라우저 주소창에 입력하면 웹페이지가 화면에 출력이 된다. </p>
+<br>
+
+<br>
+
+
+
+<p><code>웹 API</code>도 같은 개념인데, 예를들어 <code>mysite.com.au/page/api/1</code> 이라는 특정 API를 호출하는 URL이 존재한다고 가정했을때. </p>
+<p>이 URL을 호출했을 경우, 보통의 웹페이지가 화면에 출력되는 대신에, <code>API endpoints</code> 가 생성된다.   </p>
+<br>
+
+
+
+
+
+<blockquote>
+<p><code>mysite.com/page/api/1</code> </p>
+<p>이라는 URL 을 호출하면, API endpoints 를 생성한다.</p>
+<p>하나의 <code>endpoint</code> 는 보통 JSON 포맷으로 된 데이터와 동작 가능한 <code>HTTP verbs</code> 정보를 가지고 있다.  </p>
+</blockquote>
+<br>
+
+
+
+
+
+<p>간단한 투두 리스트를 위한 <code>mytodolist.com</code> 이라는 사이트가 있다고 가정했을때. 아래와 같은 <code>api endpoints</code>를 만들어 볼수 있다. </p>
+<ol>
+<li><code>https://mytodolist.com/api/list</code> - 모든 투두리스트의 정보를 반환 </li>
+<li><code>https://mytodolist.com/api/detail/1</code> - 투두리스트중 id 값이 1 인 투두리스트의 디테일을 반환</li>
+</ol>
+<br> 
+
+<p>위의 두가지 endpoint 는 모두 GET 요청으로, 두가지 모두 정보만 조회하는 개념이지만, 요청 방법을 POST, PUT, DELETE 로 만든다면, 생성, 수정, 삭제 도 가능하다. </p>
+<p><strong>URL 을 가지고 화면에 웹페이지를 보여주는것 대신에, 특정 데이터들을 생성, 조회, 갱신, 삭제 같은 동작을 행할수 있다.</strong> </p>
+<br> 
+
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>API</category>
+      </categories>
+      <tags>
+        <tag>DRF,API,endpoints</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DRF-Tutorial-36편- view vs viewsets</title>
     <url>/2020/12/30/DRF-Tutorial-36%ED%8E%B8-view-vs-viewsets/</url>
     <content><![CDATA[<h2 id="Trade-offs-between-views-vs-viewsets"><a href="#Trade-offs-between-views-vs-viewsets" class="headerlink" title="Trade-offs between views vs viewsets"></a>Trade-offs between views vs viewsets</h2><br>

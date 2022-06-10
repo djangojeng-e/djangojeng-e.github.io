@@ -220,6 +220,138 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/" class="post-title-link" itemprop="url">DRF Tutorial 8편 - DRF Tutorial 8편 - 요청과 응답</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-11-21 14:44:19 / Updated at: 14:59:19" itemprop="dateCreated datePublished" datetime="2020-11-21T14:44:19+09:00">2020-11-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/DRF/" itemprop="url" rel="index"><span itemprop="name">DRF</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/21/DRF-Tutorial-8%ED%8E%B8-DRF-Tutorial-8%ED%8E%B8-%EC%9A%94%EC%B2%AD%EA%B3%BC-%EC%9D%91%EB%8B%B5/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/21/DRF-Tutorial-8편-DRF-Tutorial-8편-요청과-응답/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <br>
+
+<h2 id="Requests-and-Responses"><a href="#Requests-and-Responses" class="headerlink" title="Requests and Responses"></a>Requests and Responses</h2><br>
+
+<blockquote>
+<p>이제부터 우리는,</p>
+<p>진짜로 REST framework 의 주요 사항들을 볼것입니다. </p>
+<p>몇가지 필수 사항들을 소개해 봅시다. </p>
+</blockquote>
+<br>
+
+<h2 id="Request-objects"><a href="#Request-objects" class="headerlink" title="Request objects"></a>Request objects</h2><br>
+
+<p>REST Framework 은 일반 HttpResponse 를 확장하는 Request 객체를 소개하고, </p>
+<p>조금 더 유연한 파싱을 제공합니다. Request 객체의 주요 기능은,  <code>request.data</code> 속성이고, </p>
+<br>
+
+<p>이것은, request.POST 와 비슷하지만, Web API 를 작업할때 좀 더 유용합니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">request.POST </span><br><span class="line"><span class="comment"># only handles form data. Only works for 'POST' method</span></span><br><span class="line"><span class="comment"># 폼 데이터만 다루고, 오로지 POST 메서드에만 동작합니다. </span></span><br><span class="line"></span><br><span class="line">request.data</span><br><span class="line"><span class="comment"># 임의의 데이터를 다룰수 있고, </span></span><br><span class="line"><span class="comment"># 'POST', 'PUT' 그리고 'PATCH' 메서드들을 위해 동작합니다</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Response-objects"><a href="#Response-objects" class="headerlink" title="Response objects"></a>Response objects</h2><br>
+
+<p>REST Framework 은 Response 객체도 가지고 있습니다.</p>
+<p><br>이것은, TemplateResponse 의 종류로, 렌더되지 않은 컨텐트와 content negotiation 을 사용하여, </p>
+<br>
+
+<p>클라이언트에게 반환할 적절한 컨텐트 종류를 결정합니다. </p>
+<br>
+
+<blockquote>
+<p><strong>Content Negotiation</strong></p>
+<p>동일한 URI 에서 리소스의 서로 다른 버전을 수행하기 위해 사용되는 메커니즘으로,</p>
+<p>사용자 에이전트가 사용자에게 제일 잘 맞는것이 무엇인지를 명시할수 있습니다. </p>
+<p>예) 문서의 언어, 이미지, 포맷 혹은 콘텐츠 인코딩에 있어서 어떤것이 적절할지를 정함.</p>
+</blockquote>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> Response(data)</span><br><span class="line"><span class="comment"># Renders to content type as requested by the client </span></span><br><span class="line"><span class="comment"># 클라이언트가 요청한 content 종류를 렌더해줌</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/20/DRF-Tutorial-7%ED%8E%B8-Web-API-%EC%97%90-%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%8B%9C%EB%8F%84-%ED%85%8C%EC%8A%A4%ED%8A%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1541,205 +1673,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/11/11/Python-%EA%B8%B0%EC%B4%88-21%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-2%ED%8E%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/11/Python-%EA%B8%B0%EC%B4%88-21%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-2%ED%8E%B8/" class="post-title-link" itemprop="url">Python 기초 21편 - built in 내장함수 2편</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-11-11 20:20:12 / Updated at: 20:37:22" itemprop="dateCreated datePublished" datetime="2020-11-11T20:20:12+09:00">2020-11-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/%EA%B8%B0%EC%B4%88/" itemprop="url" rel="index"><span itemprop="name">기초</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/11/11/Python-%EA%B8%B0%EC%B4%88-21%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-2%ED%8E%B8/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/11/Python-기초-21편-built-in-내장함수-2편/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Python-Builtins-2"><a href="#Python-Builtins-2" class="headerlink" title="Python Builtins - 2"></a>Python Builtins - 2</h2><br>
-
-<p>파이썬 인터프리터는 언제나 사용가능한 몇가지 함수들과 타입들이 내장되어 있습니다. </p>
-<br>
-
-<table>
-<thead>
-<tr>
-<th><strong>함수명</strong></th>
-<th><strong>내용</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>filter()</td>
-<td>filter() 함수는 함수가 True 를 반환하는 순회가능 객체의 요소들로부터, 순회가능 객체를 만듭니다.</td>
-</tr>
-<tr>
-<td>float()</td>
-<td>float() 함수는 지정된 값을 부동 소수점 숫자로 전환해줍니다</td>
-</tr>
-<tr>
-<td>format()</td>
-<td>foramt() 함수는 지정된 값을 특정 format 으로 지정할때 사용됩니다.</td>
-</tr>
-<tr>
-<td>frozenset()</td>
-<td>frozenset() 함수는 새로운 frozenset 객체를 반환합니다, 옵션으로 순회가능 객체로부터 요소들을 받아옵니다</td>
-</tr>
-<tr>
-<td>getattr()</td>
-<td>getattr() 함수는 명명된 객체의 속성의 값을 반환합니다, 이름은 문자열이여만 합니다.</td>
-</tr>
-<tr>
-<td>globals()</td>
-<td>globals() 함수는 현재 global symbol table 을 표현하는 딕셔너리를 반환합니다.</td>
-</tr>
-<tr>
-<td>hash()</td>
-<td>hash() 함수는 객체의 hash 값을 반환합니다</td>
-</tr>
-<tr>
-<td>help()</td>
-<td>help() 함수는 내장된 help(도움말) 시스템을 실행시키기 위해 사용됩니다</td>
-</tr>
-<tr>
-<td>id()</td>
-<td>id() 함수는 객체의 정체성을 얻기위해 사용합니다</td>
-</tr>
-<tr>
-<td>input()</td>
-<td>input() 함수는 사용자 입력값을 허용합니다.</td>
-</tr>
-<tr>
-<td>int()</td>
-<td>int() 함수는 지정된 값을 정수로 바꾸어 줍니다</td>
-</tr>
-<tr>
-<td>isinstance()</td>
-<td>isinstance() 함수는 객체 인자가 클래스정보 인자의 인스턴스일때 true 를 반환합니다.혹은, 서브클래스일 경우에 true 를 반환합니다</td>
-</tr>
-<tr>
-<td>issubclass()</td>
-<td>issubclass() 함수는 지정된 객체가, 특정객체의 서브클래스라면 True 를 반환합니다, 그렇지 않으면 False 를 반환합니다.</td>
-</tr>
-<tr>
-<td>iter()</td>
-<td>iter() 함수는 하나의 iterator 객체를 반환합니다</td>
-</tr>
-<tr>
-<td>len()</td>
-<td>len() 함수는, 객체의 길이를 얻을때 사용됩니다</td>
-</tr>
-<tr>
-<td>list()</td>
-<td>list() 함수는, 리스트 객체를 생성하기 위해 사용됩니다</td>
-</tr>
-<tr>
-<td>locals()</td>
-<td>locals() 함수는 local symbol table 을 사전형태로 얻기위해 사용됩니다.</td>
-</tr>
-<tr>
-<td>map()</td>
-<td>map() 함수는 지정된 함수를 순회가능한 객체의 각 요소에 실행시킵니다.</td>
-</tr>
-<tr>
-<td>max()</td>
-<td>max() 함수는 순회가능 객체의 요소들중 가장 큰 값을 찾는데 사용됩니다.</td>
-</tr>
-<tr>
-<td>memoryview()</td>
-<td>memoryview() 함수는 특정객체로부터 메모리뷰 객체를 얻을때 사용됩니다.</td>
-</tr>
-</tbody></table>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/11/Python-%EA%B8%B0%EC%B4%88-21%ED%8E%B8-built-in-%EB%82%B4%EC%9E%A5%ED%95%A8%EC%88%98-2%ED%8E%B8/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1810,7 +1743,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">235</span>
+          <span class="site-state-item-count">236</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1823,7 +1756,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">156</span>
+        <span class="site-state-item-count">157</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
