@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Django 간단한 투두리스트 API -  1</title>
+    <url>/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/</url>
+    <content><![CDATA[<h1 id="간단한-TodoList-API-로-만들기"><a href="#간단한-TodoList-API-로-만들기" class="headerlink" title="간단한 TodoList API 로 만들기"></a>간단한 TodoList API 로 만들기</h1><br>
+
+<p>Django API RESTFRAMEWORK 학습을 진행 하면서 RESTFRAMEWORK 문서에 나와 있는 튜토리얼을 하나하나 따라서 진행 하며 학습을 해보았지만. <br></p>
+<p>컨텐츠는 좋게 짜여진 튜토리얼이지만, 무언가 머리에 남는게 별로 없었다. 사실 처음 접했을때는 너무 어려웠었다. 따라서, 조금 쉬운 예제를 가지고 API 개발을 진행하면서 학습을 하기로 하였고. 여러모로 접근도 쉽고, 간편하게 짤수 있는 투두리스트 사이트를 API로 개발해 보면서, 학습을 진행해 보았다. </p>
+<br>
+
+<h2 id="1-project-생성-및-앱-등록"><a href="#1-project-생성-및-앱-등록" class="headerlink" title="1. project 생성 및 앱 등록"></a>1. project 생성 및 앱 등록</h2><p>가상환경과 Django 가 모두 세팅되었다고 가정하고. </p>
+<p><code>projects/todo</code> 폴더를 만들고 이동후에, 아래 커맨드들을 통해 Django 프로젝트를 생성해 주었다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> todo 라는 django project 생성</span></span><br><span class="line">django-admin startproject todo .</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 폴더 구조 </span></span><br><span class="line"> ~/projects/todo  ls</span><br><span class="line">manage.py  todo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> todolist 라는 앱 생성 </span></span><br><span class="line">python manage.py startapp todolist </span><br><span class="line"></span><br><span class="line">~/projects/todo  ls</span><br><span class="line">manage.py  todo  todolist	# todolist 폴더가 생겨난다</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>제대로 프로젝트가 생성이 되었고, 앱도 생성이 되었다. 다른것을 하기전에, 생성된 앱을 <code>todo/settings.py</code> 에 <code>INSTALLED_APPS</code> 에 추가해주었다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">'todolist'</span>, <span class="comment"># todolist 앱 추가 </span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<a id="more"></a>
+
+<br>
+
+<h2 id="2-Migrations-amp-Migrate"><a href="#2-Migrations-amp-Migrate" class="headerlink" title="2. Migrations &amp; Migrate"></a>2. Migrations &amp; Migrate</h2><br>
+
+<p>Django 프로젝트 생성후 앱 등록후에, 데이터베이스를 생성해 주었다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python manage.py makemigrations </span><br><span class="line">python manage.py migrate</span><br><span class="line">...................................</span><br><span class="line"> Applying auth.0008_alter_user_username_max_length... OK</span><br><span class="line">  Applying auth.0009_alter_user_last_name_max_length... OK</span><br><span class="line">  Applying auth.0010_alter_group_name_max_length... OK</span><br><span class="line">  Applying auth.0011_update_proxy_permissions... OK</span><br><span class="line">  Applying sessions.0001_initial... OK</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>서버를 구동해서 Django 사이트가 잘 작동하는지 확인해 보자. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python manage.py runserver</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>서버를 실행 시킨후에, 브라우저 주소창에 <code>http://127.0.0.1:8000/</code>를 입력 하면, 아래와 같은 화면이 표시되는걸 확인할수 있다. </p>
+<br>
+
+<img src="/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image1.png" class="">
+
+<br>
+
+<h2 id="3-학습-목표"><a href="#3-학습-목표" class="headerlink" title="3. 학습 목표"></a>3. 학습 목표</h2><br>
+
+<p>일반적인 사이트 개발이었을 경우, 다음 스텝들은 아래와 같이 그려볼수 있다. </p>
+<br>
+
+<ol>
+<li><p>todolist 앱의 models.py 에 투두리스트에 대한 데이터 모델을 작성한다 </p>
+</li>
+<li><p>프로젝트 urls.py 에 todolist/urls.py 를 연결해 주고, URL 구조를 만든다. 예를들면, </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># todo/urls.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">    path(<span class="string">''</span>, include(<span class="string">'todolist.urls'</span>)), </span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># todolist/urls.py (urls.py 파일을 todolist 폴더안에 생성해줘야 함)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">	<span class="comment"># path('', ) </span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>todolist/views.py 파일에 view 를 작성하고 todolist/urls.py 에 해당 view 를 등록하여, URL 요청이 있을때 어떻게 사이트가 작동할것인지에 대한 정의를 내림 </p>
+</li>
+<li><p>todolist 앱을 위한 템플릿 (즉, html 웹페이지들) 을 생성하고, 어떻게 view에서 처리된 데이터가 나타나게 될지 html, css, javascript 를 사용하여 html 페이지로 표현. </p>
+</li>
+</ol>
+<br>
+
+<p>위 4가지를 대충만 작업하고 지나가도 시간이 너무 오래 걸리고 귀찮기 때문에 (특히, 프론트앤드). 웬만하면 API 학습 위주로만 연습을 해보기로 했다.  <br></p>
+<p>프론트 작업 없이, 작성된 API 만 확인하는 정도라면 위 4단계를 거치지 않고 학습을 진행 할수 있을것 같다. </p>
+]]></content>
+      <categories>
+        <category>REST FRAMEWORK</category>
+        <category>API 간편예제 1</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Django API Fundamentals</title>
     <url>/2022/06/10/Django-API-Fundamentals/</url>
     <content><![CDATA[<h1 id="Fundamental-Terms"><a href="#Fundamental-Terms" class="headerlink" title="Fundamental Terms"></a>Fundamental Terms</h1><br>

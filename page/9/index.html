@@ -220,6 +220,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/07/Django-Forms-10%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/07/Django-Forms-10%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-3/" class="post-title-link" itemprop="url">Django Forms 10편 - Django 에서 폼만들기 3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-10-07 12:54:37 / Updated at: 13:09:43" itemprop="dateCreated datePublished" datetime="2020-10-07T12:54:37+09:00">2020-10-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/Forms/" itemprop="url" rel="index"><span itemprop="name">Forms</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/10/07/Django-Forms-10%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-3/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/07/Django-Forms-10편-Django-에서-폼만들기-3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="The-Template"><a href="#The-Template" class="headerlink" title="The Template"></a>The Template</h2><br>
+
+<p>이제 직접적으로 template 에 html 폼을 그려주기 위해서, <code>name.html</code> 파일을 생성해 줍니다. </p>
+<br>
+
+<p>지난 포스팅에서 views.py 에서 <code>{&#39;form&#39;: form}</code> 이라는 컨텍스트를 <code>name.html</code> 파일로 전달하였으므로, </p>
+<p><br><br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponseRedirect</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render </span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .forms <span class="keyword">import</span> NameForm </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment"># 만약 이것이 POST 요청이라면, 폼 데이터를 처리할 필요가 있습니다 </span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">"POST"</span>: </span><br><span class="line">        <span class="comment"># 폼 인스턴스를 생성하고, 요청으로부터 받아온 데이터로 채웁니다</span></span><br><span class="line">        form = Nameform(request.POST)</span><br><span class="line">        <span class="comment"># 유효한 데이터인지 검사합니다 </span></span><br><span class="line">        <span class="keyword">if</span> form.is_valid():</span><br><span class="line">            <span class="comment"># form.cleaned_data 안에 있는 데이터를 요구사항에 맞게 처리합니다. </span></span><br><span class="line">            <span class="comment"># ... </span></span><br><span class="line">            <span class="comment"># 새로운 URL 로 리다이렉트 시켜줍니다.</span></span><br><span class="line">            <span class="keyword">return</span> HttpResponseRedirect(<span class="string">'/thanks/'</span>)</span><br><span class="line">    <span class="comment"># 만약 GET 이나 다른 method 의 요청을 받으면, 비어있는 폼을 생성합니다.</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        form = NameForm()</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'name.html'</span>, &#123;<span class="string">'form'</span>: form&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><br><br>템플릿에 있는 name.html 에서 아래와 같이 <code></code>  이라고 출력하면, 폼이 출력 됩니다. </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/your-name/"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">    &#123;&#123; form &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Submit"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/07/Django-Forms-10%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-3/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/10/06/Django-Forms-9%ED%8E%B8-Django-%EC%97%90%EC%84%9C-%ED%8F%BC%EB%A7%8C%EB%93%A4%EA%B8%B0-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1440,135 +1558,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-6/" class="post-title-link" itemprop="url">AWS Elastic Beanstalk 배포 - 6</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-09-24 16:32:05 / Updated at: 17:29:46" itemprop="dateCreated datePublished" datetime="2020-09-24T16:32:05+09:00">2020-09-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/AWS/Elastic-Beanstalk/" itemprop="url" rel="index"><span itemprop="name">Elastic Beanstalk</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-6/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/09/24/AWS-Elastic-Beanstalk-배포-6/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="EB-CLI-로-사이트-배포하기"><a href="#EB-CLI-로-사이트-배포하기" class="headerlink" title="EB CLI 로 사이트 배포하기"></a>EB CLI 로 사이트 배포하기</h2><br>
-
-<p>지난 포스팅까지, Elastic Beanstalk 에 배포를 위한 기본 설정과, Elastic Beanstalk 를 위한 추가 설정까지 마쳤습니다 (<code>ebextensions</code> 폴더 생성후, <code>django.config</code> 파일 생성 완료)</p>
-<br>
-
-<p>Elastic Beanstalk 에 사이트를 배포할 준비가 다 되었습니다. </p>
-<br>
-
-<p>프로젝트 디렉토리는 아래와 같은 구조로 되어 있습니다. </p>
-<br>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(eb_env)  dhkang  ~/elastic_beanstalk/ebdjango  l</span><br><span class="line">total 24K</span><br><span class="line">drwxr-xr-x 4 dhkang dhkang 4.0K  9월 24 13:09 .</span><br><span class="line">drwxr-xr-x 5 dhkang dhkang 4.0K  9월 24 12:52 ..</span><br><span class="line">-rw-r--r-- 1 dhkang dhkang    0  9월 24 12:55 db.sqlite3</span><br><span class="line">drwxr-xr-x 3 dhkang dhkang 4.0K  9월 24 12:55 ebdjango</span><br><span class="line">drwxr-xr-x 2 dhkang dhkang 4.0K  9월 24 13:12 .ebextensions</span><br><span class="line">-rwxr-xr-x 1 dhkang dhkang  540  9월 24 12:52 manage.py</span><br><span class="line">-rw-r--r-- 1 dhkang dhkang   27  9월 24 13:06 requirements.txt</span><br></pre></td></tr></table></figure>
-
-
-
-<br>
-
-<p>자 이제, 어플리케이션 환경을 생성하고, 설정된 어플리케이션을, Elastic Beanstalk 로 배포합니다. </p>
-<br>
-
-<blockquote>
-<p>EB CLI 를 사용하여, 배포하기 위해 아래 순서대로 진행 해 봅니다 </p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/24/AWS-Elastic-Beanstalk-%EB%B0%B0%ED%8F%AC-6/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1639,14 +1628,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">236</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">

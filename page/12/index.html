@@ -220,6 +220,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/08/Django-Models-11%ED%8E%B8-Fields-Field-name-restrictions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/08/Django-Models-11%ED%8E%B8-Fields-Field-name-restrictions/" class="post-title-link" itemprop="url">Django Models 11편 - Fields (Field name restrictions)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-08-08 13:16:59 / Updated at: 13:23:15" itemprop="dateCreated datePublished" datetime="2020-08-08T13:16:59+09:00">2020-08-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/08/08/Django-Models-11%ED%8E%B8-Fields-Field-name-restrictions/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/08/Django-Models-11편-Fields-Field-name-restrictions/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Models-Fields-Field-Name-Restrictions"><a href="#Models-Fields-Field-Name-Restrictions" class="headerlink" title="Models - Fields(Field Name Restrictions)"></a>Models - Fields(Field Name Restrictions)</h2><br>
+
+<h3 id="Field-name-restrictions"><a href="#Field-name-restrictions" class="headerlink" title="Field name restrictions"></a>Field name restrictions</h3><br>
+
+<p>Django 는 모델 필드 이름들에 대한 제약이 있습니다. </p>
+<br>
+
+<ol>
+<li><p>필드명은 파이썬 예약어들이 될수 없습니다. 만약 사용한다면, 파이썬 문법 에러를 발생 시킵니다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	<span class="keyword">pass</span> = models.IntegerField()</span><br><span class="line"></span><br><span class="line"><span class="comment"># pass 는 파이썬에서 reversed word (예약어) 입니다 </span></span><br><span class="line"><span class="comment"># 따라서, 모델의 필드명이 될수 없습니다</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<br>
+
+<ol start="2">
+<li><p>필드명은 하나 이상의 언더스코어를 사용할수 없습니다. Django 의 쿼리 조회문이 언더스코어를 2개 사용하기 때문에, 필드명은, <code>__</code> 를 가질수 없습니다.  <br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	foo__bar = models.IntegerField() </span><br><span class="line">	</span><br><span class="line"><span class="comment"># foo__bar 는 언더스코어 2개를 가지고 있습니다. 잘못된 필드명입니다.</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<br>
+
+<ol start="3">
+<li><p>비슷한 이유로, 언더스코어로 끝나면 안됩니다. 쿼리 구문과 겹치기 때문입니다 <br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	foobar_ = models.InegerField() </span><br><span class="line">	</span><br><span class="line"><span class="comment"># foobar_ 처럼 언더스코어로 끝나는 필드명은 사용하면 안됩니다.</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/08/Django-Models-11%ED%8E%B8-Fields-Field-name-restrictions/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/07/Django-Models-10%ED%8E%B8-Fields-Models-across-files/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1395,125 +1538,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/08/01/Django-Models-3%ED%8E%B8-Fields-Field-Types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/01/Django-Models-3%ED%8E%B8-Fields-Field-Types/" class="post-title-link" itemprop="url">Django Models 3편 - Fields (Field Types)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-              
-
-              <time title="Post created: 2020-08-01 14:57:06 / Updated at: 15:05:11" itemprop="dateCreated datePublished" datetime="2020-08-01T14:57:06+09:00">2020-08-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/%EA%B3%B5%EC%8B%9D%EB%AC%B8%EC%84%9C/" itemprop="url" rel="index"><span itemprop="name">공식문서</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/08/01/Django-Models-3%ED%8E%B8-Fields-Field-Types/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/01/Django-Models-3편-Fields-Field-Types/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Fields"><a href="#Fields" class="headerlink" title="Fields"></a>Fields</h2><br>
-
-<p>모델에서 가장 중요하고, 가장 요구되는 사항중 하나는. </p>
-<p><br>모델에서 정의하는 데이터베이스 필드들의 리스트 입니다. </p>
-<br>
-
-<p>필드는 클래스 속성으로 정의되어 있습니다. </p>
-<br>
-
-<blockquote>
-<p>주의사항, </p>
-<p>필드명은, clean, save, delete 와 같은 model API 와 충돌할수 있는 이름으로 지으면 안됩니다. </p>
-</blockquote>
-<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/01/Django-Models-3%ED%8E%B8-Fields-Field-Types/#more" rel="contents">
-                더 읽어보기 &raquo;
-              </a>
- <br><br><!--구글 자동 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9284986247336734"
-     data-ad-slot="6424622219"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
- <!--구글 자동 end -->
-
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1584,14 +1608,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">236</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">

@@ -220,6 +220,133 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="장고쟁이">
+      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="장고쟁이">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/" class="post-title-link" itemprop="url">Django 간단한 투두리스트 API -  1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2022-06-12 20:23:32 / Updated at: 21:01:48" itemprop="dateCreated datePublished" datetime="2022-06-12T20:23:32+09:00">2022-06-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/" itemprop="url" rel="index"><span itemprop="name">REST FRAMEWORK</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/REST-FRAMEWORK/API-%EA%B0%84%ED%8E%B8%EC%98%88%EC%A0%9C-1/" itemprop="url" rel="index"><span itemprop="name">API 간편예제 1</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/06/12/Django-간단한-투두리스트-API-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="간단한-TodoList-API-로-만들기"><a href="#간단한-TodoList-API-로-만들기" class="headerlink" title="간단한 TodoList API 로 만들기"></a>간단한 TodoList API 로 만들기</h1><br>
+
+<p>Django API RESTFRAMEWORK 학습을 진행 하면서 RESTFRAMEWORK 문서에 나와 있는 튜토리얼을 하나하나 따라서 진행 하며 학습을 해보았지만. <br></p>
+<p>컨텐츠는 좋게 짜여진 튜토리얼이지만, 무언가 머리에 남는게 별로 없었다. 사실 처음 접했을때는 너무 어려웠었다. 따라서, 조금 쉬운 예제를 가지고 API 개발을 진행하면서 학습을 하기로 하였고. 여러모로 접근도 쉽고, 간편하게 짤수 있는 투두리스트 사이트를 API로 개발해 보면서, 학습을 진행해 보았다. </p>
+<br>
+
+<h2 id="1-project-생성-및-앱-등록"><a href="#1-project-생성-및-앱-등록" class="headerlink" title="1. project 생성 및 앱 등록"></a>1. project 생성 및 앱 등록</h2><p>가상환경과 Django 가 모두 세팅되었다고 가정하고. </p>
+<p><code>projects/todo</code> 폴더를 만들고 이동후에, 아래 커맨드들을 통해 Django 프로젝트를 생성해 주었다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> todo 라는 django project 생성</span></span><br><span class="line">django-admin startproject todo .</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 폴더 구조 </span></span><br><span class="line"> ~/projects/todo  ls</span><br><span class="line">manage.py  todo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> todolist 라는 앱 생성 </span></span><br><span class="line">python manage.py startapp todolist </span><br><span class="line"></span><br><span class="line">~/projects/todo  ls</span><br><span class="line">manage.py  todo  todolist	# todolist 폴더가 생겨난다</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>제대로 프로젝트가 생성이 되었고, 앱도 생성이 되었다. 다른것을 하기전에, 생성된 앱을 <code>todo/settings.py</code> 에 <code>INSTALLED_APPS</code> 에 추가해주었다. </p>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">'todolist'</span>, <span class="comment"># todolist 앱 추가 </span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+ <br><br><!--구글 자동 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9284986247336734"
+     data-ad-slot="6424622219"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+ <!--구글 자동 end -->
+
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2022/06/10/Django-API-Fundamentals/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1339,77 +1466,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="http://djangojeng-e.github.io/2020/12/15/DRF-Tutorial-29%ED%8E%B8-%EA%B0%9D%EC%B2%B4-%EB%A0%88%EB%B2%A8-%EA%B6%8C%ED%95%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="장고쟁이">
-      <meta itemprop="description" content="장고쟁이의 Python, Django 공부 노트">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="장고쟁이">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/15/DRF-Tutorial-29%ED%8E%B8-%EA%B0%9D%EC%B2%B4-%EB%A0%88%EB%B2%A8-%EA%B6%8C%ED%95%9C/" class="post-title-link" itemprop="url">DRF-Tutorial-29편- 객체 레벨 권한</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2020-12-15 16:23:34" itemprop="dateCreated datePublished" datetime="2020-12-15T16:23:34+09:00">2020-12-15</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/12/15/DRF-Tutorial-29%ED%8E%B8-%EA%B0%9D%EC%B2%B4-%EB%A0%88%EB%B2%A8-%EA%B6%8C%ED%95%9C/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/15/DRF-Tutorial-29편-객체-레벨-권한/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1480,14 +1536,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">236</span>
+          <span class="site-state-item-count">237</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">

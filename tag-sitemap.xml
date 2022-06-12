@@ -3,15 +3,22 @@
 
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/DRF-API-endpoints/</loc>
-        <lastmod>2022-06-11T12:02:26.808Z</lastmod>
+        <loc>http://djangojeng-e.github.io/tags/API/</loc>
+        <lastmod>2022-06-12T12:01:48.031Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://djangojeng-e.github.io/tags/API/</loc>
-        <lastmod>2020-12-30T08:31:27.511Z</lastmod>
+        <loc>http://djangojeng-e.github.io/tags/Django/</loc>
+        <lastmod>2022-06-12T12:01:48.031Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://djangojeng-e.github.io/tags/DRF-API-endpoints/</loc>
+        <lastmod>2022-06-11T12:02:26.808Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -249,13 +256,6 @@
 
     <url>
         <loc>http://djangojeng-e.github.io/tags/FormAPI/</loc>
-        <lastmod>2020-10-22T00:05:53.605Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://djangojeng-e.github.io/tags/Django/</loc>
         <lastmod>2020-10-22T00:05:53.605Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
