@@ -171,6 +171,94 @@
 
 <br>
 
+<h1 id="TodoList-데이터-생성"><a href="#TodoList-데이터-생성" class="headerlink" title="TodoList 데이터 생성"></a>TodoList 데이터 생성</h1><br>
+
+<p>models.py 에 데이터베이스 모델을 정의해 주었는데. 정의된 대로, 데이터를 한번 생성해 보았다. 데이터를 생성하는 방법에는 두가지가 있는데. shell 과 admin을 이용해서 데이터를 추가해줄수 있다.  </p>
+<br>
+
+<ol>
+<li>shell 에서 데이터를 추가 </li>
+<li>admin 에서 데이터를 추가 </li>
+</ol>
+<br>
+
+<h2 id="1-shell-로-데이터-추가해주기"><a href="#1-shell-로-데이터-추가해주기" class="headerlink" title="1. shell 로 데이터 추가해주기"></a>1. shell 로 데이터 추가해주기</h2><br>
+
+<p>shell 로 데이터를 추가해 주려면, 커맨드라인에서 django shell 로 들어가야 한다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">~/projects/todo  python manage.py shell</span><br><span class="line">Python 3.8.0 (default, May 11 2020, 19:08:02) </span><br><span class="line">Type 'copyright', 'credits' or 'license' for more information</span><br><span class="line">IPython 7.14.0 -- An enhanced Interactive Python. Type '?' for help.</span><br><span class="line"></span><br><span class="line">In [1]:</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>shell 의 모양이, 기본 모습과 다른데. 이건 <code>django-extension</code> 을 설치해줘서 모양이 바뀐것 같다. </p>
+<br>
+
+<p>투두리스트 하나를 생성할때 필요한 필드들은, 모델에 정의해 준대로. <code>user</code>, <code>title</code>, <code>content</code>, <code>dt_created</code> 가 있는데. </p>
+<br>
+
+<p><code>dt_created</code> 는 생성된 날짜와 시간을 기록하는 필드로, <code>auto_now=True</code> 로 설정해 주었기에, 직접 입력을 하지않아도 자동으로 현재 날짜와 시간값으로 생성이 된다. 따라서, 하나의 투두리스트를 shell 로 생성해 주려면, 아래 명령어를 shell 에 입력하면 된다. </p>
+<br>
+
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">In</span> [<span class="number">1</span>]: from todolist.models import TodoList          </span><br><span class="line"></span><br><span class="line"><span class="comment"># 사용자 정보를 가져오기 위해, User 모델을 가져옴 </span></span><br><span class="line"><span class="keyword">In</span> [<span class="number">2</span>]: from django.contrib.auth.models import User   </span><br><span class="line"></span><br><span class="line"><span class="comment"># 관리자는 첫번째 사용자임으로, id=1 로 생성된 사용자를 가져옴 </span></span><br><span class="line"><span class="keyword">In</span> [<span class="number">3</span>]: user = User.objects.get(id=<span class="number">1</span>)                 </span><br><span class="line"></span><br><span class="line"><span class="keyword">In</span> [<span class="number">4</span>]: user                                          </span><br><span class="line">Out[<span class="number">4</span>]: &lt;User: todolist&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># objects.create 메소드를 통해 데이터 생성, 사용자는 위에서 찾은 첫번째 사용자. 즉, 관리자. </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">In</span> [<span class="number">5</span>]: TodoList.objects.create(user=user, title=<span class="string">"Djan</span></span><br><span class="line"><span class="string">   ...: go API 학습하기"</span>, content=<span class="string">"간단한 예제를 통해 </span></span><br><span class="line"><span class="string">   ...: API 학습 해보자."</span>)                            </span><br><span class="line">Out[<span class="number">5</span>]: &lt;TodoList: Django API 학습하기&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 생성된 데이터 조회</span></span><br><span class="line"><span class="keyword">In</span> [<span class="number">6</span>]: TodoList.objects.all()                        </span><br><span class="line">Out[<span class="number">6</span>]: &lt;QuerySet [&lt;<span class="type">TodoList</span>: <span class="type">Django</span> <span class="type">API</span> 학습하기&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>TodoList 데이터가 생성된것을 확인할수 있었다.  Admin 에서도 생성해줄수 있는데.  어드민 페이지에 접속한후에, </p>
+<br>
+
+<img src="/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image6.png" class="">
+
+<br>
+
+<p>화면에 나온 값들을 입력한뒤, Save 버튼을 눌러주면 생성된다. </p>
+<br>
+
+<h2 id="2-Django-seed-를-이용해서-데이터-채워주기"><a href="#2-Django-seed-를-이용해서-데이터-채워주기" class="headerlink" title="2. Django-seed 를 이용해서 데이터 채워주기"></a>2. Django-seed 를 이용해서 데이터 채워주기</h2><br>
+
+<p>예시 데이터를 채우기 위해서, shell 이나 admin 에 접속하여 일일이 하나씩 데이터를 생성해주는것은 너무 귀찮은 일이다. 만약 예시 데이터를 50개정도 추가해서 데이터를 보려 한다면, 50번을 위 과정을 거쳐야 함으로 매우 비효율적이다. </p>
+<br>
+
+<p>다행히도, Django 패키지 중에는 예시 데이터를 자동으로 생성해주는 패키지가 존재하는데. 책에서만 읽어 보았고, 직접 사용해 보지는 않았었기 때문에. 이번 연습때 한번 사용해 보도록 했다. </p>
+<br>
+
+<blockquote>
+<p><a href="https://pypi.org/project/django-seed/#installation" target="_blank" rel="noopener">https://pypi.org/project/django-seed/#installation</a> </p>
+<p>pypi 페이지에 가면, django-seed 설치와 사용법에 대해 나와 있다. </p>
+</blockquote>
+<br>
+
+<p>우선, <code>pip install django-seed</code> 를 커맨드 라인에 입력하여, 패키지를 설치해주고. <code>settings.py</code> 파일에 <code>INSTALLED_APPS</code> 에 설치한 앱을 등록해 보았다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install django-seed </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> settings.py </span></span><br><span class="line"></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    'django.contrib.admin',</span><br><span class="line">    'django.contrib.auth',</span><br><span class="line">    'django.contrib.contenttypes',</span><br><span class="line">    'django.contrib.sessions',</span><br><span class="line">    'django.contrib.messages',</span><br><span class="line">    'django.contrib.staticfiles',</span><br><span class="line"></span><br><span class="line">    'todolist',</span><br><span class="line">    # django-seed 등록 </span><br><span class="line">    'django_seed',    </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>공식문서를 보면, <code>django-seed</code> 의 사용법은 아래와 같다. </p>
+<br>
+
+<p><code>python manage.py seed &lt;앱이름&gt; --number=&lt;생성 데이터 갯수&gt;</code></p>
+<br>
+
+<p>이 사용법을 TodoList 앱에 적용해 사용해 보기 위해, 커맨드라인에 아래 명령어를 입력해 주었다. </p>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 10개의 데이터를 생성 </span></span><br><span class="line">python manage.py seed todolist --number=10</span><br><span class="line"></span><br><span class="line">Model User generated record with primary key 2</span><br><span class="line">Model User generated record with primary key 3</span><br><span class="line">Model User generated record with primary key 4</span><br><span class="line">Model User generated record with primary key 5</span><br><span class="line">Model User generated record with primary key 6</span><br><span class="line">Model User generated record with primary key 7</span><br><span class="line">Model User generated record with primary key 8</span><br><span class="line">Model User generated record with primary key 9</span><br><span class="line">Model User generated record with primary key 10</span><br><span class="line">Model User generated record with primary key 11</span><br><span class="line">Model TodoList generated record with primary key 2</span><br><span class="line">Model TodoList generated record with primary key 3</span><br><span class="line">Model TodoList generated record with primary key 4</span><br><span class="line">Model TodoList generated record with primary key 5</span><br><span class="line">Model TodoList generated record with primary key 6</span><br><span class="line">Model TodoList generated record with primary key 7</span><br><span class="line">Model TodoList generated record with primary key 8</span><br><span class="line">Model TodoList generated record with primary key 9</span><br><span class="line">Model TodoList generated record with primary key 10</span><br><span class="line">Model TodoList generated record with primary key 11</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<p>커맨드라인에 몇가지 에러가 출력된것 같은데,, 결과적으론 10명의 User 와 10개의 투두리스트가 생성된것 같다. 생성된지 아닌지 확인해 보기 위해, 빠르게 shell  로 접속해서 데이터를 조회해 보았다. </p>
+<br>
+
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">python manage.py shell </span><br><span class="line"></span><br><span class="line"><span class="keyword">In</span> [<span class="number">1</span>]: from todolist.models import TodoList          </span><br><span class="line"></span><br><span class="line"><span class="keyword">In</span> [<span class="number">2</span>]: TodoList.objects.all()                        </span><br><span class="line">Out[<span class="number">2</span>]: &lt;QuerySet [&lt;<span class="type">TodoList</span>: <span class="type">Django</span> <span class="type">API</span> 학습하기&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Law</span> <span class="type">machine</span> <span class="type">movement</span> <span class="type">these</span> <span class="type">effort</span> <span class="type">that</span> <span class="type">themselves.</span>&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Start</span> <span class="type">listen</span> <span class="type">firm</span> <span class="type">trouble</span> <span class="type">defense</span> <span class="type">husband</span> <span class="type">collection.</span>&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Really</span> <span class="type">first</span> <span class="type">product</span> <span class="type">new</span> <span class="type">no.</span>&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Skin</span> <span class="type">name</span> <span class="type">certainly</span> <span class="type">peace.</span>&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Society</span> <span class="type">as</span> <span class="type">similar</span> <span class="type">change</span> <span class="type">team</span> <span class="type">model</span> <span class="type">agency.</span>&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Prove</span> <span class="type">dog</span> <span class="type">page</span> <span class="type">rest</span> <span class="type">cover</span> <span class="type">else.</span>&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Deal</span> <span class="type">test</span> <span class="type">only</span> <span class="type">exist</span> <span class="type">without</span> <span class="type">yourself.</span>&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Letter</span> <span class="type">operation</span> <span class="type">run</span> <span class="type">political</span> <span class="type">require.</span>&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Level</span> <span class="type">truth</span> <span class="type">green</span> <span class="type">than</span> <span class="type">defense</span> <span class="type">industry</span> <span class="type">Mrs.</span>&gt;, &lt;<span class="type">TodoList</span>: <span class="type">Help</span> <span class="type">direction</span> <span class="type">top</span> <span class="type">task</span> <span class="type">enough</span> <span class="type">scientist.</span>&gt;]&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># TodoList 데이터의 갯수를 출력 </span></span><br><span class="line"><span class="keyword">In</span> [<span class="number">3</span>]: TodoList.objects.count()                      </span><br><span class="line">Out[<span class="number">3</span>]: <span class="number">11</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>shell 에서 조회해 보니, TodoList 데이터 10개가 자동으로 생성된것을 확인할수 있었다. </p>
+<p>이제 본격적으로 API를 만들어서 이렇게 생성된 데이터들을 생성, 조회, 갱신, 삭제 할수 있는지 알아볼수 있을것 같다.  </p>
 ]]></content>
       <categories>
         <category>REST FRAMEWORK</category>
