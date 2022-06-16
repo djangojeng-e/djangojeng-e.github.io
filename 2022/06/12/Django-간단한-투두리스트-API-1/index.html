@@ -41,7 +41,7 @@
 <meta property="og:image" content="http://djangojeng-e.github.io/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image6.png">
 <meta property="og:image" content="http://djangojeng-e.github.io/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image6.png">
 <meta property="article:published_time" content="2022-06-12T11:23:32.000Z">
-<meta property="article:modified_time" content="2022-06-14T10:47:04.566Z">
+<meta property="article:modified_time" content="2022-06-16T12:11:34.865Z">
 <meta property="article:author" content="장고쟁이">
 <meta property="article:tag" content="Django">
 <meta property="article:tag" content="API">
@@ -258,7 +258,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2022-06-14 19:47:04" itemprop="dateModified" datetime="2022-06-14T19:47:04+09:00">2022-06-14</time>
+                <time title="Updated at: 2022-06-16 21:11:34" itemprop="dateModified" datetime="2022-06-16T21:11:34+09:00">2022-06-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -561,7 +561,67 @@
 <br>
 
 <p>shell 에서 조회해 보니, TodoList 데이터 10개가 자동으로 생성된것을 확인할수 있었다. </p>
-<p>이제 본격적으로 API를 만들어서 이렇게 생성된 데이터들을 생성, 조회, 갱신, 삭제 할수 있는지 알아볼수 있을것 같다.  </p>
+<p>이제 본격적으로 API를 만들어서 이렇게 생성된 데이터들을, API로 어떻게 생성, 조회, 갱신, 삭제 할수 있는지 알아볼수 있을것 같다.  </p>
+<br>
+
+<h1 id="Django-REST-framework"><a href="#Django-REST-framework" class="headerlink" title="Django REST framework"></a>Django REST framework</h1><br>
+
+<p>API를 개발하기 위해서는 필요한 Djang 패키지가 있다. <code>Django REST framework</code> 이라는것인데. 보통 Django 로 API 를 개발한다고 하면, 이 패키지를 설치하고 사용한다고 보면 된다. </p>
+<br>
+
+<h2 id="1-Django-REST-framework-설치"><a href="#1-Django-REST-framework-설치" class="headerlink" title="1. Django REST framework 설치"></a>1. Django REST framework 설치</h2><br>
+
+<p>설치를 진행 하려면, 커맨드 라인에 아래 명령어를 입력하여 패키지를 설치해주고. </p>
+<br>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install djangorestframework</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>설치 뒤에, <code>settings.py</code> 파일에 있는 <code>INSTALLED_APPS</code> 에 <code>rest_framework</code>을 추가해 주면 된다. </p>
+<br>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">'todolist'</span>,</span><br><span class="line">    <span class="string">'django_seed'</span>, </span><br><span class="line">    <span class="comment"># django restframework </span></span><br><span class="line">    <span class="string">'rest_framework'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<br>
+
+<h2 id="2-REST"><a href="#2-REST" class="headerlink" title="2. REST??"></a>2. REST??</h2><br>
+
+<p>패키지를 설치하는김에 복습해 볼것은, <code>REST</code> 라는 단어인데. 이 REST 라는 컨셉은 API 개발을 이해하기전에 꼭 알아보고 진행 해야 하는 중요한 컨셉이다. </p>
+<br>
+
+<blockquote>
+<p><code>REST</code></p>
+<p>Representational State Transfer (REST) 의 약자 </p>
+<p><a href="https://www.techtarget.com/searchapparchitecture/definition/REST-REpresentational-State-Transfer" target="_blank" rel="noopener">https://www.techtarget.com/searchapparchitecture/definition/REST-REpresentational-State-Transfer</a> </p>
+<p>REST (REpresentational State Transfer) is an architectural style for developing web services. REST is popular due to its simiplicity and the fact that it builds upon existing systems and features of the internet’s HyperText Tyransfer Protocol (HTTP) in order to achieve its objectives. </p>
+<br>
+
+<p>영문으로 읽어봐도 뭔지 이해가 잘 가진 않는데.. </p>
+<p>2000년대에, Roy Fielding 이라는분이 처음 제안한 구조로, API를 웹상에서 개발하는 방범론이라고 이해하고 넘어가기로 했다. 즉, API 는 HTTP 프로토콜 위에 개발되는 방식을 REST 라고 보고 있다. </p>
+<br>
+</blockquote>
+<br>
+
+<h3 id="REST의-주요-특성"><a href="#REST의-주요-특성" class="headerlink" title="REST의 주요 특성"></a>REST의 주요 특성</h3><br>
+
+<ol>
+<li><p>HTTP 처럼 무상태 (Stateless) 이다 </p>
+</li>
+<li><p>보편적인 HTTP verbs 를 지원한다 (예, GET, POST, PUT, DELETE)</p>
+</li>
+<li><p>데이터를 <code>json</code> 형태나 <code>XML</code> 형태로 반환한다. </p>
+<br>
+
+
+
+</li>
+</ol>
+<br>
+
+<p>이제, API 개발을 시작하기 위한 전반적인 준비는 다 마친것 같다. API 를 통해서 현재까지 생성된 데이터를 조회하는 API 부터 개발해 보도록 하려 한다. </p>
 
     </div>
 
@@ -653,7 +713,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#간단한-TodoList-API-로-만들기"><span class="nav-number">1.</span> <span class="nav-text">간단한 TodoList API 로 만들기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-project-생성-및-앱-등록"><span class="nav-number">1.1.</span> <span class="nav-text">1. project 생성 및 앱 등록</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Migrations-amp-Migrate"><span class="nav-number">1.2.</span> <span class="nav-text">2. Migrations &amp; Migrate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-학습-목표"><span class="nav-number">1.3.</span> <span class="nav-text">3. 학습 목표</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TodoList-모델링"><span class="nav-number">2.</span> <span class="nav-text">TodoList 모델링</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-models-py"><span class="nav-number">2.1.</span> <span class="nav-text">1.models.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Migrations-amp-Migrate-1"><span class="nav-number">2.2.</span> <span class="nav-text">2. Migrations &amp; Migrate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Superuser-생성-하기"><span class="nav-number">2.3.</span> <span class="nav-text">3. Superuser 생성 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-어드민에-TodoList-메뉴-추가해주기"><span class="nav-number">2.4.</span> <span class="nav-text">4. 어드민에 TodoList 메뉴 추가해주기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TodoList-데이터-생성"><span class="nav-number">3.</span> <span class="nav-text">TodoList 데이터 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-shell-로-데이터-추가해주기"><span class="nav-number">3.1.</span> <span class="nav-text">1. shell 로 데이터 추가해주기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Django-seed-를-이용해서-데이터-채워주기"><span class="nav-number">3.2.</span> <span class="nav-text">2. Django-seed 를 이용해서 데이터 채워주기</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#간단한-TodoList-API-로-만들기"><span class="nav-number">1.</span> <span class="nav-text">간단한 TodoList API 로 만들기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-project-생성-및-앱-등록"><span class="nav-number">1.1.</span> <span class="nav-text">1. project 생성 및 앱 등록</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Migrations-amp-Migrate"><span class="nav-number">1.2.</span> <span class="nav-text">2. Migrations &amp; Migrate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-학습-목표"><span class="nav-number">1.3.</span> <span class="nav-text">3. 학습 목표</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TodoList-모델링"><span class="nav-number">2.</span> <span class="nav-text">TodoList 모델링</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-models-py"><span class="nav-number">2.1.</span> <span class="nav-text">1.models.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Migrations-amp-Migrate-1"><span class="nav-number">2.2.</span> <span class="nav-text">2. Migrations &amp; Migrate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Superuser-생성-하기"><span class="nav-number">2.3.</span> <span class="nav-text">3. Superuser 생성 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-어드민에-TodoList-메뉴-추가해주기"><span class="nav-number">2.4.</span> <span class="nav-text">4. 어드민에 TodoList 메뉴 추가해주기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TodoList-데이터-생성"><span class="nav-number">3.</span> <span class="nav-text">TodoList 데이터 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-shell-로-데이터-추가해주기"><span class="nav-number">3.1.</span> <span class="nav-text">1. shell 로 데이터 추가해주기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Django-seed-를-이용해서-데이터-채워주기"><span class="nav-number">3.2.</span> <span class="nav-text">2. Django-seed 를 이용해서 데이터 채워주기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Django-REST-framework"><span class="nav-number">4.</span> <span class="nav-text">Django REST framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Django-REST-framework-설치"><span class="nav-number">4.1.</span> <span class="nav-text">1. Django REST framework 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-REST"><span class="nav-number">4.2.</span> <span class="nav-text">2. REST??</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#REST의-주요-특성"><span class="nav-number">4.2.1.</span> <span class="nav-text">REST의 주요 특성</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
