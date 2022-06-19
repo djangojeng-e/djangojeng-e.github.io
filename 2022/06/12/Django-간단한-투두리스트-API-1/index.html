@@ -40,8 +40,10 @@
 <meta property="og:image" content="http://djangojeng-e.github.io/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image5.png">
 <meta property="og:image" content="http://djangojeng-e.github.io/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image6.png">
 <meta property="og:image" content="http://djangojeng-e.github.io/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image6.png">
+<meta property="og:image" content="http://djangojeng-e.github.io/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image7.png">
+<meta property="og:image" content="http://djangojeng-e.github.io/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image8.png">
 <meta property="article:published_time" content="2022-06-12T11:23:32.000Z">
-<meta property="article:modified_time" content="2022-06-16T12:11:34.865Z">
+<meta property="article:modified_time" content="2022-06-19T12:31:43.010Z">
 <meta property="article:author" content="장고쟁이">
 <meta property="article:tag" content="Django">
 <meta property="article:tag" content="API">
@@ -258,7 +260,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2022-06-16 21:11:34" itemprop="dateModified" datetime="2022-06-16T21:11:34+09:00">2022-06-16</time>
+                <time title="Updated at: 2022-06-19 21:31:43" itemprop="dateModified" datetime="2022-06-19T21:31:43+09:00">2022-06-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -622,7 +624,104 @@
 <br>
 
 <p>이제, API 개발을 시작하기 위한 전반적인 준비는 다 마친것 같다. API 를 통해서 현재까지 생성된 데이터를 조회하는 API 부터 개발해 보도록 하려 한다. </p>
+<br> 
 
+<h1 id="API-작성"><a href="#API-작성" class="headerlink" title="API 작성"></a>API 작성</h1><br>
+
+<p>첫번째 API 개발을 시작하기전에,  API 처리를 담당해줄 URL 구조를 세팅을 하였다. </p>
+<p>현재, 프로젝트 앱 디렉토리 구조는 아래와 같은데. </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── db.sqlite3</span><br><span class="line">├── manage.py</span><br><span class="line">├── todo</span><br><span class="line">│   ├── asgi.py</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   ├── settings.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── wsgi.py</span><br><span class="line">└── todolist</span><br><span class="line">    ├── admin.py</span><br><span class="line">    ├── apps.py</span><br><span class="line">    ├── __init__.py</span><br><span class="line">    ├── migrations</span><br><span class="line">    │   ├── <span class="number">0001</span>_initial.py</span><br><span class="line">    ├── models.py</span><br><span class="line">    ├── tests.py</span><br><span class="line">    └── views.py</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="urls-py-파일"><a href="#urls-py-파일" class="headerlink" title="urls.py 파일"></a>urls.py 파일</h2><br> 
+
+<p>API 처리를 담당할 URL들을 설정해 주기 위해서, <code>todolist</code> 앱 안에, <code>urls.py</code> 파일을 생성해 주고. <code>todo</code> 폴더안에 있는 <code>urls.py</code> 파일과 연결해 주었다. </p>
+<br>
+
+<ol>
+<li>프로젝트 urls.py - <code>todo/urls.py</code> </li>
+<li>todolist 앱안에 urls.py 를 생성 - <code>todolist/urls.py</code> </li>
+</ol>
+<br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># todo/urls.py (기본 urls.py)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include <span class="comment"># include 가져오기 </span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">    path(<span class="string">''</span>, include(<span class="string">'todolist.urls'</span>)) </span><br><span class="line">    <span class="comment"># todolist의 urls.py 를 포함시켜줌</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># todolist/urls.py 생성후 아래와 같이 작성 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include </span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'api/todolist'</span>,), </span><br><span class="line">    <span class="comment"># api/ 다음에 오는 단어에 따라서 호출되는 API 뷰가 달라지게 url pattern을 	  작성할수 있다.</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-todolist-조회-API"><a href="#1-todolist-조회-API" class="headerlink" title="1. todolist 조회 API"></a>1. todolist 조회 API</h2><br>
+
+<p>현재까지 작성된 todolist 의 갯수는 11개 이다. 이 데이터들을 모두 조회할수 있는 가장 기본적인 API 작성을 해보았다. </p>
+<p><br> django 로 무언가를 개발할때에는, 앱안에 <code>urls.py</code>, <code>views.py</code> 그리고 <code>models.py</code> 를 연관되게 작성해야 한다. </p>
+<br>
+
+<p>urls.py 에 정의된 url 을 통해서, <code>views.py</code> 파일에 정의된 view 를 호출하여 어떠한 작업을 수행하고, 호출된 뷰가 데이터를 가지고 작업을 해야하는 경우, <code>models.py</code> 에 정의된 데이터 모델을 참조해서 작업을 수행한다. <br></p>
+<p>또한, 간단하게 API 개발을 할때에는 <code>serializers.py</code>파일까지 생성후 코드를 작성해 줘야 한다. </p>
+<br> 
+
+<p>개발자마다, 어떤 파일부터 작업할지 순서가 다른데, 나는 <code>serializers.py</code> 파일부터 작업해 보기로 하였다. </p>
+<p><br> 조회 API 를 작성하기 위한 순서는, </p>
+<ol>
+<li>todolist 앱 안에 <code>serializers.py</code>파일 생성 및 작성 (todolist/serializers.py) </li>
+<li><code>views.py</code> 파일에 <code>TodoListAPIView</code> 클래스 작성 </li>
+<li><code>urls.py</code> 파일에 url 정의 및 <code>TodoListAPIView</code> 를 호출하도록 코드 작성 </li>
+<li>테스트 </li>
+</ol>
+<br>
+
+<h3 id="1-serializers-py-파일-생성-및-작성"><a href="#1-serializers-py-파일-생성-및-작성" class="headerlink" title="1. serializers.py 파일 생성 및 작성"></a>1. <code>serializers.py</code> 파일 생성 및 작성</h3><br>
+
+<p><code>todolist/serializers.py</code> 파일을 생성한뒤에 아래와 같이 작성해준다. </p>
+<br>
+
+<blockquote>
+<p><code>serializer</code> 는 queryset 이나 모델 인스턴스 같은 복잡한 데이터들을 인터넷 상에서 쉽게 사용될수 있는 포맷으로 변환해 준다. 보통 json 형태로 전환한다.  </p>
+</blockquote>
+<br>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># todolist/serializers.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> TodoList </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = TodoList </span><br><span class="line">        fields = (<span class="string">"user"</span>, <span class="string">"title"</span>, <span class="string">"content"</span>, <span class="string">"dt_created"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<br>
+
+<h3 id="2-views-py-에-TodoListAPIView-클래스-작성"><a href="#2-views-py-에-TodoListAPIView-클래스-작성" class="headerlink" title="2. views.py 에 TodoListAPIView 클래스 작성"></a>2. <code>views.py</code> 에 TodoListAPIView 클래스 작성</h3><br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># todolist/views.py </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> TodoList </span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> generics </span><br><span class="line"><span class="comment"># serializers.py 파일에서 정의한 TodoSerializer를 가져옴</span></span><br><span class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> TodoSerializer  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoListAPIView</span><span class="params">(generics.ListAPIView)</span>:</span></span><br><span class="line">    queryset = TodoList.objects.all() </span><br><span class="line">    serializer_class = TodoSerializer</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p><code>rest_framework</code>에서 <code>generics</code> 를 가져오면, generic 클래스로 쉽게 API 를 구현할수 있다. 일반 DJango 에서 generic 뷰인 ListView 같은 개념으로 보면 될것 같다. </p>
+<br>
+
+<h3 id="3-urls-py-에-urlpattern-정의"><a href="#3-urls-py-에-urlpattern-정의" class="headerlink" title="3. urls.py 에 urlpattern 정의"></a>3. <code>urls.py</code> 에 urlpattern 정의</h3><br>  
+
+<p>이렇게 views 작성된 클래스를 어떤 urls 를 통해서 호출 될지 urlpattern 을 정의해 줘야 한다. </p>
+<br>
+
+<p>위에서 반쯤 정의되었던 <code>todolist/urls.py</code> 파일을 마저 작성하자. </p>
+<br>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># todolist/urls.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include </span><br><span class="line"><span class="keyword">from</span> .views <span class="keyword">import</span> TodoListAPIView  <span class="comment"># view 에서 작성한 TodoListAPIView 를 가져옴 </span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'api/todolist/'</span>, TodoListAPIView.as_view(), name=<span class="string">"todo-list"</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>위에서 path 안에<code>api/todolist/</code> 까지만 써줬는데, 해당 URL 을 통해 <code>TodoListAPIView</code> 클래스가 호출 되도록 urlpattern 하나를 정의 해주었다.  이제 <code>api/todolist/</code> url 을 브라우저로 접속하면, API 를 통해 모든 TodoList 를 보여주는 기능이 추가 되었다.  </p>
+<br>
+
+<h3 id="4-브라우저로-테스트-하기"><a href="#4-브라우저로-테스트-하기" class="headerlink" title="4. 브라우저로 테스트 하기"></a>4. 브라우저로 테스트 하기</h3><br>
+
+<p><code>python manage.py runserver</code> 를 실행시켜 서버를 구동한다음. 브라우저의 주소창에 </p>
+<p><br><code>http://127.0.0.1:8000/api/todolist/</code> 를 입력하면 아래와 같은 화면을 확인 할수 있다. </p>
+<br>
+
+<img src="/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image7.png" class=""><br>
+
+<p><img src="/2022/06/12/Django-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%88%AC%EB%91%90%EB%A6%AC%EC%8A%A4%ED%8A%B8-API-1/image8.png" class="" title="}&lt;&#x2F;p&gt; &lt;br&gt; &lt;p&gt;현재까지 저장된 투두리스트들의 목록들이 API 호출로 잘 나타나는것을 확인할수 있었다. &lt;&#x2F;p&gt;">
     </div>
 
     
@@ -713,7 +812,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#간단한-TodoList-API-로-만들기"><span class="nav-number">1.</span> <span class="nav-text">간단한 TodoList API 로 만들기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-project-생성-및-앱-등록"><span class="nav-number">1.1.</span> <span class="nav-text">1. project 생성 및 앱 등록</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Migrations-amp-Migrate"><span class="nav-number">1.2.</span> <span class="nav-text">2. Migrations &amp; Migrate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-학습-목표"><span class="nav-number">1.3.</span> <span class="nav-text">3. 학습 목표</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TodoList-모델링"><span class="nav-number">2.</span> <span class="nav-text">TodoList 모델링</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-models-py"><span class="nav-number">2.1.</span> <span class="nav-text">1.models.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Migrations-amp-Migrate-1"><span class="nav-number">2.2.</span> <span class="nav-text">2. Migrations &amp; Migrate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Superuser-생성-하기"><span class="nav-number">2.3.</span> <span class="nav-text">3. Superuser 생성 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-어드민에-TodoList-메뉴-추가해주기"><span class="nav-number">2.4.</span> <span class="nav-text">4. 어드민에 TodoList 메뉴 추가해주기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TodoList-데이터-생성"><span class="nav-number">3.</span> <span class="nav-text">TodoList 데이터 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-shell-로-데이터-추가해주기"><span class="nav-number">3.1.</span> <span class="nav-text">1. shell 로 데이터 추가해주기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Django-seed-를-이용해서-데이터-채워주기"><span class="nav-number">3.2.</span> <span class="nav-text">2. Django-seed 를 이용해서 데이터 채워주기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Django-REST-framework"><span class="nav-number">4.</span> <span class="nav-text">Django REST framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Django-REST-framework-설치"><span class="nav-number">4.1.</span> <span class="nav-text">1. Django REST framework 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-REST"><span class="nav-number">4.2.</span> <span class="nav-text">2. REST??</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#REST의-주요-특성"><span class="nav-number">4.2.1.</span> <span class="nav-text">REST의 주요 특성</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#간단한-TodoList-API-로-만들기"><span class="nav-number">1.</span> <span class="nav-text">간단한 TodoList API 로 만들기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-project-생성-및-앱-등록"><span class="nav-number">1.1.</span> <span class="nav-text">1. project 생성 및 앱 등록</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Migrations-amp-Migrate"><span class="nav-number">1.2.</span> <span class="nav-text">2. Migrations &amp; Migrate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-학습-목표"><span class="nav-number">1.3.</span> <span class="nav-text">3. 학습 목표</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TodoList-모델링"><span class="nav-number">2.</span> <span class="nav-text">TodoList 모델링</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-models-py"><span class="nav-number">2.1.</span> <span class="nav-text">1.models.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Migrations-amp-Migrate-1"><span class="nav-number">2.2.</span> <span class="nav-text">2. Migrations &amp; Migrate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Superuser-생성-하기"><span class="nav-number">2.3.</span> <span class="nav-text">3. Superuser 생성 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-어드민에-TodoList-메뉴-추가해주기"><span class="nav-number">2.4.</span> <span class="nav-text">4. 어드민에 TodoList 메뉴 추가해주기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TodoList-데이터-생성"><span class="nav-number">3.</span> <span class="nav-text">TodoList 데이터 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-shell-로-데이터-추가해주기"><span class="nav-number">3.1.</span> <span class="nav-text">1. shell 로 데이터 추가해주기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Django-seed-를-이용해서-데이터-채워주기"><span class="nav-number">3.2.</span> <span class="nav-text">2. Django-seed 를 이용해서 데이터 채워주기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Django-REST-framework"><span class="nav-number">4.</span> <span class="nav-text">Django REST framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Django-REST-framework-설치"><span class="nav-number">4.1.</span> <span class="nav-text">1. Django REST framework 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-REST"><span class="nav-number">4.2.</span> <span class="nav-text">2. REST??</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#REST의-주요-특성"><span class="nav-number">4.2.1.</span> <span class="nav-text">REST의 주요 특성</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API-작성"><span class="nav-number">5.</span> <span class="nav-text">API 작성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#urls-py-파일"><span class="nav-number">5.1.</span> <span class="nav-text">urls.py 파일</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-todolist-조회-API"><span class="nav-number">5.2.</span> <span class="nav-text">1. todolist 조회 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-serializers-py-파일-생성-및-작성"><span class="nav-number">5.2.1.</span> <span class="nav-text">1. serializers.py 파일 생성 및 작성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-views-py-에-TodoListAPIView-클래스-작성"><span class="nav-number">5.2.2.</span> <span class="nav-text">2. views.py 에 TodoListAPIView 클래스 작성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-urls-py-에-urlpattern-정의"><span class="nav-number">5.2.3.</span> <span class="nav-text">3. urls.py 에 urlpattern 정의</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-브라우저로-테스트-하기"><span class="nav-number">5.2.4.</span> <span class="nav-text">4. 브라우저로 테스트 하기</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
